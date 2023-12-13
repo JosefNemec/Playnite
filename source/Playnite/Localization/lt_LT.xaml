@@ -101,7 +101,7 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCErrorStartupNoController">Nepavyko nustatyti kaip paleisti žaidimą.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Įgalinta</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Išjungta</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Pašalinti</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Pašalinti nenodojamus</sys:String>
     <sys:String x:Key="LOCRenameTitle">Pervadinti</sys:String>
@@ -252,11 +252,14 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCMenuLinksTitle">Nuorodos</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pagalba</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Paremti &quot;Patreon&quot; platformoje</sys:String>
+    <sys:String x:Key="LOCUserManual">Vartotojo instrukcijos</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentacija</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Perkrauti sistemą</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Išjungti sistemą</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Užmigdyti sistemą</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Sistemą užmigdyti įrašius</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Ūžrakto sistema</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Atjungti vartotoja</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Pasirinkti atsitiktinį žaidimą</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Žaidimo laukai bus rodomi detalių  panelėje:</sys:String>
@@ -414,15 +417,15 @@ Niekada: neimportuoja žaidimo laiko jokiomis aplinkybėmis.</sys:String>
 Jei išjungta, fono meno kūriniai atsisiunčiami tik tada, kai reikia pirmą kartą, naudojant mažiau vietos, tačiau gali užtrukti, kol meno kūriniai bus rodomi, o kai kurie vaizdai gali būti nepasiekiami neprisijungus.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Automatiškai išjungti trečiūjų šalių paleidiklį kai žaidimas išsijungs</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Kliento uždarymo atidėjimas (sekundėmis)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Neuždarykite lango po žaidimo sesijos per mažiau negu (sekundėmis)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Automatiškai uždaryti šiuos klientus:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Automatiškai uždaryti klientus</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">Importuoti išimčių sąrašą</sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Rodyti pranešimą kada žaidimų biblioteka per didelė</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Aplanko atidarymo komanda</sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Numatyta amžiaus vertinimo organizacija</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Atnaujinimo dydis po bibliotekos atnaujinimo</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Skenuoja ir atnaujina instaliuotų žaidimų dydį jei bus aptikta ,kad failai buvo modifuokoti po praeito skenavimo</sys:String>
     <sys:String x:Key="LOCStrechNone">Nieko</sys:String>
     <sys:String x:Key="LOCStrechFill">Užpildyti</sys:String>
     <sys:String x:Key="LOCStrechUniform">Suvienodinti</sys:String>
@@ -434,18 +437,21 @@ Jei išjungta, fono meno kūriniai atsisiunčiami tik tada, kai reikia pirmą ka
     <sys:String x:Key="LOCImportError">Įtraukimo klaida</sys:String>
     <sys:String x:Key="LOCLoginRequired">Reikalinga autentifikacija</sys:String>
     <sys:String x:Key="LOCLoginFailed">Autentifikuoti nepavyko</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">Alternativus webview rendering režimas</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Naudoti kada  vyksta  problemos su webviews, pavizdžiui authentikacijos dialogo integracija.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Dalinis krovimas ilgiems žaidimų aprašymams</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Ilgi aprašymai gali pastebimai striginti programa kada pasirenkami žaidimai.
+
+Kada įjungta, užkraus tik dalį teksto ,o vėliau užkraus kitus kada reikalinga.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Metadata įtraukimas</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Atsisiųsti metadatą</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Nustatyti kurią konfiguracija naudoti naujiem metadata atisiuntimams.
+Gali būti pakeista nustatymose</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Emuliacijos importavimo vedlys</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Šis langas parodys kaip atsiūsti ir importuoti konsolių emuliatorius ir importuoti emuliuotus žaidimus.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Nepamirškite, kad papildomus emuliatorius ir / ar žadimus galite įtraukti pagrindiniame meniu (pasirinkus &quot;Įrankiai&quot; norint įtraukti emuliatorių ir &quot;Pridėti žaidimą&quot; norint pridėti emuliuojamą žaidimą).</sys:String>
     <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
     <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
@@ -590,11 +596,9 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCAppStartupError">Nepavyko paleisti aplikacijos.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Nepavyko įkelti XInput įvesties.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Keisti žaidimo informaciją</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Naudoti .exe pictogramą</sys:String>
     <sys:String x:Key="LOCImageURL">Paveikslėlio URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Pridėti nuorodą</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
@@ -632,6 +636,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCDoNothing">Nieko nedaryti</sys:String>
     <sys:String x:Key="LOCMinimize">Sumažinti</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Atkurti programos langą</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Uždaryti</sys:String>
     <sys:String x:Key="LOCChange">Pakeisti</sys:String>
     <sys:String x:Key="LOCAdvanced">Išplėsti</sys:String>
@@ -917,6 +922,8 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
     <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
@@ -1167,4 +1174,6 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

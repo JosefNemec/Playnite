@@ -252,11 +252,14 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjælp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem"></sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem"></sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem"></sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame"></sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -578,11 +581,9 @@ Når aktiveret, vil kun en del af beskrivelse tekst i første omgang blive indl�
     <sys:String x:Key="LOCAppStartupError"></sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle"></sys:String>
-    <sys:String x:Key="LOCUseExeIcon"></sys:String>
     <sys:String x:Key="LOCImageURL"></sys:String>
     <sys:String x:Key="LOCAddLinkButton"></sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
@@ -620,6 +621,7 @@ Når aktiveret, vil kun en del af beskrivelse tekst i første omgang blive indl�
     <sys:String x:Key="LOCDoNothing">Gør ingenting</sys:String>
     <sys:String x:Key="LOCMinimize">Minimer</sys:String>
     <sys:String x:Key="LOCRestoreWindow"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Luk</sys:String>
     <sys:String x:Key="LOCChange">Skift</sys:String>
     <sys:String x:Key="LOCAdvanced">Avanceret</sys:String>
@@ -900,6 +902,8 @@ Når aktiveret, vil kun en del af beskrivelse tekst i første omgang blive indl�
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Sporingssti</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
     <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
@@ -1153,4 +1157,6 @@ Streng matchning kan håndhæves på en individuel sag ved at præfikse filter m
     
 Åbn et nyt problem på Playnites GitHub-side med en anmodning om at fikse korruptionen i dine filer.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

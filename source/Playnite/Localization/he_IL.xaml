@@ -103,7 +103,7 @@
 </sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">פעיל</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">כבוי</sys:String>
     <sys:String x:Key="LOCRemoveTitle">הסר</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">הסר את מה שלא שבשימוש</sys:String>
     <sys:String x:Key="LOCRenameTitle">שנה שם</sys:String>
@@ -254,11 +254,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">קישורים</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">עזרה</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">תמוך באמצעות Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual">מדריך למשתמש</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">תיעוד SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">איתחול מערכת</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">כבה מערכת</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">השהה מערכת</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">מצב שינה</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">נעל מערכת</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">נתק משתמש</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">בחר משחק אקראי</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">שדות משחק להצגה בפאנל הפרטים:</sys:String>
@@ -609,11 +612,9 @@
 למידע נוסף:
 https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">אתחול ממשק ה- XInput נכשל.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">ביצוע פעולת תפריט נכשלה</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ערוך פרטי משחק</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">מפעולת משחק</sys:String>
     <sys:String x:Key="LOCImageURL">כתובת תמונה</sys:String>
     <sys:String x:Key="LOCAddLinkButton">הוסף קישור</sys:String>
     <sys:String x:Key="LOCAddRom">הוסף ROM</sys:String>
@@ -651,6 +652,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">אל תעשה דבר</sys:String>
     <sys:String x:Key="LOCMinimize">מזער</sys:String>
     <sys:String x:Key="LOCRestoreWindow">שחזר חלון</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">סגור</sys:String>
     <sys:String x:Key="LOCChange">שינוי</sys:String>
     <sys:String x:Key="LOCAdvanced">מתקדם</sys:String>
@@ -956,6 +958,8 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">בחר פעולה</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">מצב מעקב</sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">קישור</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">קובץ</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">אמולטור</sys:String>
@@ -999,10 +1003,8 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">צמצם את פליינייט אחרי שמשחק מתחיל</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">גודל גופן</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">גודל גופן קטן</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">תמיכה במכשיר XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">אם כבוי, פליינייט לא יקבל שום קלט מממשק XInput.
-        
-כבה אם אתה משתמש בכלי אשר מתרגם קלט XInout לעכבר/מקלדת ואתה מקבל קלט כפול בפליינייט</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">הצג פריטים בתפריט הראשי:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">הפוך את פעולת הכפתורים X/A בתצוגה הראשית</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">החלף את שיוך הכפתורים עבור התחלת משחק והצגת מידע נוסף בתצוגה הראשית</sys:String>
@@ -1076,10 +1078,10 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePaths"></sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">סרוק תקיות משנה</sys:String>
-    <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
-    <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanInsideArchives">סרוק בתוך קבצים מכווצים</sys:String>
+    <sys:String x:Key="LOCEmuMergeRelatedFiles">אחד קבצים קשורים</sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuAddScanner"></sys:String>
+    <sys:String x:Key="LOCEmuAddScanner">הוסף סורק</sys:String>
     <sys:String x:Key="LOCEmuAddSavedScanner"></sys:String>
     <sys:String x:Key="LOCStartScan">התחלה בסריקה</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc"></sys:String>
@@ -1150,8 +1152,8 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCExclusions">החרגות</sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
-    <sys:String x:Key="LOCEmuImportAddROMExclusionList"></sys:String>
-    <sys:String x:Key="LOCEmuImportAddFolderExclusionList"></sys:String>
+    <sys:String x:Key="LOCEmuImportAddROMExclusionList">הוסף קובץ לרשימת יוצאים מהכלל</sys:String>
+    <sys:String x:Key="LOCEmuImportAddFolderExclusionList">הוסף תיקיה לרשימת יוצאים מהכלל</sys:String>
     <sys:String x:Key="LOCEmuExclusionNoConfigError"></sys:String>
     <sys:String x:Key="LOCEmuExclusionAddedMessage"></sys:String>
     <sys:String x:Key="LOCEmuOverridePlatform"></sys:String>
@@ -1161,7 +1163,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="NameFilterUseFuzzyMatching"></sys:String>
     <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions"></sys:String>
-    <sys:String x:Key="LOCHiddenStatus"></sys:String>
+    <sys:String x:Key="LOCHiddenStatus">סטטוס חבוי</sys:String>
 
     <sys:String x:Key="LOCBackupCancelled"></sys:String>
     <sys:String x:Key="LOCBackupFailed"></sys:String>
@@ -1169,18 +1171,18 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCBackupProgress"></sys:String>
     <sys:String x:Key="LOCBackupRestoreProgress"></sys:String>
     <sys:String x:Key="LOCBackupRestoreFailed"></sys:String>
-    <sys:String x:Key="LOCBackupOptionSettings"></sys:String>
-    <sys:String x:Key="LOCBackupOptionLibrary"></sys:String>
+    <sys:String x:Key="LOCBackupOptionSettings">הגדרות</sys:String>
+    <sys:String x:Key="LOCBackupOptionLibrary">ספרית משחקים</sys:String>
     <sys:String x:Key="LOCBackupOptionGameMedia"></sys:String>
-    <sys:String x:Key="LOCBackupOptionExtensions"></sys:String>
-    <sys:String x:Key="LOCBackupOptionExtensionsData"></sys:String>
-    <sys:String x:Key="LOCBackupOptionThemes"></sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensions">הרחבות מותקנות</sys:String>
+    <sys:String x:Key="LOCBackupOptionExtensionsData">מידע הרחבות</sys:String>
+    <sys:String x:Key="LOCBackupOptionThemes">ערכות נושא מותקנות</sys:String>
     <sys:String x:Key="LOCBackupRestoreMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCBackupDataBackupMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsEnableAutomaticBackup"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoBackupFrequency"></sys:String>
-    <sys:String x:Key="LOCSettingsBackupFolder"></sys:String>
-    <sys:String x:Key="LOCSettingsRotatingBackups"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoBackupFrequency">תדירות גיבוי אוטומטי</sys:String>
+    <sys:String x:Key="LOCSettingsBackupFolder">ספריית גיבוי</sys:String>
+    <sys:String x:Key="LOCSettingsRotatingBackups">גיבויים מתחלפים</sys:String>
     <sys:String x:Key="LOCSettingsAutoBackupIncludeItems">כלול מידע נוסף:</sys:String>
     <sys:String x:Key="LOCSettingsNoBackupDirSpecifiedError"></sys:String>
     <sys:String x:Key="LOCUpdateNotifyOnlyPatches">הצגת התראות לשחרור עדכונים בלבד</sys:String>
@@ -1208,4 +1210,6 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

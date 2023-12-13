@@ -109,7 +109,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">لم نستطع في كيفية تشغيل اللعبة.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">مفعل</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">معطل</sys:String>
     <sys:String x:Key="LOCRemoveTitle">حذف</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">إزالة الغير مستخدمة</sys:String>
     <sys:String x:Key="LOCRenameTitle">إعادة تسمية</sys:String>
@@ -262,11 +262,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">روابط</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">مساعدة</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">الدعم في Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">مستندات SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">إعادة تشغيل النظام</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">إيقاف تشغيل النظام</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">تعليق النظام</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">نظام السُبات</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">اختر لعبة عشوائية</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">مكان اللعبة لعرضها على لوحة التفاصيل:</sys:String>
@@ -634,12 +637,10 @@
 مزيد من المعلومات على https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">لا يمكن استيراد برامج محاكاة بسبب ملف تعريف مفقود أو تالف.
 </sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">فشل في تهيئة واجهة XInput</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">فشل تنفيذ إجراء القائمة.
 </sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">تعديل تفاصيل اللعبة</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">من إجراء التشغيل</sys:String>
     <sys:String x:Key="LOCImageURL">عنوان URL الصورة</sys:String>
     <sys:String x:Key="LOCAddLinkButton">إضافة رابط</sys:String>
     <sys:String x:Key="LOCAddRom">إضافة روم </sys:String>
@@ -677,6 +678,7 @@
     <sys:String x:Key="LOCDoNothing">‮لا تفعل شيئا</sys:String>
     <sys:String x:Key="LOCMinimize">تصغير</sys:String>
     <sys:String x:Key="LOCRestoreWindow">إعادة الواجهة</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">إغلاق</sys:String>
     <sys:String x:Key="LOCChange">تغيير</sys:String>
     <sys:String x:Key="LOCAdvanced">متقدم</sys:String>
@@ -1015,6 +1017,8 @@
     <sys:String x:Key="LOCSelectActionTitle">اختر الإجراء</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">طريقة التتبع</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">مسار التتبع</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">رابط</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">ملف</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">محاكي</sys:String>
@@ -1060,10 +1064,8 @@
 يمكن أن يؤدي تعطيل هذا إلى حدوث مشكلات في الألعاب لا تركز على الإدخال عند بدء التشغيل!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">حجم الخط</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">حجم الخط الصغير</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">دعم جهاز XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">إذا تم تعطيله ، فلن يقبل Playnite أي مدخلات لواجهة XInput.
-        
-تعطيل إذا كنت تستخدم الأدوات التي تترجم مدخلات XInput إلى مدخلات الماوس/لوحات المفاتيح وتحصل على إدخالات مزدوجة في Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">إظهار العناصر في القائمة الرئيسية:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">مقلوب X / A زر العرض الرئيسي ملزم</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">تبديل روابط الأزرار لبدء اللعبة وإظهار صفحة تفاصيل اللعبة في العرض الرئيسي.</sys:String>
@@ -1305,5 +1307,7 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">تم اكتشاف تلف في ملفات المكتبة، سيتم إيقاف تشغيل Playnite الآن.
     
 افتح مشكلة جديدة على صفحة GitHub الخاصة بـ Playniite مع طلب لإصلاح التلف في ملفاتك.</sys:String>
-    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">هل تريد حفظ التغييرات التي أجريتها؟</sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

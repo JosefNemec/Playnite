@@ -248,11 +248,14 @@ Dacă doriți să ne ajutați să rezolvăm această problemă, vă rugăm să t
     <sys:String x:Key="LOCMenuLinksTitle">Link-uri</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajutor</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Ajutați-ne pe Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentaţie Trusă de Dezvoltare</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Repornire Sistem</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Închidere Sistem</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendare Sistem</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernează Sistemul</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Alege un joc la întâmplare</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems"></sys:String>
@@ -572,11 +575,9 @@ Dacă doriți să ne ajutați să rezolvăm această problemă, vă rugăm să t
     <sys:String x:Key="LOCAppStartupError">Aplicația nu s-a putut lansa.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Nu s-a putut inițializa interfața XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editare Detalii Joc</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">De la butonul de lansare</sys:String>
     <sys:String x:Key="LOCImageURL">Imagine URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Adaugă Link</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
@@ -614,6 +615,7 @@ Dacă doriți să ne ajutați să rezolvăm această problemă, vă rugăm să t
     <sys:String x:Key="LOCDoNothing">Repaus</sys:String>
     <sys:String x:Key="LOCMinimize">Minimizați</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restaurați Fereastra</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Închideţi</sys:String>
     <sys:String x:Key="LOCChange">Schimbați</sys:String>
     <sys:String x:Key="LOCAdvanced">Avansat</sys:String>
@@ -900,6 +902,8 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
     <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
@@ -1150,4 +1154,6 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

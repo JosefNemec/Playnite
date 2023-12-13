@@ -248,11 +248,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">Линкови</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Помоћ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Подржите на Patreon-у</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK документација</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Рестартуј систем</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Искључи систем</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Суспендуј систем</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Хибернирај систем</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Изабери игру насумице</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Поља игре која се приказују на панелу детаља:</sys:String>
@@ -589,11 +592,9 @@
     <sys:String x:Key="LOCAppStartupError">Неуспешно покретање апликације.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Не могу да се уведу емулатори због фајлова који недостају или су корумпирани.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Неуспешно покретање XInput интерфејса.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Неуспешно покретање радње из менија.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Измени детаље игре</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Од &quot;Играј&quot; радње</sys:String>
     <sys:String x:Key="LOCImageURL">URL слике</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Додај линк</sys:String>
     <sys:String x:Key="LOCAddRom">Додај РОМ</sys:String>
@@ -631,6 +632,7 @@
     <sys:String x:Key="LOCDoNothing">Не ради ништа</sys:String>
     <sys:String x:Key="LOCMinimize">Минимизирај</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Поврати прозор</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Затвори</sys:String>
     <sys:String x:Key="LOCChange">Измени</sys:String>
     <sys:String x:Key="LOCAdvanced">Напредно</sys:String>
@@ -936,6 +938,8 @@
     <sys:String x:Key="LOCSelectActionTitle">Одабрати акцију</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Режим праћења</sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Линк</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Фајл</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Емулатор</sys:String>
@@ -981,7 +985,7 @@
 Онемогућавање овог може изазвати проблеме да игре не буду у фокусу након покретања!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Величине фонта</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Мали фонт</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Подршка за Х-унос уређаје</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Прикажи ставке у главном менију:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
@@ -1201,4 +1205,6 @@
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

@@ -252,11 +252,14 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCMenuLinksTitle">Enllaços</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Donar suport al Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual">Manual d'usuari</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentació del SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar el sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Tancar el sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendre el sistema</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernar el sistema</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Bloquejar sistema</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Tancar sessió de l'usuari</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Escollir un joc a l'atzar</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Camps del joc que es mostraran al panell de detalls:</sys:String>
@@ -605,11 +608,9 @@ Si us plau, adjunta el següent ID al teu informe d'error:</sys:String>
 
 Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">No es poden importar emuladors perquè falta un fitxer de definició o està corromput.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">No s'ha pogut iniciar la interfície XInput</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">No s’ha pogut executar l'acció del menú.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar els detalls del joc</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">De l'acció de Jugar</sys:String>
     <sys:String x:Key="LOCImageURL">URL d'imatge</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Afegir enllaç</sys:String>
     <sys:String x:Key="LOCAddRom">Afegir ROM</sys:String>
@@ -647,6 +648,7 @@ Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">No fer res</sys:String>
     <sys:String x:Key="LOCMinimize">Minimitzar</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restaurar la finestra</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restaurar finestra només quan s'iniciï des de la IU</sys:String>
     <sys:String x:Key="LOCClose">Tancar</sys:String>
     <sys:String x:Key="LOCChange">Canviar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avançat</sys:String>
@@ -959,6 +961,8 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
     <sys:String x:Key="LOCSelectActionTitle">Selecciona una acció</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Mode de seguiment</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Ruta de seguiment</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Retard de seguiment inicial</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Freqüència de seguiment</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Enllaç</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Fitxer</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulador</sys:String>
@@ -1004,10 +1008,10 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
 Desactivar això pot portar problemes amb jocs que no rebin informació d'entrada a l'inici!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Mida de la font</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mida de la font petita</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Compatibilitat amb dispositiu XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si es desactiva, Playnite no acceptarà cap entrada d'interfície XInput.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Compatibilitat amb comandament de jocs</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si es desactiva, Playnite no acceptarà cap entrada de comandament de joc.
 
-Desactiva-ho si utilitzes eines que tradueixen les entrades XInput a les entrades ratolí/teclat i reps entrades dobles a Playnite.</sys:String>
+Desactiva-ho si utilitzes eines que tradueixen les entrades de comandament de joc a les entrades ratolí/teclat i reps entrades dobles a Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Mostrar elements al menú principal:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Assignació dels botons X/A invertida a la vista principal</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Intercanvia els botons per iniciar un joc i mostrar la pàgina de detalls del joc a la vista principal.</sys:String>
@@ -1251,4 +1255,6 @@ El format de data especificat s'utilitzarà per a les altres dates.</sys:String>
     
 Obre una nova incidència a la pàgina de GitHub de Playnite amb una sol·licitud per corregir els teus fitxers danyats.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Vols desar els canvis que has fet?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Instal·lació portàtil</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">No s'han detectat comandaments</sys:String>
 </ResourceDictionary>

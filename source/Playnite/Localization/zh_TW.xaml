@@ -252,11 +252,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">連結</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">說明</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">在Patreon上支持我們</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK文件</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">系統重啟</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">關閉系統</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">系統睡眠</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">系統休眠</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">選擇隨機遊戲</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">會顯示在詳細面板上的遊戲資訊:</sys:String>
@@ -603,11 +606,9 @@
 
 更多資訊請參考  https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">無法匯入模擬器，因為定義檔已損壞或丟失。</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Xinput介面啓用失敗</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">無法執行選單動作</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">編輯遊戲詳細資訊</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">來自啟動動作</sys:String>
     <sys:String x:Key="LOCImageURL">圖片網址</sys:String>
     <sys:String x:Key="LOCAddLinkButton">新增連結</sys:String>
     <sys:String x:Key="LOCAddRom">新增ROM</sys:String>
@@ -645,6 +646,7 @@
     <sys:String x:Key="LOCDoNothing">不做任何事</sys:String>
     <sys:String x:Key="LOCMinimize">最小化</sys:String>
     <sys:String x:Key="LOCRestoreWindow">復原視窗</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">關閉</sys:String>
     <sys:String x:Key="LOCChange">變更</sys:String>
     <sys:String x:Key="LOCAdvanced">進階</sys:String>
@@ -959,6 +961,8 @@
     <sys:String x:Key="LOCSelectActionTitle">選擇動作</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">追蹤模式</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">追蹤路徑</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">連結</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">檔案</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">模擬器</sys:String>
@@ -1004,10 +1008,8 @@
 如將此功能關閉可能會造成遊戲無法在啟動時取得輸入焦點而導致問題發生!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">字型大小</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">字體小</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">支援Xinput裝置</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">如關閉此功能，Playnite將無法再接收任何Xinput裝置的訊號
-        
-如果你是使用工具轉換Xinput訊號為鍵盤/滑鼠訊號，而且在Playnite中一直有重複發送訊號的問題，則可關閉此功能。</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">在主選單中顯示項目:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">反轉X/A主要視圖按鈕綁定</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">交換按鈕綁定與開始遊戲並且在主要視圖當中顯示遊戲詳細資料頁面</sys:String>
@@ -1251,4 +1253,6 @@ Playnite將會重新啟動並開始備份資料</sys:String>
     
 你可以在Playnite的GitHub頁面新增回報並請求修復你的毀損檔案。</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">是否要儲存所做的更改？</sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

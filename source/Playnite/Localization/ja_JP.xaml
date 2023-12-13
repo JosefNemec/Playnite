@@ -101,7 +101,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">ゲームを起動する方法を特定できませんでした。</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">有効</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">無効</sys:String>
     <sys:String x:Key="LOCRemoveTitle">削除</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">未使用のものを除去する</sys:String>
     <sys:String x:Key="LOCRenameTitle">名前の変更</sys:String>
@@ -252,11 +252,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">関連リンク</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">ヘルプ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreon でサポート</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK ドキュメンテーション</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">システムの再起動</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">システムのシャットダウン</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">システムのスリープ</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">システムの休止</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">ゲームをランダムに選択</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">詳細パネルに表示されるゲームフィールド:</sys:String>
@@ -607,11 +610,9 @@
 
 詳細は https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">定義ファイルが見つからないか壊れているため、エミュレータをインポートできません。</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">XInput インターフェースの初期化に失敗しました。</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">メニューアクションの実行に失敗しました。</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ゲーム詳細を編集</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">プレイアクションから</sys:String>
     <sys:String x:Key="LOCImageURL">画像 URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">関連リンクを追加</sys:String>
     <sys:String x:Key="LOCAddRom">ROM の追加</sys:String>
@@ -649,6 +650,7 @@
     <sys:String x:Key="LOCDoNothing">何もしない</sys:String>
     <sys:String x:Key="LOCMinimize">最小化</sys:String>
     <sys:String x:Key="LOCRestoreWindow">ウィンドウを復元する</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">終了</sys:String>
     <sys:String x:Key="LOCChange">変更</sys:String>
     <sys:String x:Key="LOCAdvanced">高度な設定</sys:String>
@@ -963,6 +965,8 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">アクションを選択</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">トラッキングモード</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">トラッキングパス</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">リンク</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">ファイル</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">エミュレータ</sys:String>
@@ -1008,10 +1012,8 @@ Version {2}</sys:String>
 無効にすると、ゲーム起動時に入力フォーカスが当たらないという問題が発生することがあります。</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">文字サイズ</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">フォントサイズ小</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">XInput デバイス対応</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">無効の場合、Playnite は XInput インターフェースの入力を一切受け付けません。
-
-XInput 入力をマウス/キーボード入力に変換するツールを使用していて、Playnite で二重入力になってしまう場合は無効にしてください。</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">メインメニューに項目を表示する:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">X/A メインビューボタンを入れ替える</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">ゲームを開始したりメインビューにゲームの詳細を表示するためにボタンの割当を入れ替えます。</sys:String>
@@ -1253,5 +1255,7 @@ Playnite は自動的に再起動し、バックアップ処理を開始しま�
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">ライブラリファイルの破損が検出されました。Playnite はシャットダウンします。
     
 Playnite の Github ページで新しい issue を開き、ファイルの破損の修正をリクエストしてください。</sys:String>
-    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">変更した内容を保存しますか？</sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

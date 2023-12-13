@@ -252,11 +252,14 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCMenuLinksTitle">Odkazy</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Nápověda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podpořit na Patreonu</sys:String>
+    <sys:String x:Key="LOCUserManual">Uživatelská příručka</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentace SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restartovat Systém</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Vypnout Systém</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uspat Systém</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernovat Systém</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Uzamknout Systém</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Odhlásit Uživatele</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Vybrat Náhodnou Hru</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Pole k zobrazení na panelu detailů:</sys:String>
@@ -603,11 +606,9 @@ K hlášení problému, prosím, připojte následující ID:</sys:String>
 
 Pro více informací navštivte: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nelze importovat emulátory z důvodu chybějícího nebo poškozeného definičního souboru.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Nepodařilo se inicializovat XInput rozhraní.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Nepodařilo se spustit menu akci.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Upravit Detaily Hry</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Z Akce Hrát</sys:String>
     <sys:String x:Key="LOCImageURL">URL obrázku</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Přidat Odkaz</sys:String>
     <sys:String x:Key="LOCAddRom">Přidat ROM</sys:String>
@@ -645,6 +646,7 @@ Pro více informací navštivte: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Nedělat nic</sys:String>
     <sys:String x:Key="LOCMinimize">Minimalizovat</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Obnovit okno</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Obnovit okno pouze při spuštění z uživatelského rozhraní</sys:String>
     <sys:String x:Key="LOCClose">Zavřít</sys:String>
     <sys:String x:Key="LOCChange">Změnit</sys:String>
     <sys:String x:Key="LOCAdvanced">Pokročilé</sys:String>
@@ -957,6 +959,8 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCSelectActionTitle">Zvolte akci</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Režim sledování</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Cesta ke sledování</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Počáteční zpoždění sledování</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Frekvence sledování</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Odkaz</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Soubor</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulátor</sys:String>
@@ -1002,10 +1006,10 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
 Vypnutí této možnosti může vést k problémům se vstupem po spuštění hry!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Velikost písma</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Malá velikost písma</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Podpora zařízení XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Je-li vypnuto, Playnite nebude přijímat žádný vstup z rozhraní XInput.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Podpora pro herní ovladače</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Je-li zakázáno, Playnite nebude přijímat žádné vstupy herních ovladačů.
         
-Zakažte, pokud používáte nástroje které překládají vstup XInput na vstup klávesnice/myši a setkáváte se s dvojitým vstupem v Playnite.</sys:String>
+Zakažte, pokud používáte ovladače které překládají vstupy herního ovladače na vstupy myši/klávesnice a získáváte duplikované vstupy v Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Zobrazit položky na hlavní nabídce:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Prohodit využití tlačítek X/A na hlavní stránce</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Prohodí využití tlačítek pro spuštění hry a zobrazení informací o hře na hlavní stránce.</sys:String>
@@ -1249,4 +1253,6 @@ Zadaný formát data bude použit pro všechny ostatní data.</sys:String>
     
 Reportujte problém na Playnite stránce GitHubu s požadavkem na opravu souborů.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Chcete uložit provedené změny?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Přenosná instalace</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Nebyly nalezeny žádné ovladače</sys:String>
 </ResourceDictionary>

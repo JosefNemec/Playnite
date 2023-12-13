@@ -254,11 +254,14 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCMenuLinksTitle">Tautan</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Bantuan</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Dukung lewat Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentasi SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restart Sistem</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Matikan Sistem</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspend System</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernasikan Sistem</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Pilih Game Secara Acak</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Kolom game untuk ditampilkan pada bilah detail:</sys:String>
@@ -596,11 +599,9 @@ Emulator ini sedang digunakan oleh game {1}.</sys:String>
     <sys:String x:Key="LOCAppStartupError">Gagal dalam menjalankan aplikasi.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Gagal menginisialisasi XInput interface.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edit Rincian Game</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Gunakan ikon aplikasi</sys:String>
     <sys:String x:Key="LOCImageURL">URL Gambar</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Tambah Link</sys:String>
     <sys:String x:Key="LOCAddRom">Tambahkan ROM</sys:String>
@@ -638,6 +639,7 @@ Emulator ini sedang digunakan oleh game {1}.</sys:String>
     <sys:String x:Key="LOCDoNothing">Diamkan aplikasi</sys:String>
     <sys:String x:Key="LOCMinimize">Minimalkan</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Kembalikan jendela ini</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Tutup aplikasi</sys:String>
     <sys:String x:Key="LOCChange">Ubah</sys:String>
     <sys:String x:Key="LOCAdvanced">Opsi Lanjut</sys:String>
@@ -927,6 +929,8 @@ Versi {2}</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">Pilih aksi</sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Tautan</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">File</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1177,4 +1181,6 @@ Versi {2}</sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

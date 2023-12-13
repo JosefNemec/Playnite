@@ -236,11 +236,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">दुवा</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">मदत</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">पेट्रीऑनवर समर्थन करा</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">एसडीके दस्तऐवज</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">सिस्टम रीस्टार्ट करा</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">सिस्टम बंद करा</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">सिस्टम विलंबित करा</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">सिस्टम हायबरनेट करा</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">यादृच्छिकरित्या गेम निवडा</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">तपशील पॅनलवर दाखवले जाणारे गेमचे रकाने:</sys:String>
@@ -568,11 +571,9 @@
     <sys:String x:Key="LOCAppStartupError">अ‍ॅप्लिकेशन सुरू करण्यात अपयशी.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage"></sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">गेमचे तपशील संपादित करा</sys:String>
-    <sys:String x:Key="LOCUseExeIcon"></sys:String>
     <sys:String x:Key="LOCImageURL">प्रतिमा यू.आर.एल.</sys:String>
     <sys:String x:Key="LOCAddLinkButton">दुवा जोडा</sys:String>
     <sys:String x:Key="LOCAddRom">रॉम जोडा</sys:String>
@@ -610,6 +611,7 @@
     <sys:String x:Key="LOCDoNothing">काहीही करू नका</sys:String>
     <sys:String x:Key="LOCMinimize">मिनिमाइझ करा</sys:String>
     <sys:String x:Key="LOCRestoreWindow">विंडो रिस्टोर करा</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">बंद करा</sys:String>
     <sys:String x:Key="LOCChange">बदला</sys:String>
     <sys:String x:Key="LOCAdvanced">प्रगत</sys:String>
@@ -890,6 +892,8 @@
     <sys:String x:Key="LOCSelectActionTitle">क्रिया निवडा</sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">दुवा</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">फाईल</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">एम्युलेटर</sys:String>
@@ -935,7 +939,7 @@
 हे अक्षम केले तर गेम सुरू केल्यावर गेममध्ये इनपुट न मिळण्याच्या समस्या आढळू शकतील!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">फाँट आकार</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">छोटा फाँट आकार</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">XInput यंत्र समर्थन</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">मेन मेन्यूवर वस्तू दाखवा:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
@@ -1143,4 +1147,6 @@
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

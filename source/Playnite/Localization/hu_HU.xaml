@@ -253,11 +253,14 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCMenuLinksTitle">Linkek</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Súgó</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Támogass a Patreon-on</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dokumentáció</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Újraindítás</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Leállítás</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Készenléti állapot</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernálás</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Véletlenszerű játék kiválasztása</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Megjelenítendő mezők a részletes nézetnél:</sys:String>
@@ -604,11 +607,9 @@ Kérlek csatold hozzá a a következő ID-t a hibajegyhez:</sys:String>
 
 Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nem sikerült az emulátorok importálása, az emulátorok definíciói hiányoznak vagy sérültek.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Az XInput felületet nem sikerült elindítani.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Menü művelet futtatása nem sikerült.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">játék részletek szerkesztése</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Az Indítási műveletből</sys:String>
     <sys:String x:Key="LOCImageURL">Kép URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Link hozzáadása</sys:String>
     <sys:String x:Key="LOCAddRom">Játék ROM hozzáadása</sys:String>
@@ -646,6 +647,7 @@ Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:St
     <sys:String x:Key="LOCDoNothing">Ne tegyen semmit</sys:String>
     <sys:String x:Key="LOCMinimize">Tálcára kicsinyítés</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Ablak visszaállítása</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Bezárás</sys:String>
     <sys:String x:Key="LOCChange">Változtatás</sys:String>
     <sys:String x:Key="LOCAdvanced">Speciális</sys:String>
@@ -832,7 +834,7 @@ Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:St
     <sys:String x:Key="LOCGeneralThemeLoadError">A témát nem sikerült betölteni.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">A Téma/Bővítmény nem támogatott API-t használ.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Sikeres telepítés.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Telepítsem a bővitményt?</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">Telepítsem a bővítményt?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">Általános</sys:String>
     <sys:String x:Key="LOCAddonInstallFaild">&quot;{0}&quot; bővítmény telepítése nem sikerült.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">{0} bővítmény telepítése nem sikerült.</sys:String>
@@ -944,6 +946,8 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCSelectActionTitle">Művelet kiválasztása</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Rögzítés módja</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Rögzítés elérési útja</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Fájl</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulátor</sys:String>
@@ -989,10 +993,8 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
 Ha kikapcsolod, bizonyos játékoknál hibát okozhat, hogy nem kapnak indításkor beviteli elsőbbséget.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Betűméret</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Kis betűméret</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Xinput beviteli eszközök támogatása</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ha ki van kapcsolva, a Playnite nem fogad bevitelt az Xinput-on keresztül.
-        
-Akkor kapcsold ki, ha Xinput -ról billentyű/egér emuláló programokat hsználsz, és duplán nyomja a gombokat.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Elemek mutatása a főmenüben:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">X/A gombok funkciójának felcserélése</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">A játékindító X és a játék részletei A gomb funkcionalitását felcseréli.</sys:String>
@@ -1237,4 +1239,6 @@ A már megadott dátumformátum lesz érvényes az összes többire.</sys:String
     
 Kérlek nyiss egy új jegyet a Playnite GitHub oldalán angolul, kérve, hogy javítsák meg a sérült könyvtárfájlt.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Szeretnéd menteni változtatásaidat?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

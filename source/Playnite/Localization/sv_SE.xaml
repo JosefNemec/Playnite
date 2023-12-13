@@ -253,11 +253,14 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCMenuLinksTitle">Länkar</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjälp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Stöd Playnite på Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Starta om systemet</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Stäng ner systemet</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sätt systemet i viloläge</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Viloläge </sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Välj ett Slumpmässigt Spel</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Infofält som visas på detaljpanelen:</sys:String>
@@ -601,11 +604,9 @@ Var vänlig bifoga följande ID i din felanmälan: </sys:String>
 
 Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Kan inte importera emulatorer på grund av borttappade eller korrupta definitionsfiler.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Kunde inte köra gränssnittet för XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Kunde inte köra menyåtgärd.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Redigera Speluppgifter</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Använd exe ikon</sys:String>
     <sys:String x:Key="LOCImageURL">Bild URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Lägg till Länk</sys:String>
     <sys:String x:Key="LOCAddRom">Lägg till ROM</sys:String>
@@ -643,6 +644,7 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Gör inget</sys:String>
     <sys:String x:Key="LOCMinimize">Minimera</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Återställ fönster</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Stäng</sys:String>
     <sys:String x:Key="LOCChange">Ändra</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancerat</sys:String>
@@ -925,6 +927,8 @@ Om du vill installera eller avinstallera ytterligare integreringar, använd alte
     <sys:String x:Key="LOCSelectActionTitle">Välj åtgärd</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Spårningsläge</sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Länk</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Fil</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1188,4 +1192,6 @@ Playnite startar automatiskt om för att starta säkerhetskopieringsprocessen.</
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

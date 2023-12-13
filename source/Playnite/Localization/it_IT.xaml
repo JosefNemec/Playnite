@@ -252,11 +252,14 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCMenuLinksTitle">Collegamenti</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Aiuto</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Supporta su Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual">Manuale utente</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentazione SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Riavvia il sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Arresta il sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sospendi il sistema</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Ibernare il sistema</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Sistema Di Blocco</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Disconnetti utente</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Scegli un gioco casuale</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campi del gioco da visualizzare nel pannello dettagli:</sys:String>
@@ -610,11 +613,9 @@ La prego di allegare il seguente codice ID al seguente resoconto del crash:</sys
 
 Maggiori informazioni su https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Impossibile importare gli emulatori a causa del file di definizione mancante o corrotto.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Fallita l'inizializzazione dell'interfaccia.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Impossibile eseguire la funzione di estensione.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Modifica i dettagli del gioco</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Utilizza l'icona del file .exe</sys:String>
     <sys:String x:Key="LOCImageURL">URL immagine</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Aggiungi Link</sys:String>
     <sys:String x:Key="LOCAddRom">Aggiungi ROM</sys:String>
@@ -652,6 +653,7 @@ Maggiori informazioni su https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Non fare niente</sys:String>
     <sys:String x:Key="LOCMinimize">Minimizza</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Ripristina finestra</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Ripristina la finestra solo quando viene lanciata dall'interfaccia utente</sys:String>
     <sys:String x:Key="LOCClose">Chiudi</sys:String>
     <sys:String x:Key="LOCChange">Cambia</sys:String>
     <sys:String x:Key="LOCAdvanced">Avanzate</sys:String>
@@ -969,6 +971,8 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCSelectActionTitle">Selezione azione</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Modalità di monitoraggio</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Percorso Di Tracciamento</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Ritardo iniziale di monitoraggio</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Frequenza di monitoraggio</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Collegamento</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">File</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulatore</sys:String>
@@ -1014,10 +1018,10 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
 Disattivare questa opzione può portare a problemi con i giochi che non ottengono la messa a fuoco dei comandi all'avvio!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Dimensione carattere</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Dimensione caratteri piccola</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Supporto delle periferiche Xinput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se disabilitato, Playnite non accetterà alcun input dell'interfaccia XInput.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Supporto controller di gioco</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se disabilitato, Playnite non accetta nessun input del controller di gioco.
         
-Disabilita se usi strumenti che traducono gli input XInput in input di mouse/tastiere e stai ottenendo doppi input in Playnite.</sys:String>
+Disabilita se usi strumenti che traducono gli input del controller di gioco in ingressi del mouse/tastiere e stai ricevendo doppi ingressi in Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Mostra oggetti nel menu principale:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Pulsanti X/A nella pagina principale invertiti</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Inverti l'associazione di pulsanti per avviare un gioco e mostrando la pagina dei dettagli del gioco nella pagina principale.</sys:String>
@@ -1261,4 +1265,6 @@ Il formato di data specificato verrà utilizzato per tutte le altre date.</sys:S
     
 Apri un nuovo problema sulla pagina GitHub di Playnite con una richiesta di correggere la corruzione nei tuoi file.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Vuoi salvare le modifiche?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Installazione portatile</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Nessun controllore rilevato</sys:String>
 </ResourceDictionary>

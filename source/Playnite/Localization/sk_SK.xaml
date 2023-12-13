@@ -248,11 +248,14 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCMenuLinksTitle">Odkazy</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Nápoveda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podporiť na Patreone</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentácia SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reštartovať systém</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Vypnúť systém</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uspať systém</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernovať systém</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Vybrať náhodnú hru</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Polia, ktoré budú viditeľné v zobrazení detailov:</sys:String>
@@ -586,11 +589,9 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCAppStartupError">Aplikáciu sa nepodarilo spustiť.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emulátory nie je možné importovať z dôvodu chýbajúceho alebo poškodeného definičného súboru.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Nepodarilo sa inicializovať rozhranie XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Nepodarilo sa spustiť ponuku akcie.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Upraviť podrobnosti o hre</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Z akcie Hrať</sys:String>
     <sys:String x:Key="LOCImageURL">URL obrázka</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Pridať odkaz</sys:String>
     <sys:String x:Key="LOCAddRom"></sys:String>
@@ -628,6 +629,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCDoNothing">Nerobiť nič</sys:String>
     <sys:String x:Key="LOCMinimize">Minimalizovať</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Obnoviť okno</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Zavrieť</sys:String>
     <sys:String x:Key="LOCChange">Zmeniť</sys:String>
     <sys:String x:Key="LOCAdvanced">Pokročilé</sys:String>
@@ -934,6 +936,8 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink"></sys:String>
     <sys:String x:Key="LOCGameActionTypeFile"></sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
@@ -1184,4 +1188,6 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

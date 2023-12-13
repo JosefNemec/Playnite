@@ -251,11 +251,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">Посилання</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Допомога</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Підтримати на Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual">Посібник користувача</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Документація</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Перезавантажити систему</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Вимкнути систему</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Призупинити систему</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Режим глибокого сну</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Заблокувати систему</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Вийти з облікового запису</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Вибрати Випадкову Гру</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Ігрові поля, що будуть відображатися на панелі деталей:</sys:String>
@@ -604,11 +607,9 @@
 
 Більше інформації на https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Неможливо імпортувати емулятори через відсутність або пошкодження файлу визначення.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Не вдалося ініціалізувати інтерфейс XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Не вдалося виконати дію меню.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Змінити відомості про гру</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Використати значок з дії &quot;Грати&quot;</sys:String>
     <sys:String x:Key="LOCImageURL">Зображення URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Додати посилання</sys:String>
     <sys:String x:Key="LOCAddRom">Додати ROM</sys:String>
@@ -646,6 +647,7 @@
     <sys:String x:Key="LOCDoNothing">Нічого не робити</sys:String>
     <sys:String x:Key="LOCMinimize">Мінімізувати</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Відновити вікно</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Відновити вікно лише при запуску з інтерфейсу</sys:String>
     <sys:String x:Key="LOCClose">Закрити</sys:String>
     <sys:String x:Key="LOCChange">Змінити</sys:String>
     <sys:String x:Key="LOCAdvanced">Розширені</sys:String>
@@ -958,6 +960,8 @@
     <sys:String x:Key="LOCSelectActionTitle">Виберіть дію</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Режим стеження</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Шлях відстеження</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Затримка відстеження</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Частота відстеження</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Посилання</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Файл</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Емулятор</sys:String>
@@ -1003,10 +1007,10 @@
 Вимкнення цього може призвести до проблем, коли фокус не перемикається на ігри при запуску! </sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Розмір шрифту</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Маленький розмір шрифту</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Підтримка пристроїв XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Якщо цей параметр вимкнено, Playnite не прийматиме введення через інтерфейс XInput.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Підтримка ігрового контролера</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Якщо вимкнено, Playnite ігноруватиме контролер.
         
-Вимкніть, якщо ви використовуєте інструменти, які переводять ввід XInput на ввід з миші/клавіатури, і ви отримуєте подвійний ввід в Playnite. </sys:String>
+Вимкніть, якщо ви використовуєте інструменти, які імітують мишу/клавіатуру з контролера і ви спостерігаєте подвійні натискання в Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Показати пункти в головному меню:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Поміняти місцями кнопки X/A на головному екрані</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Міняє прив’язки кнопок для початку гри та показу сторінки з детальною інформацією про гру на головному екрані.</sys:String>
@@ -1252,4 +1256,6 @@ Playnite автоматично перезапуститься та почне �
     
 Відкрийте нову проблему на сторінці Playnite в GitHub із запитом на виправлення пошкодження у ваших файлах.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Бажаєте зберегти внесені зміни?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Портативна установка</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Контролерів не знайдено</sys:String>
 </ResourceDictionary>

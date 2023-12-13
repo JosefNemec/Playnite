@@ -5,7 +5,7 @@
     -->
     <sys:String x:Key="LanguageName">Polski</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">Język</sys:String>
-    <sys:String x:Key="LOCExitAppLabel">Wyjdź</sys:String>
+    <sys:String x:Key="LOCExitAppLabel">Zamknij aplikację</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtr aktywny</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">Filtr wyłączony</sys:String>
     <sys:String x:Key="LOCAditionalFilters">Dodatkowe filtry</sys:String>
@@ -17,7 +17,7 @@
     <sys:String x:Key="LOCAboutSourceLink">Kod źródłowy na GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Utwórz pakiet diagnostyczny</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Wysyłaj informacje diagnostyczne</sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle">O Playnite</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">O aplikacji</sys:String>
     <sys:String x:Key="LOCAboutAuthor">Autor: Josef Němec</sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle">Dodaj do kolekcji</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Dodaj</sys:String>
@@ -27,7 +27,7 @@
   • Nieokreślone pozostaną bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nieskategoryzowane</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ups! Coś poszło nie tak...</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ups! Coś poszło nie tak.</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Wystąpił nieodwracalny błąd.
 
 Jeśli chcesz nam pomóc w naprawieniu tego błędu, prosimy o krótki opis działań podjętych przed awarią, a następnie stworzenie pakietu diagnostycznego. Jeśli jesteś online, pakiet zostanie przesłany na serwer Playnite do analizy.
@@ -51,10 +51,10 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostycz
     <sys:String x:Key="LOCCrashSaveLog">Zapisz plik dziennika</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Wyślij dane diagnostyczne</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Zgłoś błąd</sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite">Zrestartuj Playnite</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">Uruchom ponownie</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">Uruchom ponownie w trybie awaryjnym</sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip">Zablokuj wszystkie nieoficjalne rozszerzenia i użyj domyślnego motywu.</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">Wyjdź z Playnite</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">Zamknij aplikację</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Opisz jak doszło do błędu (w języku angielskim):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Menedżer bibliotek</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć?</sys:String>
@@ -173,7 +173,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencja</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Współtwórcy</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Wychodzenie z Playnite…</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Zamykanie aplikacji</sys:String>
     <sys:String x:Key="LOCToday">Dzisiaj</sys:String>
     <sys:String x:Key="LOCYesterday">Wczoraj</sys:String>
     <sys:String x:Key="LOCMonday">Poniedziałek</sys:String>
@@ -234,8 +234,8 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCMenuLibraryManagerTitle">Zarządzanie biblioteką</sys:String>
     <sys:String x:Key="LOCMenuTools">Narzędzia</sys:String>
     <sys:String x:Key="LOCMenuDownloadMetadata">Pobierz metadane</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools">Programy narzędziowe</sys:String>
-    <sys:String x:Key="LOCMenuConfigureIntegrations">Konfiguruj integracje</sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">Narzędzia</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">Konfiguracja integracji</sys:String>
     <sys:String x:Key="LOCMenuOpenClient">Otwórz klienta</sys:String>
     <sys:String x:Key="LOCMenuClients">Platformy</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Aktualizacja biblioteki</sys:String>
@@ -243,21 +243,24 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCMenuUpdateEmulatedDirs">Aktualizuj foldery emulowane</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Dodaj grę</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manualnie</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">Skanuj automatycznie…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">Automatyczne skanowanie</sys:String>
     <sys:String x:Key="LOCMenuAddGameEmulated">Gra emulowana</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">Gra z Microsoft Store</sys:String>
-    <sys:String x:Key="LOCMenuAbout">O Playnite</sys:String>
+    <sys:String x:Key="LOCMenuAbout">O aplikacji</sys:String>
     <sys:String x:Key="LOCMenuIssues">Wyślij opinię</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Włącz tryb pełnoekranowy</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Tryb pełnoekranowy</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Odnośniki</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pomoc</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Wesprzyj na Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentacja SDK</sys:String>
-    <sys:String x:Key="LOCMenuRestartSystem">Zrestartuj system</sys:String>
-    <sys:String x:Key="LOCMenuShutdownSystem">Wyłącz system</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">Uruchom ponownie system</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">Zamknij system</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uśpij system</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernacja systemu</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame">Wybierz losową grę</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">Wylosuj grę</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Wyświetlane pola gry w panelu szczegółowym:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Odstęp</sys:String>
@@ -300,7 +303,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCSettingsInputLabel">Wprowadź</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Wydajność</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadane</sys:String>
-    <sys:String x:Key="LOCSettingsUpdating">Aktualizacja</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">Trwa aktualizacja</sys:String>
     <sys:String x:Key="LOCSettingsSearch">Szukaj</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Kopia zapasowa</sys:String>
     <sys:String x:Key="LOCMenuBackupData">Wykonaj kopię zapasową</sys:String>
@@ -338,28 +341,28 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Pełnoekranowy motyw profilu</sys:String>
     <sys:String x:Key="LOCSettingsDBLocation">Lokalizacja bazy danych</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Status logowania:</sys:String>
-    <sys:String x:Key="LOCSettingsWindowTitle">Opcje Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsWindowTitle">Ustawienia aplikacji</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Wyczyść pamięć podręczną</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Może pomóc rozwiązać problemy napotkane podczas próby powiązania kont.</sys:String>
     <sys:String x:Key="LOCSettingsShowTray">Wyświetlaj ikonę w zasobniku systemowym</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Minimalizuj Playnite do zasobnika systemu</sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray">Kiedy okno aplikacji jest zamykane zminimalizuj Playnite do zasobnika systemowego</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">Kiedy okno aplikacji jest zamykane, zminimalizuj Playnite do zasobnika systemowego</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Po uruchomieniu gry:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Po zamknięciu gry:</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Formatuj czas gry, aby wskazać liczbę dni rozgrywki</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Formaty dat:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Spowoduje to wylogowanie Cię z wszystkich powiązanych usług. Wymagany jest restart aplikacji, czy chcesz kontynuować?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Wyczyścić pamięć podręczną?</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">Wymagany restart Playnite do ustawienia nowego motywu</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Uruchom ponownie, aby zastosować nowy motyw</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Pobierz więcej motywów</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Stwórz nowy motyw</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">Pobierz więcej rozszerzeń</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Stwórz nowe rozszerzenie</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization">Pomóż nam w tłumaczeniu Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">Pomóż w tłumaczeniu aplikacji</sys:String>
     <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Należy uruchomić ponownie Playnite, aby zastosować zmiany. Uruchomić ponownie teraz?
 
 Ponowne uruchomienie anuluje wszystkie aktualnie wykonywane zadania (pobierania).</sys:String>
-    <sys:String x:Key="LOCSettingsRestartTitle">Zrestartować Playnite?</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">Uruchomić ponownie aplikację?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite nie przenosi plików biblioteki automatycznie, musisz je przenieść / skopiować przed zmianą lokalizacji. Jeśli w docelowej lokalizacji nie ma plików biblioteki, zostanie utworzony nowy plik.
 
 Nowa lokalizacja bazy danych zostanie użyta dopiero po ponownym uruchomieniu aplikacji. </sys:String>
@@ -378,7 +381,7 @@ Nigdy: Nigdy nie importuj czasu gry w żadnych okolicznościach.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Zawsze</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Tylko dla nowo zaimportowanych gier</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Nigdy</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Włącz obsługę pada w trybie pulpitu</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Włącz obsługę kontrolera w trybie pełnoekranowym</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Przycisk Guide otwiera tryb pełnoekranowy</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Automatyczne pobieranie metadanych dla nowo zaimportowanych gier.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Docelowy wyświetlacz</sys:String>
@@ -605,11 +608,9 @@ Dołącz następujący identyfikator do raportu błędu:</sys:String>
 
 Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Nie można zaimportować emulatorów z powodu braku lub uszkodzenia pliku z konfiguracją.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Nie można zainicjować interfejsu XInput. </sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Nie udało się uruchomić akcji menu.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Edytuj szczegóły gry</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Ikona pliku wykonywalnego z polecenia &quot;Graj&quot;</sys:String>
     <sys:String x:Key="LOCImageURL">Obraz URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Dodaj link</sys:String>
     <sys:String x:Key="LOCAddRom">Dodaj ROM</sys:String>
@@ -619,10 +620,10 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDeleteAction">Usuń polecenie</sys:String>
     <sys:String x:Key="LOCRemovePlayAction">Usuń polecenie &quot;Graj&quot;</sys:String>
     <sys:String x:Key="LOCAddGames">Dodaj</sys:String>
-    <sys:String x:Key="LOCScanFolder">Skanuj folder…</sys:String>
+    <sys:String x:Key="LOCScanFolder">Skanuj folder</sys:String>
     <sys:String x:Key="LOCDetectInstalled">Wykryj zainstalowane</sys:String>
     <sys:String x:Key="LOCBrowse">Przeglądaj</sys:String>
-    <sys:String x:Key="LOCOpenPlaynite">Otwórz Playnite</sys:String>
+    <sys:String x:Key="LOCOpenPlaynite">Otwórz</sys:String>
     <sys:String x:Key="LOCProfileSettings">Ustawienia profilu</sys:String>
     <sys:String x:Key="LOCEmptyGameNameError">Nazwa gry nie może być pusta.</sys:String>
     <sys:String x:Key="LOCEmptyTrackingFolderError">Katalog śledzenia akcji gry nie może być pusty.</sys:String>
@@ -647,10 +648,11 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Nic nie rób</sys:String>
     <sys:String x:Key="LOCMinimize">Minimalizuj</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Przywróć okno</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Zamknij</sys:String>
     <sys:String x:Key="LOCChange">Zmień</sys:String>
     <sys:String x:Key="LOCAdvanced">Zaawansowane</sys:String>
-    <sys:String x:Key="LOCNever"></sys:String>
+    <sys:String x:Key="LOCNever">–</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Stopień ukończenia</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Stopień ukończenia</sys:String>
     <sys:String x:Key="LOCUserScore">Ocena</sys:String>
@@ -668,8 +670,8 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Wszystkie skrypty przeładowano pomyślnie.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nie znaleziono gier według określonych kryteriów wyszukiwania lub filtra</sys:String>
     <sys:String x:Key="LOCNoItemsFound">Nie znaleziono gier</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Włącz tryb pulpitu</sys:String>
-    <sys:String x:Key="LOCExitPlaynite">Wyjdź z Playnite</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Wyłącz tryb pełnoekranowy</sys:String>
+    <sys:String x:Key="LOCExitPlaynite">Zamknij aplikację</sys:String>
     <sys:String x:Key="LOCLibraries">Biblioteki</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aktualizuj wszystko</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Autor:</sys:String>
@@ -716,7 +718,7 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Dostępna aktualizacja</sys:String>
     <sys:String x:Key="LOCUpdaterChangesInfo">Zmiany od ostatniej aktualizacji</sys:String>
     <sys:String x:Key="LOCUpdaterInstallUpdate">Pobierz i zainstaluj aktualizację</sys:String>
-    <sys:String x:Key="LOCCheckForUpdates">Sprawdź aktualizacje</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">Szukaj aktualizacji</sys:String>
     <sys:String x:Key="LOCUpdateError">Błąd aktualizacji</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Błąd sprawdzania nowej wersji.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Aplikacja jest aktualna.</sys:String>
@@ -724,7 +726,7 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateProgressCancelAsk">W tle jest wciąż aktywne zadanie. Czy chcesz je anulować i kontynuować aktualizację?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskExit">W tle jest wciąż aktywne zadanie. Czy chcesz je anulować i zamknąć Playnite?</sys:String>
     <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">W tle jest wciąż aktywne zadanie. Przełączenie trybu spowoduje anulowanie zadania, czy na pewno chcesz przełączyć?</sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Dostępna jest aktualizacja Playnite</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Dostępna jest aktualizacja aplikacji</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Przeładuj listę motywów</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Zatwierdź wybrany motyw</sys:String>
     <sys:String x:Key="LOCThemeTestWatchChanges">Oglądaj zmiany w plikach</sys:String>
@@ -792,8 +794,8 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0}m</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} sekund(y)</sys:String>
-    <sys:String x:Key="LOCPlayedNone"></sys:String>
-    <sys:String x:Key="LOCOpeningDesktopModeMessage">Otwieranie trybu pulpitu…</sys:String>
+    <sys:String x:Key="LOCPlayedNone">–</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Włączanie trybu pełnoekranowego</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Otwieranie trybu pełnoekranowego…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Ładowanie biblioteki gier…</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeMessage">Obliczanie rozmiaru instalacji…</sys:String>
@@ -910,7 +912,7 @@ Aplikacja musi zostać uruchomiona ponownie aby zakończyć operację. Na pewno 
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">Aktualności</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">Strona w sklepie</sys:String>
-    <sys:String x:Key="LOCFullscreenFirstTimeError">Wstępna konfiguracja nie została ukończona. Playnite zostanie uruchomiony ponownie w trybie pulpitu, aby zakończyć konfigurowanie.</sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">Wstępna konfiguracja nie została ukończona. Playnite zostanie uruchomiony ponownie w trybie pełnoekranowym, aby zakończyć konfigurowanie.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Ostatnio uruchomione</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Ulubione</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Najczęściej grane</sys:String>
@@ -960,6 +962,8 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
     <sys:String x:Key="LOCSelectActionTitle">Wybierz akcję</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Tryb śledzenia</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Ścieżka śledzenia</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Plik</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1005,10 +1009,8 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
 Zablokowanie tej opcji może prowadzić do problemów z grami wymagającymi pełnej uwagi podczas uruchamiania!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Rozmiar czcionki</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mały rozmiar czcionki</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Wsparcie Urządzeń XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Jeśli zostanie zablokowane, Playnite nie zaakceptuje żadnych sygnałów wejścia interfejsu XInput.
-        
-Zablokuj, jeżeli podczas używania narzędzi tłumaczących sygnały wejścia XInput na sygnały wejścia myszy/klawiatury, otrzymujesz podwójne sygnały wejścia w Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Wyświetlaj w menu głównym:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Odwrócone przypisanie przycisków X/A w widoku głównym</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Zamienia przypisania przycisków dla uruchamianej gry i pokazuje szczegóły gry w widoku głównym.</sys:String>
@@ -1254,5 +1256,7 @@ Określony format daty będzie używany dla wszystkich innych dat.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Wykryto uszkodzenie pliku biblioteki, Playnite zostanie wyłączony.
     
 Otwórz nowy problem na stronie GitHub Playnite z prośbą o naprawienie uszkodzeń w plikach.</sys:String>
-    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Czy chcesz zapisać zmiany?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

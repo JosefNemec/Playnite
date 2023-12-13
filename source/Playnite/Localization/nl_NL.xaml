@@ -256,11 +256,14 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCMenuLinksTitle">Koppelingen</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hulp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Steun op Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentatie</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Opnieuw opstarten</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Systeem uitschakelen</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Systeem Onderbreken</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Systeem in slaapstand zetten</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Kies een Willekeurig Spel</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spelvelden weer te geven op detailspaneel:</sys:String>
@@ -607,11 +610,9 @@ Voeg de volgende ID toe aan het probleemrapport:
 
 Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Kan emulators niet importeren vanwege ontbrekend of beschadigd definitiebestand.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Kan de XInput-interface niet initialiseren.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Kan menuactie niet uitvoeren.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Bewerk Spel Details</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Gebruik exe's icoon</sys:String>
     <sys:String x:Key="LOCImageURL">Afbeelding URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Voeg Link Toe</sys:String>
     <sys:String x:Key="LOCAddRom">ROM toevoegen</sys:String>
@@ -649,6 +650,7 @@ Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Doe niets</sys:String>
     <sys:String x:Key="LOCMinimize">Minimaliseer</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Herstel Venster</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Sluiten</sys:String>
     <sys:String x:Key="LOCChange">Wijzig</sys:String>
     <sys:String x:Key="LOCAdvanced">Geavanceerd</sys:String>
@@ -974,6 +976,8 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
     <sys:String x:Key="LOCSelectActionTitle">Actie selecteren</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Speeltijd volgmodus</sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Bestand</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1019,10 +1023,8 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
 Dit uitschakelen kan leiden tot problemen waarbij spellen geen invoer-focus krijgen bij het opstarten!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Lettertype grootte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Klein lettertype grootte</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">XInput Apparaat Ondersteuning</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Als dit uitgeschakeld is accepteert Playnite geen XInput interface invoer meer.
-
-Schakel dit uit als je tools gebruikt die XInput vertalen naar muis- of toetsenbordinvoer en je dubbele invoer krijgt in Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Toon items in het hoofdmenu:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Omgekeerde X/A hoofdweergave knop binding</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Verwisselt de knoppen voor het starten van een spel en het tonen van de speldetailpagina in de hoofdweergave.</sys:String>
@@ -1251,4 +1253,6 @@ Nieuwe grote releases resulteren niet in een update notificatie.</sys:String>
     <sys:String x:Key="LOCUserDataFolder">Gebruikers data locatie</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

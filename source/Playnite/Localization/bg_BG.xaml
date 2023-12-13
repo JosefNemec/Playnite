@@ -252,11 +252,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">Връзки</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Помощ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Поддръжка на Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Документация за SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Рестартирайте системата</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Изключване на системата</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Суспендиране на системата</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Система за хибернация</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Избор на произволна игра</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Полета за игра, които да се показват в панела с подробности:</sys:String>
@@ -603,11 +606,9 @@
 
 Повече информация на https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Не могат да се импортират емулатори поради липсващ или повреден дефиниционен файл.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Неуспешно инициализиране на XInput интерфейс.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Неуспешно изпълнение на действие от менюто.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Редактиране на подробностите за играта</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Действие от Play</sys:String>
     <sys:String x:Key="LOCImageURL">URL адрес на изображение</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Добавяне на връзка</sys:String>
     <sys:String x:Key="LOCAddRom">Добавяне на ROM</sys:String>
@@ -645,6 +646,7 @@
     <sys:String x:Key="LOCDoNothing">Не правете нищо</sys:String>
     <sys:String x:Key="LOCMinimize">Минимизиране</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Прозорец за възстановяване</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Затваряне</sys:String>
     <sys:String x:Key="LOCChange">Промяна</sys:String>
     <sys:String x:Key="LOCAdvanced">Разширени</sys:String>
@@ -957,6 +959,8 @@
     <sys:String x:Key="LOCSelectActionTitle">Избор на действие</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Режим на проследяване</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Път за проследяване</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Връзка</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Файл</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Емулатор</sys:String>
@@ -1002,10 +1006,8 @@
 Деактивирането на това може да доведе до проблеми с игрите, които не получават фокус върху входа при стартиране!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Размер на шрифта</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Малък размер на шрифта</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Поддръжка на XInput устройство</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ако е деактивирано, Playnite няма да приеме входове на XInput интерфейс.
-   	 
-Деактивирайте, ако използвате инструменти, които преобразуват XInput входове във входове от мишка/клавиатура и получавате двойни входове в Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Показване на елементи в главното меню:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Свързване на обърнат X/A бутон за основен изглед</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Разменя връзките на бутоните за стартиране на игра и показване на страница с подробности за играта в основния изглед.</sys:String>
@@ -1249,4 +1251,6 @@ Playnite автоматично ще се рестартира, за да ста
     
 Отворете нов проблем в GitHub страницата на Playnite с искане за коригиране на повреда във вашите файлове.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

@@ -251,11 +251,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">پیوند‌ها</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">کمک</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">پشتیبانی از Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">مستندات SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">راه اندازی مجدد سیستم</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">خاموش کردن سیستم</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">تعلیق سیستم</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">خواب زمستانی سیستم</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">انتخاب بازی تصادفی</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">زمینه های بازی برای نمایش در پانل جزئیات:</sys:String>
@@ -601,11 +604,9 @@
 
 اطلاعات بیشتر در https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">به دلیل از بین رفتن یا خرابی فایل تعریف شده، نمی توان شبیه سازها را وارد کرد.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">آنالیز رابط کاربری XInput انجام نشد.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">عملکرد منو اجرا نشد.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ویرایش جزییات بازی</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">از عمل بازی</sys:String>
     <sys:String x:Key="LOCImageURL">آدرس عکس</sys:String>
     <sys:String x:Key="LOCAddLinkButton">اضافه کردن لینک</sys:String>
     <sys:String x:Key="LOCAddRom">اضافه کردن رام</sys:String>
@@ -643,6 +644,7 @@
     <sys:String x:Key="LOCDoNothing">کاری نکن</sys:String>
     <sys:String x:Key="LOCMinimize">کمینه کردن</sys:String>
     <sys:String x:Key="LOCRestoreWindow">بازیابی پنجره</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">بستن</sys:String>
     <sys:String x:Key="LOCChange">تغییر</sys:String>
     <sys:String x:Key="LOCAdvanced">پیشرفته</sys:String>
@@ -955,6 +957,8 @@
     <sys:String x:Key="LOCSelectActionTitle">انتخاب عمل</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">حالت ردیابی</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">مسیر ردیابی</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">پیوند</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">پرونده</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">شبیه ساز</sys:String>
@@ -1000,10 +1004,8 @@
 غیرفعال کردن آن می‌تواند منجر به مشکلاتی شود که بازی‌ها روی راه‌اندازی تمرکز ندارند!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">اندازه قلم</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">اندازه قلم کوچک</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">پشتیبانی دستگاه XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">در صورت غیرفعال بودن ، Playnite هیچ ورودی رابط XInput را نمی پذیرد.
-        
-اگر از ابزارهایی استفاده می کنید که ورودی های XInput را به ورودی های ماوس/صفحه کلید ترجمه می کند و در Playnite ورودی دو برابر دریافت می کنید.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">نمایش موارد در منوی اصلی:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">اتصال دکمه نمای اصلی X/A معکوس</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">اتصالات دکمه را برای شروع بازی و نمایش صفحه جزئیات بازی در نمای اصلی تعویض می کند.</sys:String>
@@ -1248,4 +1250,6 @@ Playnite به طور خودکار راه‌اندازی مجدد می شود ت�
     
 با درخواست رفع خرابی برای فایل‌های خود، مسئله جدیدی در صفحه گیت‌هاب Playnite باز کنید.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">آیا می خواهید تغییراتی را که ایجاد کرده اید ذخیره کنید؟</sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

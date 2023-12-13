@@ -250,11 +250,14 @@ Bu sorunu çözmemize yardımcı olmak için lütfen tanılama bilgilerini gönd
     <sys:String x:Key="LOCMenuLinksTitle">Bağlantılar</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Yardım</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreon'da Destekle</sys:String>
+    <sys:String x:Key="LOCUserManual">Kullanım kılavuzu</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Belgelendirmesi</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Sistemi Yeniden Başlat</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Sistemi Kapat</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sistemi Askıya Al</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Sistemi Hazırda Beklet</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Sistemi Kilitle</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Oturumu Kapat</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Rastgele Bir Oyun Seç</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Ayrıntılar panelinde görüntülenecek oyun alanları:</sys:String>
@@ -602,11 +605,9 @@ Lütfen sorun raporunuza aşağıdaki kimliği ekleyin:</sys:String>
 
 Bilgi için: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Eksik veya bozuk tanım dosyası nedeniyle emülatörler içe aktarılamıyor.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">XInput arayüzü başlatılamadı.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Menü eylemi gerçekleştirilemedi.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Oyun Ayrıntılarını Düzenle</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Oyun dosyasından</sys:String>
     <sys:String x:Key="LOCImageURL">Resim URL’si</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Bağlantı Ekle</sys:String>
     <sys:String x:Key="LOCAddRom">ROM ekle</sys:String>
@@ -644,6 +645,7 @@ Bilgi için: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Hiçbir şey yapma</sys:String>
     <sys:String x:Key="LOCMinimize">Küçült</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Pencereyi geri yükle</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Pencereyi kullanıcı arayüzünden başlatıldığında geri yükle</sys:String>
     <sys:String x:Key="LOCClose">Kapat</sys:String>
     <sys:String x:Key="LOCChange">Değiştir</sys:String>
     <sys:String x:Key="LOCAdvanced">Gelişmiş</sys:String>
@@ -926,7 +928,7 @@ Arka planlar: {2} mega piksel</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">Kurulu uzantıların ve temaların yönetimi, ayarları dahil, yeni olan &quot;Eklentiler&quot; menüsüne taşındı.</sys:String>
     <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">Şu anda kurulu olan tüm kütüphane bütünleşmesi uzantıları buradan yapılandırılabilir.
 
-Ek bütünleştirmer kurmak veya kaldırmak istiyorsanız ana menüden &quot;Eklentiler&quot; seçeneğini kullanın.</sys:String>
+Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;Eklentiler&quot; seçeneğini kullanın.</sys:String>
     <sys:String x:Key="LOCAddonsThemesDesktop">Masaüstü Temaları</sys:String>
     <sys:String x:Key="LOCAddonsThemesFullscren">Tam Ekran Temaları</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Aranıyor…</sys:String>
@@ -957,6 +959,8 @@ Ek bütünleştirmer kurmak veya kaldırmak istiyorsanız ana menüden &quot;Ekl
     <sys:String x:Key="LOCSelectActionTitle">Eylem seç</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Takip modu</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Takip Dizini</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">İlk izleme gecikmesi</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">İzleme sıklığı</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Bağlantı</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Dosya</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emülatör</sys:String>
@@ -1002,10 +1006,10 @@ Ek bütünleştirmer kurmak veya kaldırmak istiyorsanız ana menüden &quot;Ekl
 Bunu devre dışı bırakmak, oyunların başlangıçta girdiye odaklanmamasıyla ilgili sorunlara yol açabilir!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Yazı Tipi Boyutu</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Yazı Tipi Boyutu Küçük</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">XInput Aygıt Desteği</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Devre dışı bırakılırsa, Playnite XInput arabirim girişlerini kabul etmez.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Oyun kolu desteği</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Devre dışı bırakılırsa Playnite hiçbir oyun kolu girişini kabul etmez.
         
-XInput girişlerini fare/klavye girişlerine çeviren araçlar kullanıyorsanız ve Playnite'ta çift giriş alıyorsanız devre dışı bırakın.</sys:String>
+Oyun kolu girişlerini fare/klavye girişlerine çeviren araçlar kullanıyorsanız ve Playnite ile çift giriş alıyorsanız devre dışı bırakın.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Öğeleri ana menüde göster:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Ters X/A ana görünüm düğmesi bağlama</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Bir oyunu başlatmak ve ana görünüm sayfasında oyun ayrıntılarını göstermek için düğme bağlantılarını değiştirir.</sys:String>
@@ -1249,4 +1253,6 @@ Diğer tüm tarihler için belirtilen tarih biçimi kullanılacaktır.</sys:Stri
 
 Playnite GitHub sayfasında yeni bir hata kaydı oluşturarak arızalı dosyalarınızın tamir edilmesini talep edin.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Yaptığınız değişiklikleri kaydetmek istiyor musunuz?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Taşınabilir kurulum</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Hiçbir oyun kolu algılanmadı</sys:String>
 </ResourceDictionary>

@@ -252,11 +252,14 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCMenuLinksTitle">Lenker</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjelp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Støtt på Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual">Brukermanualer</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentasjon</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Systemomstart</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Slå av systemet</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender systemet</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Dvalemodus</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Lås systemet</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Logg ut bruker</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Velg et tilfeldig spill</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spillfelt som vises i detaljpanelet:</sys:String>
@@ -603,11 +606,9 @@ Vennligst legg ved følgende ID til krasjrapporten din:</sys:String>
 
 Mer informasjon er tilgjengelig på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Kan ikke importere emulatorer på grunn av manglende eller ødelagt definisjonsfil.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Kunne ikke initialisere XInput-grensesnittet.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Kunne ikke utføre menyhandling.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Rediger spilldetaljer</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Fra spillhandling</sys:String>
     <sys:String x:Key="LOCImageURL">Bilde-URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Legg til lenke</sys:String>
     <sys:String x:Key="LOCAddRom">Legg til ROM</sys:String>
@@ -645,6 +646,7 @@ Mer informasjon er tilgjengelig på https://playnite.link/cefstartup</sys:String
     <sys:String x:Key="LOCDoNothing">Gjør ingenting</sys:String>
     <sys:String x:Key="LOCMinimize">Minimer</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Gjenopprett vindu</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Gjenopprett vinduet kun ved oppstart fra brukergrensesnittet</sys:String>
     <sys:String x:Key="LOCClose">Lukk</sys:String>
     <sys:String x:Key="LOCChange">Endre</sys:String>
     <sys:String x:Key="LOCAdvanced">Avansert</sys:String>
@@ -960,6 +962,8 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCSelectActionTitle">Velg handling</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Sporingsmodus</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Sporingssti</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Første sporingsforsinkelse</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Sporingsfrekvens</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Lenke</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Fil</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1005,10 +1009,10 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
 Deaktivering av denne funksjonen kan gjøre at spill ikke får fokus ved oppstart!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Skriftstørrelse</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Liten skriftstørrelse</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Støtte for XInput-enheter</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Deaktivering vil gjøre at Playnite ikke tar imot kommandoer fra XInput-enheter.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Støtte for spillkontroller</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Deaktivering vil gjøre at Playnite ikke tar imot kommandoer fra spillkontrollere.
 
-Deaktiver hvis du bruker verktøy som oversetter XInput-kommandoer til mus- og tastaturkommandoer, og får doble trykk i Playnite.</sys:String>
+Deaktiver hvis du bruker verktøy som oversetter spillkontrollerkommandoer til mus- og tastaturkommandoer, og du får doble trykk i Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Vis oppføringer på hovedmenyen:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Inverter X- og A-knappene på hovedskjermen</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Bytt om knappene for oppstart av spill og visning av spilldetaljsiden i hovedskjermen.</sys:String>
@@ -1250,4 +1254,6 @@ Det angitte datoformatet vil bli brukt til alle andre datoer.</sys:String>
     
 Åpne ny sak på Playnite's GitHub-side med en forespørsel om å fikse feilen i filene dine.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Vil du lagre endringene du har gjort?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Flyttbar installasjon</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Ingen kontrollere funnet</sys:String>
 </ResourceDictionary>

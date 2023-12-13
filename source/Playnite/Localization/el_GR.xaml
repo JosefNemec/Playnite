@@ -254,11 +254,14 @@
     <sys:String x:Key="LOCMenuLinksTitle">Σύνδεσμοι</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Βοήθεια</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Υποστήριξη στο Patreon</sys:String>
+    <sys:String x:Key="LOCUserManual">Εγχειρίδιο χρήστη</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Οδηγίες SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Επανεκκίνηση του Συστήματος</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Απενεργοποίηση Συστήματος</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Αναστολή Λειτουργίας</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Αδρανοποίηση</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Κλείδωμα Συστήματος</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Αποσύνδεση Χρήστη</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Επιλογή Τυχαίου Παιχνιδιού</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Πεδία παιχνιδιού που θα εμφανίζονται στον πίνακα λεπτομερειών:</sys:String>
@@ -604,11 +607,9 @@
 
 Περισσότερες πληροφορίες στο https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Δεν είναι δυνατή η εισαγωγή εξομοιωτών λόγω του αρχείου ορισμού που λείπει ή είναι κατεστραμμένο.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Αποτυχία αρχικοποίησης της διεπαφής XInput.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Αποτυχία εκτέλεσης ενέργειας μενού.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Επεξεργασία λεπτομερειών παιχνιδιού</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Χρησιμοποιήστε το εικονίδιο του exe</sys:String>
     <sys:String x:Key="LOCImageURL">URL εικόνας</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Προσθήκη συνδέσμου</sys:String>
     <sys:String x:Key="LOCAddRom">Προσθήκη ROM</sys:String>
@@ -646,6 +647,7 @@
     <sys:String x:Key="LOCDoNothing">καμία ενέργεια</sys:String>
     <sys:String x:Key="LOCMinimize">ελαχιστοποίηση</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Επαναφορά παραθύρου</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Επαναφορά παραθύρου μόνο όταν εκκινηθεί από το UI</sys:String>
     <sys:String x:Key="LOCClose">κλείσιμο</sys:String>
     <sys:String x:Key="LOCChange">αλλαγή</sys:String>
     <sys:String x:Key="LOCAdvanced">Προχωρημένα</sys:String>
@@ -958,6 +960,8 @@
     <sys:String x:Key="LOCSelectActionTitle">Επιλέξτε ενέργεια</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Λειτουργία Παρακολούθησης</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Διαδρομή Παρακολούθησης</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Καθυστέρηση αρχικής παρακολούθησης</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Συχνότητα παρακολούθησης</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Σύνδεσμος</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Αρχείο</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Εξομοιωτής</sys:String>
@@ -1003,10 +1007,10 @@
 Η απενεργοποίηση αυτού μπορεί να οδηγήσει σε προβλήματα σε παιχνίδια που δεν περιλαμβάνουν εστίαση εισόδου κατά την εκκίνηση!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Μέγεθος Γραμματοσειράς</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Μέγεθος Γραμματοσειράς Μικρό</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Υποστήριξη Συσκευής Xinput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Αν απενεργοποιηθεί, το Playnite δε θα δέχεται καμία είσοδο διασύνδεσης XInput.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Υποστήριξη χειριστηρίου παιχνιδιών</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Αν απενεργοποιηθεί, το Playnite δεν θα δέχεται καμία είσοδο χειριστηρίου παιχνιδιού.
         
-Απενεργοποιήστε αν χρησιμοποιείτε εργαλεία που μεταφράζουν τις εισόδους XInput στις εισόδους ποντικιού/πληκτρολογίου και λαμβάνετε διπλές εισόδους στο Playnite.</sys:String>
+Απενεργοποιήστε το αν χρησιμοποιείτε εργαλεία που μεταφράζουν εισόδους χειριστηρίου παιχνιδιών στις εισόδους ποντικιού/πληκτρολογίου και λαμβάνετε διπλές εισόδους στο Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Εμφάνιση στοιχείων στο κύριο μενού:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Εναλλαγή κουμπιών κεντρικής προβολής X/A</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Εναλλάσσει την διαμόρφωση κουμπιών για την εκκίνηση παιχνιδιού και την εμφάνιση των λεπτομερειών παιχνιδιού στην κεντρική προβολή.</sys:String>
@@ -1247,5 +1251,7 @@ SHIFT-ENTER: άνοιγμα μενού στοιχείων</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Έχουν εντοπιστεί κατεστραμμένα αρχεία βιβλιοθήκης, το Playnite θα τερματιστεί.
     
 Ανοίξτε νέο ζήτημα στη σελίδα GitHub του Playnite με αίτημα να διορθωθεί το πρόβλημα στα αρχεία σας.</sys:String>
-    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Θέλετε να αποθηκεύσετε τις αλλαγές που κάνατε?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Φορητή εγκατάσταση</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Δεν εντοπίστηκαν χειριστήρια</sys:String>
 </ResourceDictionary>
