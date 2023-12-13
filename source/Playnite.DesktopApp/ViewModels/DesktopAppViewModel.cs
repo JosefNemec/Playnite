@@ -438,7 +438,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (AppSettings.LastSelectedGame != Guid.Empty)
             {
-                if (!SelectGameImpl(AppSettings.LastSelectedGame))
+                if (!SelectGameImpl(AppSettings.LastSelectedGame) && GamesView.CollectionView.Count > 0)
                 {
                     SelectGame((GamesView.CollectionView.GetItemAt(0) as GamesCollectionViewEntry).Id);
                 }
