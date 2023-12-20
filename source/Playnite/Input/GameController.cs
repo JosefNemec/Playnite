@@ -441,18 +441,43 @@ namespace Playnite.Input
                 logger.Error($"Failed to get controller button state: {SDL_GetError()}");
             }
 
-            if (pressed && ShouldResendKey(button))
+            if (button == ControllerInput.A)
             {
-                SendControllerInput(button, true);
-                controller.LastInputState[button] = ControllerInputState.Pressed;
-                SimulateKeyInput(MapPadToKeyboard(button), true);
+                logger.Debug("Button A pressed: " + pressed);
+                logger.Debug("Button A prev state: " + controller.LastInputState[button]);
             }
-            else if (!pressed && controller.LastInputState[button] == ControllerInputState.Pressed)
+
+            if (IsButtonNotNavigation(button))
             {
-                ResetButtonResend(button);
-                SendControllerInput(button, false);
-                controller.LastInputState[button] = ControllerInputState.Released;
-                SimulateKeyInput(MapPadToKeyboard(button), false);
+                var lastState = controller.LastInputState[button];
+                if (pressed && lastState == ControllerInputState.Released)
+                {
+                    SendControllerInput(button, true);
+                    SimulateKeyInput(MapPadToKeyboard(button), true);
+                }
+                else if (!pressed && lastState == ControllerInputState.Pressed)
+                {
+                    SendControllerInput(button, false);
+                    SimulateKeyInput(MapPadToKeyboard(button), false);
+                }
+
+                controller.LastInputState[button] = pressed ? ControllerInputState.Pressed : ControllerInputState.Released;
+            }
+            else
+            {
+                if (pressed && ShouldResendKey(button))
+                {
+                    SendControllerInput(button, true);
+                    controller.LastInputState[button] = ControllerInputState.Pressed;
+                    SimulateKeyInput(MapPadToKeyboard(button), true);
+                }
+                else if (!pressed && controller.LastInputState[button] == ControllerInputState.Pressed)
+                {
+                    ResetButtonResend(button);
+                    SendControllerInput(button, false);
+                    controller.LastInputState[button] = ControllerInputState.Released;
+                    SimulateKeyInput(MapPadToKeyboard(button), false);
+                }
             }
         }
 
