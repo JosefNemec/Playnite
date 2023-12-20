@@ -441,12 +441,6 @@ namespace Playnite.Input
                 logger.Error($"Failed to get controller button state: {SDL_GetError()}");
             }
 
-            if (button == ControllerInput.A)
-            {
-                logger.Debug("Button A pressed: " + pressed);
-                logger.Debug("Button A prev state: " + controller.LastInputState[button]);
-            }
-
             if (IsButtonNotNavigation(button))
             {
                 var lastState = controller.LastInputState[button];
