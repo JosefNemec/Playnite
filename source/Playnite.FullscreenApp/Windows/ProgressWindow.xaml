@@ -47,7 +47,7 @@
 
                 <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}"
                                  HorizontalAlignment="Center" MinWidth="180"
-                                 pbeh:FocusBahaviors.OnVisibilityFocus="True"
+                                 pbeh:FocusBahaviors.FocusBinding="{Binding Cancelable}"
                                  Command="{Binding CancelCommand}"
                                  Visibility="{Binding Cancelable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                  HorizontalContentAlignment="Center"
