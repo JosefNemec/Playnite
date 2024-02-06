@@ -75,6 +75,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
 
+            BindingTools.SetBinding(
+                ToggleUseOnlyLastAddedController,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.UseOnlyLastAddedController),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
             app = mainModel.App as FullscreenApplication;
             if (app.GameController != null)
             {

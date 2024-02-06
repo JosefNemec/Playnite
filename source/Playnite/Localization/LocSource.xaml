@@ -1010,6 +1010,7 @@ Disabling this can lead to issues with games not getting input focus on startup!
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">If disabled, Playnite won't accept any game controller inputs.
         
 Disable if you use tools that translates game controller inputs to mouse/keyboards inputs and you are getting double inputs in Playnite.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputsUseOnlyLastAdded">Use only last connected controller</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Show items on main menu:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Inverted X/A main view button binding</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Swaps button bindings for starting a game and showing game details page on main view.</sys:String>

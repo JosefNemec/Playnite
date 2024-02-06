@@ -458,6 +458,22 @@ namespace Playnite
             }
         }
 
+        private bool useOnlyLastAddedController = false;
+        public bool UseOnlyLastAddedController
+        {
+            get
+            {
+                return useOnlyLastAddedController;
+            }
+
+            set
+            {
+                useOnlyLastAddedController = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private bool mainMenuShowRestart = true;
         public bool MainMenuShowRestart
         {
