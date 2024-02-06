@@ -4,10 +4,9 @@ using Playnite.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -253,13 +252,7 @@ namespace Playnite.Input
             inputManager = input;
             context = SynchronizationContext.Current;
 
-            for (int i = 0; i < SDL_NumJoysticks(); i++)
-            {
-                if (SDL_IsGameController(i) == SDL_bool.SDL_TRUE)
-                {
-                    AddController(i);
-                }
-            }
+            LoadControllers();
         }
 
         public void ProcessInputs()
@@ -270,6 +263,7 @@ namespace Playnite.Input
             }
 
             SDL_GameControllerUpdate();
+
             foreach (var controller in Controllers)
             {
                 if (controller.Enabled)
@@ -284,10 +278,32 @@ namespace Playnite.Input
             var controller = SDL_GameControllerOpen(joyIndex);
             var joystick = SDL_GameControllerGetJoystick(controller);
             var con = new LoadedGameController(controller, joystick, SDL_JoystickInstanceID(joystick), SDL_JoystickPath(joystick), SDL_JoystickName(joystick));
-            con.Enabled = !settings.Fullscreen.DisabledGameControllers.Contains(con.Path);
+
+            if (settings.Fullscreen.UseOnlyLastAddedController)
+            {
+                con.Enabled = true;
+                Controllers.ForEach(x => x.Enabled = false);
+            }
+            else
+            {
+                con.Enabled = !settings.Fullscreen.DisabledGameControllers.Contains(con.Path);
+            }
+     
             Controllers.Add(con);
+
             logger.Info($"added controller index {con.InstanceId}, {con.Name}");
             context.Send((a) => ControllersChanged?.Invoke(this, EventArgs.Empty), null);
+        }
+
+        public void LoadControllers()
+        {
+            for (int i = 0; i < SDL_NumJoysticks(); i++)
+            {
+                if (SDL_IsGameController(i) == SDL_bool.SDL_TRUE)
+                {
+                    AddController(i);
+                }
+            }
         }
 
         public void RemoveController(int instanceId)
@@ -301,17 +317,27 @@ namespace Playnite.Input
             SDL_GameControllerClose(controller.Controller);
             Controllers.Remove(controller);
             logger.Info($"removed controller {instanceId}, {controller.Name}");
+
+            context.Send((a) => ControllersChanged?.Invoke(this, EventArgs.Empty), null);
+        }
+
+        public void RemoveAllControllers()
+        {
+            foreach (var controller in Controllers)
+            {
+                SDL_GameControllerClose(controller.Controller);
+            }
+
+            Controllers.Clear();
             context.Send((a) => ControllersChanged?.Invoke(this, EventArgs.Empty), null);
         }
 
         public void Dispose()
         {
             isDisposed = true;
-            foreach (var controller in Controllers)
-            {
-                SDL_GameControllerClose(controller.Controller);
-            }
+            RemoveAllControllers();
         }
+     
 
         private uint MapPadToKeyboard(ControllerInput input)
         {
