@@ -51,6 +51,12 @@ namespace Playnite.FullscreenApp.ViewModels
             this.MainModel = mainModel;
         }
 
+        private void QuitApplication()
+        {
+            MainModel.CloseView();
+            MainModel.App.Quit();
+        }
+
         public bool? OpenView()
         {
             return window.CreateAndOpenDialog(this);
@@ -64,8 +70,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public void Shutdown()
         {
             Close();
-            MainModel.CloseView();
-            MainModel.App.Quit();
+            QuitApplication();
         }
 
         public void SwitchToDesktopMode()
@@ -129,17 +134,26 @@ namespace Playnite.FullscreenApp.ViewModels
                 return;
             }
 
-            if (!PlayniteEnvironment.IsDebuggerAttached)
+            // First add a custom Application.Exit event handler which gets called on application exit. This handler performs the comuter shutdown.
+            PlayniteApplication.CurrentNative.Exit += delegate
             {
-                try
+                if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
-                    Computer.Shutdown();
+                    logger.Info("Shutting down computer");
+
+                    try
+                    {
+                        Computer.Shutdown();
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to shutdown the computer.");
+                    }
                 }
-                catch (Exception e)
-                {
-                    Dialogs.ShowErrorMessage(e.Message, "");
-                }
-            }
+            };
+
+            // Then quit Playnite regularly.
+            QuitApplication();
         }
 
         public void HibernateSystem()
@@ -192,17 +206,26 @@ namespace Playnite.FullscreenApp.ViewModels
                 return;
             }
 
-            if (!PlayniteEnvironment.IsDebuggerAttached)
+            // First add a custom Application.Exit event handler which gets called on application exit. This handler performs the comuter restart.
+            PlayniteApplication.CurrentNative.Exit += delegate
             {
-                try
+                if (!PlayniteEnvironment.IsDebuggerAttached)
                 {
-                    Computer.Restart();
+                    logger.Info("Restarting computer");
+
+                    try
+                    {
+                        Computer.Restart();
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to restart the computer.");
+                    }
                 }
-                catch (Exception e)
-                {
-                    Dialogs.ShowErrorMessage(e.Message, "");
-                }
-            }
+            };
+
+            // Then quit Playnite regularly.
+            QuitApplication();
         }
 
         public void LockSystem()
