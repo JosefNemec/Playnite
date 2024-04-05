@@ -578,11 +578,18 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 if (AppSettings.Fullscreen.IsMusicMuted)
                 {
-                    Mix_HaltMusic();
+                    Mix_PauseMusic();
                 }
                 else
                 {
-                    Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
+                    if (Mix_PausedMusic() == 1)
+                    {
+                        Mix_ResumeMusic();
+                    }
+                    else
+                    {
+                        Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
+                    }
                 }
             }
 
