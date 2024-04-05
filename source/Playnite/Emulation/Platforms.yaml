@@ -343,7 +343,7 @@
   Id: sega_genesis
   IgdbId: 29
   Databases: [Sega - Mega Drive - Genesis]
-  Emulators: [bizhawk, blastem, higan, kegafusion, mednafen, retroarch]
+  Emulators: [bizhawk, blastem, higan, kegafusion, mednafen, retroarch, ares]
   
 - Name: Sega Master System
   Id: sega_mastersystem
