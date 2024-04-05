@@ -19,6 +19,7 @@ namespace Playnite.DesktopApp.Windows
         public ItemSelectionWithSearchWindow() : base()
         {
             InitializeComponent();
+            Loaded += (_, __) => TextSearch.Focus();
         }
     }
 }
