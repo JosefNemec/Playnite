@@ -590,9 +590,9 @@ namespace Playnite
         /// </summary>
         public const string URLLabel = "LOCURLLabel";
         /// <summary>
-        /// Patrons
+        /// Special thanks
         /// </summary>
-        public const string PatronsLabel = "LOCPatronsLabel";
+        public const string SpecialThanks = "LOCSpecialThanks";
         /// <summary>
         /// License
         /// </summary>
@@ -909,6 +909,10 @@ namespace Playnite
         /// Support on Patreon
         /// </summary>
         public const string MenuPatreonSupport = "LOCMenuPatreonSupport";
+        /// <summary>
+        /// Support on Ko-fi
+        /// </summary>
+        public const string MenuKofiSupport = "LOCMenuKofiSupport";
         /// <summary>
         /// User manual
         /// </summary>
@@ -2874,7 +2878,7 @@ namespace Playnite
         /// </summary>
         public const string DescriptionScoreValues = "LOCDescriptionScoreValues";
         /// <summary>
-        /// Playnite's development is supported by these patrons:
+        /// Playnite's development is supported by these patrons and Ko-fi members:
         /// </summary>
         public const string PatreonDevelopMessage = "LOCPatreonDevelopMessage";
         /// <summary>

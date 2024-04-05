@@ -170,7 +170,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCDetailsViewLabel">Details View</sys:String>
     <sys:String x:Key="LOCCustomLabel">Custom</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Special thanks</sys:String>
     <sys:String x:Key="LOCLicenseLabel">License</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contributors</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Exiting Playnite…</sys:String>
@@ -252,6 +252,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Help</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Support on Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Support on Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">User manual</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restart System</sys:String>
@@ -780,7 +781,7 @@ More information at https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Install size is indicated in bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Release date must be set in 'year-month-day' format. Month and Day values can be omitted.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Values from 0 to 100 or empty for no score.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's development is supported by these patrons:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's development is supported by these patrons and Ko-fi members:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Code, localization and other contributors in no particular order:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Cancel game monitoring?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Installation monitoring is currently running. Do you want to cancel the process and return the game to the previous state?</sys:String>

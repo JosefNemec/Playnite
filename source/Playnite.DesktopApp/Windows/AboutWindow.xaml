@@ -76,10 +76,10 @@
         </GridEx>
 
         <TabControl TabIndex="2" DockPanel.Dock="Top">
-            <TabItem Header="{DynamicResource LOCPatronsLabel}">
+            <TabItem Header="{DynamicResource LOCSpecialThanks}">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Text="{DynamicResource LOCPatreonDevelopMessage}"
-                               HorizontalAlignment="Center" Margin="0,5,0,5" />
+                               HorizontalAlignment="Center" Margin="0,5,0,5" TextWrapping="Wrap" />
                     <TextBox IsTabStop="False" IsReadOnly="True" DockPanel.Dock="Top" BorderThickness="0"
                              HorizontalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <TextBox.Text>

@@ -114,6 +114,10 @@
                                      ContentTemplate="{DynamicResource MainMenuPatreonButtonTemplate}"
                                      Command="{Binding OpenPatreonCommand}"
                                      AutomationProperties.Name="{DynamicResource LOCMenuPatreonSupport}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonKofi"
+                                     ContentTemplate="{DynamicResource MainMenuKofiButtonTemplate}"
+                                     Command="{Binding OpenKofiCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuKofiSupport}" />
                     <pctrls:ButtonEx x:Name="PART_ButtonMinimize"
                                      ContentTemplate="{DynamicResource MainMenuMinimizeButtonTemplate}"
                                      Command="{Binding MinimizeCommand}"                                     

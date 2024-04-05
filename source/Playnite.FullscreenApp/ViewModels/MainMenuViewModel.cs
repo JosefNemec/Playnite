@@ -24,6 +24,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand OpenSettingsCommand => new RelayCommand(() => OpenSettings());
         public RelayCommand SelectRandomGameCommand => new RelayCommand(() => PlayRandomGame(), () => MainModel.Database?.IsOpen == true);
         public RelayCommand OpenPatreonCommand => new RelayCommand(() => OpenPatreon());
+        public RelayCommand OpenKofiCommand => new RelayCommand(() => OpenKofi());
         public RelayCommand ShutdownSystemCommand => new RelayCommand(() => ShutdownSystem());
         public RelayCommand HibernateSystemCommand => new RelayCommand(() => HibernateSystem());
         public RelayCommand SleepSystemCommand => new RelayCommand(() => SleepSystem());
@@ -119,6 +120,12 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             Close();
             NavigateUrlCommand.Navigate(UrlConstants.Patreon);
+        }
+
+        public void OpenKofi()
+        {
+            Close();
+            NavigateUrlCommand.Navigate(UrlConstants.Kofi);
         }
 
         public void ShutdownSystem()

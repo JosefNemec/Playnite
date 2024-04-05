@@ -195,12 +195,14 @@ namespace Playnite.DesktopApp.Controls
             AddMenuChild(helpItem.Items, "LOCCrashRestartPlaynite", mainModel.RestartApp);
             AddMenuChild(helpItem.Items, "LOCCrashRestartSafe", mainModel.RestartInSafeMode);
 
-            // Patreon
-            AddMenuChild(Items, "LOCMenuPatreonSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Patreon, "Images/patreon.png");
-
             // About
             AddMenuChild(Items, "LOCMenuAbout", mainModel.OpenAboutCommand, null, "AboutPlayniteIcon");
             AddMenuChild(Items, "LOCCheckForUpdates", mainModel.CheckForUpdateCommand);
+            Items.Add(new Separator());
+
+            // Patreon
+            AddMenuChild(Items, "LOCMenuPatreonSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Patreon, "Images/patreon.png");
+            AddMenuChild(Items, "LOCMenuKofiSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Kofi, "Images/kofi.png");
             Items.Add(new Separator());
 
             // Exit
