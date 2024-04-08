@@ -126,9 +126,20 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
             if (app.GameController != null)
             {
                 app.GameController.ControllersChanged -= GameController_ControllersChanged;
-                app.AppSettings.Fullscreen.DisabledGameControllers = app.GameController.Controllers.
-                    Where(a => !a.Enabled).
-                    Select(a => a.Path).ToList();
+                var newList = app.AppSettings.Fullscreen.DisabledGameControllers.GetClone();
+                foreach (var controller in app.GameController.Controllers)
+                {
+                    if (controller.Enabled && newList.Contains(controller.Path))
+                    {
+                        newList.Remove(controller.Path);
+                    }
+                    else if (!controller.Enabled)
+                    {
+                        newList.AddMissing(controller.Path);
+                    }
+                }
+
+                app.AppSettings.Fullscreen.DisabledGameControllers = newList;
             }
         }
     }
