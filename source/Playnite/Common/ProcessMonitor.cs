@@ -8,391 +8,155 @@ using System.Management;
 using System.Threading;
 using System.IO;
 using Playnite.SDK;
-using System.Text.RegularExpressions;
 
 namespace Playnite.Common
 {
-    public class ProcessMonitor : IDisposable
+    public class MonitorProcess
     {
-        public class TreeStartedEventArgs
+        private readonly Process process;
+
+        public MonitorProcess(Process process)
         {
-            public int StartedId { get; set; }
+            this.process = process;
         }
 
-        public event EventHandler<TreeStartedEventArgs> TreeStarted;
-        public event EventHandler TreeDestroyed;
-
-        private SynchronizationContext execContext;
-        private CancellationTokenSource watcherToken;
-        private static ILogger logger = LogManager.GetLogger();
-        private const int maxFailCount = 5;
-
-        public ProcessMonitor()
+        public bool IsProcessRunning()
         {
-            execContext = SynchronizationContext.Current;
+            return !process.HasExited;
+        }
+    }
+
+    public class MonitorProcessTree
+    {
+        private List<int> relatedIds = new List<int>();
+
+        public MonitorProcessTree(int originalId)
+        {
+            relatedIds.Add(originalId);
         }
 
-        public void Dispose()
+        public bool IsProcessTreeRunning()
         {
-            StopWatching();
-        }
-
-        public async Task WatchProcessTree(Process process)
-        {
-            await WatchProcess(process);
-        }
-
-        public async Task WatchSingleProcess(Process process)
-        {
-            watcherToken = new CancellationTokenSource();
-            while (!process.HasExited)
+            if (relatedIds.Count == 0)
             {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    break;
-                }
-
-                await Task.Delay(1000);
+                return false;
             }
 
-            OnTreeDestroyed();
-        }
+            var runningIds = new List<int>();
+            foreach (var proc in Process.GetProcesses().Where(a => a.SessionId != 0))
+            {
+                if (proc.TryGetParentId(out var parent))
+                {
+                    if (relatedIds.Contains(parent) && !relatedIds.Contains(proc.Id))
+                    {
+                        relatedIds.Add(proc.Id);
+                    }
+                }
 
-        public async Task WatchDirectoryProcesses(string directory, bool alreadyRunning, bool byProcessNames = false, int trackingFrequency = 2000, int trackingStartDelay = 0)
+                if (relatedIds.Contains(proc.Id))
+                {
+                    runningIds.Add(proc.Id);
+                }
+            }
+
+            relatedIds = runningIds;
+            return relatedIds.Count > 0;
+        }
+    }
+
+    public class MonitorProcessNames
+    {
+        private readonly ILogger logger = LogManager.GetLogger();
+        private readonly List<string> procNames = new List<string>();
+        private readonly List<string> procNamesNoExt = new List<string>();
+
+        public MonitorProcessNames(string directory)
         {
-            logger.Debug($"Watching dir processes {directory}, {alreadyRunning}, {byProcessNames}");
-            // Get real path in case that original path is symlink or junction point
-            var realPath = directory;
+            var dir = directory;
             try
             {
-                realPath = Paths.GetFinalPathName(directory);
+                dir = Paths.GetFinalPathName(directory);
             }
             catch (Exception e)
             {
                 logger.Error(e, $"Failed to get target path for a directory {directory}");
             }
 
-            if (byProcessNames)
+            if (FileSystem.DirectoryExists(dir))
             {
-                await WatchDirectoryByProcessNames(realPath, alreadyRunning, trackingFrequency, trackingStartDelay);
-            }
-            else
-            {
-                await WatchDirectory(realPath, alreadyRunning, trackingFrequency, trackingStartDelay);
+                var executables = Directory.GetFiles(dir, "*.exe", SearchOption.AllDirectories);
+                procNames = executables.Select(a => Path.GetFileName(a)).ToList();
+                procNamesNoExt = executables.Select(a => Path.GetFileNameWithoutExtension(a)).ToList();
             }
         }
 
-        public void StopWatching()
+        public bool IsTrackable()
         {
-            watcherToken?.Cancel();
-            watcherToken?.Dispose();
+            return procNames.Count > 0;
         }
 
-        public async Task WatchUwpApp(string familyName, bool alreadyRunning)
+        public int IsProcessRunning()
         {
-            logger.Debug($"Starting UWP {familyName} app watcher.");
-            watcherToken = new CancellationTokenSource();
-            var startedCalled = false;
-            var processStarted = false;
-            var processFound = false;
-            var foundProcessId = 0;
-            var failCount = 0;
-            var matchProcString = familyName.Replace("_", @"_.+__");
-
-            while (true)
+            foreach (var process in Process.GetProcesses().Where(a => a.SessionId != 0))
             {
-                if (watcherToken.IsCancellationRequested)
+                if (process.TryGetMainModuleFileName(out var procPath))
                 {
-                    return;
-                }
-
-                if (failCount == maxFailCount)
-                {
-                    OnTreeDestroyed();
-                    return;
-                }
-
-                try
-                {
-                    processFound = false;
-                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
-                    foreach (var process in processes)
+                    if (procNames.Contains(Path.GetFileName(procPath)))
                     {
-                        if (process.TryGetMainModuleFileName(out var procPath))
-                        {
-                            if (Regex.IsMatch(procPath, matchProcString))
-                            {
-                                processFound = true;
-                                processStarted = true;
-                                foundProcessId = process.Id;
-                                break;
-                            }
-                        }
+                        return process.Id; ;
                     }
                 }
-                catch (Exception e) when (failCount < maxFailCount)
+                else if (procNamesNoExt.Contains(process.ProcessName))
                 {
-                    // This shouldn't happen, but there were some crash reports from Process.GetProcesses
-                    failCount++;
-                    logger.Error(e, "WatchUwpApp failed to check processes.");
+                    return process.Id;
                 }
-
-                if (!alreadyRunning && processFound && !startedCalled)
-                {
-                    OnTreeStarted(foundProcessId);
-                    startedCalled = true;
-                }
-
-                if (!processFound && processStarted)
-                {
-                    OnTreeDestroyed();
-                    return;
-                }
-
-                await Task.Delay(2000);
             }
-        }
 
-        public static bool IsWatchableByProcessNames(string directory)
+            return 0;
+        }
+    }
+
+    public class MonitorDirectory
+    {
+        private readonly ILogger logger = LogManager.GetLogger();
+        private readonly string dir;
+
+        public MonitorDirectory(string directory)
         {
-            var realPath = directory;
+            dir = directory;
+
             try
             {
-                realPath = Paths.GetFinalPathName(directory);
+                dir = Paths.GetFinalPathName(directory);
             }
             catch (Exception e)
             {
                 logger.Error(e, $"Failed to get target path for a directory {directory}");
             }
-
-            var executables = Directory.GetFiles(realPath, "*.exe", SearchOption.AllDirectories);
-            return executables.Count() > 0;
         }
 
-        private async Task WatchDirectoryByProcessNames(string directory, bool alreadyRunning, int trackingDelay = 2000, int trackingStartDelay = 0)
+        public bool IsTrackable()
         {
-            if (!Directory.Exists(directory))
+            if (dir.IsNullOrWhiteSpace())
             {
-                throw new DirectoryNotFoundException($"Cannot watch directory processes, {directory} not found.");
+                return false;
             }
 
-            var executables = Directory.GetFiles(directory, "*.exe", SearchOption.AllDirectories);
-            if (executables.Count() == 0)
-            {
-                logger.Error($"Cannot watch directory processes {directory}, no executables found.");
-                OnTreeDestroyed();
-            }
-
-            var procNames = executables.Select(a => Path.GetFileName(a)).ToList();
-            var procNamesNoExt = executables.Select(a => Path.GetFileNameWithoutExtension(a)).ToList();
-            watcherToken = new CancellationTokenSource();
-            var startedCalled = false;
-            var processStarted = false;
-            var foundProcessId = 0;
-            var failCount = 0;
-
-            if (trackingStartDelay > 0)
-            {
-                // Delay throws on canellation so we need to handle it in this ugly way
-                var delay = Task.Delay(trackingStartDelay, watcherToken.Token);
-                await delay.ContinueWith(task => { });
-            }
-
-            while (true)
-            {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                if (failCount == maxFailCount)
-                {
-                    OnTreeDestroyed();
-                    return;
-                }
-
-                var processFound = false;
-                try
-                {
-                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
-                    foreach (var process in processes)
-                    {
-                        if (process.TryGetMainModuleFileName(out var procPath))
-                        {
-                            if (procNames.Contains(Path.GetFileName(procPath)))
-                            {
-                                processFound = true;
-                                processStarted = true;
-                                foundProcessId = process.Id;
-                                break;
-                            }
-                        }
-                        else if (procNamesNoExt.Contains(process.ProcessName))
-                        {
-                            processFound = true;
-                            processStarted = true;
-                            foundProcessId = process.Id;
-                            break;
-                        }
-                    }
-                }
-                catch (Exception e) when (failCount < maxFailCount)
-                {
-                    // This shouldn't happen, but there were some crash reports from Process.GetProcesses
-                    failCount++;
-                    logger.Error(e, "WatchDirectoryByProcessNames failed to check processes.");
-                }
-
-                if (!alreadyRunning && processFound && !startedCalled)
-                {
-                    OnTreeStarted(foundProcessId);
-                    startedCalled = true;
-                }
-
-                if (!processFound && processStarted)
-                {
-                    OnTreeDestroyed();
-                    return;
-                }
-
-                await Task.Delay(trackingDelay);
-            }
+            return FileSystem.DirectoryExists(dir);
         }
 
-        private async Task WatchDirectory(string directory, bool alreadyRunning, int trackingDelay = 2000, int trackingStartDelay = 0)
+        public int IsProcessRunning()
         {
-            if (!Directory.Exists(directory))
+            foreach (var process in Process.GetProcesses().Where(a => a.SessionId != 0))
             {
-                throw new DirectoryNotFoundException($"Cannot watch directory processes, {directory} not found.");
+                if (process.TryGetMainModuleFileName(out var procPath) &&
+                    procPath.IndexOf(dir, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return process.Id;
+                }
             }
 
-            watcherToken = new CancellationTokenSource();
-            var startedCalled = false;
-            var processStarted = false;
-            var foundProcessId = 0;
-            var failCount = 0;
-
-            if (trackingStartDelay > 0)
-            {
-                // Delay throws on canellation so we need to handle it in this ugly way
-                var delay = Task.Delay(trackingStartDelay, watcherToken.Token);
-                await delay.ContinueWith(task => { });
-            }
-
-            while (true)
-            {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                if (failCount == maxFailCount)
-                {
-                    OnTreeDestroyed();
-                    return;
-                }
-
-                var processFound = false;
-                try
-                {
-                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
-                    foreach (var process in processes)
-                    {
-                        if (process.TryGetMainModuleFileName(out var procPath))
-                        {
-                            if (procPath.IndexOf(directory, StringComparison.OrdinalIgnoreCase) >= 0)
-                            {
-                                processFound = true;
-                                processStarted = true;
-                                foundProcessId = process.Id;
-                                break;
-                            }
-                        }
-                    }
-                }
-                catch (Exception e) when (failCount < maxFailCount)
-                {
-                    // This shouldn't happen, but there were some crash reports from Process.GetProcesses
-                    failCount++;
-                    logger.Error(e, "WatchDirectory failed to check processes.");
-                }
-
-                if (!alreadyRunning && processFound && !startedCalled)
-                {
-                    OnTreeStarted(foundProcessId);
-                    startedCalled = true;
-                }
-
-                if (!processFound && processStarted)
-                {
-                    OnTreeDestroyed();
-                    return;
-                }
-
-                await Task.Delay(trackingDelay);
-            }
-        }
-
-        private async Task WatchProcess(Process process)
-        {
-            watcherToken = new CancellationTokenSource();
-            var ids = new List<int>() { process.Id };
-            var failCount = 0;
-
-            while (true)
-            {
-                if (watcherToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                if (ids.Count == 0 || failCount == maxFailCount)
-                {
-                    OnTreeDestroyed();
-                    return;
-                }
-
-                try
-                {
-                    var processes = Process.GetProcesses().Where(a => a.SessionId != 0);
-                    var runningIds = new List<int>();
-                    foreach (var proc in processes)
-                    {
-                        if (proc.TryGetParentId(out var parent))
-                        {
-                            if (ids.Contains(parent) && !ids.Contains(proc.Id))
-                            {
-                                ids.Add(proc.Id);
-                            }
-                        }
-
-                        if (ids.Contains(proc.Id))
-                        {
-                            runningIds.Add(proc.Id);
-                        }
-                    }
-
-                    ids = runningIds;
-                }
-                catch (Exception e) when (failCount < maxFailCount)
-                {
-                    // This shouldn't happen, but there were some crash reports from Process.GetProcesses
-                    failCount++;
-                    logger.Error(e, "WatchProcess failed to check processes.");
-                }
-
-                await Task.Delay(500);
-            }
-        }
-
-        private void OnTreeStarted(int processId)
-        {
-            execContext.Post((a) => TreeStarted?.Invoke(this, new TreeStartedEventArgs { StartedId = processId }), null);
-        }
-
-        private void OnTreeDestroyed()
-        {
-            execContext.Post((a) => TreeDestroyed?.Invoke(this, EventArgs.Empty), null);
+            return 0;
         }
     }
 }

@@ -34,8 +34,6 @@ namespace Playnite.Controllers
     public class GenericPlayController : PlayController
     {
         protected CancellationTokenSource watcherToken;
-        protected Stopwatch stopWatch;
-        protected ProcessMonitor procMon;
         private GameDatabase database;
         private static ILogger logger = LogManager.GetLogger();
         private readonly IPlayniteAPI playniteApi;
@@ -259,37 +257,37 @@ namespace Playnite.Controllers
                 void gameStarted(int processId)
                 {
                     startedEmuProcessId = processId;
-                    stopWatch = Stopwatch.StartNew();
                     ExecuteEmulatorScript(currentEmuProfile.PostScript, emulatorDir, romPath, emulator, emuProfile);
-                    InvokeOnStarted(new GameStartedEventArgs { StartedProcessId = processId });
+                    InvokeOnStarted(new GameStartedEventArgs { StartedProcessId = startedEmuProcessId });
                 }
-
-                procMon = new ProcessMonitor();
-                procMon.TreeStarted += (_, treeArgs) => gameStarted(treeArgs.StartedId);
-                procMon.TreeDestroyed += (_, __) =>
-                {
-                    stopWatch.Stop();
-                    ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile);
-                    InvokeOnStopped(new GameStoppedEventArgs { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
-                };
 
                 if (trackingMode == TrackingMode.Default || trackingMode == TrackingMode.Process)
                 {
                     gameStarted(process.Id);
-                    procMon.WatchProcessTree(process);
+                    var monitor = new MonitorProcessTree(process.Id);
+                    StartTracking(
+                        () => monitor.IsProcessTreeRunning(),
+                        gameStoppedAction: () => ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile));
                 }
                 else if (trackingMode == TrackingMode.OriginalProcess)
                 {
                     gameStarted(process.Id);
-                    procMon.WatchSingleProcess(process);
+                    var monitor = new MonitorProcess(process);
+                    StartTracking(
+                        () => monitor.IsProcessRunning(),
+                        gameStoppedAction: () => ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile));
                 }
                 else if (trackingMode == TrackingMode.Directory)
                 {
                     var watchDir = trackingPath.IsNullOrEmpty() ? emulatorDir : trackingPath;
-                    if (!watchDir.IsNullOrEmpty() && FileSystem.DirectoryExists(watchDir))
+                    var monitor = new MonitorDirectory(watchDir);
+                    if (monitor.IsTrackable())
                     {
-                        stopWatch = Stopwatch.StartNew();
-                        procMon.WatchDirectoryProcesses(watchDir, false);
+                        StartTracking(
+                            () => monitor.IsProcessRunning() > 0,
+                            startupCheck: () => monitor.IsProcessRunning(),
+                            gameStartedAction: (id) => gameStarted(id),
+                            gameStoppedAction: () => ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile));
                     }
                     else
                     {
@@ -312,7 +310,7 @@ namespace Playnite.Controllers
 
         private void ExecuteEmulatorScript(string script, string emulatorDir, string romPath, Emulator emulator, EmulatorProfile emuProfile)
         {
-            if (script.IsNullOrEmpty())
+            if (script.IsNullOrWhiteSpace())
             {
                 return;
             }
@@ -360,12 +358,12 @@ namespace Playnite.Controllers
             variables.Add("PlayniteApi", playniteApi);
             variables.Add("IsPlayAction", asyncExec);
             playRuntime = new PowerShellRuntime(runtimeName);
+            var stopWatch = Stopwatch.StartNew();
 
             if (asyncExec)
             {
                 watcherToken = new CancellationTokenSource();
                 variables.Add("CancelToken", watcherToken.Token);
-                stopWatch = Stopwatch.StartNew();
                 playTask = Task.Run(() =>
                 {
                     try
@@ -510,20 +508,10 @@ namespace Playnite.Controllers
                     throw new NotSupportedException();
                 }
 
-                procMon = new ProcessMonitor();
-                procMon.TreeStarted += (_, treeArgs) => InvokeOnStarted(new GameStartedEventArgs { StartedProcessId = treeArgs.StartedId });
-                procMon.TreeDestroyed += (_, __) =>
-                {
-                    stopWatch.Stop();
-                    InvokeOnStopped(new GameStoppedEventArgs { SessionLength = Convert.ToUInt64(stopWatch.Elapsed.TotalSeconds) });
-                };
-
                 if (action.TrackingMode == TrackingMode.Default)
                 {
                     if (action.Type != GameActionType.URL)
                     {
-                        stopWatch = Stopwatch.StartNew();
-
                         // Handle Windows store apps
                         var uwpMatch = Regex.Match(action.Arguments ?? string.Empty, @"shell:AppsFolder\\(.+)!.+");
                         if (action.Path == "explorer.exe" && uwpMatch.Success)
@@ -541,9 +529,14 @@ namespace Playnite.Controllers
 
                             // TODO switch to WatchUwpApp once we are building as 64bit app
                             //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
-                            if (FileSystem.DirectoryExists(scanDirectory) && ProcessMonitor.IsWatchableByProcessNames(scanDirectory))
+                            var monitor = new MonitorProcessNames(scanDirectory);
+                            if (monitor.IsTrackable())
                             {
-                                procMon.WatchDirectoryProcesses(scanDirectory, false, true);
+                                StartTracking(
+                                    () => monitor.IsProcessRunning() > 0,
+                                    startupCheck: () => monitor.IsProcessRunning(),
+                                    trackingFrequency: action.TrackingFrequency,
+                                    trackingStartDelay: action.InitialTrackingDelay);
                             }
                             else
                             {
@@ -555,7 +548,11 @@ namespace Playnite.Controllers
                             if (proc != null)
                             {
                                 InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
-                                procMon.WatchProcessTree(proc);
+                                var monitor = new MonitorProcessTree(proc.Id);
+                                StartTracking(
+                                    () => monitor.IsProcessTreeRunning(),
+                                    trackingFrequency: action.TrackingFrequency,
+                                    trackingStartDelay: action.InitialTrackingDelay);
                             }
                             else
                             {
@@ -565,10 +562,14 @@ namespace Playnite.Controllers
                     }
                     else
                     {
-                        if (!string.IsNullOrEmpty(gameClone.InstallDirectory) && FileSystem.DirectoryExists(gameClone.InstallDirectory))
+                        var monitor = new MonitorDirectory(gameClone.InstallDirectory);
+                        if (monitor.IsTrackable())
                         {
-                            stopWatch = Stopwatch.StartNew();
-                            procMon.WatchDirectoryProcesses(gameClone.InstallDirectory, false);
+                            StartTracking(
+                               () => monitor.IsProcessRunning() > 0,
+                               startupCheck: () => monitor.IsProcessRunning(),
+                               trackingFrequency: action.TrackingFrequency,
+                               trackingStartDelay: action.InitialTrackingDelay);
                         }
                         else
                         {
@@ -581,8 +582,11 @@ namespace Playnite.Controllers
                     if (proc != null)
                     {
                         InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
-                        stopWatch = Stopwatch.StartNew();
-                        procMon.WatchProcessTree(proc);
+                        var monitor = new MonitorProcessTree(proc.Id);
+                        StartTracking(
+                            () => monitor.IsProcessTreeRunning(),
+                            trackingFrequency: action.TrackingFrequency,
+                            trackingStartDelay: action.InitialTrackingDelay);
                     }
                     else
                     {
@@ -594,8 +598,11 @@ namespace Playnite.Controllers
                     if (proc != null)
                     {
                         InvokeOnStarted(new GameStartedEventArgs() { StartedProcessId = proc.Id });
-                        stopWatch = Stopwatch.StartNew();
-                        procMon.WatchSingleProcess(proc);
+                        var monitor = new MonitorProcess(proc);
+                        StartTracking(
+                            () => monitor.IsProcessRunning(),
+                            trackingFrequency: action.TrackingFrequency,
+                            trackingStartDelay: action.InitialTrackingDelay);
                     }
                     else
                     {
@@ -605,10 +612,14 @@ namespace Playnite.Controllers
                 else if (action.TrackingMode == TrackingMode.Directory)
                 {
                     var watchDir = action.TrackingPath.IsNullOrEmpty() ? gameClone.InstallDirectory : action.TrackingPath;
-                    if (!watchDir.IsNullOrEmpty() && FileSystem.DirectoryExists(watchDir))
+                    var monitor = new MonitorDirectory(watchDir);
+                    if (monitor.IsTrackable())
                     {
-                        stopWatch = Stopwatch.StartNew();
-                        procMon.WatchDirectoryProcesses(watchDir, false, false, action.TrackingFrequency, action.InitialTrackingDelay);
+                        StartTracking(
+                            () => monitor.IsProcessRunning() > 0,
+                            startupCheck: () => monitor.IsProcessRunning(),
+                            trackingFrequency: action.TrackingFrequency,
+                            trackingStartDelay: action.InitialTrackingDelay);
                     }
                     else
                     {
@@ -622,13 +633,118 @@ namespace Playnite.Controllers
             }
         }
 
+        public void StartTracking(
+            Func<bool> trackingAction,
+            Func<int> startupCheck = null,
+            Action<int> gameStartedAction = null,
+            Action gameStoppedAction = null,
+            int trackingFrequency = 2000,
+            int trackingStartDelay = 0)
+        {
+            if (watcherToken != null)
+            {
+                throw new Exception("Game is already being tracked.");
+            }
+
+            watcherToken = new CancellationTokenSource();
+            Task.Run(async () =>
+            {
+                ulong playTimeMs = 0;
+                var trackingWatch = new Stopwatch();
+                var maxFailCount = 5;
+                var failCount = 0;
+
+                if (trackingStartDelay > 0)
+                {
+                    await Task.Delay(trackingStartDelay, watcherToken.Token).ContinueWith(task => { });
+                }
+
+                if (startupCheck != null)
+                {
+                    while (true)
+                    {
+                        if (watcherToken.IsCancellationRequested)
+                        {
+                            return;
+                        }
+
+                        if (failCount >= maxFailCount)
+                        {
+                            InvokeOnStopped(new GameStoppedEventArgs(0));
+                            return;
+                        }
+
+                        try
+                        {
+                            var id = startupCheck();
+                            if (id > 0)
+                            {
+                                gameStartedAction?.Invoke(id);
+                                InvokeOnStarted(new GameStartedEventArgs {  StartedProcessId = id });
+                                break;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            failCount++;
+                            logger.Error(e, "Game startup tracking iteration failed.");
+                        }
+
+                        await Task.Delay(trackingFrequency, watcherToken.Token).ContinueWith(task => { });
+                    }
+                }
+
+                while (true)
+                {
+                    failCount = 0;
+                    if (watcherToken.IsCancellationRequested)
+                    {
+                        return;
+                    }
+
+                    if (failCount >= maxFailCount)
+                    {
+                        gameStoppedAction?.Invoke();
+                        InvokeOnStopped(new GameStoppedEventArgs(playTimeMs / 1000));
+                        return;
+                    }
+
+                    try
+                    {
+                        trackingWatch.Restart();
+                        if (!trackingAction())
+                        {
+                            gameStoppedAction?.Invoke();
+                            InvokeOnStopped(new GameStoppedEventArgs(playTimeMs / 1000));
+                            return;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        failCount++;
+                        logger.Error(e, "Game tracking iteration failed.");
+                    }
+
+                    await Task.Delay(trackingFrequency, watcherToken.Token).ContinueWith(task => { });
+                    trackingWatch.Stop();
+                    if (trackingWatch.ElapsedMilliseconds > (trackingFrequency + 30_000))
+                    {
+                        // This is for cases where system is put into sleep or hibernation.
+                        // Realistically speaking, one tracking interation should never take 30+ seconds,
+                        // but lets use that as safe value in case this runs super slowly on some weird PCs.
+                        continue;
+                    }
+
+                    playTimeMs += (ulong)trackingWatch.ElapsedMilliseconds;
+                }
+            });
+        }
+
         public override void Dispose()
         {
             isDisposed = true;
             watcherToken?.Cancel();
             playTask?.Wait(5000); // Give startup script time to gracefully shutdown.
-            procMon?.Dispose();
-            stopWatch?.Stop();
             if (playRuntime?.IsDisposed == false)
             {
                 playRuntime?.Dispose();
