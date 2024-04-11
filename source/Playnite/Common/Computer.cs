@@ -78,6 +78,10 @@ namespace Playnite.Common
     public static class Computer
     {
         private static readonly ILogger logger = LogManager.GetLogger();
+
+        public static readonly (string path, string args) ShutdownCmd = ("shutdown.exe", "-s -hybrid -t 0");
+        public static readonly (string path, string args) RestartCmd = ("shutdown.exe", "-r -t 0");
+
         public static WindowsVersion WindowsVersion
         {
             get
@@ -262,19 +266,12 @@ namespace Playnite.Common
 
         public static void Shutdown()
         {
-            if (WindowsVersion == WindowsVersion.Win7)
-            {
-                ProcessStarter.StartProcess("shutdown.exe", "-s -t 0");
-            }
-            else
-            {
-                ProcessStarter.StartProcess("shutdown.exe", "-s -hybrid -t 0");
-            }
+            ProcessStarter.StartProcess(ShutdownCmd.path, ShutdownCmd.args);
         }
 
         public static void Restart()
         {
-            ProcessStarter.StartProcess("shutdown.exe", "-r -t 0");
+            ProcessStarter.StartProcess(RestartCmd.path, RestartCmd.args);
         }
 
         public static bool Sleep()

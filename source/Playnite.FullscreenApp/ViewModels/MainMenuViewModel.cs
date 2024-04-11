@@ -138,14 +138,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                try
-                {
-                    Computer.Shutdown();
-                }
-                catch (Exception e)
-                {
-                    Dialogs.ShowErrorMessage(e.Message, "");
-                }
+                MainModel.App.QuitAndStart(Computer.ShutdownCmd.path, Computer.ShutdownCmd.args);
             }
         }
 
@@ -201,14 +194,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                try
-                {
-                    Computer.Restart();
-                }
-                catch (Exception e)
-                {
-                    Dialogs.ShowErrorMessage(e.Message, "");
-                }
+                MainModel.App.QuitAndStart(Computer.RestartCmd.path, Computer.RestartCmd.args);
             }
         }
 
