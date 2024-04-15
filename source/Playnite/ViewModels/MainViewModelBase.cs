@@ -236,14 +236,20 @@ namespace Playnite.ViewModels
 
         private void FilterPresetsCollection_OnSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
         {
-            OnPropertyChanged(nameof(SortedFilterPresets));
-            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            App.SyncContext.Send((_) =>
+            {
+                OnPropertyChanged(nameof(SortedFilterPresets));
+                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            }, null);
         }
 
         private void FilterPresets_ItemCollectionChanged(object sender, ItemCollectionChangedEventArgs<FilterPreset> e)
         {
-            OnPropertyChanged(nameof(SortedFilterPresets));
-            OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            App.SyncContext.Send((_) =>
+            {
+                OnPropertyChanged(nameof(SortedFilterPresets));
+                OnPropertyChanged(nameof(SortedFilterFullscreenPresets));
+            }, null);
         }
 
         private PlayniteSettings appSettings;
