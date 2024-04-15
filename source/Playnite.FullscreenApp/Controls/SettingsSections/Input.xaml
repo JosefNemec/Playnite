@@ -31,5 +31,8 @@
                            Tag="{DynamicResource LOCSettingsXInputProcessingDescription}"/>
         <StackPanel Name="StackControllers" Margin="50,0,0,0"
                     IsEnabled="{Binding IsChecked, ElementName=ToggleControllerInput}" />
+        <pctrls:CheckBoxEx x:Name="ToggleUseOnlyLastAddedController"
+              Content="{DynamicResource LOCSettingsXInputsUseOnlyLastAdded}"
+              IsEnabled="{Binding IsChecked, ElementName=ToggleControllerInput}"/>
     </StackPanel>
 </local:SettingsSectionControl>
