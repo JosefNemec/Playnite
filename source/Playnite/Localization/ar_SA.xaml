@@ -179,7 +179,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">عرض التفاصيل</sys:String>
     <sys:String x:Key="LOCCustomLabel">مخصص</sys:String>
     <sys:String x:Key="LOCURLLabel">الرابط</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">الّراعي</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">الترخيص</sys:String>
     <sys:String x:Key="LOCContributorsLabel">المساهمون</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">جاري الخروج من Playnite…</sys:String>
@@ -262,6 +262,7 @@
     <sys:String x:Key="LOCMenuLinksTitle">روابط</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">مساعدة</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">الدعم في Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">مستندات SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">إعادة تشغيل النظام</sys:String>
@@ -819,7 +820,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">حجم التثبيت مشار إليه بوحدة البايت.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">يجب تحديد تاريخ الإصدار بتنسيق &quot;يوم-شهر-عام&quot;. يمكن حذف قيم الشهر واليوم.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">القيم من 0 إلى 100 أو الفارغة بدون درجة.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">يتم دعم تطوير Playnite من طرف هؤلاء الرُعاة:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">البرمجة، الترجمة والمساهمين الآخرين بدون ترتيب معين:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">إلغاء اللعبة في الشاشة الستهدفة؟</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">مراقبة التثبيت قيد التشغيل حاليًا. هل تريد إلغاء العملية وإعادة اللعبة إلى حالتها السابقة؟

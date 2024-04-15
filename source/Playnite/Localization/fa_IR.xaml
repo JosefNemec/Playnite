@@ -13,12 +13,12 @@
     <sys:String x:Key="LOCFilter">فیلتر</sys:String>
     <sys:String x:Key="LOCInvalidDataTitle">داده نامعتبر</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">ذخیره تغییرات؟</sys:String>
-    <sys:String x:Key="LOCAboutHomePageLink">صفحه اصلی www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">صفحه اصلی در www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">کد منبع در گیت‌هاب</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">ایجاد بسته diag.</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">ارسال اطلاعات diag.</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">درباره Playnite</sys:String>
-    <sys:String x:Key="LOCAboutAuthor">ساخته Josef Němec</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">ساخته شده توسط Josef Němec</sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle">تعیین دسته</sys:String>
     <sys:String x:Key="LOCCategorySetButton">تنظیم دسته بندی ها</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">افزودن دسته‌بندی</sys:String>
@@ -56,8 +56,8 @@
     <sys:String x:Key="LOCCrashUserActionsDescription">اقدامات انجام شده قبل از اشکال (به انگلیسی):</sys:String>
     <sys:String x:Key="LOCLibraryManager">مدیر کتابخانه</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">حذف بازی (ها)؟</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">حذف نشد-بازی یا نصب در حال اجرا است. </sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">حذف نصب نشد-بازی در حال اجرا است.</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">حذف نشد - بازی یا نصب در حال اجرا است. </sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">حذف نصب نشد - بازی در حال اجرا است.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">آیا مطمئن هستید که می خواهید {0} را حذف کنید؟</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">آیا مطمئن اید که می خواهید {0} بازی را حذف کنید؟</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">آیا مطمئن هستید که می خواهید {0} را حذف کنید؟
@@ -168,7 +168,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">نمای جزییات</sys:String>
     <sys:String x:Key="LOCCustomLabel">سفارشی</sys:String>
     <sys:String x:Key="LOCURLLabel">آدرس</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">حامیان</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">مجوز</sys:String>
     <sys:String x:Key="LOCContributorsLabel">همکاران</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">خروج از Playnite...</sys:String>
@@ -251,14 +251,15 @@
     <sys:String x:Key="LOCMenuLinksTitle">پیوند‌ها</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">کمک</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">پشتیبانی از Patreon</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">راهنمای کاربر</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">مستندات SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">راه اندازی مجدد سیستم</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">خاموش کردن سیستم</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">تعلیق سیستم</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">خواب زمستانی سیستم</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">قفل سیستم</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">خروج کاربر</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">انتخاب بازی تصادفی</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">زمینه های بازی برای نمایش در پانل جزئیات:</sys:String>
@@ -644,7 +645,7 @@
     <sys:String x:Key="LOCDoNothing">کاری نکن</sys:String>
     <sys:String x:Key="LOCMinimize">کمینه کردن</sys:String>
     <sys:String x:Key="LOCRestoreWindow">بازیابی پنجره</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">بازیابی پنجره تنها زمانی که از رابط کاربری راه‌ اندازی شود</sys:String>
     <sys:String x:Key="LOCClose">بستن</sys:String>
     <sys:String x:Key="LOCChange">تغییر</sys:String>
     <sys:String x:Key="LOCAdvanced">پیشرفته</sys:String>
@@ -778,7 +779,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">اندازه نصب بر حسب بایت نشان داده شده است.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">تاریخ انتشار باید در قالب &quot;سال-ماه-روز&quot; تعیین شود. مقادیر ماه و روز را می توان حذف کرد.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">مقادیر 0 تا 100 یا خالی از امتیاز.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">توسعه Playnite توسط این افراد پشتیبانی می شود:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">کد، ترجمه برنامه و سایر همکاران به ترتیب خاص:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">نظارت بر بازی لغو شود؟</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">نظارت بر نصب در حال اجرا است. آیا می خواهید روند را لغو کرده و بازی را به حالت قبلی برگردانید؟</sys:String>
@@ -957,8 +958,8 @@
     <sys:String x:Key="LOCSelectActionTitle">انتخاب عمل</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">حالت ردیابی</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">مسیر ردیابی</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">تاخیر ردیابی اولیه</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">فرکانس ردیابی</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">پیوند</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">پرونده</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">شبیه ساز</sys:String>
@@ -1004,8 +1005,10 @@
 غیرفعال کردن آن می‌تواند منجر به مشکلاتی شود که بازی‌ها روی راه‌اندازی تمرکز ندارند!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">اندازه قلم</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">اندازه قلم کوچک</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">پشتیبانی از کنترلر بازی</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">اگر غیرفعال باشد، Playnite هیچ کنترلر بازی ای را نمی‌پذیرد.
+
+اگر از ابزارهایی استفاده میکنید که ورودی‌ های کنترلر بازی را به ورودی‌ های موس/صفحه‌ کلید تبدیل میکند و در Playnite ورودی‌ های دوتایی دریافت میکنید، غیرفعال کنید.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">نمایش موارد در منوی اصلی:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">اتصال دکمه نمای اصلی X/A معکوس</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">اتصالات دکمه را برای شروع بازی و نمایش صفحه جزئیات بازی در نمای اصلی تعویض می کند.</sys:String>
@@ -1250,6 +1253,6 @@ Playnite به طور خودکار راه‌اندازی مجدد می شود ت�
     
 با درخواست رفع خرابی برای فایل‌های خود، مسئله جدیدی در صفحه گیت‌هاب Playnite باز کنید.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">آیا می خواهید تغییراتی را که ایجاد کرده اید ذخیره کنید؟</sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation">نصب قابل حمل</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">کنترلری شناسایی نشد</sys:String>
 </ResourceDictionary>

@@ -171,7 +171,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCDetailsViewLabel">Vista de Detalhes</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">Endereço</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrocinadores</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licença</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuidores</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">A fechar o Playnite…</sys:String>
@@ -253,7 +253,8 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCMenuLinksTitle">Ligações</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoia o projeto no Patreon</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">Manual do utilizador</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentação SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar Sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Desligar Sistema</sys:String>
@@ -759,7 +760,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUninstallGame">Desinstalar</sys:String>
     <sys:String x:Key="LOCOpenGameLocation">Abrir Local de Instalação</sys:String>
     <sys:String x:Key="LOCCreateDesktopShortcut">Criar Atalho na Área de Trabalho</sys:String>
-    <sys:String x:Key="LOCOpenGameManual"></sys:String>
+    <sys:String x:Key="LOCOpenGameManual">Abrir Manual</sys:String>
     <sys:String x:Key="LOCMoreAction">Mais</sys:String>
     <sys:String x:Key="LOCPlayActionUsePlugin"></sys:String>
     <sys:String x:Key="LOCPlayActionUsePluginTooltip"></sys:String>
@@ -771,7 +772,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valores de 0 a 100, ou vazio para ausência de avaliação.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">O desenvolvimento do Playnite é apoiado por estes patrocinadores:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Código, tradução e outros contribuidores sem nenhuma ordem em particular:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Cancelar monitorização de jogo?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
@@ -786,8 +787,8 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">A abrir o modo Desktop…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">A abrir o modo de Ecrã Inteiro…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">A carregar biblioteca de jogos…</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">Calculando tamanho da instalação…</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Calculando tamanho de instalação de {0}…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Falha ao instalar o ficheiro de script.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Script instalado com sucesso.</sys:String>
     <sys:String x:Key="LOCInstallScript">Instalar Script</sys:String>
@@ -859,7 +860,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCStatsTotalInstallSize">Tamanho total da instalação</sys:String>
     <sys:String x:Key="LOCOverviewLabel"></sys:String>
     <sys:String x:Key="LOCSidebar">Barra lateral</sys:String>
-    <sys:String x:Key="LOCToolsShowOnSidebar"></sys:String>
+    <sys:String x:Key="LOCToolsShowOnSidebar">Mostrar na barra lateral</sys:String>
     <sys:String x:Key="LOCSettingsReset"></sys:String>
     <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">Para desenvolvedores</sys:String>
@@ -881,7 +882,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Já existe um item com o mesmo nome.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Limitar seleção ao filtro atual</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Escolher outro</sys:String>
-    <sys:String x:Key="LOCMenuAddons"></sys:String>
+    <sys:String x:Key="LOCMenuAddons">Complementos…</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">Instalado</sys:String>
     <sys:String x:Key="LOCExtensionsSettings"></sys:String>
     <sys:String x:Key="LOCExtensionsBrowse"></sys:String>
@@ -904,7 +905,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons"></sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble"></sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded"></sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusFailed"></sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusFailed">Não foi possível transferir</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
@@ -924,9 +925,9 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Ficheiro</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulador</sys:String>
     <sys:String x:Key="LOCGameActionTypeScript"></sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDefault"></sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDefault">Predefinido</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">Processo</sys:String>
-    <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
+    <sys:String x:Key="LOCActionTrackingModeDirectory">Pasta</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
@@ -957,7 +958,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCInPast31Days">Nos últimos 31 dias</sys:String>
     <sys:String x:Key="LOCInPast365Days">Nos últimos 365 dias</sys:String>
     <sys:String x:Key="LOCMoreThan365DaysAgo">Mais de 365 dias atrás</sys:String>
-    <sys:String x:Key="LOCConfigure"></sys:String>
+    <sys:String x:Key="LOCConfigure">Configurar</sys:String>
     <sys:String x:Key="LOCFilterPresetSave"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame"></sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
@@ -985,8 +986,8 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionLayout"></sys:String>
     <sys:String x:Key="LOCSettingsFSSectionMenus">Menus</sys:String>
     <sys:String x:Key="LOCSettingsFSSection"></sys:String>
-    <sys:String x:Key="LOCGameIsStarting"></sys:String>
-    <sys:String x:Key="LOCGameIsRunning"></sys:String>
+    <sys:String x:Key="LOCGameIsStarting">{0} está iniciando…</sys:String>
+    <sys:String x:Key="LOCGameIsRunning">{0} está executando…</sys:String>
     <sys:String x:Key="LOCTextInputCapitalize"></sys:String>
     <sys:String x:Key="LOCTextInputSpace"></sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode"></sys:String>
@@ -1070,18 +1071,18 @@ Mais informação em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan"></sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip"></sys:String>
-    <sys:String x:Key="LOCMetadatSetAllFieldsToValue"></sys:String>
+    <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Aplicar a todos</sys:String>
     <sys:String x:Key="LOCOverrideInstallState"></sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCOptionOnlyManually">Apenas manualmente</sys:String>
-    <sys:String x:Key="LOCOptionOnceADay"></sys:String>
-    <sys:String x:Key="LOCOptionOnceAWeek"></sys:String>
-    <sys:String x:Key="LOCOptionOnEveryStartup"></sys:String>
+    <sys:String x:Key="LOCOptionOnceADay">Uma vez por dia</sys:String>
+    <sys:String x:Key="LOCOptionOnceAWeek">Uma vez por semana</sys:String>
+    <sys:String x:Key="LOCOptionOnEveryStartup">Em cada inicialização</sys:String>
     <sys:String x:Key="LOCCheckProgramUpdates"></sys:String>
     <sys:String x:Key="LOCCheckAddonUpdates"></sys:String>
     <sys:String x:Key="LOCCheckLibraryUpdates"></sys:String>
     <sys:String x:Key="LOCCheckEmulatedLibraryUpdates"></sys:String>
-    <sys:String x:Key="LOCStatsIncludeHidden"></sys:String>
+    <sys:String x:Key="LOCStatsIncludeHidden">Incluir jogos ocultos</sys:String>
     <sys:String x:Key="LOCMenuSetFields"></sys:String>
     <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
     <sys:String x:Key="LOCOpen">Abrir</sys:String>
@@ -1089,8 +1090,8 @@ Mais informação em https://playnite.link/nahimicsucks</sys:String>
     <sys:String x:Key="LOCAssign"></sys:String>
     <sys:String x:Key="LOCDefaultSearchDescription"></sys:String>
     <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSearchFilterUninstalled"></sys:String>
-    <sys:String x:Key="LOCSearchFilterHidden"></sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalled">Incluir jogos desinstalados</sys:String>
+    <sys:String x:Key="LOCSearchFilterHidden">Incluir jogos ocultos</sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalledIncluded"></sys:String>
     <sys:String x:Key="LOCSearchFilterUninstalledExcluded"></sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenIncluded"></sys:String>

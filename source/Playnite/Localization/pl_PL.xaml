@@ -170,7 +170,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCDetailsViewLabel">Widok szczegółowy</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizacja</sys:String>
     <sys:String x:Key="LOCURLLabel">Adres</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencja</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Współtwórcy</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Zamykanie aplikacji</sys:String>
@@ -252,14 +252,15 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCMenuLinksTitle">Odnośniki</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pomoc</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Wesprzyj na Patreon</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">Instrukcja użytkownika</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentacja SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Uruchom ponownie system</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Zamknij system</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uśpij system</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernacja systemu</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Blokada systemu</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Wyloguj użytkownika</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Wylosuj grę</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Wyświetlane pola gry w panelu szczegółowym:</sys:String>
@@ -648,7 +649,7 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Nic nie rób</sys:String>
     <sys:String x:Key="LOCMinimize">Minimalizuj</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Przywróć okno</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Przywróć okno tylko w przypadku uruchomienia z interfejsu użytkownika</sys:String>
     <sys:String x:Key="LOCClose">Zamknij</sys:String>
     <sys:String x:Key="LOCChange">Zmień</sys:String>
     <sys:String x:Key="LOCAdvanced">Zaawansowane</sys:String>
@@ -782,7 +783,7 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Rozmiar instalacji jest wskazany w bajtach.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Data premiery musi być w formacie 'rok-miesiąc-dzień'. Wartości Miesiąca i Dnia mogą zostać pominięte.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Wartości od 0 do 100 lub puste bez oceny.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite jest rozwijany dzięki wsparciu patronów:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Programowanie, tłumaczenie oraz inni współtwórcy 
 (kolejność przypadkowa):</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Anulować monitorowanie gry?</sys:String>
@@ -962,8 +963,8 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
     <sys:String x:Key="LOCSelectActionTitle">Wybierz akcję</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Tryb śledzenia</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Ścieżka śledzenia</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Wstępne opóźnienie śledzenia</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Śledzenie częstotliwości</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Plik</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulator</sys:String>
@@ -1009,8 +1010,10 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
 Zablokowanie tej opcji może prowadzić do problemów z grami wymagającymi pełnej uwagi podczas uruchamiania!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Rozmiar czcionki</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mały rozmiar czcionki</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">Wsparcie dla kontrolera gry</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Jeśli jest wyłączona, Playnite nie będzie akceptować żadnych wejść kontrolera gry.
+
+Wyłącz, jeśli używasz narzędzi, które tłumaczą wejścia kontrolera gry na wejścia myszy/klawiatury i otrzymujesz podwójne wejścia w Playnite</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Wyświetlaj w menu głównym:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Odwrócone przypisanie przycisków X/A w widoku głównym</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Zamienia przypisania przycisków dla uruchamianej gry i pokazuje szczegóły gry w widoku głównym.</sys:String>
@@ -1257,6 +1260,6 @@ Określony format daty będzie używany dla wszystkich innych dat.</sys:String>
     
 Otwórz nowy problem na stronie GitHub Playnite z prośbą o naprawienie uszkodzeń w plikach.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Czy chcesz zapisać zmiany?</sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Instalacja przenośna</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Nie wykryto kontrolerów</sys:String>
 </ResourceDictionary>

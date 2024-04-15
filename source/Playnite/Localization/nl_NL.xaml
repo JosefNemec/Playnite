@@ -105,7 +105,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCErrorStartupNoController">Kon niet bepalen hoe de game te starten.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Ingeschakeld</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Uitgeschakeld</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Verwijderen</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Verwijder ongebruikt</sys:String>
     <sys:String x:Key="LOCRenameTitle">Hernoemen</sys:String>
@@ -174,7 +174,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCDetailsViewLabel">Details-weergave</sys:String>
     <sys:String x:Key="LOCCustomLabel">Aangepast</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licentie</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bijdragers</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite wordt afgesloten…</sys:String>
@@ -256,14 +256,15 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCMenuLinksTitle">Koppelingen</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hulp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Steun op Patreon</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">Gebruikershandleiding</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentatie</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Opnieuw opstarten</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Systeem uitschakelen</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Systeem Onderbreken</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Systeem in slaapstand zetten</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Vergrendel systeem</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Gebruiker afmelden</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Kies een Willekeurig Spel</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Spelvelden weer te geven op detailspaneel:</sys:String>
@@ -784,7 +785,7 @@ Meer informatie op https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Installatiegrootte is aangegeven in bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Datum van uitgave moet in 'jaar-maand-dag' datumnotatie. Maand en Dag kunnen weggelaten worden.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Waarden van 0 tot 100 of leeg voor geen score.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's ontwikkeling is ondersteund door de volgende patrons:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Code, lokalisatie en andere and other bijdragers in willekeurige volgorde:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Spelmonitoring annuleren?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Er wordt momenteel installatiemonitoring uitgevoerd. Wil je het proces annuleren en het spel terugbrengen naar de vorige staat?

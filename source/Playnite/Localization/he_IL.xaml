@@ -172,7 +172,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">תצוגה מפורטת</sys:String>
     <sys:String x:Key="LOCCustomLabel">התאמה אישית</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">רישיון</sys:String>
     <sys:String x:Key="LOCContributorsLabel">תורמים</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">יוצא מפליינייט…</sys:String>
@@ -254,6 +254,7 @@
     <sys:String x:Key="LOCMenuLinksTitle">קישורים</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">עזרה</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">תמוך באמצעות Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual">מדריך למשתמש</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">תיעוד SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">איתחול מערכת</sys:String>
@@ -786,7 +787,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">נפח ההתקנה מוצג בביטים</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">ערכים בין 0 ל 100 או ריק לללא ציון.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">פיתוח פליינייט נתמך על יד הפטרונים הבאים:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">תורמים לקוד, תרגום ואחרים לא בסדר כלשהו:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">בטל ניטור משחקים?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">ניתור התקנה כרגע רץ, הרם ברצונך לבטל את התהליך ולהחזיר את המשחק למצבו הקודם?</sys:String>

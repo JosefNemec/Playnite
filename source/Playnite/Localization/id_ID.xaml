@@ -170,7 +170,7 @@ Pilih opsi &quot;tambahkan ke daftar pengecualian&quot; akan mencegah game diimp
     <sys:String x:Key="LOCDetailsViewLabel">Tampilan Detail</sys:String>
     <sys:String x:Key="LOCCustomLabel">Kustom</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patron</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisensi</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Kontributor</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Keluar Playnite…</sys:String>
@@ -254,6 +254,7 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCMenuLinksTitle">Tautan</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Bantuan</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Dukung lewat Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentasi SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restart Sistem</sys:String>
@@ -773,7 +774,7 @@ Emulator ini sedang digunakan oleh game {1}.</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Nilai dari 0 sampai 100 atau kosong untuk tidak menilai.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Pengembangan Playnite ini didukung oleh para patron berikut:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kode, lokalisasi, dan kontribusi lainnya, tanpa urut:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle"></sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>

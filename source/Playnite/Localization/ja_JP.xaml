@@ -170,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">詳細ビュー</sys:String>
     <sys:String x:Key="LOCCustomLabel">カスタム</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">パトロン</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">謝辞</sys:String>
     <sys:String x:Key="LOCLicenseLabel">ライセンス</sys:String>
     <sys:String x:Key="LOCContributorsLabel">貢献者</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite を終了しています…</sys:String>
@@ -252,14 +252,15 @@
     <sys:String x:Key="LOCMenuLinksTitle">関連リンク</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">ヘルプ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreon でサポート</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Ko-Fi でサポート</sys:String>
+    <sys:String x:Key="LOCUserManual">ユーザーマニュアル</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK ドキュメンテーション</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">システムの再起動</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">システムのシャットダウン</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">システムのスリープ</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">システムの休止</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">システムのロック</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">ユーザーのログアウト</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">ゲームをランダムに選択</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">詳細パネルに表示されるゲームフィールド:</sys:String>
@@ -650,7 +651,7 @@
     <sys:String x:Key="LOCDoNothing">何もしない</sys:String>
     <sys:String x:Key="LOCMinimize">最小化</sys:String>
     <sys:String x:Key="LOCRestoreWindow">ウィンドウを復元する</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">UI から起動した場合のみウィンドウを復元する</sys:String>
     <sys:String x:Key="LOCClose">終了</sys:String>
     <sys:String x:Key="LOCChange">変更</sys:String>
     <sys:String x:Key="LOCAdvanced">高度な設定</sys:String>
@@ -965,8 +966,8 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">アクションを選択</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">トラッキングモード</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">トラッキングパス</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">初期トラッキング遅延</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">トラッキング間隔</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">リンク</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">ファイル</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">エミュレータ</sys:String>
@@ -1012,18 +1013,20 @@ Version {2}</sys:String>
 無効にすると、ゲーム起動時に入力フォーカスが当たらないという問題が発生することがあります。</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">文字サイズ</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">フォントサイズ小</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">ゲームコントローラーのサポート</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">無効にすると、Playnite はあらゆるゲームコントローラーの入力を受け付けなくなります。
+
+ゲームコントローラーの入力をマウス/キーボードの入力に変換するツールを使用していて、Playnite で入力が二重になってしまう場合は無効にしてください。</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">メインメニューに項目を表示する:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">X/A メインビューボタンを入れ替える</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">ゲームを開始したりメインビューにゲームの詳細を表示するためにボタンの割当を入れ替えます。</sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">確認/キャンセルボタン設定を入れ替えます</sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">確認/キャンセルボタン設定を入れ替える</sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">確認とキャンセルのための A/B ボタンの割り当てを反転します。</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">プライマリーコントローラーのみ</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">有効な場合にのみプライマリコントローラからの入力を受け付けます。</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">ガイドボタンで Playnite にフォーカス</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">インターフェイスの音量</sys:String>
-    <sys:String x:Key="LOCSettingsMusiVolume">バックグラウンド音量</sys:String>
+    <sys:String x:Key="LOCSettingsMusiVolume">背景の音量</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">バックグラウンドでミュート</sys:String>
     <sys:String x:Key="LOCErrorAudioInterfaceInit">オーディオインターフェースの初期化に失敗しました。</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApi">出力 API</sys:String>
@@ -1256,6 +1259,6 @@ Playnite は自動的に再起動し、バックアップ処理を開始しま�
     
 Playnite の Github ページで新しい issue を開き、ファイルの破損の修正をリクエストしてください。</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">変更した内容を保存しますか？</sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation">ポータブルインストール</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">コントローラーが検出されませんでした</sys:String>
 </ResourceDictionary>

@@ -171,7 +171,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCDetailsViewLabel">Részletes nézet</sys:String>
     <sys:String x:Key="LOCCustomLabel">Egyéni</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Támogatók</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licensz</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Közreműködők</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Kilépés a Playnite-ból...</sys:String>
@@ -253,14 +253,15 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCMenuLinksTitle">Linkek</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Súgó</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Támogass a Patreon-on</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">Kézikönyv</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dokumentáció</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Újraindítás</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Leállítás</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Készenléti állapot</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernálás</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Zárolás</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Kijelentkezés</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Véletlenszerű játék kiválasztása</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Megjelenítendő mezők a részletes nézetnél:</sys:String>
@@ -647,7 +648,7 @@ Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:St
     <sys:String x:Key="LOCDoNothing">Ne tegyen semmit</sys:String>
     <sys:String x:Key="LOCMinimize">Tálcára kicsinyítés</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Ablak visszaállítása</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Ablak visszaállítása csak akkor, ha a felhasználói felületről lett indítva</sys:String>
     <sys:String x:Key="LOCClose">Bezárás</sys:String>
     <sys:String x:Key="LOCChange">Változtatás</sys:String>
     <sys:String x:Key="LOCAdvanced">Speciális</sys:String>
@@ -781,7 +782,7 @@ Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:St
     <sys:String x:Key="LOCDescriptionSizeBytes">Játékméret, byte-ban.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">A megjelenési dátumnak az 'év-hónap-nap' formátumot kell követnie (a hónap és nap értékek opcionálisak).</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Pontérték 0-100-ig, vagy üres mező, ha nincs értékelve.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">A Playnite fejlődésének támogatói:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kód, fordítás és egyéb közreműködők:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Játékfigyelés megszüntetése?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">A játék telepítés figyelő jelenleg is fut. Meg akarod szakítani a folyamatot és visszatérsz a játék előző állapotához?</sys:String>
@@ -946,8 +947,8 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCSelectActionTitle">Művelet kiválasztása</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Rögzítés módja</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Rögzítés elérési útja</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Játékidő indítás késleltetése</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Játékidő követés gyakorisága</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Fájl</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulátor</sys:String>
@@ -993,8 +994,10 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
 Ha kikapcsolod, bizonyos játékoknál hibát okozhat, hogy nem kapnak indításkor beviteli elsőbbséget.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Betűméret</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Kis betűméret</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">XInput támogatás</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ha ki van kapcsolva, a Playnite nem fogja használni a játékvezérlőket.
+        
+Akkor kapcsold ki, ha olyan programokat használsz, ami játékvezérlő gombnyomásokat billentyűleütésekké és kurzormozgássá alakítja, és duplázza az inputot.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Elemek mutatása a főmenüben:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">X/A gombok funkciójának felcserélése</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">A játékindító X és a játék részletei A gomb funkcionalitását felcseréli.</sys:String>
@@ -1239,6 +1242,6 @@ A már megadott dátumformátum lesz érvényes az összes többire.</sys:String
     
 Kérlek nyiss egy új jegyet a Playnite GitHub oldalán angolul, kérve, hogy javítsák meg a sérült könyvtárfájlt.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Szeretnéd menteni változtatásaidat?</sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Hordozható (portable) telepítés</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Nem található játékvezérlő</sys:String>
 </ResourceDictionary>

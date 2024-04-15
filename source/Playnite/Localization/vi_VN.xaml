@@ -170,7 +170,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCDetailsViewLabel">Chế độ hiển thị chi tiết</sys:String>
     <sys:String x:Key="LOCCustomLabel">Tùy chỉnh</sys:String>
     <sys:String x:Key="LOCURLLabel">Đường dẫn (URL)</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Lời cảm ơn sâu sắc</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Giấy phép</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Cộng tác viên</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Thoát Playnite...</sys:String>
@@ -252,7 +252,8 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCMenuLinksTitle">Liên kết</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Trợ giúp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Hỗ trợ trên Patreon</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Ủng hộ trên Ko-fi</sys:String>
+    <sys:String x:Key="LOCUserManual">Hướng dẫn sử dụng</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Tài liệu về bộ công cụ phát triển phần mềm</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Khởi động lại hệ thống</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Tắt hệ thống</sys:String>
@@ -648,7 +649,7 @@ Thông tin thêm tại https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Không làm gì cả</sys:String>
     <sys:String x:Key="LOCMinimize">Thu nhỏ cửa sổ</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Khôi phục cửa sổ</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Khôi phục cửa sổ chỉ khi nào khởi động từ UI</sys:String>
     <sys:String x:Key="LOCClose">Đóng cửa sổ</sys:String>
     <sys:String x:Key="LOCChange">Thay đổi</sys:String>
     <sys:String x:Key="LOCAdvanced">Nâng cao</sys:String>
@@ -782,7 +783,8 @@ Thông tin thêm tại https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Dung lượng cài đặt được hiển thị dạng byte</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Ngày phát hành phải được đặt ở định dạng 'năm-tháng-ngày'. Giá trị Tháng và Ngày có thể bị bỏ qua</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Giá trị từ 0 đến 100 hoặc trống không có điểm.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Sự phát triển của Playnite được hỗ trợ bởi những người bảo trợ sau:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">
+Sự phát triển của Playnite được hỗ trợ bởi những khách hàng quen thuộc và các thành viên của Ko-fi sau:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Mã, bản địa hóa và những người đóng góp khác không theo thứ tự cụ thể:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Hủy theo dõi trò chơi?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Giám sát cài đặt hiện đang chạy. Bạn có muốn hủy quá trình và đưa trò chơi về trạng thái trước đó không?</sys:String>
@@ -961,8 +963,8 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
     <sys:String x:Key="LOCSelectActionTitle">Chọn hành động</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Trang Theo Dõi</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Đường dẫn Đánh dấu</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Độ trễ theo dõi ban đầu</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Tần số theo dõi</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Đường link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Tập tin</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Các trình giả lập</sys:String>
@@ -1008,8 +1010,10 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
 Việc vô hiệu hóa tính năng này có thể dẫn đến sự cố game không nhận được đầu vào khi khởi động!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Kích cỡ phông chữ</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Kích thước phông chữ nhỏ</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">Hỗ trợ tay cầm</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Nếu bị tắt, Playnite sẽ không chấp thuận bất kì đầu vào của thiết bị điều khiển nào.
+
+Tắt đi nếu bạn sử dụng công cụ để chuyển tín hiệu đầu vào của tay cầm sang chuột/bàn phím và bạn đang nhận được hai đầu vào trong Playnite</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Hiển thị các mục trên menu chính:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Liên kết nút xem chính X / A đảo ngược</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Hoán đổi các ràng buộc nút để bắt đầu trò chơi và hiển thị trang chi tiết trò chơi trên giao diện chính.</sys:String>
@@ -1254,5 +1258,5 @@ Những bản vá mới sẽ không hiển thị ở thông báo cập nhật.</
 Mở issue mới trên trang GitHub của Playnite để đề xuất sửa file bị hư hại của bạn.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Bạn có muốn lưu các thay đổi không?</sys:String>
     <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Không phát hiện được thiết bị điều khiển nào</sys:String>
 </ResourceDictionary>

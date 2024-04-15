@@ -170,7 +170,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCDetailsViewLabel">Detailansicht</sys:String>
     <sys:String x:Key="LOCCustomLabel">Benutzerdefiniert</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Unterstützer</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Besonderer Dank</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lizenz</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Mitwirkende</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite wird beendet …</sys:String>
@@ -223,7 +223,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCProgressImportinEmulatedGames">Emulierte Spiele werden von {0} importiert …</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Bibliotheksaktualisierungen werden heruntergeladen …</sys:String>
     <sys:String x:Key="LOCProgressScanningGamesInstallSize">Größe der Bibliotheksspiele wird ermittelt …</sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Größe der importierten Spiele wird eingescannt …</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Größe der importierten Spiele wird ermittelt …</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Bibliotheksaktualisierung abgeschlossen</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Ressourcen werden freigegeben …</sys:String>
     <!--Menu-->
@@ -252,6 +252,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hilfe</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Auf Patreon unterstützen</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Unterstützung auf Ko-Fi</sys:String>
     <sys:String x:Key="LOCUserManual">Benutzerhandbuch</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-Dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">System neu starten</sys:String>
@@ -781,7 +782,7 @@ Mehr Informationen unter https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Installationsgröße wird in Bytes angegeben</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Das Erscheinungsdatum muss im Format »Jahr-Monat-Tag« festgelegt werden. Die Werte für Monat und Tag können ausgelassen werden.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Werte von 0 bis 100 oder leer für keine Bewertung.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnites Entwicklung wird finanziell unterstützt von:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's Entwicklung wird von diesen Schirmherren und Ko-Fi-Mitgliedern unterstützt:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Mitwirkende bei Code, Lokalisierung etc:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Spielüberwachung beenden?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Die Installationsüberwachung wird derzeit ausgeführt. Möchtest du den Vorgang abbrechen und den vorherigen Zustand des Spiels wiederherstellen?</sys:String>
@@ -1255,5 +1256,5 @@ Das angegebene Datumsformat wird für alle anderen Daten verwendet.</sys:String>
 Melde das Problem auf der GitHub-Seite von Playnite mit einer Anfrage, die Beschädigung deiner Dateien zu beheben.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Möchtest du die vorgenommenen Änderungen speichern?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Portable Installation</sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Keine Controller erkannt</sys:String>
 </ResourceDictionary>

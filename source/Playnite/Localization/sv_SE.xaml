@@ -171,7 +171,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCDetailsViewLabel">Detaljvy</sys:String>
     <sys:String x:Key="LOCCustomLabel">Manuell</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patrons</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licens</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bidragsgivare</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Avslutar Playnite…</sys:String>
@@ -253,6 +253,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCMenuLinksTitle">Länkar</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjälp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Stöd Playnite på Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Starta om systemet</sys:String>
@@ -778,7 +779,7 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Installationsstorleken är angiven i bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Publiceringsdatum måste anges i &quot;år-månad-dag&quot; format. Månad och Dag värden kan utelämnas.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Värde mellan 0 till 100 eller tom för inget betyg.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnites utveckling stöds av dessa patrons:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kod, lokalisering och andra bidragsgivare i ingen särskild ordning:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Avbryt övervakning av spel?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Installationsövervakning pågår för närvarande. Vill du avbryta processen och returnera spelet till föregående tillstånd?</sys:String>

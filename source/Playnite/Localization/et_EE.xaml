@@ -170,7 +170,7 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCDetailsViewLabel">Üksikasjalik vaade</sys:String>
     <sys:String x:Key="LOCCustomLabel">Kohandatud</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patroonid</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Erilised tänud</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Litsents</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Panustajad</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite'i sulgemine…</sys:String>
@@ -252,6 +252,7 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCMenuLinksTitle">Viited</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Abi</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Toeta Patreonis</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Toeta platvormil Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Kasutusjuhend</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK dokumentatsioon</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Taaskäivita süsteem</sys:String>
@@ -780,7 +781,7 @@ Rohkem teavet lehel https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Installi suurus on näidatud baitides.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Väljalaske kuupäev tuleb määrata 'aasta-kuu-päev' formaadis. Kuu ja päeva väärtused saab välja jätta.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Skoori väärtus vahemikus 0 kuni 100 või tühi.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'i arengut on toetanud järgmised patroonid:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'i arendamist on toetanud järgnevad patroonid ja Ko-fi liikmed:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Koodi, lokaliseerimise ja muud kaasautorid mitte kindlas järjestuses:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Kas tühistada mängu jälgimine?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Installimise jälgimine on praegu käimas. Kas soovid protsessi tühistada ja mängu tagasi eelmisele olekule viia?</sys:String>
@@ -1254,5 +1255,5 @@ Kõigi teiste kuupäevade puhul kasutatakse määratud kuupäeva formaati.</sys:
 Ava Playnite'i GitHubi lehel uus vearaport taotlusega parandada oma rikutud failid.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Kas tahad tehtud muudatused salvestada?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Portatiivne paigaldus</sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Juhtpulte ei tuvastatud</sys:String>
 </ResourceDictionary>

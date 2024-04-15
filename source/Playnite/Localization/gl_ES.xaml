@@ -168,7 +168,7 @@ Se escolles a opción &quot;Engadir á lista de exclusións&quot;, evitarase que
     <sys:String x:Key="LOCDetailsViewLabel">Vista de Detalles</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">Ligazón</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patróns</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenza</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuíntes</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Saíndo do Playnite...</sys:String>
@@ -253,6 +253,7 @@ Actualizar a biblioteca de xogos</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Ligazóns</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Axuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoia en Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentación do SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar o sistema</sys:String>
@@ -783,7 +784,7 @@ Máis información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">O tamaño da instalación está indicado en bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">A data de lanzamento debe establecerse no formato &quot;ano-mes-día&quot;. Pódense omitir os valores de mes e día.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valores entre 0 e 100 ou deixa en branco para indicar que non hai puntuación.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">O desenvolvemento de Playnite conta co apoio destes patrocinadores:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Código, tradutores e outros colaboradores sen orde en particular:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Queres cancelar o seguimento do xogo?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">A supervisión da instalación está en execución. Queres cancelar o proceso e devolver o xogo ao estado anterior?</sys:String>

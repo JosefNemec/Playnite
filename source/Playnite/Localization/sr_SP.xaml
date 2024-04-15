@@ -166,7 +166,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">Приказ детаља</sys:String>
     <sys:String x:Key="LOCCustomLabel">Прилагођено</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Патрони</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Лиценца</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Сарадници</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Излажење из Playnite-а…</sys:String>
@@ -248,6 +248,7 @@
     <sys:String x:Key="LOCMenuLinksTitle">Линкови</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Помоћ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Подржите на Patreon-у</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK документација</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Рестартуј систем</sys:String>
@@ -766,7 +767,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Датум објаве мора бити у формату година-месец-дан. Месец и дан се могу изоставити.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Бројеви од 0 до 100 или празно да би остало без оцене.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Развој Playnite-а је подржан од стране следећих патрона:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Кодирање, преводи и други контрибутори у никаквом посебном редоследу:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Прекини праћење игара?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Праћење инсталације је тренутно у току. Хоћете ли да прекините процес и вратите игру у прошло стање?</sys:String>

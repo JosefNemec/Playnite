@@ -170,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">자세히 보기</sys:String>
     <sys:String x:Key="LOCCustomLabel">사용자 지정</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">후원자</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">라이센스</sys:String>
     <sys:String x:Key="LOCContributorsLabel">기여자</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite 나가는 중…</sys:String>
@@ -252,14 +252,15 @@
     <sys:String x:Key="LOCMenuLinksTitle">링크</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">도움말</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">후원자가 되어 후원하기</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">사용자 설명서</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK 개발 문서</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">시스템 재시작</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">시스템 종료</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">시스템 정지</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">시스템 최대 절전</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">시스템 잠금</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">사용자 로그아웃</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">무작위로 게임 고르기</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">상세보기에 표시할 게임 정보</sys:String>
@@ -647,7 +648,7 @@
     <sys:String x:Key="LOCDoNothing">아무것도 하지않음</sys:String>
     <sys:String x:Key="LOCMinimize">최소화</sys:String>
     <sys:String x:Key="LOCRestoreWindow">창 복구</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">UI에서 실행할 때에만 창 복구</sys:String>
     <sys:String x:Key="LOCClose">닫기</sys:String>
     <sys:String x:Key="LOCChange">변경</sys:String>
     <sys:String x:Key="LOCAdvanced">고급 설정</sys:String>
@@ -782,7 +783,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">설치 용량은 바이트로 표시됩니다.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">출시 날짜는 '년-월-일' 형식으로 작성되어야 합니다. 월, 일은 생략할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0에서 100사이의 값 또는 점수가 없으면 빈칸.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 개발은 다음의 후원자에 지원을 받습니다.</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">코드, 번역 및 기타 기여는 특별한 순서가 없습니다:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">게임 모니터링을 취소하시겠습니까?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">설치 모니터링이 실행 중입니다. 중단하고 게임을 이전 상태로 되돌리시겠습니까?</sys:String>
@@ -957,8 +958,8 @@
     <sys:String x:Key="LOCSelectActionTitle">동작 선택</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">트래킹 모드</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">트래킹 경로</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">초기 추적 지연</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">빈도 추적</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">링크</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">파일</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">에뮬레이터</sys:String>
@@ -1004,8 +1005,10 @@
 이 설정을 끄면 게임이 시작될 때 입력이 되지 않는 문제가 발생할 수 있습니다!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">글꼴 크기</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">작은 글꼴 크기</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">게임 컨트롤러 지원</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">이 설정을 해제하면 Playnite는 게임 컨트롤러 입력을 처리하지 않습니다.
+        
+게임 컨트롤러 입력을 마우스/키보드 입력으로 변환하는 도구로 인해 Playnite에서 이중 입력이 발생할 경우 해제하십시오.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">메인 메뉴 표시 항목:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">메인 보기에서 X/A버튼 바인딩 바꾸기</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions"> 메인 보기에서 게임 시작 또는 세부 정보 표시 버튼의 바인딩을 바꿉니다.</sys:String>
@@ -1250,7 +1253,7 @@ The specified date format will be used for all other dates.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">라이브러리 파일 손상이 감지되어 Playnite를 종료합니다.
     
 Playnite GitHub 페이지에서 손상된 파일을 수정해 달라는 이슈를 생성해 주십시오.</sys:String>
-    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">변경 사항을 저장하시겠습니까?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">포터블 설치</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">컨트롤러가 감지되지 않음</sys:String>
 </ResourceDictionary>

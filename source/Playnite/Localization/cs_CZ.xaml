@@ -170,7 +170,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCDetailsViewLabel">Zobrazení Podrobností</sys:String>
     <sys:String x:Key="LOCCustomLabel">Vlastní</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Zvláštní poděkování</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licence</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Přispěvatelé</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Zavírání Playnite…</sys:String>
@@ -252,6 +252,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCMenuLinksTitle">Odkazy</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Nápověda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podpořit na Patreonu</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Podpořit na Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Uživatelská příručka</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentace SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Restartovat Systém</sys:String>
@@ -780,7 +781,7 @@ Pro více informací navštivte: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Velikost instalace je uvedena v bajtech.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Datum vydání musí být ve formátu 'rok-měsíc-den'. Hodnoty pro měsíc a den můžou být vynechány.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Hodnoty od 0 do 100, případně prázdné pokud skóre není.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Vývoj Playnite podporují tito patroni:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Vývoj Playnite podporují tito patroni a členové Ko-fi:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kód, lokalizace a další přispěvatelé, nijak neseřazeno:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Zrušit monitorování hry?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Monitorování instalace právě běží. Chtete tento proces zrušit a vrátit hru do předchozího stavu?</sys:String>

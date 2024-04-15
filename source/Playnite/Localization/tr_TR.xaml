@@ -168,7 +168,7 @@ Bu sorunu çözmemize yardımcı olmak için lütfen tanılama bilgilerini gönd
     <sys:String x:Key="LOCDetailsViewLabel">Ayrıntılı Görünüm</sys:String>
     <sys:String x:Key="LOCCustomLabel">Özel</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Destekleyenler</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Özel teşekkürler</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisans</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Katkıda Bulunanlar</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite'den Çıkılıyor…</sys:String>
@@ -250,6 +250,7 @@ Bu sorunu çözmemize yardımcı olmak için lütfen tanılama bilgilerini gönd
     <sys:String x:Key="LOCMenuLinksTitle">Bağlantılar</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Yardım</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Patreon'da Destekle</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Ko-fi üzerinden destekle</sys:String>
     <sys:String x:Key="LOCUserManual">Kullanım kılavuzu</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Belgelendirmesi</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Sistemi Yeniden Başlat</sys:String>
@@ -779,7 +780,7 @@ Bilgi için: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">İndirme boyutu byte olarak gösterilir.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Çıkış tarihi 'yıl-ay-gün' formatında ayarlanmalıdır. Ay ve Gün değerleri atlanabilir.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0 ile 100 arası bir değer girin ya da boş bırakın.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite'ın gelişimi bu Patronlar tarafından desteklenir:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite gelişimi bu Patron'lar ve Ko-fi üyeleri tarafından desteklenmektedir:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kod, yerelleştirme ve diğer katkıda bulunanlar özel bir düzende değildir:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Oyun izleme iptal edilsin mi?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Kurulum izleme şu anda çalışıyor. İşlemi iptal edip oyunu önceki durumuna döndürmek istiyor musunuz?</sys:String>

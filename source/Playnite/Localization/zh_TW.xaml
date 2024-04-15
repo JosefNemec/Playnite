@@ -170,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">詳細檢視</sys:String>
     <sys:String x:Key="LOCCustomLabel">自訂</sys:String>
     <sys:String x:Key="LOCURLLabel">網址</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">贊助者</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">授權</sys:String>
     <sys:String x:Key="LOCContributorsLabel">貢獻者</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">正在退出 Playnite…</sys:String>
@@ -252,14 +252,15 @@
     <sys:String x:Key="LOCMenuLinksTitle">連結</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">說明</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">在Patreon上支持我們</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">使用說明</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK文件</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">系統重啟</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">關閉系統</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">系統睡眠</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">系統休眠</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">鎖定系統</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">登出使用者</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">選擇隨機遊戲</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">會顯示在詳細面板上的遊戲資訊:</sys:String>
@@ -418,7 +419,7 @@
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">延緩用戶端關閉時間(秒)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">當遊戲時間低於(秒) 則不關閉</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">自動關閉以下登入器:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉登入器</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">自動關閉啟動器</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">匯入例外清單</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">當設定的遊戲素材過大時顯示警告</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">資料夾開啟指令</sys:String>
@@ -646,7 +647,7 @@
     <sys:String x:Key="LOCDoNothing">不做任何事</sys:String>
     <sys:String x:Key="LOCMinimize">最小化</sys:String>
     <sys:String x:Key="LOCRestoreWindow">復原視窗</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">僅在從介面啟動時還原視窗</sys:String>
     <sys:String x:Key="LOCClose">關閉</sys:String>
     <sys:String x:Key="LOCChange">變更</sys:String>
     <sys:String x:Key="LOCAdvanced">進階</sys:String>
@@ -690,7 +691,7 @@
     <sys:String x:Key="LOCFontLarger">較大</sys:String>
     <sys:String x:Key="LOCFontLargest">最大</sys:String>
     <sys:String x:Key="LOCDefault">預設</sys:String>
-    <sys:String x:Key="LOCSelect">選取</sys:String>
+    <sys:String x:Key="LOCSelect">選擇</sys:String>
     <sys:String x:Key="LOCSelectAll">全選</sys:String>
     <sys:String x:Key="LOCDeselectAll">全部取消選取</sys:String>
     <sys:String x:Key="LOCFirst">首項</sys:String>
@@ -780,7 +781,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">儲存空間佔用以 bytes 表示。</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">發布日期必須以&quot;年-月-日&quot;格式設定。月和日的值可以省略。</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">輸入0到100的值或者留白以表示無分數</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite的開發得到了這些贊助者的支持:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代碼，本地化以及其他貢獻者(無特定順序):</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">取消遊戲監控?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">安裝監控正在執行，是否要取消並將遊戲復原到之前的狀態?</sys:String>
@@ -961,8 +962,8 @@
     <sys:String x:Key="LOCSelectActionTitle">選擇動作</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">追蹤模式</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">追蹤路徑</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">初始追蹤延遲</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">追蹤頻率</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">連結</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">檔案</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">模擬器</sys:String>
@@ -1008,8 +1009,10 @@
 如將此功能關閉可能會造成遊戲無法在啟動時取得輸入焦點而導致問題發生!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">字型大小</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">字體小</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">遊戲控制器支援</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">若停用此選項，則Playnite不會接受任何遊戲控制器輸入的訊號。
+        
+如果你有使用其他工具程式來將手把訊號轉譯為滑鼠/鍵盤訊號，而造成在Playnite中有重複輸入的現象，請停用此選項。</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">在主選單中顯示項目:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">反轉X/A主要視圖按鈕綁定</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">交換按鈕綁定與開始遊戲並且在主要視圖當中顯示遊戲詳細資料頁面</sys:String>
@@ -1253,6 +1256,6 @@ Playnite將會重新啟動並開始備份資料</sys:String>
     
 你可以在Playnite的GitHub頁面新增回報並請求修復你的毀損檔案。</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">是否要儲存所做的更改？</sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation">可攜式安裝</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">未偵測到搖桿</sys:String>
 </ResourceDictionary>

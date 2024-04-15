@@ -167,7 +167,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCDetailsViewLabel">Lisätietonäkymä</sys:String>
     <sys:String x:Key="LOCCustomLabel">Mukautettu</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Tukijat</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisenssi</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Avustajat</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite suljetaan…</sys:String>
@@ -249,6 +249,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCMenuLinksTitle">Linkit</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ohjeet</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Tue Patreonissa</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentaatio</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Käynnistä järjestelmä uudelleen</sys:String>
@@ -768,7 +769,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Luku välillä 0 ja 100 tai tyhjä jos ei pisteytystä.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playniten kehitystä ovat tukeneet:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Ohjelmoinnissa, lokalisoinnissa ja muussa avustaneet, ei missään erityisessä järjestyksessä:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Peruuta pelin seuranta?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Asennuksen seuranta on käynnissä. Haluatko peruuttaa prosessin ja palauttaa pelin aiempaan tilaan?</sys:String>

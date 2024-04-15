@@ -170,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">详情视图</sys:String>
     <sys:String x:Key="LOCCustomLabel">自定义</sys:String>
     <sys:String x:Key="LOCURLLabel">网址</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">赞助者</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">特别致谢</sys:String>
     <sys:String x:Key="LOCLicenseLabel">许可协议</sys:String>
     <sys:String x:Key="LOCContributorsLabel">贡献者</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">正在退出 Playnite…</sys:String>
@@ -251,7 +251,8 @@
     <sys:String x:Key="LOCMenuOpenFullscreen">切换至全屏模式</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">链接</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">帮助</sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport">在Patreon上支持我们</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">在 Patreon 上支持我们</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">在 Ko-Fi 上支持我们</sys:String>
     <sys:String x:Key="LOCUserManual">用户手册</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK文档</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">重启系统</sys:String>
@@ -753,7 +754,7 @@
     <sys:String x:Key="LOCHideGame">隐藏此游戏</sys:String>
     <sys:String x:Key="LOCUnHideGame">从隐藏中移除</sys:String>
     <sys:String x:Key="LOCEnableHdr">启用 HDR 支持</sys:String>
-    <sys:String x:Key="LOCDisableHdr">禁用 HDR支持</sys:String>
+    <sys:String x:Key="LOCDisableHdr">禁用 HDR 支持</sys:String>
     <sys:String x:Key="LOCEditGame">编辑…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">计算占用空间</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">计算占用空间 (所有游戏)</sys:String>
@@ -776,12 +777,12 @@
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">在指定页面找不到游戏“{0}”的相关信息。</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示：你可以在编辑单个游戏时通过“编辑”菜单选项使用更多高级资料数据下载过程。</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些行动正在进行时不可用。</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本使用HTML语法</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本支持 HTML 语法</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">游玩时间按秒记录。</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">占用空间以字节表示。</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">发布日期必须以“年-月-日”格式设置。月和日的值可以省略。</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">分值范围为 0 至 100，留空为不评分。</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 的开发得到了这些赞助者的支持：</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 的开发得到了这些 Patreon 和 Ko-fi 赞助者的支持：</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代码、本地化和其他贡献者（排名不分先后）：</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">取消游戏监控？</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">正在监测安装状态。您是否要取消监测，并将游戏返回到之前的状态？</sys:String>

@@ -166,7 +166,7 @@ Dacă doriți să ne ajutați să rezolvăm această problemă, vă rugăm să t
     <sys:String x:Key="LOCDetailsViewLabel">Afișare mod Detaliu</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizat</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenţă</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuitori</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite se închide...</sys:String>
@@ -248,6 +248,7 @@ Dacă doriți să ne ajutați să rezolvăm această problemă, vă rugăm să t
     <sys:String x:Key="LOCMenuLinksTitle">Link-uri</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajutor</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Ajutați-ne pe Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentaţie Trusă de Dezvoltare</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Repornire Sistem</sys:String>
@@ -749,7 +750,7 @@ Dacă doriți să ne ajutați să rezolvăm această problemă, vă rugăm să t
     <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Pentru a nu acorda un scor folosiți valori între 0 și 100 sau lăsați gol.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Dezvoltarea programului Playnite este sprijinită de următorii patroni:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Cod, localizare și alți contribuabili în nici o ordine particulară:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Încetați monitorizarea jocului?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>

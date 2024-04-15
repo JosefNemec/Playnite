@@ -171,7 +171,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">Детали</sys:String>
     <sys:String x:Key="LOCCustomLabel">Свой</sys:String>
     <sys:String x:Key="LOCURLLabel">Ссылка</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Патроны</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Особая благодарность</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Лицензия</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Участники</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Выходим из Playnite...</sys:String>
@@ -253,6 +253,7 @@
     <sys:String x:Key="LOCMenuLinksTitle">Ссылки</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Справка</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Поддержать на Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Поддержать на Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Руководство пользователя</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Документация по SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Перезагрузка</sys:String>
@@ -785,8 +786,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">Размер игры указывается в байтах</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Дата выхода должна быть установлена в формате &quot;год-месяц-день&quot;. Значения месяца и дня могут быть пропущены.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Введите значение от 0 до 100, либо оставьте без оценки.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite возможна 
-благодаря этим патронам:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Разработка Playnite поддерживается этими патронами и подписчиками Ko-fi:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Люди, принимавшие участие в написании кода, 
 переводе на другие языки и прочем:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Отменить мониторинг игры?</sys:String>

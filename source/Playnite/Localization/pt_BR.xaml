@@ -168,7 +168,7 @@ Selecionar a opção &quot;adicionar a lista de exclusão&quot; impedirá que o 
     <sys:String x:Key="LOCDetailsViewLabel">Visualização de detalhes</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patronos</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licença</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Colaboradores</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Saindo do Playnite…</sys:String>
@@ -250,6 +250,7 @@ Selecionar a opção &quot;adicionar a lista de exclusão&quot; impedirá que o 
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoie-nos no Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
     <sys:String x:Key="LOCUserManual">Manual do usuário</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentação do SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar o sistema</sys:String>
@@ -780,7 +781,7 @@ Mais informações em https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">O tamanho da instalação é indicado em bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">A data de lançamento precisa estar no formato &quot;ano-mês-dia&quot;. Os campos de mês e dia podem ser omitidos.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valores de 0 a 100. Deixe vazio para não definir uma avaliação.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">O desenvolvimento do Playnite é apoiado por estes patronos:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Programadores, tradutores e demais colaboradores sem uma ordem específica:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Cancelar o monitoramento do jogo?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">O monitoramento de instalação está atualmente em execução. Você deseja cancelar o processo e retornar o jogo ao estado anterior?</sys:String>
@@ -961,7 +962,7 @@ Se você deseja instalar ou desinstalar integrações adicionais, use a opção 
     <sys:String x:Key="LOCActionTrackingPath">Localizando caminho</sys:String>
     <sys:String x:Key="LOCActionTrackingTrackingDelay">Atraso do rastreamento inicial</sys:String>
     <sys:String x:Key="LOCActionTrackingFrequency">Frequência de rastreio</sys:String>
-    <sys:String x:Key="LOCGameActionTypeLink">Vincular</sys:String>
+    <sys:String x:Key="LOCGameActionTypeLink">Link</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Arquivo</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulador</sys:String>
     <sys:String x:Key="LOCGameActionTypeScript">Script</sys:String>
@@ -1254,5 +1255,5 @@ O formato de data especificado será usado em todas as outras datas.</sys:String
 Avise do problema na página do Playnite no GitHub com um pedido de correção.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Você quer salvar as alterações feitas?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Instalação portátil</sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Nenhum controle detectado</sys:String>
 </ResourceDictionary>

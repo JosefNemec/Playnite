@@ -41,7 +41,9 @@ Odporúčame uložiť súbor so záznamami (log) a nahlásiť tento problém vý
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Rozšírenie &quot;{0}&quot; spôsobilo neodstrániteľnú chybu.
 
 Odporúčame to nahlásiť vývojárovi rozšírenia. Ak sa táto chyba opakuje, rozšírenie vypnite.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Neznáme rozšírenie alebo téma spôsobila neodstrániteľnú chybu.
+
+Odporúčame zakázať doplnky tretej strany, izolovanie problematického doplnku a nahlásenie chyby vývojárovi doplnku.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Vyskytla sa neopraviteľná chyba.
 
 Ak nám chcete pomôcť tento problém opraviť, odošlite prosím diagnostický balíček. Ďakujeme.</sys:String>
@@ -58,9 +60,11 @@ Ak nám chcete pomôcť tento problém opraviť, odošlite prosím diagnostický
     <sys:String x:Key="LOCGameRemoveAskTitle">Odstrániť Hru(y)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nedá sa odstrnáť - je spustená hra alebo inštalátor.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nie je možné odinštalovať - hra je spustená.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Ste si istí, že chcete odstrániť {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Naozaj chcete odstrániť {0} hier?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Naozaj chcete odstrániť {0} hier?
+
+Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu importu hier pri nasledujúcej aktualizácii knižnice.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Naozaj chcete odstrániť {0} hier?
 
 Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu importu hier pri nasledujúcej aktualizácii knižnice.</sys:String>
@@ -76,28 +80,29 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCGameStartError">Hra sa neda spustiť: {0}</sys:String>
     <sys:String x:Key="LOCGameStartActionError">Akcia sa nedá spustiť: {0}</sys:String>
     <sys:String x:Key="LOCGameOpenLocationError">Nie je možné otvoriť umiestnenie hry: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError"></sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption"></sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage"></sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">Nie je možné zistiť veľkosť inštalačného súboru hry: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">Zisťovanie veľkosti hry sa nepodarilo</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">{0} Chýb bolo zistených počas zisťovania veľkosti súboru</sys:String>
     <sys:String x:Key="LOCGameShortcutError">Nepodarilo sa vytvoriť odkaz: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">Nepodarilo sa otvoriť manuál: {0}</sys:String>
     <sys:String x:Key="LOCGameInstallError">Hra sa nedá nainštalovať: {0}</sys:String>
     <sys:String x:Key="LOCGameUninstallError">Hra sa nedá odinštalovať: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction"></sys:String>
-    <sys:String x:Key="LOCErrorNoInstallAction"></sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">Žiadne nájdené platné akcie štartu hry. Keď používate akcie emulátora, uistite sa, že definície medzi konfiguráciou hry a konfiguráciou platformy sú totožné.</sys:String>
+    <sys:String x:Key="LOCErrorNoInstallAction">Implementácia inštalácie nie je dostupná.
+</sys:String>
     <sys:String x:Key="LOCErrorLibraryPluginNotFound">Doplnok knižnice zodpovedajúci k tejto hre je vypnutý alebo nenainštalovaný.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Prevzatie oficiálnych metadát nie je k dispozícii.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Nie je vybraná žiadna hra.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Nepodarilo sa spustiť herný skript.</sys:String>
-    <sys:String x:Key="LOCErrorApplicationScript"></sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript">Nepodarilo sa spustiť skript aplikácie.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Nepodarilo sa spustiť globálny skript.</sys:String>
-    <sys:String x:Key="LOCErrorEmulatorScriptAction"></sys:String>
-    <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorEmulatorScriptAction">Nepodarilo sa spustiť skript emulátora.</sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">Spustenie skriptu zlyhalo.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">Nie je nainštalovaný PowerShell 3.0 alebo novší.</sys:String>
-    <sys:String x:Key="LOCErrorStartupNoController"></sys:String>
+    <sys:String x:Key="LOCErrorStartupNoController">Nepodarilo sa určiť, ako začať hru.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Povolené</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Zakázané</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Odstrániť</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Odstrániť nepoužité</sys:String>
     <sys:String x:Key="LOCRenameTitle">Premenovať</sys:String>
@@ -124,8 +129,8 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCLastPlayedLabel">Naposledný hrané</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Najhranejšie</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Počet zahratí</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel"></sys:String>
-    <sys:String x:Key="LOCFolderLabel"></sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">Veľkosť inštalácie</sys:String>
+    <sys:String x:Key="LOCFolderLabel">Priečinok</sys:String>
     <sys:String x:Key="LOCNotesLabel">Poznámky</sys:String>
     <sys:String x:Key="LOCAddedLabel">Pridané</sys:String>
     <sys:String x:Key="LOCDateAddedLabel">Dátum pridania</sys:String>
@@ -137,8 +142,8 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSaveLabel">Uložiť</sys:String>
     <sys:String x:Key="LOCCloseLabel">Zavrieť</sys:String>
     <sys:String x:Key="LOCCancelLabel">Zrušiť</sys:String>
-    <sys:String x:Key="LOCConfirmLabel"></sys:String>
-    <sys:String x:Key="LOCResetLabel"></sys:String>
+    <sys:String x:Key="LOCConfirmLabel">Potvrdiť</sys:String>
+    <sys:String x:Key="LOCResetLabel">Resetovať</sys:String>
     <sys:String x:Key="LOCYesLabel">Áno</sys:String>
     <sys:String x:Key="LOCNoLabel">Nie</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Vitajte</sys:String>
@@ -157,8 +162,8 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCRemoveLabel">Odstrániť</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Prevziať</sys:String>
     <sys:String x:Key="LOCSearchLabel">Hľadať</sys:String>
-    <sys:String x:Key="LOCSearchResolutionLabel"></sys:String>
-    <sys:String x:Key="LOCSearchResolutionAnyLabel"></sys:String>
+    <sys:String x:Key="LOCSearchResolutionLabel">Rozlíšenie:</sys:String>
+    <sys:String x:Key="LOCSearchResolutionAnyLabel">akýkoľvek</sys:String>
     <sys:String x:Key="LOCZoomLabel">Priblíženie</sys:String>
     <sys:String x:Key="LOCListViewLabel">Zobrazenie zoznamu</sys:String>
     <sys:String x:Key="LOCCoversLabel">Obaly</sys:String>
@@ -166,7 +171,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCDetailsViewLabel">Zobrazenie podrobností</sys:String>
     <sys:String x:Key="LOCCustomLabel">Vlastné</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patróni</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencia</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Prispievatelia</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Ukončuje sa Playnite…</sys:String>
@@ -183,14 +188,14 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCPastMonth">Minulý mesiac</sys:String>
     <sys:String x:Key="LOCPastYear">Minulý rok</sys:String>
     <sys:String x:Key="LOCMoreThenYear">Pred viac než rokom</sys:String>
-    <sys:String x:Key="LOCSizeZeroTo100Mb"></sys:String>
-    <sys:String x:Key="LOCSize100MbTo1Gb"></sys:String>
-    <sys:String x:Key="LOCSize1GbTo5Gb"></sys:String>
-    <sys:String x:Key="LOCSize5GbTo10Gb"></sys:String>
-    <sys:String x:Key="LOCSize10GbTo20Gb"></sys:String>
-    <sys:String x:Key="LOCSize20GbTo40Gb"></sys:String>
-    <sys:String x:Key="LOCSize40GbTo100Gb"></sys:String>
-    <sys:String x:Key="LOCSizeMoreThan100Gb"></sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">0 až 100MB</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">100MB až 1GB</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">1GB až 5GB</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">5GB až 10GB</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">10GB až 20GB</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">20GB až 40GB</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">40GB až 100GB</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">100GB alebo viac</sys:String>
     <sys:String x:Key="LOCImportCompleted">Import bol úspešne dokončený.</sys:String>
     <sys:String x:Key="LOCAllGames">Všetky hry</sys:String>
     <sys:String x:Key="LOCGameId">ID hry</sys:String>
@@ -200,7 +205,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCColumns">Stĺpce</sys:String>
     <sys:String x:Key="LOCRow">Riadok</sys:String>
     <sys:String x:Key="LOCRows">Riadky</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Nepodarilo sa získať ikonu z akcie Hrať</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Prevziať len chýbajúce metadáta</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Povolenie tejto možnosti spôsobí preskočenie preberania metadát pre polia, ktoré už obsahujú informácie.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Výber hier</sys:String>
@@ -216,10 +221,10 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCProgressMetadata">Preberajú sa metadáta…</sys:String>
     <sys:String x:Key="LOCProgressInstalledGames">Importujú sa nainštalované hry…</sys:String>
     <sys:String x:Key="LOCProgressImportinGames">Importujú sa hry z platformy {0}…</sys:String>
-    <sys:String x:Key="LOCProgressImportinEmulatedGames"></sys:String>
+    <sys:String x:Key="LOCProgressImportinEmulatedGames">Importujú sa emulované hry z {0}…</sys:String>
     <sys:String x:Key="LOCProgressLibraryGames">Preberajú sa aktualizácie knižníc…</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize"></sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize"></sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">Skenovanie veľkosti hry v knižnici…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">Skenovanie veľkosti importovaných hier…</sys:String>
     <sys:String x:Key="LOCProgressLibImportFinish">Aktualizácia knižnice dokončená</sys:String>
     <sys:String x:Key="LOCProgressReleasingResources">Uvoľnujú sa zdroje…</sys:String>
     <!--Menu-->
@@ -235,8 +240,8 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCMenuOpenClient">Otvoriť externého klienta</sys:String>
     <sys:String x:Key="LOCMenuClients">Klienti tretích strán</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Aktualizovať hernú knižnicu</sys:String>
-    <sys:String x:Key="LOCMenuCancelLibraryUpdate"></sys:String>
-    <sys:String x:Key="LOCMenuUpdateEmulatedDirs"></sys:String>
+    <sys:String x:Key="LOCMenuCancelLibraryUpdate">Zrušiť Aktualizáciu Knižnice</sys:String>
+    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">Aktualizovať Emulované Priečinky</sys:String>
     <sys:String x:Key="LOCMenuAddGame">Pridať hru</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Ručne…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Automaticky prehľadať…</sys:String>
@@ -248,14 +253,15 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCMenuLinksTitle">Odkazy</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Nápoveda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podporiť na Patreone</sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual">Používateľský manuál</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentácia SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reštartovať systém</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Vypnúť systém</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Uspať systém</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernovať systém</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Uzamknúť Systém</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Odhlásiť Používateľa</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Vybrať náhodnú hru</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Polia, ktoré budú viditeľné v zobrazení detailov:</sys:String>
@@ -272,7 +278,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Výška obrázku obalu hry</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Výška ikony v zozname hier</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Písmo aplikácie</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceMonoFont"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont">Monospaced font</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Pozícia panelu s filtrami</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Pozícia panelu prieskumníka</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Vykresľovanie obrázkov obalov</sys:String>
@@ -283,14 +289,14 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Games Store</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSquare"></sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSquare">Štvorec</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Steam baner</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Vertikálne obaly Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Toto nastavenie sa prejaví až po reštarte Playnite</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Nastavenia</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">Všeobecné</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelLabel">Horný panel</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">Vzhľad</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">Detaily hry</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">Rozloženie</sys:String>
@@ -299,18 +305,18 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsInputLabel">Vstup</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Výkon</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadáta</sys:String>
-    <sys:String x:Key="LOCSettingsUpdating"></sys:String>
-    <sys:String x:Key="LOCSettingsSearch"></sys:String>
-    <sys:String x:Key="LOCSettingsBackup"></sys:String>
-    <sys:String x:Key="LOCMenuBackupData"></sys:String>
-    <sys:String x:Key="LOCMenuRestoreBackup"></sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">Aktualizovanie</sys:String>
+    <sys:String x:Key="LOCSettingsSearch">Vyhľadať</sys:String>
+    <sys:String x:Key="LOCSettingsBackup">Záloha</sys:String>
+    <sys:String x:Key="LOCMenuBackupData">Zálohovanie Dát Knižnice</sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">Obnoviť Zálohované Dáta</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importovať zmeny v knižnici automaticky</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Chybné umiestnenie súboru databázy, musíte zadať správne umiestnenie súboru.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">Názov účtu nesmie byť prázdny.</sys:String>
     <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">Prevziať metadáta po importe hier</sys:String>
     <sys:String x:Key="LOCSettingsStartMinimized">Spustiť Playnite minimalizovaný</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBoot">Spustiť Playnite po štarte systému</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray"></sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">Štart zatvorený do trayeu</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Nepodarilo sa zaregistrovať Playnite pre štart pri spustení počítača.</sys:String>
     <sys:String x:Key="LOCSettingsStartInFullscreen">Spustiť v režime celej obrazovky</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Asynchrónne načítanie obrázkov</sys:String>
@@ -345,8 +351,8 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsCloseToTray">Po zatvorení okna aplikácie minimalizovať Playnite do systémovej lišty</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Pri spustení hry:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Po ukončení hry:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Formátovanie času stráveného v hre pre indikáciu nahraných dní</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Formát dátumu:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Táto akcia vás odhlási zo všetkých pripojených služieb (účtov). Vyžaduje sa reštart aplikácie. Chcete pokračovať?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Vymazať vyrovnávaciu pamäť?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Pre zmenu vzhľadu je potrebné reštartovať Playnite</sys:String>
@@ -368,21 +374,21 @@ Nové umiestnenie databázy sa použije až po reštartovaní Playnite.</sys:Str
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Počet riadkov v zobrazení podrobností</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Zobraziť obrázok pozadia na hlavnej obrazovke</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nevzťahuje sa na hry, ktoré už existujú - pre tie je potrebné opätovne prebrať metadáta.</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportMode">Importovať čas strávený v hre do knižnice:</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Vždy</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Iba pre novo naimportované hry</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Nikdy</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Povoliť podporu ovládača v režime plochy</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Tlačidlo Sprievodca otvorí režim celej obrazovky</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Nastavenia automatického preberania metadát pre novo importované hry.</sys:String>
-    <sys:String x:Key="LOCSettingsTargetDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsTargetDisplay">Zobrazenie cieľu</sys:String>
+    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Vždy použiť hlavný displej</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Zobraziť názvy hier</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Zobraziť stav batérie</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Zobraziť stav batérie v percentách</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Zobraziť hodiny</sys:String>
-    <sys:String x:Key="LOCSettingsHideMouseCursor"></sys:String>
+    <sys:String x:Key="LOCSettingsHideMouseCursor">Skryť Kurzor Myši</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Len nainštalované v Rýchlych filtroch</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Popisy tlačidiel</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Rozloženie</sys:String>
@@ -415,7 +421,7 @@ Ak nie je povolené, obrázky pozadia sa budú preberať len vtedy ak sú potreb
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Pri priradení príliš veľkých herných médií zobrazovať upozornenie</sys:String>
     <sys:String x:Key="LOCOpenDirectoryCommand">Príkaz pre otvorenie adresára</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Preferovaná organizácia pre vekové obmedzenia</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Aktualizovať veľkosť inštalácie v aktualizácií knižnice</sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
     <sys:String x:Key="LOCStrechNone">Žiadne</sys:String>
     <sys:String x:Key="LOCStrechFill">Vyplniť</sys:String>
@@ -763,7 +769,7 @@ Pri nahlasovaní problému pripojte nasledujúce ID:</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Hodnoty od 0 do 100, prípadne prázdne ak skóre neexistuje.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Vývoj Playnite podporujú títo patróni:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Do slovenského jazyka preložil Michal Žila. Ďalší prispievatelia do kódu (bez poradia):</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Zrušiť monitorovanie hry?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Prebieha monitorovanie inštalácie, chcete ho ukončiť a vrátiť hru do predchádzajúceho stavu?</sys:String>
