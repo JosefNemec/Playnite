@@ -47,49 +47,59 @@ namespace Playnite
 
         public static string ToDisplayString(this DateTime date, DateFormattingOptions options = null)
         {
-            if (options == null)
+            try
             {
-                return date.ToString(Common.Constants.DateUiFormat);
-            }
-
-            if (options.PastWeekRelativeFormat)
-            {
-                var today = Today;
-                var dayDiff = (today - date.Date).TotalDays;
-
-                if (dayDiff == 0)
+                if (options == null)
                 {
-                    return LOC.Today.GetLocalized();
+                    return date.ToString(Common.Constants.DateUiFormat);
                 }
-                
-                if (dayDiff == 1)
+
+                if (options.PastWeekRelativeFormat)
                 {
-                    return LOC.Yesterday.GetLocalized();
-                }
-                
-                if (dayDiff > 1 && dayDiff < 7)
-                {
-                    switch (date.DayOfWeek)
+                    var today = Today;
+                    var dayDiff = (today - date.Date).TotalDays;
+
+                    if (dayDiff == 0)
                     {
-                        case DayOfWeek.Sunday:
-                            return LOC.Sunday.GetLocalized();
-                        case DayOfWeek.Monday:
-                            return LOC.Monday.GetLocalized();
-                        case DayOfWeek.Tuesday:
-                            return LOC.Tuesday.GetLocalized();
-                        case DayOfWeek.Wednesday:
-                            return LOC.Wednesday.GetLocalized();
-                        case DayOfWeek.Thursday:
-                            return LOC.Thursday.GetLocalized();
-                        case DayOfWeek.Friday:
-                            return LOC.Friday.GetLocalized();
-                        case DayOfWeek.Saturday:
-                            return LOC.Saturday.GetLocalized();
+                        return LOC.Today.GetLocalized();
+                    }
+
+                    if (dayDiff == 1)
+                    {
+                        return LOC.Yesterday.GetLocalized();
+                    }
+
+                    if (dayDiff > 1 && dayDiff < 7)
+                    {
+                        switch (date.DayOfWeek)
+                        {
+                            case DayOfWeek.Sunday:
+                                return LOC.Sunday.GetLocalized();
+                            case DayOfWeek.Monday:
+                                return LOC.Monday.GetLocalized();
+                            case DayOfWeek.Tuesday:
+                                return LOC.Tuesday.GetLocalized();
+                            case DayOfWeek.Wednesday:
+                                return LOC.Wednesday.GetLocalized();
+                            case DayOfWeek.Thursday:
+                                return LOC.Thursday.GetLocalized();
+                            case DayOfWeek.Friday:
+                                return LOC.Friday.GetLocalized();
+                            case DayOfWeek.Saturday:
+                                return LOC.Saturday.GetLocalized();
+                        }
                     }
                 }
-            }
 
-            return date.ToString(options.Format ?? Common.Constants.DateUiFormat);
+                return date.ToString(options.Format ?? Common.Constants.DateUiFormat);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                // This is for rare cases where this fails on error similar to this:
+                // Specified time is not supported in this calendar. It should be between 04/30/1900 00:00:00 (Gregorian date) and 11/16/2077 23:59:59 (Gregorian date), inclusive.
+                // TODO: handle properly
+                return "unsupported";
+            }
         }
 
         public static string ToDisplayString(this ReleaseDate date, ReleaseDateFormattingOptions options = null)
