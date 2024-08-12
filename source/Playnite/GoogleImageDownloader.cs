@@ -34,6 +34,8 @@ namespace Playnite
 
     public class GoogleImageDownloader : IDisposable
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         private readonly OffscreenWebView webView;
         public GoogleImageDownloader()
         {
@@ -89,8 +91,8 @@ namespace Playnite
             }
             else
             {
-                googleContent = Regex.Replace(googleContent, @"\r\n?|\n", string.Empty);
-                var matches = Regex.Matches(googleContent, @"\[""(https:\/\/encrypted-[^,]+?)"",\d+,\d+\],\[""(http.+?)"",(\d+),(\d+)\]");
+                var formatted = Regex.Replace(googleContent, @"\r\n?|\n", string.Empty);
+                var matches = Regex.Matches(formatted, @"\[""(https:\/\/encrypted-[^,]+?)"",\d+,\d+\],\[""(http.+?)"",(\d+),(\d+)\]");
                 foreach (Match match in matches)
                 {
                     var data = Serialization.FromJson<List<List<object>>>($"[{match.Value}]");
@@ -102,6 +104,12 @@ namespace Playnite
                         Width = uint.Parse(data[1][2].ToString())
                     });
                 }
+            }
+
+            if (!images.HasItems())
+            {
+                logger.Error("Failed to parse any Google image results.");
+                logger.Debug(googleContent);
             }
 
             return images;
