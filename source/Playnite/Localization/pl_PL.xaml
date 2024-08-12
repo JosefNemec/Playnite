@@ -170,7 +170,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCDetailsViewLabel">Widok szczegółowy</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizacja</sys:String>
     <sys:String x:Key="LOCURLLabel">Adres</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Szczególne podziękowania</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencja</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Współtwórcy</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Zamykanie aplikacji</sys:String>
@@ -252,7 +252,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCMenuLinksTitle">Odnośniki</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pomoc</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Wesprzyj na Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Wesprzyj na Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Instrukcja użytkownika</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Dokumentacja SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Uruchom ponownie system</sys:String>
@@ -783,7 +783,7 @@ Więcej informacji na https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Rozmiar instalacji jest wskazany w bajtach.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Data premiery musi być w formacie 'rok-miesiąc-dzień'. Wartości Miesiąca i Dnia mogą zostać pominięte.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Wartości od 0 do 100 lub puste bez oceny.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite jest rozwijany dzięki wsparciu patronów i członków Ko-fi:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Programowanie, tłumaczenie oraz inni współtwórcy 
 (kolejność przypadkowa):</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Anulować monitorowanie gry?</sys:String>

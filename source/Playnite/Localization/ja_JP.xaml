@@ -655,7 +655,7 @@
     <sys:String x:Key="LOCClose">終了</sys:String>
     <sys:String x:Key="LOCChange">変更</sys:String>
     <sys:String x:Key="LOCAdvanced">高度な設定</sys:String>
-    <sys:String x:Key="LOCNever">値なし</sys:String>
+    <sys:String x:Key="LOCNever">未プレイ</sys:String>
     <sys:String x:Key="LOCCompletionStatus">プレイ状況</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">プレイ状況</sys:String>
     <sys:String x:Key="LOCUserScore">スコア</sys:String>

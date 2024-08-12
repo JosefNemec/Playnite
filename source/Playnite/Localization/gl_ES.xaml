@@ -168,7 +168,7 @@ Se escolles a opción &quot;Engadir á lista de exclusións&quot;, evitarase que
     <sys:String x:Key="LOCDetailsViewLabel">Vista de Detalles</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">Ligazón</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Agradecementos especiais</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenza</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuíntes</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Saíndo do Playnite...</sys:String>
@@ -253,15 +253,15 @@ Actualizar a biblioteca de xogos</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Ligazóns</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Axuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoia en Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Apoyame en Ko-fi</sys:String>
+    <sys:String x:Key="LOCUserManual">Manual do usuario</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentación do SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar o sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Apagar o sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender o sistema</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernar o sistema</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Sistema de bloqueo</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Pechar sesión de usuario</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Escolle un xogo ao chou</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Os campos do xogo que se amosarán no panel de detalles</sys:String>
@@ -650,7 +650,7 @@ Máis información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Non facer nada</sys:String>
     <sys:String x:Key="LOCMinimize">Minimizar</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restaurar xanela</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restaurar a xanela só cando se inicia desde a IU</sys:String>
     <sys:String x:Key="LOCClose">Pechar</sys:String>
     <sys:String x:Key="LOCChange">Cambiar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avanzado</sys:String>
@@ -784,7 +784,7 @@ Máis información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">O tamaño da instalación está indicado en bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">A data de lanzamento debe establecerse no formato &quot;ano-mes-día&quot;. Pódense omitir os valores de mes e día.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valores entre 0 e 100 ou deixa en branco para indicar que non hai puntuación.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">O desenvolvemento de Playnite conta co apoio destes patrocinadores e membros de Ko-fi:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Código, tradutores e outros colaboradores sen orde en particular:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Queres cancelar o seguimento do xogo?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">A supervisión da instalación está en execución. Queres cancelar o proceso e devolver o xogo ao estado anterior?</sys:String>
@@ -963,8 +963,8 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCSelectActionTitle">Seleccionar acción</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Modo de rexistro</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Ruta do rexistro</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Atraso de seguimento inicial</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Frecuencia de seguimento</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Ligazón</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Ficheiro</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulador</sys:String>
@@ -1010,8 +1010,10 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
 Desactivar isto pode provocar problemas cos xogos que non reciban información de entrada ao inicio.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Tamaño da fonte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">tamaño de fonte pequeno</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">Soporte de controlador de xogo</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se está desactivado, Playnite non aceptará ningunha entrada da interface XInput.
+
+Desactívao se estás a usar ferramentas que traducen XInput a entrada de rato/teclado e estás recibindo entrada dobre en Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Mostrar elementos no menú principal:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Botóns X/A invertidos na vista principal.</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Cambia os botóns para iniciar un xogo e mostrar a páxina de detalles do xogo na vista principal.</sys:String>
@@ -1249,6 +1251,6 @@ O formato de data especificado usarase para todas as outras datas.</sys:String>
 
 Abre un problema na páxina de GitHub de Playnite e solicita que se arranxe o problema cos teus ficheiros.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Queres gardar os cambios realizados?</sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Instalación portátil</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Non se detectaron controladores</sys:String>
 </ResourceDictionary>

@@ -63,9 +63,11 @@ Skicka diagnosinfo</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Ta bort Spel?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan inte ta bort - Spelet eller installationsprogrammet körs.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kan inte avinstallera - Spelet körs.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Är du säker på att du vill ta bort {0} spel?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Är du säker på att du vill ta bort {0}?
+
+Om du väljer inställningen &quot;lägg till på uteslutnings listan&quot; kommer spel inte kunna bli importerade igen för än nästa gång biblioteket blir uppdaterat.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Är du säker på att du vill ta bort {0} spel?
 
 Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindras spel att importeras igen nästa gång biblioteket uppdateras.</sys:String>
@@ -102,7 +104,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCErrorStartupNoController">Kunde inte avgöra hur spelet ska startas.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Aktiverad</sys:String>
-    <sys:String x:Key="LOCDisabledTitle"></sys:String>
+    <sys:String x:Key="LOCDisabledTitle">AV</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Ta bort</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Ta bort oanvända</sys:String>
     <sys:String x:Key="LOCRenameTitle">Byt namn</sys:String>
@@ -171,7 +173,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCDetailsViewLabel">Detaljvy</sys:String>
     <sys:String x:Key="LOCCustomLabel">Manuell</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Tack till</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licens</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bidragsgivare</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Avslutar Playnite…</sys:String>
@@ -253,15 +255,15 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCMenuLinksTitle">Länkar</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjälp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Stöd Playnite på Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Stöd oss på Ko-fi</sys:String>
+    <sys:String x:Key="LOCUserManual">Användarmanual</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Starta om systemet</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Stäng ner systemet</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Sätt systemet i viloläge</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Viloläge </sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Låsningssystem</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Logga ut användare</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Välj ett Slumpmässigt Spel</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Infofält som visas på detaljpanelen:</sys:String>
@@ -351,7 +353,7 @@ Om du väljer alternativet &quot;lägg till i uteslutningslistan&quot; förhindr
     <sys:String x:Key="LOCSettingsCloseToTray">Minimera Playnite till systemfältet när programmet stängs ner</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">När spel startar:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">Efter att ett spel avslutas:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Visa tid spelad i dagar</sys:String>
     <sys:String x:Key="LOCSettingsDatesFormatsLabel">Datumformat:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Det här loggar ut dig från alla länkade tjänster. Omstart av program krävs, vill du fortsätta?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Rensa Cache?</sys:String>
@@ -550,9 +552,9 @@ Om inaktiverad kommer spel som använder något objekt i något filter att inklu
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Inte installerad</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Dold</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Favorit</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle"></sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">Sätt på HDR stöd</sys:String>
     <sys:String x:Key="LOCGameHdrTooltip"></sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip"></sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">Tänk på att din primära skärm inte stödjer HDR.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Senast Aktivitet</sys:String>
     <sys:String x:Key="LOCGameCategoryTitle">Kategori</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Beskrivning</sys:String>
@@ -697,19 +699,19 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUserSelect">Välj användare</sys:String>
     <sys:String x:Key="LOCLoadMore">Ladda mer</sys:String>
     <sys:String x:Key="LOCTransparent">Genomskinlig</sys:String>
-    <sys:String x:Key="LOCCollapse"></sys:String>
+    <sys:String x:Key="LOCCollapse">Stäng</sys:String>
     <sys:String x:Key="LOCExpand">Expandera</sys:String>
-    <sys:String x:Key="LOCCollapseAll"></sys:String>
-    <sys:String x:Key="LOCExpandAll"></sys:String>
+    <sys:String x:Key="LOCCollapseAll">Stäng allt</sys:String>
+    <sys:String x:Key="LOCExpandAll">Öppna allt</sys:String>
     <sys:String x:Key="LOCOther">Annat</sys:String>
     <sys:String x:Key="LOCThemes">Teman</sys:String>
     <sys:String x:Key="LOCEmulatorArguments">Argument till Emulatorn</sys:String>
-    <sys:String x:Key="LOCBuiltinArguments"></sys:String>
-    <sys:String x:Key="LOCCustomArguments"></sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">Inbyggda argument</sys:String>
+    <sys:String x:Key="LOCCustomArguments">Anpassade argument</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Ytterligare Emulator Arguments</sys:String>
     <sys:String x:Key="LOCOverrideEmulatorArguments">Skriv över Emulator Arguments</sys:String>
     <sys:String x:Key="LOCIsPlayAction"></sys:String>
-    <sys:String x:Key="LOCMedataDiffWindowTitle"></sys:String>
+    <sys:String x:Key="LOCMedataDiffWindowTitle">Välj metadata att importera</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Välj Spel för Import</sys:String>
     <sys:String x:Key="LOCMetaLookupWindowTitle">Metadata sök</sys:String>
     <sys:String x:Key="LOCUpdaterWindowTitle">Uppdatering tillgänglig</sys:String>
@@ -720,9 +722,9 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">Misslyckades med att söka efter en ny version.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">Ingen ny version hittat, du har den senaste.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">Misslyckades med att ladda ner och installera uppdatering.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit"></sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode"></sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Någon bakgrundsprocess håller fortfarande på. Är du säker på att du vill avbryta den och fortsätta med uppdateringen?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Någon bakgrundsprocess håller fortfarande på. Är du säker på att du vill avbryta den och stänga av Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Någon bakgrundsprocess håller fortfarande på. Att byta läge kommer att avbryta den, vill du byta läge ändå?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">En uppdatering för Playnite finns tillgänglig</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Uppdatera temalista</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Tillämpa valt tema</sys:String>
@@ -750,8 +752,8 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Ta bort från Favoriter</sys:String>
     <sys:String x:Key="LOCHideGame">Dölj detta spel</sys:String>
     <sys:String x:Key="LOCUnHideGame">Ta bort från dolda</sys:String>
-    <sys:String x:Key="LOCEnableHdr"></sys:String>
-    <sys:String x:Key="LOCDisableHdr"></sys:String>
+    <sys:String x:Key="LOCEnableHdr">Sätt på HDR stöd</sys:String>
+    <sys:String x:Key="LOCDisableHdr">Stäng av HDR stöd</sys:String>
     <sys:String x:Key="LOCEditGame">Ändra…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Beräkna installationsstorlek</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">Beräkna installationsstorlek (alla spel)</sys:String>
@@ -786,7 +788,7 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCCancelMonitoringExecutionAsk">Övervakningen av spelet körs för närvarande. Vill du avbryta processen och returnera spelet till föregående tillstånd?</sys:String>
     <sys:String x:Key="LOCTimePlayed">Speltid</sys:String>
     <sys:String x:Key="LOCLastPlayed">Senast spelat</sys:String>
-    <sys:String x:Key="LOCPlayedDays"></sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0}d {1}h {2}m</sys:String>
     <sys:String x:Key="LOCPlayedHours">{0}h {1}m</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minuter</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} sekunder</sys:String>
@@ -822,9 +824,9 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCPLaytime500to1000">500 till 1000 timmar</sys:String>
     <sys:String x:Key="LOCPLaytime1000plus">1000+</sys:String>
     <sys:String x:Key="LOCExtInstallationRestartNotif">Playnite måste startas om för att slutföra installationen. Vill du starta om nu?</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionPackageError"></sys:String>
-    <sys:String x:Key="LOCGeneralThemePackageError"></sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError"></sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">Tillägg är inte paketerat på rätt sätt.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">Tema är inte paketerat på rätt sätt.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">{0} tillägget lyckades inte ladda in korrekt.</sys:String>
     <sys:String x:Key="LOCSpecificExtensionLoadSDKError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadError"></sys:String>
     <sys:String x:Key="LOCSpecificThemeLoadSDKError"></sys:String>

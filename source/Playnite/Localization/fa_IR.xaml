@@ -168,7 +168,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">نمای جزییات</sys:String>
     <sys:String x:Key="LOCCustomLabel">سفارشی</sys:String>
     <sys:String x:Key="LOCURLLabel">آدرس</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">سپاس ویژه</sys:String>
     <sys:String x:Key="LOCLicenseLabel">مجوز</sys:String>
     <sys:String x:Key="LOCContributorsLabel">همکاران</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">خروج از Playnite...</sys:String>
@@ -251,7 +251,7 @@
     <sys:String x:Key="LOCMenuLinksTitle">پیوند‌ها</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">کمک</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">پشتیبانی از Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">حمایت در Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">راهنمای کاربر</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">مستندات SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">راه اندازی مجدد سیستم</sys:String>
@@ -779,7 +779,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">اندازه نصب بر حسب بایت نشان داده شده است.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">تاریخ انتشار باید در قالب &quot;سال-ماه-روز&quot; تعیین شود. مقادیر ماه و روز را می توان حذف کرد.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">مقادیر 0 تا 100 یا خالی از امتیاز.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">برنامه نویسی Playnite توسط این حامیان و اعضای Ko-fi حمایت می شود :</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">کد، ترجمه برنامه و سایر همکاران به ترتیب خاص:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">نظارت بر بازی لغو شود؟</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">نظارت بر نصب در حال اجرا است. آیا می خواهید روند را لغو کرده و بازی را به حالت قبلی برگردانید؟</sys:String>

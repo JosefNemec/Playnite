@@ -270,7 +270,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCSettingsDefaulIconSource">Type d'icône par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Image de fond par défaut</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">Déplacer les informations en bas de page (affichage détaillé)</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Espacement vertical par rapport aux détails du jeu</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails (affichage en grille)</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Position de la liste (affichage détaillé)</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Afficher un séparateur entre les panneaux</sys:String>
@@ -669,14 +669,14 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCBackToDesktopMode">Retour au bureau</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Quitter Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Clients de jeu</sys:String>
-    <sys:String x:Key="LOCUpdateAll">Tous les clients</sys:String>
+    <sys:String x:Key="LOCUpdateAll">Tout mettre à jour</sys:String>
     <sys:String x:Key="LOCExtensionCreatedBy">Auteur :</sys:String>
     <sys:String x:Key="LOCExtensionVersion">Version :</sys:String>
     <sys:String x:Key="LOCExtensionUpdated">Mis à jour le :</sys:String>
     <sys:String x:Key="LOCExtensionModule">Module :</sys:String>
     <sys:String x:Key="LOCLibrary">Bibliothèque</sys:String>
     <sys:String x:Key="LOCStatistics">Statistiques</sys:String>
-    <sys:String x:Key="LOCAll">[Tout]</sys:String>
+    <sys:String x:Key="LOCAll">Tout</sys:String>
     <sys:String x:Key="LOCNone">Indéterminé</sys:String>
     <sys:String x:Key="LOCNotifications">Notifications</sys:String>
     <sys:String x:Key="LOCWidth">Largeur</sys:String>
@@ -778,7 +778,7 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">La taille de l'installation est indiquée en octets.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">La date de sortie doit être indiquée selon le format &quot;année-mois-jour&quot;. L'indication du mois et du jour ne sont pas nécessaires.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Note entre 0 et 100.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Le développement de Playnite est soutenu sur Ko-fi et Patreon par :</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Le développement de Playnite est soutenu par ces Patreon et membres Ko-fi :</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Code, traduction et autres contributions sans ordre particulier :</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Annuler monitoring ?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Le monitoring de l'installation est en cours, voulez-vous l'annuler ?</sys:String>

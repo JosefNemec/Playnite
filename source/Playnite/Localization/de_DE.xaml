@@ -107,7 +107,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCRenameTitle">Umbenennen</sys:String>
     <sys:String x:Key="LOCCopyTitle">Kopieren</sys:String>
     <sys:String x:Key="LOCAddTitle">Hinzufügen</sys:String>
-    <sys:String x:Key="LOCDefaultIconTitle">Standardsymbol</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">Standard Icon</sys:String>
     <sys:String x:Key="LOCDefaultCoverTitle">Standard-Coverbild</sys:String>
     <sys:String x:Key="LOCDefaultBackgroundTitle">Standard-Hintergrundbild</sys:String>
     <sys:String x:Key="LOCFinishLabel">Abschließen</sys:String>
@@ -204,7 +204,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCColumns">Spalten</sys:String>
     <sys:String x:Key="LOCRow">Zeile</sys:String>
     <sys:String x:Key="LOCRows">Zeilen</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">Es konnte kein Symbol der Spielen-Aktion abgerufen werden. Es ist keine Aktion vom Typ »Datei« vorhanden.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Es konnte kein Icon aus der Spiel Aktion abgerufen werden. Es ist keine Aktion des »Datei« Typs vorhanden.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Nur fehlende Metadaten herunterladen</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Bei aktivierter Option werden für Datenfelder, die bereits Informationen enthalten, keine Metadaten heruntergeladen.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spieleauswahl</sys:String>
@@ -267,7 +267,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsGridItemSpacing">Elementabstände</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Hintergrund für Rasterelemente zeichnen</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Elementrandbreite in Rasteransicht</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource">Quelle für fehlende Spielsymbole</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Quelle für fehlende Spiel Icon</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Quelle für fehlende Spielecover</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Quelle für fehlende Spielhintergründe</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikaler Abstand zu Spieldetails</sys:String>
@@ -275,7 +275,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spielelistenposition in Detailansicht</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Trennlinien zwischen Leisten zeichnen</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Höhe der Spieletitelbilder</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Symbolhöhe der Spieleliste</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Höhe des Spiellisten Icons</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Anwendungsschriftart</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Nichtproportionale Schriftart</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Position der Filterleiste</sys:String>
@@ -323,7 +323,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Spielename anzeigen, falls Titelbild fehlt</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Name des Spiels unterhalb Cover anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Nicht installierte Spiele abdunkeln</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Spielsymbole in Detailansichtsliste anzeigen</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Spiel Icons in Detailansichtsliste anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Spieleanzahl in Gruppenbeschreibung anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">In Filter- und Explorerleisten nur zugewiesene Felder anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Hardwarebeschleunigung deaktivieren</sys:String>
@@ -345,7 +345,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsWindowTitle">Playnite-Einstellungen</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Webcache leeren</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCacheTooltip">Löst eventuell Probleme beim Verknüpfen von Nutzerkonten.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">Infobereichsymbol anzeigen</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">Taskleistenicon anzeigen</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeToTray">Playnite in Infobereich minimieren</sys:String>
     <sys:String x:Key="LOCSettingsCloseToTray">Playnite in den Infobereich minimieren, wenn das Anwendungsfenster geschlossen ist</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Beim Spielstart:</sys:String>
@@ -489,7 +489,7 @@ Du kannst versuchen, diese erneut aus dem Add-on-Menü herunterzuladen, nachdem 
     <sys:String x:Key="LOCEmulatorsTitle">Emulatoren</sys:String>
     <sys:String x:Key="LOCEmulatorTitle">Emulator</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Plattform hinzufügen</sys:String>
-    <sys:String x:Key="LOCSelectIconTitle">Symbol auswählen</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">Icon auswählen</sys:String>
     <sys:String x:Key="LOCSelectCoverTitle">Cover auswählen</sys:String>
     <sys:String x:Key="LOCSelectImageTitle">Bild auswählen</sys:String>
     <sys:String x:Key="LOCSelectItemTitle">Element auswählen</sys:String>
@@ -526,8 +526,8 @@ Sie wird derzeit von {1} Spiel(en) und {2} Emulator(en) verwendet.</sys:String>
     <sys:String x:Key="LOCMenuViewExplorerPanel">Explorerleiste</sys:String>
     <sys:String x:Key="LOCMenuViewFilterPanel">Filterleiste</sys:String>
     <!--Game fields-->
-    <sys:String x:Key="LOCGameIconTitle">Symbol</sys:String>
-    <sys:String x:Key="LOCLibraryIconTitle">Bibliothekssymbol</sys:String>
+    <sys:String x:Key="LOCGameIconTitle">Icon</sys:String>
+    <sys:String x:Key="LOCLibraryIconTitle">Bibliotheken Icon</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">Coverbild</sys:String>
     <sys:String x:Key="LOCGameBackgroundTitle">Hintergrundbild</sys:String>
     <sys:String x:Key="LOCGameSortingNameTitle">Sortiername</sys:String>
@@ -868,7 +868,7 @@ Neue Version: {2}</sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">Die ausgewählten Bilder sind möglicherweise zu groß für optimale Leistung. Das Verwenden sehr großer Bilder führt unter Umständen zu einer schlechteren Reaktionsfähigkeit der Benutzeroberfläche und erhöhtem Speicherbedarf.
 
 Empfohlene Maximalauflösungen:
-Symbole: {0} Megapixel
+Icon: {0} Megapixel
 Cover: {1} Megapixel
 Hintergründe: {2} Megapixel</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Leistungswarnung</sys:String>
@@ -1234,7 +1234,7 @@ Neue Hauptversionen werden nicht zu einer Updatebenachrichtigung führen.</sys:S
 Das angegebene Datumsformat wird für alle anderen Daten verwendet.</sys:String>
 
     <sys:String x:Key="LOCSettingsWebImageSearch">Web-Bildsuche</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Suchzeichenfolge für Symbolbilder</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Suchbegriff für Icon Bilder</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Suchzeichenfolge für Coverbilder</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Suchzeichenfolge für Hintergrundbilder</sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Informationen zu Add-ons werden abgerufen …</sys:String>

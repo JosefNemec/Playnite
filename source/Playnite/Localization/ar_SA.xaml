@@ -179,7 +179,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">عرض التفاصيل</sys:String>
     <sys:String x:Key="LOCCustomLabel">مخصص</sys:String>
     <sys:String x:Key="LOCURLLabel">الرابط</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">شكر خاص</sys:String>
     <sys:String x:Key="LOCLicenseLabel">الترخيص</sys:String>
     <sys:String x:Key="LOCContributorsLabel">المساهمون</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">جاري الخروج من Playnite…</sys:String>
@@ -262,15 +262,15 @@
     <sys:String x:Key="LOCMenuLinksTitle">روابط</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">مساعدة</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">الدعم في Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
-    <sys:String x:Key="LOCUserManual"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">لدعم على Ko-fi</sys:String>
+    <sys:String x:Key="LOCUserManual">دليل المستخدم</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">مستندات SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">إعادة تشغيل النظام</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">إيقاف تشغيل النظام</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">تعليق النظام</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">نظام السُبات</sys:String>
     <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">تسجيل الخروج</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">اختر لعبة عشوائية</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">مكان اللعبة لعرضها على لوحة التفاصيل:</sys:String>
@@ -1310,5 +1310,5 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
 افتح مشكلة جديدة على صفحة GitHub الخاصة بـ Playniite مع طلب لإصلاح التلف في ملفاتك.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">هل تريد حفظ التغييرات التي أجريتها؟</sys:String>
     <sys:String x:Key="LOCPortableInstallation"></sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">لم يتم العثور على أي وحدة تحكم</sys:String>
 </ResourceDictionary>

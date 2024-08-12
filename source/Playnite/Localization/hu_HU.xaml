@@ -171,7 +171,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCDetailsViewLabel">Részletes nézet</sys:String>
     <sys:String x:Key="LOCCustomLabel">Egyéni</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Külön köszönet</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licensz</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Közreműködők</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Kilépés a Playnite-ból...</sys:String>
@@ -253,7 +253,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCMenuLinksTitle">Linkek</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Súgó</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Támogass a Patreon-on</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Támogass a Ko-Fi-n</sys:String>
     <sys:String x:Key="LOCUserManual">Kézikönyv</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Dokumentáció</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Újraindítás</sys:String>
@@ -782,7 +782,7 @@ Több információt a https://playnite.link/cefstartup oldalon találsz.</sys:St
     <sys:String x:Key="LOCDescriptionSizeBytes">Játékméret, byte-ban.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">A megjelenési dátumnak az 'év-hónap-nap' formátumot kell követnie (a hónap és nap értékek opcionálisak).</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Pontérték 0-100-ig, vagy üres mező, ha nincs értékelve.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">A Playnite fejlődésének támogatói és Ko-Fi adományozói:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Kód, fordítás és egyéb közreműködők:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Játékfigyelés megszüntetése?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">A játék telepítés figyelő jelenleg is fut. Meg akarod szakítani a folyamatot és visszatérsz a játék előző állapotához?</sys:String>

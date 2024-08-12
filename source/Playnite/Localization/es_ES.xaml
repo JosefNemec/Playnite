@@ -170,7 +170,7 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCDetailsViewLabel">Vista detallada</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Agradecimientos especiales</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licencia</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Colaboradores</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Saliendo de Playnite…</sys:String>
@@ -252,7 +252,7 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCMenuLinksTitle">Enlaces</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ayuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoyar en Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Apoyar en Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Manual de usuario</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentación de SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar el sistema</sys:String>
@@ -783,7 +783,7 @@ Más información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">El tamaño de instalación está indicado en bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">La fecha de lanzamiento debe establecerse en el formato 'año-mes-día'. Los valores del mes y el día se pueden omitir.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valores entre 0 y 100 o dejar vacio para no indicar puntuación.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">El desarrollo de Playnite está apoyado por estos patrocinadores y miembros de Ko-fi:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Código, traductores y otros contribuyentes en ningún orden en particular:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">¿Cancelar monitoreo de juegos?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">El monitoreo de la instalación se está ejecutando actualmente. ¿Quieres cancelar el proceso y devolver el juego al estado anterior?</sys:String>

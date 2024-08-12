@@ -170,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">Изглед с подробности</sys:String>
     <sys:String x:Key="LOCCustomLabel">Персонализиран</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Специални благодарности</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Лиценз</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Сътрудници</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Излизане от Playnite...</sys:String>
@@ -252,7 +252,7 @@
     <sys:String x:Key="LOCMenuLinksTitle">Връзки</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Помощ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Поддръжка на Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Подкрепи в Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Ръководство за потребителя</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Документация за SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Рестартирайте системата</sys:String>
@@ -781,7 +781,9 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">Размерът на инсталиране е посочен в байтове.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Дата на издаване трябва да бъде зададена във формат „година-месец-ден“. Стойностите за месец и ден могат да бъдат пропуснати.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Стойности от 0 до 100 или празни за липса на резултат.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Разработката на Playnite се поддържа от следните потребители на Patreon и Ko-fi:
+
+</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Код, локализация и други сътрудници без определен ред:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Анулиране на наблюдението на играта?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Наблюдението на инсталацията се изпълнява в момента. Искате ли да отмените процеса и да върнете играта в предишното състояние?</sys:String>

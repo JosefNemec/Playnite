@@ -154,7 +154,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">तपशील दृश्य</sys:String>
     <sys:String x:Key="LOCCustomLabel">सानुकूल</sys:String>
     <sys:String x:Key="LOCURLLabel">यू.आर.एल.</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">विशेष आभार</sys:String>
     <sys:String x:Key="LOCLicenseLabel">परवाना</sys:String>
     <sys:String x:Key="LOCContributorsLabel">योगदानकर्ते</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">प्लेनाइटहून बाहेर पडत आहे…</sys:String>

@@ -170,7 +170,7 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCDetailsViewLabel">Detaljeret Oversigt</sys:String>
     <sys:String x:Key="LOCCustomLabel">Brugerdefineret</sys:String>
     <sys:String x:Key="LOCURLLabel">URL-adresse</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Særlig tak til</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licens</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bidragsydere</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Afslutter Playnite…</sys:String>

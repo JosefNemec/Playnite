@@ -170,7 +170,7 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCDetailsViewLabel">Išsamusis rodinys</sys:String>
     <sys:String x:Key="LOCCustomLabel">Pasirinktinis</sys:String>
     <sys:String x:Key="LOCURLLabel">Nuoroda</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Ypatinga padėka</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenzija</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Prisidėję</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite išjungiamas...</sys:String>
@@ -252,7 +252,7 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCMenuLinksTitle">Nuorodos</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pagalba</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Paremti &quot;Patreon&quot; platformoje</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Paremkite Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Vartotojo instrukcijos</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK Documentacija</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Perkrauti sistemą</sys:String>
@@ -771,7 +771,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Įdiegties dydis nurodytas baitais.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Vertė nuo 0 iki 100 arba tuščią kai nėra rezultato.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite kūrimą remia šie Patron ir Ko-fi nariai:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Prie kodo, lokalizacijos ir kito tobulinimo prisidėjo:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Stabdyti žaidimo stebėjimą?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Šiuo metu stebimas žaidimo įrašymo procesas. Ar norite tai nutraukti ir gražinti žadimą į ankstesnę būseną?</sys:String>

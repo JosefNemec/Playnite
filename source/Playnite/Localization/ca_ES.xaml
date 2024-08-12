@@ -320,7 +320,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCSettingsStartInFullscreen">Iniciar en mode de pantalla completa</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Càrrega d’imatges asíncrona</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Millora la suavitat de desplaçament de les llistes de jocs a canvi de temps de càrrega d'imatges més lents.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostra el nom del joc si no hi ha imatge de caràtula</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar el nom del joc si no hi ha imatge de caràtula</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar noms dels jocs en la vista de quadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Enfosquir els jocs no instal·lats</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostrar les icones dels jocs en la vista de detalls</sys:String>
@@ -654,8 +654,8 @@ Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCChange">Canviar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avançat</sys:String>
     <sys:String x:Key="LOCNever">Mai</sys:String>
-    <sys:String x:Key="LOCCompletionStatus">Estat de completació</sys:String>
-    <sys:String x:Key="LOCCompletionStatuses">Estats de completació</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Estat de finalització</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">Estats de finalització</sys:String>
     <sys:String x:Key="LOCUserScore">Puntuació dels usuaris</sys:String>
     <sys:String x:Key="LOCCriticScore">Puntuació de la crítica</sys:String>
     <sys:String x:Key="LOCCommunityScore">Puntuació de la comunitat</sys:String>

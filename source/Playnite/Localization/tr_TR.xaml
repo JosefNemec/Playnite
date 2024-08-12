@@ -476,7 +476,7 @@ Playnite logo menüsünü tıklayarak daha sonra başka bir oyun da ekleyebilirs
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Bir veya daha fazla uzantı indirilemedi.
 
 İlk çalıştırma sihirbazı tamamlandıktan sonra eklentiler menüsünden uzantıları yeniden indirmeyi deneyebilirsiniz.</sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon">{0} entegrasyonu indiriliyor…</sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">{0} tümleştirmesi indiriliyor…</sys:String>
     <sys:String x:Key="LOCDefaultAddonListDownload">Önerilen tümleştirmelerin listesi indiriliyor…</sys:String>
     <sys:String x:Key="LOCDefaultAddonListDownloadError">Önerilen tümleştirmelerin listesi indirilemedi. Tümleştirmeleri daha sonra Eklentiler menüsü aracılığıyla deneyebilir ve yeniden indirebilirsiniz.</sys:String>
     <!--Platforms Settings-->
@@ -810,8 +810,8 @@ Bilgi için: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSignInExternalWaitMessage">Kullanıcının oturum açmasını bekleyin, tamamladığınızda lütfen bunu kapatın…</sys:String>
     <sys:String x:Key="LOCInstallDirNotFoundError">Oyunun kurulum klasörü bulunamadı.</sys:String>
     <sys:String x:Key="LOCInvalidGameActionSettings">Geçersiz oyun eylemi yapılandırması.</sys:String>
-    <sys:String x:Key="LOCTroubleShootingAccountLink">Hesap eşitleme sorunlarını giderme</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues">Sorunları giderme</sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">Hesap eşitleme sorunlarını gider</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">Sorun gider</sys:String>
     <sys:String x:Key="LOCRenameItem">Öğeyi yeniden adlandır</sys:String>
     <sys:String x:Key="LOCAddNewItem">Yeni öğe ekle</sys:String>
     <sys:String x:Key="LOCEnterName">İsim gir</sys:String>
@@ -948,7 +948,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Kurulum için planlandı</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">İndirme başarısız</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">lisans reddedildi</sys:String>
-    <sys:String x:Key="LOCAddonDownloadingAddon">İndiriliyor {0}…</sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon">{0} indiriliyor…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Eklenti güncellemeleri kontrol ediliyor…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Bir veya daha fazla eklenti güncellemesi mevcut.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Güncellenecek öğeleri seçin:</sys:String>
