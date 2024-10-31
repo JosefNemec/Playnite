@@ -92,7 +92,7 @@ Branches
 Roadmap
 ---------
 
-You can see the planned versions with their features in the [milestones overview](https://github.com/JosefNemec/Playnite/milestones).
+Playnite is currently being rewritten from scratch for next major version release 11. The work is being done in private repository until beta release, after which the code will be release in this repository under the same license as current version 10 release. There is no list of planned changes and new features for version 11.
 
 Development
 ---------
