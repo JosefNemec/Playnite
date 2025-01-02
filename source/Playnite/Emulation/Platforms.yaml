@@ -424,6 +424,7 @@
 - Name: Sony PlayStation 4
   Id: sony_playstation4
   IgdbId: 48
+  Emulators: [shadps4]
   
 - Name: Sony PlayStation 5
   Id: sony_playstation5
