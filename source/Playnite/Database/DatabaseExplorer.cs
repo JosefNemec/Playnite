@@ -65,7 +65,9 @@ namespace Playnite.Database
         [Description(LOC.FeatureLabel)]
         Feature,
         [Description(LOC.GameNameTitle)]
-        Name
+        Name,
+        [Description(LOC.GameInstallationStatus)]
+        InstallStatus
     }
 
     // TODO: Rewrite this mess.
@@ -235,6 +237,7 @@ namespace Playnite.Database
             database.Features.ItemUpdated += (s, e) => DatabaseCollection_ItemUpdated(ExplorerField.Feature, e);
             database.FilterPresets.ItemCollectionChanged += (s, e) => DatabaseCollection_ItemCollectionChanged(ExplorerField.Presets, e);
             database.FilterPresets.ItemUpdated += (s, e) => DatabaseCollection_ItemUpdated(ExplorerField.Presets, e);
+            (database.FilterPresets as FilterPresetsCollection).OnSettingsUpdated += Database_OnFilterSettingsUpdated;
             database.Companies.ItemCollectionChanged += (s, e) =>
             {
                 DatabaseCollection_ItemCollectionChanged(ExplorerField.Publisher, e);
@@ -258,6 +261,16 @@ namespace Playnite.Database
             database.SeriesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(ExplorerField.Series);
             database.SourcesInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(ExplorerField.Source);
             database.TagsInUseUpdated += (_, __) => Database_DatabaseCollectionInUseUpdated(ExplorerField.Tag);
+        }
+
+        private void Database_OnFilterSettingsUpdated(object sender, FilterPresetsSettingsUpdateEvent e)
+        {
+            if (SelectedField?.Field != ExplorerField.Presets)
+            {
+                return;
+            }
+
+            LoadValues(ExplorerField.Presets);
         }
 
         private void Database_DatabaseCollectionInUseUpdated(ExplorerField field)
@@ -667,6 +680,25 @@ namespace Playnite.Database
                 case ExplorerField.Name:
                     filters.Name = GetStringFilter(filter);
                     break;
+                case ExplorerField.InstallStatus:
+                    var installed = false;
+                    var uninstalled = false;
+                    if (filter?.Value is bool instStat)
+                    {
+                        installed = instStat;
+                        uninstalled = !instStat;
+                    }
+
+                    filters.SuppressFilterChanges = true;
+                    filters.IsInstalled = installed;
+                    filters.IsUnInstalled = uninstalled;
+                    filters.SuppressFilterChanges = false;
+                    filters.OnFilterChanged(new List<string>
+                    {
+                        nameof(filters.IsInstalled),
+                        nameof(filters.IsUnInstalled)
+                    });
+                    break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)
                     {
@@ -863,11 +895,15 @@ namespace Playnite.Database
                     break;
                 case ExplorerField.Presets:
                     values.Clear();
-                    values.AddRange(mainModel.SortedFilterPresets.Select(a => new SelectionObject(a)));
+                    values.AddRange(database.GetSortedFilterPresets().Select(a => new SelectionObject(a)));
                     break;
                 case ExplorerField.Name:
                     values.Add(new SelectionObject("^#", "#"));
                     values.AddRange(Enumerable.Range('A', 26).Select(a => new SelectionObject("^" + ((char)a).ToString(), ((char)a).ToString())));
+                    break;
+                case ExplorerField.InstallStatus:
+                    values.Add(new SelectionObject(true, LOC.GameIsInstalledTitle.GetLocalized()));
+                    values.Add(new SelectionObject(false, LOC.GameIsUnInstalledTitle.GetLocalized()));
                     break;
                 default:
                     if (PlayniteEnvironment.ThrowAllErrors)

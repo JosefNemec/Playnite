@@ -207,7 +207,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 markImportAll = value;
                 OnPropertyChanged();
-                Programs.ForEach(a => a.Import = markImportAll);
+                CollectionView.Cast<ImportableProgram>().ForEach(a => a.Import = markImportAll);
             }
         }
 
@@ -299,7 +299,7 @@ namespace Playnite.DesktopApp.ViewModels
         public void ConfirmDialog()
         {
             SelectedGames = new List<GameMetadata>();
-            foreach (var program in Programs)
+            foreach (var program in CollectionView.Cast<ImportableProgram>())
             {
                 if (!program.Import)
                 {
@@ -488,7 +488,7 @@ namespace Playnite.DesktopApp.ViewModels
             var program = (ImportableProgram)item;
             if (HideImported)
             {
-                return !importedExes.ContainsString(program.Item.Path, StringComparison.OrdinalIgnoreCase);
+                return !importedExes.ContainsString(program.Item.Path + program.Item.Arguments ?? string.Empty, StringComparison.OrdinalIgnoreCase);
             }
 
             return true;

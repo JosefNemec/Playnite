@@ -14,6 +14,8 @@ namespace Playnite.SDK.Controls
     /// </summary>
     public class PluginUserControl : UserControl
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         /// <summary>
         ///
         /// </summary>
@@ -43,11 +45,16 @@ namespace Playnite.SDK.Controls
         {
             var newContext = e.NewValue as Game;
             var oldContext = e.OldValue as Game;
-
-            var obj = sender as PluginUserControl;
-            if (obj != null)
+            if (sender is PluginUserControl obj)
             {
-                obj.GameContextChanged(oldContext, newContext);
+                try
+                {
+                    obj.GameContextChanged(oldContext, newContext);
+                }
+                catch (Exception exc)
+                {
+                    logger.Error(exc, $"GameContextChanged from {obj.GetType().Name} plugin control failed.");
+                }
             }
         }
 

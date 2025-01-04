@@ -57,7 +57,7 @@
 
         <Button Content="{DynamicResource LOCMenuHelpTitle}"
                 Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                CommandParameter="https://playnite.link/docs/{AppBranch}/manual/backup.html"
+                CommandParameter="{}{DocsRootUrl}/manual/backup.html"
                 HorizontalAlignment="Left" Margin="0,20,0,0" MinWidth="80" />
     </StackPanel>
 </UserControl>

@@ -36,15 +36,13 @@ namespace Playnite
         private ILogger logger = LogManager.GetLogger();
         private const string instanceMuxet = "PlayniteInstaceMutex";
         private Mutex appMutex;
-        private bool resourcesReleased = false;
+        public bool ResourcesReleased { get; private set; } = false;
         private PipeService pipeService;
         private PipeServer pipeServer;
         private System.Threading.Timer updateCheckTimer;
         private bool installingAddon = false;
         private AddonLoadError themeLoadError = AddonLoadError.None;
         private ThemeManifest customTheme;
-
-        public XInputDevice XInputDevice { get; private set; }
 
         private bool isActive;
         public bool IsActive
@@ -75,7 +73,6 @@ namespace Playnite
         public static Application CurrentNative { get; private set; }
         public static PlayniteApplication Current { get; private set; }
         public ServicesClient ServicesClient { get; private set; }
-        public static bool SoundsEnabled { get; set; } = true;
         public MainViewModelBase MainModelBase { get; set; }
         public List<ExtensionInstallResult> ExtensionsInstallResult { get; set; }
         public NotificationsAPI Notifications { get; }
@@ -120,7 +117,7 @@ namespace Playnite
             {
                 if (CheckOtherInstances() || CmdLine.Shutdown)
                 {
-                    resourcesReleased = true;
+                    ResourcesReleased = true;
                     Environment.Exit(0);
                     return;
                 }
@@ -493,6 +490,14 @@ namespace Playnite
                 return;
             }
 
+            // ERROR_DISK_FULL
+            if (exception.HResult == unchecked((int)0x80070070))
+            {
+                Dialogs.ShowErrorMessage(exception.Message, LOC.CrashWindowTitle.GetLocalized());
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
             if (crashInfo.IsExtensionCrash)
             {
                 crashModel = new CrashHandlerViewModel(
@@ -717,7 +722,7 @@ namespace Playnite
                         }
                         else
                         {
-                            GamesEditor.PlayGame(game);
+                            GamesEditor.PlayGame(game, false);
                         }
                     }
                     else
@@ -1061,7 +1066,7 @@ namespace Playnite
                         }
                         else
                         {
-                            GamesEditor.PlayGame(game);
+                            GamesEditor.PlayGame(game, false);
                         }
                     }
                     else
@@ -1091,36 +1096,6 @@ namespace Playnite
                     AppUriHandler(args);
                     break;
             }
-        }
-
-        public void SetupInputs()
-        {
-            try
-            {
-                if (XInputDevice == null)
-                {
-                    XInputDevice = new XInputDevice(InputManager.Current)
-                    {
-                        SimulateAllKeys = false,
-                        SimulateNavigationKeys = true,
-                        PrimaryControllerOnly = AppSettings.Fullscreen.PrimaryControllerOnly,
-                        StandardProcessingEnabled = AppSettings.Fullscreen.EnableXinputProcessing
-                    };
-                }
-
-                UpdateXInputBindings();
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed intitialize XInput");
-                Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCXInputInitErrorMessage"), "");
-            }
-        }
-
-        public void UpdateXInputBindings()
-        {
-            XInputGesture.ConfirmationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? XInputButton.B : XInputButton.A;
-            XInputGesture.CancellationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? XInputButton.A : XInputButton.B;
         }
 
         public void Quit(bool saveSettings = true)
@@ -1165,7 +1140,7 @@ namespace Playnite
 
         public virtual void ReleaseResources(bool releaseCefSharp = true)
         {
-            if (resourcesReleased)
+            if (ResourcesReleased)
             {
                 return;
             }
@@ -1195,7 +1170,16 @@ namespace Playnite
                 logger.Error(e, "Failed to stop pipe server.");
             }
 
-            Discord?.Dispose();
+            // Rare crash report of DiscordRPC not being loaded properly and then crashing on this
+            try
+            {
+                Discord?.Dispose();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, "Failed to dispose Discord RPC.");
+            }
+
             updateCheckTimer?.Dispose();
             MainModelBase?.RunShutdowScript();
             Extensions?.NotifiyOnApplicationStopped();
@@ -1231,7 +1215,7 @@ namespace Playnite
             }
 
             Database?.Dispose();
-            resourcesReleased = true;
+            ResourcesReleased = true;
         }
 
         private void CheckAddonBlacklist()
@@ -1352,26 +1336,6 @@ namespace Playnite
                 null,
                 Common.Timer.HoursToMilliseconds(4),
                 Common.Timer.HoursToMilliseconds(4));
-        }
-
-        public async Task SendUsageDataAsync()
-        {
-            if (PlayniteEnvironment.InOfflineMode)
-            {
-                return;
-            }
-
-            await Task.Run(() =>
-            {
-                try
-                {
-                    ServicesClient.PostUserUsage(AppSettings.InstallInstanceId);
-                }
-                catch (Exception exc)
-                {
-                    logger.Warn(exc, "Failed to post user usage data.");
-                }
-            });
         }
 
         public bool MigrateDatabase()

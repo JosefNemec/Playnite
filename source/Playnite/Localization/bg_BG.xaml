@@ -101,6 +101,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">Не можах да определя как да стартирам играта.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Активирано</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Изключено</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Премахване</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Премахване на неизползваните</sys:String>
     <sys:String x:Key="LOCRenameTitle">Преименуване</sys:String>
@@ -169,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">Изглед с подробности</sys:String>
     <sys:String x:Key="LOCCustomLabel">Персонализиран</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Поддръжници</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Специални благодарности</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Лиценз</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Сътрудници</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Излизане от Playnite...</sys:String>
@@ -251,11 +252,15 @@
     <sys:String x:Key="LOCMenuLinksTitle">Връзки</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Помощ</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Поддръжка на Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Подкрепи в Ko-fi</sys:String>
+    <sys:String x:Key="LOCUserManual">Ръководство за потребителя</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Документация за SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Рестартирайте системата</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Изключване на системата</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Суспендиране на системата</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Система за хибернация</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Заключи Система</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Отпиши Потребител</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Избор на произволна игра</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Полета за игра, които да се показват в панела с подробности:</sys:String>
@@ -542,10 +547,10 @@
     <sys:String x:Key="LOCUseFilterStyleAndTitle">Съвпада с всички филтри</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Ако е разрешено, само игри, които използват всички елементи във всички филтри, ще бъдат включени в изгледа.
 Ако е деактивирано, игрите, които използват който и да е елемент във всеки филтър, ще бъдат включени в изгледа.</sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle">Инсталиран</sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle">Инсталиран</sys:String>
-    <sys:String x:Key="LOCGameIsUnInstalledTitle">Не е инсталиран</sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle">Скрит</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Инсталирани</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Инсталирани</sys:String>
+    <sys:String x:Key="LOCGameIsUnInstalledTitle">Не инсталирани</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">Скрити</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Любими</sys:String>
     <sys:String x:Key="LOCGameHdrTitle">Активиране на HDR поддръжка</sys:String>
     <sys:String x:Key="LOCGameHdrTooltip">Ако е активиран, HDR ще бъде активиран на основния дисплей преди стартиране на играта.</sys:String>
@@ -602,11 +607,9 @@
 
 Повече информация на https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Не могат да се импортират емулатори поради липсващ или повреден дефиниционен файл.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Неуспешно инициализиране на XInput интерфейс.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Неуспешно изпълнение на действие от менюто.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Редактиране на подробностите за играта</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Действие от Play</sys:String>
     <sys:String x:Key="LOCImageURL">URL адрес на изображение</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Добавяне на връзка</sys:String>
     <sys:String x:Key="LOCAddRom">Добавяне на ROM</sys:String>
@@ -617,7 +620,7 @@
     <sys:String x:Key="LOCRemovePlayAction">Премахване на действие за възпроизвеждане</sys:String>
     <sys:String x:Key="LOCAddGames">Добавяне на игри</sys:String>
     <sys:String x:Key="LOCScanFolder">Сканиране на папка…</sys:String>
-    <sys:String x:Key="LOCDetectInstalled">Откриване на инсталиран</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">Откриване на инсталирани</sys:String>
     <sys:String x:Key="LOCBrowse">Преглед...</sys:String>
     <sys:String x:Key="LOCOpenPlaynite">Отворете Playnite</sys:String>
     <sys:String x:Key="LOCProfileSettings">Настройки на профила</sys:String>
@@ -644,6 +647,7 @@
     <sys:String x:Key="LOCDoNothing">Не правете нищо</sys:String>
     <sys:String x:Key="LOCMinimize">Минимизиране</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Прозорец за възстановяване</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Възстанови прозореца само когато стартира през потребителския интерфейс</sys:String>
     <sys:String x:Key="LOCClose">Затваряне</sys:String>
     <sys:String x:Key="LOCChange">Промяна</sys:String>
     <sys:String x:Key="LOCAdvanced">Разширени</sys:String>
@@ -651,8 +655,8 @@
     <sys:String x:Key="LOCCompletionStatus">Статус на завършване</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Състояния на завършване</sys:String>
     <sys:String x:Key="LOCUserScore">Потребителски резултат</sys:String>
-    <sys:String x:Key="LOCCriticScore">Критичен резултат</sys:String>
-    <sys:String x:Key="LOCCommunityScore">Резултат на общността</sys:String>
+    <sys:String x:Key="LOCCriticScore">Резултат от критик</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Резултат от общността</sys:String>
     <sys:String x:Key="LOCGameScripts">Скриптове за игри</sys:String>
     <sys:String x:Key="LOCApplicationScripts">Скриптове за приложения</sys:String>
     <sys:String x:Key="LOCScripts">Скриптове</sys:String>
@@ -777,7 +781,9 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">Размерът на инсталиране е посочен в байтове.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Дата на издаване трябва да бъде зададена във формат „година-месец-ден“. Стойностите за месец и ден могат да бъдат пропуснати.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Стойности от 0 до 100 или празни за липса на резултат.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Разработката на Playnite се поддържа от тези покровители:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Разработката на Playnite се поддържа от следните потребители на Patreon и Ko-fi:
+
+</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Код, локализация и други сътрудници без определен ред:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Анулиране на наблюдението на играта?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Наблюдението на инсталацията се изпълнява в момента. Искате ли да отмените процеса и да върнете играта в предишното състояние?</sys:String>
@@ -956,6 +962,8 @@
     <sys:String x:Key="LOCSelectActionTitle">Избор на действие</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Режим на проследяване</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Път за проследяване</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Първоначално забавяне на проследяването</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Честота на проследяване</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Връзка</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Файл</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Емулатор</sys:String>
@@ -1001,9 +1009,9 @@
 Деактивирането на това може да доведе до проблеми с игрите, които не получават фокус върху входа при стартиране!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Размер на шрифта</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Малък размер на шрифта</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Поддръжка на XInput устройство</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">Поддръжка на игрови контролери</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ако е деактивирано, Playnite няма да приеме входове на XInput интерфейс.
-   	 
+
 Деактивирайте, ако използвате инструменти, които преобразуват XInput входове във входове от мишка/клавиатура и получавате двойни входове в Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Показване на елементи в главното меню:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Свързване на обърнат X/A бутон за основен изглед</sys:String>
@@ -1247,4 +1255,7 @@ Playnite автоматично ще се рестартира, за да ста
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">Открито е повреда на файла на библиотеката, Playnite ще се изключи.
     
 Отворете нов проблем в GitHub страницата на Playnite с искане за коригиране на повреда във вашите файлове.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Искате ли да запазите направените промени?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Портативна инсталация</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">Няма открити контролери</sys:String>
 </ResourceDictionary>

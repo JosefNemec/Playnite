@@ -6,7 +6,7 @@
   
 - Name: Adobe Flash
   Id: adobe_flash
-  Emulators: [flashplayerprojector]
+  Emulators: [flashplayerprojector, ruffle]
   
 - Name: Amstrad CPC
   Id: amstrad_cpc
@@ -140,7 +140,7 @@
 - Name: Magnavox Odyssey 2
   Id: magnavox_odyssey_2
   IgdbId: 133
-  Databases: [Magnavox - Odyssey 2]
+  Databases: [Magnavox - Odyssey2]
   Emulators: [bizhawk]
   
 - Name: Mattel Intellivision
@@ -343,7 +343,7 @@
   Id: sega_genesis
   IgdbId: 29
   Databases: [Sega - Mega Drive - Genesis]
-  Emulators: [bizhawk, blastem, higan, kegafusion, mednafen, retroarch]
+  Emulators: [bizhawk, blastem, higan, kegafusion, mednafen, retroarch, ares]
   
 - Name: Sega Master System
   Id: sega_mastersystem
@@ -449,6 +449,7 @@
   
 - Name: Texas Instruments TI-83
   Id: ti_83
+  Databases: [TIC-80]
   Emulators: [bizhawk]
   
 - Name: Thomson MO5
@@ -468,6 +469,7 @@
   
 - Name: Uzebox
   Id: uzebox
+  Databases: [Uzebox]
   Emulators: [bizhawk]
 
 - Name: Watara Supervision

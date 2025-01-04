@@ -16,6 +16,7 @@ using Playnite.Windows;
 using System.Windows;
 using Playnite.Common.Media.Icons;
 using Playnite.Emulators;
+using System.Threading;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -648,8 +649,13 @@ namespace Playnite.DesktopApp.ViewModels
             CompletionStatusesSelection = database.CompletionStatuses.GetClone().OrderBy(a => a.Name).ToObservable();
             CompletionStatusesSelection.Insert(0, new CompletionStatus
             {
-                Name = ResourceProvider.GetString(LOC.None),
+                Name = ResourceProvider.GetString(LOC.RemoveLabel),
                 Id = Guid.Empty
+            });
+            CompletionStatusesSelection.Insert(0, new CompletionStatus
+            {
+                Name = ResourceProvider.GetString(LOC.None),
+                Id = Constants.MaxGuidVal
             });
 
             PlatformsSpecifications = Emulation.Platforms.OrderBy(a => a.Name).ToList();
@@ -735,7 +741,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             string addNewFile(string path, Guid parent)
             {
-                var newPath = database.AddFile(path, parent, true);
+                var newPath = database.AddFile(path, parent, true, CancellationToken.None);
                 if (Paths.AreEqual(Path.GetDirectoryName(path), PlaynitePaths.TempPath))
                 {
                     File.Delete(path);

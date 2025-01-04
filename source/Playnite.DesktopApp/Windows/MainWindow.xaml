@@ -83,7 +83,7 @@
         <KeyBinding Command="{Binding OpenAddonsCommand}"
                 Key ="{Binding OpenAddonsCommand.Gesture.Key}"
                 Modifiers="{Binding OpenAddonsCommand.Gesture.Modifiers}" />
-        <pin:XInputBinding Button="Guide" Command="{Binding OpenFullScreenFromControllerCommand}" />
+        <pin:GameControllerInputBinding Button="Guide" Command="{Binding OpenFullScreenFromControllerCommand}" />
     </c:WindowBase.InputBindings>
 
     <cv:MainWindow IsTabStop="False" />

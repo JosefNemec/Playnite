@@ -76,7 +76,7 @@
                 <Button Content="{DynamicResource LOCMenuHelpTitle}"
                         Margin="15,10,0,0" HorizontalAlignment="Left"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/metadata.html" />
+                        CommandParameter="{}{DocsRootUrl}/manual/metadata.html#media-web-image-search" />
             </StackPanel>
         </TabItem>
     </TabControl>

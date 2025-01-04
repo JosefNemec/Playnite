@@ -34,10 +34,11 @@ function Get-IniContent()
     return $ini
 }
 
-$scummvmConfig = Join-Path $env:APPDATA "ScummVM\scummvm.ini"
+#switch the below $scummvmConfig lines to change the default and fallback scan directories.
+$scummvmConfig = Join-Path $ImportArgs.ScanDirectory "scummvm.ini" #Import Directory
 if (!(Test-Path $scummvmConfig))
 {
-    $scummvmConfig = Join-Path $ImportArgs.ScanDirectory "scummvm.ini"
+    $scummvmConfig = Join-Path $env:APPDATA "ScummVM\scummvm.ini" #Default (appdata) directory
     if (!(Test-Path $scummvmConfig))
     {
         $ImportArgs.PlayniteApi.Dialogs.ShowErrorMessage("Couldn't find ScummVM config file at $scummvmConfig", "") | Out-Null
@@ -50,8 +51,13 @@ foreach ($key in $config.Keys)
 {
     if ($config[$key].gameid)
     {
-        $romPath = Join-Path $config[$key].path $key        
-        $anyFunc = [Func[string,bool]]{ param($a) $a.Equals($romPath, 'OrdinalIgnoreCase') }
+        $romPath = Join-Path $config[$key].path $key
+        if (-not [System.IO.Path]::IsPathRooted($romPath)) # Check if it's a relative path
+        {
+            $romPath = Join-Path $ImportArgs.ScanDirectory $romPath
+        }
+		
+        $anyFunc = [Func[string,bool]]{ param($a) [System.IO.Path]::GetFullPath($a) -ieq [System.IO.Path]::GetFullPath($romPath) }	
         if ([System.Linq.Enumerable]::Any($ImportArgs.ImportedFiles, $anyFunc))
         {
             continue

@@ -21,6 +21,16 @@ namespace Playnite.FullscreenApp
             ProfileOptimization.SetProfileRoot(PlaynitePaths.JitProfilesPath);
             ProfileOptimization.StartProfile("fullscreen");
 
+            if (Computer.WindowsVersion == WindowsVersion.Win7 || Computer.WindowsVersion == WindowsVersion.Win8)
+            {
+                MessageBox.Show(
+                     "Windows 7 and Windows 8 are no longer supported. Please update your operating system or downgrade to older Playnite version.",
+                     "Startup Error",
+                     MessageBoxButton.OK,
+                     MessageBoxImage.Error);
+                return;
+            }
+
             if (PlaynitePaths.ProgramPath.Contains(@"temp\rar$", StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show(

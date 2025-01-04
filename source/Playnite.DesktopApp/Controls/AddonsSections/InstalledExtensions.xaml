@@ -113,7 +113,7 @@
 
             <TextBlock Margin="5,10,0,10"  DockPanel.Dock="Bottom">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://playnite.link/docs/{AppBranch}/tutorials/extensions/intro.html">
+                            CommandParameter="{}{DocsRootUrl}/tutorials/extensions/intro.html">
                     <Run Text="{DynamicResource LOCSettingsCreateExtensions}" />
                 </Hyperlink>
             </TextBlock>

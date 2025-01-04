@@ -22,8 +22,8 @@ namespace Playnite
     public class ThemeManager
     {
         private static ILogger logger = LogManager.GetLogger();
-        public static System.Version DesktopApiVersion => new System.Version("2.5.0");
-        public static System.Version FullscreenApiVersion => new System.Version("2.5.0");
+        public static System.Version DesktopApiVersion => new System.Version("2.6.0");
+        public static System.Version FullscreenApiVersion => new System.Version("2.6.0");
         public static ThemeManifest CurrentTheme { get; private set; }
         public static ThemeManifest DefaultTheme { get; private set; }
         public const string DefaultDesktopThemeId = "Playnite_builtin_DefaultDesktop";

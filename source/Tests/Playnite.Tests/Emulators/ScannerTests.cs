@@ -49,6 +49,41 @@ namespace Playnite.Tests.Emulators
         }
 
         [Test]
+        public void GzipHandlingTest() // #3357 bug
+        {
+            using (var tempPath = TempDirectory.Create())
+            {
+                var path1 = Path.Combine(tempPath.TempPath, "game 1.iso.gz");
+                var path2 = Path.Combine(tempPath.TempPath, "game 2.test.iso");
+                var path3 = Path.Combine(tempPath.TempPath, "game 3.gz");
+                FileSystem.CreateFile(path1);
+                FileSystem.CreateFile(path2);
+                FileSystem.CreateFile(path3);
+
+                var scanner = new GameScanner(new SDK.Models.GameScannerConfig(), null);
+                var scanResults = new List<ScannedGame>();
+                scanner.ScanDirectoryBase(
+                    tempPath.TempPath,
+                    new List<string> { "gz", "iso" },
+                    null,
+                    scanResults,
+                    new System.Threading.CancellationTokenSource().Token,
+                    null,
+                    true,
+                    true,
+                    true);
+
+                Assert.AreEqual(3, scanResults.Count);
+                Assert.AreEqual("game 1", scanResults[0].Name);
+                Assert.AreEqual(path1, scanResults[0].Roms[0].Path);
+                Assert.AreEqual("game 2.test", scanResults[1].Name);
+                Assert.AreEqual(path2, scanResults[1].Roms[0].Path);
+                Assert.AreEqual("game 3", scanResults[2].Name);
+                Assert.AreEqual(path3, scanResults[2].Roms[0].Path);
+            }
+        }
+
+        [Test]
         public void MultiDiskRegionTest() // #2573 bug
         {
             using (var tempPath = TempDirectory.Create())
@@ -244,6 +279,149 @@ namespace Playnite.Tests.Emulators
 
                 Assert.AreEqual(0, scanResults.Count);
             }
+        }
+
+        [Test]
+        public void ExclusionFileTest()
+        {
+            var exList = new List<string>
+            {
+                @"file1.file"
+            };
+
+            var scanDir = @"c:\emudir\";
+            var parsed = GameScanner.ParseExclusions(scanDir, exList);
+            var matches = GameScanner.GetFileExclusionMatches(new List<string>
+            {
+                @"c:\emudir\test\file1.file",
+                @"c:\emudir\file1.file"
+            }, parsed);
+
+            Assert.AreEqual(1, matches.Count);
+            Assert.AreEqual(@"c:\emudir\file1.file", matches[0]);
+
+            // Any sub-dir match
+            exList = new List<string>
+            {
+                @">file1.file",
+                @">dir\file2.file"
+            };
+
+            parsed = GameScanner.ParseExclusions(scanDir, exList);
+            matches = GameScanner.GetFileExclusionMatches(new List<string>
+            {
+                @"c:\emudir\sub\file1.file",
+                @"c:\emudir\file1.file",
+                @"c:\emudir\dir\file2.file",
+                @"c:\emudir\sub\dir\file2.file"
+            }, parsed);
+
+            Assert.AreEqual(4, matches.Count);
+
+            // Regex absolute match
+            exList = new List<string>
+            {
+                @"?file\d+\.file$",
+                @"?dir\\file\d+\.file2$"
+            };
+
+            parsed = GameScanner.ParseExclusions(scanDir, exList);
+            matches = GameScanner.GetFileExclusionMatches(new List<string>
+            {
+                @"c:\emudir\file1.file",
+                @"c:\emudir\dir\file2.file2"
+            }, parsed);
+
+            Assert.AreEqual(2, matches.Count);
+
+            // Regex any level match
+            exList = new List<string>
+            {
+                @">?file\d+\.file$",
+                @">?dir\\file\d+\.file2$"
+            };
+
+            parsed = GameScanner.ParseExclusions(scanDir, exList);
+            matches = GameScanner.GetFileExclusionMatches(new List<string>
+            {
+                @"c:\emudir\file1.file",
+                @"c:\emudir\sub\file1.file",
+                @"c:\emudir\dir\file2.file2",
+                @"c:\emudir\sub\dir\file2.file2",
+                @"c:\emudir\filethree.file",
+            }, parsed);
+
+            Assert.AreEqual(4, matches.Count);
+        }
+
+        [Test]
+        public void ExclusionDirectoryTest()
+        {
+            var exList = new List<string>
+            {
+                @"dir"
+            };
+
+            var scanDir = @"c:\emudir\";
+            var parsed = GameScanner.ParseExclusions(scanDir, exList);
+            var matches = GameScanner.GetDirectoryExclusionMatches(new List<string>
+            {
+                @"c:\emudir\dir\",
+                @"c:\emudir\test\dir"
+            }, parsed);
+
+            Assert.AreEqual(1, matches.Count);
+            Assert.AreEqual(@"c:\emudir\dir\", matches[0]);
+
+            // Any sub-dir match
+            exList = new List<string>
+            {
+                @">dir"
+            };
+
+            parsed = GameScanner.ParseExclusions(scanDir, exList);
+            matches = GameScanner.GetDirectoryExclusionMatches(new List<string>
+            {
+                @"c:\emudir\dir\",
+                @"c:\emudir\test\dir"
+            }, parsed);
+
+            Assert.AreEqual(2, matches.Count);
+
+            // Regex absolute match
+            exList = new List<string>
+            {
+                @"?dir\d+$",
+                @"?test\\dir\d+$"
+            };
+
+            parsed = GameScanner.ParseExclusions(scanDir, exList);
+            matches = GameScanner.GetDirectoryExclusionMatches(new List<string>
+            {
+                @"c:\emudir\dir1\",
+                @"c:\emudir\test\dir2"
+            }, parsed);
+
+            Assert.AreEqual(2, matches.Count);
+
+            // Regex any level match
+            exList = new List<string>
+            {
+                @">?dir\d+$",
+                @">?test\\dirtwo\d+$"
+            };
+
+            parsed = GameScanner.ParseExclusions(scanDir, exList);
+            matches = GameScanner.GetDirectoryExclusionMatches(new List<string>
+            {
+                @"c:\emudir\dir1\",
+                @"c:\emudir\sub\dir1\",
+                @"c:\emudir\test\dirtwo2",
+                @"c:\emudir\sub\test\dirtwo2",
+                @"c:\emudir\dirthree",
+            }, parsed);
+
+            Assert.AreEqual(4, matches.Count);
         }
     }
 }

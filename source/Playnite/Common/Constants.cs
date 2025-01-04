@@ -28,5 +28,7 @@ namespace Playnite.Common
         } = new char[] { ListSeparator };
 
         public const char ListSeparator = ',';
+
+        public static readonly Guid MaxGuidVal = new Guid("FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF");
     }
 }

@@ -80,7 +80,7 @@ namespace System.Collections.Generic
         /// <returns>True if an item was added, false if no item was added.</returns>
         public static bool AddMissing<T>(this IList<T> source, IEnumerable<T> items)
         {
-            if (!items.HasItems())
+            if (items == null)
             {
                 return false;
             }

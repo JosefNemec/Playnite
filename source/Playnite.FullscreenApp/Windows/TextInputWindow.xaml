@@ -17,12 +17,12 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>
-        <pin:XInputBinding Button="Y" Command="{Binding AddSpaceCommand}" />
-        <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
-        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
-        <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
-        <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
-        <pin:XInputBinding Button="RightStick" Command="{Binding ToggleCapsCommand}" />
+        <pin:GameControllerInputBinding Button="Y" Command="{Binding AddSpaceCommand}" />
+        <pin:GameControllerInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
+        <pin:GameControllerInputBinding Button="{Binding Path=(pin:GameControllerGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
+        <pin:GameControllerInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
+        <pin:GameControllerInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
+        <pin:GameControllerInputBinding Button="RightStick" Command="{Binding ToggleCapsCommand}" />
         <KeyBinding Key="Esc" Command="{Binding CancelCommand}" />
     </c:WindowBase.InputBindings>
     
@@ -50,10 +50,10 @@
                      PreviewKeyDown="TextInputText_PreviewKeyDown"
                      Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
-                    <pin:XInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
-                    <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
-                    <pin:XInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
-                    <pin:XInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
+                    <pin:GameControllerInputBinding Button="X" Command="{Binding BackSpaceCommand}" />
+                    <pin:GameControllerInputBinding Button="{Binding Path=(pin:GameControllerGesture.CancellationBinding)}" Command="{Binding CancelCommand}" />
+                    <pin:GameControllerInputBinding Button="Start" Command="{Binding ConfirmCommand}" />
+                    <pin:GameControllerInputBinding Button="LeftShoulder" Command="{Binding ClearTextCommand}" />
                 </TextBox.InputBindings>
             </TextBox>
 

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.General"
+﻿<local:SettingsSectionControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.General"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -44,4 +44,4 @@
                                Tag="{DynamicResource LOCSettingsImageScalerModeTooltip}"/>
         </DockPanel>
     </StackPanel>
-</UserControl>
+</local:SettingsSectionControl>

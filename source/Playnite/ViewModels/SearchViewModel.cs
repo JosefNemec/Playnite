@@ -203,9 +203,11 @@ namespace Playnite.ViewModels
             }
 
             foreach (var game in mainModel.Database.Games.
-                Where(g => GameFilter(g, searchTerm, args.GameFilterSettings, true)).
-                Take(60).
-                OrderBy(a => a.Name))
+                Where(g => GameFilter(g, searchTerm, args.GameFilterSettings, true))
+                .OrderBy(a => a.Name.GetLevenshteinDistanceIgnoreCase(searchTerm))
+                .ThenBy(x => x.Name)
+                .ThenByDescending(x => x.IsInstalled)
+                .Take(60))
             {
                 yield return new GameSearchItem(game, GetPrimaryGameAction(game))
                 {
@@ -363,7 +365,6 @@ namespace Playnite.ViewModels
         private bool filterHintVisible = false;
         private string filterHint;
         private string currentContextLabel;
-        private bool searchEnabled = true;
         #endregion backing fields
 
         private static readonly char[] textMatchSplitter = new char[] { ' ' };
@@ -379,6 +380,7 @@ namespace Playnite.ViewModels
         private CancellationTokenSource currentSearchToken;
         private int customProviderDeleteAttemps = 0;
         private readonly Stack<SearchContext> searchContextStack = new Stack<SearchContext>();
+        private const double defaultMinimumJaronWinklerSimilarity = 0.90;
         private bool isClosing = false;
 
         private string searchTerm;
@@ -405,7 +407,6 @@ namespace Playnite.ViewModels
             }
         }
 
-        public bool SearchEnabled { get => searchEnabled; set => SetValue(ref searchEnabled, value); }
         public bool FilterHintVisible { get => filterHintVisible; set => SetValue(ref filterHintVisible, value); }
         public string FilterHint { get => filterHint; set => SetValue(ref filterHint, value); }
         public GameSearchFilterSettings GameFilterSettings { get; set; }
@@ -655,7 +656,7 @@ namespace Playnite.ViewModels
             return results;
         }
 
-        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart)
+        public static bool MatchTextFilter(string filter, string toMatch, bool matchTargetAcronymStart, double minimumJaronWinklerSimilarity = defaultMinimumJaronWinklerSimilarity)
         {
             if (filter.IsNullOrWhiteSpace())
             {
@@ -668,6 +669,11 @@ namespace Playnite.ViewModels
             }
 
             if (filter.IsNullOrWhiteSpace() && toMatch.IsNullOrWhiteSpace())
+            {
+                return true;
+            }
+
+            if (filter.GetJaroWinklerSimilarityIgnoreCase(toMatch) >= minimumJaronWinklerSimilarity)
             {
                 return true;
             }
@@ -707,10 +713,6 @@ namespace Playnite.ViewModels
 
             searchDelayTimer.Stop();
             currentSearchToken?.Cancel();
-            if (currentSearchDelay > 0)
-            {
-                syncContext.Send((_) => SearchEnabled = false, null);
-            }
 
             var searchToken = new CancellationTokenSource();
             currentSearchToken = searchToken;
@@ -793,10 +795,6 @@ namespace Playnite.ViewModels
             searchToken.Dispose();
             longSearchTimer.Stop();
             SlowAnimationActive = false;
-            if (currentSearchDelay > 0)
-            {
-                syncContext.Send((_) => SearchEnabled = true, null);
-            }
         }
 
         private void TextBoxKeyDown(KeyEventArgs keyArgs)

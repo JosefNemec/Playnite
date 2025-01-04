@@ -18,7 +18,7 @@
         d:DesignWidth="1920" d:DesignHeight="1080">
 
     <c:WindowBase.InputBindings>
-        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
+        <pin:GameControllerInputBinding Button="{Binding Path=(pin:GameControllerGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
         <KeyBinding Key="Return" Command="{Binding InstallUpdateCommand}" />
         <KeyBinding Key="Backspace" Command="{Binding CloseCommand}" />
     </c:WindowBase.InputBindings>

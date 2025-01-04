@@ -414,7 +414,7 @@
                 <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Left"
                         Style="{StaticResource BottomButton}"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/libraryManager.html" />
+                        CommandParameter="{}{DocsRootUrl}/manual/libraryManager.html" />
                 <Button TabIndex="3" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right" IsCancel="True"
                         Style="{StaticResource BottomButton}"
                         Command="{Binding CancelCommand}"/>

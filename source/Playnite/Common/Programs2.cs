@@ -70,25 +70,21 @@ namespace Playnite.Common
                     Path = file.FullName,
                     Icon = file.FullName,
                     WorkDir = Path.GetDirectoryName(file.FullName),
-                    Name = programName
+                    Name = programName,
+                    AppId = filePath.MD5()
                 };
             }
             else if (file.Extension?.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true)
             {
                 var data = GetLnkShortcutData(file.FullName);
                 var name = Path.GetFileNameWithoutExtension(file.Name);
-                if (File.Exists(data.Path))
-                {
-                    var versionInfo = FileVersionInfo.GetVersionInfo(data.Path);
-                    name = !string.IsNullOrEmpty(versionInfo.ProductName?.Trim()) ? versionInfo.ProductName : Path.GetFileNameWithoutExtension(file.FullName);
-                }
-
                 var program = new Program
                 {
                     Path = data.Path,
                     WorkDir = data.WorkDir,
                     Arguments = data.Arguments,
-                    Name = name
+                    Name = name,
+                    AppId = filePath.MD5()
                 };
 
                 if (!data.Icon.IsNullOrEmpty())
@@ -117,7 +113,8 @@ namespace Playnite.Common
                 {
                     Path = file.FullName,
                     Name = Path.GetFileNameWithoutExtension(file.FullName),
-                    WorkDir = Path.GetDirectoryName(file.FullName)
+                    WorkDir = Path.GetDirectoryName(file.FullName),
+                    AppId = filePath.MD5()
                 };
             }
 
@@ -145,7 +142,8 @@ namespace Playnite.Common
                 Icon = link.IconLocation == ",0" ? link.TargetPath : link.IconLocation,
                 Arguments = link.Arguments,
                 WorkDir = link.WorkingDirectory,
-                Name = link.FullName
+                Name = link.FullName,
+                AppId = lnkPath.MD5()
             };
         }
         public static async Task<List<Program>> GetShortcutProgramsFromFolder(string path, CancellationTokenSource cancelToken = null)
@@ -224,7 +222,8 @@ namespace Playnite.Common
                         Path = target,
                         Icon = link.IconLocation,
                         Name = Path.GetFileNameWithoutExtension(shortcut.Name),
-                        WorkDir = link.WorkingDirectory
+                        WorkDir = link.WorkingDirectory,
+                        AppId = path.MD5()
                     };
 
                     apps.Add(app);

@@ -73,7 +73,7 @@ namespace Playnite.DesktopApp.Controls
                 InputGestureText = command?.GestureText
             };
 
-            if (locString?.StartsWith("LOC") == true)
+            if (locString?.StartsWith("LOC", StringComparison.Ordinal) == true)
             {
                 item.SetResourceReference(MenuItem.HeaderProperty, locString);
             }
@@ -185,23 +185,24 @@ namespace Playnite.DesktopApp.Controls
             var linksItem = AddMenuChild(Items, "LOCMenuLinksTitle", null);
             AddMenuChild(linksItem.Items, "Discord", GlobalCommands.NavigateUrlCommand, UrlConstants.Discord, "Images/discord.png");
             AddMenuChild(linksItem.Items, "Reddit", GlobalCommands.NavigateUrlCommand, UrlConstants.Reddit, "Images/reddit.png");
-            AddMenuChild(linksItem.Items, "Twitter", GlobalCommands.NavigateUrlCommand, UrlConstants.Twitter, "Images/twitter.png");
 
             // Help
             var helpItem = AddMenuChild(Items, "LOCMenuHelpTitle", null);
-            AddMenuChild(helpItem.Items, "Wiki / FAQ", GlobalCommands.NavigateUrlCommand, UrlConstants.Wiki);
+            AddMenuChild(helpItem.Items, "LOCUserManual", GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
             AddMenuChild(helpItem.Items, "LOCMenuIssues", mainModel.ReportIssueCommand);
             AddMenuChild(helpItem.Items, "LOCSDKDocumentation", GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
             helpItem.Items.Add(new Separator());
             AddMenuChild(helpItem.Items, "LOCCrashRestartPlaynite", mainModel.RestartApp);
             AddMenuChild(helpItem.Items, "LOCCrashRestartSafe", mainModel.RestartInSafeMode);
 
-            // Patreon
-            AddMenuChild(Items, "LOCMenuPatreonSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Patreon, "Images/patreon.png");
-
             // About
             AddMenuChild(Items, "LOCMenuAbout", mainModel.OpenAboutCommand, null, "AboutPlayniteIcon");
             AddMenuChild(Items, "LOCCheckForUpdates", mainModel.CheckForUpdateCommand);
+            Items.Add(new Separator());
+
+            // Patreon
+            AddMenuChild(Items, "LOCMenuPatreonSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Patreon, "Images/patreon.png");
+            AddMenuChild(Items, "LOCMenuKofiSupport", GlobalCommands.NavigateUrlCommand, UrlConstants.Kofi, "Images/kofi.png");
             Items.Add(new Separator());
 
             // Exit

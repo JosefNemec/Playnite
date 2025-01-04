@@ -80,7 +80,6 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-
         public RelayCommand<object> SetCategoriesCommand
         {
             get => new RelayCommand<object>((category) =>
@@ -126,7 +125,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var existing = Categories.FirstOrDefault(a => a.Item.Name.Equals(NewTextCat, StringComparison.CurrentCultureIgnoreCase));
+            var existing = Categories.FirstOrDefault(a => a.Item.Name?.Equals(NewTextCat, StringComparison.CurrentCultureIgnoreCase) == true);
             if (existing != null)
             {
                 existing.Selected = true;
@@ -141,7 +140,7 @@ namespace Playnite.DesktopApp.ViewModels
         }
 
         public void SetCategories()
-        {            
+        {
             using (database.BufferedUpdate())
             {
                 var newCategoeries = Categories.Where(a => (a.Selected == true || a.Selected == null) && database.Categories[a.Item.Id] == null);
@@ -239,7 +238,6 @@ namespace Playnite.DesktopApp.ViewModels
                         }
                         else
                         {
-
                             cat.Selected = null;
                         }
                     }

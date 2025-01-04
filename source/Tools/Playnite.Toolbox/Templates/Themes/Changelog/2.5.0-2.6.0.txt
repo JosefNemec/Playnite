@@ -1,0 +1,3 @@
+D	source/Playnite.DesktopApp/Themes/Desktop/Default/Images/twitter.png
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/MainMenu.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/SettingsMenus.xaml

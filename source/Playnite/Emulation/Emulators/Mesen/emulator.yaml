@@ -10,35 +10,35 @@ Profiles:
   - Name: Game Boy
     StartupArguments: '/fullscreen "{ImagePath}"'
     Platforms: [nintendo_gameboy]
-    ImageExtensions: [gb, gbs]
+    ImageExtensions: [gb, gbs, zip]
     StartupExecutable: ^Mesen\.exe$
   - Name: Game Boy Color
     StartupArguments: '/fullscreen "{ImagePath}"'
     Platforms: [nintendo_gameboycolor]
-    ImageExtensions: [gbc]
+    ImageExtensions: [gbc, zip]
     StartupExecutable: ^Mesen\.exe$
   - Name: NES
     StartupArguments: '/fullscreen "{ImagePath}"'
     Platforms: [nintendo_nes]
-    ImageExtensions: [nes, fds, unif, studybox, nsf, nsfe]
+    ImageExtensions: [nes, fds, unif, studybox, nsf, nsfe, zip]
     StartupExecutable: ^Mesen\.exe$
   - Name: PC Engine
     StartupArguments: '/fullscreen "{ImagePath}"'
     Platforms: [nec_turbografx_16]
-    ImageExtensions: [pce, hes]
+    ImageExtensions: [pce, hes, zip]
     StartupExecutable: ^Mesen\.exe$
   - Name: PC Engine CD
     StartupArguments: '/fullscreen "{ImagePath}"'
     Platforms: [nec_turbografx_cd]
-    ImageExtensions: [cue]
+    ImageExtensions: [cue, zip]
     StartupExecutable: ^Mesen\.exe$
   - Name: PC Engine SuperGrafx
     StartupArguments: '/fullscreen "{ImagePath}"'
     Platforms: [nec_supergrafx]
-    ImageExtensions: [pce, sgx]
+    ImageExtensions: [pce, sgx, zip]
     StartupExecutable: ^Mesen\.exe$
   - Name: SNES
     StartupArguments: '/fullscreen "{ImagePath}"'
     Platforms: [nintendo_super_nes]
-    ImageExtensions: [sfc, fig, smc, spc]
+    ImageExtensions: [sfc, fig, smc, spc, zip]
     StartupExecutable: ^Mesen\.exe$

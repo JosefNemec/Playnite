@@ -61,7 +61,7 @@ namespace Playnite.DesktopApp.Controls
             {
                 item.Header = "<NO_STRING>";
             }
-            else if (locString.StartsWith("LOC"))
+            else if (locString.StartsWith("LOC", StringComparison.Ordinal))
             {
                 item.SetResourceReference(MenuItem.HeaderProperty, locString);
             }
@@ -85,7 +85,7 @@ namespace Playnite.DesktopApp.Controls
 
             foreach (var game in mainModel.GamesEditor.QuickLaunchItems)
             {
-                AddMenuChild(Items, game.Name, mainModel.StartGameCommand, game, GetGameIcon(game));
+                AddMenuChild(Items, game.Name, mainModel.StartGameFromTrayCommand, game, GetGameIcon(game));
             }
 
             var favoriteGames = mainModel.GamesEditor.FavoriteQuickLaunchItems;
@@ -95,7 +95,7 @@ namespace Playnite.DesktopApp.Controls
                 var favoritesItem = AddMenuChild(Items, "LOCQuickFilterFavorites", null);
                 foreach (var game in favoriteGames)
                 {
-                    AddMenuChild(favoritesItem.Items, game.Name, mainModel.StartGameCommand, game, GetGameIcon(game));
+                    AddMenuChild(favoritesItem.Items, game.Name, mainModel.StartGameFromTrayCommand, game, GetGameIcon(game));
                 }
             }
 

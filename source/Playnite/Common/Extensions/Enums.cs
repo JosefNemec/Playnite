@@ -32,7 +32,7 @@ namespace System
             if (attributes != null && attributes.Length > 0)
             {
                 var desc = attributes[0].Description;
-                if (desc.StartsWith("LOC"))
+                if (desc.StartsWith("LOC", StringComparison.Ordinal))
                 {
                     return ResourceProvider.GetString(desc);
                 }

@@ -214,7 +214,7 @@ namespace Playnite.FullscreenApp.Windows
             {
                 var title = option.Title;
                 var button = new ButtonEx();
-                button.Content = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
+                button.Content = title.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(title) : title;
                 button.Style = ResourceProvider.GetResource("MessageBoxButton") as Style;
                 button.Tag = option;
                 button.Click += (s, __) =>
@@ -242,7 +242,7 @@ namespace Playnite.FullscreenApp.Windows
 
         private void SetStrings(string messageText, string messageCaption)
         {
-            if (messageText?.StartsWith("LOC") == true)
+            if (messageText?.StartsWith("LOC", StringComparison.Ordinal) == true)
             {
                 Text = ResourceProvider.GetString(messageText);
             }
@@ -251,7 +251,7 @@ namespace Playnite.FullscreenApp.Windows
                 Text = messageText;
             }
 
-            if (messageCaption?.StartsWith("LOC") == true)
+            if (messageCaption?.StartsWith("LOC", StringComparison.Ordinal) == true)
             {
                 Caption = ResourceProvider.GetString(messageCaption);
             }

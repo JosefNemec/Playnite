@@ -21,7 +21,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
     /// <summary>
     /// Interaction logic for Visuals.xaml
     /// </summary>
-    public partial class Menus : UserControl
+    public partial class Menus : SettingsSectionControl
     {
         public Menus()
         {
@@ -69,6 +69,22 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 ToggleButton.IsCheckedProperty,
                 mainModel.AppSettings.Fullscreen,
                 nameof(FullscreenSettings.MainMenuShowMinimize),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToggleLockSystem,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.MainMenuShowLock),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToggleLogoutUser,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.MainMenuShowLogout),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
         }

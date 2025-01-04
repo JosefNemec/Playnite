@@ -22,7 +22,7 @@ namespace Playnite.SDK
         /// Creates new instance of <see cref="LocalizedException"/>.
         /// </summary>
         /// <param name="message">Error message.</param>
-        public LocalizedException(string message) : base(message.StartsWith("LOC") ? ResourceProvider.GetString(message) : message)
+        public LocalizedException(string message) : base(message.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(message) : message)
         {
         }
     }

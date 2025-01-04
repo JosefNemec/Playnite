@@ -99,6 +99,7 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCErrorStartupNoController">Nije moguće utvrditi kako pokrenuti igru</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Uključeno</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Obriši</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Obriši nekorišćeno</sys:String>
     <sys:String x:Key="LOCRenameTitle">Preimenuj</sys:String>
@@ -167,7 +168,7 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCDetailsViewLabel">Prikaz detalja</sys:String>
     <sys:String x:Key="LOCCustomLabel">Prilagođeno</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Patroni</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licenca</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Suradnici</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Izlaženje iz Playnitea…</sys:String>
@@ -249,11 +250,15 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCMenuLinksTitle">Linkovi</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Pomoć</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Podržite na Patreonu</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK dokumentacija</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Ponovno pokreni sustav</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Isključi sustav</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendiraj sustav</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernacija sustava</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Izaberi igru nasumice</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Polja igara koja će se prikazivati na detaljnom panelu:</sys:String>
@@ -582,11 +587,9 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCAppStartupError"></sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError"></sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">Neuspjela inicijalizacija XInput sučelja.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError"></sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Uredite detalje igara</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Iz radnje za igru</sys:String>
     <sys:String x:Key="LOCImageURL">URL slike</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Dodaj link</sys:String>
     <sys:String x:Key="LOCAddRom">Dodaj ROM</sys:String>
@@ -624,6 +627,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCDoNothing">Ne čini ništa</sys:String>
     <sys:String x:Key="LOCMinimize">Umanji</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Povrati prozor</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Zatvori</sys:String>
     <sys:String x:Key="LOCChange">Promjeni</sys:String>
     <sys:String x:Key="LOCAdvanced">Napredno</sys:String>
@@ -757,7 +761,7 @@ Upravo je(ih) koristi {1} igra(e) i {2} emulator(a).</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Instalacijska veličina je iskazana u bajtovima</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Brojevi od 0 do 100 ili prazno su za bez bodova.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Razvoj Playnitea podržavaju sledeći Patroni:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Programiranje, lokalizacija i drugi suradnici bez posebnog redosleda:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Prekinite praćenje igre?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk"></sys:String>
@@ -917,6 +921,8 @@ Nova verzija: {2}</sys:String>
     <sys:String x:Key="LOCSelectActionTitle"></sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Poveznica</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Datoteka</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator"></sys:String>
@@ -1168,4 +1174,7 @@ Isključivanje ove postavke može dovesti do poteškoća s igrama koje ne dobiva
     <sys:String x:Key="LOCProgramFolder"></sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

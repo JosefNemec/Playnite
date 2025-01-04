@@ -498,7 +498,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void Play()
         {
-            editor.PlayGame(game.Game);
+            editor.PlayGame(game.Game, true);
         }
 
         public void Install()

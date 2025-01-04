@@ -24,10 +24,13 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand OpenSettingsCommand => new RelayCommand(() => OpenSettings());
         public RelayCommand SelectRandomGameCommand => new RelayCommand(() => PlayRandomGame(), () => MainModel.Database?.IsOpen == true);
         public RelayCommand OpenPatreonCommand => new RelayCommand(() => OpenPatreon());
+        public RelayCommand OpenKofiCommand => new RelayCommand(() => OpenKofi());
         public RelayCommand ShutdownSystemCommand => new RelayCommand(() => ShutdownSystem());
         public RelayCommand HibernateSystemCommand => new RelayCommand(() => HibernateSystem());
         public RelayCommand SleepSystemCommand => new RelayCommand(() => SleepSystem());
         public RelayCommand RestartSystemCommand => new RelayCommand(() => RestartSystem());
+        public RelayCommand LockSystemCommand => new RelayCommand(() => LockSystem());
+        public RelayCommand LogoutUserCommand => new RelayCommand(() => LogoutUser());
         public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
@@ -90,7 +93,7 @@ namespace Playnite.FullscreenApp.ViewModels
             if (model.SelectedAction == RandomGameSelectAction.Play)
             {
                 MainModel.SelectGame(model.SelectedGame.Id);
-                MainModel.GamesEditor.PlayGame(model.SelectedGame);
+                MainModel.GamesEditor.PlayGame(model.SelectedGame, true);
             }
             else if (model.SelectedAction == RandomGameSelectAction.Navigate)
             {
@@ -119,6 +122,12 @@ namespace Playnite.FullscreenApp.ViewModels
             NavigateUrlCommand.Navigate(UrlConstants.Patreon);
         }
 
+        public void OpenKofi()
+        {
+            Close();
+            NavigateUrlCommand.Navigate(UrlConstants.Kofi);
+        }
+
         public void ShutdownSystem()
         {
             Close();
@@ -129,14 +138,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                try
-                {
-                    Computer.Shutdown();
-                }
-                catch (Exception e)
-                {
-                    Dialogs.ShowErrorMessage(e.Message, "");
-                }
+                MainModel.App.QuitAndStart(Computer.ShutdownCmd.path, Computer.ShutdownCmd.args);
             }
         }
 
@@ -192,9 +194,45 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
+                MainModel.App.QuitAndStart(Computer.RestartCmd.path, Computer.RestartCmd.args);
+            }
+        }
+
+        public void LockSystem()
+        {
+            Close();
+            if (Dialogs.ShowMessage(LOC.ConfirumationAskGeneric, LOC.MenuLockSystem, MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            if (!PlayniteEnvironment.IsDebuggerAttached)
+            {
                 try
                 {
-                    Computer.Restart();
+                    Computer.Lock();
+                }
+                catch (Exception e)
+                {
+                    Dialogs.ShowErrorMessage(e.Message, "");
+                }
+            }
+        }
+
+        public void LogoutUser()
+        {
+            Close();
+            if (Dialogs.ShowMessage(LOC.ConfirumationAskGeneric, LOC.MenuLogoutUser, MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            if (!PlayniteEnvironment.IsDebuggerAttached)
+            {
+                try
+                {
+                    Computer.Logout();
+                    Shutdown();
                 }
                 catch (Exception e)
                 {

@@ -7,6 +7,7 @@
         xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
+        xmlns:sdkModel="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCMenuSoftwareTools}"
@@ -59,43 +60,62 @@
                          SelectedItem="{Binding SelectedApp, Mode=TwoWay}"/>
             </DockPanel>
 
-            <StackPanel Grid.Column="1" DataContext="{Binding SelectedApp}" Margin="5,0,0,0"
+            <DockPanel Grid.Column="1" DataContext="{Binding SelectedApp}" Margin="5,0,0,0"
                         IsEnabled="{Binding SelectedItem, ElementName=ListTools, Converter={StaticResource NullToBoolConverter}}">
-                <TextBlock Text="{DynamicResource LOCNameLabel}" Margin="5,0,5,0"  />
-                <TextBox Margin="5"
-                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>     
-                
-                <TextBlock Text="{DynamicResource LOCPathLabel}" Margin="5,5,5,0"  />
-                <pctrls:PathSelectionBox Margin="5" ShowFileSelector="True"
-                                         Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}"/>
-                
-                <TextBlock Text="{DynamicResource LOCArgumentsTitle}" Margin="5,5,5,0"  />
-                <TextBox Margin="5"
-                         Text="{Binding Arguments, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="{DynamicResource LOCTypeLabel}" Margin="5,5,5,0" DockPanel.Dock="Top"  />
+                <ComboBox Margin="5" DockPanel.Dock="Top"
+                          SelectedValue="{Binding AppType}"
+                          pbeh:SelectorBehaviors.EnumSource="{x:Type sdkModel:AppSoftwareType}"/>
 
-                <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" Margin="5,5,5,0"  />
-                <pctrls:PathSelectionBox Margin="5" ShowDirectorySelector="True"
-                                         Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="{DynamicResource LOCNameLabel}" Margin="5,0,5,0" DockPanel.Dock="Top"  />
+                <TextBox Margin="5" DockPanel.Dock="Top"
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <CheckBox Content="{DynamicResource LOCToolsShowOnSidebar}" Margin="5"
+                <TextBlock Text="{DynamicResource LOCPathLabel}" Margin="5,0,5,0" DockPanel.Dock="Top"
+                           Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Standard}}"  />
+                <pctrls:PathSelectionBox Margin="5" ShowFileSelector="True" DockPanel.Dock="Top"
+                                         Text="{Binding Path, UpdateSourceTrigger=PropertyChanged}"
+                           Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Standard}}"/>
+
+                <TextBlock Text="{DynamicResource LOCArgumentsTitle}" Margin="5,0,5,0" DockPanel.Dock="Top"
+                           Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Standard}}"  />
+                <TextBox Margin="5" DockPanel.Dock="Top"
+                         Text="{Binding Arguments, UpdateSourceTrigger=PropertyChanged}"
+                           Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Standard}}"/>
+
+                <TextBlock Text="{DynamicResource LOCWorkingDirTitle}" Margin="5,0,5,0" DockPanel.Dock="Top"
+                           Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Standard}}"  />
+                <pctrls:PathSelectionBox Margin="5" ShowDirectorySelector="True" DockPanel.Dock="Top"
+                                         Text="{Binding WorkingDir, UpdateSourceTrigger=PropertyChanged}"
+                           Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Standard}}"/>
+
+                <CheckBox Content="{DynamicResource LOCToolsShowOnSidebar}" Margin="5" DockPanel.Dock="Top"
                           IsChecked="{Binding ShowOnSidebar}" />
 
-                <TextBlock Text="{DynamicResource LOCGameIconTitle}" Margin="5,5,5,0" />    
+                <TextBlock Text="{DynamicResource LOCGameIconTitle}" Margin="5,5,5,0" DockPanel.Dock="Top" />    
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <Button Content="{DynamicResource LOCSelectIconTitle}"
-                            Margin="5" MaxWidth="160" HorizontalAlignment="Left"
+                            Margin="5" MaxWidth="160" HorizontalAlignment="Left" VerticalAlignment="Top"
                             Command="{Binding DataContext.SelectIconCommand, RelativeSource={RelativeSource AncestorType=Grid}}"
                             CommandParameter="{Binding}"/>
-                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5"
+                    <Button Content="{DynamicResource LOCRemoveLabel}" Margin="5" VerticalAlignment="Top"
                             Command="{Binding DataContext.RemoveIconCommand, RelativeSource={RelativeSource AncestorType=Grid}}"
                             CommandParameter="{Binding}"/>
-                </StackPanel>
-                <Image Stretch="Uniform" StretchDirection="DownOnly"
+                    <Image Stretch="Uniform" StretchDirection="DownOnly"
                         RenderOptions.BitmapScalingMode="Fant"
                         Margin="5,5,0,0"
-                        Height="64" Width="64" HorizontalAlignment="Left"
-                        Source="{Binding Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}" />                
-            </StackPanel>            
+                        MaxHeight="64" MaxWidth="64" HorizontalAlignment="Left"
+                        Source="{Binding Icon, Mode=OneWay, Converter={StaticResource ImageStringToImageConverterCached}}" />
+                </StackPanel>
+                <TextBlock Text="{DynamicResource LOCGameActionTypeScript}" DockPanel.Dock="Top" Margin="5,0,5,0"
+                           Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Script}}"/>
+                <TextBox AcceptsReturn="True" DockPanel.Dock="Top" Margin="5"
+                         FontFamily="{DynamicResource MonospaceFontFamily}"
+                         HorizontalScrollBarVisibility="Auto"
+                         VerticalScrollBarVisibility="Visible"
+                         Text="{Binding Script, UpdateSourceTrigger=PropertyChanged}"
+                         Visibility="{Binding AppType, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static sdkModel:AppSoftwareType.Script}}" />
+            </DockPanel>            
         </Grid>
     </DockPanel>
 </controls:WindowBase>

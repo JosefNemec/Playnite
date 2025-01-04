@@ -42,9 +42,15 @@ namespace Playnite.DesktopApp.ViewModels
         {
             get
             {
-                return "Theme API:\n" +
-                    $"Desktop: {ThemeManager.DesktopApiVersion.ToString(3)}\n" +
-                    $"Fullscreen: {ThemeManager.FullscreenApiVersion.ToString(3)}\n";
+                return "Theme API: " + ThemeManager.DesktopApiVersion.ToString(3);
+            }
+        }
+
+        public bool IsPortable
+        {
+            get
+            {
+                return PlaynitePaths.IsPortable;
             }
         }
 

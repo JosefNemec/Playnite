@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Menus"
+﻿<local:SettingsSectionControl x:Class="Playnite.FullscreenApp.Controls.SettingsSections.Menus"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,7 +21,9 @@
             <pctrls:CheckBoxEx x:Name="ToggleRestartSystem" Content="{DynamicResource LOCMenuRestartSystem}"  />
             <pctrls:CheckBoxEx x:Name="ToggleSuspendSystem" Content="{DynamicResource LOCMenuSuspendSystem}"  />
             <pctrls:CheckBoxEx x:Name="ToggleHibernateSystem" Content="{DynamicResource LOCMenuHibernateSystem}"  />
+            <pctrls:CheckBoxEx x:Name="ToggleLockSystem" Content="{DynamicResource LOCMenuLockSystem}"  />
+            <pctrls:CheckBoxEx x:Name="ToggleLogoutUser" Content="{DynamicResource LOCMenuLogoutUser}"  />
             <pctrls:CheckBoxEx x:Name="ToggleMinimize" Content="{DynamicResource LOCMinimize}"  />
         </StackPanel>
     </StackPanel>
-</UserControl>
+</local:SettingsSectionControl>

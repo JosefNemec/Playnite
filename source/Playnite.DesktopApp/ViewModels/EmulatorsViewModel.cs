@@ -209,8 +209,8 @@ namespace Playnite.DesktopApp.ViewModels
         public List<EmulatorDefinition> SelectableEmulatorDefinitions { get; set; }
         public IList<EmulatorDefinition> EmulatorDefinitions { get; set; }
 
-        public RelayCommand CloseCommand =>
-            new RelayCommand(() => CloseView(false));
+        public RelayCommand CancelCommand =>
+            new RelayCommand(() => CancelDialog());
 
         public RelayCommand ConfirmCommand =>
             new RelayCommand(() => ConfirmDialog());
@@ -302,10 +302,17 @@ namespace Playnite.DesktopApp.ViewModels
                 (a) => CopyScanConfig(a),
                 (a) => a != null);
 
+        public RelayCommand<CancelEventArgs> WindowClosingCommand =>
+            new RelayCommand<CancelEventArgs>((a) =>
+            {
+                WindowClosing(a);
+            });
+
         private IGameDatabaseMain database;
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
+        private bool ignoreClosingEvent = false;
 
         public EmulatorsViewModel(IGameDatabaseMain database, IWindowFactory window, IDialogsFactory dialogs, IResourceProvider resources)
         {
@@ -337,15 +344,114 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseView(bool? result)
+        // Required for cases where a window is closed using ALT-F4 or via X button
+        private void WindowClosing(CancelEventArgs e)
         {
-            window.Close(result);
+            if (ignoreClosingEvent)
+            {
+                return;
+            }
+
+            var res = CheckUnsavedChanges();
+            if (res == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
+            else if (res == MessageBoxResult.Yes)
+            {
+                ConfirmDataChanges();
+                return;
+            }
+        }
+
+        private MessageBoxResult CheckUnsavedChanges()
+        {
+            var hasChanges = false;
+            if (EditingEmulators.Count != database.Emulators.Count)
+            {
+                hasChanges = true;
+                goto checkDone;
+            }
+            else if (EditingEmulators.Count > 0)
+            {
+                var alist = EditingEmulators.OrderBy(a => a.Id).ToArray();
+                var blist = database.Emulators.OrderBy(a => a.Id).ToArray();
+                for (int i = 0; i < alist.Length; i++)
+                {
+                    var a = alist[i];
+                    var b = blist[i];
+                    if (a.Id != b.Id)
+                    {
+                        hasChanges = true;
+                        goto checkDone;
+                    }
+
+                    if (!a.IsEqualJson(b))
+                    {
+                        hasChanges = true;
+                        goto checkDone;
+                    }
+                }
+            }
+
+            if (EditingScanners.Count != database.GameScanners.Count)
+            {
+                hasChanges = true;
+            }
+            else if (EditingScanners.Count > 0)
+            {
+                var alist = EditingScanners.OrderBy(a => a.Id).ToArray();
+                var blist = database.GameScanners.OrderBy(a => a.Id).ToArray();
+                for (int i = 0; i < alist.Length; i++)
+                {
+                    var a = alist[i];
+                    var b = blist[i];
+                    if (a.Id != b.Id)
+                    {
+                        hasChanges = true;
+                        goto checkDone;
+                    }
+
+                    if (!a.IsEqualJson(b))
+                    {
+                        hasChanges = true;
+                        goto checkDone;
+                    }
+                }
+            }
+
+            checkDone:
+            if (hasChanges)
+            {
+                return dialogs.ShowMessage(LOC.UnsavedChangesAskMessage, "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+            }
+
+            return MessageBoxResult.None;
+        }
+
+        public void CancelDialog()
+        {
+            var res = CheckUnsavedChanges();
+            if (res == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            else if (res == MessageBoxResult.Yes)
+            {
+                ConfirmDialog();
+                return;
+            }
+
+            ignoreClosingEvent = true;
+            window.Close(false);
         }
 
         public void ConfirmDialog()
         {
             ConfirmDataChanges();
-            CloseView(true);
+            ignoreClosingEvent = true;
+            window.Close(true);
         }
 
         private void ConfirmDataChanges()

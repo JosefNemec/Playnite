@@ -55,11 +55,6 @@ namespace Playnite.Metadata
                 // Null check because downloader might be from library without official metadata provider
                 downloader?.Dispose();
             }
-
-            foreach (var downloader in metadataDownloaders)
-            {
-                downloader.Dispose();
-            }
         }
 
         private LibraryMetadataProvider GetLibraryMetadataDownloader(Guid pluginId)
@@ -555,7 +550,7 @@ namespace Playnite.Metadata
                                 {
                                     if (playniteSettings.DownloadBackgroundsImmediately && gameData.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id, true);
+                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id, true, cancelToken);
                                     }
                                     else if (!playniteSettings.DownloadBackgroundsImmediately &&
                                              !gameData.BackgroundImage.Path.IsNullOrEmpty())
@@ -564,7 +559,7 @@ namespace Playnite.Metadata
                                     }
                                     else if (gameData.BackgroundImage.HasImageData)
                                     {
-                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id, true);
+                                        game.BackgroundImage = database.AddFile(gameData.BackgroundImage, game.Id, true, cancelToken);
                                     }
                                 }
                             }
@@ -578,7 +573,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.CoverImage, MetadataField.CoverImage, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.CoverImage != null)
                                 {
-                                    game.CoverImage = database.AddFile(gameData.CoverImage, game.Id, true);
+                                    game.CoverImage = database.AddFile(gameData.CoverImage, game.Id, true, cancelToken);
                                 }
                             }
                         }
@@ -591,7 +586,7 @@ namespace Playnite.Metadata
                                 gameData = ProcessField(game, settings.Icon, MetadataField.Icon, existingStoreData, existingPluginData, cancelToken);
                                 if (gameData?.Icon != null)
                                 {
-                                    game.Icon = database.AddFile(gameData.Icon, game.Id, true);
+                                    game.Icon = database.AddFile(gameData.Icon, game.Id, true, cancelToken);
                                 }
                             }
                         }

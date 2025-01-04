@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Playnite.Common;
 using Playnite.SDK;
-using PlayniteServices.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -35,22 +34,6 @@ namespace Playnite.Services
         public List<string> GetPatrons()
         {
             return ExecuteGetRequest<List<string>>("/patreon/patrons");
-        }
-
-        public void PostUserUsage(string instId)
-        {
-            var root = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-            var winId = root.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", false).GetValue("ProductId").ToString().GetSHA256Hash();
-            var user = new User()
-            {
-                Id = winId,
-                WinVersion = Environment.OSVersion.VersionString,
-                PlayniteVersion = Updater.CurrentVersion.ToString(),
-                Is64Bit = Environment.Is64BitOperatingSystem
-            };
-
-            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-            HttpClient.PostAsync(Endpoint + "/playnite/users", content).Wait();
         }
 
         public Guid UploadDiagPackage(string diagPath)

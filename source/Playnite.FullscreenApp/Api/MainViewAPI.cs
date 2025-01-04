@@ -27,7 +27,7 @@ namespace Playnite.FullscreenApp.API
                 }
                 else
                 {
-                    return mainModel.SelectedGames?.Select(a => a.Game).ToList();
+                    return mainModel.SelectedGames?.Where(a => a != null).Select(a => a.Game).ToList();
                 }
             }
         }
@@ -36,6 +36,11 @@ namespace Playnite.FullscreenApp.API
         {
             get => DesktopView.Details;
             set { }
+        }
+
+        public FullscreenView ActiveFullscreenView
+        {
+            get => mainModel.GameDetailsVisible ? FullscreenView.Details : FullscreenView.List;
         }
 
         public SortOrder SortOrder

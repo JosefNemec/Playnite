@@ -79,7 +79,8 @@ namespace Playnite.Windows
 
                 asDialog = true;
                 WasClosed = false;
-                result = Window.ShowDialog();
+                Window.ShowDialog();
+                result = Window.DialogResultFixed;
             }, null);
 
             return result;
@@ -160,6 +161,12 @@ namespace Playnite.Windows
 
                 if (asDialog)
                 {
+                    // This is a workaround for issue with original DialogResult.
+                    // For some reason, setting DialogResult fails in rare cases on
+                    // "you need to open this window first" exception even when we are for sure
+                    // setting this after the window was already opened, see initFinishedEvent.
+                    Window.DialogResultFixed = result;
+
                     try
                     {
                         Window.DialogResult = result;
@@ -167,7 +174,6 @@ namespace Playnite.Windows
                     catch (Exception e)
                     {
                         logger.Error(e, $"DialogResult fail {GetType()}, {Window.Id}, {result}");
-                        throw;
                     }
                 }
 
@@ -182,21 +188,45 @@ namespace Playnite.Windows
 
         public static void RestoreWindow(this Window window)
         {
+            // This is the only reliable method that also doesn't result in issues like this:
+            // https://www.reddit.com/r/playnite/comments/f6d73l/bug_full_screen_ui_wont_respond_to_left_stick/
+            // Adapted from https://ask.xiaolee.net/questions/1040342
+
             try
             {
-                // This is the only reliable method that also doesn't result in issues like this:
-                // https://www.reddit.com/r/playnite/comments/f6d73l/bug_full_screen_ui_wont_respond_to_left_stick/
-                // Adapted from https://ask.xiaolee.net/questions/1040342
-                window.Show();
-                if (!window.Activate())
+                if (PlayniteApplication.Current?.Mode == ApplicationMode.Fullscreen)
                 {
-                    window.Topmost = true;
-                    window.Topmost = false;
-                }
+                    // Show() call is needed when restoring from minimized state otherwise restored window will
+                    // not render properly for some reason (will display just black).
+                    // BUT we can't call it always otherwise it will bug out restore if atl-tabbing was
+                    // used in the past for switching windows, see next comment...
+                    if (window.WindowState == WindowState.Minimized || window.Visibility != Visibility.Visible)
+                    {
+                        window.Show();
+                    }
 
-                if (window.WindowState == WindowState.Minimized)
-                {
+                    // This needs to be set always otherwise restore will not work if user alt-tabbed out of Playnite.
+                    // Yeah apparently switching windows is something Windows can't do reliably in 2023...
                     window.WindowState = WindowState.Normal;
+                    if (!window.Activate())
+                    {
+                        window.Topmost = true;
+                        window.Topmost = false;
+                    }
+                }
+                else
+                {
+                    window.Show();
+                    if (!window.Activate())
+                    {
+                        window.Topmost = true;
+                        window.Topmost = false;
+                    }
+
+                    if (window.WindowState == WindowState.Minimized)
+                    {
+                        window.WindowState = WindowState.Normal;
+                    }
                 }
 
                 //Get the process ID for this window's thread

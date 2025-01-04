@@ -1,4 +1,5 @@
-﻿using Playnite.Common;
+﻿using Flurl;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -81,6 +82,11 @@ namespace Playnite.Commands
             if (url.IsNullOrEmpty())
             {
                 throw new Exception("No URL was given.");
+            }
+
+            if (url.StartsWith("{DocsRootUrl}", StringComparison.OrdinalIgnoreCase))
+            {
+                url = Url.Combine(PlayniteEnvironment.DocsRootUrl, url.Replace("{DocsRootUrl}", ""));
             }
 
             url = url.Replace("{AppBranch}", PlayniteEnvironment.AppBranch);

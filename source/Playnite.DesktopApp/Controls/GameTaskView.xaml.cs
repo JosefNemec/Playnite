@@ -210,6 +210,19 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
+        public bool ShowTrackingTimeRows
+        {
+            get
+            {
+                if (GameTask == null)
+                {
+                    return false;
+                }
+
+                return GameTask.TrackingMode == TrackingMode.Directory && GameTask.Type != GameActionType.Emulator;
+            }
+        }
+
         public bool ShowScriptInput
         {
             get
@@ -323,6 +336,7 @@ namespace Playnite.DesktopApp.Controls
         private void ComboTrackingMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(ShowTrackingPathRow));
+            OnPropertyChanged(nameof(ShowTrackingTimeRows));
         }
 
         private void NotifyRowChange()

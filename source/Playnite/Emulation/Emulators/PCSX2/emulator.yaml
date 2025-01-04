@@ -12,6 +12,11 @@ Profiles:
     Platforms: [sony_playstation2]
     ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
     StartupExecutable: ^pcsx2x64\.exe$
+  - Name: Default QT
+    StartupArguments: '-fullscreen -slowboot -- {ImagePath}'
+    Platforms: [sony_playstation2]
+    ImageExtensions: [iso, bin, mdf, nrg, img, gz, cso, chd, m3u]
+    StartupExecutable: ^pcsx2-qt\.exe$
   - Name: 64bit AVX2
     StartupArguments: '"{ImagePath}" --nogui --fullboot --fullscreen'
     Platforms: [sony_playstation2]

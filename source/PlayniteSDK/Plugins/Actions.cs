@@ -59,6 +59,16 @@ namespace Playnite.SDK.Plugins
         public string WorkingDir { get; set; }
 
         /// <summary>
+        /// Gets or sets delay in milliseconds before tracking actually starts.
+        /// </summary>
+        public int InitialTrackingDelay { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets tracking requency in milliseconds.
+        /// </summary>
+        public int TrackingFrequency { get; set; } = 2000;
+
+        /// <summary>
         ///
         /// </summary>
         /// <param name="game"></param>

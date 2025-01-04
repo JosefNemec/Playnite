@@ -337,47 +337,57 @@ namespace Playnite.DesktopApp.Controls
 
             Items.Add(shortcutItem);
 
-            // Set Favorites
-            var favoriteItem = new MenuItem()
+            if (!games.All(a => a.Favorite))
             {
-                Header = ResourceProvider.GetString(LOC.FavoriteGame),
-                Icon = favoriteIcon,
-                Command = model.SetAsFavoritesCommand,
-                CommandParameter = games
-            };
+                var favoriteItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.FavoriteGame),
+                    Icon = favoriteIcon,
+                    Command = model.SetAsFavoritesCommand,
+                    CommandParameter = games
+                };
 
-            Items.Add(favoriteItem);
+                Items.Add(favoriteItem);
+            }
 
-            var unFavoriteItem = new MenuItem()
+            if (!games.All(a => !a.Favorite))
             {
-                Header = ResourceProvider.GetString(LOC.RemoveFavoriteGame),
-                Icon = unFavoriteIcon,
-                Command = model.RemoveAsFavoritesCommand,
-                CommandParameter = games
-            };
+                var unFavoriteItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.RemoveFavoriteGame),
+                    Icon = unFavoriteIcon,
+                    Command = model.RemoveAsFavoritesCommand,
+                    CommandParameter = games
+                };
 
-            Items.Add(unFavoriteItem);
+                Items.Add(unFavoriteItem);
+            }
 
-            // Set Hide
-            var hideItem = new MenuItem()
+            if (!games.All(a => a.Hidden))
             {
-                Header = ResourceProvider.GetString(LOC.HideGame),
-                Icon = hideIcon,
-                Command = model.SetAsHiddensCommand,
-                CommandParameter = games
-            };
+                var hideItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.HideGame),
+                    Icon = hideIcon,
+                    Command = model.SetAsHiddensCommand,
+                    CommandParameter = games
+                };
 
-            Items.Add(hideItem);
+                Items.Add(hideItem);
+            }
 
-            var unHideItem = new MenuItem()
+            if (!games.All(a => !a.Hidden))
             {
-                Header = ResourceProvider.GetString(LOC.UnHideGame),
-                Icon = unHideIcon,
-                Command = model.RemoveAsHiddensCommand,
-                CommandParameter = games
-            };
+                var unHideItem = new MenuItem()
+                {
+                    Header = ResourceProvider.GetString(LOC.UnHideGame),
+                    Icon = unHideIcon,
+                    Command = model.RemoveAsHiddensCommand,
+                    CommandParameter = games
+                };
 
-            Items.Add(unHideItem);
+                Items.Add(unHideItem);
+            }
 
             // InstallSize
             if (games.Any(x => x.IsInstalled))

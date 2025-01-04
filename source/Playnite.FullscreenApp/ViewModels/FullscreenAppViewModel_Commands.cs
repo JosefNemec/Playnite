@@ -238,7 +238,7 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 if (SelectedGame?.IsInstalled == true)
                 {
-                    GamesEditor.PlayGame(SelectedGame.Game);
+                    GamesEditor.PlayGame(SelectedGame.Game, true);
                 }
                 else if (SelectedGame?.IsInstalled == false)
                 {

@@ -138,6 +138,7 @@
     <Compile Include="Extensions\ObjectExtensionsTests.cs" />
     <Compile Include="ArchiveTests.cs" />
     <Compile Include="BackupTests.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="InstallSizeScanTests.cs" />
     <Compile Include="M3UTests.cs" />
     <Compile Include="SearchViewModelTests.cs" />

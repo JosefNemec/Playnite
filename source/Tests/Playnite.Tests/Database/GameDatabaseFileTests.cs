@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.Tests.Database
@@ -28,7 +29,7 @@ namespace Playnite.Tests.Database
 
                 void testImage(string path, string resFilter, string addedExt, bool addAsImage)
                 {
-                    var newPath = db.DB.AddFile(path, testId, addAsImage);
+                    var newPath = db.DB.AddFile(path, testId, addAsImage, CancellationToken.None);
                     Assert.IsNotNull(newPath);
                     StringAssert.EndsWith(addedExt, newPath);
                     Assert.AreEqual(1, Directory.GetFiles(filesDir, resFilter).Count());
@@ -37,7 +38,7 @@ namespace Playnite.Tests.Database
 
                 void testImageMeta(MetadataFile file, string resFilter)
                 {
-                    Assert.IsNotNull(db.DB.AddFile(file, testId, true));
+                    Assert.IsNotNull(db.DB.AddFile(file, testId, true, CancellationToken.None));
                     Assert.AreEqual(1, Directory.GetFiles(filesDir, resFilter).Count());
                     FileSystem.DeleteDirectory(filesDir);
                 }
@@ -76,7 +77,7 @@ namespace Playnite.Tests.Database
 
                 void testImage(string path)
                 {
-                    Assert.IsNull(db.DB.AddFile(path, testId, true));
+                    Assert.IsNull(db.DB.AddFile(path, testId, true, CancellationToken.None));
                     Assert.IsTrue(!Directory.Exists(filesDir) || Directory.GetFiles(filesDir, "*.*").Count() == 0);
                     FileSystem.DeleteDirectory(filesDir);
                 }
@@ -108,7 +109,7 @@ namespace Playnite.Tests.Database
                     Path.Combine(PlayniteTests.ResourcesPath, "Images", "applogo.png"),
                     Path.Combine(filesDir, "newFile.png"));
 
-                var resFile = db.DB.AddFile(Path.Combine(filesDir, "newFile.png"), testId, true);
+                var resFile = db.DB.AddFile(Path.Combine(filesDir, "newFile.png"), testId, true, CancellationToken.None);
                 Assert.AreEqual(testId + "\\" + "newFile.png", resFile);
                 Assert.AreEqual(1, Directory.GetFiles(filesDir, "*.*").Count());
             }

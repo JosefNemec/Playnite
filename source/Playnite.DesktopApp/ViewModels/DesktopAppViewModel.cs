@@ -131,6 +131,11 @@ namespace Playnite.DesktopApp.ViewModels
                 ignoreSelectionChanges = true;
                 SelectedGamesBinder = selectedGames?.Cast<object>().ToList();
                 ignoreSelectionChanges = false;
+
+                if (SelectedGames?.Count == 1)
+                {
+                    AppSettings.LastSelectedGame = SelectedGames[0].Id;
+                }
             }
         }
 
@@ -430,7 +435,15 @@ namespace Playnite.DesktopApp.ViewModels
 
             GamesView = new DesktopCollectionView(Database, AppSettings, Extensions);
             BindingOperations.EnableCollectionSynchronization(GamesView.Items, gamesLock);
-            if (GamesView.CollectionView.Count > 0)
+
+            if (AppSettings.LastSelectedGame != Guid.Empty)
+            {
+                if (!SelectGameImpl(AppSettings.LastSelectedGame) && GamesView.CollectionView.Count > 0)
+                {
+                    SelectGame((GamesView.CollectionView.GetItemAt(0) as GamesCollectionViewEntry).Id);
+                }
+            }
+            else if (GamesView.CollectionView.Count > 0)
             {
                 SelectGame((GamesView.CollectionView.GetItemAt(0) as GamesCollectionViewEntry).Id);
             }
@@ -770,7 +783,7 @@ namespace Playnite.DesktopApp.ViewModels
             model.OpenView();
         }
 
-        public override void SelectGame(Guid id, bool restoreView = false)
+        public bool SelectGameImpl(Guid id, bool restoreView = false)
         {
             var viewEntry = GamesView.Items.FirstOrDefault(a => a.Game.Id == id);
             if (viewEntry != null)
@@ -782,6 +795,13 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 Window.RestoreWindow();
             }
+
+            return viewEntry != null;
+        }
+
+        public override void SelectGame(Guid id, bool restoreView = false)
+        {
+            SelectGameImpl(id, restoreView);
         }
 
         public void SelectGames(IEnumerable<Guid> gameIds, bool restoreView = false)
@@ -887,7 +907,7 @@ namespace Playnite.DesktopApp.ViewModels
 
                             if (!icoPath.IsNullOrEmpty())
                             {
-                                game.Icon = Database.AddFile(icoPath, game.Id, true);
+                                game.Icon = Database.AddFile(icoPath, game.Id, true, CancellationToken.None);
                             }
 
                             Database.Games.Add(game);
@@ -996,7 +1016,7 @@ namespace Playnite.DesktopApp.ViewModels
             if (model.SelectedAction == RandomGameSelectAction.Play)
             {
                 SelectGame(model.SelectedGame.Id);
-                GamesEditor.PlayGame(model.SelectedGame);
+                GamesEditor.PlayGame(model.SelectedGame, true);
             }
             else if (model.SelectedAction == RandomGameSelectAction.Navigate)
             {
@@ -1242,7 +1262,7 @@ namespace Playnite.DesktopApp.ViewModels
             // Help
             yield return new SearchItem(LOC.MenuAbout, LOC.Open, () => OpenAboutCommand.Execute(null), "AboutPlayniteIcon");
             yield return new SearchItem(LOC.CrashRestartSafe, LOC.Activate, () => RestartInSafeMode.Execute(null));
-            yield return createItemG(LOC.MenuHelpTitle, "Wiki / FAQ", GlobalCommands.NavigateUrlCommand, UrlConstants.Wiki);
+            yield return createItemG(LOC.MenuHelpTitle, LOC.OpenGameManual, GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
             yield return createItemG(LOC.MenuHelpTitle, LOC.MenuIssues, ReportIssueCommand);
             yield return createItemG(LOC.MenuHelpTitle, LOC.SDKDocumentation, GlobalCommands.NavigateUrlCommand, UrlConstants.SdkDocs);
 

@@ -101,6 +101,7 @@
     <sys:String x:Key="LOCErrorStartupNoController">无法确定如何启动游戏。</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">启用</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">已停用</sys:String>
     <sys:String x:Key="LOCRemoveTitle">移除</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">移除未使用</sys:String>
     <sys:String x:Key="LOCRenameTitle">重命名</sys:String>
@@ -169,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">详情视图</sys:String>
     <sys:String x:Key="LOCCustomLabel">自定义</sys:String>
     <sys:String x:Key="LOCURLLabel">网址</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">赞助者</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">特别致谢</sys:String>
     <sys:String x:Key="LOCLicenseLabel">许可协议</sys:String>
     <sys:String x:Key="LOCContributorsLabel">贡献者</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">正在退出 Playnite…</sys:String>
@@ -250,12 +251,16 @@
     <sys:String x:Key="LOCMenuOpenFullscreen">切换至全屏模式</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">链接</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">帮助</sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport">在Patreon上支持我们</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">在 Patreon 上支持我们</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">在 Ko-Fi 上支持我们</sys:String>
+    <sys:String x:Key="LOCUserManual">用户手册</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK文档</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">重启系统</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">关闭系统</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">挂起系统</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">休眠系统</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">锁定系统</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">登出用户</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">挑选一个随机游戏</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">要在详情面板上显示的游戏字段：</sys:String>
@@ -603,11 +608,9 @@
 
 更多信息参见 https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">未能导入模拟器，因为定义文件缺失或损坏。</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">用户界面初始化失败。</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">执行菜单动作失败。</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">编辑游戏详情</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">由游玩指令获取</sys:String>
     <sys:String x:Key="LOCImageURL">图像网址</sys:String>
     <sys:String x:Key="LOCAddLinkButton">添加链接</sys:String>
     <sys:String x:Key="LOCAddRom">添加 ROM</sys:String>
@@ -645,6 +648,7 @@
     <sys:String x:Key="LOCDoNothing">什么也不做</sys:String>
     <sys:String x:Key="LOCMinimize">最小化</sys:String>
     <sys:String x:Key="LOCRestoreWindow">恢复窗口</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">仅当从界面启动时还原窗口</sys:String>
     <sys:String x:Key="LOCClose">关闭</sys:String>
     <sys:String x:Key="LOCChange">更改</sys:String>
     <sys:String x:Key="LOCAdvanced">高级</sys:String>
@@ -750,7 +754,7 @@
     <sys:String x:Key="LOCHideGame">隐藏此游戏</sys:String>
     <sys:String x:Key="LOCUnHideGame">从隐藏中移除</sys:String>
     <sys:String x:Key="LOCEnableHdr">启用 HDR 支持</sys:String>
-    <sys:String x:Key="LOCDisableHdr">禁用 HDR支持</sys:String>
+    <sys:String x:Key="LOCDisableHdr">禁用 HDR 支持</sys:String>
     <sys:String x:Key="LOCEditGame">编辑…</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">计算占用空间</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">计算占用空间 (所有游戏)</sys:String>
@@ -773,12 +777,12 @@
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">在指定页面找不到游戏“{0}”的相关信息。</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">提示：你可以在编辑单个游戏时通过“编辑”菜单选项使用更多高级资料数据下载过程。</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">某些行动正在进行时不可用。</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本使用HTML语法</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">描述文本支持 HTML 语法</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">游玩时间按秒记录。</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">占用空间以字节表示。</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">发布日期必须以“年-月-日”格式设置。月和日的值可以省略。</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">分值范围为 0 至 100，留空为不评分。</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 的开发得到了这些赞助者的支持：</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 的开发得到了这些 Patreon 和 Ko-fi 赞助者的支持：</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">代码、本地化和其他贡献者（排名不分先后）：</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">取消游戏监控？</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">正在监测安装状态。您是否要取消监测，并将游戏返回到之前的状态？</sys:String>
@@ -955,7 +959,9 @@
     <sys:String x:Key="LOCIncludePluginGameActions">启用库集成的游玩指令</sys:String>
     <sys:String x:Key="LOCSelectActionTitle">选择指令</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">追踪模式</sys:String>
-    <sys:String x:Key="LOCActionTrackingPath">跟踪路径</sys:String>
+    <sys:String x:Key="LOCActionTrackingPath">追踪路径</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">初始追踪延迟</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">追踪频率</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">链接</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">文件</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">模拟器</sys:String>
@@ -1001,10 +1007,10 @@
 禁用此项可能会导致游戏在启动时无法获得输入焦点！</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">字体大小</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">小字体</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">XInput 设备支持</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">如果禁用，Playnite 将不接受任何 XInput 接口的输入。
+    <sys:String x:Key="LOCSettingsXInputProcessing">游戏控制器支持</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">如果禁用，Playnite 将不接受任何游戏控制器输入。
         
-若您使用了从 XInput 输入到键鼠输入的转换工具，却在 Playnite 得到了前述的双重输入，可禁用此项。</sys:String>
+如果您使用了将游戏控制器输入转换为鼠标/键盘输入的工具，且在 Playnite 中出现了重复输入的情况，禁用此选项。</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">在主菜单上显示项目：</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">反转 X/A 主视图按钮绑定</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">互换这两个按钮的绑定功能：“启动游戏”与“在主视图上显示游戏详情页面”。</sys:String>
@@ -1098,7 +1104,7 @@
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">添加模拟器的扫描配置以扫描特定文件夹。请将正确配置模拟器（通过库 -&gt; 配置模拟器菜单）作为导入游戏的前提。</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">为新添加游戏指定的默认状态</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已指定首次游玩的游戏状态</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">无法初始化 PowerShell 脚本运行时阶段。若您是 Windows 7 用户，尝试（重新）安装 PowerShell 5.1 以解决这个问题。</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">无法初始化 PowerShell 脚本运行时。如果您是 Windows 7 用户，尝试安装或重装 PowerShell 5.1 以解决这个问题。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名称的筛选器预设。使用新的设置更新预设吗？</sys:String>
     <sys:String x:Key="LOCSortingNameAutofill">自动填写批量添加的游戏的排序名称</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillTooltip">在您通过库更新、模拟器文件夹扫描或常规文件夹扫描添加游戏时，自动使用游戏名的易排序表述填写“排序名称”字段，例如“The Witcher 3”将得到排序名称为“Witcher 03”。</sys:String>
@@ -1247,4 +1253,7 @@ Playnite 将自动重启以开始备份过程。</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">已检测到库文件损坏，Playnite 现在将关闭。
     
 在 Playnite 的 GitHub 页面创建新的问题（issue），请求修复您文件中的损坏问题。</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">您想要保存您所作的更改吗？</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">便携式安装</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">未检测到控制器</sys:String>
 </ResourceDictionary>

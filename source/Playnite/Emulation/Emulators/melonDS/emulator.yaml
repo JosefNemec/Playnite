@@ -5,5 +5,5 @@ Profiles:
   - Name: Default
     StartupArguments: '"{ImagePath}" -f'
     Platforms: [nintendo_ds, nintendo_dsi]
-    ImageExtensions: [nds]
+    ImageExtensions: [nds, zip]
     StartupExecutable: ^melonDS\.exe$

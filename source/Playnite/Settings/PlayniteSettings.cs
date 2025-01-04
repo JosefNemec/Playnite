@@ -77,15 +77,24 @@ namespace Playnite
 
     public enum AfterLaunchOptions
     {
+        [Description(LOC.DoNothing)]
         None,
+        [Description(LOC.Minimize)]
         Minimize,
+        [Description(LOC.Close)]
         Close
     }
 
     public enum AfterGameCloseOptions
     {
+        [Description(LOC.DoNothing)]
         None,
-        Restore
+        [Description(LOC.RestoreWindow)]
+        Restore,
+        [Description(LOC.RestoreWindowOnlyFromUI)]
+        RestoreOnlyFromUI,
+        [Description(LOC.ExitPlaynite)]
+        Exit
     }
 
     public enum ApplicationView
@@ -175,7 +184,9 @@ namespace Playnite
         [Description(LOC.OptionOnceADay)]
         OnceADay = 1,
         [Description(LOC.OptionOnceAWeek)]
-        OnceAWeek = 2
+        OnceAWeek = 2,
+        [Description(LOC.OptionOnlyManually)]
+        Manually = 3
     }
 
     public enum LibraryUpdateCheckFrequency
@@ -196,6 +207,16 @@ namespace Playnite
         OnceADay = 1,
         [Description(LOC.OptionOnceAWeek)]
         OnceAWeek = 2
+    }
+
+    public enum SafeSearchSettings
+    {
+        [Description(LOC.Default)]
+        Default,
+        [Description(LOC.EnabledTitle)]
+        On,
+        [Description(LOC.DisabledTitle)]
+        Off
     }
 
     public class DateFormattingOptions : ObservableObject
@@ -1084,7 +1105,7 @@ namespace Playnite
             }
         }
 
-        private AfterGameCloseOptions afterGameClose = AfterGameCloseOptions.Restore;
+        private AfterGameCloseOptions afterGameClose = AfterGameCloseOptions.RestoreOnlyFromUI;
         public AfterGameCloseOptions AfterGameClose
         {
             get
@@ -2183,13 +2204,13 @@ namespace Playnite
         private bool updateNotificationOnPatchesOnly = false;
         public bool UpdateNotificationOnPatchesOnly { get => updateNotificationOnPatchesOnly; set => SetValue(ref updateNotificationOnPatchesOnly, value); }
 
-        private string webImageSarchIconTerm = "{Name} icon";
+        private string webImageSarchIconTerm = "\"{Name}\" icon";
         public string WebImageSarchIconTerm { get => webImageSarchIconTerm; set => SetValue(ref webImageSarchIconTerm, value); }
 
-        private string webImageSarchCoverTerm = "{Name} cover";
+        private string webImageSarchCoverTerm = "\"{Name}\" cover";
         public string WebImageSarchCoverTerm { get => webImageSarchCoverTerm; set => SetValue(ref webImageSarchCoverTerm, value); }
 
-        private string webImageSarchBackgroundTerm = "{Name} wallpaper";
+        private string webImageSarchBackgroundTerm = "\"{Name}\" wallpaper";
         public string WebImageSarchBackgroundTerm { get => webImageSarchBackgroundTerm; set => SetValue(ref webImageSarchBackgroundTerm, value); }
 
         // See OnCreateAutomationPeer comment in WindowBase.cs for why this exists.
@@ -2199,6 +2220,11 @@ namespace Playnite
 
         private bool partialDescriptionLoading = true;
         public bool PartialDescriptionLoading { get => partialDescriptionLoading; set => SetValue(ref partialDescriptionLoading, value); }
+
+        private SafeSearchSettings webImageSafeSearch = SafeSearchSettings.Default;
+        public SafeSearchSettings WebImageSafeSearch { get => webImageSafeSearch; set => SetValue(ref webImageSafeSearch, value); }
+
+        public Guid LastSelectedGame { get; set; }
 
         [JsonIgnore]
         public static bool IsPortable
@@ -2618,6 +2644,8 @@ namespace Playnite
         {
             switch (CheckForProgramUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
@@ -2632,6 +2660,8 @@ namespace Playnite
         {
             switch (CheckForAddonUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
@@ -2646,6 +2676,8 @@ namespace Playnite
         {
             switch (CheckForProgramUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
@@ -2660,6 +2692,8 @@ namespace Playnite
         {
             switch (CheckForAddonUpdates)
             {
+                case UpdateCheckFrequency.Manually:
+                    return false;
                 case UpdateCheckFrequency.OnceADay:
                     return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:

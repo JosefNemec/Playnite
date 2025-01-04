@@ -19,7 +19,7 @@
     <c:WindowBase.InputBindings>
         <KeyBinding Key="Esc" Command="{Binding CloseCommand}" />
         <KeyBinding Key="Backspace" Command="{Binding CloseCommand}" />
-        <pin:XInputBinding Button="{Binding Path=(pin:XInputGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
+        <pin:GameControllerInputBinding Button="{Binding Path=(pin:GameControllerGesture.CancellationBinding)}" Command="{Binding CloseCommand}" />
     </c:WindowBase.InputBindings>
 
     <Viewbox>
@@ -94,6 +94,16 @@
                                      Command="{Binding RestartSystemCommand}"
                                      Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowRestart, Converter={StaticResource BooleanToVisibilityConverter}}"
                                      AutomationProperties.Name="{DynamicResource LOCMenuRestartSystem}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonLockSystem"
+                                  ContentTemplate="{DynamicResource MainMenuLockSystemButtonTemplate}"
+                                  Command="{Binding LockSystemCommand}"
+                                  Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowLock, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  AutomationProperties.Name="{DynamicResource LOCMenuRestartSystem}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonLogoutUser"
+                                  ContentTemplate="{DynamicResource MainMenuLogoutUserButtonTemplate}"
+                                  Command="{Binding LogoutUserCommand}"
+                                  Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowLogout, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  AutomationProperties.Name="{DynamicResource LOCMenuRestartSystem}"/>
 
                     <Canvas Height="40" />
                     <pctrls:ButtonEx x:Name="PART_ButtonFeedback"
@@ -104,6 +114,10 @@
                                      ContentTemplate="{DynamicResource MainMenuPatreonButtonTemplate}"
                                      Command="{Binding OpenPatreonCommand}"
                                      AutomationProperties.Name="{DynamicResource LOCMenuPatreonSupport}" />
+                    <pctrls:ButtonEx x:Name="PART_ButtonKofi"
+                                     ContentTemplate="{DynamicResource MainMenuKofiButtonTemplate}"
+                                     Command="{Binding OpenKofiCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuKofiSupport}" />
                     <pctrls:ButtonEx x:Name="PART_ButtonMinimize"
                                      ContentTemplate="{DynamicResource MainMenuMinimizeButtonTemplate}"
                                      Command="{Binding MinimizeCommand}"                                     

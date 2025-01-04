@@ -27,6 +27,7 @@ using Playnite.Common.Media.Icons;
 using System.Diagnostics;
 using Playnite.SDK.Exceptions;
 using Playnite.Scripting.PowerShell;
+using System.Threading;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -82,6 +83,8 @@ namespace Playnite.DesktopApp.ViewModels
         private GameDatabase database;
         private ExtensionFactory extensions;
         private PlayniteSettings appSettings;
+        private bool ignoreClosingEvent = false;
+        private readonly MultiEditGame originalMultiGameObj;
 
         public string IconMetadata
         {
@@ -307,6 +310,7 @@ namespace Playnite.DesktopApp.ViewModels
             IsSingleGameEdit = false;
             IsMultiGameEdit = true;
             EditingGame = GameTools.GetMultiGameEditObject(Games);
+            originalMultiGameObj = EditingGame.GetClone<Game, MultiEditGame>();
             ShowCheckBoxes = true;
             ShowMetaDownload = false;
             Init(database, window, dialogs, resources, extensions, appSettings, EditingGame as MultiEditGame);
@@ -450,9 +454,59 @@ namespace Playnite.DesktopApp.ViewModels
             return window.CreateAndOpenDialog(this);
         }
 
-        public void CloseView(bool? result = false)
+        // Required for cases where a window is closed using ALT-F4 or via X button
+        private void WindowClosing(CancelEventArgs e)
+        {
+            if (ignoreClosingEvent)
+            {
+                return;
+            }
+
+            var res = CheckUnsavedChanges();
+            if (res == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
+            else if (res == MessageBoxResult.Yes)
+            {
+                ConfirmDialog(true);
+                return;
+            }
+        }
+
+        private MessageBoxResult CheckUnsavedChanges()
+        {
+            var compareObj = IsMultiGameEdit ? originalMultiGameObj : Game;
+            if (!EditingGame.IsEqualJson(compareObj))
+            {
+                return dialogs.ShowMessage(LOC.UnsavedChangesAskMessage, "", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+            }
+
+            return MessageBoxResult.None;
+        }
+
+        public void CancelDialog()
+        {
+            var res = CheckUnsavedChanges();
+            if (res == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            else if (res == MessageBoxResult.Yes)
+            {
+                ConfirmDialog(false);
+                return;
+            }
+
+            ignoreClosingEvent = true;
+            CloseView(false, false);
+        }
+
+        public void CloseView(bool result, bool alreadyClosing)
         {
             CleanupTempFiles();
+
             try
             {
                 LibraryPluginMetadataDownloader?.Dispose();
@@ -462,10 +516,13 @@ namespace Playnite.DesktopApp.ViewModels
                 logger.Error(e, $"Failed to dispose library metadata downloader {LibraryPluginMetadataDownloader.GetType()}");
             }
 
-            window.Close(result);
+            if (!alreadyClosing)
+            {
+                window.Close(result);
+            }
         }
 
-        public void ConfirmDialog()
+        public void ConfirmDialog(bool alreadyClosing)
         {
             try
             {
@@ -822,7 +879,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.Icon))
                     {
-                        game.Icon = database.AddFile(EditingGame.Icon, game.Id, true);
+                        game.Icon = database.AddFile(EditingGame.Icon, game.Id, true, CancellationToken.None);
                     }
                 }
 
@@ -834,7 +891,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.CoverImage))
                     {
-                        game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id, true);
+                        game.CoverImage = database.AddFile(EditingGame.CoverImage, game.Id, true, CancellationToken.None);
                     }
                 }
 
@@ -850,7 +907,7 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                     else if (File.Exists(EditingGame.BackgroundImage))
                     {
-                        game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id, true);
+                        game.BackgroundImage = database.AddFile(EditingGame.BackgroundImage, game.Id, true, CancellationToken.None);
                     }
                 }
 
@@ -869,7 +926,8 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             database.Games.EndBufferUpdate();
-            CloseView(true);
+            ignoreClosingEvent = true;
+            CloseView(true, alreadyClosing);
         }
 
         internal void CleanupTempFiles()
@@ -915,31 +973,6 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 logger.Error(e, "Failed to cleanup temporary files.");
             }
-        }
-
-        public void UseExeIcon()
-        {
-            var playAction = EditingGame.GameActions?.FirstOrDefault(a => a.IsPlayAction && a.Type == GameActionType.File);
-            if (playAction == null)
-            {
-                dialogs.ShowErrorMessage(LOC.ExecIconMissingPlayAction, "");
-                return;
-            }
-
-            var path = EditingGame.GetRawExecutablePath();
-            if (string.IsNullOrEmpty(path) || !File.Exists(path))
-            {
-                logger.Error($"Can't find executable for icon extraction, file {path}");
-                return;
-            }
-
-            var icon = ProcessMetadataFile(path, tempEditingIconFileName);
-            if (string.IsNullOrEmpty(icon))
-            {
-                return;
-            }
-
-            EditingGame.Icon = icon;
         }
 
         public string GetDroppedImage(DragEventArgs args, List<string> compatibleExtensions)

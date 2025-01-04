@@ -314,6 +314,10 @@ namespace Playnite
         /// </summary>
         public const string EnabledTitle = "LOCEnabledTitle";
         /// <summary>
+        /// Disabled
+        /// </summary>
+        public const string DisabledTitle = "LOCDisabledTitle";
+        /// <summary>
         /// Remove
         /// </summary>
         public const string RemoveTitle = "LOCRemoveTitle";
@@ -586,9 +590,9 @@ namespace Playnite
         /// </summary>
         public const string URLLabel = "LOCURLLabel";
         /// <summary>
-        /// Patrons
+        /// Special thanks
         /// </summary>
-        public const string PatronsLabel = "LOCPatronsLabel";
+        public const string SpecialThanks = "LOCSpecialThanks";
         /// <summary>
         /// License
         /// </summary>
@@ -906,6 +910,14 @@ namespace Playnite
         /// </summary>
         public const string MenuPatreonSupport = "LOCMenuPatreonSupport";
         /// <summary>
+        /// Support on Ko-fi
+        /// </summary>
+        public const string MenuKofiSupport = "LOCMenuKofiSupport";
+        /// <summary>
+        /// User manual
+        /// </summary>
+        public const string UserManual = "LOCUserManual";
+        /// <summary>
         /// SDK Documentation
         /// </summary>
         public const string SDKDocumentation = "LOCSDKDocumentation";
@@ -925,6 +937,14 @@ namespace Playnite
         /// Hibernate System
         /// </summary>
         public const string MenuHibernateSystem = "LOCMenuHibernateSystem";
+        /// <summary>
+        /// Lock System
+        /// </summary>
+        public const string MenuLockSystem = "LOCMenuLockSystem";
+        /// <summary>
+        /// Log Out User
+        /// </summary>
+        public const string MenuLogoutUser = "LOCMenuLogoutUser";
         /// <summary>
         /// Pick a Random Game
         /// </summary>
@@ -2170,10 +2190,6 @@ namespace Playnite
         /// </summary>
         public const string EmulatorImportNoDefinitionsError = "LOCEmulatorImportNoDefinitionsError";
         /// <summary>
-        /// Failed to initialize XInput interface.
-        /// </summary>
-        public const string XInputInitErrorMessage = "LOCXInputInitErrorMessage";
-        /// <summary>
         /// Failed to execute menu action.
         /// </summary>
         public const string MenuActionExecError = "LOCMenuActionExecError";
@@ -2181,10 +2197,6 @@ namespace Playnite
         /// Edit Game Details
         /// </summary>
         public const string GameEditWindowTitle = "LOCGameEditWindowTitle";
-        /// <summary>
-        /// From Play action
-        /// </summary>
-        public const string UseExeIcon = "LOCUseExeIcon";
         /// <summary>
         /// Image URL
         /// </summary>
@@ -2333,6 +2345,10 @@ namespace Playnite
         /// Restore window
         /// </summary>
         public const string RestoreWindow = "LOCRestoreWindow";
+        /// <summary>
+        /// Restore window only when launched from UI
+        /// </summary>
+        public const string RestoreWindowOnlyFromUI = "LOCRestoreWindowOnlyFromUI";
         /// <summary>
         /// Close
         /// </summary>
@@ -2862,7 +2878,7 @@ namespace Playnite
         /// </summary>
         public const string DescriptionScoreValues = "LOCDescriptionScoreValues";
         /// <summary>
-        /// Playnite's development is supported by these patrons:
+        /// Playnite's development is supported by these patrons and Ko-fi members:
         /// </summary>
         public const string PatreonDevelopMessage = "LOCPatreonDevelopMessage";
         /// <summary>
@@ -3446,6 +3462,14 @@ namespace Playnite
         /// </summary>
         public const string ActionTrackingPath = "LOCActionTrackingPath";
         /// <summary>
+        /// Initial tracking delay
+        /// </summary>
+        public const string ActionTrackingTrackingDelay = "LOCActionTrackingTrackingDelay";
+        /// <summary>
+        /// Tracking frequency
+        /// </summary>
+        public const string ActionTrackingFrequency = "LOCActionTrackingFrequency";
+        /// <summary>
         /// Link
         /// </summary>
         public const string GameActionTypeLink = "LOCGameActionTypeLink";
@@ -3618,11 +3642,11 @@ namespace Playnite
         /// </summary>
         public const string SettingsFontSizeSmall = "LOCSettingsFontSizeSmall";
         /// <summary>
-        /// XInput Device Support
+        /// Game controller support
         /// </summary>
         public const string SettingsXInputProcessing = "LOCSettingsXInputProcessing";
         /// <summary>
-        /// If disabled, Playnite won't accept any XInput interface inputs.
+        /// If disabled, Playnite won't accept any game controller inputs.
         /// </summary>
         public const string SettingsXInputProcessingDescription = "LOCSettingsXInputProcessingDescription";
         /// <summary>
@@ -4429,5 +4453,17 @@ namespace Playnite
         /// Library file corruption has been detected, Playnite will now shutdown.
         /// </summary>
         public const string DBCorruptionCrashMessage = "LOCDBCorruptionCrashMessage";
+        /// <summary>
+        /// Do you want to save changes you made?
+        /// </summary>
+        public const string UnsavedChangesAskMessage = "LOCUnsavedChangesAskMessage";
+        /// <summary>
+        /// Portable installation
+        /// </summary>
+        public const string PortableInstallation = "LOCPortableInstallation";
+        /// <summary>
+        /// No controllers detected
+        /// </summary>
+        public const string NoControllersDetected = "LOCNoControllersDetected";
     }
 }

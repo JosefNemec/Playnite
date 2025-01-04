@@ -5,10 +5,10 @@ Profiles:
   - Name: 64bit
     StartupArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
     Platforms: [sony_psp]
-    ImageExtensions: [iso, cso, pbp]
+    ImageExtensions: [iso, cso, pbp, chd]
     StartupExecutable: ^PPSSPPWindows64\.exe$
   - Name: 32bit
     StartupArguments: '"{ImagePath}" --pause-menu-exit --fullscreen'
     Platforms: [sony_psp]
-    ImageExtensions: [iso, cso, pbp]
+    ImageExtensions: [iso, cso, pbp, chd]
     StartupExecutable: ^PPSSPPWindows\.exe$

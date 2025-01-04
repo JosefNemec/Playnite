@@ -12,21 +12,28 @@
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:psdkm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:mods="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{DynamicResource LOCEmulatorsWindowTitle}"
-        Width="1024" Height="768"
+        Width="1024" Height="720"
         AutomationProperties.AutomationId="WindowEmulators"
         x:Name="WindowEmulators">
 
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <controls:WindowBase.Resources>
         <pcon:NullToBoolConverter x:Key="NullToBoolConverter" />
         <pcon:ListToStringConverter x:Key="ListToStringConverter" />
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
         <Thickness x:Key="EditSeparatorMargin">5,5,5,7</Thickness>
     </controls:WindowBase.Resources>
-    
     <DockPanel>
         <DockPanel.Resources>
             <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
@@ -36,13 +43,13 @@
             <DockPanel KeyboardNavigation.TabNavigation="Local" LastChildFill="False" Margin="5">
                 <Button TabIndex="2" Name="ButtonCancel" Content="{DynamicResource LOCCancelLabel}" DockPanel.Dock="Right"
                         IsCancel="True" Style="{StaticResource BottomButton}"
-                        Command="{Binding CloseCommand}"/>
+                        Command="{Binding CancelCommand}"/>
                 <Button TabIndex="1" Name="ButtonOK" Content="{DynamicResource LOCSaveLabel}" DockPanel.Dock="Right"
                         Style="{StaticResource BottomButton}" 
                         Command="{Binding ConfirmCommand}"/>
                 <Button Content="{DynamicResource LOCMenuHelpTitle}"
                         Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                        CommandParameter="https://playnite.link/docs/{AppBranch}/manual/emulators.html"                        
+                        CommandParameter="{}{DocsRootUrl}/manual/features/emulationSupport/emulationSupportOverview.html"                        
                         DockPanel.Dock="Left" Style="{StaticResource BottomButton}"/>
             </DockPanel>
         </Border>

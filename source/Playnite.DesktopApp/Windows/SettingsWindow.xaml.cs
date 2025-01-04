@@ -22,9 +22,15 @@ namespace Playnite.DesktopApp.Windows
     /// </summary>
     public partial class SettingsWindow : WindowBase
     {
+        private WindowPositionHandler positionManager;
+
         public SettingsWindow() : base(nameof(SettingsWindow), true)
         {
             InitializeComponent();
+            if (PlayniteApplication.Current.AppSettings != null)
+            {
+                positionManager = new WindowPositionHandler(this, "SettingsWindow", PlayniteApplication.Current.AppSettings.WindowPositions);
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -506,7 +507,7 @@ namespace Playnite.DesktopApp.ViewModels
                 for (int i = 0; i < publishers.Count; i++)
                 {
                     var p = publishers[i];
-                    var existingDev = result.Developers.FirstOrDefault(d => GameFieldComparer.StringEquals(p.Name, d.Name));
+                    var existingDev = result.Developers?.FirstOrDefault(d => GameFieldComparer.StringEquals(p.Name, d.Name));
                     if (existingDev != null && p.Id != existingDev.Id)
                     {
                         publishers[i] = existingDev;
@@ -666,6 +667,8 @@ namespace Playnite.DesktopApp.ViewModels
         private string ReplaceImageSearchVariables(string input)
         {
             input = input.Replace("{Name}", editingGame.Name, StringComparison.OrdinalIgnoreCase);
+            var yearToReplace = editingGame.ReleaseDate.HasValue ? editingGame.ReleaseDate.Value.Year.ToString() : string.Empty;
+            input = input.Replace("{ReleaseYear}", yearToReplace, StringComparison.OrdinalIgnoreCase);
             return input.Replace("{Platform}", editingGame.Platforms?.FirstOrDefault()?.Name, StringComparison.OrdinalIgnoreCase);
         }
 
@@ -708,6 +711,7 @@ namespace Playnite.DesktopApp.ViewModels
                 new GoogleImageDownloadWindowFactory(),
                 resources,
                 searchTerm,
+                appSettings.WebImageSafeSearch,
                 imageWidth,
                 imageHeight);
             if (model.OpenView() == true)
@@ -720,8 +724,14 @@ namespace Playnite.DesktopApp.ViewModels
                         return null;
                     }
 
-                    var response = HttpDownloader.GetResponseCode(url);
-                    if (response != HttpStatusCode.OK)
+                    if (model.SafeSearch != appSettings.WebImageSafeSearch)
+                    {
+                        appSettings.WebImageSafeSearch = model.SafeSearch;
+                    }
+
+                    var cancelToken = new CancellationTokenSource(Common.Timer.SecondsToMilliseconds(5));
+                    var response = HttpDownloader.GetResponseCode(url, cancelToken.Token, out var test);
+                    if (!response.IsSuccess())
                     {
                         logger.Warn("Original Google image request failed: " + response.ToString());
                         url = model.SelectedImage.ThumbUrl;

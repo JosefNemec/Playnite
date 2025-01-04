@@ -100,7 +100,6 @@
             <Grid DockPanel.Dock="Left" VerticalAlignment="Center">
                 <TextBox Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"
                          Style="{DynamicResource SearchWindowSearchBox}"
-                         IsEnabled="{Binding SearchEnabled}"
                          Name="TextSearchBox">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewKeyDown">
@@ -134,6 +133,11 @@
                  SelectedItem="{Binding SelectedSearchItem, Mode=TwoWay}"
                  ItemsSource="{Binding SearchResults}"
                  ItemTemplateSelector="{StaticResource SearchItemTemplateSelector}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick" >
+                    <i:InvokeCommandAction Command="{Binding PrimaryActionCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </ListBox>
     </DockPanel>    
 </c:WindowBase>

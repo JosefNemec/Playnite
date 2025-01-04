@@ -30,6 +30,21 @@ namespace Playnite.SDK
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    public enum FullscreenView : int
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        List = 0,
+        /// <summary>
+        ///
+        /// </summary>
+        Details = 1,
+    }
+
+    /// <summary>
     /// Describes object providing API for main UI view.
     /// </summary>
     public interface IMainViewAPI
@@ -38,6 +53,11 @@ namespace Playnite.SDK
         /// Gets currently active Desktop mode view.
         /// </summary>
         DesktopView ActiveDesktopView { get; set; }
+
+        /// <summary>
+        /// Gets currently active Fullscreen mode view.
+        /// </summary>
+        FullscreenView ActiveFullscreenView { get; }
 
         /// <summary>
         /// Gets currently active sorting order.

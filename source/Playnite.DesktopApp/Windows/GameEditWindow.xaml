@@ -23,7 +23,13 @@
         WindowStartupLocation="CenterOwner"
         x:Name="mainWindow"
         AutomationProperties.AutomationId="WindowGameEdit">
-
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <prism:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <controls:WindowBase.Resources>
         <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
         <pcon:ReleaseDateToStringConverter x:Key="ReleaseDateToStringConverter" />
@@ -663,13 +669,6 @@
                                     <Button Margin="5,0,0,0" ToolTip="{DynamicResource LOCSettingsWebImageSearch}"
                                             Content="&#xef3e;" FontFamily="{DynamicResource FontIcoFont}"
                                             Command="{Binding SelectGoogleIconCommand}" />
-                                    <Button Name="ButtonUseExeIcon"
-                                            Content="&#xec74;"
-                                            FontFamily="{DynamicResource FontIcoFont}"
-                                            ToolTip="{DynamicResource LOCUseExeIcon}"
-                                            Command="{Binding UseExeIconCommand}"
-                                            Visibility="{Binding IsSingleGameEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                            Margin="5,0,0,0"/>
                                 </StackPanel>
                                 <TextBlock Text="{Binding IconMetadata}" DockPanel.Dock="Top" Margin="5,0,0,0"
                                            ToolTipService.InitialShowDelay="0" HorizontalAlignment="Left">
@@ -1030,7 +1029,7 @@
                     <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Bottom" MinWidth="80"
                             Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}" Margin="10,0,0,5"
                             HorizontalAlignment="Left"
-                            CommandParameter="https://playnite.link/docs/{AppBranch}/manual/gameActions.html" />
+                            CommandParameter="{}{DocsRootUrl}/manual/library/games/gameActions.html" />
                     
                     <TextBlock Visibility="{Binding IsMultiGameEdit,Converter={StaticResource BooleanToVisibilityConverter}}"
                         Text="{DynamicResource LOCMultiEditOverwriteWarning}" Foreground="{DynamicResource WarningBrush}"
@@ -1092,7 +1091,7 @@
                     <Button Content="{DynamicResource LOCMenuHelpTitle}" DockPanel.Dock="Bottom" MinWidth="80"
                             HorizontalAlignment="Left"
                             Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://playnite.link/docs/{AppBranch}/manual/gameScripts.html" />
+                            CommandParameter="{}{DocsRootUrl}/manual/features/scriptingSupport/scriptingSupportOverview.html" />
                     <Grid DockPanel.Dock="Top" Margin="0,5,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />

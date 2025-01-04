@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.DesktopApp.Tests.ViewModels
@@ -30,9 +31,9 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                     Name = "Test Game"
                 };
 
-                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
                 game.Icon = origIcon;
                 game.CoverImage = origImage;
                 game.BackgroundImage = origBackground;
@@ -50,7 +51,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
                 model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
                 model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);
-                model.ConfirmDialog();
+                model.ConfirmDialog(false);
 
                 Assert.AreNotEqual(game.Icon, origIcon);
                 Assert.AreNotEqual(game.CoverImage, origImage);
@@ -78,9 +79,9 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                     Name = "Test Game"
                 };
 
-                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                var origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                var origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                var origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
                 game.Icon = origIcon;
                 game.CoverImage = origImage;
                 game.BackgroundImage = origBackground;
@@ -92,9 +93,9 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                     Name = "Test Game 2"
                 };
 
-                origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
-                origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true);
+                origIcon = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                origImage = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
+                origBackground = db.AddFile(PlayniteTests.GenerateFakeFile(), game.Id, true, CancellationToken.None);
                 game.Icon = origIcon;
                 game.CoverImage = origImage;
                 game.BackgroundImage = origBackground;
@@ -113,7 +114,7 @@ namespace Playnite.DesktopApp.Tests.ViewModels
                 model.EditingGame.Icon = Path.Combine(temp.TempPath, newIcon.FileName);
                 model.EditingGame.CoverImage = Path.Combine(temp.TempPath, newImage.FileName);
                 model.EditingGame.BackgroundImage = Path.Combine(temp.TempPath, newBackground.FileName);
-                model.ConfirmDialog();
+                model.ConfirmDialog(false);
 
                 Assert.AreEqual(3, Directory.GetFiles(db.GetFileStoragePath(games[0].Id)).Count());
                 Assert.AreEqual(3, Directory.GetFiles(db.GetFileStoragePath(games[1].Id)).Count());

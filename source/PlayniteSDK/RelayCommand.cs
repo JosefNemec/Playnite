@@ -196,7 +196,14 @@ namespace Playnite.SDK
         /// <param name="parameter"></param>
         public override void Execute(object parameter)
         {
-            execute((T)parameter);
+            if (parameter is T param)
+            {
+                execute(param);
+            }
+            else
+            {
+                execute(default);
+            }
         }
     }
 }

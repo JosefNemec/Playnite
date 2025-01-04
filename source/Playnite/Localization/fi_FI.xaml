@@ -98,6 +98,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCErrorStartupNoController">Pelin aloittaminen ei onnistunut.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Käytössä</sys:String>
+    <sys:String x:Key="LOCDisabledTitle"></sys:String>
     <sys:String x:Key="LOCRemoveTitle">Poista</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Poista käyttämättömät</sys:String>
     <sys:String x:Key="LOCRenameTitle">Nimeä uudelleen</sys:String>
@@ -166,7 +167,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCDetailsViewLabel">Lisätietonäkymä</sys:String>
     <sys:String x:Key="LOCCustomLabel">Mukautettu</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Tukijat</sys:String>
+    <sys:String x:Key="LOCSpecialThanks"></sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisenssi</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Avustajat</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite suljetaan…</sys:String>
@@ -248,11 +249,15 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCMenuLinksTitle">Linkit</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ohjeet</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Tue Patreonissa</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCUserManual"></sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentaatio</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Käynnistä järjestelmä uudelleen</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Sammuta järjestelmä</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Aseta järjestelmä valmiustilaan</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Aseta järjestelmä horrostilaan</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Valitse satunnainen peli</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Lisätietopaneelissa näytettävät kentät:</sys:String>
@@ -590,11 +595,9 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCAppStartupError">Sovelluksen käynnistys epäonnistui.</sys:String>
     <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Emulaattoreita ei voi tuoda puuttuvan tai viallisen määrittelytiedoston takia.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">XInput käyttöliittymän alustus epäonnistui. </sys:String>
     <sys:String x:Key="LOCMenuActionExecError">Valikkotoiminnon suorittaminen epäonnistui.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Muokkaa pelin tietoja</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">Pelaa-toiminnosta</sys:String>
     <sys:String x:Key="LOCImageURL">Kuvan URL</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Lisää linkki</sys:String>
     <sys:String x:Key="LOCAddRom">Lisää ROM</sys:String>
@@ -632,6 +635,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCDoNothing">Älä tee mitään</sys:String>
     <sys:String x:Key="LOCMinimize">Pienennä</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Palauta ikkuna</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
     <sys:String x:Key="LOCClose">Sulje</sys:String>
     <sys:String x:Key="LOCChange">Muuta</sys:String>
     <sys:String x:Key="LOCAdvanced">Edistynyt</sys:String>
@@ -765,7 +769,7 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes"></sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip"></sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Luku välillä 0 ja 100 tai tyhjä jos ei pisteytystä.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">Playniten kehitystä ovat tukeneet:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Ohjelmoinnissa, lokalisoinnissa ja muussa avustaneet, ei missään erityisessä järjestyksessä:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Peruuta pelin seuranta?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Asennuksen seuranta on käynnissä. Haluatko peruuttaa prosessin ja palauttaa pelin aiempaan tilaan?</sys:String>
@@ -942,6 +946,8 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCSelectActionTitle">Valitse toiminto</sys:String>
     <sys:String x:Key="LOCActionTrackingMode"></sys:String>
     <sys:String x:Key="LOCActionTrackingPath"></sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay"></sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency"></sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Linkki</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Tiedosto</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulaattori</sys:String>
@@ -987,10 +993,8 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
 Tämän asetuksen käytöstä pois ottaminen voi johtaa syötön ongelmiin peliä käynnistettäessä!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Fonttikoko</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Pieni fonttikoko</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">XInput-laitteiden tuki</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Playnite ei voi käyttää XInput-laitteita jos tämä asetus on pois päältä.
-
-Poista käytöstä jos käytät työkaluja jotka muuntavat XInput-laitteiden käskyt hiiri- ja näppäimistökäskyiksi ja jos tuplasyöttöä tapahtuu.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Näytä kohteet päävalikossa:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Käännetty X/A pää näkymän nappuloiden sitominen</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Vaihda pelin käynnistys ja pelin tiedot sivun napit keskenään.</sys:String>
@@ -1204,4 +1208,7 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCProgramFolder"></sys:String>
     <sys:String x:Key="LOCUserDataFolder"></sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
 </ResourceDictionary>

@@ -65,7 +65,7 @@ namespace Playnite
             {
                 try
                 {
-                    var plugItems = plugin.Plugin.GetSearchGlobalCommands();
+                    var plugItems = plugin.Plugin.GetSearchGlobalCommands()?.ToList();
                     if (plugItems.HasItems())
                     {
                         items.AddRange(plugItems);
@@ -169,7 +169,7 @@ namespace Playnite
             // Play/Install
             if (game.IsInstalled)
             {
-                items.Add(new SearchItem(LOC.PlayGame, LOC.Activate, () => model.StartGame(game), startIcon));
+                items.Add(new SearchItem(LOC.PlayGame, LOC.Activate, () => model.StartGame(game, true), startIcon));
             }
             else if (!game.IsCustomGame)
             {

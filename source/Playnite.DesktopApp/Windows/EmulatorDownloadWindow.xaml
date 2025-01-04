@@ -17,7 +17,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCDownloadEmulatorsButton}" WindowStartupLocation="CenterOwner"
-        Height="768" Width="900" x:Name="WindowEmulatorImport"
+        Height="600" Width="900" x:Name="WindowEmulatorImport"
         AutomationProperties.AutomationId="WindowEmulatorImport">
 
     <controls:WindowBase.Resources>

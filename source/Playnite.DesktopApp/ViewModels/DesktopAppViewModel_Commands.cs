@@ -60,6 +60,7 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<Guid> OpenPluginSettingsCommand { get; private set; }
 
         public RelayCommand<Game> StartGameCommand { get; private set; }
+        public RelayCommand<Game> StartGameFromTrayCommand { get; private set; }
         public RelayCommand<AppSoftware> StartSoftwareToolCommand { get; private set; }
         public RelayCommand<Game> InstallGameCommand { get; private set; }
         public RelayCommand<Game> UninstallGameCommand { get; private set; }
@@ -361,11 +362,19 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (game != null)
                 {
-                    StartGame(game);
+                    StartGame(game, true);
                 }
                 else if (SelectedGame != null)
                 {
-                    StartGame(SelectedGame.Game);
+                    StartGame(SelectedGame.Game, true);
+                }
+            });
+
+            StartGameFromTrayCommand = new RelayCommand<Game>((game) =>
+            {
+                if (game != null)
+                {
+                    StartGame(game, false);
                 }
             });
 
@@ -422,7 +431,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             StartSelectedGameCommand = new RelayCommand<object>((a) =>
             {
-                GamesEditor.PlayGame(SelectedGame.Game);
+                GamesEditor.PlayGame(SelectedGame.Game, true);
             },
             (a) => SelectedGames?.Count() == 1,
             new KeyGesture(Key.Enter));

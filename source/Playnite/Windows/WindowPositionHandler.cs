@@ -201,14 +201,19 @@ namespace Playnite.Windows
                 {
                     if (data.Size != null)
                     {
-                        if (data.Size.X >= window.MinWidth)
+                        // If a window has some constrains set (like min size), then size change event is called when settings new value
+                        // which overrides saved data because of Window_SizeChanged callback.
+                        var width = data.Size.X;
+                        var height = data.Size.Y;
+
+                        if (width >= window.MinWidth)
                         {
-                            window.Width = data.Size.X;
+                            window.Width = width;
                         }
 
-                        if (data.Size.Y >= window.MinHeight)
+                        if (height >= window.MinHeight)
                         {
-                            window.Height = data.Size.Y;
+                            window.Height = height;
                         }
                     }
                 }

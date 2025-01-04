@@ -62,11 +62,11 @@ namespace Playnite.FullscreenApp.Controls.Views
 
             PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Back)));
             PanelItemsHost.InputBindings.Add(new KeyBinding(mainModel.ToggleFiltersCommand, new KeyGesture(Key.Escape)));
-            var backInput = new XInputBinding { Command = mainModel.ToggleFiltersCommand };
+            var backInput = new GameControllerInputBinding { Command = mainModel.ToggleFiltersCommand };
             BindingTools.SetBinding(backInput,
-                XInputBinding.ButtonProperty,
+                GameControllerInputBinding.ButtonProperty,
                 null,
-                typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+                typeof(GameControllerGesture).GetProperty(nameof(GameControllerGesture.CancellationBinding)));
             PanelItemsHost.InputBindings.Add(backInput);
             BindingTools.SetBinding(PanelItemsHost,
                 FocusBahaviors.FocusBindingProperty,

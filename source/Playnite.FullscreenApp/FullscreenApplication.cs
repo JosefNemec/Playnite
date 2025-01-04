@@ -7,6 +7,7 @@ using Playnite.FullscreenApp.API;
 using Playnite.FullscreenApp.Markup;
 using Playnite.FullscreenApp.ViewModels;
 using Playnite.FullscreenApp.Windows;
+using Playnite.Input;
 using Playnite.Plugins;
 using Playnite.SDK;
 using Playnite.SDK.Models;
@@ -19,6 +20,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using static SDL2.SDL;
+using static SDL2.SDL_mixer;
 
 namespace Playnite.FullscreenApp
 {
@@ -38,11 +42,13 @@ namespace Playnite.FullscreenApp
         }
 
         private SplashScreen splashScreen;
-        public static AudioPlaybackEngine Audio;
-        private static CachedSound navigateSound;
-        private static CachedSound activateSound;
-        private static PlayingSound backgroundSound;
-        private static string backgroundSoundPath;
+        private bool sdlInitialized = false;
+        public static AudioEngine Audio { get; private set; }
+        public static IntPtr NavigateSound { get; private set; }
+        public static IntPtr ActivateSound { get; private set; }
+        public static IntPtr BackgroundMusic { get; private set; }
+        public GameControllerManager GameController { get; private set; }
+        private bool exitSDLEventLoop = false;
 
         public new static FullscreenApplication Current
         {
@@ -74,7 +80,8 @@ namespace Playnite.FullscreenApp
             {
                 Dialogs.ShowErrorMessage(ResourceProvider.GetString("LOCFullscreenFirstTimeError"), "");
                 ReleaseResources();
-                Process.Start(PlaynitePaths.DesktopExecutablePath);
+                FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
+                ProcessStarter.StartProcess(PlaynitePaths.DesktopExecutablePath, new CmdLineOptions() { MasterInstance = true }.ToString());
                 CurrentNative.Shutdown(0);
                 return false;
             }
@@ -87,14 +94,14 @@ namespace Playnite.FullscreenApp
             InstantiateApp();
             AppUriHandler = MainModel.ProcessUriRequest;
             MigrateDatabase();
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            InitSDL();
             SetupInputs();
+            InitializeAudio();
             OpenMainViewAsync();
-#pragma warning disable CS4014
             StartUpdateCheckerAsync();
-            SendUsageDataAsync();
 #pragma warning restore CS4014
             ProcessArguments();
-            InitializeAudio();
             PropertyChanged += FullscreenApplication_PropertyChanged;
             return true;
         }
@@ -134,16 +141,16 @@ namespace Playnite.FullscreenApp
             {
                 if (AppSettings.Fullscreen.MuteInBackground && IsActive == false)
                 {
-                    Audio?.PausePlayback();
+                    Mix_PauseMusic();
                 }
                 else if (AppSettings.Fullscreen.MuteInBackground && IsActive == true)
                 {
-                    Audio?.ResumePlayback();
+                    Mix_ResumeMusic();
                 }
 
-                if (XInputDevice != null)
+                if (GameController != null && AppSettings.Fullscreen.EnableGameControllerSupport)
                 {
-                    XInputDevice.StandardProcessingEnabled = IsActive;
+                    GameController.StandardProcessingEnabled = IsActive;
                 }
             }
         }
@@ -208,26 +215,35 @@ namespace Playnite.FullscreenApp
 
         public override void ReleaseResources(bool releaseCefSharp = true)
         {
-            StopBackgroundSound();
-            Audio?.Dispose();
+            if (ResourcesReleased)
+            {
+                return;
+            }
+
+            exitSDLEventLoop = true;
+            GameController?.Dispose();
+            if (Audio != null)
+            {
+                Mix_FreeChunk(NavigateSound);
+                Mix_FreeChunk(ActivateSound);
+                Mix_FreeMusic(BackgroundMusic);
+                Audio.Dispose();
+            }
+
+            SDL_Quit();
             base.ReleaseResources(releaseCefSharp);
         }
 
         public static void PlayNavigateSound()
         {
-            if (Audio == null || navigateSound == null)
-            {
-                return;
-            }
-
-            if (!SoundsEnabled || Current.AppSettings.Fullscreen.InterfaceVolume == 0)
+            if (Current.AppSettings.Fullscreen.InterfaceVolume == 0)
             {
                 return;
             }
 
             try
             {
-                Audio?.PlaySound(navigateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+                Mix_PlayChannel(-1, NavigateSound, 0);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -237,19 +253,14 @@ namespace Playnite.FullscreenApp
 
         public static void PlayActivateSound()
         {
-            if (Audio == null || activateSound == null)
-            {
-                return;
-            }
-
-            if (!SoundsEnabled || Current.AppSettings.Fullscreen.InterfaceVolume == 0)
+            if (Current.AppSettings.Fullscreen.InterfaceVolume == 0)
             {
                 return;
             }
 
             try
             {
-                Audio?.PlaySound(activateSound, Current.AppSettings.Fullscreen.InterfaceVolume);
+                Mix_PlayChannel(-1, ActivateSound, 0);
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -257,72 +268,94 @@ namespace Playnite.FullscreenApp
             }
         }
 
-        public static void PlayBackgroundSound()
+        private void InitSDL()
         {
-            if (Audio == null)
+            if (SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_AUDIO) < 0)
             {
+                logger.Error("SDL2 failed to initialize:");
+                logger.Error(SDL_GetError());
                 return;
             }
 
-            if (backgroundSoundPath.IsNullOrEmpty())
+            if (SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt") == -1)
+            {
+                logger.Error("Failed to load game controller mappings:");
+                logger.Error(SDL_GetError());
+            }
+
+            SDL_GameControllerEventState(SDL_IGNORE);
+            SDLEventLoop();
+            sdlInitialized = true;
+        }
+
+        private void SDLEventLoop()
+        {
+            Task.Run(async () =>
+            {
+                while (!exitSDLEventLoop)
+                {
+                    while (SDL_PollEvent(out var sdlEvent) == 1)
+                    {
+                        if (sdlEvent.type == SDL_EventType.SDL_CONTROLLERDEVICEADDED)
+                        {
+                            GameController?.AddController(sdlEvent.cdevice.which);
+                        }
+
+                        if (sdlEvent.type == SDL_EventType.SDL_CONTROLLERDEVICEREMOVED)
+                        {
+                            GameController?.RemoveController(sdlEvent.cdevice.which);
+                        }
+                    }
+
+                    GameController?.ProcessInputs();
+                    await Task.Delay(16);
+                }
+            });
+        }
+
+        public void SetupInputs()
+        {
+            if (!sdlInitialized)
             {
                 return;
             }
 
             try
             {
-                if (backgroundSound == null)
+                if (GameController == null)
                 {
-                    backgroundSound = Audio.PlaySound(
-                        backgroundSoundPath,
-                        Current.AppSettings.Fullscreen.BackgroundVolume,
-                        true);
+                    GameController = new GameControllerManager(InputManager.Current, AppSettings)
+                    {
+                        SimulateAllKeys = false,
+                        SimulateNavigationKeys = true,
+                        StandardProcessingEnabled = AppSettings.Fullscreen.EnableGameControllerSupport
+                    };
                 }
 
-                if (backgroundSound != null)
-                {
-                    backgroundSound.Volume = Current.AppSettings.Fullscreen.BackgroundVolume;
-                }
+                UpdateConfirmCancelBindings();
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(e, "Failed to play background sound.");
+                logger.Error(e, "Failed intitialize game controller devices.");
             }
         }
 
-        public static void StopBackgroundSound()
+        public void UpdateConfirmCancelBindings()
         {
-            if (Audio == null)
-            {
-                return;
-            }
-
-            if (backgroundSound != null)
-            {
-                Audio.StopPlayback(backgroundSound);
-                backgroundSound.Dispose();
-                backgroundSound = null;
-            }
-        }
-
-        public static void SetBackgroundSoundVolume(float volume)
-        {
-            if (Audio == null)
-            {
-                return;
-            }
-
-            if (backgroundSound != null)
-            {
-                backgroundSound.Volume = volume;
-            }
+            GameControllerGesture.ConfirmationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? ControllerInput.B : ControllerInput.A;
+            GameControllerGesture.CancellationBinding = AppSettings.Fullscreen.SwapConfirmCancelButtons ? ControllerInput.A : ControllerInput.B;
         }
 
         private void InitializeAudio()
         {
+            if (!sdlInitialized)
+            {
+                return;
+            }
+
             try
             {
-                Audio = new AudioPlaybackEngine(AppSettings.Fullscreen.AudioInterfaceApi);
+                Audio = new AudioEngine();
             }
             catch (Exception e)
             {
@@ -331,17 +364,13 @@ namespace Playnite.FullscreenApp
                 return;
             }
 
-            var navigationFile = ThemeFile.GetFilePath(@"audio\navigation.wav", true);
-            if (navigationFile.IsNullOrEmpty())
-            {
-                navigationFile = ThemeFile.GetFilePath(@"audio\navigation.mp3", true);
-            }
-
+            var navigationFile = ThemeFile.GetFilePath($@"audio\\navigation\.({AudioEngine.SupportedFileTypesRegex})", matchByRegex: true);
             if (!navigationFile.IsNullOrEmpty())
             {
                 try
                 {
-                    navigateSound = new CachedSound(navigationFile);
+                    NavigateSound = Mix_LoadWAV(navigationFile);
+                    Mix_VolumeChunk(NavigateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -349,33 +378,36 @@ namespace Playnite.FullscreenApp
                 }
             }
 
-            var activationFile = ThemeFile.GetFilePath(@"audio\activation.wav", true);
-            if (activationFile.IsNullOrEmpty())
-            {
-                activationFile = ThemeFile.GetFilePath(@"audio\activation.mp3", true);
-            }
-
+            var activationFile = ThemeFile.GetFilePath($@"audio\\activation\.({AudioEngine.SupportedFileTypesRegex})", matchByRegex: true);
             if (!activationFile.IsNullOrEmpty())
             {
                 try
                 {
-                    activateSound = new CachedSound(activationFile);
+                    ActivateSound = Mix_LoadWAV(activationFile);
+                    Mix_VolumeChunk(ActivateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(e, $"Failed to sound file {activateSound}");
+                    logger.Error(e, $"Failed to sound file {ActivateSound}");
                 }
             }
 
-            backgroundSoundPath = ThemeFile.GetFilePath(@"audio\background.wma", true);
-            if (backgroundSoundPath.IsNullOrEmpty())
+            var backgroundSoundPath = ThemeFile.GetFilePath($@"audio\\background\.({AudioEngine.SupportedFileTypesRegex})", matchByRegex: true);
+            if (!backgroundSoundPath.IsNullOrEmpty())
             {
-                backgroundSoundPath = ThemeFile.GetFilePath(@"audio\background.mp3", true);
-            }
-
-            if (AppSettings.Fullscreen.BackgroundVolume > 0)
-            {
-                PlayBackgroundSound();
+                try
+                {
+                    BackgroundMusic = Mix_LoadMUS(backgroundSoundPath);
+                    Mix_VolumeMusic(AudioEngine.GetVolume(AppSettings.Fullscreen.BackgroundVolume));
+                    if (Current.AppSettings.Fullscreen.BackgroundVolume > 0)
+                    {
+                        Mix_PlayMusic(BackgroundMusic, -1);
+                    }
+                }
+                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                {
+                    logger.Error(e, $"Failed to music file {ActivateSound}");
+                }
             }
         }
 

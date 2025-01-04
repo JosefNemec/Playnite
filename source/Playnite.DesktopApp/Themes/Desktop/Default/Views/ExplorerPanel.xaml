@@ -25,7 +25,7 @@
                             </Style>
                         </Border.Style>
                         <DockPanel Background="{TemplateBinding Background}">
-                            <ComboBox Name="PART_SelectFields"
+                            <ComboBox Name="PART_SelectFields" MaxDropDownHeight="Auto"
                                   DockPanel.Dock="Top" Margin="5,8,5,8" />
                             <ListBox Name="PART_SelectItems"
                                  DockPanel.Dock="Top" Margin="5,0,5,8"                                      

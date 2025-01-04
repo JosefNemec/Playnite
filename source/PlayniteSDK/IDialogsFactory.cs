@@ -74,7 +74,7 @@ namespace Playnite.SDK
         /// <param name="selected"></param>
         public MessageBoxToggle(string title, bool selected = false)
         {
-            Title = title.StartsWith("LOC") ? ResourceProvider.GetString(title) : title;
+            Title = title.StartsWith("LOC", StringComparison.Ordinal) ? ResourceProvider.GetString(title) : title;
             Selected = selected;
         }
     }

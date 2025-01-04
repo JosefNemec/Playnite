@@ -23,7 +23,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
     /// <summary>
     /// Interaction logic for Visuals.xaml
     /// </summary>
-    public partial class Audio : UserControl
+    public partial class Audio : SettingsSectionControl
     {
         public Audio()
         {
@@ -67,15 +67,6 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 ToggleButton.IsCheckedProperty,
                 mainModel.AppSettings.Fullscreen,
                 nameof(FullscreenSettings.MuteInBackground),
-                BindingMode.TwoWay,
-                UpdateSourceTrigger.PropertyChanged);
-
-            SelectorBehaviors.SetEnumSource(SelectAudioApi, typeof(AudioInterfaceApi));
-            BindingTools.SetBinding(
-                SelectAudioApi,
-                Selector.SelectedValueProperty,
-                mainModel.AppSettings.Fullscreen,
-                nameof(FullscreenSettings.AudioInterfaceApi),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
         }

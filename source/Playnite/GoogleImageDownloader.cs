@@ -34,6 +34,8 @@ namespace Playnite
 
     public class GoogleImageDownloader : IDisposable
     {
+        private static ILogger logger = LogManager.GetLogger();
+
         private readonly OffscreenWebView webView;
         public GoogleImageDownloader()
         {
@@ -45,7 +47,7 @@ namespace Playnite
             webView.Dispose();
         }
 
-        public async Task<List<GoogleImage>> GetImages(string searchTerm, bool transparent = false)
+        public async Task<List<GoogleImage>> GetImages(string searchTerm, SafeSearchSettings safeSearch, bool transparent = false)
         {
             var images = new List<GoogleImage>();
             var parser = new HtmlParser();
@@ -54,6 +56,16 @@ namespace Playnite
             url.SetQueryParam("client", "firefox-b-d");
             url.SetQueryParam("source", "lnt");
             url.SetQueryParam("q", searchTerm);
+
+            if (safeSearch == SafeSearchSettings.On)
+            {
+                url.SetQueryParam("safe", "on");
+            }
+            else if (safeSearch == SafeSearchSettings.Off)
+            {
+                url.SetQueryParam("safe", "off");
+            }
+
             if (transparent)
             {
                 url.SetQueryParam("tbs", "ic:trans");
@@ -79,8 +91,8 @@ namespace Playnite
             }
             else
             {
-                googleContent = Regex.Replace(googleContent, @"\r\n?|\n", string.Empty);
-                var matches = Regex.Matches(googleContent, @"\[""(https:\/\/encrypted-[^,]+?)"",\d+,\d+\],\[""(http.+?)"",(\d+),(\d+)\]");
+                var formatted = Regex.Replace(googleContent, @"\r\n?|\n", string.Empty);
+                var matches = Regex.Matches(formatted, @"\[""(https:\/\/encrypted-[^,]+?)"",\d+,\d+\],\[""(http.+?)"",(\d+),(\d+)\]");
                 foreach (Match match in matches)
                 {
                     var data = Serialization.FromJson<List<List<object>>>($"[{match.Value}]");
@@ -92,6 +104,12 @@ namespace Playnite
                         Width = uint.Parse(data[1][2].ToString())
                     });
                 }
+            }
+
+            if (!images.HasItems())
+            {
+                logger.Error("Failed to parse any Google image results.");
+                logger.Debug(googleContent);
             }
 
             return images;

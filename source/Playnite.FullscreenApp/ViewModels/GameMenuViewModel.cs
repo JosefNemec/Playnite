@@ -127,7 +127,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public void StartGame()
         {
             Close();
-            gamesEditor.PlayGame(Game);
+            gamesEditor.PlayGame(Game, true);
         }
 
         public void InstallGame()

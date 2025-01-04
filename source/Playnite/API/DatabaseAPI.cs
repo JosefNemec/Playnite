@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite.API
@@ -59,7 +60,7 @@ namespace Playnite.API
                 throw new FileNotFoundException("Cannot add file to database, file not found.");
             }
 
-            return database.AddFile(path, parentId, false);
+            return database.AddFile(path, parentId, false, CancellationToken.None);
         }
 
         public void SaveFile(string id, string path)

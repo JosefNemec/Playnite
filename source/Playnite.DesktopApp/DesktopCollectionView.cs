@@ -126,7 +126,14 @@ namespace Playnite.DesktopApp
             Database.CompletionStatuses.ItemUpdated -= CompletionStatuses_ItemUpdated;
             viewSettings.PropertyChanged -= ViewSettings_PropertyChanged;
             settings.PropertyChanged -= Settings_PropertyChanged;
-            ClearItems();
+            if (Items.HasItems())
+            {
+                foreach (var item in Items)
+                {
+                    item.Dispose();
+                }
+            }
+
             base.Dispose();
         }
 

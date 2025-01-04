@@ -101,6 +101,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCErrorStartupNoController">No s'ha pogut determinar com obrir el joc.</sys:String>
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Activat</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">Desactivat</sys:String>
     <sys:String x:Key="LOCRemoveTitle">Eliminar</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Eliminar els no utilitzats</sys:String>
     <sys:String x:Key="LOCRenameTitle">Canviar el nom</sys:String>
@@ -169,7 +170,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCDetailsViewLabel">Vista de detalls</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalitzat</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCPatronsLabel">Mecenes</sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Agraïments especials </sys:String>
     <sys:String x:Key="LOCLicenseLabel">Llicència</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Col·laboradors</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Sortint de Playnite…</sys:String>
@@ -203,7 +204,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCColumns">Columnes</sys:String>
     <sys:String x:Key="LOCRow">Filera</sys:String>
     <sys:String x:Key="LOCRows">Files</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">No s'ha pogut obtenir la icona de l'acció Jugar. No hi ha cap acció de tipus de fitxer present.</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">No s'ha pogut obtenir la icona de l'acció Jugar. No hi ha cap acció de tipus fitxer present.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Només descarregar metadades que faltin</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Activar aquesta opció farà que s'ometi la descàrrega de metadades pels camps que ja contenen informació.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Selecció de jocs</sys:String>
@@ -251,11 +252,15 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCMenuLinksTitle">Enllaços</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Donar suport al Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Suport a Ko-fi</sys:String>
+    <sys:String x:Key="LOCUserManual">Manual d'usuari</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentació del SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar el sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Tancar el sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspendre el sistema</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernar el sistema</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Bloquejar sistema</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Tancar sessió de l'usuari</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Escollir un joc a l'atzar</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Camps del joc que es mostraran al panell de detalls:</sys:String>
@@ -315,7 +320,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCSettingsStartInFullscreen">Iniciar en mode de pantalla completa</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Càrrega d’imatges asíncrona</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Millora la suavitat de desplaçament de les llistes de jocs a canvi de temps de càrrega d'imatges més lents.</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostra el nom del joc si no hi ha imatge de caràtula</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostrar el nom del joc si no hi ha imatge de caràtula</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostrar noms dels jocs en la vista de quadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Enfosquir els jocs no instal·lats</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Mostrar les icones dels jocs en la vista de detalls</sys:String>
@@ -375,7 +380,7 @@ Sempre: Importa el temps de joc per a nous jocs importats i existents a la base 
 Només pels jocs recentment importats: Importa temps de joc només per als nous jocs importats.
 Mai: Mai no importa temps de joc sota cap circumstància.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Sempre</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Només pels jocs recentment importants</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Només pels jocs recentment importats</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Mai</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activar la compatibilitat amb el comandament en mode d'escriptori</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">El botó Guia obre el mode de pantalla completa</sys:String>
@@ -604,11 +609,9 @@ Si us plau, adjunta el següent ID al teu informe d'error:</sys:String>
 
 Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">No es poden importar emuladors perquè falta un fitxer de definició o està corromput.</sys:String>
-    <sys:String x:Key="LOCXInputInitErrorMessage">No s'ha pogut iniciar la interfície XInput</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">No s’ha pogut executar l'acció del menú.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Editar els detalls del joc</sys:String>
-    <sys:String x:Key="LOCUseExeIcon">De l'acció de Jugar</sys:String>
     <sys:String x:Key="LOCImageURL">URL d'imatge</sys:String>
     <sys:String x:Key="LOCAddLinkButton">Afegir enllaç</sys:String>
     <sys:String x:Key="LOCAddRom">Afegir ROM</sys:String>
@@ -646,12 +649,13 @@ Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">No fer res</sys:String>
     <sys:String x:Key="LOCMinimize">Minimitzar</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restaurar la finestra</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restaurar finestra només quan s'iniciï des de la IU</sys:String>
     <sys:String x:Key="LOCClose">Tancar</sys:String>
     <sys:String x:Key="LOCChange">Canviar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avançat</sys:String>
     <sys:String x:Key="LOCNever">Mai</sys:String>
-    <sys:String x:Key="LOCCompletionStatus">Estat de completació</sys:String>
-    <sys:String x:Key="LOCCompletionStatuses">Estats de completació</sys:String>
+    <sys:String x:Key="LOCCompletionStatus">Estat de finalització</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">Estats de finalització</sys:String>
     <sys:String x:Key="LOCUserScore">Puntuació dels usuaris</sys:String>
     <sys:String x:Key="LOCCriticScore">Puntuació de la crítica</sys:String>
     <sys:String x:Key="LOCCommunityScore">Puntuació de la comunitat</sys:String>
@@ -720,9 +724,9 @@ Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCUpdateCheckFailMessage">No s'ha pogut comprovar si hi ha una versió nova.</sys:String>
     <sys:String x:Key="LOCUpdateNoNewUpdateMessage">No s’ha trobat cap versió nova, estàs al dia.</sys:String>
     <sys:String x:Key="LOCGeneralUpdateFailMessage">No s'ha pogut descarregar i instal·lar l'actualització.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">Alguna tasca en segon pla està en curs. Vols cancel·lar-la i continuar amb l'actualització?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Alguna tasca en segon pla està en curs. Vols cancel·lar-la i sortir de Playnite?</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Alguna tasca en segon pla està en curs. Si canvies de mode, la tasca es cancel·larà, vols canviar de totes maneres?</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">Hi ha alguna tasca en curs en segon pla. Vols cancel·lar-la i continuar amb l'actualització?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">Hi ha alguna tasca en curs en segon pla. Vols cancel·lar-la i sortir de Playnite?</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">Hi ha alguna tasca en curs en segon pla. Si es canvia de mode, la tasca es cancel·larà. Vols canviar de totes maneres?</sys:String>
     <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">Hi ha disponible una actualització per Playnite</sys:String>
     <sys:String x:Key="LOCThemeTestReloadList">Tornar a carregar la llista de temes</sys:String>
     <sys:String x:Key="LOCThemeTestApplySkin">Aplicar el tema seleccionat</sys:String>
@@ -779,7 +783,7 @@ Més informació a https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">La mida de la instal·lació s'indica en bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">La data de llançament s'ha d'establir en format &quot;any-mes-dia&quot;. Els valors del mes i el dia es poden ometre.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Valors de 0 a 100 (o deixa-ho buit per no indicar una puntuació).</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">El desenvolupament de Playnite és possible gràcies a aquests mecenes:</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">El desenvolupament de Playnite compta amb el suport d'aquests mecenes i membres de Ko-fi:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Codi, localització i altres col·laboradors sense cap ordre particular:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Cancel·lar la monitorització del joc?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Actualment, s’està executant la supervisió de la instal·lació. Vols cancel·lar el procés i tornar el joc a l'estat anterior?</sys:String>
@@ -958,6 +962,8 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
     <sys:String x:Key="LOCSelectActionTitle">Selecciona una acció</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">Mode de seguiment</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">Ruta de seguiment</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">Retard de seguiment inicial</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">Freqüència de seguiment</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">Enllaç</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">Fitxer</sys:String>
     <sys:String x:Key="LOCGameActionTypeEmulator">Emulador</sys:String>
@@ -1003,10 +1009,10 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
 Desactivar això pot portar problemes amb jocs que no rebin informació d'entrada a l'inici!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Mida de la font</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mida de la font petita</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">Compatibilitat amb dispositiu XInput</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si es desactiva, Playnite no acceptarà cap entrada d'interfície XInput.
+    <sys:String x:Key="LOCSettingsXInputProcessing">Compatibilitat amb comandament de jocs</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si es desactiva, Playnite no acceptarà cap entrada de comandament de joc.
 
-Desactiva-ho si utilitzes eines que tradueixen les entrades XInput a les entrades ratolí/teclat i reps entrades dobles a Playnite.</sys:String>
+Desactiva-ho si utilitzes eines que tradueixen les entrades de comandament de joc a les entrades ratolí/teclat i reps entrades dobles a Playnite.</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Mostrar elements al menú principal:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">Assignació dels botons X/A invertida a la vista principal</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Intercanvia els botons per iniciar un joc i mostrar la pàgina de detalls del joc a la vista principal.</sys:String>
@@ -1105,7 +1111,7 @@ Si comences a experimentar alguns problemes després d'instal·lar un tema o una
     <sys:String x:Key="LOCSortingNameRemovedArticles">Aquestes paraules s'eliminaran del principi del valor de nom d'ordenació omplert automàticament:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Utilitza això per ignorar paraules al principi d'una cadena per propòsits d'ordenació. El valor per defecte és &quot;The&quot;, &quot;An&quot; i &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Omplir el nom d'ordenació de jocs sense un</sys:String>
-    <sys:String x:Key="LOCSettingsSortingLabel">Ordenament</sys:String>
+    <sys:String x:Key="LOCSettingsSortingLabel">Ordenació</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillProgress">Omplint valors de nom d'ordenació...</sys:String>
     <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">S'ha detectat que el servei Nahimic s'està executant al teu sistema. Se sap que aquest servei causa problemes de renderització a Playnite (i altres aplicacions).
 
@@ -1127,7 +1133,7 @@ Si es desactiva, els escaneigs seran més ràpids i utilitzaran la mida dels mat
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">Els fitxers emmagatzemats al núvol no s'escanejaran i importaran si no estan disponibles de manera local.
 Només és compatible amb Google Drive, DropBox i OneDrive</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">Escanejar, però utilitzant el mètode simplificat sense el contingut del fitxer</sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">S'emportaran els fitxers, però utilitzant un mètode menys precís que no requereix que el contingut dels fitxers es descarregui i estigui present de manera local.</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">S'importaran els fitxers, però utilitzant un mètode menys precís que no requereix que el contingut dels fitxers es descarregui i estigui present de manera local.</sys:String>
     <sys:String x:Key="LOCMetadatSetAllFieldsToValue">Aplicar-ho a tots</sys:String>
     <sys:String x:Key="LOCOverrideInstallState">Ignorar l'estat de la instal·lació</sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">Si es defineix, Playnite ignorarà l'estat de la instal·lació (incloent-hi el directori d'instal·lació) establert pel plugin d'integració que importa aquest joc.
@@ -1249,4 +1255,7 @@ El format de data especificat s'utilitzarà per a les altres dates.</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve">S'ha detectat un fitxer de la biblioteca danyat. Playnite ara es tancarà.
     
 Obre una nova incidència a la pàgina de GitHub de Playnite amb una sol·licitud per corregir els teus fitxers danyats.</sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">Vols desar els canvis que has fet?</sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Instal·lació portàtil</sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">No s'han detectat comandaments</sys:String>
 </ResourceDictionary>

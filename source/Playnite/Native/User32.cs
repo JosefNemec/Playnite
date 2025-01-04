@@ -120,5 +120,11 @@ namespace Playnite.Native
         [DllImport(dllName, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool GetCursorPos(out POINT lpPoint);
+
+        [DllImport(dllName, SetLastError = true)]
+        public static extern bool LockWorkStation();
+
+        [DllImport(dllName, SetLastError = true)]
+        public static extern bool ExitWindowsEx(uint uFlags, uint dwReason);
     }
 }

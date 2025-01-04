@@ -112,6 +112,11 @@ Profiles:
     Platforms: [sega_cd]
     ImageExtensions: [cue, chd]
     StartupExecutable: ^ares\.exe$
+  - Name: Sega - Mega Drive
+    StartupArguments: '--system "Mega Drive" "{ImagePath}" --fullscreen'
+    Platforms: [sega_genesis]
+    ImageExtensions: [zip, md, smd, gen, bin]
+    StartupExecutable: ^ares\.exe$
   - Name: Sega - Saturn
     StartupArguments: '--system "Saturn" "{ImagePath}" --fullscreen'
     Platforms: [sega_saturn]
@@ -120,7 +125,7 @@ Profiles:
   - Name: Sega - SG-1000
     StartupArguments: '--system "SG-1000" "{ImagePath}" --fullscreen'
     Platforms: [sega_sg1000]
-    ImageExtensions: [sg1000, sg]
+    ImageExtensions: [sg1000, sg, zip]
     StartupExecutable: ^ares\.exe$
   - Name: SNK - Neo Geo AES
     StartupArguments: '--system "Neo Geo" "{ImagePath}" --fullscreen'

@@ -1,4 +1,5 @@
-﻿using Playnite.SDK;
+﻿using Playnite.FullscreenApp.Controls.SettingsSections;
+using Playnite.SDK;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,12 @@ namespace Playnite.FullscreenApp.ViewModels
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly IWindowFactory window;
-        private readonly Dictionary<int, UserControl> sectionViews;
+        private readonly Dictionary<int, SettingsSectionControl> sectionViews;
         private IInputElement oldFocus;
         private List<string> editedFields = new List<string>();
 
-        private UserControl selectedSectionView;
-        public UserControl SelectedSectionView
+        private SettingsSectionControl selectedSectionView;
+        public SettingsSectionControl SelectedSectionView
         {
             get => selectedSectionView;
             set
@@ -82,7 +83,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             this.window = window;
             mainModel.AppSettings.Fullscreen.PropertyChanged += (_, e) => editedFields.AddMissing(e.PropertyName);
-            sectionViews = new Dictionary<int, UserControl>()
+            sectionViews = new Dictionary<int, SettingsSectionControl>()
             {
                 { 0, new Controls.SettingsSections.General(mainModel) { DataContext = this } },
                 { 1, new Controls.SettingsSections.Visuals(mainModel) { DataContext = this } },
@@ -116,6 +117,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else
             {
+                SelectedSectionView.Dispose();
                 SelectedSectionView = null;
                 IsMenuEnabled = true;
                 oldFocus?.Focus();

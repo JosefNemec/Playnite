@@ -174,11 +174,11 @@ namespace Playnite.FullscreenApp.Controls
                 {
                     MenuHost.InputBindings.Add(new KeyBinding(closeCommand, new KeyGesture(Key.Back)));
                     MenuHost.InputBindings.Add(new KeyBinding(closeCommand, new KeyGesture(Key.Escape)));
-                    var backInput = new XInputBinding { Command = closeCommand };
+                    var backInput = new GameControllerInputBinding { Command = closeCommand };
                     BindingTools.SetBinding(backInput,
-                        XInputBinding.ButtonProperty,
+                        GameControllerInputBinding.ButtonProperty,
                         null,
-                        typeof(XInputGesture).GetProperty(nameof(XInputGesture.CancellationBinding)));
+                        typeof(GameControllerGesture).GetProperty(nameof(GameControllerGesture.CancellationBinding)));
                     MenuHost.InputBindings.Add(backInput);
                 }
 
