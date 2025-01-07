@@ -306,6 +306,12 @@ foreach ($infoFile in $infoFiles)
             $coreName = $coreInfo.corename
         }
     }
+    
+    if (!($coreInfo.ContainsKey("corename")))
+    {
+        Write-Host "$($infoFile.Name) does not contain the core name" -ForegroundColor Yellow # Some cores like anarch_libretro.info don't contain a core name
+        continue
+    }
 
     $coreInfoCoreName = $coreInfo.corename
     if ($raCoreNameToPlatformIdsTranslate.ContainsKey($coreInfoCoreName))
