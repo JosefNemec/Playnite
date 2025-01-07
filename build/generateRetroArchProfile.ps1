@@ -312,7 +312,7 @@ foreach ($infoFile in $infoFiles)
         Write-Host "$($infoFile.Name) does not contain the core name" -ForegroundColor Yellow # Some cores like anarch_libretro.info don't contain a core name
         continue
     }
-
+    
     $coreInfoCoreName = $coreInfo.corename
     if ($raCoreNameToPlatformIdsTranslate.ContainsKey($coreInfoCoreName))
     {
@@ -324,6 +324,12 @@ foreach ($infoFile in $infoFiles)
     }
     else
     {
+        if (!($coreInfo.ContainsKey("systemname")))
+        {
+            Write-Host "$($infoFile.Name) does not contain systemname" -ForegroundColor Yellow # galaksija_libretro.info
+            continue
+        }
+
         $coreInfo.systemname.Split("/", [System.StringSplitOptions]::RemoveEmptyEntries) | ForEach-Object {
             $system = $_.Trim()
             if (($retroarchArcadeSystems -contains $system) -or ($retroarchMiscSystems -contains $system))
