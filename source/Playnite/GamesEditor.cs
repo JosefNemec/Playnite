@@ -341,7 +341,7 @@ namespace Playnite
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
 
-                //Get the current system HDR status only if this is the first game with HDR enabled that is launched
+                //Get the current system HDR status only if this is the first game launched with HDR controlled by Playnite
                 if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
                 {
                     wasHdrEnabled = HdrUtilities.IsHdrEnabled();
@@ -1454,8 +1454,9 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
-            //Reset the system HDR state back to its original state if there are no active games requiring HDR
-            if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
+            // Reset HDR if there are no more active games with HDR controlled by Playnite
+            // and the game being closed has HDR controlled by Playnite
+            if (!controllers.PlayControllers.Any(c => c.Game.EnableSystemHdr) && game.EnableSystemHdr)
             {
                 HdrUtilities.SetHdrEnabled(wasHdrEnabled);
             }
