@@ -117,8 +117,8 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCBackCapLabel">ZPĚT</sys:String>
     <sys:String x:Key="LOCClearCapLabel">VYČISTIT</sys:String>
     <sys:String x:Key="LOCClearLabel">Vyčistit</sys:String>
-    <sys:String x:Key="LOCDismiss">Zamítnout</sys:String>
-    <sys:String x:Key="LOCDismissAll">Zamítnout Vše</sys:String>
+    <sys:String x:Key="LOCDismiss">Zrušit</sys:String>
+    <sys:String x:Key="LOCDismissAll">Zrušit vše</sys:String>
     <sys:String x:Key="LOCImportLabel">Importovat</sys:String>
     <sys:String x:Key="LOCNameLabel">Jméno</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Autor</sys:String>

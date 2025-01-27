@@ -25,7 +25,7 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">  • Zaznacz, aby dodać do kolekcji
   • Odznacz, aby usunąć z kolekcji
   • Nieokreślone pozostaną bez zmian (podczas edycji wielu gier)</sys:String>
-    <sys:String x:Key="LOCNoCategory">Nieskategoryzowane</sys:String>
+    <sys:String x:Key="LOCNoCategory">Bez kategorii</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Ups! Coś poszło nie tak.</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Wystąpił nieodwracalny błąd.
@@ -56,7 +56,7 @@ Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostycz
     <sys:String x:Key="LOCCrashRestartSafeTooltip">Zablokuj wszystkie nieoficjalne rozszerzenia i użyj domyślnego motywu.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Zamknij aplikację</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Opisz jak doszło do błędu (w języku angielskim):</sys:String>
-    <sys:String x:Key="LOCLibraryManager">Menedżer bibliotek</sys:String>
+    <sys:String x:Key="LOCLibraryManager">Menedżer biblioteki</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Usunąć?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Nie można usunąć - gra lub instalator działa w tle.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Nie można odinstalować uruchomionej gry.</sys:String>
@@ -304,7 +304,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCSettingsInputLabel">Wprowadź</sys:String>
     <sys:String x:Key="LOCSettingsPerformanceLabel">Wydajność</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">Metadane</sys:String>
-    <sys:String x:Key="LOCSettingsUpdating">Trwa aktualizacja</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">Aktualizacja</sys:String>
     <sys:String x:Key="LOCSettingsSearch">Szukaj</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Kopia zapasowa</sys:String>
     <sys:String x:Key="LOCMenuBackupData">Wykonaj kopię zapasową</sys:String>

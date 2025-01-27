@@ -38,12 +38,12 @@ Bedankt voor je hulp.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Extensie {0} veroorzaakte een onherstelbare fout.
 
 We raden aan om het log bestand op te slaan en het probleem te rapporteren aan extensie ontwikkelaar. Als het probleem zich blijft voordoen. Schakel de extensie dan uit.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensie {0} heeft onherstelbare fout veroorzaakt.
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Extensie {0} heeft een onherstelbare fout veroorzaakt.
 
 We raden aan om het probleem te rapporteren aan de extensie ontwikkelaar. Als het probleem zich blijft voordoen, schakel de extensie dan uit.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Onbekende extensie of thema veroorzaakte een onherstelbare fout.
 
-We bevelen aan derde-partij extensies uit te schakelen, de problematische extensie uit te schakelen en het probleem te rapporteren aan de ontwikkelaar van die extensie.</sys:String>
+We bevelen aan extensies van derde partijen uit te schakelen, de problematische extensie te isoleren en het probleem te rapporteren aan de ontwikkelaar van die extensie.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
 
 Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diagnostische informatie. Bedankt.</sys:String>
@@ -59,7 +59,7 @@ Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diag
     <sys:String x:Key="LOCLibraryManager">Bibliotheek Beheerder</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">Verwijder Spel(len)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kan niet verwijderen - Game of de installer is bezig.</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">Kan niet deinstalleren - Game is bezig.</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">Kan niet de-installeren - Game is bezig.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Weet u zeker dat u {0} wilt verwijderen?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Weet u zeker dat u {0} spellen wilt verwijderen?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Weet u zeker dat u {0} wilt verwijderen?
@@ -77,7 +77,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (voeg toe aan uitsluitingslijst)</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Er zijn niet-opgeslagen wijzigingen in deze sectie</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Database versie aan het updaten…</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">Database update mislukt. Kan het database bestand niet openen.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">Database update mislukt.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Kan de spelbibliotheek niet bijwerken. {0} MB vrije ruimte is vereist.</sys:String>
     <sys:String x:Key="LOCGameError">Spel Error</sys:String>
     <sys:String x:Key="LOCGameStartErrorNoGame">Kan het spel niet starten. '{0}' kon niet worden gevonden in de database.</sys:String>

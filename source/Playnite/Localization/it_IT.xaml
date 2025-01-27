@@ -164,7 +164,7 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCSearchResolutionLabel">Risoluzione</sys:String>
     <sys:String x:Key="LOCSearchResolutionAnyLabel">Qualsiasi</sys:String>
     <sys:String x:Key="LOCZoomLabel">Zoom</sys:String>
-    <sys:String x:Key="LOCListViewLabel">Visualizzazione Elenco</sys:String>
+    <sys:String x:Key="LOCListViewLabel">Visualizzazione elenco</sys:String>
     <sys:String x:Key="LOCCoversLabel">Copertine</sys:String>
     <sys:String x:Key="LOCGridViewLabel">Visualizzazione griglia</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">Visualizzazione dettagliata</sys:String>
@@ -279,10 +279,10 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCSettingsInterfaceFont">Carattere dell'applicazione</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Carattere monospaziato</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione del pannello filtro</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello Esplora</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello esplora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering copertina</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Rapporto d'aspetto dell'oggetto</sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Le seguenti opzioni avranno effetto anche sulla visualizzazione della griglia in modalità Schermo intero</sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Le seguenti opzioni avranno effetto anche sulla visualizzazione a griglia in modalità schermo intero</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Modalità ampliata</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectDVD">Confezione DVD</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">Epic Game Store</sys:String>
@@ -317,14 +317,14 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCSettingsStartOnBoot">Avvia Playnite all'avvio del computer</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">Avvia ridotto nella barra delle applicazioni</sys:String>
     <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">Impossibile registrare l'avvio di Playnite all'avvio del computer.</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen">Avvia in modalità Schermo Intero</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">Avvia in modalità schermo Intero</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoading">Caricamento asincrono dell'immagine</sys:String>
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Migliora la fluidità dello scorrimento delle liste giochi a discapito dei tempi di caricamento dell'immagine.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Mostra il nome del gioco quando la copertina risulta mancante</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Mostra i nomi dei giochi  in copertina</sys:String>
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Oscura i giochi non installati
 </sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">Mostra le icone del gioco nella visualizzazione a Lista</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">Mostra le icone del gioco nella visualizzazione a lista</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Mostra il conto degli oggetti nelle descrizioni del gruppo</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Mostra solo i campi assegnati nei pannelli di filtro e di esplorazione</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Disattiva l'accelerazione hardware</sys:String>
@@ -341,7 +341,7 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCSettingsSkinColor">Profilo del tema</sys:String>
     <sys:String x:Key="LOCSettingsSkinFullscreen">Tema Schermo Intero</sys:String>
     <sys:String x:Key="LOCSettingsSkinColorFullscreen">Colore del tema Schermo Intero</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation">Locazione del Database</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">Posizione del database</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">Stato accesso:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">Impostazioni di Playnite</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">Cancella cache web</sys:String>
@@ -383,7 +383,7 @@ Mai: non importa mai il tempo di riproduzione in nessuna circostanza.</sys:Strin
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Sempre</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Solo per i giochi appena importati</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Mai</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Abilità il supporto per il controller in Modalità Desktop</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Abilità il supporto per il controller in modalità desktop</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Il pulsante guida apre la modalità a schermo intero</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Impostazioni per lo scaricamento automatico dei Metadata per i giochi appena importati</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Schermata utilizzata</sys:String>
@@ -590,7 +590,7 @@ Se disabilitato, i giochi che usano qualsiasi elemento in qualsiasi filtro saran
     <sys:String x:Key="LOCRegionsLabel">Regioni</sys:String>
     <sys:String x:Key="LOCSourceLabel">Sorgente</sys:String>
     <sys:String x:Key="LOCSourcesLabel">Sorgenti</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel">Attività Recenti</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">Attività recenti</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Errore della banca dati</sys:String>
     <sys:String x:Key="LOCDatabaseOpenError">Impossibile aprire la banca dati della libreria</sys:String>
@@ -668,7 +668,7 @@ Maggiori informazioni su https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCApplicationScripts">Script dell'applicazione</sys:String>
     <sys:String x:Key="LOCScripts">Script</sys:String>
     <sys:String x:Key="LOCPlugins">Plugin</sys:String>
-    <sys:String x:Key="LOCMetadataProviders">Fonti del metadata</sys:String>
+    <sys:String x:Key="LOCMetadataProviders">Fonti dei metadati</sys:String>
     <sys:String x:Key="LOCExtensions">Estensioni</sys:String>
     <sys:String x:Key="LOCExtensionID">ID dell'estensione</sys:String>
     <sys:String x:Key="LOCReloadScripts">Ricarica gli script</sys:String>
@@ -676,7 +676,7 @@ Maggiori informazioni su https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCReloadScriptsSuccess">Tutti gli script sono stati ricaricati con successo.</sys:String>
     <sys:String x:Key="LOCNoGamesFound">Nessun gioco trovato secondo i criteri di ricerca/filtri specifici</sys:String>
     <sys:String x:Key="LOCNoItemsFound">Nessun elemento trovato</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">Imposta in modalità Desktop</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">Imposta in modalità desktop</sys:String>
     <sys:String x:Key="LOCExitPlaynite">Esci da Playnite</sys:String>
     <sys:String x:Key="LOCLibraries">Librerie</sys:String>
     <sys:String x:Key="LOCUpdateAll">Aggiorna tutto</sys:String>
@@ -800,8 +800,8 @@ Maggiori informazioni su https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} minuti</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} secondi</sys:String>
     <sys:String x:Key="LOCPlayedNone">Non giocato</sys:String>
-    <sys:String x:Key="LOCOpeningDesktopModeMessage">Apertura della Modalità Desktop…</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Apertura della Modalità schermo intero…</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">Apertura della modalità desktop…</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">Apertura della modalità schermo intero…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Caricamento della libreria di gioco…</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeMessage">Calcolo dimensione installazione…</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Calcolo della dimensione di installazione di {0}…</sys:String>
@@ -919,7 +919,7 @@ Il riavvio dell'applicazione è richiesto per finire il processo. Vuoi resettare
     <sys:String x:Key="LOCCommonLinksForum">Forum</sys:String>
     <sys:String x:Key="LOCCommonLinksNews">Notizie</sys:String>
     <sys:String x:Key="LOCCommonLinksStorePage">Pagina del negozio</sys:String>
-    <sys:String x:Key="LOCFullscreenFirstTimeError">La prima configurazione non è completa. Playnite ora si riavvierà alla modalità Desktop per terminare la procedura.</sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">La prima configurazione non è completa. Playnite ora si riavvierà alla modalità desktop per terminare la procedura.</sys:String>
     <sys:String x:Key="LOCQuickFilterRecentlyPlayed">Giocati di recente</sys:String>
     <sys:String x:Key="LOCQuickFilterFavorites">Preferiti</sys:String>
     <sys:String x:Key="LOCQuickFilterMostPlayed">Più giocati</sys:String>
@@ -942,8 +942,8 @@ Il riavvio dell'applicazione è richiesto per finire il processo. Vuoi resettare
 Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;Estensioni&quot; dal menu principale.
 
 </sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop">Temi del Desktop</sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren">Temi a Schermo Intero</sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">Temi desktop</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">Temi schermo intero</sys:String>
     <sys:String x:Key="LOCAddonsSearching">Ricerca in corso...</sys:String>
     <sys:String x:Key="LOCAddonErrorNotCompatible">Questo componente aggiuntivo non è compatibile con questa versione di Playnite.</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Impossibile scaricare il pacchetto di installazione del componente aggiuntivo.</sys:String>
@@ -953,7 +953,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCAddonInstall">Installa</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Disinstalla</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Già installato</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nessun aggiornamento disponibile per il componente aggiuntivo.</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">Nessun aggiornamento disponibile per i componenti aggiuntivi.</sys:String>
     <sys:String x:Key="LOCAddonUpdateAddons">Aggiorna estensioni</sys:String>
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Changelog non disponibile</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Programmato per l'installazione</sys:String>
@@ -1006,7 +1006,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">Visualizza selettore casuale del gioco</sys:String>
     <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">Seleziona un gioco casuale dalla vista</sys:String>
     <sys:String x:Key="LOCFilterPresetSaveViewOptions">Salva le impostazioni di raggruppamento e di ordinamento</sys:String>
-    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Mostra come filtro rapido in modalità Schermo Intero</sys:String>
+    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">Mostra come filtro rapido in modalità schermo intero</sys:String>
     <sys:String x:Key="LOCInPast7Days">Negli ultimi 7 giorni</sys:String>
     <sys:String x:Key="LOCInPast31Days">Negli ultimi 31 giorni</sys:String>
     <sys:String x:Key="LOCInPast365Days">Negli ultimi 365 giorni</sys:String>
@@ -1118,7 +1118,7 @@ Se cominci ad avere qualche problema dopo l'installazione di un tema o di una es
     <sys:String x:Key="LOCFilterPresetNameConflict">Il preset del filtro con il nome specificato esiste già. Aggiornare il preset con le nuove impostazioni?</sys:String>
     <sys:String x:Key="LOCSortingNameAutofill">Riempi automaticamente il nome di ordinamento per i giochi aggiunti in gruppo</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillTooltip">Quando si aggiungono i giochi tramite un aggiornamento della libreria, una scansione della cartella emulatore, o una scansione della cartella normale, riempire automaticamente il campo &quot;Sorting Name&quot; con una migliore rappresentazione ordinabile del nome del gioco, per esempio &quot;The Witcher 3&quot; riceverà un Nome Ordinamento di &quot;Witcher 03&quot;</sys:String>
-    <sys:String x:Key="LOCSortingNameRemovedArticles">Queste parole verranno rimosse dall'inizio del valore del Nome di Ordinamento compilato automaticamente:</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles">Queste parole verranno rimosse dall'inizio del valore del nome di ordinamento compilato automaticamente:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Usalo per ignorare le parole all'inizio di una stringa per scopi di ordinamento. Il valore predefinito è &quot;The&quot;, &quot;An&quot; e &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Riempi il nome di ordinamento per i giochi senza uno</sys:String>
     <sys:String x:Key="LOCSettingsSortingLabel">Ordinamento</sys:String>
@@ -1210,7 +1210,7 @@ SHIFT-ENTER: apri il menu item</sys:String>
     <sys:String x:Key="NameFilterUseFuzzyMatchingTooltip" xml:space="preserve">Se abilitato, il filtro dei nomi corrisponderà ai nomi dei giochi allo stesso modo della ricerca globale.
 La corrispondenza rigorosa può essere applicata su un singolo caso prefissando il filtro con il carattere !</sys:String>
     <sys:String x:Key="LOCSearchViewGameFieldOptions">Campi da visualizzare per i risultati del gioco:</sys:String>
-    <sys:String x:Key="LOCHiddenStatus">Stato Nascosto</sys:String>
+    <sys:String x:Key="LOCHiddenStatus">Stato nascosto</sys:String>
 
     <sys:String x:Key="LOCBackupCancelled">Backup dati annullato.</sys:String>
     <sys:String x:Key="LOCBackupFailed">Backup dei dati fallito.</sys:String>

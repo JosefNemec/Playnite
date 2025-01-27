@@ -442,8 +442,10 @@ Om inaktiverad, laddas bakgrundsbilder endast ner när det behövs för första 
     <sys:String x:Key="LOCLoginFailed">Autentisering misslyckades</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRendering">Alternativt renderingsläge för webbvy</sys:String>
     <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Använd när du upplever problem med webbvyer, till exempel integreringsautentiseringsdialoger.</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Delvis laddning av långa spelbeskrivningar</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Långa spelbeskrivningar kan orsaka märkbart lagg när man väljer spel.
+
+Om du sätter på inställningen kommer det bara laddas in en liten del av beskrivningstexten och ett alternativ för att ladda in mer.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Importera metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Hämta Metadata</sys:String>
@@ -837,12 +839,30 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installera tillägg?</sys:String>
     <sys:String x:Key="LOCExtensionGeneric"></sys:String>
     <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Misslyckades med att installera tillägget.
+
+{0}</sys:String>
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">Är du säker på att du vill installera ett nytt tillägg?
+
+{0}
+Av {1}
+Version {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">Är du säker på att du vill uppdatera &quot;{0}&quot; tillägget?
+
+Nuvarande version: {1}
+Ny version: {2}</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">Misslyckades med att installera temat.
+
+{0}</sys:String>
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">Är du säker på att du vill installera ett nytt tema?
+
+{0}
+Av {1}
+Version {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">Är du säker på att du vill uppdatera &quot;{0}&quot; temat?
+
+Nuvarande version: {1}
+Ny version: {2}</sys:String>
     <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Prestandavarning</sys:String>

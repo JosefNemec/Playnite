@@ -265,7 +265,7 @@
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Ігрові поля, що будуть відображатися на панелі деталей:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">Відстань між елементами</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Малювати фон елемента Сітки</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина раки елемента Сітки</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">Ширина рамки елемента Сітки</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Відсутнє джерело значка гри</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Відсутнє джерело обкладинки гри</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Відсутнє джерело фонового зображення гри</sys:String>

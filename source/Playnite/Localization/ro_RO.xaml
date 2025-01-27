@@ -273,11 +273,11 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsIndentGameDetails">Spațiere verticală la detaliile jocului</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Poziția panoului de detalii în modul de vizualizare copertă</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Poziția listei cu jocuri în modul de detalii</sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">Desenează separator între panouri</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Înălțimea copertei de joc</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fontul aplicației</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceMonoFont"></sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont">Font monospațiat</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Poziția Panoului de Filtre</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Poziția Panoului de Căutare</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Randează Coperta Jocului</sys:String>
@@ -325,13 +325,13 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Întunecați jocurile neinstalate</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Arata iconitele jocurilor in modul de redare &quot;Detalii&quot;</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Arata numarul de obiecte in descrierile grupurilor</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"></sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Arată doar câmpurile atribuite în panourile de filtru și explorare</sys:String>
     <sys:String x:Key="LOCSettingsDisableAcceleration">Dezactivează accelerarea hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Foloseste daca intalneste sacadare sau alte probleme legate de interfata</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Arată jocurile ascunse în liste lansare rapidă</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Număr de obiecte lansare rapidă</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage"></sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Folosește imaginea de fundal a jocului ca fundal al ferestrei</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Blurare fundal</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">Calitate înaltă</sys:String>
     <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">Întunecare fundal</sys:String>
@@ -350,8 +350,8 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsCloseToTray">Minimizează Playnite în bara de sistem când aplicația este închisă</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameStart">Când jocul pornește:</sys:String>
     <sys:String x:Key="LOCSettingsAfterGameClose">După ce jocul se închide:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel"></sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">Formatează timpul jucat pentru a indica numărul de zile jucate</sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">Formatul datei:</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn">Opțiunea aceasta vă v-a deloga de pe toate serviciile conectate. Repornirea aplicației este necesară, doriți să continuați?</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Curățați Cache-ul?</sys:String>
     <sys:String x:Key="LOCSettingsSkinChangeRestart">Repornirea programului este necesară pentru aplicarea noii teme</sys:String>
@@ -360,23 +360,31 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsGetExtensions">Caută mai multe extensii</sys:String>
     <sys:String x:Key="LOCSettingsCreateExtensions">Creați o extensie nouă</sys:String>
     <sys:String x:Key="LOCSettingsCreateLocalization">Ajută-ne să traducem programul PIaynite</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite trebuie să fie repornit pentru a aplica noile setări. Reporniți acum?
+
+Repornirea va anula orice sarcini active (descărcări) în curs de desfășurare.</sys:String>
     <sys:String x:Key="LOCSettingsRestartTitle">Reporniți Playnite?</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite nu poate muta fișierele bibliotecii automat. Trebuie să mutați manual/să copiați fișierele înainte de a schimba locația. Dacă nu există nici o bibliotecă în locația țintă, va fi creată una nouă.
+
+Noua locație a bazei de date nu va fi utilizată până când Playnite nu va fi repornit. </sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">Durata jocului nu va fi înregistrată dacă este setată acțiunea de &quot;Închidere&quot;.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Număr de rânduri</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Număr de coloane</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRowDetails">Număr de rânduri în modul de vizualizare îndetaliat</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Arată imaginea de fundal pe ecranul principal</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Nu se aplică retroactiv jocurilor existente fără re-descărcarea metadatelor.</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportMode">Importă timpul jucat al jocurilor în bibliotecă:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Configurează când trebuie ca Playnite să importe timpul jucat de plugin-urile bibliotecii pentru jocurile din baza de date Playnite. Pentru a putea utiliza această caracteristică, este nevoie de suportul plugin-urilor ce gestionează biblioteca de jocuri.
+
+Întotdeauna: Importați timpul jucat pentru jocurile noi importate și existente în baza de date Playnite.
+Doar pentru jocurile nou importate: Importați timpul jucat doar pentru jocuri noi importate.
+Niciodată: Nu importa niciodată timpul jucat în nicio circumstanță.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Întotdeauna</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Doar pentru jocurile nou importate</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Niciodată</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Activare suport pentru manetă în modul desktop</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Butonul Guide al gamepad-ului deschide modul Fullscreen</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Setări pentru descărcarea automată a Metadata pentru jocurile nou importate.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Ecran țintă</sys:String>
     <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Utilizare întotdeauna ecranul principal</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Afișează Titlurile Jocului</sys:String>
@@ -388,11 +396,11 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Butoane Gamepad</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Orientare</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Derulare orizontală</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection"></sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">Selectați una dintre subsecțiuni</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Nici o setare valabilă</sys:String>
     <sys:String x:Key="LOCSettingsErrorLoadingSettings">Încărcarea setărilor eșuată</sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation"></sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">Aceste scripturi sunt executate pentru fiecare joc din bibliotecă. Scripturile individuale pot fi atribuite pentru fiecare joc separat în timp ce editați detaliile jocului.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">Animează tranzițiile imaginii de fundal</sys:String>
     <sys:String x:Key="LOCSettingsFontSizes">Dimensiuni font</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">Automat</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased"></sys:String>
@@ -402,20 +410,22 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Ecran</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Mod formatare text</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Mod randare text</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">Metodele de redare și formatare a textului nu sunt utilizate în prezent pentru descrierile jocurilor.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Preîncarcă imaginile de fundal</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Dacă este activat, Playnite va descărca ilustrații de fundal în timp ce descarcă metadate, utilizând mai mult spațiu pe disc și făcând ilustrațiile disponibile atunci când sunteți offline.
+
+Dacă este dezactivată, ilustrația de fundal este descărcată numai atunci când este nevoie prima dată, folosind mai puțin spațiu, dar poate duce la o întârziere înainte ca ilustrația să fie afișată și este posibil ca unele imagini să nu fie disponibile când sunteți offline.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Închide automat clientul terț după ieșirea din joc</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Întârziere închidere client (în secunde)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Nu închide după o sesiune de joc mai scurtă decât (în secunde)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Inchiderea automată a următoarelor clienturi:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Închidere automată a platformelor terț</sys:String>
     <sys:String x:Key="LOCSettingsImportExclusionList">Importă lista de excluderi</sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning"></sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate"></sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Afișează avertisment atunci când se atribuie fișiere media prea mari pentru joc</sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Comandă deschidere dosar</sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">Organizația preferată de evaluare a vârstei</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Actualizați dimensiunea de instalare a jocurilor la actualizarea bibliotecii</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Scanează și actualizează dimensiunea de instalare a jocurilor, dacă este detectat că fișierele lor au fost modificate de la ultima scanare</sys:String>
     <sys:String x:Key="LOCStrechNone">Nimic</sys:String>
     <sys:String x:Key="LOCStrechFill">Umplere</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniform</sys:String>
@@ -427,20 +437,23 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCImportError">Eroare de import</sys:String>
     <sys:String x:Key="LOCLoginRequired">Autentificare necesară</sys:String>
     <sys:String x:Key="LOCLoginFailed">Autentificare eșuată</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">Mod alternativ de redare web</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Utilizați atunci când întâmpinați probleme cu vizualizările web, de exemplu casetele de dialog de autentificare pentru integrări.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Încărcare parțială a descrierilor mari de jocuri</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Descrierile mari pot provoca o întârziere vizibilă la selectarea jocurilor.
+
+Când este activată, doar o parte din textul descrierii va fi inițial încărcată cu o opțiune pentru a încărca restul la cerere.</sys:String>
     <!--Meta Import-->
     <sys:String x:Key="LOCMetaImportWindowTitle">Import Metadata</sys:String>
     <sys:String x:Key="LOCDownloadMetaButton">Descărcați metadate</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">Setați configurația selectată pentru a fi utilizată pentru orice viitoare descărcări de metadate.
+Poate fi modificată, de asemenea, în setările aplicației.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Procedura Import Emulare</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice"></sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Acest asistent vă va ghida prin procesul de descărcare și import de emulatoare de consolă și de import de jocuri emulate.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">Rețineți că puteți adăuga oricând emulatoare și/sau jocuri suplimentare ulterior prin meniul principal (sub meniul „Bibliotecă” pentru setările emulatorului și meniul „Adăugați jocuri” pentru jocurile emulate).</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Mai jos este o listă de emulatoare pe care Playnite îi poate recunoaște și configura automat. Puteți descărca programe de instalare a emulatoarelor de pe site-urile lor web. După ce aveți emulatoarele instalate (manual), le puteți importa în dialogul de configurare a emulatorului.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Puteți importa orice emulator care este instalat pe computer făcând clic pe butonul „Detectează automat din folder...”.  Playnite va căuta în folderul selectat orice emulator cunoscut și va oferi opțiunea de a le importa.  Puteți folosi acest buton de mai multe ori pentru a importa emulatoare din foldere diferite.  Emulatoarele vor fi adăugate în partea de jos a listei curente.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>
