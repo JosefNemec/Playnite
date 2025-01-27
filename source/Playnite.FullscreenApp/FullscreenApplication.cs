@@ -41,7 +41,7 @@ namespace Playnite.FullscreenApp
             }
         }
 
-        private SplashScreen splashScreen;
+        private ExtendedSplashScreen splashScreen;
         private bool sdlInitialized = false;
         public static AudioEngine Audio { get; private set; }
         public static IntPtr NavigateSound { get; private set; }
@@ -55,10 +55,10 @@ namespace Playnite.FullscreenApp
             get => PlayniteApplication.Current == null ? null : (FullscreenApplication)PlayniteApplication.Current;
         }
 
-        public FullscreenApplication(Func<Application> appInitializer, SplashScreen splashScreen, CmdLineOptions cmdLine)
+        public FullscreenApplication(Func<Application> appInitializer, ExtendedSplashScreen splashScreen, CmdLineOptions cmdLine)
             : base(appInitializer, ApplicationMode.Fullscreen, cmdLine)
         {
-            this.splashScreen = splashScreen;
+            this.splashScreen = splashScreen;            
         }
 
         public override void ConfigureViews()
@@ -161,11 +161,13 @@ namespace Playnite.FullscreenApp
             Extensions.LoadScripts(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             OnExtensionsLoaded();
 
-            splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;
-            await MainModel.ProcessStartupLibUpdate();
+            CurrentNative.MainWindow.Activate();
+            splashScreen?.Close(new TimeSpan(0));
 
+            await MainModel.ProcessStartupLibUpdate();
+            
             // This is most likely safe place to consider application to be started properly
             FileSystem.DeleteFile(PlaynitePaths.SafeStartupFlagFile);
         }

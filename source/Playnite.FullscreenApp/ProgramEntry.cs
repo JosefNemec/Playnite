@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using Playnite.Common;
+using Playnite.FullscreenApp.Windows;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
@@ -57,11 +58,11 @@ namespace Playnite.FullscreenApp
                 cmdLine = options.Value;
             }
 
-            SplashScreen splash = null;
+            ExtendedSplashScreen splash = null;
             var procCount = Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count();
             if (cmdLine.Start.IsNullOrEmpty() && !cmdLine.HideSplashScreen && procCount == 1)
             {
-                splash = new SplashScreen("SplashScreen.png");
+                splash = new ExtendedSplashScreen("SplashScreen.png");
                 splash.Show(false);
             }
 

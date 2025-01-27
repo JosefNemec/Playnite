@@ -257,7 +257,13 @@
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\VideoSplashScreen.xaml.cs">
+      <DependentUpon>VideoSplashScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WindowTools.cs" />
+    <Page Include="Windows\VideoSplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <SplashScreen Include="SplashScreen.png" />
     <Resource Include="..\..\references\Fonts\*.*">
       <Link>Fonts\%(Filename)%(Extension)</Link>
