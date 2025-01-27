@@ -215,7 +215,7 @@
   Id: nintendo_3ds
   IgdbId: 37
   Databases: [Nintendo - Nintendo 3DS, Nintendo - Nintendo 3DS (Digital)]
-  Emulators: [citra, retroarch]
+  Emulators: [citra, retroarch, lime3ds]
   
 - Name: Nintendo 64
   Id: nintendo_64

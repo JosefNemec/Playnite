@@ -1,0 +1,9 @@
+Id: lime3ds
+Name: Lime3DS
+Website: 'https://lime3ds.com/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, cci, cxi, elf, cia]
+    StartupExecutable: ^lime3ds-gui\.exe$
