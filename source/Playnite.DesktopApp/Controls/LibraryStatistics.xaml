@@ -118,6 +118,33 @@
                 </ItemsControl>
             </GroupBox>
         </ControlTemplate>
+
+        <ControlTemplate x:Key="GameProviderTemplate">
+            <ControlTemplate.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
+            </ControlTemplate.Resources>
+            <GroupBox Header="{DynamicResource LOCGameProviderTitle}" Margin="10" MaxHeight="330" >
+                <ItemsControl ItemsSource="{Binding GameProvider}"
+                              Width="250" Margin="10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock Text="{Binding Percentage, StringFormat='{}{0}%'}"
+                                           Style="{DynamicResource BaseTextBlockStyle}" Width="30"
+                                           DockPanel.Dock="Right" Margin="10,3,0,3"
+                                           TextAlignment="Right"/>
+                                <TextBlock Text="{Binding Value}" Margin="0,3,0,3"
+                                           Style="{DynamicResource BaseTextBlockStyle}"
+                                           DockPanel.Dock="Right"/>
+                                <TextBlock Text="{Binding Name}" Margin="0,3,15,3" DockPanel.Dock="Left"
+                                           TextTrimming="CharacterEllipsis"
+                                           Style="{DynamicResource BaseTextBlockStyle}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
+        </ControlTemplate>
     </UserControl.Resources>
 
     <DockPanel>
@@ -144,6 +171,7 @@
                         <ContentControl Template="{StaticResource OverallStatsTemplate}" />
                         <ContentControl Template="{StaticResource CompletionStatusTemplate}" />
                         <ContentControl Template="{StaticResource MostPlayedTemplate}" />
+                        <ContentControl Template="{StaticResource GameProviderTemplate}" />
                     </WrapPanel>
                 </Expander>
 
