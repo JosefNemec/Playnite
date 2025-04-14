@@ -5,6 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
+        Please post in English language only!
+
         **Integration features**
         If a feature request is related to library integrations, use separate [extensions repository](https://github.com/JosefNemec/PlayniteExtensions) to file a request.
 
