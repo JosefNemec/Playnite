@@ -280,7 +280,7 @@
 - Name: Nintendo Switch
   Id: nintendo_switch
   IgdbId: 130
-  Emulators: [ryujinx, yuzu]
+  Emulators: [ryujinx, yuzu, suyu]
   
 - Name: Nintendo Virtual Boy
   Id: nintendo_virtualboy
