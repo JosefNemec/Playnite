@@ -212,6 +212,8 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCMetaGameSourceAll">All games from database</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">All currently filtered games</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Selected games only</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">No metadata fields selected</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">No metadata fields are selected for download. Please select at least one, and enable at least one metadata provider for it.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Official Store</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Please select which fields should be automatically populated by Playnite and which sources should be used to obtain the data from.</sys:String>
