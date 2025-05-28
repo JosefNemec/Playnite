@@ -59,7 +59,7 @@ function Get-ParamSfoValue
     return $null
 }
 
-[array]$games = Get-ChildItem -LiteralPath $ImportArgs.ScanDirectory -Recurse | Where-Object { $_.Name -eq "ISO.BIN.EDAT" -or $_.Name -eq "EBOOT.BIN" }
+[array]$games = Get-ChildItem -LiteralPath $ImportArgs.ScanDirectory -Recurse | Where-Object { $_.DirectoryName -match 'CUSA\d+$' -and ($_.Name -eq "ISO.BIN.EDAT" -or $_.Name -eq "EBOOT.BIN") }
 foreach ($game in $games)
 {
     $anyFunc = [Func[string,bool]]{ param($a) $a.Equals($game.FullName, 'OrdinalIgnoreCase') }
