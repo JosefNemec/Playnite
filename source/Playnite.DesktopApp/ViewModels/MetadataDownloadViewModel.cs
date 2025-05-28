@@ -1,12 +1,8 @@
-﻿using Playnite.SDK;
-using Playnite.Metadata;
-using Playnite.Commands;
-using System;
+﻿using Playnite.Metadata;
+using Playnite.SDK;
+using Playnite.Windows;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Playnite.Windows;
 
 namespace Playnite.DesktopApp.ViewModels
 {
@@ -20,6 +16,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
+        private readonly IResourceProvider resources;
 
         public bool SaveAsDefault { get; set; }
 
@@ -125,9 +122,10 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public MetadataDownloadViewModel(IWindowFactory window)
+        public MetadataDownloadViewModel(IWindowFactory window, IResourceProvider resources)
         {
-            this.window = window;            
+            this.window = window;
+            this.resources = resources;
         }
 
         public bool? OpenView(ViewMode mode, MetadataDownloaderSettings settings)
@@ -139,6 +137,12 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CloseView(bool success)
         {
+            if (success && !CanDownloadData())
+            {
+                Dialogs.ShowErrorMessage(resources.GetString(LOC.MetaNoFieldsSelectedErrorMessage), resources.GetString(LOC.MetaNoFieldsSelectedErrorCaption));
+                return;
+            }
+
             if (success && SaveAsDefault)
             {
                 PlayniteApplication.Current.AppSettings.MetadataSettings = Settings;
@@ -156,6 +160,34 @@ namespace Playnite.DesktopApp.ViewModels
         public void Back()
         {
             ViewTabIndex = 0;
+        }
+
+        private bool CanDownloadData()
+        {
+            return CanDownloadData(Settings.AgeRating)
+                || CanDownloadData(Settings.BackgroundImage)
+                || CanDownloadData(Settings.CommunityScore)
+                || CanDownloadData(Settings.CoverImage)
+                || CanDownloadData(Settings.CriticScore)
+                || CanDownloadData(Settings.Description)
+                || CanDownloadData(Settings.Developer)
+                || CanDownloadData(Settings.Feature)
+                || CanDownloadData(Settings.Genre)
+                || CanDownloadData(Settings.Icon)
+                || CanDownloadData(Settings.InstallSize)
+                || CanDownloadData(Settings.Links)
+                || CanDownloadData(Settings.Name)
+                || CanDownloadData(Settings.Platform)
+                || CanDownloadData(Settings.Publisher)
+                || CanDownloadData(Settings.Region)
+                || CanDownloadData(Settings.ReleaseDate)
+                || CanDownloadData(Settings.Series)
+                || CanDownloadData(Settings.Tag);
+        }
+
+        private static bool CanDownloadData(MetadataFieldSettings fieldSettings)
+        {
+            return fieldSettings.Import && fieldSettings.Sources.Any();
         }
     }
 }

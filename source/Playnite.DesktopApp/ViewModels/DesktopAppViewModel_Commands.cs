@@ -264,7 +264,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             DownloadMetadataCommand = new RelayCommand<object>((a) =>
             {
-                DownloadMetadata(new MetadataDownloadViewModel(new MetadataDownloadWindowFactory()));
+                DownloadMetadata(new MetadataDownloadViewModel(new MetadataDownloadWindowFactory(), Resources));
             }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.D, ModifierKeys.Control));
 
