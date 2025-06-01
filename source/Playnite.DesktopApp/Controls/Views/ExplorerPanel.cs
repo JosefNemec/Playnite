@@ -20,12 +20,13 @@ namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_SelectFields", Type = typeof(Selector))]
     [TemplatePart(Name = "PART_SelectItems", Type = typeof(Selector))]
+    [TemplatePart(Name = "PART_ButtonClose", Type = typeof(ButtonBase))]
     public class ExplorerPanel : Control
     {
         private readonly DesktopAppViewModel mainModel;
         private Selector SelectFields;
         private Selector SelectItems;
-
+        private ButtonBase ButtonClose;
         static ExplorerPanel()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ExplorerPanel), new FrameworkPropertyMetadata(typeof(ExplorerPanel)));
@@ -78,6 +79,12 @@ namespace Playnite.DesktopApp.Controls.Views
                     Selector.ItemsSourceProperty,
                     mainModel.DatabaseExplorer,
                     nameof(DatabaseExplorer.FieldValues));
+            }
+
+            ButtonClose = Template.FindName("PART_ButtonClose", this) as ButtonBase;
+            if (ButtonClose != null)
+            {
+                ButtonClose.Command = mainModel.ToggleExplorerPanelCommand;
             }
         }
     }
