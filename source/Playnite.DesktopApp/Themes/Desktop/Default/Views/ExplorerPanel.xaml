@@ -25,8 +25,16 @@
                             </Style>
                         </Border.Style>
                         <DockPanel Background="{TemplateBinding Background}">
-                            <ComboBox Name="PART_SelectFields" MaxDropDownHeight="Auto"
-                                  DockPanel.Dock="Top" Margin="5,8,5,8" />
+                            <DockPanel DockPanel.Dock="Top" LastChildFill="True"
+                                       Margin="5,8,5,8">
+                                <Button Content="r" FontFamily="Marlett"
+                                        Style="{StaticResource SimpleButton}"
+                                        DockPanel.Dock="Right" Margin="0,0,5,0"
+                                        VerticalAlignment="Center"
+                                        Name="PART_ButtonClose"/>
+                                <ComboBox Name="PART_SelectFields" MaxDropDownHeight="Auto"
+                                          DockPanel.Dock="Left" Margin="0,0,8,0" />
+                            </DockPanel>
                             <ListBox Name="PART_SelectItems"
                                  DockPanel.Dock="Top" Margin="5,0,5,8"                                      
                                  BorderThickness="0"
