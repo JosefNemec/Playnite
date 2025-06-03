@@ -138,7 +138,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (!PlayniteEnvironment.IsDebuggerAttached)
             {
-                MainModel.App.QuitAndStart(Computer.ShutdownCmd.path, Computer.ShutdownCmd.args);
+                MainModel.App.QuitAndExecute(Computer.Shutdown);
             }
         }
 

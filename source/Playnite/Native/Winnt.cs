@@ -32,7 +32,7 @@ namespace Playnite.Native
     [StructLayout(LayoutKind.Sequential)]
     public struct LUID
     {
-        public uint LowPart;
+        public int LowPart;
         public int HighPart;
     }
 }

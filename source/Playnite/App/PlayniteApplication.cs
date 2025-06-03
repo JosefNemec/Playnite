@@ -1134,6 +1134,28 @@ namespace Playnite
             CurrentNative.Shutdown(0);
         }
 
+        public void QuitAndExecute(Action action, bool saveSettings = true)
+        {
+            logger.Info("Shutting down Playnite and executing an action.");
+            if (saveSettings)
+            {
+                AppSettings?.SaveSettings();
+            }
+
+            ReleaseResources();
+
+            try
+            {
+                action();
+            }
+            catch(Exception e)
+            {
+                logger.Error(e, "Failed to execute app quit action.");
+            }
+
+            CurrentNative.Shutdown(0);
+        }
+
         public abstract void Restart(bool saveSettings = true);
 
         public abstract void Restart(CmdLineOptions options, bool saveSettings = true);
