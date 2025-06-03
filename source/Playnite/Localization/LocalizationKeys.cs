@@ -3510,6 +3510,10 @@ namespace Playnite
         /// </summary>
         public const string ActionTrackingOriginalProcess = "LOCActionTrackingOriginalProcess";
         /// <summary>
+        /// Process name
+        /// </summary>
+        public const string ActionTrackingProcessName = "LOCActionTrackingProcessName";
+        /// <summary>
         /// Log trace messages
         /// </summary>
         public const string DevelTraceLogEnable = "LOCDevelTraceLogEnable";

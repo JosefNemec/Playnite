@@ -34,6 +34,11 @@ namespace Playnite.SDK.Models
         /// </summary>
         [Description("LOCActionTrackingOriginalProcess")]
         OriginalProcess = 3,
+        /// <summary>
+        /// Any process by given process name is being tracked.
+        /// </summary>
+        [Description("LOCActionTrackingProcessName")]
+        ProcessName = 4
     }
 
     /// <summary>
