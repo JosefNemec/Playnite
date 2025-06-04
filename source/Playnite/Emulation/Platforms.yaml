@@ -221,7 +221,7 @@
   Id: nintendo_64
   IgdbId: 4
   Databases: [Nintendo - Nintendo 64, Nintendo - Nintendo 64DD]
-  Emulators: [ares, bizhawk, m64p, m64py, project64, retroarch, rosaliesmupengui, simple64]
+  Emulators: [ares, bizhawk, m64p, m64py, project64, retroarch, rosaliesmupengui, simple64, gopher64]
   
 - Name: Nintendo DS
   Id: nintendo_ds

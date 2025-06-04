@@ -1,0 +1,9 @@
+Id: gopher64
+Name: gopher64
+Website: 'https://github.com/gopher64/gopher64'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}" -f'
+    Platforms: [nintendo_64]
+    ImageExtensions: [zip,7z,z64,n64,v64]
+    StartupExecutable: ^gopher64-windows-x86_64.exe*\.exe$
