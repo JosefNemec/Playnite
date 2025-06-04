@@ -281,6 +281,10 @@
   Id: nintendo_switch
   IgdbId: 130
   Emulators: [ryujinx, yuzu]
+
+- Name: Nintendo Switch 2
+  Id: nintendo_switch2
+  IgdbId: 508
   
 - Name: Nintendo Virtual Boy
   Id: nintendo_virtualboy
@@ -477,3 +481,11 @@
   Id: watara_supervision
   Databases: [Watara - Supervision]
   Emulators: [retroarch]
+
+- Name: Philips CD-i
+  Id: philips_cdi
+  IgdbId: 117
+
+- Name: Pokémon mini
+  Id: pokemon_mini
+  IgdbId: 166
