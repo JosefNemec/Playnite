@@ -838,12 +838,25 @@ namespace Playnite.Database
 
             if (path.IsHttpUrl())
             {
+                var extension = Path.GetExtension(new Uri(path).AbsolutePath);
+                var fileName = Guid.NewGuid().ToString() + extension;
+                var downPath = Path.Combine(targetDir, fileName);
+
                 try
                 {
-                    var extension = Path.GetExtension(new Uri(path).AbsolutePath);
-                    var fileName = Guid.NewGuid().ToString() + extension;
-                    var downPath = Path.Combine(targetDir, fileName);
                     HttpDownloader.DownloadFile(path, downPath, cancelToken);
+                    if (cancelToken.IsCancellationRequested)
+                    {
+                        FileSystem.DeleteFile(downPath);
+                        return null;
+                    }
+
+                    if (FileSystem.GetFileSize(downPath) == 0)
+                    {
+                        FileSystem.DeleteFile(downPath);
+                        return null;
+                    }
+
                     if (isImage)
                     {
                         var converted = Images.ConvertToCompatibleFormat(downPath, Path.Combine(targetDir, Path.GetFileNameWithoutExtension(fileName)));
@@ -867,8 +880,9 @@ namespace Playnite.Database
                         dbPath = Path.Combine(parentId.ToString(), fileName);
                     }
                 }
-                catch (WebException e)
+                catch (Exception e)
                 {
+                    FileSystem.DeleteFile(downPath);
                     logger.Error(e, $"Failed to add http {path} file to database.");
                     return null;
                 }
