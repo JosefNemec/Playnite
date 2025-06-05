@@ -1,18 +1,19 @@
 ﻿<UserControl x:Class="Playnite.DesktopApp.Controls.LibraryStatistics"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:p="clr-namespace:Playnite;assembly=Playnite"
+             xmlns:p="clr-namespace:Playnite;assembly=Playnite"
              xmlns:pmrk="clr-namespace:Playnite.DesktopApp.Markup"
+             xmlns:pdvm="clr-namespace:Playnite.DesktopApp.ViewModels"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="650" d:DesignWidth="900"
-             d:DataContext="{x:Static StatisticsViewModel.DesignIntance}">
+             d:DataContext="{x:Static pdvm:StatisticsViewModel.DesignIntance}">
 
     <UserControl.Resources>
         <p:BindingProxy x:Key="DCProxy" Data="{Binding}" />
-        
+
         <ControlTemplate x:Key="OverallStatsTemplate">
             <ControlTemplate.Resources>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
