@@ -21,14 +21,17 @@ namespace Playnite.DesktopApp.API
         {
             get
             {
-                if (mainModel.SelectedGames == null && mainModel.SelectedGame != null)
+                return UIDispatcher.Invoke(() =>
                 {
-                    return new List<Game>() { mainModel.SelectedGame.Game };
-                }
-                else
-                {
-                    return mainModel.SelectedGames?.Select(a => a.Game).ToList();
-                }
+                    if (mainModel.SelectedGames == null && mainModel.SelectedGame != null)
+                    {
+                        return new List<Game>() { mainModel.SelectedGame.Game };
+                    }
+                    else
+                    {
+                        return mainModel.SelectedGames?.Select(a => a.Game).ToList();
+                    }
+                });
             }
         }
 
@@ -58,7 +61,7 @@ namespace Playnite.DesktopApp.API
             set => mainModel.AppSettings.ViewSettings.GroupingOrder = value;
         }
 
-        public List<Game> FilteredGames => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList();
+        public List<Game> FilteredGames => UIDispatcher.Invoke(() => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList());
 
         public Dispatcher UIDispatcher => PlayniteApplication.CurrentNative.Dispatcher;
 
