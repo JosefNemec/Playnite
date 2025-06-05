@@ -116,6 +116,7 @@ namespace Playnite.Controllers
 
                 if (!emuProf.StartupScript.IsNullOrWhiteSpace())
                 {
+                    emuProf.StartupScript = Game.ExpandVariables(emuProf.StartupScript, false, emulator.InstallDir, romPath);
                     RunStartScript(
                         $"{emulator.Name} runtime for {Game.Name}",
                         emuProf.StartupScript,
@@ -501,6 +502,7 @@ namespace Playnite.Controllers
                     throw new ArgumentNullException("Game script is not defined.");
                 }
 
+                action.Script = Game.ExpandVariables(action.Script, false);
                 RunStartScript(
                     $"{Game.Name} play script",
                     action.Script,
