@@ -99,12 +99,9 @@ namespace Playnite
                         var extensionsPath = Path.Combine(diagTemp, "extensions.txt");
                         File.WriteAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName));
                         File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesProgramPath, PlaynitePaths.ThemeManifestFileName));
-                        if (!PlayniteSettings.IsPortable)
-                        {
-                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName));
-                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesUserDataPath, PlaynitePaths.ThemeManifestFileName));
-                        }
-
+                        File.AppendAllText(extensionsPath, "\n\nUser data extensions:\n\n");
+                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName));
+                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesUserDataPath, PlaynitePaths.ThemeManifestFileName));
                         archive.CreateEntryFromFile(extensionsPath, Path.GetFileName(extensionsPath));
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

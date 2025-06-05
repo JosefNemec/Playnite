@@ -17,6 +17,32 @@ namespace Playnite.FullscreenApp
         [STAThread]
         public static void Main(string[] args)
         {
+            var cmdLine = new CmdLineOptions();
+            var parsed = Parser.Default.ParseArguments<CmdLineOptions>(Environment.GetCommandLineArgs());
+            if (parsed is Parsed<CmdLineOptions> options)
+            {
+                cmdLine = options.Value;
+            }
+
+            if (!cmdLine.UserDataDir.IsNullOrWhiteSpace())
+            {
+                try
+                {
+                    cmdLine.UserDataDir = cmdLine.UserDataDir.TrimEnd(new char[] { '/', '\\', '"' });
+                    FileSystem.CreateDirectory(cmdLine.UserDataDir, false);
+                    PlaynitePaths.UpdateUserDataDir(cmdLine.UserDataDir);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(
+                        $"Failed to initialize in specified user data folder:\n{e.Message}",
+                        "Startup Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    return;
+                }
+            }
+
             FileSystem.CreateDirectory(PlaynitePaths.JitProfilesPath);
             ProfileOptimization.SetProfileRoot(PlaynitePaths.JitProfilesPath);
             ProfileOptimization.StartProfile("fullscreen");
@@ -48,13 +74,6 @@ namespace Playnite.FullscreenApp
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
                 return;
-            }
-
-            var cmdLine = new CmdLineOptions();
-            var parsed = Parser.Default.ParseArguments<CmdLineOptions>(Environment.GetCommandLineArgs());
-            if (parsed is Parsed<CmdLineOptions> options)
-            {
-                cmdLine = options.Value;
             }
 
             SplashScreen splash = null;

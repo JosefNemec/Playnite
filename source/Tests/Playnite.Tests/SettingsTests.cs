@@ -30,7 +30,9 @@ namespace Playnite.Tests
         public void PortableInnoPathsTest()
         {
             Assert.IsTrue(PlayniteSettings.IsPortable);
-            Assert.AreNotEqual(PlaynitePaths.UserProgramDataPath, PlaynitePaths.ConfigRootPath);
+            Assert.AreNotEqual(
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Playnite"),
+                PlaynitePaths.ConfigRootPath);
         }
 
         [Test]

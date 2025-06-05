@@ -165,10 +165,7 @@ namespace Playnite.Plugins
         {
             FileSystem.CreateDirectory(PlaynitePaths.ExtensionsDataPath);
             FileSystem.CreateDirectory(PlaynitePaths.ExtensionsProgramPath);
-            if (!PlayniteSettings.IsPortable)
-            {
-                FileSystem.CreateDirectory(PlaynitePaths.ExtensionsUserDataPath);
-            }
+            FileSystem.CreateDirectory(PlaynitePaths.ExtensionsUserDataPath);
         }
 
         private static IEnumerable<ExtensionManifest> GetManifestsFromPath(string path)
@@ -246,7 +243,7 @@ namespace Playnite.Plugins
                 }
             }
 
-            if (!PlayniteSettings.IsPortable && Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
+            if (Directory.Exists(PlaynitePaths.ExtensionsUserDataPath))
             {
                 var enumerator = new SafeFileEnumerator(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName, SearchOption.AllDirectories);
                 foreach (var desc in enumerator)

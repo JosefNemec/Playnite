@@ -1001,7 +1001,8 @@ namespace Playnite.DesktopApp.ViewModels
                     SkipLibUpdate = true,
                     StartInFullscreen = true,
                     MasterInstance = true,
-                    SafeStartup = App.CmdLine.SafeStartup
+                    SafeStartup = App.CmdLine.SafeStartup,
+                    UserDataDir = App.CmdLine.UserDataDir
                 }.ToString());
         }
 

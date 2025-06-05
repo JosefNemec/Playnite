@@ -426,8 +426,13 @@ namespace Playnite.Database
             }
         }
 
-        public static string GetDefaultPath(bool portable)
+        public static string GetDefaultPath(bool portable, string userDataDirOverride)
         {
+            if (!userDataDirOverride.IsNullOrWhiteSpace())
+            {
+                return Path.Combine(userDataDirOverride, "library");
+            }
+
             if (portable)
             {
                 return ExpandableVariables.PlayniteDirectory + @"\library";

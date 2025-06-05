@@ -239,7 +239,7 @@ namespace Playnite
             var install = new List<BaseExtensionManifest>();
 
             var userPath = Path.Combine(PlaynitePaths.ThemesUserDataPath, modeDir);
-            if (!PlayniteSettings.IsPortable && Directory.Exists(userPath))
+            if (Directory.Exists(userPath))
             {
                 foreach (var dir in Directory.GetDirectories(userPath))
                 {

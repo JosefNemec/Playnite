@@ -60,6 +60,9 @@ namespace Playnite
         [Option("startclosedtotray")]
         public bool StartClosedToTray { get; set; }
 
+        [Option("userdatadir")]
+        public string UserDataDir { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

@@ -193,6 +193,7 @@ namespace Playnite.FullscreenApp
         public override void Restart(CmdLineOptions options, bool saveSettings)
         {
             options.MasterInstance = true;
+            options.UserDataDir = CmdLine.UserDataDir;
             QuitAndStart(PlaynitePaths.FullscreenExecutablePath, options.ToString(), saveSettings: saveSettings);
         }
 
