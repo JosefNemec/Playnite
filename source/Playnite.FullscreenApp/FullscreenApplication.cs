@@ -283,6 +283,10 @@ namespace Playnite.FullscreenApp
                 logger.Error(SDL_GetError());
             }
 
+            // This should fix some random XInput controller issues
+            // https://github.com/libsdl-org/SDL/issues/13047
+            // https://github.com/JosefNemec/Playnite/issues/3794
+            SDL_SetHint(SDL_HINT_JOYSTICK_RAWINPUT, "0");
             SDL_GameControllerEventState(SDL_IGNORE);
             SDLEventLoop();
             sdlInitialized = true;
