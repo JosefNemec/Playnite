@@ -31,6 +31,9 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand RestartSystemCommand => new RelayCommand(() => RestartSystem());
         public RelayCommand LockSystemCommand => new RelayCommand(() => LockSystem());
         public RelayCommand LogoutUserCommand => new RelayCommand(() => LogoutUser());
+        public RelayCommand OpenClientsCommand => new RelayCommand(() => OpenClients());
+        public RelayCommand OpenToolsCommand => new RelayCommand(() => OpenTools());
+        public RelayCommand OpenExtensionsCommand => new RelayCommand(() => OpenExtensions());
         public RelayCommand UpdateGamesCommand => new RelayCommand(async () =>
         {
             Close();
@@ -244,6 +247,27 @@ namespace Playnite.FullscreenApp.ViewModels
         public async void CancelLibraryUpdate()
         {
             await GlobalTaskHandler.CancelAndWaitAsync();
+        }
+
+        public void OpenClients()
+        {
+            Close();
+            var vm = new GameClientsMenuViewModel(new GameClientsMenuWindowFactory(), MainModel);
+            vm.OpenView();
+        }
+
+        public void OpenTools()
+        {
+            Close();
+            var vm = new SoftwareToolsMenuViewModel(new SoftwareToolsMenuWindowFactory(), MainModel);
+            vm.OpenView();
+        }
+
+        public void OpenExtensions()
+        {
+            Close();
+            var vm = new ExtensionsMenuViewModels(new ExtensionsMenuWindowFactory(), MainModel);
+            vm.OpenView();
         }
     }
 }

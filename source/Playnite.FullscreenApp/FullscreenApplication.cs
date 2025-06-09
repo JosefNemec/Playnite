@@ -161,6 +161,15 @@ namespace Playnite.FullscreenApp
             Extensions.LoadScripts(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             OnExtensionsLoaded();
 
+            try
+            {
+                MainModel.ThirdPartyTools = ThirdPartyToolsList.GetTools(Extensions.LibraryPlugins);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to load third party tools.");
+            }
+
             splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
             CurrentNative.MainWindow = MainModel.Window.Window;

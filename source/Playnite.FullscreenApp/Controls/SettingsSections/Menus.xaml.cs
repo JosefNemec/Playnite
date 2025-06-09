@@ -87,6 +87,30 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 nameof(FullscreenSettings.MainMenuShowLogout),
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToggleExtensions,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.MainMenuShowExtensions),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToogleTools,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.MainMenuShowTools),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
+            BindingTools.SetBinding(
+                ToggleClients,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.MainMenuShowClients),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
     }
 }

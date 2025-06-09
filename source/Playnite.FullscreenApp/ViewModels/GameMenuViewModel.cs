@@ -68,6 +68,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand RemoveGameCommand => new RelayCommand(() => RemoveGame());
         public RelayCommand<GameAction> ActivateActionCommand => new RelayCommand<GameAction>((a) => ActivateAction(a));
         public RelayCommand SetFieldsCommand => new RelayCommand(() => SetFields());
+        public RelayCommand OpenExtensionCommand => new RelayCommand(() => OpenExtensions());
 
         public GameMenuViewModel(
             IWindowFactory window,
@@ -98,6 +99,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 items.Add(new GameActionItem(ToggleHdrCommand, game.EnableSystemHdr ? ResourceProvider.GetString(LOC.DisableHdr) : ResourceProvider.GetString(LOC.EnableHdr), "GameMenuHdrButtonTemplate"));
             }
             items.Add(new GameActionItem(SetFieldsCommand, ResourceProvider.GetString(LOC.MenuSetFields), "GameMenuSetFieldsTemplate"));
+            items.Add(new GameActionItem(OpenExtensionCommand, ResourceProvider.GetString(LOC.Extensions), "GameMenuExtensionsTemplate"));
             items.Add(new GameActionItem(RemoveGameCommand, ResourceProvider.GetString(LOC.RemoveGame), "GameMenuRemoveButtonTemplate"));
 
             if (!game.IsCustomGame && game.IsInstalled)
@@ -259,6 +261,13 @@ namespace Playnite.FullscreenApp.ViewModels
                         throw new NotImplementedException();
                 }
             }
+        }
+
+        public void OpenExtensions()
+        {
+            Close();
+            var vm = new ExtensionsMenuViewModels(new ExtensionsMenuWindowFactory(), mainModel, Game);
+            vm.OpenView();
         }
     }
 }

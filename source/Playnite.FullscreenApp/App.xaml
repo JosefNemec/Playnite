@@ -52,6 +52,7 @@
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/SettingsMenus.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/TextInput.xaml" />
                 <ResourceDictionary Source="Themes/Fullscreen/Default/Views/ItemSelection.xaml" />
+                <ResourceDictionary Source="Themes/Fullscreen/Default/Views/CustomMenus.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

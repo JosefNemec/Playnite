@@ -16,8 +16,11 @@
         <TextBlock Text="{DynamicResource LOCSettingsShowItemsMainMenuHeader}"
                    Style="{StaticResource SettingsSectionText}" />
         <StackPanel Margin="50,0,0,0">
-            <pctrls:CheckBoxEx x:Name="ToggleShutdownSystem" Content="{DynamicResource LOCMenuShutdownSystem}"
-                           pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+            <pctrls:CheckBoxEx x:Name="ToggleClients" Content="{DynamicResource LOCMenuClients}"
+                               pbeh:FocusBahaviors.OnVisibilityFocus="True" />
+            <pctrls:CheckBoxEx x:Name="ToggleExtensions" Content="{DynamicResource LOCExtensions}"  />
+            <pctrls:CheckBoxEx x:Name="ToogleTools" Content="{DynamicResource LOCMenuTools}"  />
+            <pctrls:CheckBoxEx x:Name="ToggleShutdownSystem" Content="{DynamicResource LOCMenuShutdownSystem}" />
             <pctrls:CheckBoxEx x:Name="ToggleRestartSystem" Content="{DynamicResource LOCMenuRestartSystem}"  />
             <pctrls:CheckBoxEx x:Name="ToggleSuspendSystem" Content="{DynamicResource LOCMenuSuspendSystem}"  />
             <pctrls:CheckBoxEx x:Name="ToggleHibernateSystem" Content="{DynamicResource LOCMenuHibernateSystem}"  />

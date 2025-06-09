@@ -199,15 +199,27 @@
     <Compile Include="ViewModels\DesignData\DesignMainViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel.cs" />
     <Compile Include="ViewModels\FullscreenAppViewModel_Commands.cs" />
+    <Compile Include="ViewModels\ExtensionsMenuViewModels.cs" />
+    <Compile Include="ViewModels\SoftwareToolsMenuViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameMenuViewModel.cs" />
     <Compile Include="ViewModels\GameStatusViewModel.cs" />
+    <Compile Include="ViewModels\GameClientsMenuViewModel.cs" />
     <Compile Include="ViewModels\HelpMenuViewModel.cs" />
     <Compile Include="ViewModels\NotificationsViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Windows\ExtensionsMenuWindow.xaml.cs">
+      <DependentUpon>ExtensionsMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SoftwareToolsMenuWindow.xaml.cs">
+      <DependentUpon>SoftwareToolsMenuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MultiItemSelectionWindow.xaml.cs">
       <DependentUpon>MultiItemSelectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GameClientsMenuWindow.xaml.cs">
+      <DependentUpon>GameClientsMenuWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SingleItemSelectionWindow.xaml.cs">
       <DependentUpon>SingleItemSelectionWindow.xaml</DependentUpon>
@@ -484,7 +496,24 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\CustomMenus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="Windows\ExtensionsMenuWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\SoftwareToolsMenuWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\MultiItemSelectionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\GameClientsMenuWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
