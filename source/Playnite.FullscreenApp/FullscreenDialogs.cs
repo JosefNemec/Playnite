@@ -159,7 +159,11 @@ namespace Playnite.FullscreenApp
 
         public Window CreateWindow(WindowCreationOptions options)
         {
-            throw new NotImplementedException();
+            return new WindowBase()
+            {
+                WindowStyle = WindowStyle.None,
+                Style = ResourceProvider.GetResource("ChildWindowStyle") as Style
+            };
         }
 
         public Window GetCurrentAppWindow()
