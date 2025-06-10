@@ -176,7 +176,6 @@ namespace Playnite.Audio
             if (AudioClosed || !AudioInitialized)
                 return;
 
-            Console.WriteLine("closing audio");
             Mix_CloseAudio();
             AudioClosed = true;
         }
