@@ -40,6 +40,21 @@ namespace Playnite.SDK
         ///
         /// </summary>
         bool IsMusicMuted { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        bool SwapConfirmCancelButtons { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        bool SwapStartDetailsAction { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        bool GuideButtonFocus { get; }
     }
 
     /// <summary>

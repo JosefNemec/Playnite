@@ -20,6 +20,10 @@ namespace Playnite.API
             set => settings.IsMusicMuted = value;
         }
 
+        public bool SwapConfirmCancelButtons => settings.SwapConfirmCancelButtons;
+        public bool SwapStartDetailsAction => settings.SwapStartDetailsAction;
+        public bool GuideButtonFocus => settings.GuideButtonFocus;
+
         public FullscreenSettingsAPI(FullscreenSettings settings)
         {
             this.settings = settings;

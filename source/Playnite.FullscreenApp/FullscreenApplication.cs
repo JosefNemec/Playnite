@@ -10,6 +10,7 @@ using Playnite.FullscreenApp.Windows;
 using Playnite.Input;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.WebView;
 using Playnite.Windows;

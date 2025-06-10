@@ -5,6 +5,7 @@ using Playnite.Converters;
 using Playnite.FullscreenApp.ViewModels;
 using Playnite.Input;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

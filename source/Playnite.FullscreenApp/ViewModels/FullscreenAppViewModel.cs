@@ -414,13 +414,26 @@ namespace Playnite.FullscreenApp.ViewModels
             AdjustGameItemsToScreenChanges();
         }
 
-        private void GameControllerInput_ButtonUp(object sender, GameControllerManager.ButtonUpEventArgs e)
+        private void GameControllerInput_ButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
         {
             if (AppSettings.Fullscreen.EnableGameControllerSupport &&
                 AppSettings.Fullscreen.GuideButtonFocus &&
-                e.Button == ControllerInput.Guide)
+                e.Button == ControllerInput.Guide &&
+                e.State == ControllerInputState.Released)
             {
                 WindowManager.LastActiveWindow?.RestoreWindow();
+            }
+
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerButtonStateChanged(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller input.");
+                }
             }
         }
 
@@ -863,7 +876,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (app.GameController != null)
             {
-                app.GameController.ButtonUp += GameControllerInput_ButtonUp;
+                app.GameController.ButtonChanged += GameControllerInput_ButtonChanged;
             }
 
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
