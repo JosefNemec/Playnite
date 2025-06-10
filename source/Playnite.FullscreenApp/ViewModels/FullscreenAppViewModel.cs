@@ -29,7 +29,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using static SDL2.SDL_mixer;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
@@ -39,8 +38,8 @@ namespace Playnite.FullscreenApp.ViewModels
         private readonly SynchronizationContext context;
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
-        private AudioEngine audio => FullscreenApplication.Audio;
         private readonly FullscreenApplication app;
+        private AudioEngine audio => FullscreenApplication.Audio;
 
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
@@ -569,39 +568,47 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.InterfaceVolume))
             {
-                Mix_VolumeChunk(FullscreenApplication.ActivateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
-                Mix_VolumeChunk(FullscreenApplication.NavigateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
+                audio.SetSoundVolume(FullscreenApplication.ActivateSound, AppSettings.Fullscreen.InterfaceVolume);
+                audio.SetSoundVolume(FullscreenApplication.NavigateSound, AppSettings.Fullscreen.InterfaceVolume);
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
                 if (AppSettings.Fullscreen.BackgroundVolume <= 0)
                 {
-                    Mix_HaltMusic();
+                    audio.StopMusic();
                 }
                 else
                 {
-                    Mix_VolumeMusic(AudioEngine.GetVolume(AppSettings.Fullscreen.BackgroundVolume));
-                    if (Mix_PlayingMusic() != 1)
+                    audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
+                    if (!audio.GetIsMusicPlaying())
                     {
-                        Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
+                        audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+                    }
+
+                    if (audio.GetIsMusicPaused())
+                    {
+                        audio.ResumeMusic();
                     }
                 }
             }
             else if (e.PropertyName == nameof(FullscreenSettings.IsMusicMuted))
             {
+                if (AppSettings.Fullscreen.BackgroundVolume <= 0)
+                    return;
+
                 if (AppSettings.Fullscreen.IsMusicMuted)
                 {
-                    Mix_PauseMusic();
+                    audio.PauseMusic();
                 }
                 else
                 {
-                    if (Mix_PausedMusic() == 1)
+                    if (audio.GetIsMusicPaused())
                     {
-                        Mix_ResumeMusic();
+                        audio.ResumeMusic();
                     }
                     else
                     {
-                        Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
+                        audio.PlayMusic(FullscreenApplication.BackgroundMusic);
                     }
                 }
             }
