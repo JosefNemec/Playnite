@@ -2647,7 +2647,7 @@ namespace Playnite
                 case UpdateCheckFrequency.Manually:
                     return false;
                 case UpdateCheckFrequency.OnceADay:
-                    return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
+                    return DateTimes.Now.Date > LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2663,7 +2663,7 @@ namespace Playnite
                 case UpdateCheckFrequency.Manually:
                     return false;
                 case UpdateCheckFrequency.OnceADay:
-                    return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
+                    return DateTimes.Now.Date > LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2679,7 +2679,7 @@ namespace Playnite
                 case UpdateCheckFrequency.Manually:
                     return false;
                 case UpdateCheckFrequency.OnceADay:
-                    return DateTimes.Now.Date != LastProgramUpdateCheck.Date;
+                    return DateTimes.Now.Date > LastProgramUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastProgramUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2695,7 +2695,7 @@ namespace Playnite
                 case UpdateCheckFrequency.Manually:
                     return false;
                 case UpdateCheckFrequency.OnceADay:
-                    return DateTimes.Now.Date != LastAddonUpdateCheck.Date;
+                    return DateTimes.Now.Date > LastAddonUpdateCheck.Date;
                 case UpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastAddonUpdateCheck).TotalDays > 6;
                 case UpdateCheckFrequency.OnEveryStartup:
@@ -2709,7 +2709,7 @@ namespace Playnite
             switch (CheckForLibraryUpdates)
             {
                 case LibraryUpdateCheckFrequency.OnceADay:
-                    return DateTimes.Now.Date != LastLibraryUpdateCheck.Date;
+                    return DateTimes.Now.Date > LastLibraryUpdateCheck.Date;
                 case LibraryUpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastLibraryUpdateCheck).TotalDays > 6;
                 case LibraryUpdateCheckFrequency.Manually:
@@ -2725,7 +2725,7 @@ namespace Playnite
             switch (CheckForEmulatedLibraryUpdates)
             {
                 case LibraryUpdateCheckFrequency.OnceADay:
-                    return DateTimes.Now.Date != LastEmuLibraryUpdateCheck.Date;
+                    return DateTimes.Now.Date > LastEmuLibraryUpdateCheck.Date;
                 case LibraryUpdateCheckFrequency.OnceAWeek:
                     return (DateTimes.Now - LastEmuLibraryUpdateCheck).TotalDays > 6;
                 case LibraryUpdateCheckFrequency.Manually:
@@ -2746,7 +2746,7 @@ namespace Playnite
             switch (AutoBackupFrequency)
             {
                 case AutoBackupFrequency.OnceADay:
-                    return DateTimes.Now.Date != LastAutoBackup.Date;
+                    return DateTimes.Now.Date > LastAutoBackup.Date;
                 case AutoBackupFrequency.OnceAWeek:
                     return (DateTimes.Now - LastAutoBackup).TotalDays > 6;
                 default:
