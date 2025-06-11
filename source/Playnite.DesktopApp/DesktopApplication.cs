@@ -259,15 +259,21 @@ namespace Playnite.DesktopApp
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
-                    AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
-                    AppSettings.SaveSettings();
                 }
-                else
-                {
-                    AppSettings.FirstTimeWizardComplete = true;
-                    AppSettings.SaveSettings();
-                }
+
+                AppSettings.AutoBackupEnabled = true;
+                AppSettings.LastAutoBackup = DateTime.Now.AddDays(1); // Postpone first backup to not interrupt initial user experience
+                AppSettings.RotatingBackups = 3;
+                AppSettings.AutoBackupDir = Path.Combine(PlaynitePaths.ConfigRootPath, "Backup");
+                AppSettings.AutoBackupFrequency = AutoBackupFrequency.OnceADay;
+                AppSettings.AutoBackupIncludeExtensions = false;
+                AppSettings.AutoBackupIncludeExtensionsData = false;
+                AppSettings.AutoBackupIncludeLibFiles = false;
+                AppSettings.AutoBackupIncludeThemes = false;
+
+                AppSettings.FirstTimeWizardComplete = true;
+                AppSettings.SaveSettings();
             }
             else
             {
