@@ -106,7 +106,8 @@ namespace Playnite.Toolbox
 
         public static void ProcessNewOptions(NewCmdLineOptions options)
         {
-            options.OutDirectory = options.OutDirectory.Trim('"');
+            if (!options.OutDirectory.IsNullOrEmpty())
+                options.OutDirectory = options.OutDirectory.Trim('"');
 
             try
             {
