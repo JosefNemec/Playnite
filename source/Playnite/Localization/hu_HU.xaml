@@ -213,6 +213,8 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCMetaGameSourceAll">Az adatbázis összes játéka</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">A jelenleg szűrt összes játék</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Csak a kiválasztott játékok</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Nincs metaadat mező kiválasztva</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Nincs letöltendő metaadat mező kiválasztva. Válassz ki legalább egyet, és jelölj ki egy metaadat szolgáltatót hozzá.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Hivatalos áruházból</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Kérlek válaszd ki mely mezőket frissítse a Playnite automatikusan, és milyen forrásból.</sys:String>

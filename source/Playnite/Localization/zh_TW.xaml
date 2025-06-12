@@ -212,6 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">數據庫中的所有遊戲</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">所有目前過濾出的遊戲</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">僅選中的遊戲</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">請選擇透過Playnite自動輸入的資料範圍以及資料來源</sys:String>
@@ -382,7 +384,7 @@
 永不: 在任何情況下都不匯入遊玩時間。</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">總是</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">只針對新匯入的遊戲</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">永不</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">從未</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式中啟用手把</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">導航按鍵開啟全螢幕模式</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">設定新匯入的遊戲應該下載哪些資料</sys:String>
@@ -652,7 +654,8 @@
     <sys:String x:Key="LOCClose">關閉</sys:String>
     <sys:String x:Key="LOCChange">變更</sys:String>
     <sys:String x:Key="LOCAdvanced">進階</sys:String>
-    <sys:String x:Key="LOCNever">永不</sys:String>
+    <sys:String x:Key="LOCNever">從未
+</sys:String>
     <sys:String x:Key="LOCCompletionStatus">完成狀態</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">完成狀態</sys:String>
     <sys:String x:Key="LOCUserScore">使用者評分</sys:String>

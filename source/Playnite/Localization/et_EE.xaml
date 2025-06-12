@@ -212,6 +212,8 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCMetaGameSourceAll">Kõik mängud andmebaasist</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Kõik hetkel filtreeritud mängud</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Ainult valitud mängud</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Ametlik pood</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Palun vali, millised väljad peaks Playnite automaatselt andmetega täitma ja millistest allikatest andmeid hankima.</sys:String>

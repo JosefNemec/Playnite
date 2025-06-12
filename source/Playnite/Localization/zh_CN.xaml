@@ -212,6 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">数据库中的所有游戏</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">所有当前筛选出的游戏</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">仅所选游戏</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">未选择任何元数据字段</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">未选择任何元数据字段进行下载。请至少选择一个，并为其启用至少一个元数据提供程序。</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">请指定通过 Playnite 自动填充的字段，以及用于获取数据的源。</sys:String>
@@ -381,7 +383,7 @@
 从不：无论何种情形都不导入游玩时间。</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">总是</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">仅新导入</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">从不</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">从未</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">在桌面模式下启用控制器支持</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">导航按钮打开全屏模式</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">为新导入的游戏自动下载资料数据。</sys:String>
@@ -652,7 +654,7 @@
     <sys:String x:Key="LOCClose">关闭</sys:String>
     <sys:String x:Key="LOCChange">更改</sys:String>
     <sys:String x:Key="LOCAdvanced">高级</sys:String>
-    <sys:String x:Key="LOCNever">从不</sys:String>
+    <sys:String x:Key="LOCNever">从未</sys:String>
     <sys:String x:Key="LOCCompletionStatus">完成状态</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">完成状态</sys:String>
     <sys:String x:Key="LOCUserScore">用户评分</sys:String>

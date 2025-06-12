@@ -212,6 +212,8 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCMetaGameSourceAll">Wszystkie gry z bazy danych</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Wszystkie aktualnie filtrowane gry</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Tylko wybrane gry</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Nie wybrano żadnego pola metadanych</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Nie wybrano żadnego pola metadanych do pobrania. Wybierz co najmniej jedno i włącz dla niego co najmniej jednego dostawcę metadanych.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficjalny sklep</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Wybierz pola, które mają być automatycznie wypełniane przez Playnite oraz źródła, z których należy pobrać dane.</sys:String>

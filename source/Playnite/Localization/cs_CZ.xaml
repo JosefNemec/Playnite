@@ -212,6 +212,8 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCMetaGameSourceAll">Všechny hry v databázi</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Všechny aktuálně filtrované hry</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Jen vybrané hry</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Nejsou vybrána žádná pole metadat</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Nejsou vybrána žádná pole metadat ke stažení. Vyberte prosím alespoň jedno a povolte pro ně alespoň jednoho poskytovatele metadat.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficiální Obchod</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Prosím vyberte, která pole by měl Playnite automaticky doplnit a které zdroje by měly být použity k získání těchto údajů.</sys:String>

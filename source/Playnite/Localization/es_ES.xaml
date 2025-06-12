@@ -212,6 +212,8 @@ Seleccionar la opción &quot;añadir a la lista de exclusión&quot; evitará que
     <sys:String x:Key="LOCMetaGameSourceAll">Todos los juegos de la base de datos</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Todos los juegos filtrados actualmente</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Solo los juegos seleccionados</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">No hay campos de metadatos seleccionados</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">No se han seleccionado campos de metadatos para la descarga. Por favor, selecciona al menos uno, y habilita al menos un proveedor de metadatos para este.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Tienda oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selecciona qué campos debe rellenar automáticamente Playnite y qué fuentes utilizar para obtener los datos.</sys:String>

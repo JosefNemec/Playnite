@@ -196,6 +196,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">डेटाबेसमधील सर्व गेम</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">या वेळी गाळलेले सर्व गेम</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">केवळ निवडलेले गेम</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">अधिकृत दुकान</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">प्लेनाइटने कोणते रकाने आपोआप भरले पाहिजेत व कोणत्या स्रोतांपासून डेटा मिळवली पाहिजे हे निवडा.</sys:String>
@@ -952,7 +954,7 @@
 हे अक्षम केले तर गेम सुरू केल्यावर गेममध्ये इनपुट न मिळण्याच्या समस्या आढळू शकतील!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">फाँट आकार</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">छोटा फाँट आकार</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">गेम कंट्रोलर समर्थन</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">मेन मेन्यूवर वस्तू दाखवा:</sys:String>
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtons"></sys:String>
@@ -969,9 +971,9 @@
     <sys:String x:Key="LOCSettingsAudioOutputApi">आउटपुट API</sys:String>
     <sys:String x:Key="LOCSettingsAudioOutputApiDescription">ऑडियो आउटपुटसाठी वापरला जाणारा API. आवाजात समस्या अनुभवत असलात तर हे बदला.</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">साधारण</sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionVisuals"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionVisuals">दृश्य</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionAudio">ऑडिओ</sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionLayout"></sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionLayout">मांडणी</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionMenus">मेन्यू</sys:String>
     <sys:String x:Key="LOCSettingsFSSection">इनपुट</sys:String>
     <sys:String x:Key="LOCGameIsStarting">{0} सुरू होत आहे…</sys:String>
@@ -980,7 +982,7 @@
     <sys:String x:Key="LOCTextInputSpace">स्पेस</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerMode">चित्र रेंडर करणारे स्केलर</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingAlternative">वैकल्पिक</sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingBalanced"></sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingBalanced">संतुलित</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingQuality">गुणवत्ता</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSelectFileTooltip">फाईल निवडा…</sys:String>
@@ -989,10 +991,10 @@
     <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCGameActionSelectOnStart">स्टार्टअपच्या वेळी निवडा</sys:String>
     <sys:String x:Key="LOCEmulatorSelectOnStart">स्टार्टअपच्या वेळी निवडा</sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfiles"></sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfile"></sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfiles"></sys:String>
-    <sys:String x:Key="LOCEmulatorCustomProfile"></sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfiles">अंतर्गत प्रोफायली</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfile">अंतर्गत प्रोफाईल</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfiles">सानुकूल प्रोफायली</sys:String>
+    <sys:String x:Key="LOCEmulatorCustomProfile">सानुकूल प्रोफाईल</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript"></sys:String>
     <sys:String x:Key="LOCEmulatorSpec"></sys:String>
     <sys:String x:Key="LOCPlatformSpec"></sys:String>
@@ -1004,7 +1006,7 @@
     <sys:String x:Key="LOCErrorEmulatorSpecificationNotFound"></sys:String>
     <sys:String x:Key="LOCErrorEmulatorStartupScriptNotFound"></sys:String>
     <sys:String x:Key="LOCSplitEmuImportSplitGames"></sys:String>
-    <sys:String x:Key="LOCSplitEmuImportMergeGames"></sys:String>
+    <sys:String x:Key="LOCSplitEmuImportMergeGames">एक गेम म्हणून विलीन करा</sys:String>
     <sys:String x:Key="LOCEmuImportAssignPlatform">प्लॅटफॉर्म सेट करा</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">प्रदेश सेट करा</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">फोल्डर स्कॅन करा</sys:String>
@@ -1026,7 +1028,7 @@
     <sys:String x:Key="LOCEmuSaveScanConfigTooltip"></sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePaths"></sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip"></sys:String>
-    <sys:String x:Key="LOCEmuImportScanSubfolders"></sys:String>
+    <sys:String x:Key="LOCEmuImportScanSubfolders">सबफोल्डर स्कॅन करा</sys:String>
     <sys:String x:Key="LOCEmuImportScanInsideArchives"></sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFiles"></sys:String>
     <sys:String x:Key="LOCEmuMergeRelatedFilesTooltip"></sys:String>
@@ -1070,9 +1072,9 @@
     <sys:String x:Key="LOCCheckEmulatedLibraryUpdates">एम्युलेशन फोल्डर स्कॅन करा</sys:String>
     <sys:String x:Key="LOCStatsIncludeHidden">लपवलेले गेम सामील करा</sys:String>
     <sys:String x:Key="LOCMenuSetFields">रकाने संपादित करा</sys:String>
-    <sys:String x:Key="LOCItemSelectionSelectDeselectAll"></sys:String>
+    <sys:String x:Key="LOCItemSelectionSelectDeselectAll">सर्व निवडा / निवड काढा</sys:String>
     <sys:String x:Key="LOCOpen">उघडा</sys:String>
-    <sys:String x:Key="LOCActivate"></sys:String>
+    <sys:String x:Key="LOCActivate">सक्रिय करा</sys:String>
     <sys:String x:Key="LOCAssign">नेमणूक करा</sys:String>
     <sys:String x:Key="LOCDefaultSearchDescription">गेम्सचा शोध घेण्यास टाइप करायला सुरुवात करा… मदतीसाठी [F1] दाबा</sys:String>
     <sys:String x:Key="LOCDefaultSearchHint" xml:space="preserve"></sys:String>
@@ -1090,16 +1092,16 @@
     <sys:String x:Key="LOCTopPanelSearchBox">शोध पट्टी</sys:String>
     <sys:String x:Key="LOCTopPanelSearchButton">शोध बटण</sys:String>
 
-    <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
-    <sys:String x:Key="LOCSearchSettingsSecondaryAction"></sys:String>
-    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch"></sys:String>
+    <sys:String x:Key="LOCSearchSettingsPrimaryAction">प्राथमिक गेम क्रिया</sys:String>
+    <sys:String x:Key="LOCSearchSettingsSecondaryAction">द्वितीयक गेम क्रिया</sys:String>
+    <sys:String x:Key="LOCSearchSettingsKeyboardOpenSearch">CTRL-F दाबल्याने शोध बॉक्सवर लक्ष केंद्रित करण्याऐवजी जागतिक शोध उघडावे</sys:String>
     <sys:String x:Key="LOCSearchSettingsSaveFilter"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSearchProviders">शोध पुरवणारे</sys:String>
     <sys:String x:Key="LOCSearchSettingsDefaultKeyword"></sys:String>
     <sys:String x:Key="LOCSearchSettingsCustomKeyword"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
     <sys:String x:Key="LOCSearchTitle">प्लेनाइट शोध</sys:String>
-    <sys:String x:Key="LOCExtensionSettingsMenu"></sys:String>
+    <sys:String x:Key="LOCExtensionSettingsMenu">एक्स्टेंशन सेटिंग</sys:String>
     <sys:String x:Key="LOCExclusions">वगळलेले</sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
@@ -1145,12 +1147,12 @@
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm"></sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground"></sys:String>
-    <sys:String x:Key="LOCGettingsAddonInformation"></sys:String>
-    <sys:String x:Key="LOCNoMetadataSource"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettings"></sys:String>
+    <sys:String x:Key="LOCGettingsAddonInformation">अ‍ॅडऑनविषयी माहिती मिळवत आहे…</sys:String>
+    <sys:String x:Key="LOCNoMetadataSource">कोणतेही मेटाडेटा स्रोत उपलब्ध नाही</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettings">प्ले क्रिया सेटिंग</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile"></sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator"></sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">सुरू झाल्यावर प्रोफाईल निवडावी</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">सुरू झाल्यावर एम्युलेटर निवडावे</sys:String>
     <sys:String x:Key="LOCAutomatic">आपोआप</sys:String>
     <sys:String x:Key="LOCAlwaysOn">नेहमीच चालू</sys:String>
     <sys:String x:Key="LOCAlwaysOff">नेहमीच बंद</sys:String>
@@ -1160,7 +1162,7 @@
     <sys:String x:Key="LOCProgramFolder">प्रोग्राम फोल्डर</sys:String>
     <sys:String x:Key="LOCUserDataFolder">प्रयोक्ता डेटा फोल्डर</sys:String>
     <sys:String x:Key="LOCDBCorruptionCrashMessage" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
+    <sys:String x:Key="LOCUnsavedChangesAskMessage">तुम्ही केलेले बदल तुम्हाला सेव्ह करायचे आहेत का?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">सुवाह्य स्थापना</sys:String>
-    <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCNoControllersDetected">कोणतेही कंट्रोलर सापडले नाहीत</sys:String>
 </ResourceDictionary>

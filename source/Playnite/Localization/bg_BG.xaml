@@ -212,6 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">Всички игри от базата данни</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Всички филтрирани в момента игри</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Само избрани игри</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Официален магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Моля, изберете кои полета да се попълват автоматично от Playnite и кои източници да се използват за получаване на данните.</sys:String>

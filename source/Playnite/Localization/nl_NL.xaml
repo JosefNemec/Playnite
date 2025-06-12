@@ -216,6 +216,8 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCMetaGameSourceAll">Alle spellen uit de database</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Alle huidig gefilterde spellen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Alleen geselecteerde spellen</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Geen metadata velden geselecteerd</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Er zijn geen metadata velden geselecteerd om te downloaden. Selecteer er ten minste één en schakel ten minste één metadata aanbieder in.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Officiële Winkel</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selecteer alsjeblieft welke velden Playnite automatisch moet invullen en welke bronnen gebruikt moeten worden om deze data te verkrijgen.</sys:String>

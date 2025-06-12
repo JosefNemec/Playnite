@@ -211,6 +211,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">Всі ігри з бази даних</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Всі відфільтровані ігри</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Лише обрані ігри</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Не вибрано жодного поля метаданих</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Не обрано жодного поля метаданих для завантаження. Будь ласка, оберіть хоча б одне, та виберіть принаймні одне джерело метаданих.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Офіційний магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Виберіть, які поля повинні бути автоматично заповнені Playnite і які джерела повинні використовуватися для отримання даних.</sys:String>
@@ -321,7 +323,7 @@
     <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">Покращує плавність прокручування списків ігор в обмін на повільніший час завантаження зображення.</sys:String>
     <sys:String x:Key="LOCSettingsShowNameEmptyCover">Показувати назву гри, якщо відсутня обкладинка</sys:String>
     <sys:String x:Key="LOCSettingsShowNamesUnderCover">Відображати назви ігор у Сітці</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Затемнювати видалені ігри</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">Затемнювати не встановлені ігри</sys:String>
     <sys:String x:Key="LOCSettingsShowIconList">Відображати значки ігор у списку детального перегляду</sys:String>
     <sys:String x:Key="LOCSettingsShowGroupCount">Показувати кількість елементів в описі груп</sys:String>
     <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">Показувати лише визначені поля на панелях фільтрів і провідника</sys:String>
@@ -548,8 +550,8 @@
     <sys:String x:Key="LOCUseFilterStyleAndTitle">Відповідність всім фільтрам</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Якщо увімкнено, будуть показані тільки ігри що відповідають всім пунктам у всіх фільтрах.
 Якщо вимкнено, будуть показані ігри що відповідають будь-яким пунктам у будь-яких фільтрах.</sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle">Встановлені</sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle">Встановлені</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Встановлено</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Встановлено</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Не встановлено</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Приховано</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Обране</sys:String>
@@ -1162,10 +1164,10 @@
 TAB: змінити дію
 ENTER: активувати вибрану дію
 SHIFT-ENTER: відкрити меню елементу</sys:String>
-    <sys:String x:Key="LOCSearchFilterUninstalled">Включити невстановлені ігри</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalled">Включити не встановлені ігри</sys:String>
     <sys:String x:Key="LOCSearchFilterHidden">Включати приховані ігри</sys:String>
-    <sys:String x:Key="LOCSearchFilterUninstalledIncluded">Невстановлені ігри включені</sys:String>
-    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Невстановлені ігри виключені</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledIncluded">Не встановлені ігри включені</sys:String>
+    <sys:String x:Key="LOCSearchFilterUninstalledExcluded">Не встановлені ігри виключені</sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenIncluded">Приховані ігри включені</sys:String>
     <sys:String x:Key="LOCSearchFilterHiddenalledExcluded">Приховані ігри виключені</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionPlay">Грати або Встановити</sys:String>

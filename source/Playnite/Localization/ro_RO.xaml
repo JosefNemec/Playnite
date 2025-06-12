@@ -212,6 +212,8 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCMetaGameSourceAll">Toate jocurile din baza de date</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Toate jocurile filtrare la moment</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Numai jocurile selectate</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Magazin Oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selectați câmpurile dorite pentru ca Playnite să le populeze automat și ce surse vreți să utilizați pentru a obține datele.</sys:String>

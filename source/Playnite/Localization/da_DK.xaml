@@ -212,6 +212,8 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCMetaGameSourceAll">Alle spil i databasen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Alle filtrerede spil</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Kun valgte spil</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Officiel Butik</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vælg hvilke felter der automatisk skal udfyldes af Playnite og hvilke kilder der skal bruges til at hente data fra.</sys:String>

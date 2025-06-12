@@ -212,6 +212,8 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCMetaGameSourceAll">Mọi trò chơi từ cơ sở dữ liệu.</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tất cả các trò chơi hiện đang được chọn lọc.</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Chỉ các trò chơi đã chọn.</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Cửa Hàng Chính thức.</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vui lòng chọn trường nào sẽ được Playnite tự động điền và nguồn nào nên được sử dụng để lấy dữ liệu từ đó. </sys:String>
@@ -795,10 +797,10 @@ Sự phát triển của Playnite được hỗ trợ bởi những khách hàng
     <sys:String x:Key="LOCPlayedHours">{0} giờ {1} phút</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} phút</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} giây</sys:String>
-    <sys:String x:Key="LOCPlayedNone">Không được</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Chưa chơi</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Đang mở chế độ Máy tính để bàn…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Đang mở chế độ Toàn màn hình…</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase"> </sys:String>
+    <sys:String x:Key="LOCOpeningDatabase"> </sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeMessage">Đang tính toán dung lượng cài đặt của …</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Đang tính toán dung lượng cài đặt của {0}…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Không cài đặt được tệp tập lệnh.</sys:String>

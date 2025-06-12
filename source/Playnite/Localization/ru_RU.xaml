@@ -213,6 +213,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">Все игры из базы данных</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Все отфильтрованные игры</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Только выбранные</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Офиц. магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Выберите, какие поля должны быть автоматически заполнены Playnite и какие источники должны использоваться для получения данных.</sys:String>

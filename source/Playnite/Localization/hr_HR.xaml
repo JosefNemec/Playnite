@@ -210,6 +210,8 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCMetaGameSourceAll">Sve igre iz baze podataka</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Sve trenutno filtrirane igre</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Samo odabrane igre</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Zvanična radnja</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Molimo odaberite koja polja trebaju automatsko popunjavanje od strane Playnitea i koji izvori treba da se koriste da bi se iz njih uzeli podaci.</sys:String>

@@ -212,6 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">데이터베이스의 모든 게임</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">현재 필터된 모든 게임</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">선택한 게임만</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">공식 스토어</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 항목을 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하십시오.</sys:String>

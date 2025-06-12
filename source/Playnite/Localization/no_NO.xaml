@@ -212,6 +212,8 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCMetaGameSourceAll">Alle spill</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Alle filtrerte spill</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Kun valgte spill</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offisiell butikk</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Velg hvilke felt som skal fylles automatisk av Playnite, og hvilke kilder data skal hentes fra.</sys:String>
