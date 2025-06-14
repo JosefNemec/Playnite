@@ -46,7 +46,7 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 this.switchListCommand = switchListCommand;
                 Command = menuItem.Command;
-                Header = menuItem.Header.ToString();
+                Header = menuItem.Header?.ToString() ?? "missing name";
                 Icon = menuItem.Icon;
                 if (menuItem.Items.Count > 0)
                 {
