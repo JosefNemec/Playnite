@@ -215,7 +215,7 @@
   Id: nintendo_3ds
   IgdbId: 37
   Databases: [Nintendo - Nintendo 3DS, Nintendo - Nintendo 3DS (Digital)]
-  Emulators: [citra, retroarch, lime3ds]
+  Emulators: [citra, retroarch]
   
 - Name: Nintendo 64
   Id: nintendo_64
@@ -280,7 +280,6 @@
 - Name: Nintendo Switch
   Id: nintendo_switch
   IgdbId: 130
-  Emulators: [ryujinx, yuzu]
 
 - Name: Nintendo Switch 2
   Id: nintendo_switch2

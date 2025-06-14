@@ -1,6 +1,6 @@
 Id: lime3ds
 Name: Lime3DS
-Website: 'https://lime3ds.com/'
+Website: 'https://github.com/Lime3DS/lime3ds-archive'
 Profiles:
   - Name: Default
     StartupArguments: '"{ImagePath}"'
