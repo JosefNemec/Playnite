@@ -1,0 +1,9 @@
+Id: ymir
+Name: Ymir
+Website: 'https://github.com/StrikerX3/Ymir'
+Profiles:
+  - Name: Default
+    Platforms: [sega_saturn]
+    StartupArguments: '-d "{ImagePath}" -f'
+    ImageExtensions: [chd, cue, ccd, mdf, iso]
+    StartupExecutable: ^ymir-sdl3\.exe$
