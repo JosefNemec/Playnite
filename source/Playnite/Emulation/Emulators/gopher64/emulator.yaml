@@ -6,4 +6,4 @@ Profiles:
     StartupArguments: '"{ImagePath}" -f'
     Platforms: [nintendo_64]
     ImageExtensions: [zip,7z,z64,n64,v64]
-    StartupExecutable: ^gopher64-windows-x86_64.exe*\.exe$
+    StartupExecutable: ^gopher64-windows-x86_64\.exe$
