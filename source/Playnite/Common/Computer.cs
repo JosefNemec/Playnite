@@ -97,14 +97,16 @@ namespace Playnite.Common
                 }
                 else if (version.Major == 10)
                 {
-                    if (version.Build >= 22000)
-                    {
-                        return WindowsVersion.Win11;
-                    }
-                    else
-                    {
-                        return WindowsVersion.Win10;
-                    }
+                    // Apparently some people are spoofing Windows 10 build versions but whatherer they are using
+                    // is not updating instaled product name, so we need to check that as well.
+                    var windowsProd = Computer.GetWindowsProductName();
+                    if (windowsProd?.Contains("Windows 7") == true)
+                        return WindowsVersion.Win7;
+
+                    if (windowsProd?.Contains("Windows 8") == true)
+                        return WindowsVersion.Win8;
+
+                    return version.Build >= 22000 ? WindowsVersion.Win11 : WindowsVersion.Win10;
                 }
                 else
                 {
@@ -152,7 +154,7 @@ namespace Playnite.Common
 
         public static string GetWindowsProductName()
         {
-            return Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+            return Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "")?.ToString();
         }
 
         public static Guid GetMachineGuid()
