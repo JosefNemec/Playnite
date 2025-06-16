@@ -358,7 +358,7 @@
   Id: sega_saturn
   IgdbId: 32
   Databases: [Sega - Saturn]
-  Emulators: [ares, bizhawk, mednafen, retroarch, yabuse]
+  Emulators: [ares, bizhawk, mednafen, retroarch, yabuse, ymir]
   
 - Name: Sega SG-1000
   Id: sega_sg1000
