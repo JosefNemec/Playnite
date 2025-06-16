@@ -602,13 +602,19 @@ namespace Playnite.FullscreenApp.ViewModels
                 }
                 else
                 {
-                    if (audio.GetIsMusicPaused())
+                    if (audio.AudioClosed)
+                    {
+                        audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+                        audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
+                    }
+                    else if (audio.GetIsMusicPaused())
                     {
                         audio.ResumeMusic();
                     }
                     else
                     {
                         audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+                        audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
                     }
                 }
             }

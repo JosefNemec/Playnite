@@ -323,8 +323,9 @@ namespace Playnite.FullscreenApp
                     GameController?.ProcessInputs();
                     if (Audio?.AudioInitialized == true)
                     {
-                        if ((AppSettings.Fullscreen.BackgroundVolume <= 0 || Audio.GetIsMusicPaused())
-                                && DateTime.Now - Audio.LastAudioEvent > audioSleepTimeout)
+                        if (!Audio.AudioClosed &&
+                            (AppSettings.Fullscreen.BackgroundVolume <= 0 || Audio.GetIsMusicPaused()) &&
+                            DateTime.Now - Audio.LastAudioEvent > audioSleepTimeout)
                             Audio.CloseAudio();
                     }
 
