@@ -239,7 +239,7 @@
   Id: nintendo_nes
   IgdbId: 18
   Databases: [Nintendo - Nintendo Entertainment System]
-  Emulators: [ares, bizhawk, fceux, higan, mednafen, mesen, nestopia, punes, retroarch]
+  Emulators: [ares, bizhawk, fceux, higan, jgenesis, mednafen, mesen, nestopia, punes, retroarch]
   
 - Name: Nintendo Family Computer Disk System
   Id: nintendo_famicom_disk
@@ -257,13 +257,13 @@
   Id: nintendo_gameboycolor
   IgdbId: 22
   Databases: [Nintendo - Game Boy Color]
-  Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
+  Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, jgenesis, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
   
 - Name: Nintendo Game Boy
   Id: nintendo_gameboy
   IgdbId: 33
   Databases: [Nintendo - Game Boy]
-  Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
+  Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, jgenesis, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
   
 - Name: Nintendo GameCube
   Id: nintendo_gamecube
@@ -275,7 +275,7 @@
   Id: nintendo_super_nes
   IgdbId: 19
   Databases: [Nintendo - Super Nintendo Entertainment System]
-  Emulators: [ares, bizhawk, bsnes, bsnes-hd, bsnes-mt, higan, mednafen, mesen, mesen-s, retroarch, snes9x, zsnes]
+  Emulators: [ares, bizhawk, bsnes, bsnes-hd, bsnes-mt, higan, jgenesis, mednafen, mesen, mesen-s, retroarch, snes9x, zsnes]
   
 - Name: Nintendo Switch
   Id: nintendo_switch
@@ -322,13 +322,13 @@
   Id: sega_32x
   IgdbId: 30
   Databases: [Sega - 32X]
-  Emulators: [ares, kegafusion, retroarch]
+  Emulators: [ares, jgenesis, kegafusion, retroarch]
   
 - Name: Sega CD
   Id: sega_cd
   IgdbId: 78
   Databases: [Sega - Mega-CD - Sega CD]
-  Emulators: [ares, kegafusion, retroarch]
+  Emulators: [ares, jgenesis, kegafusion, retroarch]
   
 - Name: Sega Dreamcast
   Id: sega_dreamcast
@@ -340,19 +340,19 @@
   Id: sega_gamegear
   IgdbId: 35
   Databases: [Sega - Game Gear]
-  Emulators: [ares, bizhawk, higan, kegafusion, mednafen, retroarch]
+  Emulators: [ares, bizhawk, higan, jgenesis, kegafusion, mednafen, retroarch]
   
 - Name: Sega Genesis
   Id: sega_genesis
   IgdbId: 29
   Databases: [Sega - Mega Drive - Genesis]
-  Emulators: [bizhawk, blastem, higan, kegafusion, mednafen, retroarch, ares]
+  Emulators: [bizhawk, blastem, higan, jgenesis, kegafusion, mednafen, retroarch, ares]
   
 - Name: Sega Master System
   Id: sega_mastersystem
   IgdbId: 64
   Databases: [Sega - Master System - Mark III]
-  Emulators: [ares, bizhawk, higan, kegafusion, mednafen, retroarch]
+  Emulators: [ares, bizhawk, higan, jgenesis, kegafusion, mednafen, retroarch]
   
 - Name: Sega Saturn
   Id: sega_saturn
