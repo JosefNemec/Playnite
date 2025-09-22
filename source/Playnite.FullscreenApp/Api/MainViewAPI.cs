@@ -137,5 +137,15 @@ namespace Playnite.FullscreenApp.API
         {
             throw new NotSupportedInFullscreenException();
         }
+
+        public List<FilterPreset> GetSortedFilterPresets()
+        {
+            return mainModel.SortedFilterPresets.ToList();
+        }
+
+        public List<FilterPreset> GetSortedFilterFullscreenPresets()
+        {
+            return mainModel.SortedFilterFullscreenPresets.ToList();
+        }
     }
 }

@@ -145,5 +145,15 @@ namespace Playnite.DesktopApp.API
 
             return mainModel.GamesEditor.EditGames(games);
         }
+
+        public List<FilterPreset> GetSortedFilterPresets()
+        {
+            return mainModel.SortedFilterPresets.ToList();
+        }
+
+        public List<FilterPreset> GetSortedFilterFullscreenPresets()
+        {
+            return mainModel.SortedFilterFullscreenPresets.ToList();
+        }
     }
 }

@@ -163,5 +163,17 @@ namespace Playnite.SDK
         /// <param name="gameIds"></param>
         /// <returns>true if user made and saved changes. false if edit was cancelled, null when game was not found.</returns>
         bool? OpenEditDialog(List<Guid> gameIds);
+
+        /// <summary>
+        /// Gets list of filter presets in order set by a user.
+        /// </summary>
+        /// <returns></returns>
+        List<FilterPreset> GetSortedFilterPresets();
+
+        /// <summary>
+        /// Gets list of filter presets for Fullscreen mode in order set by a user.
+        /// </summary>
+        /// <returns></returns>
+        List<FilterPreset> GetSortedFilterFullscreenPresets();
     }
 }
