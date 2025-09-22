@@ -13,13 +13,16 @@ namespace Playnite.Common
 {
     public class SystemDialogs
     {
-        public static string SaveFile(Window owner, string filter, bool promptOverwrite)
+        public static string SaveFile(Window owner, string filter, bool promptOverwrite, string initialDir = null)
         {
             var dialog = new SaveFileDialog()
             {
                 Filter = filter,
                 OverwritePrompt = promptOverwrite
             };
+
+            if (initialDir != null && Directory.Exists(initialDir))
+                dialog.InitialDirectory = initialDir;
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
             if (dialogResult == true)
@@ -32,27 +35,30 @@ namespace Playnite.Common
             }
         }
 
-        public static string SaveFile(Window owner, string filter)
+        public static string SaveFile(Window owner, string filter, string initialDir = null)
         {
-            return SaveFile(owner, filter, true);
+            return SaveFile(owner, filter, true, initialDir);
         }
 
-        public static string SaveFile(string filter, bool promptOverwrite)
+        public static string SaveFile(string filter, bool promptOverwrite, string initialDir = null)
         {
-            return SaveFile(null, filter, promptOverwrite);
+            return SaveFile(null, filter, promptOverwrite, initialDir);
         }
 
-        public static string SaveFile(string filter)
+        public static string SaveFile(string filter, string initialDir = null)
         {
-            return SaveFile(null, filter, true);
+            return SaveFile(null, filter, true, initialDir);
         }
 
-        public static string SelectFolder(Window owner)
+        public static string SelectFolder(Window owner, string initialDir = null)
         {
             var dialog = new CommonOpenFileDialog()
             {
                 IsFolderPicker = true
             };
+
+            if (initialDir != null && Directory.Exists(initialDir))
+                dialog.InitialDirectory = initialDir;
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
             if (dialogResult == CommonFileDialogResult.Ok)
@@ -65,13 +71,16 @@ namespace Playnite.Common
             }
         }
 
-        public static List<string> SelectFiles(Window owner, string filter)
+        public static List<string> SelectFiles(Window owner, string filter, string initialDir = null)
         {
             var dialog = new OpenFileDialog()
             {
                 Filter = filter,
                 Multiselect = true
             };
+
+            if (!initialDir.IsNullOrWhiteSpace() && Directory.Exists(initialDir))
+                dialog.InitialDirectory = initialDir;
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
             if (dialogResult == true)
@@ -96,10 +105,8 @@ namespace Playnite.Common
                 Filter = filter
             };
 
-            if (!initialDir.IsNullOrEmpty() && Directory.Exists(initialDir))
-            {
-                dialog.InitialDirectory = Path.GetFullPath(initialDir);
-            }
+            if (!initialDir.IsNullOrWhiteSpace() && Directory.Exists(initialDir))
+                dialog.InitialDirectory = initialDir;
 
             var dialogResult = owner == null ? dialog.ShowDialog() : dialog.ShowDialog(owner);
             if (dialogResult == true)
@@ -112,29 +119,29 @@ namespace Playnite.Common
             }
         }
 
-        public static string SelectFile(string filter)
+        public static string SelectFile(string filter, string initialDir = null)
         {
-            return SelectFile(null, filter);
+            return SelectFile(null, filter, initialDir);
         }
 
-        public static string SelectIconFile(Window owner)
+        public static string SelectIconFile(Window owner, string initialDir = null)
         {
-            return SelectFile(owner, "Icon Files|*.bmp;*.jpg*;*.jpeg*;*.png;*.gif;*.ico;*.tga;*.exe;*.tif;*.webp;*.avif");
+            return SelectFile(owner, "Icon Files|*.bmp;*.jpg*;*.jpeg*;*.png;*.gif;*.ico;*.tga;*.exe;*.tif;*.webp;*.avif", initialDir);
         }
 
-        public static string SelectIconFile()
+        public static string SelectIconFile(string initialDir = null)
         {
-            return SelectIconFile(null);
+            return SelectIconFile(null, initialDir);
         }
 
-        public static string SelectImageFile(Window owner)
+        public static string SelectImageFile(Window owner, string initialDir = null)
         {
-            return SelectFile(owner, "Image Files|*.bmp;*.jpg*;*.jpeg*;*.png;*.gif;*.tga;*.tif;*.webp;*.avif");
+            return SelectFile(owner, "Image Files|*.bmp;*.jpg*;*.jpeg*;*.png;*.gif;*.tga;*.tif;*.webp;*.avif", initialDir);
         }
 
-        public static string SelectImageFile()
+        public static string SelectImageFile(string initialDir = null)
         {
-            return SelectIconFile(null);
+            return SelectIconFile(null, initialDir);
         }
     }
 }

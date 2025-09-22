@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Playnite.SDK
 {
     /// <summary>
@@ -422,12 +424,16 @@ namespace Playnite.SDK
         /// <returns>Selected folder path or empty string if user cancels the dialog.</returns>
         string SelectFolder();
 
+        string SelectFolder(string initialDir);
+
         /// <summary>
         /// Displays system open file dialog.
         /// </summary>
         /// <param name="filter">File filter, for example "ZIP Archive|*.zip"</param>
         /// <returns>Selected file path or empty string if user cancels the dialog.</returns>
         string SelectFile(string filter);
+
+        string SelectFile(string filter, string initialDir);
 
         /// <summary>
         /// Displays system open file dialog allowing to select multiple files.
@@ -436,17 +442,23 @@ namespace Playnite.SDK
         /// <returns>List of paths or null if user cancels the dialog.</returns>
         List<string> SelectFiles(string filter);
 
+        List<string> SelectFiles(string filter, string initialDir);
+
         /// <summary>
         /// Displays file open dialog with file filter set to show only image files used for icons.
         /// </summary>
         /// <returns>Selected icon path or empty string if user cancels the dialog.</returns>
         string SelectIconFile();
 
+        string SelectIconFile(string initialDir);
+
         /// <summary>
         /// Displays file open dialog with file filter set to show only image files.
         /// </summary>
         /// <returns>Selected image path or empty string if user cancels the dialog.</returns>
         string SelectImagefile();
+
+        string SelectImagefile(string initialDir);
 
         /// <summary>
         /// Displays system file save dialog.
@@ -455,6 +467,8 @@ namespace Playnite.SDK
         /// <returns>Selected file path or empty string if user cancels the dialog.</returns>
         string SaveFile(string filter);
 
+        string SaveFile(string filter, string initialDir);
+
         /// <summary>
         /// Displays system file save dialog.
         /// </summary>
@@ -462,6 +476,8 @@ namespace Playnite.SDK
         /// <param name="promptOverwrite">Indicates whether to ask user for file overrite if selected path exists.</param>
         /// <returns>Selected file path or empty string if user cancels the dialog.</returns>
         string SaveFile(string filter, bool promptOverwrite);
+
+        string SaveFile(string filter, bool promptOverwrite, string initialDir);
 
         /// <summary>
         /// Displays dialog asking user to input text string.

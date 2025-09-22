@@ -123,5 +123,40 @@ namespace Playnite.Tests
         {
             return null;
         }
+
+        public string SelectFolder(string initialDir)
+        {
+            return string.Empty;
+        }
+
+        public string SelectFile(string filter, string initialDir)
+        {
+            return string.Empty;
+        }
+
+        public List<string> SelectFiles(string filter, string initialDir)
+        {
+            return null;
+        }
+
+        public string SelectIconFile(string initialDir)
+        {
+            return string.Empty;
+        }
+
+        public string SelectImagefile(string initialDir)
+        {
+            return string.Empty;
+        }
+
+        public string SaveFile(string filter, string initialDir)
+        {
+            return string.Empty;
+        }
+
+        public string SaveFile(string filter, bool promptOverwrite, string initialDir)
+        {
+            return string.Empty;
+        }
     }
 }
