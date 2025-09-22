@@ -12,32 +12,23 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            bool val = false;
+            if (value is bool boolValue)
+            {
+                if (parameter != null && ((bool)parameter) == true)
+                    boolValue = !boolValue;
 
-            if (parameter != null && ((bool)parameter) == true)
-            {
-                val = !(bool)value;
-            }
-            else
-            {
-                val = (bool)value;
+                return boolValue ? 1.0 : 0.5;
             }
 
-            if (val)
-            {
-                return 1.0;
-            }
-            else
-            {
-                return 0.5;
-            }
+            return 0.5;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value is null)
+                throw new NotSupportedException();
 
             var val = (double)value;
-
             if (val <= 0.5)
             {
                 return false;

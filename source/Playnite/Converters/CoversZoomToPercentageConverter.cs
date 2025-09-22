@@ -13,16 +13,20 @@ namespace Playnite.Converters
         // raw pixel value to percentage
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var source = (double) value;
+            if (value is null)
+                return 100;
 
+            var source = (double)value;
             return Math.Round(source / OneHundredPercentValue * 100);
         }
 
         // percentage to raw pixel value
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var source = (double) value;
+            if (value is null)
+                return OneHundredPercentValue;
 
+            var source = (double)value;
             return Math.Round(source * OneHundredPercentValue / 100);
         }
 

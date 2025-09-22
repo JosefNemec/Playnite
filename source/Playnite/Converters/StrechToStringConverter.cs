@@ -16,18 +16,18 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var source = (Stretch)value;
-            switch (source)
-            {
-                case Stretch.None:
-                    return ResourceProvider.GetString("LOCStrechNone");
-                case Stretch.Fill:
-                    return ResourceProvider.GetString("LOCStrechFill");
-                case Stretch.Uniform:
-                    return ResourceProvider.GetString("LOCStrechUniform");
-                case Stretch.UniformToFill:
-                    return ResourceProvider.GetString("LOCStrechUniformToFill");
-            }
+            if (value is Stretch stretch)
+                switch (stretch)
+                {
+                    case Stretch.None:
+                        return ResourceProvider.GetString("LOCStrechNone");
+                    case Stretch.Fill:
+                        return ResourceProvider.GetString("LOCStrechFill");
+                    case Stretch.Uniform:
+                        return ResourceProvider.GetString("LOCStrechUniform");
+                    case Stretch.UniformToFill:
+                        return ResourceProvider.GetString("LOCStrechUniformToFill");
+                }
 
             return "<UknownStrechMode>";
         }
