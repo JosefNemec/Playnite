@@ -63,6 +63,12 @@ namespace Playnite
         [Option("userdatadir")]
         public string UserDataDir { get; set; }
 
+        [Option("fullscreenwidth")]
+        public int FullscreenWidth { get; set; }
+
+        [Option("fullscreenheight")]
+        public int FullscreenHeight { get; set; }
+
         public override string ToString()
         {
             return Parser.Default.FormatCommandLine(this);

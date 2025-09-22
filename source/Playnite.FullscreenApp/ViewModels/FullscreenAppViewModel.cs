@@ -866,22 +866,36 @@ namespace Playnite.FullscreenApp.ViewModels
                 screen = screens[0];
             }
 
-            var ratio = Sizes.GetAspectRatio(screen.Bounds);
-            ViewportWidth = ratio.GetWidth(ViewportHeight);
             var dpi = VisualTreeHelper.GetDpi(Window.Window);
-            if (fullscreen)
+            if (App.CmdLine.FullscreenHeight > 0 && App.CmdLine.FullscreenWidth > 0)
             {
+                var width = App.CmdLine.FullscreenWidth;
+                var height = App.CmdLine.FullscreenHeight;
+                var ratio = Sizes.GetAspectRatio(width, height);
+                ViewportWidth = ratio.GetWidth(ViewportHeight);
+                WindowWidth = width;
+                WindowHeight = height;
                 WindowLeft = screen.Bounds.X / dpi.DpiScaleX;
                 WindowTop = screen.Bounds.Y / dpi.DpiScaleY;
-                WindowWidth = screen.Bounds.Width / dpi.DpiScaleX;
-                WindowHeight = screen.Bounds.Height / dpi.DpiScaleY;
             }
             else
             {
-                WindowWidth = screen.Bounds.Width / 1.5;
-                WindowHeight = screen.Bounds.Height / 1.5;
-                WindowLeft = screen.Bounds.X + ((screen.Bounds.Width - WindowWidth) / 2);
-                WindowTop = screen.Bounds.Y + ((screen.Bounds.Height - WindowHeight) / 2);
+                var ratio = Sizes.GetAspectRatio(screen.Bounds);
+                ViewportWidth = ratio.GetWidth(ViewportHeight);
+                if (fullscreen)
+                {
+                    WindowLeft = screen.Bounds.X / dpi.DpiScaleX;
+                    WindowTop = screen.Bounds.Y / dpi.DpiScaleY;
+                    WindowWidth = screen.Bounds.Width / dpi.DpiScaleX;
+                    WindowHeight = screen.Bounds.Height / dpi.DpiScaleY;
+                }
+                else
+                {
+                    WindowWidth = screen.Bounds.Width / 1.5;
+                    WindowHeight = screen.Bounds.Height / 1.5;
+                    WindowLeft = screen.Bounds.X + ((screen.Bounds.Width - WindowWidth) / 2);
+                    WindowTop = screen.Bounds.Y + ((screen.Bounds.Height - WindowHeight) / 2);
+                }
             }
         }
 
