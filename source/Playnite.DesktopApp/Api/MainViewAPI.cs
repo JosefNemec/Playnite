@@ -127,5 +127,23 @@ namespace Playnite.DesktopApp.API
         {
             mainModel.OpenSearch(context, searchTerm);
         }
+
+        public bool? OpenEditDialog(Guid gameId)
+        {
+            var game = mainModel.Database.Games.Get(gameId);
+            if (game is null)
+                return null;
+
+            return mainModel.GamesEditor.EditGame(game);
+        }
+
+        public bool? OpenEditDialog(List<Guid> gameIds)
+        {
+            var games = mainModel.Database.Games.Get(gameIds);
+            if (!games.HasItems())
+                return null;
+
+            return mainModel.GamesEditor.EditGames(games);
+        }
     }
 }

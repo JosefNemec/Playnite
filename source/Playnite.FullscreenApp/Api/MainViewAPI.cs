@@ -127,5 +127,15 @@ namespace Playnite.FullscreenApp.API
         {
             throw new NotSupportedInFullscreenException();
         }
+
+        public bool? OpenEditDialog(Guid gameId)
+        {
+            throw new NotSupportedInFullscreenException();
+        }
+
+        public bool? OpenEditDialog(List<Guid> gameIds)
+        {
+            throw new NotSupportedInFullscreenException();
+        }
     }
 }

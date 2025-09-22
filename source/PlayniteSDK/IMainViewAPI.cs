@@ -149,5 +149,19 @@ namespace Playnite.SDK
         /// <param name="context">Search context to be activated after opening the view.</param>
         /// <param name="searchTerm">Default search term.</param>
         void OpenSearch(SearchContext context, string searchTerm);
+
+        /// <summary>
+        /// Opens game edit dialog for specified game.
+        /// </summary>
+        /// <param name="gameId"></param>
+        /// <returns>true if user made and saved changes. false if edit was cancelled, null when game was not found.</returns>
+        bool? OpenEditDialog(Guid gameId);
+
+        /// <summary>
+        /// Opens game edit dialog for specified games.
+        /// </summary>
+        /// <param name="gameIds"></param>
+        /// <returns>true if user made and saved changes. false if edit was cancelled, null when game was not found.</returns>
+        bool? OpenEditDialog(List<Guid> gameIds);
     }
 }
