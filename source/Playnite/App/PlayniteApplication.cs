@@ -478,7 +478,10 @@ namespace Playnite
 
             var exception = (Exception)e.ExceptionObject;
             var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
-            logger.Error(exception, $"Unhandled exception occured. 0x{exception.HResult:X}");
+            logger.Error(exception, $"Unhandled exception occured.");
+            logger.Error($"HResult: 0x{exception.HResult:X8}");
+            if (exception is Win32Exception win32exc)
+                logger.Error($"Win32 NativeErrorCode: 0x{win32exc.NativeErrorCode:X8}");
             CrashHandlerViewModel crashModel = null;
 
             // Delete safe startup flag if we are able to handle the crash,
