@@ -238,6 +238,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleFiltersCommand, Key = Key.F });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SwitchToDesktopCommand, Key = Key.F11 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectFilterPresetCommand, Key = Key.R });
+                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.StartInteractivePowerShellCommand, Key = Key.P, Modifiers = ModifierKeys.Control | ModifierKeys.Shift });
 
                     ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.PrevFilterViewCommand, ControllerInput.LeftShoulder));
                     ViewHost.InputBindings.Add(new GameControllerInputBinding(mainModel.NextFilterViewCommand, ControllerInput.RightShoulder));
