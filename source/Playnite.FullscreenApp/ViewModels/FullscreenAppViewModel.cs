@@ -420,7 +420,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 e.Button == ControllerInput.Guide &&
                 e.State == ControllerInputState.Released)
             {
-                WindowManager.LastActiveWindow?.RestoreWindow();
+                RestoreWindow();
             }
 
             foreach (var plugin in Extensions.Plugins.Values)
@@ -817,6 +817,7 @@ namespace Playnite.FullscreenApp.ViewModels
             SetViewSizeAndPosition(IsFullScreen);
             App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
+            Window.Window.StateChanged += Window_StateChanged;
             InitializeView();
         }
 
@@ -1038,12 +1039,33 @@ namespace Playnite.FullscreenApp.ViewModels
             IsDisposing = true;
             GamesView?.Dispose();
             Window.Window.LocationChanged -= Window_LocationChanged;
+            Window.Window.StateChanged -= Window_StateChanged;
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged -= SystemEvents_DisplaySettingsChanged;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
             App.UpdateScreenInformation(Window.Window);
+        }
+
+        // This is workaround for https://github.com/JosefNemec/Playnite/issues/4064
+        // There's really no good way to handle this via some MVVM binding without breaking theme changes to GameStatus view.
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (GameStatusVisible && Window.Window.WindowState != WindowState.Minimized)
+            {
+                var gameStatusScreen = ElementTreeHelper.FindVisualChildren<GameStatus>(Window.Window).FirstOrDefault();
+                if (gameStatusScreen is null)
+                    return;
+
+                if (gameStatusScreen.Template.FindName("PART_PanelActionButtons", gameStatusScreen) is Panel actionButtons &&
+                    actionButtons.Children.Count > 0)
+                {
+                    var child = actionButtons.Children[0];
+                    if (!child.IsFocused && child.Focusable)
+                        actionButtons.Children[0].Focus();
+                }
+            }
         }
 
         internal void ProcessUriRequest(PlayniteUriEventArgs args)
