@@ -184,7 +184,8 @@ namespace Playnite.Controllers
                     startupPath = Emulation.GetExecutable(emulator.InstallDir, profileDef, true);
                     if (startupPath.IsNullOrEmpty())
                     {
-                        throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound));
+                        throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound) +
+                            $"\n\nRegular expression lookup: {profileDef.StartupExecutable}");
                     }
 
                     if (action.OverrideDefaultArgs)
@@ -247,7 +248,8 @@ namespace Playnite.Controllers
                     // 2 is ERROR_FILE_NOT_FOUND
                     if (exc.NativeErrorCode == 2)
                     {
-                        throw new FileNotFoundException(LOC.ErrorEmulatorExecutableNotFound.GetLocalized());
+                        throw new FileNotFoundException(LOC.ErrorEmulatorExecutableNotFound.GetLocalized() +
+                            $"\n\n{path} in {workDir}");
                     }
                     else
                     {
