@@ -105,6 +105,15 @@
     <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
       <HintPath>..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
     </Reference>
+    <Reference Include="Magick.NET-Q8-x86, Version=14.8.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=x86">
+      <HintPath>..\packages\Magick.NET-Q8-x86.14.8.2\lib\netstandard20\Magick.NET-Q8-x86.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET.Core, Version=14.8.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET.Core.14.8.2\lib\netstandard20\Magick.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET.SystemWindowsMedia, Version=8.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET.SystemWindowsMedia.8.0.10\lib\net462\Magick.NET.SystemWindowsMedia.dll</HintPath>
+    </Reference>
     <Reference Include="Markdig, Version=0.18.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdig.0.18.0\lib\net40\Markdig.dll</HintPath>
     </Reference>
@@ -805,8 +814,10 @@
     <Error Condition="!Exists('..\packages\chromiumembeddedframework.runtime.win-x86.139.0.28\build\chromiumembeddedframework.runtime.win-x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\chromiumembeddedframework.runtime.win-x86.139.0.28\build\chromiumembeddedframework.runtime.win-x86.props'))" />
     <Error Condition="!Exists('..\packages\CefSharp.Common.139.0.280\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.139.0.280\build\CefSharp.Common.props'))" />
     <Error Condition="!Exists('..\packages\CefSharp.Common.139.0.280\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.139.0.280\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\Magick.NET-Q8-x86.14.8.2\build\netstandard20\Magick.NET-Q8-x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Magick.NET-Q8-x86.14.8.2\build\netstandard20\Magick.NET-Q8-x86.targets'))" />
   </Target>
   <Import Project="..\packages\CefSharp.Common.139.0.280\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.139.0.280\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\Magick.NET-Q8-x86.14.8.2\build\netstandard20\Magick.NET-Q8-x86.targets" Condition="Exists('..\packages\Magick.NET-Q8-x86.14.8.2\build\netstandard20\Magick.NET-Q8-x86.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -107,7 +107,7 @@ namespace Playnite
             }
         }
 
-        public static BitmapImage GetResourceImage(string resourceKey, bool cached, BitmapLoadProperties loadProperties = null)
+        public static BitmapSource GetResourceImage(string resourceKey, bool cached, BitmapLoadProperties loadProperties = null)
         {
             if (cached && Cache.TryGet(resourceKey, out var image))
             {
@@ -119,7 +119,7 @@ namespace Playnite
 
                 if (existingMetadata?.MaxDecodePixelWidth == loadProperties?.MaxDecodePixelWidth)
                 {
-                    return image.CacheObject as BitmapImage;
+                    return image.CacheObject as BitmapSource;
                 }
                 else
                 {
@@ -127,7 +127,7 @@ namespace Playnite
                 }
             }
 
-            var resource = ResourceProvider.GetResource(resourceKey) as BitmapImage;
+            var resource = ResourceProvider.GetResource(resourceKey) as BitmapSource;
             if (loadProperties?.MaxDecodePixelWidth > 0 && resource?.PixelWidth > loadProperties?.MaxDecodePixelWidth)
             {
                 resource = resource.GetClone(loadProperties);
@@ -157,7 +157,7 @@ namespace Playnite
             return resource;
         }
 
-        public static BitmapImage GetImage(string source, bool cached, BitmapLoadProperties loadProperties = null)
+        public static BitmapSource GetImage(string source, bool cached, BitmapLoadProperties loadProperties = null)
         {
             if (DesignerTools.IsInDesignMode)
             {
@@ -179,7 +179,7 @@ namespace Playnite
 
                 if (existingMetadata == loadProperties)
                 {
-                    return image.CacheObject as BitmapImage;
+                    return image.CacheObject as BitmapSource;
                 }
                 else
                 {

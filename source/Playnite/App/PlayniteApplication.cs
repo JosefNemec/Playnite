@@ -28,6 +28,7 @@ using System.Windows.Threading;
 using System.Net;
 using Playnite.Common.Web;
 using System.ServiceProcess;
+using System.Drawing.Imaging;
 
 namespace Playnite
 {
@@ -936,6 +937,7 @@ namespace Playnite
         public bool ConfigureApplication()
         {
             HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
+            HtmlRendererSettings.ImageLoader = BitmapExtensions.HtmlComponentImageLoader;
             if (AppSettings.DisableHwAcceleration || CmdLine.ForceSoftwareRender)
             {
                 logger.Info("Enabling software rendering.");

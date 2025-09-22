@@ -267,7 +267,7 @@ namespace Playnite.Controls
             var blurAmount = BlurAmount;
             var blurEnabled = IsBlurEnabled;
             var highQuality = HighQualityBlur;
-            BitmapImage image = null;
+            BitmapSource image = null;
             currentSource = newSource;
             if (newSource != null)
             {

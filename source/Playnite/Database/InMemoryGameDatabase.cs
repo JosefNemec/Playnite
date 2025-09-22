@@ -130,7 +130,7 @@ namespace Playnite.Database
             throw new NotImplementedException();
         }
 
-        public BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
+        public BitmapSource GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
         {
             throw new NotImplementedException();
         }

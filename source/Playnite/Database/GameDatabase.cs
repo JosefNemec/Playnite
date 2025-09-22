@@ -61,7 +61,7 @@ namespace Playnite.Database
         string AddFile(MetadataFile file, Guid parentId, bool isImage, CancellationToken cancelToken);
         string AddFile(string path, Guid parentId, bool isImage, CancellationToken cancelToken);
         void RemoveFile(string dbPath);
-        BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null);
+        BitmapSource GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null);
         void CopyFile(string dbPath, string targetPath);
         void BeginBufferUpdate();
         void EndBufferUpdate();
@@ -985,7 +985,7 @@ namespace Playnite.Database
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
         }
 
-        public BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
+        public BitmapSource GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
         {
             CheckDbState();
             var filePath = GetFullFilePath(dbPath);
