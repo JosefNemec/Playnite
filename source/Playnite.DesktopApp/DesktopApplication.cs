@@ -308,7 +308,7 @@ namespace Playnite.DesktopApp
         {
             if (mode == ApplicationMode.Fullscreen)
             {
-                MainModel.SwitchToFullscreenMode();
+                MainModel?.SwitchToFullscreenMode();
             }
             else
             {

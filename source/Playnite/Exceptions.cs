@@ -90,7 +90,7 @@ namespace Playnite
                     }
                 }
 
-                var liteDbCrash = Regex.IsMatch(exception.Message, @"'LiteDB\..+?Page'");
+                var liteDbCrash = exception is LiteDB.LiteException || exception.Message.Contains("LiteDB.");
                 if (extDesc != null)
                 {
                     return new ExceptionInfo

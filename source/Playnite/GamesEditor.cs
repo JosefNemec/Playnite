@@ -1415,7 +1415,13 @@ namespace Playnite
             var game = args.Source.Game;
             logger.Info($"Game {game.Name} stopped after {args.SessionLength} seconds.");
 
-            var runningGame = RunningGames[game.Id];
+            // I have no idea under what conditions this could happen, but there are couple crash reports with this.
+            if (!RunningGames.TryGetValue(game.Id, out var runningGame))
+            {
+                logger.Error($"Got controller stopped event for a game that's not registered as running {game.Id}");
+                return;
+            }
+
             RunningGames.Remove(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
