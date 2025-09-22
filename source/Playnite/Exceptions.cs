@@ -24,6 +24,16 @@ namespace Playnite
         }
     }
 
+    public class NotSupportedInDesktopException : Exception
+    {
+        public NotSupportedInDesktopException() : base("Not supported in Desktop mode.")
+        {
+        }
+        public NotSupportedInDesktopException(string message) : base(message)
+        {
+        }
+    }
+
     public class ExceptionInfo
     {
         public bool IsLiteDbCorruptionCrash;

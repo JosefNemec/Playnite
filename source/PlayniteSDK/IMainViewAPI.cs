@@ -175,5 +175,10 @@ namespace Playnite.SDK
         /// </summary>
         /// <returns></returns>
         List<FilterPreset> GetSortedFilterFullscreenPresets();
+
+        /// <summary>
+        /// Toggles between details and list view in Fullscreen mode.
+        /// </summary>
+        void ToggleFullscreenView();
     }
 }

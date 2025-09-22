@@ -147,5 +147,10 @@ namespace Playnite.FullscreenApp.API
         {
             return mainModel.SortedFilterFullscreenPresets.ToList();
         }
+
+        public void ToggleFullscreenView()
+        {
+            UIDispatcher.Invoke(() => mainModel.ToggleGameDetailsCommand?.Execute(null));
+        }
     }
 }

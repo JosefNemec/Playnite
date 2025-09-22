@@ -155,5 +155,10 @@ namespace Playnite.DesktopApp.API
         {
             return mainModel.SortedFilterFullscreenPresets.ToList();
         }
+
+        public void ToggleFullscreenView()
+        {
+            throw new NotSupportedInDesktopException();
+        }
     }
 }
