@@ -409,7 +409,7 @@ namespace Playnite.Plugins
                     {
                         if (plugin.Id == default)
                         {
-                            logger.Error($"Plugin {desc.GetType()} doesn't have plugin ID specified.");
+                            logger.Error($"Plugin {plugin.GetType()} doesn't have plugin ID specified.");
                             continue;
                         }
 
