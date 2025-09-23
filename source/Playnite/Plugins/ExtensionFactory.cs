@@ -407,6 +407,12 @@ namespace Playnite.Plugins
                     var plugins = LoadPlugins(desc, apiGenerator);
                     foreach (var plugin in plugins)
                     {
+                        if (plugin.Id == default)
+                        {
+                            logger.Error($"Plugin {desc.GetType()} doesn't have plugin ID specified.");
+                            continue;
+                        }
+
                         if (Plugins.ContainsKey(plugin.Id))
                         {
                             logger.Warn($"Plugin {plugin.Id} is already loaded.");
