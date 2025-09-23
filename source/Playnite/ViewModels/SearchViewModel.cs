@@ -644,6 +644,9 @@ namespace Playnite.ViewModels
 
         private List<SearchItem> FilterSearchResults(List<SearchItem> toFilter, string filter, bool matchTargetAcronymStart)
         {
+            if (toFilter is null)
+                return new List<SearchItem>();
+
             var results = new List<SearchItem>();
             foreach (var item in toFilter)
             {
@@ -731,19 +734,24 @@ namespace Playnite.ViewModels
                     var context = searchContextStack.Peek();
                     if (context.UseAutoSearch)
                     {
-                        if (context.AutoSearchCache == null)
+                        if (context.CacheAutoSearchResults)
                         {
-                            context.AutoSearchCache = context.GetSearchResults(searchArgs)?.ToList() ?? new List<SearchItem>();
+                            if (context.AutoSearchCache == null)
+                            {
+                                context.AutoSearchCache = context.GetSearchResults(searchArgs)?.ToList() ?? new List<SearchItem>();
+                            }
+
+                            if (SearchTerm.IsNullOrWhiteSpace())
+                            {
+                                return context.AutoSearchCache;
+                            }
+                            else
+                            {
+                                return FilterSearchResults(context.AutoSearchCache, SearchTerm, true);
+                            }
                         }
 
-                        if (SearchTerm.IsNullOrWhiteSpace())
-                        {
-                            return context.AutoSearchCache;
-                        }
-                        else
-                        {
-                            return FilterSearchResults(context.AutoSearchCache, SearchTerm, true);
-                        }
+                        return FilterSearchResults(context.GetSearchResults(searchArgs)?.ToList(), SearchTerm, true);
                     }
                     else
                     {

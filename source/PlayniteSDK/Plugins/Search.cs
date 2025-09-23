@@ -77,6 +77,11 @@ namespace Playnite.SDK.Plugins
         public bool UseAutoSearch { get; set; }
 
         /// <summary>
+        /// Gets or sets value indicating whether search results when using auto search should be cached and reused.
+        /// </summary>
+        public bool CacheAutoSearchResults { get; set; } = true;
+
+        /// <summary>
         /// Gets search results.
         /// </summary>
         /// <param name="args"></param>
