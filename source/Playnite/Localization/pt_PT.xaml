@@ -171,7 +171,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCDetailsViewLabel">Vista de Detalhes</sys:String>
     <sys:String x:Key="LOCCustomLabel">Personalizado</sys:String>
     <sys:String x:Key="LOCURLLabel">Endereço</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Reconhecimento adicional</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Licença</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Contribuidores</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">A fechar o Playnite…</sys:String>
@@ -205,7 +205,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCColumns">Colunas</sys:String>
     <sys:String x:Key="LOCRow">Linha</sys:String>
     <sys:String x:Key="LOCRows">Linhas</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Não foi possível obter o ícone da ação Jogar. Não existe ação do tipo Arquivo presente.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Transferir apenas metadados em falta</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Ativar esta opção irá saltar a transferência de metadados para campos já preenchidos.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Seleção de jogos</sys:String>
@@ -255,15 +255,15 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCMenuLinksTitle">Ligações</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Ajuda</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Apoia o projeto no Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Dê apoio no Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Manual do utilizador</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">Documentação SDK</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Reiniciar Sistema</sys:String>
     <sys:String x:Key="LOCMenuShutdownSystem">Desligar Sistema</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Suspender Sistema</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Hibernar Sistema</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Sistema de Bloqueio</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Terminar Sessão da Conta</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Escolher um Jogo Aleatório</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Campos que serão mostrados no painel de detalhes:</sys:String>
@@ -310,7 +310,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsUpdating">A atualizar...</sys:String>
     <sys:String x:Key="LOCSettingsSearch">Pesquisa</sys:String>
     <sys:String x:Key="LOCSettingsBackup">Cópia de segurança</sys:String>
-    <sys:String x:Key="LOCMenuBackupData"></sys:String>
+    <sys:String x:Key="LOCMenuBackupData">Recuperação da Informação da Biblioteca</sys:String>
     <sys:String x:Key="LOCMenuRestoreBackup">Restaurar cópia de segurança</sys:String>
     <sys:String x:Key="LOCSettingsImportLabel">Importar alterações da biblioteca automaticamente</sys:String>
     <sys:String x:Key="LOCSettingsInvalidDBLocation">Localização do ficheiro da base de dados inválida, um caminho correto deve ser definido.</sys:String>
@@ -332,7 +332,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsDisableAcceleration">Desativar aceleração de hardware</sys:String>
     <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">Usa em caso de bloqueios ou problemas similares com a interface</sys:String>
     <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">Mostrar jogos ocultos nas listas de início rápido</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">Afeta a Lista de Saltos e as listas do menu bandeja</sys:String>
     <sys:String x:Key="LOCSettingsQuicLaunchItems">Número de itens de início rápido</sys:String>
     <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">Utilizar a imagem de fundo do jogo como fundo da janela</sys:String>
     <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">Desfocar fundo</sys:String>
@@ -375,15 +375,19 @@ Reiniciar irá cancelar qualquer tarefa ativa (transferências) em progresso.</s
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">Mostrar Imagem de Fundo no Ecrã Principal</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">Não se aplica retroativamente a jogos preexistentes sem transferir novamente os metadados.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportMode">Importar tempo de jogo na biblioteca:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Configura quando o Playnite deve importar o tempo de jogo relatado pelos plugins da biblioteca para os jogos no banco de dados do Playnite. É necessário, para puder usar esta funcionalidade, que os plugins da biblioteca que têm responsabilidade pelo(s) jogo(s) tenham suporte.
+
+Sempre: Importa o tempo de jogo a novos jogos importados e os já existentes no banco de dados do Playnite.
+Apenas a jogos recém-importados: Importa o tempo de jogo somente a novos jogos importados.
+Nunca: Nunca importa o tempo de jogo sob nenhuma circunstância.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Sempre</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Apenas para jogos recém-importados.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Nunca</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Ativar suporte de comando no modo Desktop</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botão Guia do comando abre o modo de Ecrã Inteiro</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription"></sys:String>
-    <sys:String x:Key="LOCSettingsTargetDisplay"></sys:String>
-    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Opções de transferência automática de metadados para jogos recém-importados.</sys:String>
+    <sys:String x:Key="LOCSettingsTargetDisplay">Monitor desejado</sys:String>
+    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Usar sempre o monitor principal</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">Mostrar Títulos dos Jogos</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Mostrar Estado de Bateria</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Mostrar Percentagem de Bateria</sys:String>
@@ -407,19 +411,19 @@ Reiniciar irá cancelar qualquer tarefa ativa (transferências) em progresso.</s
     <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">Monitor</sys:String>
     <sys:String x:Key="LOCSettingsTextFormattingMode">Modo de formatação de texto</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingMode">Modo de renderização de texto</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice"></sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload"></sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">A renderização de texto e a formatação de métodos atualmente não se aplicam às descrições dos jogos.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">Carrega imagens de fundo previamente</sys:String>
     <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">Se ativado, o Playnite transferirá imagens de fundo enquanto transfere os metadados, utilizando mais espaço de disco e tornando as imagens disponíveis offline.
  
 Se desativado, as imagens de fundo serão transferidas apenas quando necessárias pela primeira vez, resultando em menos espaço usado, mas num maior atraso na exibição das mesmas. Algumas imagens poderão não estar disponíveis offline.</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">Fechar automaticamente clientes de terceiros após sair do jogo</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod"></sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">Atraso para o encerramento do Cliente (em segundos)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">Não fechar após sessões de jogo de menos de (em segundos)</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">Fechar automaticamente os seguintes clientes:</sys:String>
     <sys:String x:Key="LOCSettingsAutoCloseSection">Fechar Clientes Automaticamente</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList"></sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">Importar Lista de Exclusão</sys:String>
     <sys:String x:Key="LOCSettingsShowMediaSizeWarning">Mostrar aviso quando for atribuída a jogos mídia de dimensões demasiado grandes</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand"></sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">Comando de abrir pasta</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Atualizar tamanho da instalação de jogos ao atualizar a biblioteca</sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>

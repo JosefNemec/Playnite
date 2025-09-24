@@ -56,14 +56,14 @@
     <sys:String x:Key="LOCCrashClosePlaynite">Вийти з Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Дії вчинені перед збоєм (англійською мовою):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Менеджер Бібліотеки</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskTitle">Прибрати ігри?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Прибрати ігри з Playnite?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Неможливо прибрати - гра запущена або встановлюється.</sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Неможливо видалити - гра запущена.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Ви дійсно бажаєте вилучити {0}?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Ви дійсно бажаєте прибрати {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Ви впевнені, що хочете прибрати {0} ігор?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Ви дійсно бажаєте вилучити {0}?
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Ви дійсно бажаєте прибрати {0} з Playnite?
 
-Якщо вибрати &quot;додати до списку виключень&quot;, тоді гру не буде додано наступного разу з оновленням бібліотеки.</sys:String>
+Якщо вибрати &quot;додати до списку виключень&quot;, тоді гру не буде додано знову наступного разу з оновленням бібліотеки.</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Ви впевнені, що хочете прибрати {0} ігор?
 
 Якщо вибрати &quot;додати до списку виключень&quot;, ці ігри не буде імпортовано знову з наступним оновленням бібліотеки.</sys:String>
@@ -101,7 +101,7 @@
     <!--General-->
     <sys:String x:Key="LOCEnabledTitle">Увімкнено</sys:String>
     <sys:String x:Key="LOCDisabledTitle">Вимкнено</sys:String>
-    <sys:String x:Key="LOCRemoveTitle">Вилучити</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">Прибрати</sys:String>
     <sys:String x:Key="LOCRemoveUnusedTitle">Прибрати невикористані</sys:String>
     <sys:String x:Key="LOCRenameTitle">Перейменувати</sys:String>
     <sys:String x:Key="LOCCopyTitle">Копіювати</sys:String>
@@ -157,7 +157,7 @@
     <sys:String x:Key="LOCTypeLabel">Тип</sys:String>
     <sys:String x:Key="LOCProfileLabel">Профіль</sys:String>
     <sys:String x:Key="LOCProfilesLabel">Профілі</sys:String>
-    <sys:String x:Key="LOCRemoveLabel">Вилучити</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">Прибрати</sys:String>
     <sys:String x:Key="LOCDownloadLabel">Завантажити</sys:String>
     <sys:String x:Key="LOCSearchLabel">Пошук</sys:String>
     <sys:String x:Key="LOCSearchResolutionLabel">Роздільна здатність:</sys:String>
@@ -752,7 +752,7 @@
     <!--Game actions-->
     <sys:String x:Key="LOCSaveAsDefault">Зберегти за замовчуванням</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Додати в Обране</sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame">Вилучити з Обраного</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">Прибрати з Обраного</sys:String>
     <sys:String x:Key="LOCHideGame">Приховати цю гру</sys:String>
     <sys:String x:Key="LOCUnHideGame">Прибрати з Прихованих</sys:String>
     <sys:String x:Key="LOCEnableHdr">Увімкнути підтримку HDR</sys:String>
@@ -764,7 +764,7 @@
     <sys:String x:Key="LOCInstallSizeMenuLabel">Розмір встановлення</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Задати категорію...</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Задати статус завершення</sys:String>
-    <sys:String x:Key="LOCRemoveGame">Вилучити</sys:String>
+    <sys:String x:Key="LOCRemoveGame">Прибрати</sys:String>
     <sys:String x:Key="LOCPlayGame">Грати</sys:String>
     <sys:String x:Key="LOCInstallGame">Встановити</sys:String>
     <sys:String x:Key="LOCGameOptions">Налаштування гри</sys:String>

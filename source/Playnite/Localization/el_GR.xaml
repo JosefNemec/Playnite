@@ -214,8 +214,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">Όλα τα παιχνίδια της βάσης δεδομένων</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Όλα τα παιχνίδια σε φίλτρο αυτή τη στιγμή.</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Μόνο τα επιλεγμένα παιχνίδια</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Δεν έχουν επιλεχθεί πεδία μεταδεδομένων</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Δεν έχουν επιλεχθεί πεδία μεταδεδομένων για κατέβασμα. Παρακαλώ επιλέξτε τουλάχιστον ένα πεδίο και ενεργοποιήστε έστω έναν πάροχο μεταδεδομένων</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Επίσημο Κατάστημα</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Επιλέξτε ποια πεδία πρέπει να συμπληρωθούν αυτόματα από το Playnite και ποιες πηγές θα πρέπει να χρησιμοποιηθούν για την απόκτηση των δεδομένων.</sys:String>

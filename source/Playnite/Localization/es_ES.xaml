@@ -651,7 +651,7 @@ Más información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">No hacer nada</sys:String>
     <sys:String x:Key="LOCMinimize">Minimizar</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restaurar ventana</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restaurar ventana sólo cuando se inicia desde la interfaz</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restaurar sólo cuando se inicia desde la interfaz</sys:String>
     <sys:String x:Key="LOCClose">Cerrar</sys:String>
     <sys:String x:Key="LOCChange">Cambiar</sys:String>
     <sys:String x:Key="LOCAdvanced">Avanzado</sys:String>
@@ -659,8 +659,8 @@ Más información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Estado de finalización</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Estados de finalización</sys:String>
     <sys:String x:Key="LOCUserScore">Puntuación del usuario</sys:String>
-    <sys:String x:Key="LOCCriticScore">Puntuación de la crítica</sys:String>
-    <sys:String x:Key="LOCCommunityScore">Puntuación de la Comunidad</sys:String>
+    <sys:String x:Key="LOCCriticScore">Valoración de la crítica</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Valoración de la comunidad</sys:String>
     <sys:String x:Key="LOCGameScripts">Scripts del juego</sys:String>
     <sys:String x:Key="LOCApplicationScripts">Scripts de aplicación</sys:String>
     <sys:String x:Key="LOCScripts">Scripts</sys:String>
@@ -784,7 +784,7 @@ Más información en https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">El tiempo de juego se registra en segundos.</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">El tamaño de instalación está indicado en bytes.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">La fecha de lanzamiento debe establecerse en el formato 'año-mes-día'. Los valores del mes y el día se pueden omitir.</sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues">Valores entre 0 y 100 o dejar vacio para no indicar puntuación.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">Valores entre 0 y 100 o dejar vacío para no puntuar.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">El desarrollo de Playnite está apoyado por estos patrocinadores y miembros de Ko-fi:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Código, traductores y otros contribuyentes en ningún orden en particular:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">¿Cancelar monitoreo de juegos?</sys:String>
