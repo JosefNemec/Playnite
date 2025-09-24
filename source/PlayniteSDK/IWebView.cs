@@ -1,14 +1,39 @@
 ﻿using Playnite.SDK.Events;
+using Playnite.SDK.WebViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 namespace Playnite.SDK
 {
+    public class WebViewResourceLoadedCallback
+    {
+        public Playnite.SDK.WebViewModels.Request Request { get; }
+        public Playnite.SDK.WebViewModels.Response Response { get; }
+        public Playnite.SDK.WebViewModels.UrlRequestStatus UrlRequestStatus { get; }
+        public System.IO.MemoryStream ResponseContent { get; set; }
+        public long ReceivedContentLength { get; set; }
+
+        public WebViewResourceLoadedCallback(
+            Request request,
+            Response response,
+            UrlRequestStatus urlRequestStatus,
+            long receivedContentLength)
+        {
+            Request = request;
+            Response = response;
+            UrlRequestStatus = urlRequestStatus;
+            ReceivedContentLength = receivedContentLength;
+        }
+    }
+
     /// <summary>
     /// Represents browser view settings.
     /// </summary>
@@ -43,7 +68,17 @@ namespace Playnite.SDK
         /// <summary>
         /// Gets or sets window background color.
         /// </summary>
-        public Color WindowBackground { get; set; }
+        public Color WindowBackground { get; set; } = Colors.Transparent;
+
+        /// <summary>
+        ///  Get or sets callback called when web view finishes loading web resource.
+        /// </summary>
+        public Action<WebViewResourceLoadedCallback> ResourceLoadedCallback { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether response content strema should be passed to resource load callback.
+        /// </summary>
+        public bool PassResourceContentStreamToCallback { get; set; } = false;
     }
 
     /// <summary>

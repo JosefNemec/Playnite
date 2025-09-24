@@ -6,37 +6,115 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Playnite.WebView
 {
     public class CustomResourceRequestHandler : CefSharp.Handler.ResourceRequestHandler
     {
-        private readonly string userAgent;
+        private static readonly ILogger logger = LogManager.GetLogger();
+        private readonly WebViewSettings settings;
+        private readonly MemoryStream contentStream;
 
-        public CustomResourceRequestHandler(string userAgent)
+        public CustomResourceRequestHandler(WebViewSettings settings)
         {
-            this.userAgent = userAgent;
+            this.settings = settings;
+            if (settings.PassResourceContentStreamToCallback)
+                contentStream = new MemoryStream();
+        }
+
+        public static Playnite.SDK.WebViewModels.Request ConvertRequest(IRequest request)
+        {
+            var result = new SDK.WebViewModels.Request
+            {
+                Method = request.Method,
+                ResourceType = (Playnite.SDK.WebViewModels.ResourceType)request.ResourceType,
+                Url = request.Url,
+                Headers = new Dictionary<string, string>()
+            };
+
+            foreach (string header in request.Headers)
+                result.Headers.Add(header, request.Headers[header]);
+
+            return result;
+        }
+
+        public static Playnite.SDK.WebViewModels.Response ConvertResponse(IResponse response)
+        {
+            var result = new SDK.WebViewModels.Response
+            {
+                Charset = response.Charset,
+                MimeType = response.MimeType,
+                StatusCode = response.StatusCode,
+                StatusText = response.StatusText,
+                Headers = new Dictionary<string, string>()
+            };
+
+            foreach (string header in response.Headers)
+                result.Headers.Add(header, response.Headers[header]);
+
+            return result;
         }
 
         protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
         {
-            request.SetHeaderByName("user-agent", userAgent, true);
+            if (!settings.UserAgent.IsNullOrWhiteSpace())
+                request.SetHeaderByName("user-agent", settings.UserAgent, true);
             return CefReturnValue.Continue;
+        }
+
+        protected override IResponseFilter GetResourceResponseFilter(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response)
+        {
+            if (settings.PassResourceContentStreamToCallback)
+                return new CefSharp.ResponseFilter.StreamResponseFilter(contentStream);
+            else
+                return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
+        }
+
+        protected override void OnResourceLoadComplete(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
+        {
+            if (settings.ResourceLoadedCallback != null)
+            {
+                var args = new WebViewResourceLoadedCallback(
+                    ConvertRequest(request),
+                    ConvertResponse(response),
+                    (SDK.WebViewModels.UrlRequestStatus)status,
+                    receivedContentLength);
+                if (settings.PassResourceContentStreamToCallback)
+                    args.ResponseContent = contentStream;
+
+                try
+                {
+                    settings.ResourceLoadedCallback(args);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, "Web view resource callback failed.");
+                }
+            }
+
+            base.OnResourceLoadComplete(chromiumWebBrowser, browser, frame, request, response, status, receivedContentLength);
+        }
+
+        protected override void Dispose()
+        {
+            base.Dispose();
+            contentStream?.Dispose();
         }
     }
 
     public class CustomRequestHandler : CefSharp.Handler.RequestHandler
     {
-        private readonly CustomResourceRequestHandler handler;
+        private readonly WebViewSettings settings;
 
-        public CustomRequestHandler(string userAgent)
+        public CustomRequestHandler(WebViewSettings settings)
         {
-            handler = new CustomResourceRequestHandler(userAgent);
+            this.settings = settings;
         }
 
         protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
         {
-            return handler;
+            return new CustomResourceRequestHandler(settings);
         }
     }
 
