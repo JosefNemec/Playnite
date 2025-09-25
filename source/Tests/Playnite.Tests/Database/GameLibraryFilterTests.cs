@@ -29,7 +29,7 @@ namespace Playnite.Tests.Database
             ulong secondsFromHours(double hours) => (ulong)(hours * 3600D);
 
             TempDirectory = TempDirectory.Create();
-            GameDatabase = new GameDatabase(TempDirectory.TempPath);
+            GameDatabase = new TestGameDatabase(TempDirectory.TempPath);
             GameDatabase.OpenDatabase();
             GameDatabase.AgeRatings.Add("Everyone");
             GameDatabase.AgeRatings.Add("Mature");
@@ -37,9 +37,9 @@ namespace Playnite.Tests.Database
             GameDatabase.Categories.Add("Has dogs");
             GameDatabase.Companies.Add("iD Software");
             GameDatabase.Companies.Add("Bethesda");
-            GameDatabase.CompletionStatuses.Add("Not played");
-            GameDatabase.CompletionStatuses.Add("Played");
-            GameDatabase.CompletionStatuses.Add("Beaten");
+            var notPlayed = GameDatabase.CompletionStatuses.Add("Not played");
+            var played = GameDatabase.CompletionStatuses.Add("Played");
+            var beaten = GameDatabase.CompletionStatuses.Add("Beaten");
             GameDatabase.Features.Add("Singleplayer");
             GameDatabase.Features.Add("Multiplayer");
             GameDatabase.Genres.Add("Action");
@@ -59,6 +59,7 @@ namespace Playnite.Tests.Database
 
             GameNone = new Game("Game None")
             {
+                Version = null,
                 ReleaseDate = null,
                 Added = null,
                 LastActivity = null,
@@ -72,10 +73,12 @@ namespace Playnite.Tests.Database
                 IsInstalled = false,
                 PluginId = Guid.Empty,
                 SourceId = Guid.Empty,
+                CompletionStatusId = Guid.Empty,
             };
 
             GameA = new Game("Game Alpha")
             {
+                Version = "1.0",
                 ReleaseDate = new ReleaseDate(2015, 12, 9),
                 Added = now - TimeSpan.FromDays(200),
                 LastActivity = null,
@@ -89,6 +92,7 @@ namespace Playnite.Tests.Database
                 IsInstalled = true,
                 PluginId = SteamPluginId,
                 SourceId = GameDatabase.Sources.First().Id,
+                CompletionStatusId = notPlayed.Id,
                 AgeRatingIds = new List<Guid> { GameDatabase.AgeRatings.First().Id },
                 CategoryIds = new List<Guid> { GameDatabase.Categories.First().Id },
                 DeveloperIds = new List<Guid> { GameDatabase.Companies.First().Id },
@@ -98,11 +102,12 @@ namespace Playnite.Tests.Database
                 PlatformIds = new List<Guid> { GameDatabase.Platforms.First().Id },
                 RegionIds = new List<Guid> { GameDatabase.Regions.First().Id },
                 SeriesIds = new List<Guid> { GameDatabase.Series.First().Id },
-                TagIds = new List<Guid> { GameDatabase.Tags.First().Id }
+                TagIds = new List<Guid> { GameDatabase.Tags.First().Id },
             };
 
             GameB = new Game("Game Beta")
             {
+                Version = "1.5.1",
                 ReleaseDate = new ReleaseDate(2023, 3, 26),
                 Added = now - TimeSpan.FromDays(6),
                 LastActivity = now - TimeSpan.FromDays(6),
@@ -116,6 +121,7 @@ namespace Playnite.Tests.Database
                 IsInstalled = false,
                 PluginId = XboxPluginId,
                 SourceId = GameDatabase.Sources.Last().Id,
+                CompletionStatusId = played.Id,
                 AgeRatingIds = new List<Guid> { GameDatabase.AgeRatings.Last().Id },
                 CategoryIds = new List<Guid> { GameDatabase.Categories.Last().Id },
                 DeveloperIds = new List<Guid> { GameDatabase.Companies.Last().Id },
@@ -130,6 +136,7 @@ namespace Playnite.Tests.Database
 
             GameBoth = new Game("Game Both")
             {
+                Version = "alpha-2",
                 ReleaseDate = new ReleaseDate(2025, 8, 26),
                 Added = now.Date.AddMinutes(1),
                 LastActivity = now.Date.AddMinutes(1),
@@ -143,6 +150,7 @@ namespace Playnite.Tests.Database
                 IsInstalled = true,
                 PluginId = Guid.Empty,
                 SourceId = Guid.Empty,
+                CompletionStatusId = beaten.Id,
                 AgeRatingIds = GameDatabase.AgeRatings.Select(x => x.Id).ToList(),
                 CategoryIds = GameDatabase.Categories.Select(x => x.Id).ToList(),
                 DeveloperIds = GameDatabase.Companies.Select(x => x.Id).ToList(),
@@ -167,6 +175,7 @@ namespace Playnite.Tests.Database
             GameA = null;
             GameB = null;
             GameBoth = null;
+            GameHidden = null;
             GameDatabase.Dispose();
             TempDirectory.Dispose();
         }
@@ -188,16 +197,16 @@ namespace Playnite.Tests.Database
                 UserScore = new EnumFilterItemProperties((int)ScoreGroup.None),
                 Library = new IdItemFilterItemProperties(Guid.Empty),
                 Source = new IdItemFilterItemProperties(Guid.Empty),
+                CompletionStatuses = new IdItemFilterItemProperties(Guid.Empty),
             };
 
             var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
 
-            Assert.AreEqual(1, filteredGames.Count);
-            Assert.AreEqual(GameNone, filteredGames[0]);
+            AssertCollectionsContentsAreEqual(filteredGames, GameNone);
         }
 
         [Test]
-        public void SingleValueFieldsWithMultipleSelected()
+        public void SingleValueFieldsIgnoreANDFilteringStyle()
         {
             var scoreFilter = new EnumFilterItemProperties(new List<int> { (int)ScoreGroup.None, (int)ScoreGroup.O1x, (int)ScoreGroup.O5x });
             var filterSettings = new FilterSettings
@@ -213,62 +222,158 @@ namespace Playnite.Tests.Database
                 CriticScore = scoreFilter,
                 UserScore = scoreFilter,
                 Library = new IdItemFilterItemProperties(new List<Guid> { Guid.Empty, SteamPluginId, XboxPluginId }),
-                Source = new IdItemFilterItemProperties(new List<Guid>(GameDatabase.Sources.Select(x=>x.Id)) { Guid.Empty}),
+                Source = new IdItemFilterItemProperties(new List<Guid>(GameDatabase.Sources.Select(x => x.Id)) { Guid.Empty }),
+                CompletionStatuses = new IdItemFilterItemProperties(new List<Guid>(GameDatabase.CompletionStatuses.Select(x => x.Id)) { Guid.Empty }),
                 UseAndFilteringStyle = true,
             };
 
             var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
 
-            Assert.Contains(GameNone, filteredGames);
-            Assert.Contains(GameA, filteredGames);
-            Assert.Contains(GameB, filteredGames);
-            Assert.AreEqual(3, filteredGames.Count);
+            AssertCollectionsContentsAreEqual(filteredGames, GameNone, GameA, GameB);
         }
 
         [Test]
-        public void MultipleValueFields()
+        public void MultipleValueFieldsMatchAny()
         {
             var filterSettings = GetMultipleValueFieldFilterSettings();
             var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
-            
-            Assert.Contains(GameA, filteredGames);
-            Assert.Contains(GameB, filteredGames);
-            Assert.Contains(GameBoth, filteredGames);
-            Assert.AreEqual(3, filteredGames.Count);
+
+            AssertCollectionsContentsAreEqual(filteredGames, GameA, GameB, GameBoth);
         }
-        
+
         [Test]
         public void MultipleValueFieldsMatchAll()
         {
             var filterSettings = GetMultipleValueFieldFilterSettings();
             filterSettings.UseAndFilteringStyle = true;
-            
+
             var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
-            
-            Assert.Contains(GameBoth, filteredGames);
-            Assert.AreEqual(1, filteredGames.Count);
+
+            AssertCollectionsContentsAreEqual(filteredGames, GameBoth);
         }
 
         [Test]
-        public void NameFilterExact()
+        public void NameFilter()
         {
-            var filterSettings = new FilterSettings { Name = "alpha" };
-            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
-            
-            Assert.Contains(GameA, filteredGames);
-            Assert.AreEqual(1, filteredGames.Count);
+            void AssertNameMatch(string nameFilter, bool useFuzzyNameMatch, params Game[] expected)
+            {
+                var filterSettings = new FilterSettings { Name = nameFilter };
+                var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch).ToList();
+
+                AssertCollectionsContentsAreEqual(filteredGames, expected);
+            }
+
+            AssertNameMatch("alpha", false, GameA);
+            AssertNameMatch("alpha", true, GameA); //see if fuzzy filter matches exact strings too
+            AssertNameMatch("!alpha", true, GameA); //! at the start of strings makes the matching exact instead of fuzzy
+            AssertNameMatch("game alpga", true, GameA);
+            AssertNameMatch("game alpga", false, expected: Array.Empty<Game>());
+            AssertNameMatch("!game alpga", true, expected: Array.Empty<Game>());
+            AssertNameMatch("^A", false, expected: Array.Empty<Game>()); //^ at the start of strings matches the name grouping character
+            AssertNameMatch("^A", true, expected: Array.Empty<Game>());
+            AssertNameMatch("^G", false, GameNone, GameA, GameB, GameBoth);
+            AssertNameMatch("^G", true, GameNone, GameA, GameB, GameBoth);
         }
 
         [Test]
-        public void NameFilterFuzzy()
+        public void InstallFilterEmpty()
         {
-            var filterSettings = new FilterSettings { Name = "game alpga" };
-            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: true).ToList();
-            
-            Assert.Contains(GameA, filteredGames);
-            Assert.AreEqual(1, filteredGames.Count);
+            void AssertAllGamesAreInFilter(FilterSettings filterSettings)
+            {
+                var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+
+                AssertCollectionsContentsAreEqual(filteredGames, GameNone, GameA, GameB, GameBoth);
+            }
+
+            AssertAllGamesAreInFilter(new FilterSettings { IsInstalled = false, IsUnInstalled = false });
+            AssertAllGamesAreInFilter(new FilterSettings { IsInstalled = true, IsUnInstalled = true });
         }
-        
+
+        [Test]
+        public void FilterInstalled()
+        {
+            var filterSettings = new FilterSettings { IsInstalled = true };
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+
+            AssertCollectionsContentsAreEqual(filteredGames, GameA, GameBoth);
+        }
+
+        [Test]
+        public void FilterUninstalled()
+        {
+            var filterSettings = new FilterSettings { IsUnInstalled = true };
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+
+            AssertCollectionsContentsAreEqual(filteredGames, GameNone, GameB);
+        }
+
+        [Test]
+        public void FilterFavorite()
+        {
+            var filterSettings = new FilterSettings { Favorite = true };
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+
+            AssertCollectionsContentsAreEqual(filteredGames, GameA, GameBoth);
+        }
+
+        [Test]
+        public void FilterHidden()
+        {
+            var filterSettings = new FilterSettings { Hidden = true };
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+
+            AssertCollectionsContentsAreEqual(filteredGames, GameHidden);
+        }
+
+        [Test]
+        public void FilterVersion()
+        {
+            var filterSettings = new FilterSettings { Version = "1." };
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+
+            AssertCollectionsContentsAreEqual(filteredGames, GameA, GameB);
+        }
+
+        [Test]
+        public void FilterMultipleValuesByName()
+        {
+            List<Game> FilterFeatures(string featureFilterText, bool and)
+            {
+                var filterSettings = new FilterSettings
+                {
+                    Feature = new IdItemFilterItemProperties(featureFilterText),
+                    UseAndFilteringStyle = and,
+                };
+                return GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+            }
+
+            // "player" matches both Singleplayer and Multiplayer, but counts as 1 condition, thus it matches all 3 of these games
+            AssertCollectionsContentsAreEqual(FilterFeatures("player", true), GameA, GameB, GameBoth);
+            AssertCollectionsContentsAreEqual(FilterFeatures("single, multi", true), GameBoth);
+
+            AssertCollectionsContentsAreEqual(FilterFeatures("player", false), GameA, GameB, GameBoth);
+            AssertCollectionsContentsAreEqual(FilterFeatures("single, multi", false), GameA, GameB, GameBoth);
+        }
+
+        [Test]
+        public void FilterSingleValuesByName()
+        {
+            List<Game> FilterCompletionStatus(string completionFilterText, bool and)
+            {
+                var filterSettings = new FilterSettings
+                {
+                    CompletionStatuses = new IdItemFilterItemProperties(completionFilterText),
+                    UseAndFilteringStyle = and,
+                };
+                return GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+            }
+
+            AssertCollectionsContentsAreEqual(FilterCompletionStatus("played", true), GameA, GameB);
+            AssertCollectionsContentsAreEqual(FilterCompletionStatus("played", false), GameA, GameB);
+            AssertCollectionsContentsAreEqual(FilterCompletionStatus("not played, beaten", true), GameA, GameBoth);
+            AssertCollectionsContentsAreEqual(FilterCompletionStatus("not played, beaten", false), GameA, GameBoth);
+        }
+
         private FilterSettings GetMultipleValueFieldFilterSettings()
         {
             IdItemFilterItemProperties getIdFilter(IEnumerable<DatabaseObject> items)
@@ -291,6 +396,22 @@ namespace Playnite.Tests.Database
             };
         }
 
-        private EnumFilterItemProperties GetTodayFilter() => new EnumFilterItemProperties((int)PastTimeSegment.Today);
+        private static EnumFilterItemProperties GetTodayFilter() => new EnumFilterItemProperties((int)PastTimeSegment.Today);
+
+        /// <summary>
+        /// Assert that the items in two collections are the same, in any order
+        /// </summary>
+        /// <param name="actual"></param>
+        /// <param name="expected"></param>
+        /// <typeparam name="T"></typeparam>
+        private static void AssertCollectionsContentsAreEqual<T>(List<T> actual, params T[] expected)
+        {
+            foreach (var x in expected)
+            {
+                Assert.Contains(x, actual);
+            }
+
+            Assert.AreEqual(expected.Length, actual.Count);
+        }
     }
 }
