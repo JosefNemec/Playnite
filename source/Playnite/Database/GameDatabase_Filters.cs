@@ -216,10 +216,10 @@ namespace Playnite.Database
 
         private bool MatchVersion(Game game)
         {
-            if (filterSettings.Version.IsNullOrEmpty() || game.Version == null)
+            if (filterSettings.Version.IsNullOrEmpty())
                 return true;
 
-            return game.Version.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase);
+            return game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) == true;
         }
 
         private bool MatchCompletionStatus(Game game) => IsFilterMatchingSingle(filterSettings.CompletionStatuses, game.CompletionStatusId, game.CompletionStatus);
