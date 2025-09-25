@@ -177,9 +177,9 @@ namespace Playnite.Tests.Database
             var filterSettings = new FilterSettings
             {
                 ReleaseYear = new StringFilterItemProperties(FilterSettings.MissingFieldString),
-                Added = new EnumFilterItemProperties((int)PastTimeSegment.Today), //Added, Modified, and RecentActivity are automatically set
-                RecentActivity = new EnumFilterItemProperties((int)PastTimeSegment.Today),
-                Modified = new EnumFilterItemProperties((int)PastTimeSegment.Today),
+                Added = GetTodayFilter(), //Added, Modified, and RecentActivity are automatically set
+                RecentActivity = GetTodayFilter(),
+                Modified = GetTodayFilter(),
                 LastActivity = new EnumFilterItemProperties((int)PastTimeSegment.Never),
                 PlayTime = new EnumFilterItemProperties((int)PlaytimeCategory.NotPlayed),
                 InstallSize = new EnumFilterItemProperties((int)InstallSizeGroup.None),
@@ -195,5 +195,102 @@ namespace Playnite.Tests.Database
             Assert.AreEqual(1, filteredGames.Count);
             Assert.AreEqual(GameNone, filteredGames[0]);
         }
+
+        [Test]
+        public void SingleValueFieldsWithMultipleSelected()
+        {
+            var scoreFilter = new EnumFilterItemProperties(new List<int> { (int)ScoreGroup.None, (int)ScoreGroup.O1x, (int)ScoreGroup.O5x });
+            var filterSettings = new FilterSettings
+            {
+                ReleaseYear = new StringFilterItemProperties(new List<string> { FilterSettings.MissingFieldString, "2015", "2023" }),
+                Added = GetTodayFilter(), //Added, Modified, and RecentActivity are automatically set
+                RecentActivity = GetTodayFilter(),
+                Modified = GetTodayFilter(),
+                LastActivity = new EnumFilterItemProperties(new List<int> { (int)PastTimeSegment.Never, (int)PastTimeSegment.PastYear, (int)PastTimeSegment.PastWeek }),
+                PlayTime = new EnumFilterItemProperties(new List<int> { (int)PlaytimeCategory.NotPlayed, (int)PlaytimeCategory.LessThenHour, (int)PlaytimeCategory.O1_10 }),
+                InstallSize = new EnumFilterItemProperties(new List<int> { (int)InstallSizeGroup.None, (int)InstallSizeGroup.S0_0MB_100MB, (int)InstallSizeGroup.S2_1GB_5GB }),
+                CommunityScore = scoreFilter,
+                CriticScore = scoreFilter,
+                UserScore = scoreFilter,
+                Library = new IdItemFilterItemProperties(new List<Guid> { Guid.Empty, SteamPluginId, XboxPluginId }),
+                Source = new IdItemFilterItemProperties(new List<Guid>(GameDatabase.Sources.Select(x=>x.Id)) { Guid.Empty}),
+                UseAndFilteringStyle = true,
+            };
+
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+
+            Assert.Contains(GameNone, filteredGames);
+            Assert.Contains(GameA, filteredGames);
+            Assert.Contains(GameB, filteredGames);
+            Assert.AreEqual(3, filteredGames.Count);
+        }
+
+        [Test]
+        public void MultipleValueFields()
+        {
+            var filterSettings = GetMultipleValueFieldFilterSettings();
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+            
+            Assert.Contains(GameA, filteredGames);
+            Assert.Contains(GameB, filteredGames);
+            Assert.Contains(GameBoth, filteredGames);
+            Assert.AreEqual(3, filteredGames.Count);
+        }
+        
+        [Test]
+        public void MultipleValueFieldsMatchAll()
+        {
+            var filterSettings = GetMultipleValueFieldFilterSettings();
+            filterSettings.UseAndFilteringStyle = true;
+            
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+            
+            Assert.Contains(GameBoth, filteredGames);
+            Assert.AreEqual(1, filteredGames.Count);
+        }
+
+        [Test]
+        public void NameFilterExact()
+        {
+            var filterSettings = new FilterSettings { Name = "alpha" };
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: false).ToList();
+            
+            Assert.Contains(GameA, filteredGames);
+            Assert.AreEqual(1, filteredGames.Count);
+        }
+
+        [Test]
+        public void NameFilterFuzzy()
+        {
+            var filterSettings = new FilterSettings { Name = "game alpga" };
+            var filteredGames = GameDatabase.GetFilteredGames(filterSettings, useFuzzyNameMatch: true).ToList();
+            
+            Assert.Contains(GameA, filteredGames);
+            Assert.AreEqual(1, filteredGames.Count);
+        }
+        
+        private FilterSettings GetMultipleValueFieldFilterSettings()
+        {
+            IdItemFilterItemProperties getIdFilter(IEnumerable<DatabaseObject> items)
+            {
+                return new IdItemFilterItemProperties(items.Select(x => x.Id).ToList());
+            }
+
+            return new FilterSettings
+            {
+                AgeRating = getIdFilter(GameDatabase.AgeRatings),
+                Category = getIdFilter(GameDatabase.Categories),
+                Developer = getIdFilter(GameDatabase.Companies),
+                Publisher = getIdFilter(GameDatabase.Companies),
+                Feature = getIdFilter(GameDatabase.Features),
+                Genre = getIdFilter(GameDatabase.Genres),
+                Platform = getIdFilter(GameDatabase.Platforms),
+                Region = getIdFilter(GameDatabase.Regions),
+                Series = getIdFilter(GameDatabase.Series),
+                Tag = getIdFilter(GameDatabase.Tags),
+            };
+        }
+
+        private EnumFilterItemProperties GetTodayFilter() => new EnumFilterItemProperties((int)PastTimeSegment.Today);
     }
 }
