@@ -127,6 +127,7 @@
     <Compile Include="Converters\PlayTimeToStringConverterTests.cs" />
     <Compile Include="Database\EmulatorsCollectionTests.cs" />
     <Compile Include="Database\FiltersDatabaseTests.cs" />
+    <Compile Include="Database\GameLibraryFilterTests.cs" />
     <Compile Include="Emulators\EmulationTests.cs" />
     <Compile Include="Emulators\EmulationDatabaseTests.cs" />
     <Compile Include="Emulators\ScannedGameTests.cs" />
