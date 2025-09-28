@@ -195,6 +195,18 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        private void AssignScore(string header, Action<int?> setter)
+        {
+            var items = new List<SelectableNamedObject<int?>> { new SelectableNamedObject<int?>(null, ResourceProvider.GetString(LOC.None)) };
+            Enumerable.Range(0, 101).Reverse().ForEach(a => items.Add(new SelectableNamedObject<int?>(a)));
+            var passed = ItemSelector.SelectSingle(header, "", items, out var selectedItem);
+            if (passed)
+            {
+                setter(selectedItem);
+                mainModel.Database.Games.Update(Game);
+            }
+        }
+
         private void SetFields()
         {
             Close();
@@ -204,6 +216,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 new List<SelectableNamedObject<GameField>>
                 {
                     new SelectableNamedObject<GameField>(GameField.CompletionStatus, ResourceProvider.GetString(LOC.CompletionStatus)),
+                    new SelectableNamedObject<GameField>(GameField.UserScore, ResourceProvider.GetString(LOC.UserScore)),
                     new SelectableNamedObject<GameField>(GameField.Categories,ResourceProvider.GetString(LOC.CategoryLabel)),
                     new SelectableNamedObject<GameField>(GameField.Tags, ResourceProvider.GetString(LOC.TagLabel)),
                     new SelectableNamedObject<GameField>(GameField.Features, ResourceProvider.GetString(LOC.FeatureLabel)),
@@ -256,6 +269,9 @@ namespace Playnite.FullscreenApp.ViewModels
                         break;
                     case GameField.Source:
                         SelectSingleAndSet(mainModel.Database.Sources, LOC.SourceLabel, (val) => Game.SourceId = val, Game.SourceId);
+                        break;
+                    case GameField.UserScore:
+                        AssignScore(LOC.UserScore, (val) => Game.UserScore = val);
                         break;
                     default:
                         throw new NotImplementedException();
