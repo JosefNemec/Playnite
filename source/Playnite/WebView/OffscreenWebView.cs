@@ -27,6 +27,7 @@ namespace Playnite.WebView
 
         public OffscreenWebView()
         {
+            this.settings = new WebViewSettings();
             Initialize();
         }
 
