@@ -984,6 +984,10 @@ namespace Playnite
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to initialize CefSharp.");
+            }
+
+            if (!CefTools.IsInitialized)
+            {
                 Dialogs.ShowErrorMessage(
                     ResourceProvider.GetString("LOCCefSharpInitError"),
                     ResourceProvider.GetString("LOCStartupError"));
