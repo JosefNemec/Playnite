@@ -49,7 +49,7 @@ namespace Playnite
             // about unsecure browser if we try to pretend to be Chrome (which is CefSharp's default).
             // Plugins can change this on an individual level anyways.
             settings.UserAgent = $"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0 Playnite/{PlayniteApplication.CurrentVersion.ToString(2)}";
-            IsInitialized = Cef.Initialize(settings, performDependencyCheck: true);
+            IsInitialized = Cef.Initialize(settings);
             if (!IsInitialized)            
                 logger.Error($"CEF failed to initialize: {Cef.GetExitCode()}");            
         }
