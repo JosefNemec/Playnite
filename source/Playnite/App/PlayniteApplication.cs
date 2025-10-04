@@ -511,7 +511,7 @@ namespace Playnite
                 // ERROR_DISK_FULL
             if (exception.HResult == unchecked((int)0x80070070) ||
                 // "device not ready" error. Happens when people run Playnite from attached storage as far as I can tell.
-                exception.HResult == 0x00000015 ||
+                exception.HResult == unchecked((int)0x80070015) ||
                 // self-explanatory
                 exception is OutOfMemoryException)
             {
