@@ -64,6 +64,21 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
+
+    <Style x:Key="ProgressHeaderStyle" TargetType="ContentControl">
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Image RenderOptions.BitmapScalingMode="Fant"
+                       Stretch="Uniform"
+                       MaxHeight="200"
+                       Source="{ThemeFile 'Images/applogo_clean.png'}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>

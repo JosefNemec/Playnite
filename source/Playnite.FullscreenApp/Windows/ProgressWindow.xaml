@@ -19,9 +19,9 @@
     <Viewbox>
         <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="{StaticResource ProgressWindowWidth}" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
@@ -29,21 +29,24 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="1" Grid.Column="1">
-                <Image RenderOptions.BitmapScalingMode="Fant"
-                       Height="200"
-                       Source="{pmrk:ThemeFile 'Images/applogo_clean.png'}" />
+                <ContentControl Style="{StaticResource ProgressHeaderStyle}" />
                 <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False"
                                 Height="38" Width="38"
                                 Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <TextBlock Text="{Binding ProgressArgs.Text}"
-                           HorizontalAlignment="Center" Margin="0,20,0,0"
-                           Style="{StaticResource TextBlockBaseStyle}" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock Text="{Binding ProgressArgs.Text}"
+                           HorizontalAlignment="Center" 
+                           TextAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Style="{StaticResource TextBlockBaseStyle}" 
+                           TextWrapping="Wrap" />
+                </StackPanel>
 
-                <ProgressBar Height="40" Margin="0,20,0,0"
-                             IsIndeterminate="{Binding ProgressArgs.IsIndeterminate}"
+                <ProgressBar IsIndeterminate="{Binding ProgressArgs.IsIndeterminate}"
                              Value="{Binding ProgressArgs.CurrentProgressValue}"
                              Maximum="{Binding ProgressArgs.ProgressMaxValue}"
-                             Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"/>
+                             Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                             Style="{StaticResource ProgressWindowProgressBarStyle}"/>
 
                 <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}"
                                  HorizontalAlignment="Center" MinWidth="180"

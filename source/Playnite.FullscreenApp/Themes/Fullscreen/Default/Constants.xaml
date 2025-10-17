@@ -34,6 +34,8 @@
 
     <sys:Double x:Key="FilterPanelWidth">300</sys:Double>
     
+    <GridLength x:Key="ProgressWindowWidth">640</GridLength>
+    
     <Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{DynamicResource FontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource FontTitilliumWebLight}" />
