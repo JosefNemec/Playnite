@@ -19,21 +19,28 @@
     <Viewbox>
         <Grid Height="1080" Width="1920" Name="GridMain">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="{StaticResource ProgressWindowWidth}" />
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="32" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1" Grid.Column="1">
-                <ContentControl Style="{StaticResource ProgressHeaderStyle}" />
-                <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False"
+            <ContentControl Style="{StaticResource ProgressHeaderStyle}" Grid.Column="2" Grid.Row="1"/>
+            <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False" Grid.Column="2" Grid.Row="2"
                                 Height="38" Width="38"
                                 Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <TextBlock Text="{Binding ProgressArgs.Text}"
+            <TextBlock Text="{Binding ProgressArgs.Text}"
+                           Grid.Column="1" Grid.Row="3"
+                           Grid.ColumnSpan="3"
                            HorizontalAlignment="Center" 
                            TextAlignment="Left"
                            VerticalAlignment="Bottom"
@@ -44,16 +51,19 @@
                              Value="{Binding ProgressArgs.CurrentProgressValue}"
                              Maximum="{Binding ProgressArgs.ProgressMaxValue}"
                              Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
-                             Style="{StaticResource ProgressWindowProgressBarStyle}"/>
+                             Style="{StaticResource ProgressWindowProgressBarStyle}"
+                             Grid.Column="2"
+                             Grid.Row="4"/>
 
-                <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}"
+            <pctrls:ButtonEx Content="{DynamicResource LOCCancelLabel}"
                                  HorizontalAlignment="Center" MinWidth="180"
                                  pbeh:FocusBahaviors.FocusBinding="{Binding Cancelable}"
                                  Command="{Binding CancelCommand}"
                                  Visibility="{Binding Cancelable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                  HorizontalContentAlignment="Center"
-                                 Margin="0,20,0,0" />
-            </StackPanel>
+                                 Margin="0,20,0,0" 
+                             Grid.Column="2"
+                             Grid.Row="5"/>
         </Grid>
     </Viewbox>
 </c:WindowBase>
