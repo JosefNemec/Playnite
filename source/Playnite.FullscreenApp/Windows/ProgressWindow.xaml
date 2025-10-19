@@ -33,14 +33,12 @@
                 <ContentControl Style="{StaticResource ProgressIndicator}" Focusable="False"
                                 Height="38" Width="38"
                                 Visibility="{Binding ProgressArgs.IsIndeterminate, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                    <TextBlock Text="{Binding ProgressArgs.Text}"
+                <TextBlock Text="{Binding ProgressArgs.Text}"
                            HorizontalAlignment="Center" 
                            TextAlignment="Left"
                            VerticalAlignment="Bottom"
                            Style="{StaticResource TextBlockBaseStyle}" 
                            TextWrapping="Wrap" />
-                </StackPanel>
 
                 <ProgressBar IsIndeterminate="{Binding ProgressArgs.IsIndeterminate}"
                              Value="{Binding ProgressArgs.CurrentProgressValue}"
