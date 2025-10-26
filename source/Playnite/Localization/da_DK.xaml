@@ -96,7 +96,7 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCErrorApplicationScript">Applikationens scriptudførelse mislykkedes.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Udførelse af globalt script mislykkedes.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Emulatorens scriptudførelse mislykkedes.</sys:String>
-    <sys:String x:Key="LOCErrorPlayScriptAction"></sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">Afspil scripthandling mislykkedes.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 eller nyere er ikke installeret.</sys:String>
     <sys:String x:Key="LOCErrorStartupNoController">Lykkedes ikke at afgøre, hvordan spillet skulle startes.</sys:String>
     <!--General-->
@@ -204,7 +204,7 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCColumns">Kolonner</sys:String>
     <sys:String x:Key="LOCRow">Række</sys:String>
     <sys:String x:Key="LOCRows">Rækker</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction"></sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">Kunne ikke hente ikon fra Play handling. Der er ingen handling af File type til stede.</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmpty">Download kun manglende metadata</sys:String>
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Aktivering af denne indstilling vil springe over downloading af metadata for datafelter, der allerede indeholder information.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Spiludvalg</sys:String>
@@ -212,6 +212,8 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCMetaGameSourceAll">Alle spil i databasen</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Alle filtrerede spil</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Kun valgte spil</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Officiel Butik</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vælg hvilke felter der automatisk skal udfyldes af Playnite og hvilke kilder der skal bruges til at hente data fra.</sys:String>
@@ -240,7 +242,7 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCMenuClients">Tredjepartsklienter</sys:String>
     <sys:String x:Key="LOCMenuReloadLibrary">Opdater Spilbiblioteket</sys:String>
     <sys:String x:Key="LOCMenuCancelLibraryUpdate">Afbryd Biblioteksopdatering</sys:String>
-    <sys:String x:Key="LOCMenuUpdateEmulatedDirs"></sys:String>
+    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">Opdater Emulerede Mapper</sys:String>
     <sys:String x:Key="LOCMenuAddGame">TIlføj spil</sys:String>
     <sys:String x:Key="LOCMenuAddGameManual">Manuelt…</sys:String>
     <sys:String x:Key="LOCMenuAddGameInstalled">Scan Automatisk…</sys:String>
@@ -252,7 +254,7 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCMenuLinksTitle">Links</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjælp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Støt Playnite på Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Support på Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Brugervejledning</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK dokumentation</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Genstart System</sys:String>
@@ -267,12 +269,12 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCSettingsGridItemSpacing">Element afstand</sys:String>
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Tegn gitterelementets baggrund</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Bredde af gitterelementets ramme</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource"></sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource"></sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">Manglende spil-ikonkilde</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Manglende spil-ikonkilde</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Manglende spilbaggrundskilde</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">Lodret afstand til spildetaljer</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Placering af detaljer i Gittervisning</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition"></sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">Detaljer vis spillisteposition</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight"></sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
@@ -354,7 +356,7 @@ Ved at vælge &quot;Tilføj til udelukkelsesliste&quot; vil spillet ikke blive i
     <sys:String x:Key="LOCSettingsDatesFormatsLabel"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheWarn"></sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">Ryd cache?</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart"></sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite genstart påkræves for at anvende nyt tema</sys:String>
     <sys:String x:Key="LOCSettingsGetThemes">Find flere temaer</sys:String>
     <sys:String x:Key="LOCSettingsCreateThemes">Opret et nyt tema</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions"></sys:String>

@@ -162,6 +162,7 @@ namespace Playnite.DesktopApp.ViewModels
         {
             public List<BaseStatInfo> TopPlayed { get; set; }
             public List<BaseStatInfo> CompletionStates { get; set; }
+            public List<BaseStatInfo> GameProvider { get; set; }
 
             public ulong TotalCount { get; set; }
             public BaseStatInfo Installed { get; set; }
@@ -332,6 +333,14 @@ namespace Playnite.DesktopApp.ViewModels
             ulong totalPlaytime = 0;
             ulong totalInstallSize = 0;
 
+            var gameProviderStats = new Dictionary<Guid, ulong>();
+            var libPlugins = extensions.LibraryPlugins.ToList();
+            libPlugins.Add(new FakePlayniteLibraryPlugin());
+            foreach (var lib in libPlugins)
+            {
+                gameProviderStats.Add(lib.Id, 0);
+            }
+
             var compStats = new Dictionary<Guid, ulong>();
             foreach (var game in database.Games)
             {
@@ -377,6 +386,11 @@ namespace Playnite.DesktopApp.ViewModels
                     favorite++;
                 }
 
+                if (gameProviderStats.ContainsKey(game.PluginId))
+                {
+                    gameProviderStats[game.PluginId] += 1;
+                }
+
                 if (database.CompletionStatuses[game.CompletionStatusId] != null)
                 {
                     if (compStats.TryGetValue(game.CompletionStatusId, out var currentCount))
@@ -395,6 +409,10 @@ namespace Playnite.DesktopApp.ViewModels
                 CompletionStates = compStats.
                     OrderByDescending(a => a.Value).
                     Select(a => new BaseStatInfo(database.CompletionStatuses[a.Key].Name, a.Value, totalGames)).
+                    ToList(),
+                GameProvider = gameProviderStats.
+                OrderByDescending(a => a.Value).
+                    Select(a => new BaseStatInfo(libPlugins.First(b => b.Id == a.Key).Name, a.Value, totalGames)).
                     ToList(),
                 Favorite = new BaseStatInfo("", favorite, totalGames),
                 Hidden = new BaseStatInfo("", hidden, totalGames),

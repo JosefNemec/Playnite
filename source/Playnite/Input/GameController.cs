@@ -1,5 +1,6 @@
 ﻿using Playnite.Native;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.Windows;
 using System;
 using System.Collections.Generic;
@@ -15,41 +16,7 @@ using static SDL2.SDL;
 
 namespace Playnite.Input
 {
-    public enum ControllerInputState
-    {
-        Pressed,
-        Released
-    }
 
-    public enum ControllerInput
-    {
-        None,
-        Start,
-        Back,
-        LeftStick,
-        RightStick,
-        LeftShoulder,
-        RightShoulder,
-        Guide,
-        A,
-        B,
-        X,
-        Y,
-        DPadLeft,
-        DPadRight,
-        DPadUp,
-        DPadDown,
-        TriggerLeft,
-        TriggerRight,
-        LeftStickLeft,
-        LeftStickRight,
-        LeftStickUp,
-        LeftStickDown,
-        RightStickLeft,
-        RightStickRight,
-        RightStickUp,
-        RightStickDown
-    }
 
     public class GameControllerGesture : InputGesture
     {
@@ -101,16 +68,6 @@ namespace Playnite.Input
     [System.Runtime.InteropServices.Guid("36CB2F69-F227-4165-8CEE-6C10BC575524")]
     public class GameControllerManager : IDisposable
     {
-        public class ButtonUpEventArgs
-        {
-            public ControllerInput Button { get; internal set; }
-        }
-
-        public class ButtonDownEventArgs
-        {
-            public ControllerInput Button { get; internal set; }
-        }
-
         public class InputState
         {
             public Stopwatch Watch { get; set; } = new Stopwatch();
@@ -123,11 +80,7 @@ namespace Playnite.Input
         public bool SimulateAllKeys { get; set; } = false;
         public bool StandardProcessingEnabled { get; set; } = true;
 
-        private readonly ButtonUpEventArgs buttonUpEventArgs = new ButtonUpEventArgs();
-        private readonly ButtonDownEventArgs buttonDownEventArgs = new ButtonDownEventArgs();
-
-        public event EventHandler<ButtonUpEventArgs> ButtonUp;
-        public event EventHandler<ButtonDownEventArgs> ButtonDown;
+        public event EventHandler<OnControllerButtonStateChangedArgs> ButtonChanged;
         public event EventHandler ControllersChanged;
 
         private readonly int resendDelay = 700;
@@ -536,16 +489,8 @@ namespace Playnite.Input
                     inputManager.ProcessInput(args);
                 }
 
-                if (pressed)
-                {
-                    buttonDownEventArgs.Button = button;
-                    ButtonDown?.Invoke(null, buttonDownEventArgs);
-                }
-                else
-                {
-                    buttonUpEventArgs.Button = button;
-                    ButtonUp?.Invoke(null, buttonUpEventArgs);
-                }
+                ButtonChanged?.Invoke(null,
+                    new OnControllerButtonStateChangedArgs(button, pressed ? ControllerInputState.Pressed : ControllerInputState.Released));
             }, null);
         }
 

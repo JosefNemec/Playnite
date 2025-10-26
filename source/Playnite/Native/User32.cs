@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -124,7 +126,96 @@ namespace Playnite.Native
         [DllImport(dllName, SetLastError = true)]
         public static extern bool LockWorkStation();
 
+        [Flags]
+        public enum ExitWindowsFlags
+        {
+            EWX_LOGOFF = 0x00000000,
+            EWX_SHUTDOWN = 0x00000001,
+            EWX_REBOOT = 0x00000002,
+            EWX_FORCE = 0x00000004,
+            EWX_POWEROFF = 0x00000008,
+            EWX_FORCEIFHUNG = 0x00000010,
+            EWX_QUICKRESOLVE = 0x00000020,
+            EWX_RESTARTAPPS = 0x00000040,
+            EWX_HYBRID_SHUTDOWN = 0x00400000,
+            EWX_BOOTOPTIONS = 0x01000000,
+            EWX_ARSO = 0x04000000 // Undocumented https://stackoverflow.com/a/72069512/1107424
+        }
+
         [DllImport(dllName, SetLastError = true)]
-        public static extern bool ExitWindowsEx(uint uFlags, uint dwReason);
+        public static extern bool ExitWindowsEx(ExitWindowsFlags uFlags, uint dwReason);
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct TOKEN_PRIVILEGES
+        {
+            internal int PrivilegeCount;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+            internal int[] Privileges;
+        }
+
+        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool LookupPrivilegeValue(string lpSystemName, string lpName, ref LUID lpLuid);
+
+        [DllImport("advapi32", SetLastError = true), SuppressUnmanagedCodeSecurity]
+        private static extern int OpenProcessToken(IntPtr ProcessHandle, int DesiredAccess, ref IntPtr TokenHandle);
+
+        [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern int AdjustTokenPrivileges(IntPtr TokenHandle, int DisableAllPrivileges, IntPtr NewState, int BufferLength, IntPtr PreviousState, ref int ReturnLength);
+
+        private const int SE_PRIVILEGE_ENABLED = 0x00000002;
+        private const int TOKEN_ADJUST_PRIVILEGES = 0X00000020;
+        private const int TOKEN_QUERY = 0X00000008;
+        private const int TOKEN_ALL_ACCESS = 0X001f01ff;
+        private const int PROCESS_QUERY_INFORMATION = 0X00000400;
+
+        public static bool EnablePrivilege(string lpszPrivilege, bool bEnablePrivilege)
+        {
+            bool retval = false;
+            int ltkpOld = 0;
+            IntPtr hToken = IntPtr.Zero;
+            TOKEN_PRIVILEGES tkp = new TOKEN_PRIVILEGES();
+            tkp.Privileges = new int[3];
+            TOKEN_PRIVILEGES tkpOld = new TOKEN_PRIVILEGES();
+            tkpOld.Privileges = new int[3];
+            LUID tLUID = new LUID();
+            tkp.PrivilegeCount = 1;
+            if (bEnablePrivilege)
+                tkp.Privileges[2] = SE_PRIVILEGE_ENABLED;
+            else
+                tkp.Privileges[2] = 0;
+            if (LookupPrivilegeValue(null, lpszPrivilege, ref tLUID))
+            {
+                var proc = Process.GetCurrentProcess();
+                if (proc.Handle != IntPtr.Zero)
+                {
+                    if (OpenProcessToken(proc.Handle, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY,
+                        ref hToken) != 0)
+                    {
+                        tkp.PrivilegeCount = 1;
+                        tkp.Privileges[2] = SE_PRIVILEGE_ENABLED;
+                        tkp.Privileges[1] = tLUID.HighPart;
+                        tkp.Privileges[0] = tLUID.LowPart;
+                        const int bufLength = 256;
+                        IntPtr tu = Marshal.AllocHGlobal(bufLength);
+                        Marshal.StructureToPtr(tkp, tu, true);
+                        if (AdjustTokenPrivileges(hToken, 0, tu, bufLength, IntPtr.Zero, ref ltkpOld) != 0)
+                        {
+                            // successful AdjustTokenPrivileges doesn't mean privilege could be changed
+                            if (Marshal.GetLastWin32Error() == 0)
+                            {
+                                retval = true; // Token changed
+                            }
+                        }
+                        TOKEN_PRIVILEGES tokp = (TOKEN_PRIVILEGES)Marshal.PtrToStructure(tu, typeof(TOKEN_PRIVILEGES));
+                        Marshal.FreeHGlobal(tu);
+                    }
+                }
+            }
+            if (hToken != IntPtr.Zero)
+            {
+                Kernel32.CloseHandle(hToken);
+            }
+            return retval;
+        }
     }
 }

@@ -125,6 +125,7 @@ namespace Playnite.DesktopApp
         public override void Restart(CmdLineOptions options, bool saveSettings)
         {
             options.MasterInstance = true;
+            options.UserDataDir = CmdLine.UserDataDir;
             QuitAndStart(PlaynitePaths.DesktopExecutablePath, options.ToString(), saveSettings: saveSettings);
         }
 
@@ -225,22 +226,25 @@ namespace Playnite.DesktopApp
         {
             // TODO test db path recovery
             var firstStartup = true;
-            var defaultPath = GameDatabase.GetFullDbPath(GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable));
+            var defaultDbDir = GameDatabase.GetDefaultPath(
+                PlayniteSettings.IsPortable,
+                CmdLine.UserDataDir.IsNullOrWhiteSpace() ? null : PlaynitePaths.ConfigRootPath);
+
             if (!AppSettings.DatabasePath.IsNullOrEmpty())
             {
                 AppSettings.FirstTimeWizardComplete = true;
                 firstStartup = false;
             }
-            else if (AppSettings.DatabasePath.IsNullOrEmpty() && Directory.Exists(defaultPath))
+            else if (AppSettings.DatabasePath.IsNullOrEmpty() && Directory.Exists(GameDatabase.GetFullDbPath(defaultDbDir)))
             {
-                AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
+                AppSettings.DatabasePath = defaultDbDir;
                 AppSettings.FirstTimeWizardComplete = true;
                 firstStartup = false;
             }
 
             if (firstStartup)
             {
-                AppSettings.DatabasePath = GameDatabase.GetDefaultPath(PlayniteSettings.IsPortable);
+                AppSettings.DatabasePath = defaultDbDir;
                 AppSettings.SaveSettings();
                 Database.SetDatabasePath(AppSettings.DatabasePath);
                 Database.OpenDatabase();
@@ -255,15 +259,21 @@ namespace Playnite.DesktopApp
                 if (wizardModel.OpenView() == true)
                 {
                     var settings = wizardModel.Settings;
-                    AppSettings.FirstTimeWizardComplete = true;
                     AppSettings.DisabledPlugins = settings.DisabledPlugins;
-                    AppSettings.SaveSettings();
                 }
-                else
-                {
-                    AppSettings.FirstTimeWizardComplete = true;
-                    AppSettings.SaveSettings();
-                }
+
+                AppSettings.AutoBackupEnabled = true;
+                AppSettings.LastAutoBackup = DateTime.Now.AddDays(1); // Postpone first backup to not interrupt initial user experience
+                AppSettings.RotatingBackups = 3;
+                AppSettings.AutoBackupDir = Path.Combine(PlaynitePaths.ConfigRootPath, "Backup");
+                AppSettings.AutoBackupFrequency = AutoBackupFrequency.OnceADay;
+                AppSettings.AutoBackupIncludeExtensions = false;
+                AppSettings.AutoBackupIncludeExtensionsData = false;
+                AppSettings.AutoBackupIncludeLibFiles = false;
+                AppSettings.AutoBackupIncludeThemes = false;
+
+                AppSettings.FirstTimeWizardComplete = true;
+                AppSettings.SaveSettings();
             }
             else
             {
@@ -298,7 +308,7 @@ namespace Playnite.DesktopApp
         {
             if (mode == ApplicationMode.Fullscreen)
             {
-                MainModel.SwitchToFullscreenMode();
+                MainModel?.SwitchToFullscreenMode();
             }
             else
             {

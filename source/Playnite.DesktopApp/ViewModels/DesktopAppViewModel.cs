@@ -161,17 +161,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private List<ThirdPartyTool> thirdPartyTools = new List<ThirdPartyTool>();
-        public List<ThirdPartyTool> ThirdPartyTools
-        {
-            get => thirdPartyTools;
-            set
-            {
-                thirdPartyTools = value;
-                OnPropertyChanged();
-            }
-        }
-
         private bool searchOpened = false;
         public bool SearchOpened
         {
@@ -357,19 +346,6 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void FilterSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-        }
-
-        public void StartThirdPartyTool(ThirdPartyTool tool)
-        {
-            try
-            {
-                tool.Start();
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                Logger.Error(e, "Failed to start 3rd party tool.");
-                Dialogs.ShowErrorMessage(Resources.GetString("LOCAppStartupError") + "\n\n" + e.Message, Resources.GetString("LOCStartupError"));
-            }
         }
 
         public void RemoveGameSelection()
@@ -1001,7 +977,8 @@ namespace Playnite.DesktopApp.ViewModels
                     SkipLibUpdate = true,
                     StartInFullscreen = true,
                     MasterInstance = true,
-                    SafeStartup = App.CmdLine.SafeStartup
+                    SafeStartup = App.CmdLine.SafeStartup,
+                    UserDataDir = App.CmdLine.UserDataDir
                 }.ToString());
         }
 

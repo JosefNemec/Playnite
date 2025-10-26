@@ -13,12 +13,18 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return ((bool)value) ? Visibility.Visible : Visibility.Hidden;
+            if (value is bool boolValue)
+                return boolValue ? Visibility.Visible : Visibility.Hidden;
+
+            return Visibility.Hidden;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return ((Visibility)value) == Visibility.Visible ? true : false;
+            if (value is Visibility visibility)
+                return visibility == Visibility.Visible;
+
+            return false;
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)

@@ -34,7 +34,10 @@ namespace Playnite.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return GetString((Dock)value);
+            if (value is Dock dockValue)
+                return GetString(dockValue);
+
+            return "<UknownDockMode>";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

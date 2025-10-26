@@ -195,6 +195,10 @@ namespace Playnite.Common.Web
             {
                 logger.Warn("Download canceled.");
             }
+            catch (AggregateException ae) when (ae.InnerException is WebException we && we.Status == WebExceptionStatus.RequestCanceled)
+            {
+                logger.Warn("Download canceled.");
+            }
         }
 
         public async Task DownloadFileAsync(string url, string path, Action<DownloadProgressChangedEventArgs> progressHandler)

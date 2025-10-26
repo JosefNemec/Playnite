@@ -68,24 +68,45 @@ $ignoreList = @(
     "00_example_libretro.info",
     "2048_libretro.info",
     "3dengine_libretro.info",
-    "openlara_libretro.info",
-    "opentyrian_libretro.info",
-    "tyrquake_libretro.info",
+    "advanced_tests_libretro.info",
+    "bk_libretro.info",
+    "boom3_libretro.info",
+    "boom3_xp_libretro.info",
+    "cannonball_libretro.info",
+    "chaigame_libretro.info",
+    "chailove_libretro.info",
+    "craft_libretro.info",
+    "cruzes_libretro.info",
+    "dhewm3_libretro.info",
+    "dinothawr_libretro.info",
+    "ecwolf_libretro.info",
     "ffmpeg_libretro.info",
+    "freechaf_libretro.info",
+    "freej2me_libretro.info",
+    "gme_libretro.info",
+    "hbmame_libretro.info",
     "imageviewer_libretro.info",
     "lutro_libretro.info",
-    "advanced_tests_libretro.info",
-    "craft_libretro.info",
-    "dinothawr_libretro.info",
-    "gme_libretro.info",
+    "mojozork_libretro.info",
+    "mpv_libretro.info",
     "mrboom_libretro.info",
+    "mu_libretro.info",
     "nxengine_libretro.info",
+    "oberon_libretro.info",
+    "openlara_libretro.info",
+    "opentyrian_libretro.info",
     "pascal_pong_libretro.info",
     "pocketcdg_libretro.info",
-    "prboom_libretro.info",
     "pokemini_libretro.info",
+    "prboom_libretro.info",
+    "quasi88_libretro.info",
+    "redbook_libretro.info",
+    "reminiscence_libretro.info",
     "remotejoy_libretro.info",
+    "rvvm_libretro.info",
     "scummvm_libretro.info",
+    "simcp_libretro.info",
+    "squirreljme_libretro.info",
     "stonesoup_libretro.info",
     "test_libretro.info",
     "test_netplay_libretro.info",
@@ -101,36 +122,21 @@ $ignoreList = @(
     "testsw_vram_libretro.info",
     "testvulkan_async_compute_libretro.info",
     "testvulkan_libretro.info",
-    "xrick_libretro.info",
-    "cruzes_libretro.info",
-    "chaigame_libretro.info",
-    "chailove_libretro.info",
-    "freej2me_libretro.info",
     "thepowdertoy_libretro.info",
-    "reminiscence_libretro.info",
-    "mpv_libretro.info",
-    "cannonball_libretro.info",
-    "dhewm3_libretro.info",
-    "freechaf_libretro.info",
-    "mu_libretro.info",
-    "oberon_libretro.info",
-    "quasi88_libretro.info",
-    "redbook_libretro.info",
-    "simcp_libretro.info",
-    "squirreljme_libretro.info",
     "tic80_libretro.info",
-    "vitaquake2_libretro.info",
+    "tyrquake_libretro.info",
+    "ume2015_libretro.info",
+    "uw8_libretro.info",
+    "vaporspec_libretro.info",
     "vitaquake2-rogue_libretro.info",
     "vitaquake2-xatrix_libretro.info",
     "vitaquake2-zaero_libretro.info",
+    "vitaquake2_libretro.info",
     "vitaquake3_libretro.info",
     "vitavoyager_libretro.info",
-    "bk_libretro.info",
-    "boom3_libretro.info",
-    "boom3_xp_libretro.info",
-    "ecwolf_libretro.info",
-    "hbmame_libretro.info",
-    "x1_libretro.info"
+    "wasm4_libretro.info",
+    "x1_libretro.info",
+    "xrick_libretro.info"
 )
 
 $retroarchArcadeSystems = @(
@@ -300,7 +306,13 @@ foreach ($infoFile in $infoFiles)
             $coreName = $coreInfo.corename
         }
     }
-
+    
+    if (!($coreInfo.ContainsKey("corename")))
+    {
+        Write-Host "$($infoFile.Name) does not contain the core name" -ForegroundColor Yellow # Some cores like anarch_libretro.info don't contain a core name
+        continue
+    }
+    
     $coreInfoCoreName = $coreInfo.corename
     if ($raCoreNameToPlatformIdsTranslate.ContainsKey($coreInfoCoreName))
     {
@@ -312,6 +324,12 @@ foreach ($infoFile in $infoFiles)
     }
     else
     {
+        if (!($coreInfo.ContainsKey("systemname")))
+        {
+            Write-Host "$($infoFile.Name) does not contain systemname" -ForegroundColor Yellow # galaksija_libretro.info
+            continue
+        }
+
         $coreInfo.systemname.Split("/", [System.StringSplitOptions]::RemoveEmptyEntries) | ForEach-Object {
             $system = $_.Trim()
             if (($retroarchArcadeSystems -contains $system) -or ($retroarchMiscSystems -contains $system))

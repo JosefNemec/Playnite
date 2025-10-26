@@ -170,7 +170,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCDetailsViewLabel">Detaljert visning</sys:String>
     <sys:String x:Key="LOCCustomLabel">Egendefinert</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Spesiell takk til</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisens</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Bidragsytere</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Lukker Playnite …</sys:String>
@@ -212,6 +212,8 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCMetaGameSourceAll">Alle spill</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Alle filtrerte spill</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Kun valgte spill</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Ingen metadatafelt valgt</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Ingen metadatafelt er valgt for nedlasting. Velg minst ett, og aktiver minst en metadata-leverandør for feltet.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offisiell butikk</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Velg hvilke felt som skal fylles automatisk av Playnite, og hvilke kilder data skal hentes fra.</sys:String>
@@ -252,7 +254,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCMenuLinksTitle">Lenker</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Hjelp</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Støtt på Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Gi din støtte via Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">Brukermanualer</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK-dokumentasjon</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">Systemomstart</sys:String>
@@ -781,7 +783,7 @@ Mer informasjon er tilgjengelig på https://playnite.link/cefstartup</sys:String
     <sys:String x:Key="LOCDescriptionSizeBytes">Installeringsstørrelse blir angitt i bytes</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Lanseringsdato må velges med &quot;år-måned-dag&quot;-format. Måned og dag kan utelates.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">Verdier fra 0 til 100, eller tom for ingen poeng.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Utviklingen av Playnite støttes av disse Patreon-brukerne:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Bidragsytere til koding, lokalisering og annet i tilfeldig rekkefølge:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Vil du avbryte spillovervåking?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">Installasjonsovervåking kjører for øyeblikket. Vil du avbryte prosessen og returnere spillet til sin tidligere tilstand?</sys:String>

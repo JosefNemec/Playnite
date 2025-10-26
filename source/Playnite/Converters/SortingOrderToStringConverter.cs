@@ -16,8 +16,10 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var order = (SortOrder)value;
-            return order.GetDescription();
+            if (value is SortOrder order)
+                return order.GetDescription();
+
+            return "no sort order passed!";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

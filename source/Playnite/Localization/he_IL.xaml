@@ -214,6 +214,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">כל המשחקים מבסיס הנתונים</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">כל המשחקים שמסוננים כעת</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">משחקים נבחרים בלבד</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">חנות רשמית</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">אנא בחרו אילו שדות יאוכלסו אוטומטית על ידי פליינייט ובאילו מקורות להשתמש כדי להשיג את הנתונים.</sys:String>

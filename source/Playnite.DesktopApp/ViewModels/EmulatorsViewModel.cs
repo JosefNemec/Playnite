@@ -459,26 +459,26 @@ namespace Playnite.DesktopApp.ViewModels
             using (database.BufferedUpdate())
             {
                 // Remove deleted items
-                var removedEmulators = database.Emulators.Where(a => EditingEmulators.FirstOrDefault(b => b.Id == a.Id) == null);
+                var removedEmulators = database.Emulators.Where(a => EditingEmulators.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
                 if (removedEmulators.Any())
                 {
                     database.Emulators.Remove(removedEmulators);
                 }
 
-                var removedScanners = database.GameScanners.Where(a => EditingScanners.FirstOrDefault(b => b.Id == a.Id) == null);
+                var removedScanners = database.GameScanners.Where(a => EditingScanners.FirstOrDefault(b => b.Id == a.Id) == null).ToList();
                 if (removedScanners.Any())
                 {
                     database.GameScanners.Remove(removedScanners);
                 }
 
                 // Add new items
-                var addedEmulators = EditingEmulators.Where(a => database.Emulators[a.Id] == null);
+                var addedEmulators = EditingEmulators.Where(a => database.Emulators[a.Id] == null).ToList();
                 if (addedEmulators.Any())
                 {
                     database.Emulators.Add(addedEmulators);
                 }
 
-                var addedScanners = EditingScanners.Where(a => database.GameScanners[a.Id] == null);
+                var addedScanners = EditingScanners.Where(a => database.GameScanners[a.Id] == null).ToList();
                 if (addedScanners.Any())
                 {
                     database.GameScanners.Add(addedScanners);

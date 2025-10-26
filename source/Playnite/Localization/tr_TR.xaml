@@ -32,7 +32,7 @@ Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
  
 Bu sorunu çözmemize yardımcı olmak istiyorsanız, lütfen çökmeden önce gerçekleştirilen eylemleri kısaca açıklayın ve ardından bir tanı bilgisi gönderin. Çevrimiçiyseniz, paket, analiz için Playnite sunucusuna yüklenecektir.
 
-Alternatif olarak, GitHub'da yeni bir sorun oluşturmak ve çöküşü elle bildirmek için 'Hata Bildir' düğmesini kullanabilirsiniz.
+Alternatif olarak, GitHub'da yeni bir sorun oluşturmak ve çöküşü elle bildirmek için 'Çökme Bildir' düğmesini kullanabilirsiniz.
 
 Yardımınız için teşekkürler.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">&quot;{0}&quot; uzantısı, kurtarılamaz bir hataya neden oldu.
@@ -55,21 +55,23 @@ Bu sorunu çözmemize yardımcı olmak için lütfen tanılama bilgilerini gönd
     <sys:String x:Key="LOCCrashRestartSafe">Güvenli Modda Yeniden Başlat</sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip">Tüm üçüncü parti uzantılarını devre dışı bırak ve varsayılan temayı kullan.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite Çıkış</sys:String>
-    <sys:String x:Key="LOCCrashUserActionsDescription">Çökmeden önce yapılan eylemler (İngilizce):</sys:String>
+    <sys:String x:Key="LOCCrashUserActionsDescription">Çökmeden önce yapılan eylemler (İngilizce olarak açıklayın):</sys:String>
     <sys:String x:Key="LOCLibraryManager">Kütüphane Yöneticisi</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskTitle">Oyunlar Kaldırılsın Mı?</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskTitle">Oyun(lar) Kaldırılsın mı?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Kaldırılamıyor - Oyun veya kurulum çalışıyor. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Kaldırılamıyor - Oyun çalışıyor.</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">{0} isimli oyunu kaldırmak istediğinize emin misiniz?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">{0} oyunu kaldırmak istediğinize emin misiniz?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">{0} oyununu listeden kaldırmak istiyor musunuz?
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">{0} adlı oyunu listeden çıkarmak istiyor musunuz?
 
 &quot;Hariç tutulanlar listesine ekle&quot; seçeneği, bir sonraki kütüphane güncellemesinde oyunun tekrar içeri aktarılmasını engelleyecektir.</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">{0} oyunu kaldırmak istediğinizden emin misiniz?</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">{0} oyunu kaldırmak istediğinizden emin misiniz?
+
+&quot;Hariç tutulanlar listesine ekle&quot; seçeneği, bir sonraki kütüphane güncellemesinde oyunun tekrar içeri aktarılmasını engelleyecektir.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Şu anda kullanımda olmayan {0} girdiyi kaldırmak istediğinizden emin misiniz?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Kullanılmayan alan bulunamadı.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Evet (hariç tutulanlar listesine ekle)</sys:String>
-    <sys:String x:Key="LOCGameEditChangeNotif">Bu bölümde kaydedilmemiş değişiklikler var.</sys:String>
+    <sys:String x:Key="LOCGameEditChangeNotif">Bu bölümde kaydedilmemiş değişiklikler var</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Oyun kütüphanesi biçimi güncelleniyor…</sys:String>
     <sys:String x:Key="LOCDBUpgradeFail">Veritabanı güncellemesi başarısız.</sys:String>
     <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">Oyun kütüphanesi güncellenemiyor. {0} MB boş alan gerekiyor.</sys:String>
@@ -210,6 +212,8 @@ Bu sorunu çözmemize yardımcı olmak için lütfen tanılama bilgilerini gönd
     <sys:String x:Key="LOCMetaGameSourceAll">Veritabanı üstündeki tüm oyunlar</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Filtrelenmiş tüm oyunlar</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Sadece seçili oyunlar</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Hiçbir üst veri alanı seçilmedi</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">İndirme için hiçbir üst veri alanı seçilmedi. Lütfen en az birini seçin ve bunun için en az bir üst veri sağlayıcısını etkinleştirin.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Resmi Mağaza</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Lütfen Playnite tarafından hangi alanların otomatik olarak doldurulacağını ve verileri almak için hangi kaynakların kullanılması gerektiğini seçin.</sys:String>
@@ -364,7 +368,7 @@ Yeniden başlatmak, halihazırda devam etmekte olan tüm etkin görevleri (indir
     <sys:String x:Key="LOCSettingsRestartTitle">Playnite yeniden başlatılsın mı?</sys:String>
     <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite, kütüphane dosyalarınızı otomatik olarak taşıyamaz. Konumu değiştirmeden önce dosyaları el ile taşımanız/kopyalamanız gerekir. Hedef konumda kütüphane yoksa, yeni bir tane oluşturulacaktır.
 
-Playnite yeniden başlatılıncaya kadar yeni veritabanı konumu kullanılmayacaktır.</sys:String>
+Playnite yeniden başlatılıncaya kadar yeni veritabanı konumu kullanılmayacaktır. </sys:String>
     <sys:String x:Key="LOCSettingsClosePlaytimeNotif">&quot;Kapat&quot; eylemi ayarlı ise, oynama zamanı kaydedilmeyecek.</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenRows">Satır sayısı</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenColumns">Sütun sayısı</sys:String>
@@ -392,7 +396,7 @@ Asla: Hiçbir koşulda oyun süresini içe aktarmaz.</sys:String>
     <sys:String x:Key="LOCSettingsHideMouseCursor">İmleci gizle</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Hızlı Filtrelerde Sadece Kurulu Oyunlar</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Düğme İstemleri</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLayout">düzen</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLayout">Düzen</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">Yatay Kaydırma</sys:String>
     <sys:String x:Key="LOCSettingsSelectChildSection">Alt bölümlerden birini seçin</sys:String>
     <sys:String x:Key="LOCSettingsNoSettingsAvailable">Kullanılabilir ayar yok</sys:String>
@@ -426,7 +430,7 @@ Devre dışı bırakılırsa, arka plan resmi yalnızca ilk ihtiyaç duyulduğun
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Son taramadan bu yana değişen dosyalar tespit edildiğinde oyunların kurulum büyüklükleri tekrar hesaplanır</sys:String>
     <sys:String x:Key="LOCStrechNone">Hiçbiri</sys:String>
     <sys:String x:Key="LOCStrechFill">Doldur</sys:String>
-    <sys:String x:Key="LOCStrechUniform">üniforma</sys:String>
+    <sys:String x:Key="LOCStrechUniform">Üniforma</sys:String>
     <sys:String x:Key="LOCStrechUniformToFill">Doldurmak için oranı koru</sys:String>
     <sys:String x:Key="LOCDockLeft">Sol</sys:String>
     <sys:String x:Key="LOCDockRight">Sağ</sys:String>
@@ -459,8 +463,7 @@ Aynı zamanda uygulama ayarlarından da değiştirilebilir.</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonSelectFiles">Dosyaları seç</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">Klasörden Otomatik Algıla…</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">Emülatörleri Yapılandır…</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning">Taranıyor…
-</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">Taranıyor…</sys:String>
     <sys:String x:Key="LOCEmuWizardScanningSpecific">Taranıyor {0}…</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">İlk Kez Yapılandırma</sys:String>
@@ -775,7 +778,7 @@ Bilgi için: https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCMetadownloadNoResultsMessage">Belirtilen sayfada '{0}' oyunuyla ilgili hiçbir bilgi bulunamadı.</sys:String>
     <sys:String x:Key="LOCMetadownloadSingleGameTip">İpucu: &quot;Düzenle&quot; menü seçeneğiyle tekli oyun düzenlerken daha gelişmiş üst veri indirme işlemini kullanabilirsiniz.</sys:String>
     <sys:String x:Key="LOCProgreessAvailabilityMessage">Bazı işlem devam ederken kullanılamaz.</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Açıklama metni HTML sözdizimine duyarlıdır.</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">Açıklama metni HTML sözdizimine duyarlıdır</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Oyun süresi saniye cinsinden kaydedilir.</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">İndirme boyutu byte olarak gösterilir.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Çıkış tarihi 'yıl-ay-gün' formatında ayarlanmalıdır. Ay ve Gün değerleri atlanabilir.</sys:String>
@@ -920,7 +923,7 @@ Arka planlar: {2} mega piksel</sys:String>
     <sys:String x:Key="LOCItemAlreadyExists">Aynı ada sahip bir öğe zaten var.</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Seçimi geçerli filtreyle kısıtla</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Başka seç</sys:String>
-    <sys:String x:Key="LOCMenuAddons">Eklentiler</sys:String>
+    <sys:String x:Key="LOCMenuAddons">Eklentiler…</sys:String>
     <sys:String x:Key="LOCExtensionsInstalled">Kurulu</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">Uzantı Ayarları</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">Gözat</sys:String>
@@ -936,8 +939,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCAddonErrorNotCompatible">Eklenti, Playnite'ın bu sürümüyle uyumlu değil.</sys:String>
     <sys:String x:Key="LOCAddonErrorDownloadFailed">Eklenti yükleme paketi indirilemedi.</sys:String>
     <sys:String x:Key="LOCAddonErrorManifestDownloadError">Eklenti yükleme paketi indirilemedi.</sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart">Yeni ayarları uygulamak için yeniden başlatma gerekiyor.
-	</sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">Yeni ayarları uygulamak için yeniden başlatma gerekiyor.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Bu eklenti kurulum için planlandı.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Kur</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Kaldır</sys:String>
@@ -947,11 +949,11 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCAddonChangelogNotAvailavble">Değişiklikler mevcut değil</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusDownloaded">Kurulum için planlandı</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusFailed">İndirme başarısız</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">lisans reddedildi</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisans reddedildi</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} indiriliyor…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Eklenti güncellemeleri kontrol ediliyor…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Bir veya daha fazla eklenti güncellemesi mevcut.</sys:String>
-    <sys:String x:Key="LOCAddonSelectToUpdate">Güncellenecek öğeleri seçin:</sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate">Güncellenecek öğeleri seçin</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Uzantı geliştirme örneği</sys:String>
     <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} lisans sözleşmesi</sys:String>
     <sys:String x:Key="LOCLicenseAccept">Onayla</sys:String>

@@ -68,6 +68,7 @@ namespace Playnite.FullscreenApp.ViewModels
         public RelayCommand RemoveGameCommand => new RelayCommand(() => RemoveGame());
         public RelayCommand<GameAction> ActivateActionCommand => new RelayCommand<GameAction>((a) => ActivateAction(a));
         public RelayCommand SetFieldsCommand => new RelayCommand(() => SetFields());
+        public RelayCommand OpenExtensionCommand => new RelayCommand(() => OpenExtensions());
 
         public GameMenuViewModel(
             IWindowFactory window,
@@ -98,6 +99,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 items.Add(new GameActionItem(ToggleHdrCommand, game.EnableSystemHdr ? ResourceProvider.GetString(LOC.DisableHdr) : ResourceProvider.GetString(LOC.EnableHdr), "GameMenuHdrButtonTemplate"));
             }
             items.Add(new GameActionItem(SetFieldsCommand, ResourceProvider.GetString(LOC.MenuSetFields), "GameMenuSetFieldsTemplate"));
+            items.Add(new GameActionItem(OpenExtensionCommand, ResourceProvider.GetString(LOC.Extensions), "GameMenuExtensionsTemplate"));
             items.Add(new GameActionItem(RemoveGameCommand, ResourceProvider.GetString(LOC.RemoveGame), "GameMenuRemoveButtonTemplate"));
 
             if (!game.IsCustomGame && game.IsInstalled)
@@ -193,6 +195,18 @@ namespace Playnite.FullscreenApp.ViewModels
             }
         }
 
+        private void AssignScore(string header, Action<int?> setter)
+        {
+            var items = new List<SelectableNamedObject<int?>> { new SelectableNamedObject<int?>(null, ResourceProvider.GetString(LOC.None)) };
+            Enumerable.Range(0, 101).Reverse().ForEach(a => items.Add(new SelectableNamedObject<int?>(a)));
+            var passed = ItemSelector.SelectSingle(header, "", items, out var selectedItem);
+            if (passed)
+            {
+                setter(selectedItem);
+                mainModel.Database.Games.Update(Game);
+            }
+        }
+
         private void SetFields()
         {
             Close();
@@ -202,6 +216,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 new List<SelectableNamedObject<GameField>>
                 {
                     new SelectableNamedObject<GameField>(GameField.CompletionStatus, ResourceProvider.GetString(LOC.CompletionStatus)),
+                    new SelectableNamedObject<GameField>(GameField.UserScore, ResourceProvider.GetString(LOC.UserScore)),
                     new SelectableNamedObject<GameField>(GameField.Categories,ResourceProvider.GetString(LOC.CategoryLabel)),
                     new SelectableNamedObject<GameField>(GameField.Tags, ResourceProvider.GetString(LOC.TagLabel)),
                     new SelectableNamedObject<GameField>(GameField.Features, ResourceProvider.GetString(LOC.FeatureLabel)),
@@ -255,10 +270,20 @@ namespace Playnite.FullscreenApp.ViewModels
                     case GameField.Source:
                         SelectSingleAndSet(mainModel.Database.Sources, LOC.SourceLabel, (val) => Game.SourceId = val, Game.SourceId);
                         break;
+                    case GameField.UserScore:
+                        AssignScore(LOC.UserScore, (val) => Game.UserScore = val);
+                        break;
                     default:
                         throw new NotImplementedException();
                 }
             }
+        }
+
+        public void OpenExtensions()
+        {
+            Close();
+            var vm = new ExtensionsMenuViewModels(new ExtensionsMenuWindowFactory(), mainModel, Game);
+            vm.OpenView();
         }
     }
 }

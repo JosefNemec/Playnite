@@ -7,6 +7,44 @@ using System.Threading.Tasks;
 
 namespace Playnite.SDK.Events
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    public enum ControllerInputState
+    {
+        Pressed,
+        Released
+    }
+
+    public enum ControllerInput
+    {
+        None,
+        Start,
+        Back,
+        LeftStick,
+        RightStick,
+        LeftShoulder,
+        RightShoulder,
+        Guide,
+        A,
+        B,
+        X,
+        Y,
+        DPadLeft,
+        DPadRight,
+        DPadUp,
+        DPadDown,
+        TriggerLeft,
+        TriggerRight,
+        LeftStickLeft,
+        LeftStickRight,
+        LeftStickUp,
+        LeftStickDown,
+        RightStickLeft,
+        RightStickRight,
+        RightStickUp,
+        RightStickDown
+    }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
+
     /// <summary>
     /// Application wide events.
     /// </summary>
@@ -207,4 +245,32 @@ namespace Playnite.SDK.Events
     public class OnLibraryUpdatedEventArgs
     {
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class OnControllerButtonStateChangedArgs
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        public ControllerInput Button { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ControllerInputState State { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="state"></param>
+        public OnControllerButtonStateChangedArgs(ControllerInput input, ControllerInputState state)
+        {
+            Button = input;
+            State = state;
+        }
+    }
+
 }

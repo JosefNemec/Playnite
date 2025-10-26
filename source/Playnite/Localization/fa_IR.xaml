@@ -3,8 +3,8 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">انگلیسی</sys:String>
-    <sys:String x:Key="LOCLanguageSettingsLabel">زبان Playnite</sys:String>
+    <sys:String x:Key="LanguageName">فارسی</sys:String>
+    <sys:String x:Key="LOCLanguageSettingsLabel">زبان برنامه</sys:String>
     <sys:String x:Key="LOCExitAppLabel">خروج</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">فیلتر فعال</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">فیلتر غیر فعال</sys:String>
@@ -15,109 +15,111 @@
     <sys:String x:Key="LOCSaveChangesAskTitle">ذخیره تغییرات؟</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">صفحه اصلی در www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">کد منبع در گیت‌هاب</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">ایجاد بسته diag.</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">ساخت بسته diag.</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">ارسال اطلاعات diag.</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">درباره Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">ساخته شده توسط Josef Němec</sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle">تعیین دسته</sys:String>
-    <sys:String x:Key="LOCCategorySetButton">تنظیم دسته بندی ها</sys:String>
+    <sys:String x:Key="LOCCategorySetButton">تنظیم دسته‌بندی‌ها</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">افزودن دسته‌بندی</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">چک شده - اختصاص دادن دسته
-انتخاب نشده - حذف دسته
-نا معین - بدون تغییر (هنگام ویرایش چندین بازی)</sys:String>
-    <sys:String x:Key="LOCNoCategory">بدون دسته بندی</sys:String>
-    <sys:String x:Key="LOCNoPlatform">بدون پلتفرم</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">بررسی شده - اختصاص دادن دسته‌بندی
+انتخاب نشده - زدایش دسته‌بندی
+نامعین - بدون تغییر (هنگام ویرایش چندین بازی)</sys:String>
+    <sys:String x:Key="LOCNoCategory">بدون دسته‌بندی</sys:String>
+    <sys:String x:Key="LOCNoPlatform">بدون سکو</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">اوه! مشکلی پیش آمد...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">خطای غیرقابل بازیابی رخ داده است.
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">یک خطای غیرقابل بازگشت رخ داده است.
 
-اگر می خواهید به ما در رفع این مشکل کمک کنید، لطفاً اقدامات انجام شده قبل از خرابی را مختصر شرح دهید و سپس اطلاعات تشخیصی را ارسال کنید. اگر آنلاین باشید، بسته برای تجزیه و تحلیل در سرور Playnite بارگذاری می شود.
+اگر مایلید به ما در رفع این مشکل کمک کنید، لطفاً اقدامات انجام شده قبل از خرابی را به طور خلاصه توضیح دهید و سپس اطلاعات تشخیصی را ارسال کنید. اگر آنلاین هستید، بسته برای تجزیه و تحلیل به سرور برنامه ارسال می‌شود.
 
-متناوباً، می توانید بر روی دکمه &quot;گزارش خرابی&quot; کلیک کنید تا یک مسئله جدید GitHub ایجاد کنید و خرابی را به صورت دستی گزارش دهید.
+در غیر این صورت، می‌توانید روی دکمه &quot;گزارش خرابی&quot; کلیک کنید تا یک مشکل جدید در گیت‌هاب ایجاد کرده و خرابی را به صورت دستی گزارش دهید.
 
-ممنون میشم راهنماییم کنید.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">برنامه افزودنی &quot;{0}&quot; خطایی غیرقابل بازیابی ایجاد کرد.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">برنامه افزودنی &quot;{0}&quot; خطایی غیرقابل بازیابی ایجاد کرد.
+از همکاری شما متشکریم.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">افزونه &quot;{0}&quot; باعث ایجاد یک خطای غیرقابل بازگشت شد.
 
-ما توصیه می کنیم این مسئله را به توسعه دهنده افزونه گزارش دهید. اگر مسئله مجدداً تکرار می شود، افزونه را غیرفعال کنید.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">افزونه یا طرح زمینه ناشناخته باعث خطای غیر قابل بازیابی شد.
+توصیه می‌کنیم فایل گزارش را ذخیره کرده و مشکل را به توسعه‌دهنده افزونه گزارش دهید. اگر مشکل همچنان تکرار می‌شود، افزونه را غیرفعال کنید.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">افزونه‌ی &quot;{0}&quot; باعث خطایی بازیابی‌ناپذیر شد.
 
-توصیه می کنیم افزونه های شخص ثالث را غیرفعال کنید ، مشکل ساز را جدا کرده و مشکل را به برنامه نویس افزونه گزارش دهید.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">خطای غیرقابل بازیابی رخ داد.
+ما سفارش می‌کنیم مشکل را به سازنده‌ی افزونه گزارش دهید. اگر مشکل همچنان رخ می‌دهد، افزونه را ازکاربیاندازید.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">افزونه یا زمینه‌ی ناشناخته باعث خطایی بازیابی‌ناپذیر شد.
 
-اگر میخواهید در رفع این مشکل کمک کنید، لطفاً اطلاعات تشخیصی را ارسال کنید. متشکرم.</sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension">غیر فعال کردن افزونه</sys:String>
-    <sys:String x:Key="LOCCrashSaveLog">ذخیره فایل گزارشات</sys:String>
-    <sys:String x:Key="LOCCrashSendDiag">ارسال گزارش تشخیصی (diag)</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">گزارش اشکال</sys:String>
-    <sys:String x:Key="LOCCrashRestartPlaynite">اجرا دوباره Playnite</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe">راه اندازی مجدد در حالت امن</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafeTooltip">غیرفعال کردن همه برنامه های افزودنی شخص ثالث و استفاده از طرح زمینه پیش فرض.</sys:String>
+ما سفارش می‌کنیم افزونه‌ی شخص ثالث را ازکارانداخته، مشکل‌ساز را جدا کرده و مشکل را به سازنده‌ی افزونه گزارش دهید.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">خطایی بازیابی‌ناپذیر رخ داد.
+
+اگر میخواهید در رفع این مشکل کمک کنید، لطفاً اطلاعات تشخیصی را بفرستید. سپاسگزاریم.</sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">ازکارانداختن افزونه</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">ذخیره پرونده‌ی گزارش‌ها</sys:String>
+    <sys:String x:Key="LOCCrashSendDiag">فرستادن اطلاعات .diag</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">گزارش خرابی</sys:String>
+    <sys:String x:Key="LOCCrashRestartPlaynite">بازراه‌اندازی Playnite</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">بازراه‌اندازی در حالت امن</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafeTooltip">ازکارانداختن همه‌ی افزونه‌های شخص ثالث و بکاربردن زمینه‌ی پیش‌فرض.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">خروج از Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">اقدامات انجام شده قبل از اشکال (به انگلیسی):</sys:String>
     <sys:String x:Key="LOCLibraryManager">مدیر کتابخانه</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskTitle">حذف بازی (ها)؟</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">حذف نشد - بازی یا نصب در حال اجرا است. </sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">حذف نصب نشد - بازی در حال اجرا است.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">آیا مطمئن هستید که می خواهید {0} را حذف کنید؟</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">آیا مطمئن اید که می خواهید {0} بازی را حذف کنید؟</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">آیا مطمئن هستید که می خواهید {0} را حذف کنید؟
+    <sys:String x:Key="LOCGameRemoveAskTitle">زدایش بازی(ها)؟</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">نمی‌توان زدود - بازی یا نصب‌کننده در حال اجرا است. </sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">نمی‌توان زدود - بازی در حال اجرا است.</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">آیا مطمئن هستید که می‌خواهید {0} را بزدایید؟</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">آیا مطمئن‌ هستید که می‌خواهید {0} بازی را بزدایید؟</sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">آیا مطمئن هستید که می‌خواهید {0} را بزدایید؟
 
-با انتخاب گزینه &quot;افزودن به لیست استثناء&quot; دفعه بعد که کتابخانه به روز شد، بازی دوباره وارد نمی شود.</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">آیا مطمئن اید که می خواهید {0} بازی را حذف کنید؟
+گزینش گزینه‌ی &quot;افزودن به فهرست استثناء&quot; از درون‌برد شدن دوباره‌ی بازی پس از به‌روز شدن کتابخانه پیشگیری خواهد کرد.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">آیا مطمئن هستید که می‌خواهید {0} بازی را بزدایید؟
 
-با انتخاب گزینه &quot;افزودن به لیست استثنا&quot; از وارد شدن مجدد بازی ها در واردات بعدی جلوگیری می کند.</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">مطمئن اید که می خواهید ورودی های {0} را که فعلا استفاده نمی شوند را حذف کنید؟</sys:String>
+گزینش گزینه‌ی &quot;افزودن به فهرست استثناء&quot; از درون‌برد شدن دوباره‌ی بازی‌ها پس از به‌روز شدن کتابخانه پیشگیری خواهد کرد.</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">مطمئن هستید که می‌خواهید {0} ورودی را که هم‌اکنون بکارنمی‌روند بزدایید؟</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">فیلد استفاده نشده یافت نشد.</sys:String>
-    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">بله (اضافه به لیست استثناء)</sys:String>
+    <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">آره (افزودن به فهرست استثناء)</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">در این بخش تغییرات ذخیره نشده وجود دارد</sys:String>
-    <sys:String x:Key="LOCDBUpgradeProgress">بروزرسانی قالب کتابخانه بازی...</sys:String>
-    <sys:String x:Key="LOCDBUpgradeFail">پایگاه داده بروزرسانی نشد.</sys:String>
-    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">نمی توان کتابخانه بازی را به روز کرد. {0} مگابایت فضای خالی مورد نیاز است.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeProgress">به‌روزرسانی چارچوب کتابخانه‌ی بازی...</sys:String>
+    <sys:String x:Key="LOCDBUpgradeFail">ناکامی در به‌روزرسانی پایگاه داده.</sys:String>
+    <sys:String x:Key="LOCDBUpgradeEmptySpaceFail">نمی‌توان کتابخانه‌ی بازی را به‌روز کرد. {0} مگابایت فضای آزاد نیاز است.</sys:String>
     <sys:String x:Key="LOCGameError">خطا بازی</sys:String>
-    <sys:String x:Key="LOCGameStartErrorNoGame">بازی را نمی توان شروع کرد. '{0}' در پایگاه داده یافت نشد.</sys:String>
-    <sys:String x:Key="LOCGameStartError">بازی شروع نمیشود: {0}</sys:String>
-    <sys:String x:Key="LOCGameStartActionError">بازی شروع نمی شود: {0}</sys:String>
-    <sys:String x:Key="LOCGameOpenLocationError">مکان بازی باز نشد: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeError">اندازه نصب بازی شناسایی نشد: {0}</sys:String>
-    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">خطای اسکن اندازه نصب</sys:String>
-    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">هنگام اسکن اندازه نصب، {0} خطا وجود داشت</sys:String>
-    <sys:String x:Key="LOCGameShortcutError">شکست در ایجاد میانبر: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartErrorNoGame">نمی‌توان بازی را آغاز کرد. '{0}' در پایگاه داده یافت نشد.</sys:String>
+    <sys:String x:Key="LOCGameStartError">نمی‌توان بازی را آغاز کرد: {0}</sys:String>
+    <sys:String x:Key="LOCGameStartActionError">نمی‌توان کنش را آغاز کرد: {0}</sys:String>
+    <sys:String x:Key="LOCGameOpenLocationError">نمی‌توان مکان بازی را گشود: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeError">ناتوانی در شناسایی اندازه‌ی نصب بازی: {0}</sys:String>
+    <sys:String x:Key="LOCCalculateGameSizeErrorCaption">خطای اسکن اندازه‌ی نصب</sys:String>
+    <sys:String x:Key="LOCCalculateGamesSizeErrorMessage">هنگام اسکن اندازه‌ی نصب، {0}  چند خطا وجود داشت</sys:String>
+    <sys:String x:Key="LOCGameShortcutError">ناکامی در ساخت میانبر: {0}</sys:String>
     <sys:String x:Key="LOCManualOpenError">دستی باز نشد: {0}</sys:String>
-    <sys:String x:Key="LOCGameInstallError">بازی نصب نشد: {0}</sys:String>
-    <sys:String x:Key="LOCGameUninstallError">بازی حذف نصب نشد: {0}</sys:String>
-    <sys:String x:Key="LOCErrorNoPlayAction">هیچ اقدام معتبر راه‌اندازی بازی پیدا نشد. هنگام استفاده از اقدامات شبیه‌ساز، مطمئن شوید که تعاریف پلتفرم بین بازی و پیکربندی شبیه‌ساز مطابقت دارند.</sys:String>
-    <sys:String x:Key="LOCErrorNoInstallAction">پیاده سازی نصب در دسترس نیست.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">افزونه کتابخانه مسئول این بازی غیرفعال است یا نصب نشده است.</sys:String>
-    <sys:String x:Key="LOCErrorNoMetadataDownloader">بارگیری رسمی ابرداده در دسترس نیست.</sys:String>
-    <sys:String x:Key="LOCErrorNoGameSelected">هیچ بازی انتخاب نشده.</sys:String>
-    <sys:String x:Key="LOCErrorGameScriptAction">اجرای اکشن اسکریپت بازی انجام نشد.</sys:String>
-    <sys:String x:Key="LOCErrorApplicationScript">اجرای اسکریپت برنامه ناموفق بود.</sys:String>
-    <sys:String x:Key="LOCErrorGlobalScriptAction">اجرای عملکرد ماژول جهانی انجام نشد.</sys:String>
-    <sys:String x:Key="LOCErrorEmulatorScriptAction">اجرای اسکریپت شبیه ساز ناموفق بود.</sys:String>
-    <sys:String x:Key="LOCErrorPlayScriptAction">عملیات اجرای اسکریپت ناموفق بود.</sys:String>
-    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 یا جدیدتر نصب نشده است.</sys:String>
-    <sys:String x:Key="LOCErrorStartupNoController">نحوه شروع بازی مشخص نشد.</sys:String>
+    <sys:String x:Key="LOCGameInstallError">نمی‌توان بازی را نصب کرد: {0}</sys:String>
+    <sys:String x:Key="LOCGameUninstallError">نمی‌توان بازی را زدود: {0}</sys:String>
+    <sys:String x:Key="LOCErrorNoPlayAction">هیچ کنش راه‌اندازی بازی معتبری یافت نشد. هنگام بکاربری کنش‌های شبیه‌ساز، مطمئن شوید که تعاریف سکو میان بازی و پیکربندی شبیه‌ساز مطابقت دارند.</sys:String>
+    <sys:String x:Key="LOCErrorNoInstallAction">پیاده‌سازی نصب در دسترس نیست.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">افزونه‌ی کتابخانه مسئول این بازی ازکارافتاده است یا نصب نشده است.</sys:String>
+    <sys:String x:Key="LOCErrorNoMetadataDownloader">بارگیری رسمی فراداده در دسترس نیست.</sys:String>
+    <sys:String x:Key="LOCErrorNoGameSelected">هیچ بازی‌ای برگزیده نشده است.</sys:String>
+    <sys:String x:Key="LOCErrorGameScriptAction">ناکامی در اجرای اسکریپت بازی.</sys:String>
+    <sys:String x:Key="LOCErrorApplicationScript">ناکامی در اجرای اسکریپت برنامه.</sys:String>
+    <sys:String x:Key="LOCErrorGlobalScriptAction">ناکامی در اجرای اسکریپت سراسری.</sys:String>
+    <sys:String x:Key="LOCErrorEmulatorScriptAction">ناکامی در اجرای اسکریپت شبیه‌ساز.</sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">ناکامی در اجرای کنش اسکریپت بازی.</sys:String>
+    <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 یا تازه‌تر نصب نشده است.</sys:String>
+    <sys:String x:Key="LOCErrorStartupNoController">ناتوانی در مشخص کردن شیوه‌ی آغاز بازی.</sys:String>
     <!--General-->
-    <sys:String x:Key="LOCEnabledTitle">فعال شده</sys:String>
-    <sys:String x:Key="LOCDisabledTitle">غیرفعال</sys:String>
-    <sys:String x:Key="LOCRemoveTitle">حذف</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedTitle">حذف بلا استفاده</sys:String>
-    <sys:String x:Key="LOCRenameTitle">تغییر نام</sys:String>
-    <sys:String x:Key="LOCCopyTitle">رونوشت‌</sys:String>
+    <sys:String x:Key="LOCEnabledTitle">بکارافتاده</sys:String>
+    <sys:String x:Key="LOCDisabledTitle">ازکارافتاده</sys:String>
+    <sys:String x:Key="LOCRemoveTitle">زدایش</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedTitle">زدایش بکارنبرده‌ها</sys:String>
+    <sys:String x:Key="LOCRenameTitle">بازنامگذاری</sys:String>
+    <sys:String x:Key="LOCCopyTitle">روگرفت</sys:String>
     <sys:String x:Key="LOCAddTitle">افزودن</sys:String>
-    <sys:String x:Key="LOCDefaultIconTitle">آیکون پیش‌فرض</sys:String>
-    <sys:String x:Key="LOCDefaultCoverTitle">تصویر کاور پیش فرض</sys:String>
-    <sys:String x:Key="LOCDefaultBackgroundTitle">پس زمینه پیش فرض</sys:String>
+    <sys:String x:Key="LOCDefaultIconTitle">آیکن پیش‌فرض</sys:String>
+    <sys:String x:Key="LOCDefaultCoverTitle">تصویر کاور پیش‌فرض</sys:String>
+    <sys:String x:Key="LOCDefaultBackgroundTitle">پس‌زمینه پیش‌فرض</sys:String>
     <sys:String x:Key="LOCFinishLabel">پایان</sys:String>
     <sys:String x:Key="LOCNextLabel">بعدی</sys:String>
     <sys:String x:Key="LOCBackLabel">قبلی</sys:String>
-    <sys:String x:Key="LOCDoneCapLabel">انجام شد</sys:String>
+    <sys:String x:Key="LOCDoneCapLabel">انجامید</sys:String>
     <sys:String x:Key="LOCBackCapLabel">بازگشت</sys:String>
     <sys:String x:Key="LOCClearCapLabel">پاک کردن</sys:String>
     <sys:String x:Key="LOCClearLabel">پاک کردن</sys:String>
     <sys:String x:Key="LOCDismiss">رد کردن</sys:String>
     <sys:String x:Key="LOCDismissAll">رد کردن همه</sys:String>
-    <sys:String x:Key="LOCImportLabel">وارد کردن</sys:String>
+    <sys:String x:Key="LOCImportLabel">درون‌برد</sys:String>
     <sys:String x:Key="LOCNameLabel">نام</sys:String>
     <sys:String x:Key="LOCAuthorLabel">سازنده</sys:String>
     <sys:String x:Key="LOCModuleLabel">ماژول</sys:String>
@@ -125,307 +127,309 @@
     <sys:String x:Key="LOCVersionLabel">نسخه</sys:String>
     <sys:String x:Key="LOCLastPlayedLabel">آخرین بازی شده</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">بیشترین بازی شده</sys:String>
-    <sys:String x:Key="LOCPlayCountLabel">تعداد بازی</sys:String>
-    <sys:String x:Key="LOCInstallSizeLabel">اندازه نصب</sys:String>
+    <sys:String x:Key="LOCPlayCountLabel">شمار نشست بازی</sys:String>
+    <sys:String x:Key="LOCInstallSizeLabel">اندازه‌ی نصب</sys:String>
     <sys:String x:Key="LOCFolderLabel">پوشه</sys:String>
     <sys:String x:Key="LOCNotesLabel">یادداشت‌ها</sys:String>
-    <sys:String x:Key="LOCAddedLabel">اضافه شد</sys:String>
-    <sys:String x:Key="LOCDateAddedLabel">تاریخ اضافه شدن</sys:String>
-    <sys:String x:Key="LOCModifiedLabel">تغییر کرد</sys:String>
-    <sys:String x:Key="LOCDateModifiedLabel">تاریخ اصلاح شده</sys:String>
-    <sys:String x:Key="LOCWebsiteLabel">وب سایت</sys:String>
+    <sys:String x:Key="LOCAddedLabel">افزوده شد</sys:String>
+    <sys:String x:Key="LOCDateAddedLabel">تاریخ افزوده شدن</sys:String>
+    <sys:String x:Key="LOCModifiedLabel">دگرگون شده</sys:String>
+    <sys:String x:Key="LOCDateModifiedLabel">تاریخ دگرگونی</sys:String>
+    <sys:String x:Key="LOCWebsiteLabel">تارنما</sys:String>
     <sys:String x:Key="LOCPathLabel">مسیر</sys:String>
-    <sys:String x:Key="LOCOKLabel">بله</sys:String>
+    <sys:String x:Key="LOCOKLabel">باشه</sys:String>
     <sys:String x:Key="LOCSaveLabel">ذخیره</sys:String>
     <sys:String x:Key="LOCCloseLabel">بستن</sys:String>
     <sys:String x:Key="LOCCancelLabel">لغو</sys:String>
     <sys:String x:Key="LOCConfirmLabel">تأیید</sys:String>
     <sys:String x:Key="LOCResetLabel">بازنشانی</sys:String>
-    <sys:String x:Key="LOCYesLabel">تایید</sys:String>
-    <sys:String x:Key="LOCNoLabel">خیر</sys:String>
+    <sys:String x:Key="LOCYesLabel">آره</sys:String>
+    <sys:String x:Key="LOCNoLabel">نه</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">خوش آمدید</sys:String>
-    <sys:String x:Key="LOCLocalUserLabel">کاربر محلی</sys:String>
+    <sys:String x:Key="LOCLocalUserLabel">کاربر بومی</sys:String>
     <sys:String x:Key="LOCGeneralLabel">عمومی</sys:String>
     <sys:String x:Key="LOCMediaLabel">رسانه</sys:String>
     <sys:String x:Key="LOCLinksLabel">پیوند‌ها</sys:String>
-    <sys:String x:Key="LOCInstallationLabel">نصب و راه‌اندازی</sys:String>
+    <sys:String x:Key="LOCInstallationLabel">نصب</sys:String>
     <sys:String x:Key="LOCActionsLabel">کنش‌ها</sys:String>
-    <sys:String x:Key="LOCDownloadingLabel">بارگيري...</sys:String>
+    <sys:String x:Key="LOCDownloadingLabel">بارگيری...</sys:String>
     <sys:String x:Key="LOCDownloadingMediaLabel">بارگیری رسانه…</sys:String>
-    <sys:String x:Key="LOCLoadingLabel">بارگذاری…</sys:String>
-    <sys:String x:Key="LOCTypeLabel">نوع</sys:String>
-    <sys:String x:Key="LOCProfileLabel">پروفایل</sys:String>
-    <sys:String x:Key="LOCProfilesLabel">پروفایل ها</sys:String>
-    <sys:String x:Key="LOCRemoveLabel">حذف</sys:String>
+    <sys:String x:Key="LOCLoadingLabel">بارکردن…</sys:String>
+    <sys:String x:Key="LOCTypeLabel">گونه</sys:String>
+    <sys:String x:Key="LOCProfileLabel">نمایه</sys:String>
+    <sys:String x:Key="LOCProfilesLabel">نمایه‌ها</sys:String>
+    <sys:String x:Key="LOCRemoveLabel">زدایش</sys:String>
     <sys:String x:Key="LOCDownloadLabel">بارگیری</sys:String>
     <sys:String x:Key="LOCSearchLabel">جستجو</sys:String>
     <sys:String x:Key="LOCSearchResolutionLabel">وضوح:</sys:String>
-    <sys:String x:Key="LOCSearchResolutionAnyLabel">همه</sys:String>
+    <sys:String x:Key="LOCSearchResolutionAnyLabel">هر</sys:String>
     <sys:String x:Key="LOCZoomLabel">بزرگنمايی</sys:String>
-    <sys:String x:Key="LOCListViewLabel">نمای لیست</sys:String>
+    <sys:String x:Key="LOCListViewLabel">نمای فهرست</sys:String>
     <sys:String x:Key="LOCCoversLabel">کاورها</sys:String>
-    <sys:String x:Key="LOCGridViewLabel">نمای کاشی</sys:String>
+    <sys:String x:Key="LOCGridViewLabel">نمای توری</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">نمای جزییات</sys:String>
     <sys:String x:Key="LOCCustomLabel">سفارشی</sys:String>
-    <sys:String x:Key="LOCURLLabel">آدرس</sys:String>
+    <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCSpecialThanks">سپاس ویژه</sys:String>
-    <sys:String x:Key="LOCLicenseLabel">مجوز</sys:String>
-    <sys:String x:Key="LOCContributorsLabel">همکاران</sys:String>
+    <sys:String x:Key="LOCLicenseLabel">پروانه</sys:String>
+    <sys:String x:Key="LOCContributorsLabel">مشارکت‌کنندگان</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">خروج از Playnite...</sys:String>
     <sys:String x:Key="LOCToday">امروز</sys:String>
     <sys:String x:Key="LOCYesterday">دیروز</sys:String>
     <sys:String x:Key="LOCMonday">دوشنبه</sys:String>
-    <sys:String x:Key="LOCTuesday">سه شنبه</sys:String>
+    <sys:String x:Key="LOCTuesday">سه‌شنبه</sys:String>
     <sys:String x:Key="LOCWednesday">چهارشنبه</sys:String>
     <sys:String x:Key="LOCThursday">پنجشنبه</sys:String>
     <sys:String x:Key="LOCFriday">جمعه</sys:String>
     <sys:String x:Key="LOCSaturday">شنبه</sys:String>
     <sys:String x:Key="LOCSunday">یکشنبه</sys:String>
-    <sys:String x:Key="LOCPastWeek">یک هفته‌ گذشته</sys:String>
-    <sys:String x:Key="LOCPastMonth">یک ماه گذشته</sys:String>
+    <sys:String x:Key="LOCPastWeek">هفته‌‌ی گذشته</sys:String>
+    <sys:String x:Key="LOCPastMonth">ماه گذشته</sys:String>
     <sys:String x:Key="LOCPastYear">سال گذشته</sys:String>
-    <sys:String x:Key="LOCMoreThenYear">بیش از یک سال گذشته</sys:String>
-    <sys:String x:Key="LOCSizeZeroTo100Mb">0 تا 100 م.بایت</sys:String>
-    <sys:String x:Key="LOCSize100MbTo1Gb">100 م.بایت تا 1 گ.بایت</sys:String>
-    <sys:String x:Key="LOCSize1GbTo5Gb">1 تا 5 گ.بایت</sys:String>
-    <sys:String x:Key="LOCSize5GbTo10Gb">5 تا 10 گ.بایت</sys:String>
-    <sys:String x:Key="LOCSize10GbTo20Gb">10 تا 20 گ.بایت</sys:String>
-    <sys:String x:Key="LOCSize20GbTo40Gb">20 تا 40 گ.بایت</sys:String>
-    <sys:String x:Key="LOCSize40GbTo100Gb">40 تا 100 گ.بایت</sys:String>
-    <sys:String x:Key="LOCSizeMoreThan100Gb">100 گ.بایت یا بیشتر</sys:String>
-    <sys:String x:Key="LOCImportCompleted">واردات با موفقیت انجام شد.</sys:String>
-    <sys:String x:Key="LOCAllGames">همه بازی ها</sys:String>
-    <sys:String x:Key="LOCGameId">شناسه بازی</sys:String>
-    <sys:String x:Key="LOCDatabaseId">شناسه پایگاه داده</sys:String>
-    <sys:String x:Key="LOCPresets">تنظیم پیش‌فرض</sys:String>
+    <sys:String x:Key="LOCMoreThenYear">بیش از یک سال پیش</sys:String>
+    <sys:String x:Key="LOCSizeZeroTo100Mb">۰ تا ۱۰۰ مگابایت</sys:String>
+    <sys:String x:Key="LOCSize100MbTo1Gb">۱۰۰ مگابایت تا ۱ گیگابایت</sys:String>
+    <sys:String x:Key="LOCSize1GbTo5Gb">۱ تا ۵ گیگابایت</sys:String>
+    <sys:String x:Key="LOCSize5GbTo10Gb">۵ تا ۱۰ گیگابایت</sys:String>
+    <sys:String x:Key="LOCSize10GbTo20Gb">۱۰ تا ۲۰ گیگابایت</sys:String>
+    <sys:String x:Key="LOCSize20GbTo40Gb">۲۰ تا ۴۰ گیگابایت</sys:String>
+    <sys:String x:Key="LOCSize40GbTo100Gb">۴۰ تا ۱۰۰ گیگابایت</sys:String>
+    <sys:String x:Key="LOCSizeMoreThan100Gb">۱۰۰ گیگابایت یا بیشتر</sys:String>
+    <sys:String x:Key="LOCImportCompleted">درون‌برد با موفقیت انجام شد.</sys:String>
+    <sys:String x:Key="LOCAllGames">همه‌ی بازی‌ها</sys:String>
+    <sys:String x:Key="LOCGameId">شناسه‌ی بازی</sys:String>
+    <sys:String x:Key="LOCDatabaseId">شناسه‌ی پایگاه داده</sys:String>
+    <sys:String x:Key="LOCPresets">پیش‌نشانده‌ها</sys:String>
     <sys:String x:Key="LOCColumn">ستون</sys:String>
-    <sys:String x:Key="LOCColumns">ستون ها</sys:String>
+    <sys:String x:Key="LOCColumns">ستون‌ها</sys:String>
     <sys:String x:Key="LOCRow">ردیف</sys:String>
-    <sys:String x:Key="LOCRows">ردیف ها</sys:String>
-    <sys:String x:Key="LOCExecIconMissingPlayAction">نماد از کنش پخش دریافت نشد. هیچ اقدامی از نوع فایل وجود ندارد.</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmpty">فقط بارگیری ابرداده های گمشده</sys:String>
-    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">با فعال کردن این گزینه، می توانید فراداده ها را برای قسمتهای داده که قبلاً حاوی اطلاعات هستند، پرش از دانلود کنید.</sys:String>
-    <sys:String x:Key="LOCMetaGamesSourceIntro">بازی های انتخابی</sys:String>
+    <sys:String x:Key="LOCRows">ردیف‌ها</sys:String>
+    <sys:String x:Key="LOCExecIconMissingPlayAction">نماد از کنش بازی دریافت نشد. کنشی از گونه‌ی پرونده وجود ندارد.</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmpty">تنها بارگیری فراداده‌های گمشده</sys:String>
+    <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">بکاراندازی این گزینه از بارگیری فراداده برای بخش‌های داده که هم‌اکنون حاوی اطلاعات هستند گذر خواهد کرد.</sys:String>
+    <sys:String x:Key="LOCMetaGamesSourceIntro">گزینش بازی‌ها</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">لطفاً انتخاب کنید کدام بازی را باید با ابرداده جدید به روز کنید:</sys:String>
     <sys:String x:Key="LOCMetaGameSourceAll">همه بازی ها از پایگاه داده</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">همه بازی های فیلتر شده فعلی</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">فقط بازی های انتخاب شده</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">هیچ میدان فراداده‌ای برگزیده نشده است.</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">هیچ میدان فراداده‌ای برای بارگیری برگزیده نشده است. خواهشمندیم دست‌کم یکی را برگزینید و دست‌کم یک فراهم‌آورندهٔ‌ فراداده برایش فعال کنید.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">فروشگاه رسمی</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB
 </sys:String>
-    <sys:String x:Key="LOCMetaDescriptionFields">لطفاً انتخاب کنید که کدام قسمتها باید بطور خودکار توسط Playnite جمع شوند و از چه منابعی برای به دست آوردن داده ها استفاده شود</sys:String>
+    <sys:String x:Key="LOCMetaDescriptionFields">لطفا برگزینید کدام بخش‌ها باید خودکار به دست playnite پر شوند و کدام بنمایه‌ها باید برای گردآوری داده بکارروند.</sys:String>
     <sys:String x:Key="LOCMetaIgdbContribNotif">لطفاً روی لوگو فوق کلیک کنید و به منظور بروزرسانی در استفاده از Playnite، به پایگاه داده igdb.com کمک کنید.</sys:String>
     <!--Progress string-->
     <sys:String x:Key="LOCProgressMetadata">در حال بارگیری ابرداده...</sys:String>
-    <sys:String x:Key="LOCProgressInstalledGames">وارد کردن بازی های نصب شده…</sys:String>
-    <sys:String x:Key="LOCProgressImportinGames">وارد کردن {0} بازی…</sys:String>
-    <sys:String x:Key="LOCProgressImportinEmulatedGames">وارد کردن بازی های شبیه سازی شده از {0}…</sys:String>
-    <sys:String x:Key="LOCProgressLibraryGames">در حال بارگیری به روزرسانی های کتابخانه...</sys:String>
-    <sys:String x:Key="LOCProgressScanningGamesInstallSize">اسکن اندازه بازی ها در کتابخانه…</sys:String>
-    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">اسکن اندازه بازی های وارداتی…</sys:String>
-    <sys:String x:Key="LOCProgressLibImportFinish">کتابخانه بروزرسانی شد.</sys:String>
-    <sys:String x:Key="LOCProgressReleasingResources">انتشار منابع...</sys:String>
+    <sys:String x:Key="LOCProgressInstalledGames">درون‌بردن بازی‌های نصب شده…</sys:String>
+    <sys:String x:Key="LOCProgressImportinGames">درون‌بردن {0} بازی…</sys:String>
+    <sys:String x:Key="LOCProgressImportinEmulatedGames">درون‌بردن بازی‌های شبیه‌سازی شده از {0}…</sys:String>
+    <sys:String x:Key="LOCProgressLibraryGames">بارگرفتن به‌روزرسانی‌های کتابخانه...</sys:String>
+    <sys:String x:Key="LOCProgressScanningGamesInstallSize">اسکن اندازه‌ی بازی‌ها در کتابخانه…</sys:String>
+    <sys:String x:Key="LOCProgressScanningImportedGamesInstallSize">اسکن اندازه‌ی بازی‌های درون‌برده…</sys:String>
+    <sys:String x:Key="LOCProgressLibImportFinish">بروزرسانی کتابخانه شد.</sys:String>
+    <sys:String x:Key="LOCProgressReleasingResources">رهش منابع...</sys:String>
     <!--Menu-->
     <sys:String x:Key="LOCMenuConfigurationTitle">پیکربندی</sys:String>
     <sys:String x:Key="LOCMenuPlayniteSettingsTitle">تنظیمات…</sys:String>
-    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">پلتفرم ها و شبیه سازها</sys:String>
-    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">پیکربندی شبیه ساز ها…</sys:String>
+    <sys:String x:Key="LOCMenuPlatformEmulatorSettingsTitle">سکوها و شبیه‌سازها</sys:String>
+    <sys:String x:Key="LOCMenuConfigureEmulatorsMenuTitle">پیکربندی شبیه‌سازها…</sys:String>
     <sys:String x:Key="LOCMenuLibraryManagerTitle">مدیر کتابخانه…</sys:String>
-    <sys:String x:Key="LOCMenuTools">ابزار</sys:String>
-    <sys:String x:Key="LOCMenuDownloadMetadata">دانلود ابر داده</sys:String>
-    <sys:String x:Key="LOCMenuSoftwareTools">ابزارهای نرم افزاری…</sys:String>
-    <sys:String x:Key="LOCMenuConfigureIntegrations">پیکربندی ادغام ها…</sys:String>
-    <sys:String x:Key="LOCMenuOpenClient">بازکردن مشتری سوم شخص</sys:String>
-    <sys:String x:Key="LOCMenuClients">سرویس های گیرنده شخص ثالث</sys:String>
-    <sys:String x:Key="LOCMenuReloadLibrary">بروزرسانی کتابخانه بازی</sys:String>
-    <sys:String x:Key="LOCMenuCancelLibraryUpdate">لغو به روز رسانی کتابخانه</sys:String>
-    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">پوشه های شبیه سازی شده را به روز کنید</sys:String>
+    <sys:String x:Key="LOCMenuTools">ابزارها</sys:String>
+    <sys:String x:Key="LOCMenuDownloadMetadata">بارگیری فراداده…</sys:String>
+    <sys:String x:Key="LOCMenuSoftwareTools">ابزارهای نرم‌افزار…</sys:String>
+    <sys:String x:Key="LOCMenuConfigureIntegrations">پیکربندی یکپارچگی‌ها…</sys:String>
+    <sys:String x:Key="LOCMenuOpenClient">گشودن کلاینت شخص ثالث</sys:String>
+    <sys:String x:Key="LOCMenuClients">کلاینت‌های شخص ثالث</sys:String>
+    <sys:String x:Key="LOCMenuReloadLibrary">به‌روزرسانی کتابخانه بازی</sys:String>
+    <sys:String x:Key="LOCMenuCancelLibraryUpdate">لغو به‌روزرسانی کتابخانه</sys:String>
+    <sys:String x:Key="LOCMenuUpdateEmulatedDirs">به‌روزرسانی پوشه‌های شبیه‌سازی‌شده</sys:String>
     <sys:String x:Key="LOCMenuAddGame">افزودن بازی</sys:String>
-    <sys:String x:Key="LOCMenuAddGameManual">دستی...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameInstalled">اسکن خودکار...</sys:String>
-    <sys:String x:Key="LOCMenuAddGameEmulated">بازی شبیه سازی شده…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameManual">دستی…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameInstalled">اسکن خودکار…</sys:String>
+    <sys:String x:Key="LOCMenuAddGameEmulated">بازی شبیه‌سازی‌شده…</sys:String>
     <sys:String x:Key="LOCMenuAddWindowsStore">برنامه فروشگاه مایکروسافت…</sys:String>
-    <sys:String x:Key="LOCMenuAbout">درباره Playnite</sys:String>
-    <sys:String x:Key="LOCMenuIssues">ارسال بازخورد</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">تعویض به حالت تمام صفحه</sys:String>
+    <sys:String x:Key="LOCMenuAbout">درباره‌ی Playnite</sys:String>
+    <sys:String x:Key="LOCMenuIssues">فرستادن بازخورد</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">تعویض به حالت تمام‌صفحه</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">پیوند‌ها</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">کمک</sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport">پشتیبانی از Patreon</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport">حمایت در Ko-fi</sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">پشتیبانی در Patreon</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">پشتیبانی در Ko-fi</sys:String>
     <sys:String x:Key="LOCUserManual">راهنمای کاربر</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">مستندات SDK</sys:String>
-    <sys:String x:Key="LOCMenuRestartSystem">راه اندازی مجدد سیستم</sys:String>
-    <sys:String x:Key="LOCMenuShutdownSystem">خاموش کردن سیستم</sys:String>
-    <sys:String x:Key="LOCMenuSuspendSystem">تعلیق سیستم</sys:String>
-    <sys:String x:Key="LOCMenuHibernateSystem">خواب زمستانی سیستم</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem">قفل سیستم</sys:String>
+    <sys:String x:Key="LOCMenuRestartSystem">بازراه‌اندازی رایانه</sys:String>
+    <sys:String x:Key="LOCMenuShutdownSystem">خاموش کردن رایانه</sys:String>
+    <sys:String x:Key="LOCMenuSuspendSystem">تعلیق رایانه</sys:String>
+    <sys:String x:Key="LOCMenuHibernateSystem">فرستادن رایانه به خواب زمستانی</sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">قفل کردن رایانه</sys:String>
     <sys:String x:Key="LOCMenuLogoutUser">خروج کاربر</sys:String>
-    <sys:String x:Key="LOCMenuSelectRandomGame">انتخاب بازی تصادفی</sys:String>
+    <sys:String x:Key="LOCMenuSelectRandomGame">گزینش یک بازی تصادفی</sys:String>
     <!--Settings Window-->
-    <sys:String x:Key="LOCSettingsDetailsPanelItems">زمینه های بازی برای نمایش در پانل جزئیات:</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsPanelItems">بخش‌های بازی برای نمایش در پهنه‌ی جزئیات:</sys:String>
     <sys:String x:Key="LOCSettingsGridItemSpacing">فاصله آیتم</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemDrawBackground">ترسیم پس زمینه آیتم شبکه</sys:String>
-    <sys:String x:Key="LOCSettingsGridItemCoverMargin">عرض مرز آیتم توری</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulIconSource">منبع آیکون بازی گمشده</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemDrawBackground">کشیدن پس‌زمینه‌ی آیتم توری</sys:String>
+    <sys:String x:Key="LOCSettingsGridItemCoverMargin">پهنای مرز آیتم توری</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulIconSource">منبع نماد بازی گمشده</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">منبع کاور بازی گمشده</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">منبع پس زمینه بازی گمشده</sys:String>
-    <sys:String x:Key="LOCSettingsIndentGameDetails">فاصله عمودی تا جزئیات بازی</sys:String>
-    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">موقعیت جزئیات شبکه (توری)</sys:String>
-    <sys:String x:Key="LOCSettingsDetailsGameListPosition">جزئیات دید موقعیت بازی</sys:String>
-    <sys:String x:Key="LOCSettingsDrawPanelSeparators">کشیدن بین پنل ها جداکننده</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">ارتفاع کاور بازی</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">ارتفاع آیکون لیست بازی</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceFont">قلم برنامه</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceMonoFont">قلم با فاصله ثابت</sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition">موقعیت پانل فیلتر</sys:String>
-    <sys:String x:Key="LOCSettingsExplorerPanelPosition">موقعیت پنل مرورگر</sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">تفسیر کاور هنری</sys:String>
-    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">نسبت ابعاد هدف</sys:String>
-    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">گزینه های زیر نیز بر روی رندر کردن جلوه ها  در حالت تمام صفحه تأثیر می گذارد!</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">منبع پس‌زمینه بازی گمشده</sys:String>
+    <sys:String x:Key="LOCSettingsIndentGameDetails">فاصله‌ی عمودی تا جزئیات بازی</sys:String>
+    <sys:String x:Key="LOCSettingsGridViewDetailsPosition">جایگاه جزئیات نمای توری</sys:String>
+    <sys:String x:Key="LOCSettingsDetailsGameListPosition">جایگاه نمای جزئیات فهرست بازی</sys:String>
+    <sys:String x:Key="LOCSettingsDrawPanelSeparators">کشیدن میان پهنه‌های جداگر</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">بلندای کاور بازی</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">بلندای نماد فهرست بازی</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceFont">فونت برنامه</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceMonoFont">فونت هم‌پهنا</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">جایگاه پهنه‌ی پالایه</sys:String>
+    <sys:String x:Key="LOCSettingsExplorerPanelPosition">جایگاه پهنه‌ی کاوشگر</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">نماپردازش کاور هنری</sys:String>
+    <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">نسبت نما‌ی هدف</sys:String>
+    <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">گزینه‌های زیر به نماپردازش کاشی‌ها در حالت تمام‌صفحه نیز تاثیر می‌گذارند!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">حالت کشش</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectDVD">جعبه DVD</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">فروشگاه EPIC GAMES</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectDVD">جعبه‌ی DVD</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectEpicGamesStore">فروشگاه Epic Games</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy ۲٫۰</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB
 </sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSquare">مربع</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteam">بنر استیم</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">پوشش عمودی استیم</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteam">بنر Steam</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">کاور عمودی Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">توییچ</sys:String>
-    <sys:String x:Key="LOCSettingsRestartNotification">* برای اعمال اجرا مجدد نیاز دارد</sys:String>
+    <sys:String x:Key="LOCSettingsRestartNotification">* برای بکاربستن نیازمند بازراه‌اندازی است</sys:String>
     <sys:String x:Key="LOCSettingsLabel">تنظیمات</sys:String>
     <sys:String x:Key="LOCSettingsGeneralLabel">عمومی</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelLabel">پنل بالای صفحه</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelLabel">پهنه‌ی بالایی</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">ظاهر</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsLabel">جزییات بازی</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">چیدمان</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">پیشرفته</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenLabel">تمام صفحه</sys:String>
-    <sys:String x:Key="LOCSettingsInputLabel">ورودی</sys:String>
-    <sys:String x:Key="LOCSettingsPerformanceLabel">عملکرد</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenLabel">تمام‌صفحه</sys:String>
+    <sys:String x:Key="LOCSettingsInputLabel">درونداد</sys:String>
+    <sys:String x:Key="LOCSettingsPerformanceLabel">کارایی</sys:String>
     <sys:String x:Key="LOCSettingsMetadataLabel">فراداده</sys:String>
-    <sys:String x:Key="LOCSettingsUpdating">بروز رسانی کردن</sys:String>
+    <sys:String x:Key="LOCSettingsUpdating">به‌روزرسانیدن</sys:String>
     <sys:String x:Key="LOCSettingsSearch">جستجو</sys:String>
     <sys:String x:Key="LOCSettingsBackup">پشتیبان</sys:String>
-    <sys:String x:Key="LOCMenuBackupData">پشتیبان گیری از داده های کتابخانه</sys:String>
-    <sys:String x:Key="LOCMenuRestoreBackup">بازیابی نسخه پشتیبان از اطلاعات</sys:String>
-    <sys:String x:Key="LOCSettingsImportLabel">واردات به طور خودکار در کتابخانه</sys:String>
-    <sys:String x:Key="LOCSettingsInvalidDBLocation">موقعیت مکانی فایل پایگاه داده نامعتبر است، باید مسیر فایل مناسب تنظیم شود.</sys:String>
+    <sys:String x:Key="LOCMenuBackupData">پشتیبان‌گیری از داده‌های کتابخانه</sys:String>
+    <sys:String x:Key="LOCMenuRestoreBackup">بازیابی نسخهٔ پشتیبان داده</sys:String>
+    <sys:String x:Key="LOCSettingsImportLabel">درون‌برد خودکار تغییرات در کتابخانه</sys:String>
+    <sys:String x:Key="LOCSettingsInvalidDBLocation">مکان پرونده‌ی پایگاه داده نامعتبر است، مسیر پرونده‌ی درستی باید نشانده شود.</sys:String>
     <sys:String x:Key="LOCSettingsInvalidAccountName">نام حساب نمی‌تواند خالی باشد.</sys:String>
-    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">بعد از وارد کردن بازیها، ابرداده را بارگیری کنید</sys:String>
-    <sys:String x:Key="LOCSettingsStartMinimized">اجرا Playnite در حالت کمینه</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBoot">هنگام راه اندازی رایانه Playnite اجرا شود</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">بسته به سینی شروع کنید</sys:String>
-    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">هنگام راه اندازی رایانه، ثبت نام Playnite انجام نشد.</sys:String>
-    <sys:String x:Key="LOCSettingsStartInFullscreen">راه اندازی در حالت تمام صفحه</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoading">بارگذاری تصویر ناهمزمان</sys:String>
-    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">افزایش سرعت پیمایش لیست بازی ها در ازای زمان بارگذاری تصویر کندتر</sys:String>
-    <sys:String x:Key="LOCSettingsShowNameEmptyCover">نمایش نام بازی اگر کاور گمشده</sys:String>
-    <sys:String x:Key="LOCSettingsShowNamesUnderCover">نام بازی را در نمای توری نشان دهید</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">بازی های نصب نشده را تاریک کنید</sys:String>
-    <sys:String x:Key="LOCSettingsShowIconList">نمایش نمادهای بازی در لیست جزئیات</sys:String>
-    <sys:String x:Key="LOCSettingsShowGroupCount">نمایش تعداد موارد در توضیحات گروه</sys:String>
-    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists">نمایش فقط قسمتهای اختصاصی در پانلهای فیلتر و کاوشگر</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAcceleration">غیر فعال کردن شتاب سخت افزاری</sys:String>
-    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">هنگام تجربه گیر کردن یا موار مشابه رابط، از آن استفاده کنید</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">نمایش بازی های مخفی در لیست اجرا فوری</sys:String>
-    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">جلوه های روی فهرست پرش و فهرستهای سینی تأثیر می گذارد.</sys:String>
-    <sys:String x:Key="LOCSettingsQuicLaunchItems">تعداد موارد اجرا فوری</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">از تصویر پس زمینه بازی به عنوان پس زمینه پنجره استفاده کنید</sys:String>
-    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">پس زمینه تار</sys:String>
+    <sys:String x:Key="LOCSettingsDownloadMetadataOnImport">پس از درون‌بردن بازی‌ها، فراداده را بارگیرید</sys:String>
+    <sys:String x:Key="LOCSettingsStartMinimized">آغاز Playnite در حالت کمینه</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBoot">هنگام راه‌اندازی رایانه Playnite آغاز شود</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootClosedToTray">راه‌اندازی درون سینی</sys:String>
+    <sys:String x:Key="LOCSettingsStartOnBootRegistrationError">ناکامی در ثبت Playnite برای آغاز هنگام راه‌اندازی رایانه.</sys:String>
+    <sys:String x:Key="LOCSettingsStartInFullscreen">آغاز در حالت تمام‌صفحه</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoading">بارکردن ناهمگام تصویر</sys:String>
+    <sys:String x:Key="LOCSettingsAsyncImageLoadingTooltip">به ازای کندتر شدن زمان بارکنش تصویر، می‌تواند نرمی پیمایش فهرست‌های بازی را بهتر کند.</sys:String>
+    <sys:String x:Key="LOCSettingsShowNameEmptyCover">اگر کاور هنری گمشده است نام بازی را نمایش بده</sys:String>
+    <sys:String x:Key="LOCSettingsShowNamesUnderCover">نمایش نام بازی‌ها در نمای توری</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenUninstalledGridCovers">تاریک کردن بازی‌های نصب نشده</sys:String>
+    <sys:String x:Key="LOCSettingsShowIconList">نمایش نمادهای بازی در فهرست نمای جزئیات</sys:String>
+    <sys:String x:Key="LOCSettingsShowGroupCount">نمایش شمار آیتم‌ها در توضیحات گروه</sys:String>
+    <sys:String x:Key="LOCSettingsUsedFieldsOnlyOnFilterLists"> تنها نمایش بخش‌های واگذاشته در پالایه و پهنه‌های کاوشگر</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAcceleration">ازکارانداختن شتاب سخت‌افزاری</sys:String>
+    <sys:String x:Key="LOCSettingsDisableAccelerationTooltip">بکاربردن هنگام تجربه‌ی تپغ یا مشکل‌های همانند آن در میانای کاربری </sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunch">نمایش بازی‌های پنهان در فهرست آغاز تند</sys:String>
+    <sys:String x:Key="LOCSettingsHiddenInQuickLaunchTooltip">روی فهرست پرش و فهرست‌های گزینگان سینی تاثیر می‌گذارد.</sys:String>
+    <sys:String x:Key="LOCSettingsQuicLaunchItems">شمار آیتم‌های آغاز تند</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackgroundWindowImage">بکاربردن تصویر پس‌زمینه‌ی بازی بعنوان پس‌زمینه‌ی پنجره</sys:String>
+    <sys:String x:Key="LOCSettingsBlurWindowBackgrounImage">تاری پس‌زمینه</sys:String>
     <sys:String x:Key="LOCSettingsBlurHighQuality">کیفیت بالا</sys:String>
-    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">پس زمینه تاریک</sys:String>
-    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">نمایش در نمای شبکه</sys:String>
-    <sys:String x:Key="LOCSettingsSkin">تم</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColor">نمایه تم</sys:String>
-    <sys:String x:Key="LOCSettingsSkinFullscreen">تم تمام صفحه</sys:String>
-    <sys:String x:Key="LOCSettingsSkinColorFullscreen">نمایه تم تمام صفحه</sys:String>
-    <sys:String x:Key="LOCSettingsDBLocation">محل پایگاه داده</sys:String>
+    <sys:String x:Key="LOCSettingsDarkenWindowBackghrounImage">تاریکی پس‌زمینه</sys:String>
+    <sys:String x:Key="LOCSettingsShowBackImageOnGridView">نمایش در نمای توری</sys:String>
+    <sys:String x:Key="LOCSettingsSkin">زمینه</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColor">نمایه‌ی زمینه</sys:String>
+    <sys:String x:Key="LOCSettingsSkinFullscreen">زمینه‌ی تمام‌صفحه</sys:String>
+    <sys:String x:Key="LOCSettingsSkinColorFullscreen">نمایه‌ی زمینه‌ی تمام‌صفحه</sys:String>
+    <sys:String x:Key="LOCSettingsDBLocation">مکان پایگاه داده</sys:String>
     <sys:String x:Key="LOCSettingsLoginStatus">وضیعت ورود:</sys:String>
     <sys:String x:Key="LOCSettingsWindowTitle">تنظیمات Playnite</sys:String>
     <sys:String x:Key="LOCSettingsClearWebCache">پاک کردن حافظه پنهان وب</sys:String>
-    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">ممکن است مشکلات مربوط به هنگام پیوند حسابها را حل کند.</sys:String>
-    <sys:String x:Key="LOCSettingsShowTray">نمایش آیکون سینی سیستم</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeToTray">کمینه کردن Playnite در سینی سیستم</sys:String>
-    <sys:String x:Key="LOCSettingsCloseToTray">با بسته شدن پنجره برنامه، Playnite در سینی سیستم کمینه کند</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameStart">هنگام شروع بازی:</sys:String>
-    <sys:String x:Key="LOCSettingsAfterGameClose">بعد بستن بازی:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">زمان بازی را برای نشان دادن تعداد روزهای بازی کردن مرتب کنید</sys:String>
-    <sys:String x:Key="LOCSettingsDatesFormatsLabel">فرمت های تاریخ:</sys:String>
-    <sys:String x:Key="LOCSettingsClearCacheWarn">خروج از حساب شما را از کلیه خدمات مرتبط خارج می کند. راه اندازی مجدد برنامه مورد نیاز است ، آیا می خواهید ادامه دهید؟</sys:String>
+    <sys:String x:Key="LOCSettingsClearWebCacheTooltip">شاید مشکلات مربوط به هنگام پیوند حساب‌ها را حل کند.</sys:String>
+    <sys:String x:Key="LOCSettingsShowTray">نمایش نماد سینی رایانه</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeToTray">کمینه کردن Playnite در سینی رایانه</sys:String>
+    <sys:String x:Key="LOCSettingsCloseToTray">کمینه کردن Playnite در سینی رایانه هنگام بسته شدن پنجره‌ی برنامه</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameStart">هنگام راه‌اندازی بازی:</sys:String>
+    <sys:String x:Key="LOCSettingsAfterGameClose">پس از بسته شدن بازی:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeUseDaysFormatLabel">قالب بستن زمان بازی برای نمایش شمار روزهای بازی شده </sys:String>
+    <sys:String x:Key="LOCSettingsDatesFormatsLabel">چارچوب‌های تاریخ:</sys:String>
+    <sys:String x:Key="LOCSettingsClearCacheWarn">خروج از حساب شما را از همه‌ی خدمات پیوسته خارج می کند. برنامه به بازراه‌اندازی نیاز دارد، آیا می‌خواهید ادامه دهید؟</sys:String>
     <sys:String x:Key="LOCSettingsClearCacheTitle">حافظه پنهان پاک شود؟</sys:String>
-    <sys:String x:Key="LOCSettingsSkinChangeRestart">راه اندازی مجدد Playnite برای اعمال تم جدید مورد نیاز است</sys:String>
-    <sys:String x:Key="LOCSettingsGetThemes">دریافت تم های بیشتر</sys:String>
-    <sys:String x:Key="LOCSettingsCreateThemes">ایجاد تم جدید</sys:String>
+    <sys:String x:Key="LOCSettingsSkinChangeRestart">Playnite برای بکاربستن زمینه‌ی نو به بازراه‌اندازی نیاز دارد</sys:String>
+    <sys:String x:Key="LOCSettingsGetThemes">دریافت زمینه‌های بیشتر</sys:String>
+    <sys:String x:Key="LOCSettingsCreateThemes">ساخت زمینه‌ی نو</sys:String>
     <sys:String x:Key="LOCSettingsGetExtensions">گرفتن افزونه‌های بیشتر</sys:String>
-    <sys:String x:Key="LOCSettingsCreateExtensions">ایجاد افزونه جدید</sys:String>
-    <sys:String x:Key="LOCSettingsCreateLocalization">در ترجمه Playnite به ما کمک کنید</sys:String>
-    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">برای اعمال تنظیمات جدید، Playnite باید دوباره راه اندازی شود. راه اندازی دوباره؟
+    <sys:String x:Key="LOCSettingsCreateExtensions">ساخت افزونه‌ی نو</sys:String>
+    <sys:String x:Key="LOCSettingsCreateLocalization">در ترجمه‌ی Playnite به ما کمک کنید</sys:String>
+    <sys:String x:Key="LOCSettingsRestartAskMessage" xml:space="preserve">Playnite برای بکاربستن تنظیمات نو نیاز به بازراه‌اندازی دارد. اکنون بازراه‌اندازی شود؟
 
-با راه اندازی مجدد، هرگونه کار فعال (بارگیری ها) در حال انجام لغو می شود.</sys:String>
-    <sys:String x:Key="LOCSettingsRestartTitle">اجرا دوباره Playnite؟</sys:String>
-    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite نمی تواند پرونده های کتابخانه شما را به طور خودکار منتقل کند. قبل از تغییر مکان باید پرونده ها را به صورت دستی منتقل/کپی کنید. اگر در مکان مورد نظر کتابخانه ای نباشد، کتابخانه جدیدی ایجاد می شود.
+بازراه‌اندازی هرگونه کنش فعال (بارگیری‌ها) در حال انجام را لغو خواهد کرد.</sys:String>
+    <sys:String x:Key="LOCSettingsRestartTitle">بازراه‌اندازی Playnite؟</sys:String>
+    <sys:String x:Key="LOCSettingsDBPathNotification" xml:space="preserve">Playnite نمی تواند پرونده‌های کتابخانه‌ی شما را خودکار جابه‌جا کند. شما باید پیش از دگرگون کردن مکان پرونده‌ها، آنها را دستی روگرفت یا جابه‌جا کنید. اگر در مکان هدف کتابخانه‌ای نباشد، یک کتابخانه‌ی نو ساخته خواهد شد.
 
-تا زمان شروع مجدد Playnite، از مکان پایگاه داده جدید استفاده نخواهد شد. </sys:String>
-    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">در صورت زدن عمل &quot;بستن&quot; ، زمان بازی ضبط نخواهد شد.</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRows">تعداد ردیف ها</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenColumns">تعداد ستون ها</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenRowDetails">تعداد ردیف های مشاهده جزئیات</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">نمایش تصویر پس زمینه در صفحه اصلی</sys:String>
-    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">بدون بارگیری مجدد داده های فوق در بازیهای موجود اعمال نمی شود.</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportMode">وارد کردن زمان پخش بازی ها در کتابخانه:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">پیکربندی زمانی که Playnite باید زمان پخش گزارش شده توسط افزونه های کتابخانه را برای بازی ها در پایگاه داده Playnite وارد کند. برای اینکه بتوانید از این ویژگی استفاده کنید، به پشتیبانی پلاگین های کتابخانه ای که مسئولیت مدیریت بازی(ها) را بر عهده دارند، نیاز است.
+تا زمانی که Playnite بازراه‌اندازی نشود مکان پایگاه داده‌ی نو بکار نخواهد رفت.</sys:String>
+    <sys:String x:Key="LOCSettingsClosePlaytimeNotif">اگر کنش &quot;بستن&quot; نشانده باشد زمان بازی ضبط نخواهد شد.</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRows">شمار ردیف‌ها</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenColumns">شمار ستون‌ها</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenRowDetails">شمار ردیف‌های نمای جزئیات</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">نمایش تصویر پس‌زمینه در صفحه‌ی اصلی</sys:String>
+    <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">بدون بازبارگیری فراداده، پس‌نگرانه برای بازی‌های موجود بکاربسته نمی‌شود.</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportMode">درون‌برد زمان بازیِ بازی‌ها در کتابخانه:</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">برنامه مشخص می‌کند چه زمانی باید زمان بازی گزارش شده توسط افزونه‌های کتابخانه برای بازی‌ها در پایگاه داده برنامه را وارد کند. برای استفاده از این ویژگی، پشتیبانی توسط افزونه‌های کتابخانه‌ای که مسئولیت مدیریت بازی‌ها را بر عهده دارند، نیاز است.
 
-همیشه: زمان پخش بازی های جدید وارد شده و موجود را در پایگاه داده Playnite وارد می کند.
-فقط برای بازی های تازه وارد شده: زمان پخش را فقط برای بازی های وارداتی جدید وارد می کند.
-هرگز: هرگز زمان پخش را تحت هیچ شرایطی وارد نمی کند.</sys:String>
+همیشه: زمان بازی را برای بازی‌های جدید وارد شده و موجود در پایگاه داده برنامه وارد می‌کند.
+فقط برای بازی‌های تازه وارد شده: فقط زمان بازی برای بازی‌های جدید وارد شده وارد می‌شود.
+هرگز: هرگز زمان بازی را وارد نمی‌کند.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">همیشه</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">فقط برای بازی های تازه وارد شده</sys:String>
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">تنها برای بازی‌های تازه درون‌برد شده</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">هرگز</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">فعال کردن پشتیبانی دسته بازی در حالت دسکتاپ</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">دکمه راهنما حالت تمام صفحه را باز می کند</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">تنظیمات بارگیری خودکار فراداده برای بازی های تازه وارد شده.</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">بکاراندازی پشتیبانی دسته‌ی بازی در حالت دسکتاپ</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">دکمه‌ی راهنما حالت تمام‌صفحه را می‌گشاید</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultMetadataDescription">تنظیمات بارگیری خودکار فراداده برای بازی‌های تازه درون‌برد شده.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">نمایشگر هدف</sys:String>
-    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">همیشه از نمایشگر اصلی استفاده کنید</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">نمایش عنوان های بازی</sys:String>
+    <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">همیشه نمایشگر اصلی را بکارببر</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenShowGameTitles">نمایش عنوان‌های بازی</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">نمایش وضعیت باتری</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">نمایش درصد باتری</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">نمایش ساعت</sys:String>
-    <sys:String x:Key="LOCSettingsHideMouseCursor">پنهان کردن مکان نما</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">فقط در فیلترهای سریع نصب شده است</sys:String>
-    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">دکمه اجازه ها</sys:String>
+    <sys:String x:Key="LOCSettingsHideMouseCursor">پنهان کردن نشانگر موشی</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">نصب شده تنها در پالایه‌های تند</sys:String>
+    <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">پیامواره‌های دکمه</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">چیدمان</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenHorizontalScrolling">پیمایش افقی</sys:String>
-    <sys:String x:Key="LOCSettingsSelectChildSection">یکی از زیرمجموعه ها را انتخاب کنید</sys:String>
-    <sys:String x:Key="LOCSettingsNoSettingsAvailable">تنظیمی در دسترس نیست</sys:String>
-    <sys:String x:Key="LOCSettingsErrorLoadingSettings">تنظیمات بارگیری نشد</sys:String>
-    <sys:String x:Key="LOCSettingsScriptingNotice">این ماژول ها برای هر بازی در کتابخانه اجرا می شوند. ضمن ویرایش جزئیات بازی، ماژول های جداگانه می توانند به هر بازی اختصاص داده شوند.</sys:String>
-    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">تحریک انتقال تصویر پس زمینه</sys:String>
-    <sys:String x:Key="LOCSettingsFontSizes">اندازه قلم</sys:String>
+    <sys:String x:Key="LOCSettingsSelectChildSection">یکی از زیرمجموعه‌ها را برگزینید</sys:String>
+    <sys:String x:Key="LOCSettingsNoSettingsAvailable">تنظیماتی در دسترس نیست</sys:String>
+    <sys:String x:Key="LOCSettingsErrorLoadingSettings">ناکامی در بارکردن تنظیمات</sys:String>
+    <sys:String x:Key="LOCSettingsScriptingNotice">این اسکریپت‌ها برای هر بازی در کتابخانه اجرا می شوند. هنگام ویرایش جزئیات بازی می‌توان جداگانه برای هر بازی اسکریپتی منحصر به فرد واگذاشت.</sys:String>
+    <sys:String x:Key="LOCSettingsBackgroundImageAnimation">پویانماییدن تَرایِش تصویر پس‌زمینه</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizes">اندازه‌ی فونت</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionAuto">خودکار</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">خوش نما شده</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">سایه خاکستری</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionAliased">دندانه‌ای شده</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingModeOptionGrayscale">درجه‌ی خاکستری</sys:String>
     <sys:String x:Key="LOCSettingsTextRenderingModeOptionClearType">ClearType</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">ایده آل</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">نمایش</sys:String>
-    <sys:String x:Key="LOCSettingsTextFormattingMode">حالت فرمت فونت</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingMode">حالت رندرکردن متن</sys:String>
-    <sys:String x:Key="LOCSettingsTextRenderingNotice">روش های ارائه و قالب بندی متن در حال حاضر برای توصیف بازی استفاده نمی شود.</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">پیش بارگیری تصاویر پس زمینه</sys:String>
-    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">در صورت فعال بودن، Playnite ضمن بارگیری ابرداده، با استفاده از فضای دیسک بیشتر و در صورت آفلاین، آثار هنری پس زمینه را بارگیری می کند.
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionIdeal">آرمانی</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingModeOptionDisplay">نمایشگر</sys:String>
+    <sys:String x:Key="LOCSettingsTextFormattingMode">حالت قالب‌بندی فونت</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingMode">حالت نماپردازش نوشتار</sys:String>
+    <sys:String x:Key="LOCSettingsTextRenderingNotice">روش‌های نماپردازش و قالب‌بندی نوشتار هم‌اکنون برای توضیحات بازی بکار نمی‌روند.</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownload">پیش‌بارکردن تصویرهای پس‌زمینه</sys:String>
+    <sys:String x:Key="LOCSettingsImmediateBackgroundDownloadTooltip" xml:space="preserve">در صورت فعال بودن، Playnite هنگام بارگیری متاداده، آثار هنری پس‌زمینه را نیز بارگیری می‌کند. این کار فضای دیسک بیشتری را مصرف می‌کند، اما آثار هنری در زمان عدم اتصال به اینترنت در دسترس خواهند بود.
 
-در صورت غیرفعال بودن، با استفاده از فضای کم، آثار هنری پس زمینه فقط اولین بار بارگیری می شوند، اما ممکن است باعث تاخیر قبل از نمایش آثار هنری شود و ممکن است برخی از تصاویر هنگام آفلاین در دسترس نباشند.</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">پس از خروج از بازی، به طور خودکار مشتری شخص ثالث بسته شود</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">تأخیر خاموش کردن سرویس گیرنده (در چند ثانیه)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">عدم بستن بعد از مدت بازی کوتاهتر از (چند ثانیه)</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">بسته شدن بطور خودکار کلاینت ها:</sys:String>
-    <sys:String x:Key="LOCSettingsAutoCloseSection">بستن خودکار کلاینت ها</sys:String>
-    <sys:String x:Key="LOCSettingsImportExclusionList">واردات لیست استثنا</sys:String>
-    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">هشدار هنگام اختصاص رسانه بازی بسیار بزرگ</sys:String>
-    <sys:String x:Key="LOCOpenDirectoryCommand">دستور باز کردن دایرکتوری</sys:String>
-    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">سازمان رتبه بندی سنی ترجیحی</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">اندازه نصب بازی ها را در به روز رسانی کتابخانه به روز کنید</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">اگر تشخیص داده شود که فایل‌های بازی‌ها از آخرین اسکن تغییر یافته است، اندازه نصب بازی‌ها را اسکن و به‌روزرسانی می‌کند.</sys:String>
+در صورت غیرفعال بودن، آثار هنری پس‌زمینه تنها زمانی که اولین بار مورد نیاز هستند بارگیری می‌شوند. این کار فضای کمتری را مصرف می‌کند، اما ممکن است باعث تأخیر در نمایش آثار هنری شود و برخی از تصاویر در حالت عدم اتصال به اینترنت در دسترس نباشند.</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseLauncherOption">پس از خروج از بازی، کلاینت شخص ثالث خودکار بسته شود</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseGracePeriod">دیرکرد خاموش کردن کلاینت (به ثانیه)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseMinimalSessionTime">پس از نشست‌های بازی کوتاه‌تر از این، نبند (به ثانیه)</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSpecificClients">خودکار کلاینت‌های زیر را ببند:</sys:String>
+    <sys:String x:Key="LOCSettingsAutoCloseSection">خودکار بستن کلاینت‌ها</sys:String>
+    <sys:String x:Key="LOCSettingsImportExclusionList">فهرست استثنای درون‌برد</sys:String>
+    <sys:String x:Key="LOCSettingsShowMediaSizeWarning">نمایش هشدار هنگام واگذاری رسانه‌ی بازی بیش از اندازه بزرگ</sys:String>
+    <sys:String x:Key="LOCOpenDirectoryCommand">فرمان گشودن پوشه</sys:String>
+    <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg">سازمان رده‌بندی سنی ترجیحی</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">اندازه‌ی نصب بازی‌ها را هنگام به‌روزرسانی کتابخانه به روز برسانید</sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">اگر یافت شود که پس از آخرین پویش پرونده‌هایشان دگرگون شده است، اندازه‌ی نصب بازی‌ها را پوییده و به‌روز می‌رساند.</sys:String>
     <sys:String x:Key="LOCStrechNone">هیچ</sys:String>
     <sys:String x:Key="LOCStrechFill">پر کردن</sys:String>
     <sys:String x:Key="LOCStrechUniform">یکنواخت</sys:String>
@@ -434,129 +438,129 @@
     <sys:String x:Key="LOCDockRight">راست</sys:String>
     <sys:String x:Key="LOCDockTop">بالا</sys:String>
     <sys:String x:Key="LOCDockBottom">پایین</sys:String>
-    <sys:String x:Key="LOCImportError">خطا وارد کردن</sys:String>
+    <sys:String x:Key="LOCImportError">خطا در درون‌برد</sys:String>
     <sys:String x:Key="LOCLoginRequired">نیاز به تایید هویت دارد</sys:String>
-    <sys:String x:Key="LOCLoginFailed">تایید اعتبار ناموفق بود</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering">حالت نمایش جایگزین نمای وب</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">هنگام بروز مشکل در نمای وب ، به عنوان مثال گفتگوهای احراز هویت یکپارچه ، استفاده کنید.</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">بارگیری جزئی از توضیحات زیاد بازی</sys:String>
-    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">توضیحات زیاد می‌تواند باعث تاخیر قابل توجه در هنگام انتخاب بازی شود.
+    <sys:String x:Key="LOCLoginFailed">ناکامی در تایید هویت</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">حالت نماپردازش نمای وب دگرگزین</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">هنگام بروز مشکل در نمای وب بکار ببرید، برای نمونه: دیالوگ‌های یکپارچگی تایید هویت.</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">بارکردن پاره‌ای از توضیحات بزرگ بازی</sys:String>
+    <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">توضیحات بزرگ می‌تواند باعث تاخیر چشمگیری هنگام گزینش بازی شود.
 
-هنگامی که فعال باشد، تنها بخشی از متن توضیحات در ابتدا با گزینه ای برای نمایش بقیه در صورت درخواست بارگیری می شود.</sys:String>
+هنگامی که بکارافتاده باشد، تنها پاره‌ای از نوشتار توضیحات در آغاز بار خواهد شد با گزینه‌ای برای بارکردن بقیه هنگام درخواست.</sys:String>
     <!--Meta Import-->
-    <sys:String x:Key="LOCMetaImportWindowTitle">وارد کردن فراداده</sys:String>
-    <sys:String x:Key="LOCDownloadMetaButton">دانلود فراداده</sys:String>
-    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">تنظیمات انتخاب شده را برای هر بارگیری از ابرداده در آینده استفاده کنید.
-همچنین در تنظیمات برنامه قابل تغییر است.</sys:String>
+    <sys:String x:Key="LOCMetaImportWindowTitle">درون‌برد فراداده</sys:String>
+    <sys:String x:Key="LOCDownloadMetaButton">بارگیری فراداده</sys:String>
+    <sys:String x:Key="LOCSaveDefaultTooltip" xml:space="preserve">پیکربندی برگزیده را برای بکاربردن در همه‌ی بارگیری‌های فراداده در آینده بنشانید.
+همچنین می‌تواند در تنظیمات برنامه دگرگون شود.</sys:String>
     <!--Emulator Import-->
-    <sys:String x:Key="LOCEmuWizardWindowTitle">جادوگر واردات شبیه ساز</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro">این جادوگر شما را در روند بارگیری و وارد کردن شبیه سازهای کنسول و وارد کردن بازی های شبیه سازی شده راهنمایی می کند.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNotice">بدانید که همیشه می توانید بعداً با فهرست اصلی (زیر منو &quot;کتابخانه&quot; برای تنظیم شبیه ساز و منوی &quot;اضافه کردن بازی ها&quot; برای بازی های شبیه سازی شده) شبیه سازهای اضافی و/یا بازیهای دیگری را اضافه کنید.</sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription">در زیر لیستی از شبیه سازهایی است که Playnite می تواند آنها را بطور خودکار تشخیص داده و پیکربندی کند. می توانید نصب کننده های شبیه ساز را از وب سایت آنها بارگیری کنید. پس از نصب شبیه سازها (به صورت دستی) ، می توانید آنها را در محاوره پیکربندی شبیه ساز وارد کنید.</sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro">می توانید با کلیک بر روی دکمه &quot;شناسایی خودکار از پوشه…&quot; شبیه سازهایی را که بر روی رایانه شخصی خود نصب شده وارد کنید. Playnite پوشه انتخاب شده را برای هر شبیه ساز شناخته شده جستجو می کند و گزینه وارد کردن آنها را فراهم می کند. برای وارد کردن شبیه سازها از پوشه های مختلف می توانید چندین بار از این دکمه استفاده کنید. شبیه سازها به پایین لیست فعلی اضافه می شوند.</sys:String>
-    <sys:String x:Key="LOCEmuWizardGameImportIntro">با کلیک روی دکمه &quot;اسکن پوشه با استفاده از شبیه ساز&quot; می توانید بازی ها را وارد کنید. انتخاب شبیه ساز مناسب به Playnite می گوید که کدام یک از انواع پرونده ها باید اسکن و وارد شوند. برای وارد کردن بازی ها از پوشه های مختلف می توانید چندین بار از این دکمه استفاده کنید. بازی ها به پایین لیست فعلی اضافه می شوند.</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">هیچ شبیه ساز برای واردات انتخاب نشده است. شما نمی توانید برای اولین بار به طور خودکار هر بازی شبیه سازی شده را بدون پیکربندی شبیه سازها وارد کنید. آیا مطمئن اید که می خواهید روند واردات را ادامه داده و از آن خارج شوید؟</sys:String>
-    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">هیچ شبیه سازی در Playnite پیکربندی نشده است. بدون پیکربندی شبیه ساز و انتخاب انواع فایل مناسب، نمی توانید بازی ها را وارد کنید. آیا اکنون می خواهید چند شبیه ساز اضافه کنید؟</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonScanGames">پوشه را با استفاده از شبیه ساز اسکن کنید</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonSelectFiles">انتخاب فایل ها</sys:String>
+    <sys:String x:Key="LOCEmuWizardWindowTitle">جادوگر درون‌برد شبیه‌ساز</sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">این جادوگر شما را در فرآیند بارگیری و درون‌بردن شبیه سازهای کنسول و درون‌بردن بازی‌های شبیه‌سازی شده راهنمایی می‌کند.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNotice">بدانید که همیشه می‌توانید شبیه‌سازهای بیشتر و/یا بازی‌ها را زمانی دیگر با فهرست اصلی (زیر فهرست &quot;کتابخانه&quot; برای تنظیمات شبیه‌ساز و فهرست &quot;افزودن بازی‌ها&quot; برای بازی‌های شبیه‌سازی شده) بیفزایید.</sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">در زیر فهرستی از شبیه‌سازهایی که Playnite می‌تواند خودکار بشناسد و پیکربندی کند می‌باشد. شما می‌توانید نصب‌کننده‌ی شبیه‌سازها را از تارنمای آنها بارگیری کنید. پس از نصب شبیه‌سازها (به شیوه‌ی دستی)، می‌توانید آنها را روی دیالوگ پیکربندی شبیه‌ساز درون‌برد کنید.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">شما می‌توانید هر شبیه‌سازی را که روی رایانه‌تان نصب شده است را با کلیک کردن بر دکمه‌ی 'شناسایی خودکار از پوشه…' درون‌برد کنید. Playnite پوشه‌ی برگزیده را برای هر شبیه‌ساز شناخته شده جستجو کرده و گزینه‌ای برای درون‌برد آنها فراهم خواهد کرد. شما می‌توانید این دکمه را چندین بار برای درون‌برد شبیه‌سازها از پوشه‌های متفاوت بکار ببرید. شبیه‌سازها به پایین فهرست کنونی افزوده خواهند شد.</sys:String>
+    <sys:String x:Key="LOCEmuWizardGameImportIntro">شما می‌توانید بازی‌ها را با کلیک کردن بر دکمه‌ی 'پویش پوشه با شبیه‌ساز' درون‌برد کنید. گزینش شبیه‌ساز مناسب به Playnite خواهد گفت که کدام گونه‌های پرونده باید پوییده و درون‌برد شوند. شما می‌توانید این دکمه را چندین بار برای درون‌برد بازی‌ها از پوشه‌های متفاوت بکار ببرید. بازی‌ها به پایین فهرست کنونی افزوده خواهند شد.</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">هیچ شبیه‌سازی برای درون‌برد برگزیده نشده است. شما بدون آنکه نخست شبیه‌سازها را پیکربندی کنید هیچ بازی شبیه‌سازی شده‌ای را نمی‌توانید خودکار درون‌برد کنید. آیا مطمئنید که می‌خواهید ادامه دهید و از فرآیند درون‌برد بیرون بروید؟</sys:String>
+    <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning">هیچ شبیه‌سازی در Playnite پیکربندی نشده است. شما نمی‌توانید پیش از آنکه شبیه‌ساز را پیکربندی کرده و گونه‌ی پرونده‌ی مناسب را برگزینید، بازی‌ها را درون‌برد کنید. آیا می‌خواهید اکنون چند شبیه‌ساز بیفزایید؟</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonScanGames">پویش پوشه با شبیه‌ساز</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonSelectFiles">گزینش پرونده‌ها</sys:String>
     <sys:String x:Key="LOCEmuWizardButtonScanEmulator">شناسایی خودکار از پوشه…</sys:String>
-    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">پیکربندی شبیه ساز ها…</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanning">در حال اسکن…</sys:String>
-    <sys:String x:Key="LOCEmuWizardScanningSpecific">اسکن {0}…</sys:String>
+    <sys:String x:Key="LOCEmuWizardButtonConfigureEmulator">پیکربندی شبیه‌سازها…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanning">پوییدن…</sys:String>
+    <sys:String x:Key="LOCEmuWizardScanningSpecific">پوییدن {0}…</sys:String>
     <!--FirstTime Wizard-->
-    <sys:String x:Key="LOCFirstWindowTitle">پیکربندی اولین بار</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">این جادوگر شما را در روند وارد کردن و پیکربندی خودکار کتابخانه های بازی خارجی راهنمایی می کند. Playnite می تواند به طور خودکار بازی ها را از چندین سرویس بازی مانند Steam یا GOG وارد کند و همچنین با به روزرسانی خودکار هنگام شروع برنامه، کتابخانه را به روز نگه دارد.
+    <sys:String x:Key="LOCFirstWindowTitle">نخستین پیکربندی</sys:String>
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">این فرآیند شما را در درون‌برد خودکار و پیکربندی کتابخانه‌ها‌ی بازی بیرونی راهنمایی خواهد کرد. Playnite می‌تواند بازی‌ها را خودکار از چندین فروشگاه‌ بازی همچون Steam یا GOG درون‌برد کند.
 
-بخاطر داشته باشید که بعداً با کلیک روی دکمه &quot;Playnite&quot; در منوی اصلی می توانید به صورت دستی هر بازی سفارشی را برای هر پلتفرم اضافه کنید.</sys:String>
-    <sys:String x:Key="LOCFirstExternalTitle">ادغام کتابخانه</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">بازی ها را به طور خودکار از سرویس های ذکر شده در زیر وارد کنید. هرگونه تغییر در بازی بعدا (وضعیت نصب) به طور خودکار در هنگام راه اندازی Playnite یا هنگامی که به صورت دستی فعال شود، به روز می شود. تنظیمات انتخاب شده بر واردات اولیه و کلیه واردات بعدی تأثیر می گذارد.</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedTitle">پیکربندی تکمیل شد</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">تنظیم اولیه انجام شده است. به یاد داشته باشید که بعداً می توانید در منوی «تنظیمات» همه تنظیمات را تغییر دهید.
+بدانید که می‌توانید به شیوه‌ی دستی نیز هر بازی سفارشی یا شبیه‌سازی شده را برای هر سکویی در زمانی دیگر از فهرست اصلی بیفزایید.</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">یکپارچگی کتابخانه</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">در زیر فهرستی از برخی کتابخانه‌های یکپارچگی که Playnite از آنها پشتیبانی می‌کند را می‌بینید. لطفا آنهایی که می‌خواهید نصب کنید را برگزینید.
 
-بعداً می توانید با کلیک روی منوی آرم Playnite، هر بازی دیگری را اضافه کنید.</sys:String>
-    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">بارگیری یک یا چند برنامه افزودنی انجام نشد.
+از فهرست &quot;افزونه‌ها&quot; می‌توان یکپارچگی‌های بیشتری نصب کرد.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">پیکربندی پایان یافت</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">نشاندن آغازین پایان یافت. به یاد داشته باشید که می‌توانید در زمانی دیگر همهٔ تنظیمات را دگرگون کرده و همچنین یکپارچگی‌های بیشتری را از فهرست اصلی بیفزایید.</sys:String>
+    <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">ناکامی در بارگیری یک یا چند افزونه.
 
-می توانید سعی کنید مجدداً پس از اتمام اولین جادوگر ، ادغام ها را از منوی افزونه ها بارگیری کنید.</sys:String>
-    <sys:String x:Key="LOCFirstDownloadingAddon">در حال بارگیری {0} ادغام…</sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownload">در حال دانلود لیست ادغام های توصیه شده…</sys:String>
-    <sys:String x:Key="LOCDefaultAddonListDownloadError">دانلود لیست ادغام های توصیه شده انجام نشد. می‌توانید بعداً از طریق منوی افزونه، ادغام‌ها را دوباره دانلود کنید.</sys:String>
+پس از پایان نخستین اجرای جادوگر می‌توانید برای بازبارگیری یکپارچگی‌ها از فهرست افزونه‌ها بکوشید.</sys:String>
+    <sys:String x:Key="LOCFirstDownloadingAddon">در حال بارگیری {0} یکپارچگی…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownload">در حال بارگیری فهرست یکپارگی‌های پیشنهادی…</sys:String>
+    <sys:String x:Key="LOCDefaultAddonListDownloadError">ناکامی در بارگیری فهرست یکپارچگی‌های پیشنهادی. می‌توانید در زمانی دیگر از راه فهرست افزونه‌ها برای بازبارگیری یکپارچگی‌ها بکوشید.</sys:String>
     <!--Platforms Settings-->
-    <sys:String x:Key="LOCPlatformsWindowTitle">پلتفرم ها و شبیه سازها را پیکربندی کنید</sys:String>
-    <sys:String x:Key="LOCEmulatorsWindowTitle">پیکربندی شبیه ساز ها</sys:String>
-    <sys:String x:Key="LOCPlatformsTitle">پلتفرم ها</sys:String>
-    <sys:String x:Key="LOCPlatformTitle">پلتفرم</sys:String>
-    <sys:String x:Key="LOCEmulatorsTitle">شبیه ساز ها</sys:String>
-    <sys:String x:Key="LOCEmulatorTitle">شبیه ساز</sys:String>
-    <sys:String x:Key="LOCAddPlatformTitle">اضافه کردن پلتفرم</sys:String>
-    <sys:String x:Key="LOCSelectIconTitle">انتخاب آیکن</sys:String>
-    <sys:String x:Key="LOCSelectCoverTitle">انتخاب کاور</sys:String>
-    <sys:String x:Key="LOCSelectImageTitle">انتخاب تصویر</sys:String>
-    <sys:String x:Key="LOCSelectItemTitle">انتخاب آیتم</sys:String>
-    <sys:String x:Key="LOCSelectBackgroundTitle">انتخاب پس زمینه</sys:String>
-    <sys:String x:Key="LOCSelectFileTitle">انتخاب فایل</sys:String>
-    <sys:String x:Key="LOCSelectUrlTitle">انتخاب آدرس اینترنتی</sys:String>
-    <sys:String x:Key="LOCAddEmulatorTitle">اضافه کردن شبیه ساز</sys:String>
-    <sys:String x:Key="LOCSupportedPlatformsTitle">پلتفرم (های) پشتیبانی شده</sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">می خواهید تغییرات پلتفرم را ذخیره کنید؟</sys:String>
-    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">می خواهید تغییرات شبیه ساز را ذخیره کنید؟</sys:String>
-    <sys:String x:Key="LOCExecutableTitle">قابل اجرا</sys:String>
-    <sys:String x:Key="LOCArgumentsTitle">استدلال ها</sys:String>
-    <sys:String x:Key="LOCWorkingDirTitle">فهرست اصلی</sys:String>
-    <sys:String x:Key="LOCSupportedFilesTitle">انواع فایل مورد پشتیبانی</sys:String>
-    <sys:String x:Key="LOCImportEmulatorsButton">واردکردن شبیه ساز ها...</sys:String>
-    <sys:String x:Key="LOCDownloadEmulatorsButton">بارگیری شبیه ساز ها…</sys:String>
-    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">استدلال ها را از نمایه شبیه ساز شناخته شده بارگذاری کنید</sys:String>
-    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">آیا مطمئن هستید که می خواهید شبیه ساز {0} حذف کنید؟در حال حاضر توسط {1} بازی (های) استفاده می شود.</sys:String>
-    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">آیا مطمئن هستید که می خواهید پلتفرم {0} را حذف کنید؟در حال حاضر توسط بازی (های) {1} و شبیه ساز (های) {2} مورد استفاده قرار می گیرد.</sys:String>
+    <sys:String x:Key="LOCPlatformsWindowTitle">پیکربندی سکوها و شبیه‌سازها</sys:String>
+    <sys:String x:Key="LOCEmulatorsWindowTitle">پیکربندی شبیه‌سازها</sys:String>
+    <sys:String x:Key="LOCPlatformsTitle">سکوها</sys:String>
+    <sys:String x:Key="LOCPlatformTitle">سکو</sys:String>
+    <sys:String x:Key="LOCEmulatorsTitle">شبیه‌سازها</sys:String>
+    <sys:String x:Key="LOCEmulatorTitle">شبیه‌ساز</sys:String>
+    <sys:String x:Key="LOCAddPlatformTitle">افزودن سکو</sys:String>
+    <sys:String x:Key="LOCSelectIconTitle">گزینش نماد</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">گزینش کاور</sys:String>
+    <sys:String x:Key="LOCSelectImageTitle">گزینش تصویر</sys:String>
+    <sys:String x:Key="LOCSelectItemTitle">گزینش آیتم</sys:String>
+    <sys:String x:Key="LOCSelectBackgroundTitle">گزینش پس‌زمینه</sys:String>
+    <sys:String x:Key="LOCSelectFileTitle">گزینش پرونده</sys:String>
+    <sys:String x:Key="LOCSelectUrlTitle">گزینش URL</sys:String>
+    <sys:String x:Key="LOCAddEmulatorTitle">افزودن شبیه‌ساز</sys:String>
+    <sys:String x:Key="LOCSupportedPlatformsTitle">سکو(های) پشتیبانی شده</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedPlatformsTitle">آیا می‌خواهید دگرگونی‌های سکو را ذخیره کنید؟</sys:String>
+    <sys:String x:Key="LOCConfirmUnsavedEmulatorsTitle">آیا می‌خواهید دگرگونی‌های شبیه‌ساز را ذخیره کنید؟</sys:String>
+    <sys:String x:Key="LOCExecutableTitle">اجراپذیر</sys:String>
+    <sys:String x:Key="LOCArgumentsTitle">آرگومان‌ها</sys:String>
+    <sys:String x:Key="LOCWorkingDirTitle">مسیر در حال کار</sys:String>
+    <sys:String x:Key="LOCSupportedFilesTitle">گونه پرونده‌های پشتیبانی شده</sys:String>
+    <sys:String x:Key="LOCImportEmulatorsButton">درون‌برد شبیه‌سازها…</sys:String>
+    <sys:String x:Key="LOCDownloadEmulatorsButton">بارگیری شبیه‌سازها…</sys:String>
+    <sys:String x:Key="LOCEmuLoadArgsPresetTooltip">بار کردن آرگومان‌های پیش‌نشانده از نمایه‌ی شبیه‌ساز شناخته شده</sys:String>
+    <sys:String x:Key="LOCEmuRemovalConfirmation" xml:space="preserve">آیا از زدایش شبیه‌ساز {0} مطمئن‌اید؟ هم‌اکنون {1} بازی آن را بکار می‌برند.</sys:String>
+    <sys:String x:Key="LOCPlatformRemovalConfirmation" xml:space="preserve">آیا از زدایش {0} سکو مطمئن‌اید؟ هم‌اکنون {1} بازی و {2} شبیه‌ساز آن را بکار می‌برند.</sys:String>
     <sys:String x:Key="LOCEmulatorSettingsHelp">تنظیمات راهنما</sys:String>
-    <sys:String x:Key="LOCMenuSortByTitle">ترتیب بر اساس</sys:String>
-    <sys:String x:Key="LOCMenuSortByDirection">جهت مرتب سازی</sys:String>
-    <sys:String x:Key="LOCMenuGroupByTitle">گروه بندی بر اساس</sys:String>
-    <sys:String x:Key="LOCMenuSortAscending">صعودی</sys:String>
-    <sys:String x:Key="LOCMenuSortDescending">نزولی</sys:String>
-    <sys:String x:Key="LOCMenuGroupDont">گروه نشود</sys:String>
-    <sys:String x:Key="LOCMenuGroupProvider">گروه براساس کتابخانه</sys:String>
-    <sys:String x:Key="LOCMenuGroupCategory">گروه بندی بر اساس دسته</sys:String>
-    <sys:String x:Key="LOCMenuGroupPlatform">گروه بندی بر اساس پلتفرم</sys:String>
-    <sys:String x:Key="LOCViewType">مشاهده‌ی نوع</sys:String>
-    <sys:String x:Key="LOCMenuView">مشاهده</sys:String>
-    <sys:String x:Key="LOCMenuViewExplorerPanel">پنل مرور</sys:String>
-    <sys:String x:Key="LOCMenuViewFilterPanel">پنل فیلتر</sys:String>
+    <sys:String x:Key="LOCMenuSortByTitle">چینش بر پایهٔ</sys:String>
+    <sys:String x:Key="LOCMenuSortByDirection">سوی چینش</sys:String>
+    <sys:String x:Key="LOCMenuGroupByTitle">گروه‌بندی بر پایهٔ</sys:String>
+    <sys:String x:Key="LOCMenuSortAscending">بالارونده</sys:String>
+    <sys:String x:Key="LOCMenuSortDescending">پایین‌رونده</sys:String>
+    <sys:String x:Key="LOCMenuGroupDont">گروه نکنید</sys:String>
+    <sys:String x:Key="LOCMenuGroupProvider">گروه‌بندی بر پایهٔ کتابخانه</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">گروه‌بندی بر پایه‌ی دسته</sys:String>
+    <sys:String x:Key="LOCMenuGroupPlatform">گروه‌بندی بر پایه‌ی سکو</sys:String>
+    <sys:String x:Key="LOCViewType">دیدن گونه</sys:String>
+    <sys:String x:Key="LOCMenuView">دید</sys:String>
+    <sys:String x:Key="LOCMenuViewExplorerPanel">پهنه‌ی کاوشگر</sys:String>
+    <sys:String x:Key="LOCMenuViewFilterPanel">پهنه‌ی پالایه</sys:String>
     <!--Game fields-->
-    <sys:String x:Key="LOCGameIconTitle">آیکون</sys:String>
+    <sys:String x:Key="LOCGameIconTitle">نماد</sys:String>
     <sys:String x:Key="LOCLibraryIconTitle">نماد کتابخانه</sys:String>
     <sys:String x:Key="LOCGameCoverImageTitle">تصویر کاور</sys:String>
-    <sys:String x:Key="LOCGameBackgroundTitle">تصویر پس زمینه</sys:String>
-    <sys:String x:Key="LOCGameSortingNameTitle">مرتب سازی بر اساس نام</sys:String>
+    <sys:String x:Key="LOCGameBackgroundTitle">تصویر پس‌زمینه</sys:String>
+    <sys:String x:Key="LOCGameSortingNameTitle">چینش بر پایه‌ی نام</sys:String>
     <sys:String x:Key="LOCGameProviderTitle">کتابخانه</sys:String>
-    <sys:String x:Key="LOCGameManualTitle">دستی</sys:String>
+    <sys:String x:Key="LOCGameManualTitle">کتابچه راهنما</sys:String>
     <sys:String x:Key="LOCGameNameTitle">نام</sys:String>
     <sys:String x:Key="LOCInstallDriveTitle">درایو نصب</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">نام حساب</sys:String>
-    <sys:String x:Key="LOCGamePlatformTitle">پلتفرم</sys:String>
-    <sys:String x:Key="LOCGameCategoriesTitle">دسته بندی</sys:String>
+    <sys:String x:Key="LOCGamePlatformTitle">سکو</sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle">دسته‌بندی</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">ژانر</sys:String>
-    <sys:String x:Key="LOCGameReleaseDateTitle">تاریخ انتشار</sys:String>
-    <sys:String x:Key="LOCGameReleaseYearTitle">سال انتشار</sys:String>
+    <sys:String x:Key="LOCGameReleaseDateTitle">تاریخ رهش</sys:String>
+    <sys:String x:Key="LOCGameReleaseYearTitle">سال رهش</sys:String>
     <sys:String x:Key="LOCGameDevelopersTitle">توسعه‌دهنده</sys:String>
     <sys:String x:Key="LOCGameTagsTitle">برچسب</sys:String>
     <sys:String x:Key="LOCGamePublishersTitle">ناشر</sys:String>
-    <sys:String x:Key="LOCGameInstallationStatus">وضعیت نصب کردن</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTitle">همه فیلترها را مطابقت دهید</sys:String>
-    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">اگر فعال باشد، فقط بازی‌هایی که از همه موارد موجود در همه فیلترها استفاده می‌کنند در نما قرار می‌گیرند.
-اگر غیرفعال باشد، بازی‌هایی که از هر موردی در هر فیلتری استفاده می‌کنند، در نما قرار خواهند گرفت.</sys:String>
+    <sys:String x:Key="LOCGameInstallationStatus">وضعیت نصب</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTitle">سازگار کردن همه‌ی پالایه‌ها</sys:String>
+    <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">اگر بکارافتاده باشد، تنها بازی‌هایی که همه‌ی آیتم‌های درون همه‌ی پالایه‌ها را بکار می‌برند در نما خواهند بود.
+اگر ازکارافتاده باشد، بازی‌هایی که هر آیتمی در هر پالایه‌ای را بکار می‌برند، در نما خواهند بود.</sys:String>
     <sys:String x:Key="LOCGameIsInstalledTitle">  نصب شده</sys:String>
     <sys:String x:Key="LOCGameIsGameInstalledTitle">  نصب شده</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">نصب نشده</sys:String>
-    <sys:String x:Key="LOCGameHiddenTitle">مخفی</sys:String>
-    <sys:String x:Key="LOCGameFavoriteTitle">مورد علاقه</sys:String>
-    <sys:String x:Key="LOCGameHdrTitle">فعال کردن پشتیبانی از HDR</sys:String>
-    <sys:String x:Key="LOCGameHdrTooltip">اگر فعال باشد، قبل از شروع بازی، HDR روی نمایشگر اصلی فعال می شود.</sys:String>
-    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">توجه داشته باشید که HDR در صفحه نمایش اصلی شما پشتیبانی نمی شود.</sys:String>
-    <sys:String x:Key="LOCGameLastActivityTitle">اخیرا بازی شده</sys:String>
-    <sys:String x:Key="LOCGameCategoryTitle">دسته بندی</sys:String>
+    <sys:String x:Key="LOCGameHiddenTitle">پنهان</sys:String>
+    <sys:String x:Key="LOCGameFavoriteTitle">دلخواه</sys:String>
+    <sys:String x:Key="LOCGameHdrTitle">بکاراندازی پشتیبانی از HDR</sys:String>
+    <sys:String x:Key="LOCGameHdrTooltip">اگر بکارافتاده باشد، پیش از آغاز بازی، HDR روی نمایشگر اصلی بکار می‌افتد.</sys:String>
+    <sys:String x:Key="LOCGameHdrNotSupportedTooltip">به یاد داشته باشید که HDR در نمایشگر اصلی شما پشتیبانی نمی‌شود.</sys:String>
+    <sys:String x:Key="LOCGameLastActivityTitle">آخرین بازی شده</sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle">دسته‌بندی</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">توضیحات</sys:String>
-    <sys:String x:Key="LOCGameInstallDirTitle">محل نصب</sys:String>
+    <sys:String x:Key="LOCGameInstallDirTitle">پوشه‌ی نصب</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">تصویر کاور</sys:String>
     <sys:String x:Key="LOCGameLinksTitle">پیوند‌ها</sys:String>
     <sys:String x:Key="LOCGameROMTitle">تصویر، رام یا مسیر ISO</sys:String>
@@ -565,497 +569,496 @@
     <sys:String x:Key="LOCCompanyLabel">شرکت</sys:String>
     <sys:String x:Key="LOCCompaniesLabel">شرکت‌ها</sys:String>
     <sys:String x:Key="LOCDeveloperLabel">توسعه‌دهنده</sys:String>
-    <sys:String x:Key="LOCDevelopersLabel">توسعه دهندگان</sys:String>
+    <sys:String x:Key="LOCDevelopersLabel">توسعه‌دهندگان</sys:String>
     <sys:String x:Key="LOCPublisherLabel">ناشر</sys:String>
     <sys:String x:Key="LOCPublishersLabel">ناشران</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">دسته بندی</sys:String>
-    <sys:String x:Key="LOCCategoriesLabel">دسته بندیها</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">دسته‌بندی</sys:String>
+    <sys:String x:Key="LOCCategoriesLabel">دسته‌بندی‌ها</sys:String>
     <sys:String x:Key="LOCTagLabel">برچسب</sys:String>
-    <sys:String x:Key="LOCTagsLabel">برچسب ها</sys:String>
+    <sys:String x:Key="LOCTagsLabel">برچسب‌ها</sys:String>
     <sys:String x:Key="LOCFeatureLabel">ویژگی</sys:String>
     <sys:String x:Key="LOCFeaturesLabel">ویژگی‌ها</sys:String>
-    <sys:String x:Key="LOCAgeRatingLabel">امتیاز سنی</sys:String>
-    <sys:String x:Key="LOCAgeRatingsLabel">امتیاز سنی ها</sys:String>
+    <sys:String x:Key="LOCAgeRatingLabel">رده سنی</sys:String>
+    <sys:String x:Key="LOCAgeRatingsLabel">رده سنی‌ها</sys:String>
     <sys:String x:Key="LOCRegionLabel">منطقه</sys:String>
     <sys:String x:Key="LOCRegionsLabel">مناطق</sys:String>
     <sys:String x:Key="LOCSourceLabel">منبع</sys:String>
     <sys:String x:Key="LOCSourcesLabel">منابع</sys:String>
-    <sys:String x:Key="LOCRecentActivityLabel">کارکرد اخیر</sys:String>
+    <sys:String x:Key="LOCRecentActivityLabel">کنش‌های اخیر</sys:String>
     <!--Errors-->
-    <sys:String x:Key="LOCDatabaseErroTitle">خطا در بانک اطلاعاتی</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenError">بانک اطلاعاتی کتابخانه باز نشد</sys:String>
-    <sys:String x:Key="LOCDatabaseNotOpenedError">باز کردن پایگاه‌داده ممکن نبود.</sys:String>
-    <sys:String x:Key="LOCDatabaseOpenAccessError">دسترسی به پایگاه داده کتابخانه امکان پذیر نیست. پرونده &quot;{0}&quot; توسط یک فرآیند دیگر استفاده می شود یا در مکان غیرقابل دسترسی است.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationError">بسته تشخیصی ایجاد نشد.</sys:String>
-    <sys:String x:Key="LOCDiagPackageUploadError">آپلود خودکار بسته تشخیصی انجام نشد.</sys:String>
-    <sys:String x:Key="LOCDiagPackageSentSuccess">اطلاعات تشخیصی با موفقیت ارسال شد.</sys:String>
-    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">بسته تشخیصی ایجاد و با موفقیت ارسال شده است.
-لطفاً شناسه زیر را به گزارش مشکل خود ضمیمه کنید:</sys:String>
+    <sys:String x:Key="LOCDatabaseErroTitle">خطا در پایگاه داده</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenError">ناکامی در گشودن پایگاه داده‌ی کتابخانه.</sys:String>
+    <sys:String x:Key="LOCDatabaseNotOpenedError">پایگاه داده گشوده نیست.</sys:String>
+    <sys:String x:Key="LOCDatabaseOpenAccessError">دسترسی به پایگاه داده‌ی کتابخانه شدنی نیست. یا فرآیند دیگری دارد پرونده‌ی &quot;{0}&quot; را بکار می‌برد یا در مکانی دور از دسترس است.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationError">ناکامی در ساخت بسته‌ی تشخیصی.</sys:String>
+    <sys:String x:Key="LOCDiagPackageUploadError">ناکامی در بارگذاری خودکار بسته‌ی تشخیصی.</sys:String>
+    <sys:String x:Key="LOCDiagPackageSentSuccess">اطلاعات تشخیصی پیروزمندانه فرستاده شد.</sys:String>
+    <sys:String x:Key="LOCDiagPackageCreationSuccess" xml:space="preserve">بسته‌ی تشخیصی پیروزمندانه ساخته و فرستاده شد.
+لطفا شناسه‌ی زیر را به گزارش مشکل خود بچسبانید:</sys:String>
 
-    <sys:String x:Key="LOCLibraryImportError">واردات بازی از {0} انجام نشد.</sys:String>
-    <sys:String x:Key="LOCLibraryImportEmulatedError">بازیهای شبیه سازی شده از {0} وارد نشد.</sys:String>
-    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">جستجوی بازی ها توسط پروفایل شبیه ساز انتخاب شده امکان پذیر نیست. نمایه شامل هیچ پسوند یا پلتفرم دیگری نیست.</sys:String>
-    <sys:String x:Key="LOCStartGenericError">Playnite شروع به کار نکرد. لطفاً همه موارد دیگر را ببندید و دوباره امتحان کنید.</sys:String>
-    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">طرح &quot;{0}&quot; ، نمایه رنگ &quot;{1}&quot; اعمال نشد
+    <sys:String x:Key="LOCLibraryImportError">ناکامی در درون‌برد بازی‌ها از {0}.</sys:String>
+    <sys:String x:Key="LOCLibraryImportEmulatedError">ناکامی در درون‌برد بازی‌های شبیه‌سازی شده از {0}.</sys:String>
+    <sys:String x:Key="LOCScanEmulatorGamesEmptyProfileError">نمی‌توان با نمایه‌ی شبیه‌ساز برگزیده بازی‌ها را جستجو کرد. نمایه هیچگونه پسوند پرونده یا سکویی ندارد.</sys:String>
+    <sys:String x:Key="LOCStartGenericError">Playnite در راه‌اندازی ناکام ماند. لطفا دیگر نمونه‌های آن را بسته و دوباره بکوشید.</sys:String>
+    <sys:String x:Key="LOCSkinApplyError" xml:space="preserve">ناکامی در بکاربستن زمینه‌ی &quot;{0}&quot;، نمایه‌ی رنگ &quot;{1}&quot;
 
 {2}</sys:String>
-    <sys:String x:Key="LOCURLFormatError">پیوند را نمی توان باز کرد ، URL معتبر نیست.</sys:String>
-    <sys:String x:Key="LOCAppStartupError">برنامه شروع نشد.</sys:String>
-    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">تنظیم اولیه مؤلفه نمای وب انجام نشد. Playnite نمی تواند به روند راه‌اندازی ادامه دهد.
+    <sys:String x:Key="LOCURLFormatError">نمی‌توان پیوند را گشود، URL در چارچوبی معتبر نیست.</sys:String>
+    <sys:String x:Key="LOCAppStartupError">ناکامی در راه‌اندازی برنامه.</sys:String>
+    <sys:String x:Key="LOCCefSharpInitError" xml:space="preserve">ناکامی در راه‌اندازی مولفه‌ی نمای وب. Playnite نمی‌تواند فرآیند راه‌اندازی را ادامه دهد.
 
 اطلاعات بیشتر در https://playnite.link/cefstartup</sys:String>
-    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">به دلیل از بین رفتن یا خرابی فایل تعریف شده، نمی توان شبیه سازها را وارد کرد.</sys:String>
-    <sys:String x:Key="LOCMenuActionExecError">عملکرد منو اجرا نشد.</sys:String>
+    <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">به دلیل گمشدگی یا خرابی پرونده‌ی تعریفی، نمی‌توان شبیه‌سازها را درون‌برد کرد.</sys:String>
+    <sys:String x:Key="LOCMenuActionExecError">ناکامی در اجرای کنش فهرست.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">ویرایش جزییات بازی</sys:String>
-    <sys:String x:Key="LOCImageURL">آدرس عکس</sys:String>
-    <sys:String x:Key="LOCAddLinkButton">اضافه کردن لینک</sys:String>
-    <sys:String x:Key="LOCAddRom">اضافه کردن رام</sys:String>
-    <sys:String x:Key="LOCSaveChanges">ذخیره تغییرات</sys:String>
-    <sys:String x:Key="LOCGameEditChangeSaveTooltip">بازیهای شبیه سازی شده از {0} وارد نشد.</sys:String>
-    <sys:String x:Key="LOCAddAction">عمل افزودن</sys:String>
-    <sys:String x:Key="LOCDeleteAction">عمل حذف</sys:String>
-    <sys:String x:Key="LOCRemovePlayAction">عمل حذف پخش</sys:String>
-    <sys:String x:Key="LOCAddGames">افزودن بازی</sys:String>
-    <sys:String x:Key="LOCScanFolder">اسکن پوشه…</sys:String>
-    <sys:String x:Key="LOCDetectInstalled">شناسایی نصب شده</sys:String>
+    <sys:String x:Key="LOCImageURL">URL تصویر</sys:String>
+    <sys:String x:Key="LOCAddLinkButton">افزودن پیوند</sys:String>
+    <sys:String x:Key="LOCAddRom">افزودن ROM</sys:String>
+    <sys:String x:Key="LOCSaveChanges">ذخیره دگرگونی‌ها</sys:String>
+    <sys:String x:Key="LOCGameEditChangeSaveTooltip">بکاربستن دگرگونی‌ها میدان در بازی(های) در حال ویرایش.</sys:String>
+    <sys:String x:Key="LOCAddAction"> کنش افزودن</sys:String>
+    <sys:String x:Key="LOCDeleteAction">زدایش</sys:String>
+    <sys:String x:Key="LOCRemovePlayAction">کنش زدایش پخش</sys:String>
+    <sys:String x:Key="LOCAddGames">افزودن بازی‌ها</sys:String>
+    <sys:String x:Key="LOCScanFolder">پویش پوشه…</sys:String>
+    <sys:String x:Key="LOCDetectInstalled">ردیابی نصب‌شده</sys:String>
     <sys:String x:Key="LOCBrowse">مرور…</sys:String>
-    <sys:String x:Key="LOCOpenPlaynite">بازکردن Playnite</sys:String>
-    <sys:String x:Key="LOCProfileSettings">تنظیمات پروفایل</sys:String>
-    <sys:String x:Key="LOCEmptyGameNameError">نام بازی نمی‌تواند خالی باشد</sys:String>
-    <sys:String x:Key="LOCEmptyTrackingFolderError">فهرست راهنمای ردیابی عمل بازی نمی تواند خالی باشد.</sys:String>
-    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">نام بازی قبل از جستجوی ابرداده نمی تواند خالی باشد.</sys:String>
-    <sys:String x:Key="LOCInvalidGameData">داده بازی نامعتبر</sys:String>
-    <sys:String x:Key="LOCURLInputInfo">URL معتبر وب را با شروع  http:// یا https:// وارد کنید.</sys:String>
-    <sys:String x:Key="LOCURLInputInfoTitile">انتخاب آدرس اینترنتی</sys:String>
-    <sys:String x:Key="LOCMetadataDownloadError">بارگیری ابرداده انجام نشد: {0}</sys:String>
-    <sys:String x:Key="LOCDownloadError">خطا در دریافت</sys:String>
-    <sys:String x:Key="LOCClearFilters">پاک کردن فیلترها</sys:String>
-    <sys:String x:Key="LOCPrivateAccount">حساب خصوصی</sys:String>
-    <sys:String x:Key="LOCPublicAccount">حساب عمومی</sys:String>
+    <sys:String x:Key="LOCOpenPlaynite">گشودن Playnite</sys:String>
+    <sys:String x:Key="LOCProfileSettings">تنظیمات نمایه</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameError">نام بازی نمی‌تواند تهی باشد.</sys:String>
+    <sys:String x:Key="LOCEmptyTrackingFolderError">مسیر ردیابی کنش بازی نمی‌تواند تهی باشد.</sys:String>
+    <sys:String x:Key="LOCEmptyGameNameMetaSearchError">نام بازی نمی‌تواند پیش از جستجوی فراداده تهی باشد.</sys:String>
+    <sys:String x:Key="LOCInvalidGameData">داده‌ی بازی نامعتبر است</sys:String>
+    <sys:String x:Key="LOCURLInputInfo">URL وب معتبری که با http:// یا https:// آغاز می‌شود وارد کنید.</sys:String>
+    <sys:String x:Key="LOCURLInputInfoTitile">گزینش URL</sys:String>
+    <sys:String x:Key="LOCMetadataDownloadError">ناکامی در بارگیری فراداده: {0}</sys:String>
+    <sys:String x:Key="LOCDownloadError">خطا در بارگیری</sys:String>
+    <sys:String x:Key="LOCClearFilters">پاک کردن پالایه‌ها</sys:String>
+    <sys:String x:Key="LOCPrivateAccount">حساب شخصی</sys:String>
+    <sys:String x:Key="LOCPublicAccount">حساب همگانی</sys:String>
     <sys:String x:Key="LOCAPIKey">کلید API</sys:String>
-    <sys:String x:Key="LOCStartupError">خطا استارتاپ</sys:String>
-    <sys:String x:Key="LOCSkinError">خطای تم</sys:String>
+    <sys:String x:Key="LOCStartupError">خطا در راه‌اندازی</sys:String>
+    <sys:String x:Key="LOCSkinError">خطای زمینه</sys:String>
     <sys:String x:Key="LOCClearAll">پاک کردن همه</sys:String>
     <sys:String x:Key="LOCSetupRunning">در حال نصب</sys:String>
     <sys:String x:Key="LOCUninstalling">در حال حذف نصب</sys:String>
-    <sys:String x:Key="LOCGameLaunching">در حال اجرا</sys:String>
-    <sys:String x:Key="LOCGameRunning">درحال اجرا</sys:String>
-    <sys:String x:Key="LOCInvalidURL">آدرس اشتباه است</sys:String>
+    <sys:String x:Key="LOCGameLaunching">در حال آغاز</sys:String>
+    <sys:String x:Key="LOCGameRunning">در حال اجرا</sys:String>
+    <sys:String x:Key="LOCInvalidURL">URL نامعتبر است</sys:String>
     <sys:String x:Key="LOCDoNothing">کاری نکن</sys:String>
     <sys:String x:Key="LOCMinimize">کمینه کردن</sys:String>
     <sys:String x:Key="LOCRestoreWindow">بازیابی پنجره</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">بازیابی پنجره تنها زمانی که از رابط کاربری راه‌ اندازی شود</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">بازیابی پنجره تنها زمانی که از میانای کاربری راه‌اندازی شود</sys:String>
     <sys:String x:Key="LOCClose">بستن</sys:String>
-    <sys:String x:Key="LOCChange">تغییر</sys:String>
+    <sys:String x:Key="LOCChange">دگرگونی</sys:String>
     <sys:String x:Key="LOCAdvanced">پیشرفته</sys:String>
     <sys:String x:Key="LOCNever">هرگز</sys:String>
     <sys:String x:Key="LOCCompletionStatus">وضعیت تکمیلی</sys:String>
-    <sys:String x:Key="LOCCompletionStatuses">وضعیت تکمیل</sys:String>
+    <sys:String x:Key="LOCCompletionStatuses">وضعیت‌های تکمیل</sys:String>
     <sys:String x:Key="LOCUserScore">امتیاز کاربر</sys:String>
     <sys:String x:Key="LOCCriticScore">امتیاز منتقدان</sys:String>
     <sys:String x:Key="LOCCommunityScore">امتیاز جامعه</sys:String>
-    <sys:String x:Key="LOCGameScripts">اسکریپت های بازی</sys:String>
-    <sys:String x:Key="LOCApplicationScripts">اسکریپت های برنامه</sys:String>
-    <sys:String x:Key="LOCScripts">اسکریپت ها</sys:String>
-    <sys:String x:Key="LOCPlugins">پلاگین ها</sys:String>
-    <sys:String x:Key="LOCMetadataProviders">منابع ابرداده</sys:String>
+    <sys:String x:Key="LOCGameScripts">اسکریپت‌های بازی</sys:String>
+    <sys:String x:Key="LOCApplicationScripts">اسکریپت‌های برنامه</sys:String>
+    <sys:String x:Key="LOCScripts">اسکریپت‌ها</sys:String>
+    <sys:String x:Key="LOCPlugins">افزایه‌ها</sys:String>
+    <sys:String x:Key="LOCMetadataProviders">منابع فراداده</sys:String>
     <sys:String x:Key="LOCExtensions">افزونه‌ها</sys:String>
-    <sys:String x:Key="LOCExtensionID">شناسه برنامه افزودنی</sys:String>
-    <sys:String x:Key="LOCReloadScripts">بارگیری مجدد اسکریپت ها</sys:String>
-    <sys:String x:Key="LOCStartInteractivePowerShell">تعاملی SDK PowerShell</sys:String>
-    <sys:String x:Key="LOCReloadScriptsSuccess">همه اسکریپت ها با موفقیت بارگذاری مجدد شدند.</sys:String>
-    <sys:String x:Key="LOCNoGamesFound">هیچ بازی برای معیارهای مشخص شده فیلتر/جستجو یافت نشد</sys:String>
-    <sys:String x:Key="LOCNoItemsFound">موردی پیدا نشد</sys:String>
-    <sys:String x:Key="LOCBackToDesktopMode">تعویض به حالت دسکتاپ</sys:String>
+    <sys:String x:Key="LOCExtensionID">شناسه‌ی افزونه</sys:String>
+    <sys:String x:Key="LOCReloadScripts">بازبارکردن اسکریپت‌ها</sys:String>
+    <sys:String x:Key="LOCStartInteractivePowerShell">SDK PowerShell تعاملی</sys:String>
+    <sys:String x:Key="LOCReloadScriptsSuccess">همه‌ی اسکریپت‌ها پیروزمندانه دوباره بار شدند.</sys:String>
+    <sys:String x:Key="LOCNoGamesFound">هیچ بازی برای معیارهای مشخص شده‌ی پالایه/جستجو یافت نشد</sys:String>
+    <sys:String x:Key="LOCNoItemsFound">آیتمی یافت نشد</sys:String>
+    <sys:String x:Key="LOCBackToDesktopMode">تعویض به حالت میز‌کار</sys:String>
     <sys:String x:Key="LOCExitPlaynite">خروج از Playnite</sys:String>
-    <sys:String x:Key="LOCLibraries">کتابخانه ها</sys:String>
-    <sys:String x:Key="LOCUpdateAll">بروزرسانی همه</sys:String>
-    <sys:String x:Key="LOCExtensionCreatedBy">ایجاد شده توسط:</sys:String>
+    <sys:String x:Key="LOCLibraries">کتابخانه‌ها</sys:String>
+    <sys:String x:Key="LOCUpdateAll">به‌روزرسانی همه</sys:String>
+    <sys:String x:Key="LOCExtensionCreatedBy">ساخته به دست:</sys:String>
     <sys:String x:Key="LOCExtensionVersion">نسخه:</sys:String>
-    <sys:String x:Key="LOCExtensionUpdated">به روز شده:</sys:String>
+    <sys:String x:Key="LOCExtensionUpdated">به‌روز‌رسیده:</sys:String>
     <sys:String x:Key="LOCExtensionModule">ماژول:</sys:String>
     <sys:String x:Key="LOCLibrary">کتابخانه</sys:String>
     <sys:String x:Key="LOCStatistics">آمارها</sys:String>
     <sys:String x:Key="LOCAll">همه</sys:String>
     <sys:String x:Key="LOCNone">هیچ</sys:String>
-    <sys:String x:Key="LOCNotifications">اعلانات</sys:String>
-    <sys:String x:Key="LOCWidth">عرض</sys:String>
-    <sys:String x:Key="LOCHeight">طول</sys:String>
+    <sys:String x:Key="LOCNotifications">آگهی‌ها</sys:String>
+    <sys:String x:Key="LOCWidth">پهنا</sys:String>
+    <sys:String x:Key="LOCHeight">بلندا</sys:String>
     <sys:String x:Key="LOCSize">اندازه‌</sys:String>
     <sys:String x:Key="LOCFontSmall">کوچک</sys:String>
-    <sys:String x:Key="LOCFontNormal">معمولی</sys:String>
+    <sys:String x:Key="LOCFontNormal">بهنجار</sys:String>
     <sys:String x:Key="LOCFontLarge">بزرگ</sys:String>
     <sys:String x:Key="LOCFontLarger">بزرگتر</sys:String>
     <sys:String x:Key="LOCFontLargest">بزرگترین</sys:String>
     <sys:String x:Key="LOCDefault">پیش‌فرض</sys:String>
-    <sys:String x:Key="LOCSelect">انتخاب کردن</sys:String>
-    <sys:String x:Key="LOCSelectAll">انتخاب همه</sys:String>
-    <sys:String x:Key="LOCDeselectAll">لغو انتخاب همه موارد</sys:String>
-    <sys:String x:Key="LOCFirst">اولین عکس</sys:String>
-    <sys:String x:Key="LOCRandom">تصادفی</sys:String>
-    <sys:String x:Key="LOCUserSelect">انتخاب کاربر</sys:String>
-    <sys:String x:Key="LOCLoadMore">بارگذاری بیشتر</sys:String>
-    <sys:String x:Key="LOCTransparent">شفافیت</sys:String>
-    <sys:String x:Key="LOCCollapse">جمع کردن</sys:String>
-    <sys:String x:Key="LOCExpand">گشودن</sys:String>
-    <sys:String x:Key="LOCCollapseAll">جمع کردن همه</sys:String>
-    <sys:String x:Key="LOCExpandAll">گشودن همه</sys:String>
+    <sys:String x:Key="LOCSelect">گزینش</sys:String>
+    <sys:String x:Key="LOCSelectAll">گزینش همه</sys:String>
+    <sys:String x:Key="LOCDeselectAll">واگزینش همه</sys:String>
+    <sys:String x:Key="LOCFirst">نخستین</sys:String>
+    <sys:String x:Key="LOCRandom">بختوار</sys:String>
+    <sys:String x:Key="LOCUserSelect">گزینش کاربر</sys:String>
+    <sys:String x:Key="LOCLoadMore">بار کردن بیشتر</sys:String>
+    <sys:String x:Key="LOCTransparent">زلال</sys:String>
+    <sys:String x:Key="LOCCollapse">بستن</sys:String>
+    <sys:String x:Key="LOCExpand">گسترش</sys:String>
+    <sys:String x:Key="LOCCollapseAll">بستن همه</sys:String>
+    <sys:String x:Key="LOCExpandAll">گسترش همه</sys:String>
     <sys:String x:Key="LOCOther">ديگر</sys:String>
-    <sys:String x:Key="LOCThemes">پوسته ها</sys:String>
-    <sys:String x:Key="LOCEmulatorArguments">آرماگون های شبیه ساز</sys:String>
-    <sys:String x:Key="LOCBuiltinArguments">استدلال های داخلی</sys:String>
-    <sys:String x:Key="LOCCustomArguments">استدلال های سفارشی</sys:String>
-    <sys:String x:Key="LOCAdditionalEmulatorArguments">استدلال های شبیه ساز اضافی</sys:String>
-    <sys:String x:Key="LOCOverrideEmulatorArguments">رد کردن استدلال های شبیه ساز</sys:String>
-    <sys:String x:Key="LOCIsPlayAction">بازی اکشن</sys:String>
-    <sys:String x:Key="LOCMedataDiffWindowTitle">فراداده را برای وارد کردن انتخاب کنید</sys:String>
-    <sys:String x:Key="LOCGameImportWindowTitle">انتخاب بازی ها برای وارد کردن</sys:String>
-    <sys:String x:Key="LOCMetaLookupWindowTitle">جستجوی ابرداده</sys:String>
-    <sys:String x:Key="LOCUpdaterWindowTitle">به روزرسانی موجود است</sys:String>
-    <sys:String x:Key="LOCUpdaterChangesInfo">از آخرین به روزرسانی تغییر می کند</sys:String>
-    <sys:String x:Key="LOCUpdaterInstallUpdate">دانلود و نصب بروزرسانی</sys:String>
-    <sys:String x:Key="LOCCheckForUpdates">بررسی برای بروزرسانی</sys:String>
-    <sys:String x:Key="LOCUpdateError">خطا در بروزرسانی</sys:String>
-    <sys:String x:Key="LOCUpdateCheckFailMessage">بررسی نسخه جدید انجام نشد.</sys:String>
-    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">نسخه جدید یافت نشد، شما به روز هستید.</sys:String>
-    <sys:String x:Key="LOCGeneralUpdateFailMessage">بارگیری و نصب بروزرسانی انجام نشد.</sys:String>
-    <sys:String x:Key="LOCUpdateProgressCancelAsk">برخی از کارهای پس زمینه در حال حاضر در حال انجام است. آیا می خواهید آن را لغو کنید و به به روز رسانی ادامه دهید؟</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">برخی از کارهای پس زمینه در حال حاضر در حال انجام است. آیا می خواهید آن را لغو کنید و از Playnite خارج شوید؟</sys:String>
-    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">برخی از کارهای پس زمینه در حال حاضر در حال انجام است. تغییر حالت کار را لغو می‌کند، آیا می‌خواهید تغییر دهید؟</sys:String>
-    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">به روزرسانی برای Playnite در دسترس است</sys:String>
-    <sys:String x:Key="LOCThemeTestReloadList">بارگیری لیست تم</sys:String>
-    <sys:String x:Key="LOCThemeTestApplySkin">اعمال تم انتخابی</sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChanges">دیدن تغییرات فایل</sys:String>
-    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">هنگام تغییر پرونده منبع، تم را بطور خودکار اعمال کنید</sys:String>
-    <sys:String x:Key="LOCScriptRuntime">زمان اجرای ماژول</sys:String>
-    <sys:String x:Key="LOCPreScriptDescription">اسکریپت قبل از شروع بازی اجرا شود</sys:String>
-    <sys:String x:Key="LOCPostScriptDescription">اسکریپت پس از خروج از بازی اجرا شود</sys:String>
-    <sys:String x:Key="LOCGameStartedScriptDescription">اسکریپت بعد از شروع بازی اجرا شود</sys:String>
-    <sys:String x:Key="LOCAppScriptStartupDescription">در شروع برنامه اجرا کنید</sys:String>
-    <sys:String x:Key="LOCAppScriptShutdownDescription">در بستن برنامه اجرا کنید</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarting">اسکریپت شروع بازی</sys:String>
-    <sys:String x:Key="LOCScriptTypeStarted">بازی اسکریپت شروع کرد</sys:String>
-    <sys:String x:Key="LOCScriptTypeExit">بازی اسکریپت را متوقف کرد</sys:String>
-    <sys:String x:Key="LOCExecuteGlobalScript">اجرا کردن اسکریپت جهانی</sys:String>
+    <sys:String x:Key="LOCThemes">زمینه‌ها</sys:String>
+    <sys:String x:Key="LOCEmulatorArguments">آرگومان‌های شبیه‌ساز</sys:String>
+    <sys:String x:Key="LOCBuiltinArguments">آرگومان‌های درونی</sys:String>
+    <sys:String x:Key="LOCCustomArguments">آرگومان‌های سفارشی</sys:String>
+    <sys:String x:Key="LOCAdditionalEmulatorArguments">آرگومان‌های بیشتر شبیه‌ساز</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">بازنویسی آرگومان‌های شبیه‌ساز</sys:String>
+    <sys:String x:Key="LOCIsPlayAction">کنش بازی</sys:String>
+    <sys:String x:Key="LOCMedataDiffWindowTitle">فراداده را برای درون‌برد برگزینید</sys:String>
+    <sys:String x:Key="LOCGameImportWindowTitle">گزینش بازی‌ها برای درون‌برد</sys:String>
+    <sys:String x:Key="LOCMetaLookupWindowTitle">جستجوی فراداده</sys:String>
+    <sys:String x:Key="LOCUpdaterWindowTitle">به روزرسانی در دسترس است</sys:String>
+    <sys:String x:Key="LOCUpdaterChangesInfo">دگرگونی‌ها از آخرین به‌روزرسانی تاکنون</sys:String>
+    <sys:String x:Key="LOCUpdaterInstallUpdate">بارگیری و نصب به‌روزرسانی</sys:String>
+    <sys:String x:Key="LOCCheckForUpdates">بررسی برای به‌روزرسانی</sys:String>
+    <sys:String x:Key="LOCUpdateError">خطا در به‌روزرسانی</sys:String>
+    <sys:String x:Key="LOCUpdateCheckFailMessage">ناکامی در بررسی برای نسخه‌ی نو.</sys:String>
+    <sys:String x:Key="LOCUpdateNoNewUpdateMessage">نسخه نویی یافت نشد، شما به‌روزاید.</sys:String>
+    <sys:String x:Key="LOCGeneralUpdateFailMessage">ناکامی در بارگیری و نصب به‌روزرسانی.</sys:String>
+    <sys:String x:Key="LOCUpdateProgressCancelAsk">یک کار پس‌زمینه در جریان کار است. آیا می‌خواهید آن را لغو کنید و به‌روزرسانی را ادامه دهید؟</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskExit">یک کار پس‌زمینه در جریان کار است. آیا می‌خواهید آن را لغو کنید و از Playnite بیرون بروید؟</sys:String>
+    <sys:String x:Key="LOCBackgroundProgressCancelAskSwitchMode">یک کار پس‌زمینه در جریان کار است. دگرگون کردن حالت کار را لغو می‌کند، آیا می‌خواهید دگرگون کنید؟</sys:String>
+    <sys:String x:Key="LOCUpdateIsAvailableNotificationBody">یک به‌روزرسانی برای Playnite در دسترس است</sys:String>
+    <sys:String x:Key="LOCThemeTestReloadList">بازبار کردن فهرست زمینه</sys:String>
+    <sys:String x:Key="LOCThemeTestApplySkin">بکار بستن زمینه‌ی برگزیده</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChanges">دیدن دگرگونی‌های پرونده</sys:String>
+    <sys:String x:Key="LOCThemeTestWatchChangesTooltip">هنگام دگرگونی پرونده‌ی منبع، زمینه را خودکارانه بکار ببندید</sys:String>
+    <sys:String x:Key="LOCScriptRuntime">اسکریپت زمان اجرا</sys:String>
+    <sys:String x:Key="LOCPreScriptDescription">اجرا پیش از آغاز کردن بازی</sys:String>
+    <sys:String x:Key="LOCPostScriptDescription">اجرا پس از بیرون شدن از بازی</sys:String>
+    <sys:String x:Key="LOCGameStartedScriptDescription">اجرا پس از آغاز شدن بازی</sys:String>
+    <sys:String x:Key="LOCAppScriptStartupDescription">اجرا هنگام راه‌اندازی برنامه</sys:String>
+    <sys:String x:Key="LOCAppScriptShutdownDescription">اجرا هنگام خاموش کردن برنامه</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarting">اسکریپت آغاز بازی</sys:String>
+    <sys:String x:Key="LOCScriptTypeStarted">اسکریپت بازی آغازشده</sys:String>
+    <sys:String x:Key="LOCScriptTypeExit">اسکریپت بازی ایستانده</sys:String>
+    <sys:String x:Key="LOCExecuteGlobalScript">اجرای اسکریپت سراسری</sys:String>
     <sys:String x:Key="LOCStatsGlobal">سراسری</sys:String>
-    <sys:String x:Key="LOCStatsFiltered">فیلتر شده</sys:String>
-    <sys:String x:Key="LOCMetadataDiffCurrent">فعلی</sys:String>
-    <sys:String x:Key="LOCMetadataDiffNew">جدید</sys:String>
-    <sys:String x:Key="LOCTestScript">اسکریپت تست</sys:String>
-    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">فقط موارد انتخاب شده را نشان دهید.</sys:String>
+    <sys:String x:Key="LOCStatsFiltered">پالاییده</sys:String>
+    <sys:String x:Key="LOCMetadataDiffCurrent">کنونی</sys:String>
+    <sys:String x:Key="LOCMetadataDiffNew">نو</sys:String>
+    <sys:String x:Key="LOCTestScript">اسکریپت آزمایش</sys:String>
+    <sys:String x:Key="LOCOnlyItemsSelectedTooltip">تنها آیتم‌های برگزیده را نشان دهید.</sys:String>
     <!--Game actions-->
-    <sys:String x:Key="LOCSaveAsDefault">ذخیره به عنوان پیش‌فرض</sys:String>
-    <sys:String x:Key="LOCFavoriteGame">اضافه کردن به علاقه مندی ها</sys:String>
-    <sys:String x:Key="LOCRemoveFavoriteGame">حذف از علاقمندی‌ها</sys:String>
-    <sys:String x:Key="LOCHideGame">مخفی کردن این بازی</sys:String>
-    <sys:String x:Key="LOCUnHideGame">حذف از مخفی</sys:String>
-    <sys:String x:Key="LOCEnableHdr">فعال کردن پشتیبانی از HDR</sys:String>
-    <sys:String x:Key="LOCDisableHdr">غیر‌فعال کردن پشتیبانی از HDR</sys:String>
+    <sys:String x:Key="LOCSaveAsDefault">ذخیره بعنوان پیش‌فرض</sys:String>
+    <sys:String x:Key="LOCFavoriteGame">افزودن به دلخواه‌ها</sys:String>
+    <sys:String x:Key="LOCRemoveFavoriteGame">زدودن از دلخواه‌ها</sys:String>
+    <sys:String x:Key="LOCHideGame">پنهان کردن این بازی</sys:String>
+    <sys:String x:Key="LOCUnHideGame">زدودن از پنهانیده</sys:String>
+    <sys:String x:Key="LOCEnableHdr">بکاراندازی پشتیبانی از HDR</sys:String>
+    <sys:String x:Key="LOCDisableHdr">ازکاراندازی پشتیبانی از HDR</sys:String>
     <sys:String x:Key="LOCEditGame">ویرایش…</sys:String>
-    <sys:String x:Key="LOCCalculateInstallSize">محاسبه اندازه نصب</sys:String>
-    <sys:String x:Key="LOCCalculateGamesAllInstallSize">محاسبه اندازه نصب (همه بازی ها)</sys:String>
-    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">محاسبه اندازه نصب (فقط داده‌های گمشده)</sys:String>
-    <sys:String x:Key="LOCInstallSizeMenuLabel">اندازه نصب</sys:String>
-    <sys:String x:Key="LOCSetGameCategory">تنظیم دسته بندی ها…</sys:String>
-    <sys:String x:Key="LOCSetCompletionStatus">وضعیت تکمیل را تنظیم کنید</sys:String>
-    <sys:String x:Key="LOCRemoveGame">حذف</sys:String>
-    <sys:String x:Key="LOCPlayGame">شروع</sys:String>
+    <sys:String x:Key="LOCCalculateInstallSize">برآورد اندازه‌ی نصب</sys:String>
+    <sys:String x:Key="LOCCalculateGamesAllInstallSize">برآورد اندازه‌ی نصب (همه‌ی بازی‌ها)</sys:String>
+    <sys:String x:Key="LOCCalculateGamesMissingInstallSize">برآورد اندازه‌ی نصب (تنها داده‌های گمشده)</sys:String>
+    <sys:String x:Key="LOCInstallSizeMenuLabel">اندازه‌ی نصب</sys:String>
+    <sys:String x:Key="LOCSetGameCategory">نشاندن دسته‌بندی‌ها…</sys:String>
+    <sys:String x:Key="LOCSetCompletionStatus">نشاندن وضعیت تکمیل</sys:String>
+    <sys:String x:Key="LOCRemoveGame">زدایش</sys:String>
+    <sys:String x:Key="LOCPlayGame">آغاز</sys:String>
     <sys:String x:Key="LOCInstallGame">نصب</sys:String>
-    <sys:String x:Key="LOCGameOptions">گزینه های بازی</sys:String>
+    <sys:String x:Key="LOCGameOptions">گزینه‌های بازی</sys:String>
     <sys:String x:Key="LOCGameDetails">جزئیات</sys:String>
     <sys:String x:Key="LOCUninstallGame">حذف نصب</sys:String>
-    <sys:String x:Key="LOCOpenGameLocation">بازکردن محل نصب</sys:String>
-    <sys:String x:Key="LOCCreateDesktopShortcut">ایجاد میانبر در دسکتاپ</sys:String>
-    <sys:String x:Key="LOCOpenGameManual">باز کردن راهنما</sys:String>
+    <sys:String x:Key="LOCOpenGameLocation">گشودن مکان نصب</sys:String>
+    <sys:String x:Key="LOCCreateDesktopShortcut">ساخت میانبر در دسکتاپ</sys:String>
+    <sys:String x:Key="LOCOpenGameManual">گشودن راهنما</sys:String>
     <sys:String x:Key="LOCMoreAction">بیشتر</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePlugin">توسط افزونه کتابخانه مدیریت می شود</sys:String>
-    <sys:String x:Key="LOCPlayActionUsePluginTooltip">روند شروع بازی توسط افزونه کتابخانه مسئول این بازی مدیریت خواهد شد.</sys:String>
-    <sys:String x:Key="LOCMetadownloadNoResultsMessage">هیچ اطلاعات مرتبطی درباره بازی &quot;{0}&quot; در صفحه مشخص شده یافت نشد.</sys:String>
-    <sys:String x:Key="LOCMetadownloadSingleGameTip">نکته: میتوانید هنگام ویرایش پیشرفته یک بازی از طریق گزینه &quot;ویرایش&quot;، از فرآیند بارگیری فوق داده استفاده کنید.</sys:String>
-    <sys:String x:Key="LOCProgreessAvailabilityMessage">در حال انجام عملیات برخی از اقدامات در دسترس نیست.</sys:String>
-    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">متن توضیحات به نحو HTML حساس است</sys:String>
-    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">زمان بازی در چند ثانیه ثبت می شود.</sys:String>
-    <sys:String x:Key="LOCDescriptionSizeBytes">اندازه نصب بر حسب بایت نشان داده شده است.</sys:String>
-    <sys:String x:Key="LOCReleaseDateTooltip">تاریخ انتشار باید در قالب &quot;سال-ماه-روز&quot; تعیین شود. مقادیر ماه و روز را می توان حذف کرد.</sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues">مقادیر 0 تا 100 یا خالی از امتیاز.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage">برنامه نویسی Playnite توسط این حامیان و اعضای Ko-fi حمایت می شود :</sys:String>
-    <sys:String x:Key="LOCAboutContributorsMessage">کد، ترجمه برنامه و سایر همکاران به ترتیب خاص:</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringAskTitle">نظارت بر بازی لغو شود؟</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringSetupAsk">نظارت بر نصب در حال اجرا است. آیا می خواهید روند را لغو کرده و بازی را به حالت قبلی برگردانید؟</sys:String>
-    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">نظارت بر اجرای بازی در حال اجرا است. آیا روند را لغو شده و بازی را به حالت قبلی برگردانید؟</sys:String>
-    <sys:String x:Key="LOCTimePlayed">زمان بازی</sys:String>
-    <sys:String x:Key="LOCLastPlayed">آخرین بازی شده</sys:String>
-    <sys:String x:Key="LOCPlayedDays">{0}ر {1}س {2}م</sys:String>
-    <sys:String x:Key="LOCPlayedHours">{0}س {1}د</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePlugin">به دست افزایه‌ٔ کتابخانه مدیریت می‌شود</sys:String>
+    <sys:String x:Key="LOCPlayActionUsePluginTooltip">فرایند راه‌اندازی بازی به دست افزایهٔ کتابخانه مسئول این بازی مدیریت خواهد شد.</sys:String>
+    <sys:String x:Key="LOCMetadownloadNoResultsMessage">هیچ اطلاعات مرتبطی دربارهٔ بازی &quot;{0}&quot; در برگهٔ مشخص‌شده یافت نشد.</sys:String>
+    <sys:String x:Key="LOCMetadownloadSingleGameTip">نکته: می‌توانید هنگام ویرایش پیشرفتهٔ یک بازی از طریق گزینهٔ &quot;ویرایش&quot;، فرایند بارگیری فرادادهٔ پیشرفته‌تری را بکار ببرید.</sys:String>
+    <sys:String x:Key="LOCProgreessAvailabilityMessage">هنگام در جریان بودن یک کنش در دسترس نیست.</sys:String>
+    <sys:String x:Key="LOCDescriptionHTMLSupportTooltip">نوشتار توضیحات به نحو HTML حساس است</sys:String>
+    <sys:String x:Key="LOCDescriptionPlaytimeSeconds">زمان بازی به ثانیه ثبت می‌شود.</sys:String>
+    <sys:String x:Key="LOCDescriptionSizeBytes">اندازهٔ نصب به بایت نشان داده شده است.</sys:String>
+    <sys:String x:Key="LOCReleaseDateTooltip">تاریخ انتشار باید در چارچوب &quot;سال-ماه-روز&quot; نشانده شود. ارزش‌های ماه و روز را می‌توان زدود.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">ارزش‌ها از ۰ تا ۱۰۰ یا تهی از امتیاز.</sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">توسعهٔ Playnite به دست این پشتیبانان و عضو‌های Ko-fi پشتیبانی می‌شود:</sys:String>
+    <sys:String x:Key="LOCAboutContributorsMessage">کد، بومی‌سازی و دیگر کمک‌کنندگان بدون چیدمان مشخص:</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringAskTitle">لغو پایش بازی؟</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringSetupAsk">پایش نصب هم‌اکنون دارد اجرا می‌شود. آیا می‌خواهید فرایند را لغو کرده و بازی را به حالت پیشین برگردانید؟</sys:String>
+    <sys:String x:Key="LOCCancelMonitoringExecutionAsk">پایش اجرای بازی هم‌اکنون دارد اجرا می‌شود. آیا می‌خواهید فرایند را لغو کرده و بازی را به حالت پیشین برگردانید؟</sys:String>
+    <sys:String x:Key="LOCTimePlayed">زمان بازی‌شده</sys:String>
+    <sys:String x:Key="LOCLastPlayed">آخرین بازی‌شده</sys:String>
+    <sys:String x:Key="LOCPlayedDays">{0} روز {1} ساعت {2} دقیقه</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0} ساعت {1} دقیقه</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} دقیقه</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} ثانیه</sys:String>
-    <sys:String x:Key="LOCPlayedNone">بازی نشده</sys:String>
-    <sys:String x:Key="LOCOpeningDesktopModeMessage">بازکردن حالت دسکتاپ...</sys:String>
-    <sys:String x:Key="LOCOpeningFullscreenModeMessage">بازکردن حالت تمام صفحه...</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase">بارگذاری کتابخانه بازی...</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage">محاسبه اندازه نصب...</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">محاسبه اندازه نصب از {0}...</sys:String>
-    <sys:String x:Key="LOCScriptInstallFail">عدم موفقیت در نصب ماژول.</sys:String>
-    <sys:String x:Key="LOCScriptInstallSuccess">ماژول (اسکرپیت) به درستی نصب شد.</sys:String>
+    <sys:String x:Key="LOCPlayedNone">بازی‌نشده</sys:String>
+    <sys:String x:Key="LOCOpeningDesktopModeMessage">گشودن حالت دسکتاپ...</sys:String>
+    <sys:String x:Key="LOCOpeningFullscreenModeMessage">گشودن حالت تمام‌صفحه...</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase">بار کردن کتابخانهٔ بازی...</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">برآورد اندازهٔ نصب...</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">برآورد اندازهٔ نصب از {0}...</sys:String>
+    <sys:String x:Key="LOCScriptInstallFail">ناکامی در نصب پروندهٔ اسکریپت.</sys:String>
+    <sys:String x:Key="LOCScriptInstallSuccess">اسکریپت پیروزمندانه نصب شد.</sys:String>
     <sys:String x:Key="LOCInstallScript">نصب اسکرپیت</sys:String>
     <sys:String x:Key="LOCScriptError">خطای اسکریپت</sys:String>
-    <sys:String x:Key="LOCScriptExecutionError">عملکرد برنامه افزودنی انجام نشد.</sys:String>
-    <sys:String x:Key="LOCOpenMetadataFolder">پوشه ابرداده را باز کنید</sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculate">محاسبه</sys:String>
-    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">به طور خودکار اندازه نصب را با استفاده از رام‌ها محاسبه می‌کند، اگر بازی وجود داشته باشد یا دایرکتوری نصب اگر تنظیم شده باشد</sys:String>
-    <sys:String x:Key="LOCClientNotInstalledError">{0} مشتری نصب نشده است.</sys:String>
-    <sys:String x:Key="LOCSignInExternalNotif">{0} مشتری اکنون باز خواهد شد. لطفا وارد سیستم شوید و این پیام را ببندید.</sys:String>
-    <sys:String x:Key="LOCSignInExternalWaitMessage">منتظر ورود کاربر هستید، لطفاً این کار را ببندید...</sys:String>
-    <sys:String x:Key="LOCInstallDirNotFoundError">محل نصب بازی یافت نشد.</sys:String>
-    <sys:String x:Key="LOCInvalidGameActionSettings">پیکربندی عملکرد بازی نامعتبر است.</sys:String>
-    <sys:String x:Key="LOCTroubleShootingAccountLink">عیب یابی مشکلات همگام سازی حساب</sys:String>
-    <sys:String x:Key="LOCTroubleShootingIssues">عیب یابی مشکلات</sys:String>
-    <sys:String x:Key="LOCRenameItem">تغییر نام آیتم</sys:String>
-    <sys:String x:Key="LOCAddNewItem">افزودن مورد جدید</sys:String>
+    <sys:String x:Key="LOCScriptExecutionError">ناکامی در اجرای کارکرد افزونه.</sys:String>
+    <sys:String x:Key="LOCOpenMetadataFolder">گشودن پوشهٔ فراداده</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculate">برآورد</sys:String>
+    <sys:String x:Key="LOCInstallSizeCalculateEditButtonTooltip">اگر بازی ROMی دارد یا مسیر نصبی نشانده شده است، خودکارانه اندازهٔ نصب را با به‌کارگیری آن برآورد می‌کند.</sys:String>
+    <sys:String x:Key="LOCClientNotInstalledError">{0} کلاینت نصب نشده است.</sys:String>
+    <sys:String x:Key="LOCSignInExternalNotif">{0} کلاینت اکنون گشوده خواهد شد. لطفا درون شوید و سپس این پیام را ببندید.</sys:String>
+    <sys:String x:Key="LOCSignInExternalWaitMessage">در انتظار درون شدن کاربر، لطفا این را پس از انجام ببندید...</sys:String>
+    <sys:String x:Key="LOCInstallDirNotFoundError">مکان نصب بازی یافت نشد.</sys:String>
+    <sys:String x:Key="LOCInvalidGameActionSettings">پیکربندی کنش بازی نامعتبر است.</sys:String>
+    <sys:String x:Key="LOCTroubleShootingAccountLink">عیب‌یابی مشکل‌های همگام‌سازی حساب</sys:String>
+    <sys:String x:Key="LOCTroubleShootingIssues">عیب‌یابی مشکل‌ها</sys:String>
+    <sys:String x:Key="LOCRenameItem">بازنامگذاری آیتم</sys:String>
+    <sys:String x:Key="LOCAddNewItem">افزودن آیتم نو</sys:String>
     <sys:String x:Key="LOCEnterName">نام را وارد کنید</sys:String>
-    <sys:String x:Key="LOCEnterNewName">نام جدید را وارد کنید</sys:String>
+    <sys:String x:Key="LOCEnterNewName">نام نو را وارد کنید</sys:String>
     <sys:String x:Key="LOCPLaytimeLessThenAnHour">کمتر از یک ساعت</sys:String>
-    <sys:String x:Key="LOCPLaytime1to10">1 تا 10 ساعت</sys:String>
-    <sys:String x:Key="LOCPLaytime10to100">10 تا 100 ساعت</sys:String>
-    <sys:String x:Key="LOCPLaytime100to500">100 تا 500 ساعت</sys:String>
-    <sys:String x:Key="LOCPLaytime500to1000">500 تا 1000 ساعت</sys:String>
-    <sys:String x:Key="LOCPLaytime1000plus">+١٠٠٠</sys:String>
-    <sys:String x:Key="LOCExtInstallationRestartNotif">برای تکمیل نصب، Playnite باید دوباره راه اندازی شود. آیا می خواهید اکنون انجام شود؟</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionPackageError">برنامه افزودنی به درستی بسته بندی نشده است.</sys:String>
-    <sys:String x:Key="LOCGeneralThemePackageError">پوسته به درستی بسته بندی نشده است.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadError">برنامه افزودنی &quot;{0}&quot; به درستی بارگذاری نشد.</sys:String>
-    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">افزونه &quot;{0}&quot; بارگیری نشد، نسخه فعلی Playnite پشتیبانی نمی شود.</sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadError">طرح زمینه &quot;{0}&quot; به درستی بارگذاری نشد.</sys:String>
-    <sys:String x:Key="LOCSpecificThemeLoadSDKError">تم &quot;{0}&quot; بارگیری نشد، نسخه فعلی Playnite پشتیبانی نمی شود.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionLoadError">برنامه افزودنی به درستی بارگذاری نشد.</sys:String>    
-    <sys:String x:Key="LOCGeneralThemeLoadError">طرح زمینه به درستی بارگیری نشد.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">تم/افزونه از نسخه API پشتیبانی نشده استفاده می کند.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">نصب موفقیت آمیز بود.</sys:String>
-    <sys:String x:Key="LOCGeneralExtensionInstallTitle">نصب افزونه؟</sys:String>
+    <sys:String x:Key="LOCPLaytime1to10">۱ تا ۱۰ ساعت</sys:String>
+    <sys:String x:Key="LOCPLaytime10to100">۱۰ تا ۱۰۰ ساعت</sys:String>
+    <sys:String x:Key="LOCPLaytime100to500">۱۰۰ تا ۵۰۰ ساعت</sys:String>
+    <sys:String x:Key="LOCPLaytime500to1000">۵۰۰ تا ۱۰۰۰ ساعت</sys:String>
+    <sys:String x:Key="LOCPLaytime1000plus">بیشتر از ۱۰۰۰ ساعت</sys:String>
+    <sys:String x:Key="LOCExtInstallationRestartNotif">برای تکمیل کردن نصب Playnite باید بازراه‌اندازی شود. آیا می‌خواهید اکنون انجام شود؟</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionPackageError">افزونه به درستی بسته‌بندی نشده است.</sys:String>
+    <sys:String x:Key="LOCGeneralThemePackageError">زمینه به درستی بسته‌بندی نشده است.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadError">افزونهٔ «{0}» به درستی بار نشد.</sys:String>
+    <sys:String x:Key="LOCSpecificExtensionLoadSDKError">نمی‌توان افزونهٔ «{0}» را بار کرد، نسخهٔ کنونی Playnite پشتیبانی نمی‌شود.</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadError">ناکامی در درست بار کردن زمینهٔ «{0}».</sys:String>
+    <sys:String x:Key="LOCSpecificThemeLoadSDKError">نمی‌توان زمینهٔ «{0}» را بار کرد، نسخهٔ کنونی Playnite پشتیبانی نمی‌شود.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionLoadError">ناکامی در درست بار کردن افزونه.</sys:String>    
+    <sys:String x:Key="LOCGeneralThemeLoadError">ناکامی در درست بار کردن زمینه.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">زمینه/افزونه نسخهٔ اِی.پی.آی پشتیبانی‌نشده‌ای را بکار می‌برد.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallSuccess">نصب پیروزمندانه بود.</sys:String>
+    <sys:String x:Key="LOCGeneralExtensionInstallTitle">نصب برافزا؟</sys:String>
     <sys:String x:Key="LOCExtensionGeneric">عمومی</sys:String>
-    <sys:String x:Key="LOCAddonInstallFaild">نصب افزونه &quot;{0}&quot; ناموفق بود.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">برنامه افزودنی نصب نشد.
+    <sys:String x:Key="LOCAddonInstallFaild">ناکامی در نصب برافزای «{0}».</sys:String>
+    <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">ناکامی در نصب افزونه.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">آیا می خواهید افزونه جدیدی نصب کنید؟
+    <sys:String x:Key="LOCExtensionInstallPrompt" xml:space="preserve">آیا می‌خواهید افزونهٔ نویی نصب کنید؟
 
 {0}
 توسط {1}
-نسخه {2}</sys:String>
-    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">آیا می خواهید برنامه افزودنی &quot;{0}&quot; را به روز کنید؟
+نسخهٔ {2}</sys:String>
+    <sys:String x:Key="LOCExtensionUpdatePrompt" xml:space="preserve">آیا می‌خواهید افزونهٔ «{0}» را به‌روزرسانید؟
 
-نسخه فعلی: {1}
-نسخه جدید: {2}</sys:String>
-    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">موفق به نصب زمینه نشد
+نسخهٔ کنونی: {1}
+نسخهٔ نو: {2}</sys:String>
+    <sys:String x:Key="LOCThemeInstallFail" xml:space="preserve">ناکامی در نصب زمینه.
 
 {0}</sys:String>
-    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">آیا می خواهید یک طرح زمینه جدید نصب کنید؟
+    <sys:String x:Key="LOCThemeInstallPrompt" xml:space="preserve">آیا می‌خواهید زمینهٔ نویی نصب کنید؟
 
 {0}
 توسط {1}
-نسخه {2}</sys:String>
-    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">آیا می خواهید طرح زمینه &quot;{0}&quot; را به روز کنید؟
+نسخهٔ {2}</sys:String>
+    <sys:String x:Key="LOCThemeUpdatePrompt" xml:space="preserve">آیا می‌خواهید زمینهٔ «{0}» را به‌روزرسانید؟
 
-نسخه فعلی: {1}
-نسخه جدید: {2}</sys:String>
-    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">شما در حال ترک Playnite هستید و با استفاده از مرورگر وب پیش فرض خود به صفحه وب زیر بروید. می خواهید ادامه دهید؟
+نسخهٔ کنونی: {1}
+نسخهٔ نو: {2}</sys:String>
+    <sys:String x:Key="LOCUrlNavigationMessage" xml:space="preserve">شما در حال بیرون رفتن از Playnite و رفتن به وبگاه زیر با مرورگر پیش‌فرض خود می‌باشید. آیا می‌خواهید ادامه دهید؟
 
 {0}</sys:String>
-    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">ممکن است تصویر (های) انتخاب شده برای عملکرد بهینه بیش از حد بزرگ باشد. استفاده از تصاویر بسیار بزرگ می تواند منجر به واکنش بدتر رابط و افزایش استفاده از حافظه شود.
+    <sys:String x:Key="LOCGameImageSizeWarning" xml:space="preserve">تصویر(های) برگزیده شاید برای کارایی بهینه بیش از اندازه بزرگ باشند. به‌کارگیری تصویرهای بسیار بزرگ می‌تواند باعث واکنش‌پذیری بدتر میانای کاربری و افزایش مصرف حافظه شود.
 
-حداکثر رزولوشن توصیه شده:
-آیکون ها: {0} مگاپیکسل
-کاور ها: {1} مگاپیکسل
-پس زمینه ها: {2} مگاپیکسل</sys:String>
-    <sys:String x:Key="LOCPerformanceWarningTitle">هشدار عملکرد</sys:String>
+بیشینه نسبت نمای پیشنهادی:
+نمادها: {0} مگاپیکسل
+کاورها: {1} مگاپیکسل
+پس‌زمینه‌ها: {2} مگاپیکسل</sys:String>
+    <sys:String x:Key="LOCPerformanceWarningTitle">هشدار کارایی</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">دوباره نمایش نده</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">فایل با پسوند {0} سازگار نیست.</sys:String>
-    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">پسوند فایل ناسازگار است</sys:String>
-    <sys:String x:Key="LOCLargeMediaWarningTooltip">ممکن است تصویر انتخابی برای عملکرد بهینه بسیار بزرگ باشد.</sys:String>
-    <sys:String x:Key="LOCThemeUninstallQuestion">آیا مطمئن هستید که می خواهید پوسته انتخاب شده را حذف نصب کنید؟ حذف نصب برای شروع برنامه بعدی در صف قرار می گیرد.</sys:String>
-    <sys:String x:Key="LOCThemeBuiltInUninstallHint">تم های داخلی را نمی توان حذف نصب کرد.</sys:String>
-    <sys:String x:Key="LOCThemeUnsupported">این طرح زمینه از این نسخه Playnite پشتیبانی نمی کند.</sys:String>
-    <sys:String x:Key="LOCExtensionUninstallQuestion">آیا مطمئن هستید که می خواهید افزونه انتخاب شده را حذف نصب کنید؟ حذف نصب برای شروع برنامه بعدی در صف قرار می گیرد.</sys:String>
-    <sys:String x:Key="LOCExtensionBuiltInUninstallHint">برنامه های افزودنی داخلی نمی توانند حذف نصب شوند.</sys:String>
-    <sys:String x:Key="LOCExtensionUnsupported">این برنامه افزودنی از این نسخه Playnite پشتیبانی نمی کند.</sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir">محل نصب کردن</sys:String>
-    <sys:String x:Key="LOCExtensionDataDir">محل داده</sys:String>
-    <sys:String x:Key="LOCDiagGenerating">در حال تولید بسته تشخیصی…</sys:String>
-    <sys:String x:Key="LOCDiagUploading">در حال آپلود بسته تشخیصی…</sys:String>
-    <sys:String x:Key="LOCAddFromExe">واردات فایل…</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">پرونده با پسوند {0} سازگار نیست.</sys:String>
+    <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">پسوند پرونده ناسازگار است</sys:String>
+    <sys:String x:Key="LOCLargeMediaWarningTooltip">تصویر برگزیده شاید برای کارایی بهینه بیش از اندازه بزرگ باشد.</sys:String>
+    <sys:String x:Key="LOCThemeUninstallQuestion">آیا مطمئنید که می‌خواهید زمینهٔ برگزیده را حذف نصب کنید؟ حذف نصب در صف برای اجرا در راه‌اندازی بعدی برنامه گذاشته خواهد شد.</sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint">زمینه‌های درون‌ساخته را نمی‌توان حذف نصب کرد.</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">این زمینه نسخهٔ کنونی Playnite را پشتیبانی نمی‌کند.</sys:String>
+    <sys:String x:Key="LOCExtensionUninstallQuestion">آیا مطمئنید که می‌خواهید افزونهٔ برگزیده را حذف نصب کنید؟ حذف نصب در صف برای اجرا در راه‌اندازی بعدی برنامه گذاشته خواهد شد.</sys:String>
+    <sys:String x:Key="LOCExtensionBuiltInUninstallHint">افزونه‌های درون‌ساخته را نمی‌توان حذف نصب کرد.</sys:String>
+    <sys:String x:Key="LOCExtensionUnsupported">این افزونه نسخهٔ کنونی Playnite را پشتیبانی نمی‌کند.</sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">پوشهٔ نصب</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">پوشهٔ داده</sys:String>
+    <sys:String x:Key="LOCDiagGenerating">زایش بستهٔ تشخیصی…</sys:String>
+    <sys:String x:Key="LOCDiagUploading">بارگذاری بستهٔ تشخیصی…</sys:String>
+    <sys:String x:Key="LOCAddFromExe">درون‌برد پرونده…</sys:String>
     <sys:String x:Key="LOCWhatIsThis">این چیست؟</sys:String>
-    <sys:String x:Key="LOCConfirumationAskGeneric">آیا مطمئنید که می خواهید این کار را انجام دهید؟</sys:String>
-    <sys:String x:Key="LOCStatsTotalPlayTime">ساعت بازی کل</sys:String>
-    <sys:String x:Key="LOCStatsAvaragePlayTime">میانگین ساعت بازی</sys:String>
-    <sys:String x:Key="LOCStatsTopPlayTime">بهترین زمان بازی</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize">اندازه کل نصب</sys:String>
+    <sys:String x:Key="LOCConfirumationAskGeneric">آیا مطمئنید که می‌خواهید این کار را انجام دهید؟</sys:String>
+    <sys:String x:Key="LOCStatsTotalPlayTime">زمان بازی کل</sys:String>
+    <sys:String x:Key="LOCStatsAvaragePlayTime">میانگین زمان بازی</sys:String>
+    <sys:String x:Key="LOCStatsTopPlayTime">بیشترین زمان بازی</sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">اندازهٔ کل نصب</sys:String>
     <sys:String x:Key="LOCOverviewLabel">نمای کلی</sys:String>
-    <sys:String x:Key="LOCSidebar">نوار جانبی</sys:String>
+    <sys:String x:Key="LOCSidebar">نوار کناری</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar">نمایش در نوار کناری</sys:String>
-    <sys:String x:Key="LOCSettingsReset">بازنشانی تنظیمات</sys:String>
-    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">همه تنظیمات برنامه به مقادیر پیش فرض بازنشانی می شوند ، به استثنای:
+    <sys:String x:Key="LOCSettingsReset">بازنشاندن تنظیمات</sys:String>
+    <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve">همهٔ تنظیمات برنامه به ارزش‌های پیش‌فرض بازگردانده می‌شوند، به جز:
 - مکان پایگاه داده
-- وارد کردن لیست حذف
-- تنظیمات افزونه ، از جمله ادغام کتابخانه
+- فهرست برون‌داشت درون‌برد
+- تنظیمات افزونه، همچون یکپارچه‌سازی کتابخانه
     
-برای اتمام فرآیند ، راه اندازی مجدد برنامه مورد نیاز است. آیا می خواهید تنظیمات را بازنشانی کنید؟</sys:String>
+برای پایان دادن به فرایند، برنامه به بازراه‌اندازی نیاز دارد. آیا می‌خواهید تنظیمات را بازگردانید؟</sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers">برای توسعه‌دهندگان</sys:String>
-    <sys:String x:Key="LOCSettingsExternalExtensions">افزودنی خارجی</sys:String>
+    <sys:String x:Key="LOCSettingsExternalExtensions">افزونه‌های برونی</sys:String>
     <sys:String x:Key="LOCSettingsNewExternalExtensionBox">مسیر کامل پوشه را وارد کنید</sys:String>    
     <!--Common Library-->
     <sys:String x:Key="LOCCommonLinksAchievements">دستاوردها</sys:String>
     <sys:String x:Key="LOCCommonLinksForum">انجمن</sys:String>
-    <sys:String x:Key="LOCCommonLinksNews">اخبار</sys:String>
-    <sys:String x:Key="LOCCommonLinksStorePage">صفحه فروشگاه</sys:String>
-    <sys:String x:Key="LOCFullscreenFirstTimeError">تنظیم اولیه کامل نیست. اکنون Playnite مجدداً در حالت دسکتاپ راه اندازی می شود تا مراحل کار تمام شود.</sys:String>
-    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">اخیرا بازی شده</sys:String>
-    <sys:String x:Key="LOCQuickFilterFavorites">برگزیده‌ها</sys:String>
-    <sys:String x:Key="LOCQuickFilterMostPlayed">بیشترین بازی شده</sys:String>
+    <sys:String x:Key="LOCCommonLinksNews">خبرها</sys:String>
+    <sys:String x:Key="LOCCommonLinksStorePage">برگهٔ فروشگاه</sys:String>
+    <sys:String x:Key="LOCFullscreenFirstTimeError">تنظیمات آغازین کامل نیست. اکنون Playnite در حالت رایانه بازراه‌اندازی می‌شود تا رویه پایان یابد.</sys:String>
+    <sys:String x:Key="LOCQuickFilterRecentlyPlayed">اخیرا بازی‌شده</sys:String>
+    <sys:String x:Key="LOCQuickFilterFavorites">دلخواه‌ها</sys:String>
+    <sys:String x:Key="LOCQuickFilterMostPlayed">بیشترین بازی‌شده</sys:String>
     <sys:String x:Key="LOCQuickFilterAllGames">همه</sys:String>
-    <sys:String x:Key="LOCGameListFiltered">فیلترهای اعمال شده وجود دارد.</sys:String>
-    <sys:String x:Key="LOCGameListExtraFiltered">فیلترهای اضافی اعمال شده است.</sys:String>
-    <sys:String x:Key="LOCGameListSearchResults">نتایج جستجو برای:</sys:String>
-    <sys:String x:Key="LOCItemAlreadyExists">یک مورد با همین نام در حال حاضر وجود دارد.</sys:String>
-    <sys:String x:Key="LOCRandomGameLimistToFilter">انتخاب را به فیلتر فعلی محدود کنید</sys:String>
-    <sys:String x:Key="LOCRandomGamePickAnother">انتخاب دیگری</sys:String>
-    <sys:String x:Key="LOCMenuAddons">افزونه…</sys:String>
-    <sys:String x:Key="LOCExtensionsInstalled">نصب شد</sys:String>
-    <sys:String x:Key="LOCExtensionsSettings">ساماندهی افزونه‌ها</sys:String>
+    <sys:String x:Key="LOCGameListFiltered">پالایه‌هایی به کار بسته شده‌اند.</sys:String>
+    <sys:String x:Key="LOCGameListExtraFiltered">پالایه‌های بیشتری به کار بسته شده‌اند.</sys:String>
+    <sys:String x:Key="LOCGameListSearchResults">نمایش نتیجه‌های جستجو برای:</sys:String>
+    <sys:String x:Key="LOCItemAlreadyExists">آیتمی با همین نام هم‌اکنون وجود دارد.</sys:String>
+    <sys:String x:Key="LOCRandomGameLimistToFilter">محدود کردن گزینش به پالایهٔ کنونی</sys:String>
+    <sys:String x:Key="LOCRandomGamePickAnother">گزینش دیگری</sys:String>
+    <sys:String x:Key="LOCMenuAddons">برافزاها…</sys:String>
+    <sys:String x:Key="LOCExtensionsInstalled">نصب‌شده</sys:String>
+    <sys:String x:Key="LOCExtensionsSettings">تنظیمات افزونه‌ها</sys:String>
     <sys:String x:Key="LOCExtensionsBrowse">مرور</sys:String>
-    <sys:String x:Key="LOCExtensionsUpdates">به روز رسانیها</sys:String>
-    <sys:String x:Key="LOCExtensionsUpdatesCount">به روز رسانیها ({0})</sys:String>
-    <sys:String x:Key="LOCAddonsConfigMoveInfo">مدیریت افزونه ها و تم های نصب شده ، از جمله تنظیمات آنها ، به منوی جدید &quot;افزودنی ها&quot; منتقل شده است.</sys:String>
-    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">همه افزونه های یکپارچه سازی کتابخانه ای که در حال حاضر نصب شده اند را می توان در اینجا پیکربندی کرد.
+    <sys:String x:Key="LOCExtensionsUpdates">به‌روزرسانی‌ها</sys:String>
+    <sys:String x:Key="LOCExtensionsUpdatesCount">({0}) به‌روزرسانی</sys:String>
+    <sys:String x:Key="LOCAddonsConfigMoveInfo">مدیریت افزونه‌ها و زمینه‌های نصب‌شده، همچون تنظیمات آنها، به گزینگان نوی «برافزاها» جابه‌جا شده است.</sys:String>
+    <sys:String x:Key="LOCLibrariesConfigWindowDescription" xml:space="preserve">همهٔ افزونه‌های یکپارچه‌سازی کتابخانه که هم‌اکنون نصب‌شده‌اند را می‌توان در اینجا پیکربندی کرد.
 
-اگر می خواهید یکپارچگی های اضافی را نصب یا حذف کنید ، از گزینه &quot;افزونه&quot; از منوی اصلی استفاده کنید.</sys:String>
-    <sys:String x:Key="LOCAddonsThemesDesktop">تم دسکتاپ</sys:String>
-    <sys:String x:Key="LOCAddonsThemesFullscren">تم های تمام صفحه</sys:String>
+اگر می‌خواهید یکپارچگی‌های بیشتری نصب یا حذف نصب کنید، گزینهٔ «برافزا» از گزینگان اصلی را به کار ببرید.</sys:String>
+    <sys:String x:Key="LOCAddonsThemesDesktop">زمینهٔ رایانه</sys:String>
+    <sys:String x:Key="LOCAddonsThemesFullscren">زمینه‌های تمام‌صفحه</sys:String>
     <sys:String x:Key="LOCAddonsSearching">در حال جستجو…</sys:String>
-    <sys:String x:Key="LOCAddonErrorNotCompatible">افزونه با این نسخه از Playnite سازگار نیست.</sys:String>
-    <sys:String x:Key="LOCAddonErrorDownloadFailed">بسته نصب افزونه بارگیری نشد.</sys:String>
-    <sys:String x:Key="LOCAddonErrorManifestDownloadError">اعلامیه نصب افزونه بارگیری نشد.</sys:String>
-    <sys:String x:Key="LOCAddonChangesRestart">راه اندازی مجدد برنامه برای اعمال تغییرات در انتظار است.</sys:String>
-    <sys:String x:Key="LOCAddonQueuedForInstall">این افزونه برای نصب برنامه ریزی شده است.</sys:String>
+    <sys:String x:Key="LOCAddonErrorNotCompatible">برافزا با این نسخه از Playnite سازگار نیست.</sys:String>
+    <sys:String x:Key="LOCAddonErrorDownloadFailed">ناکامی در بارگیری بستهٔ نصب برافزا.</sys:String>
+    <sys:String x:Key="LOCAddonErrorManifestDownloadError">ناکامی در بارگیری اعلامیهٔ نصب برافزا.</sys:String>
+    <sys:String x:Key="LOCAddonChangesRestart">بازراه‌اندازی برنامه برای به‌کاربندی دگرش‌های در دست انجام نیاز است.</sys:String>
+    <sys:String x:Key="LOCAddonQueuedForInstall">این برافزا برای نصب زمان‌بندی شده است.</sys:String>
     <sys:String x:Key="LOCAddonInstall">نصب</sys:String>
     <sys:String x:Key="LOCAddonUninstall">حذف نصب</sys:String>
-    <sys:String x:Key="LOCAddonAlreadyInstalled">قبلا نصب شده</sys:String>
-    <sys:String x:Key="LOCAddonNoAddonsAvailable">هیچ به‌روزرسانی افزودنی جدیدی یافت نشد.</sys:String>
-    <sys:String x:Key="LOCAddonUpdateAddons">افزونه ها را به روز کنید</sys:String>
-    <sys:String x:Key="LOCAddonChangelogNotAvailavble">گزارش تغییرات در دسترس نیست</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">برای نصب برنامه ریزی شده است</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusFailed">دانلود ناموفق</sys:String>
-    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">مجوز رد شد</sys:String>
-    <sys:String x:Key="LOCAddonDownloadingAddon">دانلود {0}…</sys:String>
-    <sys:String x:Key="LOCAddonLookingForUpdates">در حال جستجو برای به روز رسانی های اضافی…</sys:String>
-    <sys:String x:Key="LOCAddonUpdatesAvailable">یک یا چند به روزرسانی اضافی در دسترس است.</sys:String>
-    <sys:String x:Key="LOCAddonSelectToUpdate">مواردی را برای به روزرسانی انتخاب کنید</sys:String>
-    <sys:String x:Key="LOCAddonDevReferenceLoaded">نمونه توسعه افزونه</sys:String>
-    <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} قرارداد مجوز</sys:String>
+    <sys:String x:Key="LOCAddonAlreadyInstalled">هم‌اکنون نصب‌شده است</sys:String>
+    <sys:String x:Key="LOCAddonNoAddonsAvailable">هیچ به‌روزرسانی نویی برای برافزا یافت نشد.</sys:String>
+    <sys:String x:Key="LOCAddonUpdateAddons">به‌روزرسانی برافزاها</sys:String>
+    <sys:String x:Key="LOCAddonChangelogNotAvailavble">گزارش دگرش‌ها در دسترس نیست</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusDownloaded">زمان‌بندی‌شده برای نصب</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusFailed">ناکامی در بارگیری</sys:String>
+    <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">پروانه رد شد</sys:String>
+    <sys:String x:Key="LOCAddonDownloadingAddon">بارگیری {0}…</sys:String>
+    <sys:String x:Key="LOCAddonLookingForUpdates">به دنبال به‌روزرسانی‌های برافزا…</sys:String>
+    <sys:String x:Key="LOCAddonUpdatesAvailable">یک یا چند به‌روزرسانی افزایه در دسترس است.</sys:String>
+    <sys:String x:Key="LOCAddonSelectToUpdate">موردها را برای به‌روزرسانی برگزینید</sys:String>
+    <sys:String x:Key="LOCAddonDevReferenceLoaded">نمونهٔ توسعهٔ افزونه</sys:String>
+    <sys:String x:Key="LOCAddonLicenseWindowTitle">{0} قرارداد پروانه</sys:String>
     <sys:String x:Key="LOCLicenseAccept">پذیرفتن</sys:String>
-    <sys:String x:Key="LOCLicenseDecline">رد کردن</sys:String>
-    <sys:String x:Key="LOCIncludePluginGameActions">شامل اقدامات بازی ادغام کتابخانه</sys:String>
-    <sys:String x:Key="LOCSelectActionTitle">انتخاب عمل</sys:String>
+    <sys:String x:Key="LOCLicenseDecline">نپذیرفتن</sys:String>
+    <sys:String x:Key="LOCIncludePluginGameActions">یکپارچه‌سازی کتابخانهٔ کنش‌های آغاز را در بر می‌گیرد</sys:String>
+    <sys:String x:Key="LOCSelectActionTitle">گزینش کنش</sys:String>
     <sys:String x:Key="LOCActionTrackingMode">حالت ردیابی</sys:String>
     <sys:String x:Key="LOCActionTrackingPath">مسیر ردیابی</sys:String>
-    <sys:String x:Key="LOCActionTrackingTrackingDelay">تاخیر ردیابی اولیه</sys:String>
-    <sys:String x:Key="LOCActionTrackingFrequency">فرکانس ردیابی</sys:String>
+    <sys:String x:Key="LOCActionTrackingTrackingDelay">دیرکرد ردیابی اولیه</sys:String>
+    <sys:String x:Key="LOCActionTrackingFrequency">بسامد ردیابی</sys:String>
     <sys:String x:Key="LOCGameActionTypeLink">پیوند</sys:String>
     <sys:String x:Key="LOCGameActionTypeFile">پرونده</sys:String>
-    <sys:String x:Key="LOCGameActionTypeEmulator">شبیه ساز</sys:String>
+    <sys:String x:Key="LOCGameActionTypeEmulator">شبیه‌ساز</sys:String>
     <sys:String x:Key="LOCGameActionTypeScript">اسکریپت</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDefault">پیش‌فرض</sys:String>
-    <sys:String x:Key="LOCActionTrackingModeProcess">فرایندها</sys:String>
+    <sys:String x:Key="LOCActionTrackingModeProcess">فرایند</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">پوشه</sys:String>
-    <sys:String x:Key="LOCActionTrackingOriginalProcess">پردازش واقعی</sys:String>
-    <sys:String x:Key="LOCDevelTraceLogEnable">ثبت پیام های ردیابی</sys:String>
-    <sys:String x:Key="LOCMultiEditOverwriteWarning">در پی تغییرات ، داده ها برای همه بازی های انتخاب شده در حال حاضر بازنویسی می شوند!</sys:String>    
+    <sys:String x:Key="LOCActionTrackingOriginalProcess">فرایند اصلی</sys:String>
+    <sys:String x:Key="LOCDevelTraceLogEnable">ثبت پیام‌های ردیابی</sys:String>
+    <sys:String x:Key="LOCMultiEditOverwriteWarning">دگرش‌های زیر دادهٔ همهٔ بازی‌هایی که هم‌اکنون برگزیده‌اند را بازنویسی می‌کند.</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">هیچ</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">یکنواخت</sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">فقط آیتم ها</sys:String>
-    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">شروع و پایان فقط</sys:String>
-    <sys:String x:Key="LOCScrollingSensitivity">حساسیت پیمایش گر</sys:String>
-    <sys:String x:Key="LOCSmoothScrolling">پیمایش صاف</sys:String>
-    <sys:String x:Key="LOCSmoothScrollingSpeed">سرعت انیمیشن</sys:String>
-    <sys:String x:Key="LOCAskRemoveItemTitle">حذف آیتم؟</sys:String>
-    <sys:String x:Key="LOCAskRemoveItemMessage">مطمئن هستید که می خواهید این آیتم را حذف کنید؟</sys:String>    
-    <sys:String x:Key="LOCSettingsTopPanelItems">نمایش دکمه ها در پانل بالا:</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeBetweenItemsOnly">تنها آیتم‌ها</sys:String>
+    <sys:String x:Key="LOCGridViewSpacingModeStartAndEndOnly">تنها آغاز و پایان</sys:String>
+    <sys:String x:Key="LOCScrollingSensitivity">حساسیت پیمایش‌گر</sys:String>
+    <sys:String x:Key="LOCSmoothScrolling">پیمایش نرم</sys:String>
+    <sys:String x:Key="LOCSmoothScrollingSpeed">تندی پویانمایی</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemTitle">برچیدن آیتم؟</sys:String>
+    <sys:String x:Key="LOCAskRemoveItemMessage">از برچیدن این آیتم مطمئنید؟</sys:String>    
+    <sys:String x:Key="LOCSettingsTopPanelItems">نمایش دکمه‌ها در پهنهٔ بالایی:</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelGeneralViewItem">تنظیمات نمای کلی</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">تنظیمات گروه بندی</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelSortingItem">تنظیمات مرتب سازی</sys:String>
-    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">فیلتر از پیش تنظیم</sys:String>
-    <sys:String x:Key="LOCTopPanelPluginPanelPosition">موقعیت آیتم های افزونه</sys:String>
-    <sys:String x:Key="LOCTopPanelSeparatorWidth">عرض جداکننده بخش</sys:String>
-    <sys:String x:Key="LOCTopPanelMainButtonMove">دکمه منوی اصلی را به نوار کناری منتقل کنید</sys:String>
-    <sys:String x:Key="LOCTopPanelExplorerSwitch">صفحه مرورگر</sys:String>
-    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">انتخاب کننده تصادفی بازی</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">نمایش انتخاب تصادفی بازی</sys:String>
-    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">بازی تصادفی را از نما انتخاب کنید</sys:String>
-    <sys:String x:Key="LOCFilterPresetSaveViewOptions">تنظیمات گروه بندی و مرتب سازی را ذخیره کنید</sys:String>
-    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">نمایش به عنوان فیلتر سریع در حالت تمام صفحه</sys:String>
-    <sys:String x:Key="LOCInPast7Days">در 7 روز گذشته</sys:String>
-    <sys:String x:Key="LOCInPast31Days">در 31 روز گذشته</sys:String>
-    <sys:String x:Key="LOCInPast365Days">در 365 روز گذشته</sys:String>
-    <sys:String x:Key="LOCMoreThan365DaysAgo">بیش از 365 روز پیش</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelGroupingItem">تنظیمات گروه‌بندی</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelSortingItem">تنظیمات چینش</sys:String>
+    <sys:String x:Key="LOCSettingsTopPanelFilterPresetsItem">پیش‌نشانده‌های پالایه</sys:String>
+    <sys:String x:Key="LOCTopPanelPluginPanelPosition">موقعیت آیتم‌های افزایه</sys:String>
+    <sys:String x:Key="LOCTopPanelSeparatorWidth">پهنای جداکنندهٔ بخش</sys:String>
+    <sys:String x:Key="LOCTopPanelMainButtonMove">بردن دکمهٔ فهرست اصلی به نوار کناری</sys:String>
+    <sys:String x:Key="LOCTopPanelExplorerSwitch">پهنهٔ کاوشگر</sys:String>
+    <sys:String x:Key="LOCTopPanelSelectRandomGameButton">گزینش‌گر بازی تصادفی</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButton">نمایش گزینش‌گر بازی تصادفی</sys:String>
+    <sys:String x:Key="LOCTopPanelViewSelectRandomGameButtonTooltip">بازی تصادفی را از نما برمی‌گزیند</sys:String>
+    <sys:String x:Key="LOCFilterPresetSaveViewOptions">ذخیره‌سازی تنظیمات گروه‌بندی و چینش</sys:String>
+    <sys:String x:Key="LOCFilterPresetShowOnFSTopPanel">نمایش به‌عنوان پالایهٔ تند در حالت تمام‌صفحه</sys:String>
+    <sys:String x:Key="LOCInPast7Days">در ۷ روز گذشته</sys:String>
+    <sys:String x:Key="LOCInPast31Days">در ۳۱ روز گذشته</sys:String>
+    <sys:String x:Key="LOCInPast365Days">در ۳۶۵ روز گذشته</sys:String>
+    <sys:String x:Key="LOCMoreThan365DaysAgo">بیش از ۳۶۵ روز پیش</sys:String>
     <sys:String x:Key="LOCConfigure">پیکربندی</sys:String>
-    <sys:String x:Key="LOCFilterPresetSave">ذخیره از پیش تعیین شده</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">پس از شروع بازی به حداقل برسانید</sys:String>
-    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">پس از شروع بازی، Playnite را به حداقل برسانید.
+    <sys:String x:Key="LOCFilterPresetSave">ذخیره‌سازی پیش‌نشانده</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">کمینه‌سازی پس از آغاز بازی</sys:String>
+    <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Playnite را پس از آغاز بازی کمینه می‌کند.
 
-غیرفعال کردن آن می‌تواند منجر به مشکلاتی شود که بازی‌ها روی راه‌اندازی تمرکز ندارند!</sys:String>
-    <sys:String x:Key="LOCSettingsFontSize">اندازه قلم</sys:String>
-    <sys:String x:Key="LOCSettingsFontSizeSmall">اندازه قلم کوچک</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessing">پشتیبانی از کنترلر بازی</sys:String>
-    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">اگر غیرفعال باشد، Playnite هیچ کنترلر بازی ای را نمی‌پذیرد.
+از کار انداختن این گزینه می‌تواند منجر به مشکل‌هایی شود که باعث می‌شوند بازی‌ها در زمان راه‌اندازی تمرکز درونداد را دریافت نکنند!</sys:String>
+    <sys:String x:Key="LOCSettingsFontSize">اندازهٔ قلم</sys:String>
+    <sys:String x:Key="LOCSettingsFontSizeSmall">اندازهٔ قلم کوچک</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessing">پشتیبانی از دستهٔ بازی</sys:String>
+    <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">اگر نافعال باشد، Playnite هیچ دستهٔ بازی‌ای را نمی‌پذیرد.
 
-اگر از ابزارهایی استفاده میکنید که ورودی‌ های کنترلر بازی را به ورودی‌ های موس/صفحه‌ کلید تبدیل میکند و در Playnite ورودی‌ های دوتایی دریافت میکنید، غیرفعال کنید.</sys:String>
-    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">نمایش موارد در منوی اصلی:</sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">اتصال دکمه نمای اصلی X/A معکوس</sys:String>
-    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">اتصالات دکمه را برای شروع بازی و نمایش صفحه جزئیات بازی در نمای اصلی تعویض می کند.</sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">تعویض دکمه تأیید/لغو</sys:String>
-    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">اتصالات دکمه A/B را برای تأیید و لغو معکوس می کند.</sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnly">فقط کنترل کننده اصلی</sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">فقط در صورت فعال بودن، ورودی های کنترل کننده اصلی را بپذیرید.</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">دکمه راهنما Playnite را متمرکز می کند</sys:String>
-    <sys:String x:Key="LOCSettingsInterfaceVolume">صدا رابط</sys:String>
-    <sys:String x:Key="LOCSettingsMusiVolume">صدا پس زمینه</sys:String>
-    <sys:String x:Key="LOCSettingsMuteBackground">بی صدا در پس زمینه</sys:String>
-    <sys:String x:Key="LOCErrorAudioInterfaceInit">راه اندازی رابط صوتی ناموفق بود.</sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApi">API خروجی</sys:String>
-    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">API مورد استفاده برای خروجی صدا. اگر مشکلی با صدا دارید تغییر دهید.</sys:String>
+اگر از ابزارهایی استفاده می‌کنید که دروندادهای دستهٔ بازی را به دروندادهای موس/تخته‌کلید تبدیل می‌کند و در Playnite دروندادهای دوتایی دریافت می‌کنید، از کار بیندازید.</sys:String>
+    <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">نمایش آیتم‌ها در فهرست اصلی:</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtons">اتصال دکمهٔ نمای اصلی X/A وارونه</sys:String>
+    <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">اتصال‌های دکمه را برای راه‌اندازی بازی و نمایش صفحهٔ جزئیات بازی در نمای اصلی تعویض می‌کند.</sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">تعویض دکمهٔ تأیید/لغو</sys:String>
+    <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">اتصال‌های دکمه‌های A/B را برای تأیید و لغو وارونه می‌کند.</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnly">تنها دستهٔ بازی اصلی</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">تنها زمانی که فعال است از دستهٔ بازی اصلی درونداد بپذیرید.</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">دکمهٔ راهنما Playnite را متمرکز می‌کند</sys:String>
+    <sys:String x:Key="LOCSettingsInterfaceVolume">صدای میانا</sys:String>
+    <sys:String x:Key="LOCSettingsMusiVolume">صدای پس‌زمینه</sys:String>
+    <sys:String x:Key="LOCSettingsMuteBackground">بی‌صداسازی در پس‌زمینه</sys:String>
+    <sys:String x:Key="LOCErrorAudioInterfaceInit">ناکامی در راه‌اندازی میانای صوتی.</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApi">اِی.پی.آی برونداد</sys:String>
+    <sys:String x:Key="LOCSettingsAudioOutputApiDescription">اِی.پی.آیی که برای برونداد صوت به کار می‌رود. اگر مشکلی با صدا دارید تغییر دهید.</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionGeneral">عمومی</sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionVisuals">بصری ها
-</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionVisuals">دیداری</sys:String>
     <sys:String x:Key="LOCSettingsFSSectionAudio">صدا</sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionLayout">طرح بندی</sys:String>
-    <sys:String x:Key="LOCSettingsFSSectionMenus">منوها</sys:String>
-    <sys:String x:Key="LOCSettingsFSSection">ورودی</sys:String>
-    <sys:String x:Key="LOCGameIsStarting">{0} شروع می شود…</sys:String>
-    <sys:String x:Key="LOCGameIsRunning">{0} در حال اجرا…</sys:String>
-    <sys:String x:Key="LOCTextInputCapitalize">کلاه</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionLayout">چیدمان</sys:String>
+    <sys:String x:Key="LOCSettingsFSSectionMenus">فهرست‌ها</sys:String>
+    <sys:String x:Key="LOCSettingsFSSection">درونداد</sys:String>
+    <sys:String x:Key="LOCGameIsStarting">{0} در حال آغاز است…</sys:String>
+    <sys:String x:Key="LOCGameIsRunning">{0} در حال اجرا است…</sys:String>
+    <sys:String x:Key="LOCTextInputCapitalize">حرف‌های بزرگ</sys:String>
     <sys:String x:Key="LOCTextInputSpace">فاصله</sys:String>
-    <sys:String x:Key="LOCSettingsImageScalerMode">مقیاس کننده رندر تصویر</sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingAlternative">جایگزین</sys:String>
-    <sys:String x:Key="LOCSettingsImageScalingBalanced">متعادل</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalerMode">مقیاس‌دهندهٔ پردازش تصویر</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingAlternative">دگرگزین</sys:String>
+    <sys:String x:Key="LOCSettingsImageScalingBalanced">ترازشده</sys:String>
     <sys:String x:Key="LOCSettingsImageScalingQuality">کیفیت</sys:String>
     <sys:String x:Key="LOCSettingsImageScalerModeTooltip" xml:space="preserve">کیفیت:
-بهترین کیفیت تصویر، کند، استفاده از حافظه بالا.
+بهترین کیفیت تصویر، کُند، مصرف حافظهٔ بالا.
     
-متعادل:
-کیفیت خوب، سریع، مصرف حافظه کم.
+ترازشده:
+کیفیت خوب، تند، مصرف حافظهٔ کم.
     
-جایگزین:
-کیفیت بهتر، سرعت متوسط، استفاده از حافظه کم.</sys:String>
-    <sys:String x:Key="LOCSelectFileTooltip">انتخاب فایل…</sys:String>
-    <sys:String x:Key="LOCSelectDirectoryTooltip">انتخاب پوشه…</sys:String>
-    <sys:String x:Key="LOCStartupScript">اسکریپت راه اندازی</sys:String>
-    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">لطفاً توجه داشته باشید که هم افزونه‌ها و هم تم‌ها می‌توانند بر عملکرد، ثبات و امنیت Playnite تأثیر بگذارند.
-    
-اگر بعد از نصب یک تم یا یک برنامه افزودنی با مشکلاتی مواجه شدید، ابتدا آن‌ها را غیرفعال/حذف کنید تا ببینید آیا مشکل اصلی هستند یا خیر.</sys:String>
-    <sys:String x:Key="LOCGameActionSelectOnStart">هنگام راه اندازی انتخاب کنید</sys:String>
-    <sys:String x:Key="LOCEmulatorSelectOnStart">هنگام راه اندازی انتخاب کنید</sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfiles">پروفایل های داخلی</sys:String>
-    <sys:String x:Key="LOCEmulatorBuiltInProfile">پروفایل داخلی</sys:String>
+دگرگزین:
+کیفیت بهتر، تندی متوسط، مصرف حافظهٔ کم.</sys:String>
+    <sys:String x:Key="LOCSelectFileTooltip">گزینش پرونده…</sys:String>
+    <sys:String x:Key="LOCSelectDirectoryTooltip">گزینش پوشه…</sys:String>
+    <sys:String x:Key="LOCStartupScript">اسکریپتِ راه‌اندازی</sys:String>
+    <sys:String x:Key="LOCAddonPerfNotice" xml:space="preserve">لطفاً توجه داشته باشید که هم افزونه‌ها و هم زمینه‌ها می‌توانند تأثیر بسیاری بر کارایی، پایداری و امنیت Playnite داشته باشند.
+
+اگر پس از نصب زمینه یا افزونه‌ای با مشکلی روبه‌رو شدید، نخست برای فهمیدن اینکه آیا دلیل مشکل هستند یا نه آنها را از کار بیندازید/حذف نصب کنید.</sys:String>
+    <sys:String x:Key="LOCGameActionSelectOnStart">گزینش هنگام راه‌اندازی</sys:String>
+    <sys:String x:Key="LOCEmulatorSelectOnStart">گزینش هنگام راه‌اندازی</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfiles">نمایه‌های درونی</sys:String>
+    <sys:String x:Key="LOCEmulatorBuiltInProfile">نمایهٔ درونی</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfiles">پروفایل های سفارشی</sys:String>
     <sys:String x:Key="LOCEmulatorCustomProfile">نمایه سفارشی</sys:String>
     <sys:String x:Key="LOCEmulatorFunctionHandledByScript">توسط یک اسکریپت داخلی مدیریت می شود</sys:String>
@@ -1073,8 +1076,8 @@
     <sys:String x:Key="LOCEmuImportAssignPlatform">تنظیم پلتفرم</sys:String>
     <sys:String x:Key="LOCEmuImportAssignRegion">تنظیم منطقه</sys:String>
     <sys:String x:Key="LOCEmuScanDirectory">بررسی پوشه</sys:String>
-    <sys:String x:Key="LOCEmuScanConfigurations">بررسی پیگربندی</sys:String>
-    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">الگوها را از اسکن checksum حذف کنید</sys:String>
+    <sys:String x:Key="LOCEmuScanConfigurations">بررسی پیکربندی</sys:String>
+    <sys:String x:Key="LOCEmuCrcExcludeFileTypes">الگوها را از اسکن جمع‌آزما حذف کنید</sys:String>
     <sys:String x:Key="LOCEmuCrcExcludeFileTypesTooltip">فایل‌های مطابق با الگو(های) مشخص شده برای چک‌سوم اسکن نمی‌شوند و با نام فایل مطابقت داده می‌شوند. برای اطلاعات بیشتر به صفحه راهنمای شبیه ساز مراجعه کنید.</sys:String>
     <sys:String x:Key="LOCEmuScanEmulator">اسکن با شبیه ساز</sys:String>    
     <sys:String x:Key="LOCScanConfigNameError">هنگام ذخیره پیکربندی جدید، نام باید تنظیم شود.</sys:String>
@@ -1085,10 +1088,10 @@
     <sys:String x:Key="LOCEmulatorScanFailed">اسکن پوشه برای شبیه سازها انجام نشد.</sys:String>
     <sys:String x:Key="LOCEmulatedGameScanFailed">اسکن پوشه(های) بازی های شبیه سازی شده انجام نشد.</sys:String>
     <sys:String x:Key="LOCEmuScanHideImported">پنهان کردن وارد شده</sys:String>
-    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">پروفایل هایی برای وارد کردن:</sys:String>
+    <sys:String x:Key="LOCEmuImportProfilesToImportHeader">پروفایل‌هایی برای وارد کردن:</sys:String>
     <sys:String x:Key="LOCEmuAutoScanConfigurations">تنظیمات اسکن خودکار</sys:String>
     <sys:String x:Key="LOCEmuSaveScanConfig">تنظیمات اسکن خودکار</sys:String>
-    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">پیکربندی را برای استفاده بعدی در طول به روز رسانی کتابخانه ذخیره می کند. تنظیمات ذخیره شده را می توان از طریق منوی &quot;پیکربندی شبیه ساز ها&quot; مدیریت کرد.</sys:String>
+    <sys:String x:Key="LOCEmuSaveScanConfigTooltip">پیکربندی را برای استفاده بعدی در طول به روز رسانی کتابخانه ذخیره می کند. تنظیمات ذخیره شده را می توان از طریق منوی &quot;پیکربندی شبیه‌ساز ها&quot; مدیریت کرد.</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePaths">وارد کردن با استفاده از مسیرهای نسبی</sys:String>
     <sys:String x:Key="LOCEmuImportWithRelativePathsTooltip">در صورت امکان فایل های بازی را با استفاده از مسیرهای مربوط به پوشه نصب Playnite یا پوشه نصب شبیه‌ساز وارد کنید.</sys:String>
     <sys:String x:Key="LOCEmuImportScanSubfolders">اسکن زیر پوشه ها</sys:String>
@@ -1100,29 +1103,29 @@
     <sys:String x:Key="LOCStartScan">شروع بررسی</sys:String>
     <sys:String x:Key="LOCEmuImportDirectoryConfigDesc">برای اسکن پوشه های خاص، پیکربندی(های) اسکن را با شبیه سازها اضافه کنید. مطمئن شوید که شبیه سازها قبل از وارد کردن بازی ها به درستی پیکربندی شده اند (از طریق کتابخانه -&gt; منوی پیکربندی شبیه سازها).</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">وضعیت پیش‌فرض به بازی‌های تازه اضافه شده اختصاص داده شده است</sys:String>
-    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">وضعیت اختصاص داده شده به بازی هایی که برای اولین بار انجام می شوند</sys:String>
-    <sys:String x:Key="LOCPowerShellCreationError">زمان اجرا اسکریپت PowerShell مقداردهی اولیه نشد. اگر کاربر ویندوز 7 هستید، برای رفع مشکل، PowerShell 5.1 را مجدداً نصب کنید.</sys:String>
+    <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">وضعیت اختصاص داده شده به بازی‌هایی که برای اولین بار انجام می شوند</sys:String>
+    <sys:String x:Key="LOCPowerShellCreationError">خطا در راه‌اندازی محیط اجرای اسکریپت PowerShell. اگر از کاربران ویندوز 7 هستید، سعی کنید PowerShell 5.1 را نصب یا مجدداً نصب کنید تا مشکل برطرف شود.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">فیلتر از پیش تعیین شده با نام مشخص از قبل موجود است. از پیش تنظیم شده با تنظیمات جدید به روز شود؟</sys:String>
     <sys:String x:Key="LOCSortingNameAutofill">نام مرتب‌سازی بازی‌های اضافه‌شده را به‌طور خودکار پر کنید</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillTooltip">وقتی بازی‌ها را از طریق به‌روزرسانی کتابخانه، اسکن پوشه شبیه‌ساز یا اسکن پوشه معمولی اضافه می‌کنید، به‌طور خودکار فیلد «مرتب‌سازی نام» را با نمایش قابل مرتب‌سازی بهتری از نام بازی پر کنید، برای مثال «The Witcher 3» یک نام مرتب‌سازی دریافت می‌کند. از &quot;Witcher 03&quot;</sys:String>
-    <sys:String x:Key="LOCSortingNameRemovedArticles">این کلمات از ابتدای مقدار نام مرتب سازی که به طور خودکار پر شده حذف می شوند:</sys:String>
+    <sys:String x:Key="LOCSortingNameRemovedArticles">این کلمات از ابتدای مقدار نام مرتب‌سازی که به طور خودکار پر شده حذف می شوند:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">از این برای نادیده گرفتن کلمات در ابتدای رشته برای اهداف مرتب‌سازی استفاده کنید. پیش فرض &quot;The&quot;، &quot;An&quot; و &quot;A&quot; است.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">نام مرتب‌سازی را برای بازی‌های بدون آن پر کنید</sys:String>
     <sys:String x:Key="LOCSettingsSortingLabel">مرتب‌سازی</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillProgress">پر کردن مرتب‌سازی مقادیر نام…</sys:String>
-    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">سرویس Nahimic روی سیستم شما شناسایی شده است که در حال اجرا است. این سرویس به دلیل ایجاد مشکلات رندر برای Playnite (و سایر برنامه ها) شناخته شده است.
+    <sys:String x:Key="LOCNahimicServiceWarning" xml:space="preserve">سرویس Nahimic در سیستم شما شناسایی شده است. این سرویس باعث مشکلات رندر در Playnite (و برنامه‌های دیگر) می‌شود.
 
-اگر با هرگونه خرابی گرافیکی یا سایر مشکلات رندر در Playnite مواجه شدید، توصیه می کنیم سرویس Nahimic را غیرفعال یا به طور کامل حذف کنید.
+اگر با هرگونه خرابی گرافیکی یا مشکلات رندر در Playnite روبرو شدید، توصیه می‌کنیم سرویس Nahimic را غیرفعال یا به طور کامل حذف نصب کنید.
 
-اطلاعات بیشتر در https://playnite.link/nahimicsucks</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite با امتیازات بالا (به عنوان مدیر) در حال اجرا است. این توصیه نمی شود زیرا به همه برنامه های افزودنی نصب شده و همه بازی ها/برنامه هایی که از Playnite شروع شده اند، امتیازات بالایی می دهد!
+اطلاعات بیشتر در این لینک https://playnite.link/nahimicsucks</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarning" xml:space="preserve">Playnite با امتیازات بالا (به عنوان مدیر) در حال اجرا است. این توصیه نمی‌شود زیرا به تمام افزونه‌های نصب‌شده و تمامی بازی‌ها/برنامه‌هایی که از Playnite شروع می‌شوند امتیازات بالایی می‌دهد!
 
 اطلاعات بیشتر در https://playnite.link/adminfaq</sys:String>
-    <sys:String x:Key="LOCElevatedProcessWarningShowOption">اگر Playnite با امتیازات بالا در حال اجرا است، هشدار را نشان دهید</sys:String>
+    <sys:String x:Key="LOCElevatedProcessWarningShowOption">نمایش هشدار در صورت اجرای Playnite با امتیازات بالا</sys:String>
     <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOption">هنگام محاسبه اندازه بازی ها، اندازه واقعی درایو را دریافت کنید</sys:String>
     <sys:String x:Key="LOCInstallSizeScanUseSizeOnDiskOptionTooltip" xml:space="preserve">اگر فعال باشد، اسکن‌ها کندتر می‌شوند و اندازه واقعی فایل‌ها در درایو را دریافت می‌کنند.
 اگر غیرفعال باشد، اسکن ها سریعتر انجام می شود و از اندازه خود فایل ها استفاده می شود.</sys:String>
-    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">افزونه(های) بعدی به دلیل تأثیر پایداری/عملکرد بالا یا مسائل امنیتی به عنوان بالقوه مشکل ساز گزارش شده است. ما قویاً توصیه می کنیم که آنها را حذف کنید:
+    <sys:String x:Key="LOCWarningBlacklistedExtensions" xml:space="preserve">افزونه(های) بعدی به دلیل تأثیر پایداری/عملکرد بالا یا مسائل امنیتی به عنوان بالقوه مشکل ساز گزارش شده است. ما شدیداً توصیه می کنیم که آنها را حذف کنید:
         
 {0}
     </sys:String>
@@ -1130,7 +1133,7 @@
     <sys:String x:Key="LOCEmuExcludeOnlineFilesTooltip" xml:space="preserve">فایل‌های ذخیره‌شده در فضای ذخیره‌سازی ابری، اگر به صورت محلی در دسترس نباشند، اسکن و وارد نمی‌شوند.
 فقط برای: Google Drive، DropBox، OneDrive پشتیبانی می شود</sys:String>
     <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScan">اسکن کنید اما با استفاده از روش ساده بدون محتوای فایل</sys:String>
-    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">فایل‌ها وارد می‌شوند اما از روشی کمتر دقیق استفاده می‌کنند که نیازی به دانلود و ارائه محتوای فایل به صورت محلی ندارد.</sys:String>
+    <sys:String x:Key="LOCEmuUseSimplifiedOnlineFileScanTooltip">فایل‌ها وارد خواهند شد، اما با استفاده از روشی کمتر دقیق که نیاز به دانلود و حضور محلی محتوای فایل ندارد.</sys:String>
     <sys:String x:Key="LOCMetadatSetAllFieldsToValue">اعمال بر همه</sys:String>
     <sys:String x:Key="LOCOverrideInstallState">لغو وضعیت نصب</sys:String>
     <sys:String x:Key="LOCOverrideInstallStateTooltip" xml:space="preserve">وقتی تنظیم شود، Playnite وضعیت نصب (از جمله دایرکتوری نصب) را که توسط افزونه یکپارچه‌سازی که این بازی را وارد می‌کند، نادیده می‌گیرد.
@@ -1240,7 +1243,7 @@ Playnite به طور خودکار راه‌اندازی مجدد می شود ت�
     <sys:String x:Key="LOCScannerConfigPlayActionSettings">تنظیمات اجرا اکشن</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsScanner">استفاده از تنظیمات اسکنر</sys:String>
     <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectProfile">هنگام راه‌اندازی نمایه را انتخاب کنید</sys:String>
-    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">هنگام راه اندازی شبیه ساز را انتخاب کنید</sys:String>
+    <sys:String x:Key="LOCScannerConfigPlayActionSettingsSelectEmulator">انتخاب شبیه‌ساز در زمان راه‌اندازی</sys:String>
     <sys:String x:Key="LOCAutomatic">خودکار</sys:String>
     <sys:String x:Key="LOCAlwaysOn">همیشه روشن</sys:String>
     <sys:String x:Key="LOCAlwaysOff">همیشه خاموش</sys:String>

@@ -106,6 +106,9 @@ namespace Playnite.Toolbox
 
         public static void ProcessNewOptions(NewCmdLineOptions options)
         {
+            if (!options.OutDirectory.IsNullOrEmpty())
+                options.OutDirectory = options.OutDirectory.Trim('"');
+
             try
             {
                 var outPath = string.Empty;
@@ -118,16 +121,16 @@ namespace Playnite.Toolbox
                         outPath = Themes.GenerateNewTheme(ApplicationMode.Fullscreen, options.Name);
                         break;
                     case ItemType.PowerShellScript:
-                        outPath = Extensions.GenerateScriptExtension(options.Name, options.OutDirectory.Trim('"'));
+                        outPath = Extensions.GenerateScriptExtension(options.Name, options.OutDirectory);
                         break;
                     case ItemType.GenericPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GenericPlugin, options.Name, options.OutDirectory.Trim('"'));
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GenericPlugin, options.Name, options.OutDirectory);
                         break;
                     case ItemType.MetadataPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.MetadataProvider, options.Name, options.OutDirectory.Trim('"'));
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.MetadataProvider, options.Name, options.OutDirectory);
                         break;
                     case ItemType.LibraryPlugin:
-                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GameLibrary, options.Name, options.OutDirectory.Trim('"'));
+                        outPath = Extensions.GeneratePluginExtension(ExtensionType.GameLibrary, options.Name, options.OutDirectory);
                         break;
                     default:
                         throw new NotSupportedException($"Uknown extension type {options.Type}.");
@@ -149,6 +152,9 @@ namespace Playnite.Toolbox
 
         public static void ProcessPackOptions(PackCmdLineOptions options)
         {
+            options.Destination = options.Destination.Trim('"');
+            options.Directory = options.Directory.Trim('"');
+
             try
             {
                 var outPath = string.Empty;
@@ -182,6 +188,8 @@ namespace Playnite.Toolbox
 
         public static void ProcessUpdateOptions(UpdateCmdLineOptions options)
         {
+            options.Directory = options.Directory.Trim('"');
+
             try
             {
                 var type = GetExtensionType(options.Directory);

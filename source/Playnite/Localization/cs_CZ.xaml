@@ -117,8 +117,8 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCBackCapLabel">ZPĚT</sys:String>
     <sys:String x:Key="LOCClearCapLabel">VYČISTIT</sys:String>
     <sys:String x:Key="LOCClearLabel">Vyčistit</sys:String>
-    <sys:String x:Key="LOCDismiss">Zamítnout</sys:String>
-    <sys:String x:Key="LOCDismissAll">Zamítnout Vše</sys:String>
+    <sys:String x:Key="LOCDismiss">Zrušit</sys:String>
+    <sys:String x:Key="LOCDismissAll">Zrušit vše</sys:String>
     <sys:String x:Key="LOCImportLabel">Importovat</sys:String>
     <sys:String x:Key="LOCNameLabel">Jméno</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Autor</sys:String>
@@ -212,6 +212,8 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCMetaGameSourceAll">Všechny hry v databázi</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Všechny aktuálně filtrované hry</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Jen vybrané hry</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Nejsou vybrána žádná pole metadat</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Nejsou vybrána žádná pole metadat ke stažení. Vyberte prosím alespoň jedno a povolte pro ně alespoň jednoho poskytovatele metadat.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficiální Obchod</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Prosím vyberte, která pole by měl Playnite automaticky doplnit a které zdroje by měly být použity k získání těchto údajů.</sys:String>

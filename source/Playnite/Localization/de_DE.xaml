@@ -212,6 +212,8 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCMetaGameSourceAll">Alle Spiele der Datenbank</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Alle derzeit den Filter passierende Spiele</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Nur die ausgewählten Spiele</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Keine Metadatenfelder ausgewählt</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Es sind keine Metadatenfelder zum Download ausgewählt. Bitte wähle mindestens eines aus und aktiviere dafür mindestens einen Metadatenanbieter.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Offizieller Shop</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Bitte wähle die von Playnite automatisch auszufüllenden Felder und die hierfür zu verwendenden Quellen aus.</sys:String>

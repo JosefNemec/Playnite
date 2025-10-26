@@ -198,7 +198,12 @@ namespace Playnite.ViewModels
 
         public void RestartAppSafe()
         {
-            var options = new CmdLineOptions { SafeStartup = true };
+            var options = new CmdLineOptions
+            {
+                SafeStartup = true,
+                UserDataDir = PlayniteApplication.Current.CmdLine.UserDataDir
+            };
+
             if (mode == ApplicationMode.Desktop)
             {
                 Process.Start(PlaynitePaths.DesktopExecutablePath, options.ToString());

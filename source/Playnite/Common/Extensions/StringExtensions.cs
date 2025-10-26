@@ -187,6 +187,14 @@ namespace System
             }
         }
 
+        public static byte[] GetSHA256HashByte(this string input)
+        {
+            using (var sha = System.Security.Cryptography.SHA256.Create())
+            {
+                return sha.ComputeHash(Encoding.UTF8.GetBytes(input));
+            }
+        }
+
         public static string GetPathWithoutAllExtensions(string path)
         {
             if (string.IsNullOrEmpty(path))

@@ -15,8 +15,10 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var boolValue = (bool)value;
-            return boolValue ? Visibility.Collapsed : Visibility.Visible;
+            if (value is bool boolValue)
+                return boolValue ? Visibility.Collapsed : Visibility.Visible;
+
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -40,15 +42,18 @@ namespace Playnite.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var boolValue = (bool)value;
-            var direction = (Parameters)Enum.Parse(typeof(Parameters), (string)parameter);
-
-            if (direction == Parameters.Inverted)
+            if (value is bool boolValue)
             {
-                return !boolValue ? Visibility.Visible : Visibility.Collapsed;
+                var direction = (Parameters)Enum.Parse(typeof(Parameters), (string)parameter);
+                if (direction == Parameters.Inverted)
+                {
+                    return !boolValue ? Visibility.Visible : Visibility.Collapsed;
+                }
+
+                return boolValue ? Visibility.Visible : Visibility.Collapsed;
             }
 
-            return boolValue ? Visibility.Visible : Visibility.Collapsed;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

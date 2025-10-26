@@ -212,6 +212,8 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCMetaGameSourceAll">Visi žaidimai iš duombazės</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Visi išfiltruoti žaidimai</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Tik pasirinkti žaidimai</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficiali parduotuvė</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Pasirinkite laukus, kuriuos Playnite užpildys automatiškai, ir  šaltinį, iš kurio Playnite gaus informaciją.</sys:String>
@@ -1099,10 +1101,10 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCGameSearchItemActionPlay"></sys:String>
     <sys:String x:Key="LOCGameSearchItemActionSwitchTo"></sys:String>
     <sys:String x:Key="LOCGameSearchItemActionOpenMenu"></sys:String>
-    <sys:String x:Key="LOCGameSearchItemActionEdit"></sys:String>
-    <sys:String x:Key="LOCOpenSearch"></sys:String>
-    <sys:String x:Key="LOCTopPanelSearchBox"></sys:String>
-    <sys:String x:Key="LOCTopPanelSearchButton"></sys:String>
+    <sys:String x:Key="LOCGameSearchItemActionEdit">Redaguoti žaidimą</sys:String>
+    <sys:String x:Key="LOCOpenSearch">Atidaryti paiešką</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchBox">Paieškos laukas</sys:String>
+    <sys:String x:Key="LOCTopPanelSearchButton">Paieškos mygtukas</sys:String>
 
     <sys:String x:Key="LOCSearchSettingsPrimaryAction"></sys:String>
     <sys:String x:Key="LOCSearchSettingsSecondaryAction"></sys:String>
@@ -1114,7 +1116,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCSearchSettingsSystemWideShortcut"></sys:String>
     <sys:String x:Key="LOCSearchTitle"></sys:String>
     <sys:String x:Key="LOCExtensionSettingsMenu"></sys:String>
-    <sys:String x:Key="LOCExclusions"></sys:String>
+    <sys:String x:Key="LOCExclusions">Išimtys</sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFiles"></sys:String>
     <sys:String x:Key="LOCEmuScannerExcludedFolders"></sys:String>
     <sys:String x:Key="LOCEmuImportAddROMExclusionList"></sys:String>

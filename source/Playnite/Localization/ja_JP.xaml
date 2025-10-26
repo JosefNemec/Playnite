@@ -212,6 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">データベースに登録されているすべてのゲーム</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">現在フィルターが適用されているすべてのゲーム</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">選択したゲームのみ</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">公式ストア</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Playnite によって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>

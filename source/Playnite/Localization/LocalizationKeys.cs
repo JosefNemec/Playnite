@@ -758,6 +758,14 @@ namespace Playnite
         /// </summary>
         public const string MetaGameSourceSelected = "LOCMetaGameSourceSelected";
         /// <summary>
+        /// No metadata fields selected
+        /// </summary>
+        public const string MetaNoFieldsSelectedErrorCaption = "LOCMetaNoFieldsSelectedErrorCaption";
+        /// <summary>
+        /// No metadata fields are selected for download. Please select at least one, and enable at least one metadata provider for it.
+        /// </summary>
+        public const string MetaNoFieldsSelectedErrorMessage = "LOCMetaNoFieldsSelectedErrorMessage";
+        /// <summary>
         /// Official Store
         /// </summary>
         public const string MetaSourceStore = "LOCMetaSourceStore";
@@ -3501,6 +3509,10 @@ namespace Playnite
         /// Original process
         /// </summary>
         public const string ActionTrackingOriginalProcess = "LOCActionTrackingOriginalProcess";
+        /// <summary>
+        /// Process name
+        /// </summary>
+        public const string ActionTrackingProcessName = "LOCActionTrackingProcessName";
         /// <summary>
         /// Log trace messages
         /// </summary>

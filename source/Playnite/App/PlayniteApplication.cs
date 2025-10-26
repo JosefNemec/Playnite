@@ -28,6 +28,7 @@ using System.Windows.Threading;
 using System.Net;
 using Playnite.Common.Web;
 using System.ServiceProcess;
+using System.Drawing.Imaging;
 
 namespace Playnite
 {
@@ -477,7 +478,10 @@ namespace Playnite
 
             var exception = (Exception)e.ExceptionObject;
             var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
-            logger.Error(exception, "Unhandled exception occured.");
+            logger.Error(exception, $"Unhandled exception occured.");
+            logger.Error($"HResult: 0x{exception.HResult:X8}");
+            if (exception is Win32Exception win32exc)
+                logger.Error($"Win32 NativeErrorCode: 0x{win32exc.NativeErrorCode:X8}");
             CrashHandlerViewModel crashModel = null;
 
             // Delete safe startup flag if we are able to handle the crash,
@@ -490,8 +494,26 @@ namespace Playnite
                 return;
             }
 
-            // ERROR_DISK_FULL
-            if (exception.HResult == unchecked((int)0x80070070))
+            // unchecked use reason: https://stackoverflow.com/a/10043486/1107424
+
+                // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
+            if (exception is MissingMethodException ||
+                exception is BadImageFormatException ||
+                // Usually COM execution error from WindowsAPICodePack when opening folder selection dialog. As far as I can tell, this happens on "debloated" Windows edition only.
+                (exception is System.Runtime.InteropServices.COMException &&
+                    (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))))
+            {
+                Dialogs.ShowErrorMessage("Corrupted Playnite or Windows install detected.");
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
+                // ERROR_DISK_FULL
+            if (exception.HResult == unchecked((int)0x80070070) ||
+                // "device not ready" error. Happens when people run Playnite from attached storage as far as I can tell.
+                exception.HResult == unchecked((int)0x80070015) ||
+                // self-explanatory
+                exception is OutOfMemoryException)
             {
                 Dialogs.ShowErrorMessage(exception.Message, LOC.CrashWindowTitle.GetLocalized());
                 Process.GetCurrentProcess().Kill();
@@ -936,6 +958,7 @@ namespace Playnite
         public bool ConfigureApplication()
         {
             HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
+            HtmlRendererSettings.ImageLoader = BitmapExtensions.HtmlComponentImageLoader;
             if (AppSettings.DisableHwAcceleration || CmdLine.ForceSoftwareRender)
             {
                 logger.Info("Enabling software rendering.");
@@ -961,6 +984,10 @@ namespace Playnite
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(exc, "Failed to initialize CefSharp.");
+            }
+
+            if (!CefTools.IsInitialized)
+            {
                 Dialogs.ShowErrorMessage(
                     ResourceProvider.GetString("LOCCefSharpInitError"),
                     ResourceProvider.GetString("LOCStartupError"));
@@ -1129,6 +1156,28 @@ namespace Playnite
                 // Not sure how this can happen, but there are some "operation cancelled by user" crashes here.
                 // People probably running Playnite as admin and cancelling UAC for new process, or something...
                 logger.Error(e, "Failed to start process on app shutdown.");
+            }
+
+            CurrentNative.Shutdown(0);
+        }
+
+        public void QuitAndExecute(Action action, bool saveSettings = true)
+        {
+            logger.Info("Shutting down Playnite and executing an action.");
+            if (saveSettings)
+            {
+                AppSettings?.SaveSettings();
+            }
+
+            ReleaseResources();
+
+            try
+            {
+                action();
+            }
+            catch(Exception e)
+            {
+                logger.Error(e, "Failed to execute app quit action.");
             }
 
             CurrentNative.Shutdown(0);

@@ -119,15 +119,15 @@
     <sys:String x:Key="LOCBackCapLabel">ΠΙΣΩ</sys:String>
     <sys:String x:Key="LOCClearCapLabel">ΚΑΘΑΡΙΣΜΟΣ</sys:String>
     <sys:String x:Key="LOCClearLabel">Εκκαθάριση</sys:String>
-    <sys:String x:Key="LOCDismiss">Παράβλεψη</sys:String>
-    <sys:String x:Key="LOCDismissAll">Παράβλεψη Όλων</sys:String>
+    <sys:String x:Key="LOCDismiss">Απόρριψη</sys:String>
+    <sys:String x:Key="LOCDismissAll">Απόρριψη Όλων</sys:String>
     <sys:String x:Key="LOCImportLabel">Εισαγωγή</sys:String>
     <sys:String x:Key="LOCNameLabel">Όνομα</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Δημιουργός</sys:String>
     <sys:String x:Key="LOCModuleLabel">Πρόσθετο</sys:String>
     <sys:String x:Key="LOCSeriesLabel">Σειρά</sys:String>
     <sys:String x:Key="LOCVersionLabel">Έκδοση</sys:String>
-    <sys:String x:Key="LOCLastPlayedLabel">Τελευταίο Παιχνίδι</sys:String>
+    <sys:String x:Key="LOCLastPlayedLabel">Τελευταία Συνεδρία</sys:String>
     <sys:String x:Key="LOCMostPlayedLabel">Παίχτηκαν Περισσότερο</sys:String>
     <sys:String x:Key="LOCPlayCountLabel">Μετρητής Παιχνιδιού</sys:String>
     <sys:String x:Key="LOCInstallSizeLabel">Μέγεθος Εγκατάστασης</sys:String>
@@ -175,7 +175,7 @@
     <sys:String x:Key="LOCSpecialThanks">Ιδιαίτερες ευχαριστίες</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Άδεια</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Συνεισφέροντες</sys:String>
-    <sys:String x:Key="LOCClosingPlaynite">Έξοδος από το Playnite...</sys:String>
+    <sys:String x:Key="LOCClosingPlaynite">Γίνεται έξοδος από το Playnite…</sys:String>
     <sys:String x:Key="LOCToday">Σήμερα</sys:String>
     <sys:String x:Key="LOCYesterday">Χθες</sys:String>
     <sys:String x:Key="LOCMonday">Δευτέρα</sys:String>
@@ -211,9 +211,11 @@
     <sys:String x:Key="LOCMetaSkipNonEmptyTooltip" xml:space="preserve">Η ενεργοποίηση αυτής της επιλογής θα παρακάμψει τη λήψη μεταδεδομένων στα πεδία δεδομένων όπου υπάρχουν ήδη πληροφορίες.</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceIntro">Επιλογή παιχνιδιών</sys:String>
     <sys:String x:Key="LOCMetaGamesSourceDescription">Επιλέξτε ποια παιχνίδια θα ενημερωθούν με νέα μεταδεδομένα:</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceAll">Όλα τα παιχνίδια από τη βάση δεδομένων</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceFiltered">Παιχνίδια σε φίλτρο τώρα</sys:String>
-    <sys:String x:Key="LOCMetaGameSourceSelected">Μόνο επιλεγμένα παιχνίδια</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceAll">Όλα τα παιχνίδια της βάσης δεδομένων</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceFiltered">Όλα τα παιχνίδια σε φίλτρο αυτή τη στιγμή.</sys:String>
+    <sys:String x:Key="LOCMetaGameSourceSelected">Μόνο τα επιλεγμένα παιχνίδια</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Δεν έχουν επιλεχθεί πεδία μεταδεδομένων</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Δεν έχουν επιλεχθεί πεδία μεταδεδομένων για κατέβασμα. Παρακαλώ επιλέξτε τουλάχιστον ένα πεδίο και ενεργοποιήστε έστω έναν πάροχο μεταδεδομένων</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Επίσημο Κατάστημα</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Επιλέξτε ποια πεδία πρέπει να συμπληρωθούν αυτόματα από το Playnite και ποιες πηγές θα πρέπει να χρησιμοποιηθούν για την απόκτηση των δεδομένων.</sys:String>
@@ -655,8 +657,8 @@
     <sys:String x:Key="LOCNever">Ποτέ</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Κατάσταση ολοκλήρωσης</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Καταστάσεις Ολοκλήρωσης</sys:String>
-    <sys:String x:Key="LOCUserScore">Βαθμολογία χρηστών</sys:String>
-    <sys:String x:Key="LOCCriticScore">Βαθμολογία κριτικών</sys:String>
+    <sys:String x:Key="LOCUserScore">Βαθμολογία Χρηστών</sys:String>
+    <sys:String x:Key="LOCCriticScore">Βαθμολογία Κριτικών</sys:String>
     <sys:String x:Key="LOCCommunityScore">Βαθμολογία κοινότητας</sys:String>
     <sys:String x:Key="LOCGameScripts">Σενάρια παιχνιδιού</sys:String>
     <sys:String x:Key="LOCApplicationScripts">Σενάρια εφαρμογής</sys:String>

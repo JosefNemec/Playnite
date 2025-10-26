@@ -236,8 +236,7 @@ namespace TestPlugin
                 Description = "serialization test",
                 Action = (_) =>
                 {
-                    var filtered = PlayniteApi.MainView.FilteredGames;
-                    PlayniteApi.MainView.SelectGame(filtered[1].Id);
+                    PlayniteApi.Dialogs.ShowErrorMessage("test error");
                 }
             };
 
@@ -247,7 +246,8 @@ namespace TestPlugin
                 Description = "this is in extension menu",
                 Action = (_) =>
                 {
-                }
+                },
+                Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
             };
 
             yield return new MainMenuItem
@@ -256,6 +256,7 @@ namespace TestPlugin
                 Description = "nested test menu menu",
                 Action = (_) =>
                 {
+                    PlayniteApi.Dialogs.ShowErrorMessage("test error from nested");
                 }
             };
 
@@ -271,7 +272,8 @@ namespace TestPlugin
                     {
                         PlayniteApi.MainView.SelectGames(filtered.Select(a => a.Id).Take(2));
                     }
-                }
+                },
+                Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
             };
         }
 
@@ -280,7 +282,8 @@ namespace TestPlugin
             yield return new GameMenuItem
             {
                 Description = "test plugin root test",
-                Action = (_) => PlayniteApi.Dialogs.ShowMessage("test plugin root test")
+                Action = (_) => PlayniteApi.Dialogs.ShowMessage("test plugin root test"),
+                Icon = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Resources", "icon.png"),
             };
             yield return new GameMenuItem
             {

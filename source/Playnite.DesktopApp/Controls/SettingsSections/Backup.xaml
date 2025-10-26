@@ -26,10 +26,10 @@
                           SelectedValue="{Binding Settings.AutoBackupFrequency}"
                           VerticalAlignment="Center" Margin="10,0,0,0"/>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Text="{DynamicResource LOCSettingsBackupFolder}" VerticalAlignment="Center" />
-                <pctrls:PathSelectionBox MinWidth="400" Margin="10,0,0,0"
+                <pctrls:PathSelectionBox Width="400" Margin="10,0,0,0"
                                          ShowDirectorySelector="True" VerticalAlignment="Center"
                                          Text="{Binding Settings.AutoBackupDir}"/>
             </StackPanel>

@@ -212,6 +212,8 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCMetaGameSourceAll">Tous les jeux de la base de données</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tous les jeux actuellement filtrés</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Le ou les jeux actuellement sélectionnés</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Aucun champ de métadonnées sélectionné</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Aucun champ de métadonnées n'est sélectionné pour le téléchargement. Veuillez en sélectionner au moins un, et activer au moins un fournisseur de métadonnées.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Magasin officiel</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement remplis par Playnite et les sources à utiliser pour obtenir les données.</sys:String>

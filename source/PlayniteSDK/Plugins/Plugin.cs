@@ -287,6 +287,13 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when gamepad/controller button is pressed or released.
+        /// </summary>
+        public virtual void OnControllerButtonStateChanged(OnControllerButtonStateChangedArgs args)
+        {
+        }
+
+        /// <summary>
         /// Gets list of items to be displayed in game's context menu.
         /// </summary>
         /// <param name="args">Contextual arguments.</param>

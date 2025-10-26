@@ -13,6 +13,9 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value is null || parameter is null)
+                return Visibility.Collapsed;
+
             var param = (int)parameter;
             var val = (int)value;
             if (val == param)
@@ -40,6 +43,9 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            if (value is null || parameter is null)
+                return Visibility.Visible;
+
             var param = (int)parameter;
             var val = (int)value;
             if (val != param)

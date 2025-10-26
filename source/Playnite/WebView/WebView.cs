@@ -19,29 +19,25 @@ namespace Playnite.WebView
         private readonly SynchronizationContext context;
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
         private WebViewWindow window;
-        private readonly string userAgent;
+        private readonly WebViewSettings settings;
 
         public bool CanExecuteJavascriptInMainFrame => window.Browser.CanExecuteJavascriptInMainFrame;
         public event EventHandler NavigationChanged;
         public event EventHandler<WebViewLoadingChangedEventArgs> LoadingChanged;
         public Window WindowHost => window;
 
-        public WebView(int width, int height, bool useCompositionRenderer = false) : this(width, height, Colors.Transparent, "", useCompositionRenderer)
-        {
-        }
-
-        public WebView(int width, int height, Color background, string userAgent, bool useCompositionRenderer = false)
+        public WebView(WebViewSettings settings, bool useCompositionRenderer = false)
         {
             context = SynchronizationContext.Current;
             window = new WebViewWindow();
+            this.settings = settings;
             window.Browser.LoadingStateChanged += Browser_LoadingStateChanged;
             window.Browser.TitleChanged += Browser_TitleChanged;
 
-            this.userAgent = userAgent;
-            if (!userAgent.IsNullOrEmpty())
+            if (!settings.UserAgent.IsNullOrWhiteSpace() || settings.ResourceLoadedCallback != null)
             {
                 window.Browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
-                window.Browser.RequestHandler = new CustomRequestHandler(userAgent);
+                window.Browser.RequestHandler = new CustomRequestHandler(settings);
             }
 
             if (useCompositionRenderer)
@@ -50,19 +46,19 @@ namespace Playnite.WebView
             }
 
             window.Owner = WindowManager.CurrentWindow;
-            window.Width = width;
-            window.Height = height;
-            window.PanelContent.Background = new SolidColorBrush(background);
+            window.Width = settings.WindowWidth;
+            window.Height = settings.WindowHeight;
+            window.PanelContent.Background = new SolidColorBrush(settings.WindowBackground);
         }
 
         private async void Browser_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if ((e.NewValue is bool init) && init == true && !userAgent.IsNullOrEmpty())
+            if ((e.NewValue is bool init) && init == true && !settings.UserAgent.IsNullOrWhiteSpace())
             {
                 using (var client = window.Browser.GetDevToolsClient())
                 {
-                    await client.Network.SetUserAgentOverrideAsync(userAgent);
-                    await client.Emulation.SetUserAgentOverrideAsync(userAgent);
+                    await client.Network.SetUserAgentOverrideAsync(settings.UserAgent);
+                    await client.Emulation.SetUserAgentOverrideAsync(settings.UserAgent);
                 }
             }
         }

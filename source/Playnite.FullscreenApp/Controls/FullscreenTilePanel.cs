@@ -294,7 +294,7 @@ namespace Playnite.FullscreenApp.Controls
                 OnInternalChildrenGenerated();
             }
 
-            if (availableSize.Width == double.PositiveInfinity || availableSize.Height == double.PositiveInfinity)
+            if (double.IsPositiveInfinity(availableSize.Width) || double.IsPositiveInfinity(availableSize.Height))
             {
                 return GetExtent();
             }
@@ -327,6 +327,13 @@ namespace Playnite.FullscreenApp.Controls
         {
             if (UseHorizontalLayout)
             {
+                if (computedRows == 0)
+                    return new Rect(
+                        itemWidth * 0.25,
+                        centerMargin,
+                        itemWidth,
+                        itemHeight);
+
                 var row = itemIndex % computedRows;
                 var column = itemIndex < row ? 0 : (int)Math.Floor(itemIndex / (double)computedRows);
                 return new Rect(
@@ -337,6 +344,13 @@ namespace Playnite.FullscreenApp.Controls
             }
             else
             {
+                if (computedColumns == 0)
+                    return new Rect(
+                        centerMargin,
+                        (marginOffset / 2) * itemHeight,
+                        itemWidth,
+                        itemHeight);
+
                 var column = itemIndex % computedColumns;
                 var row = itemIndex < column ? 0 : (int)Math.Floor(itemIndex / (double)computedColumns);
                 return new Rect(
@@ -441,6 +455,9 @@ namespace Playnite.FullscreenApp.Controls
 
             if (UseHorizontalLayout)
             {
+                if (computedRows == 0)
+                    return new Size(centerMargin * 2, viewport.Height);
+
                 var totalColumns = (int)Math.Ceiling(itemCount / (double)computedRows);
                 return new Size(
                     (totalColumns * itemWidth) + (centerMargin * 2),
@@ -448,6 +465,9 @@ namespace Playnite.FullscreenApp.Controls
             }
             else
             {
+                if (computedColumns == 0)
+                    return new Size(viewport.Width, 0);
+
                 var totalRows = (int)Math.Ceiling(itemCount / (double)computedColumns);
                 return new Size(
                     viewport.Width,

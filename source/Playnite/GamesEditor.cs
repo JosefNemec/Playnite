@@ -341,7 +341,7 @@ namespace Playnite
                     {  "SelectedRomFile", startingArgs.SelectedRomFile }
                 };
 
-                //Get the current system HDR status only if this is the first game with HDR enabled that is launched
+                //Get the current system HDR status only if this is the first game launched with HDR controlled by Playnite
                 if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
                 {
                     wasHdrEnabled = HdrUtilities.IsHdrEnabled();
@@ -1415,7 +1415,13 @@ namespace Playnite
             var game = args.Source.Game;
             logger.Info($"Game {game.Name} stopped after {args.SessionLength} seconds.");
 
-            var runningGame = RunningGames[game.Id];
+            // I have no idea under what conditions this could happen, but there are couple crash reports with this.
+            if (!RunningGames.TryGetValue(game.Id, out var runningGame))
+            {
+                logger.Error($"Got controller stopped event for a game that's not registered as running {game.Id}");
+                return;
+            }
+
             RunningGames.Remove(game.Id);
             var dbGame = Database.Games.Get(game.Id);
             dbGame.IsRunning = false;
@@ -1454,8 +1460,9 @@ namespace Playnite
                 Application.Discord?.ClearPresence();
             }
 
-            //Reset the system HDR state back to its original state if there are no active games requiring HDR
-            if (!controllers.PlayControllers.Any(c => c.Game.Id != game.Id && c.Game.EnableSystemHdr))
+            // Reset HDR if there are no more active games with HDR controlled by Playnite
+            // and the game being closed has HDR controlled by Playnite
+            if (!controllers.PlayControllers.Any(c => c.Game.EnableSystemHdr) && game.EnableSystemHdr)
             {
                 HdrUtilities.SetHdrEnabled(wasHdrEnabled);
             }
@@ -1486,9 +1493,9 @@ namespace Playnite
                 {
                     logger.Debug("Game session was too short for client to be shutdown.");
                 }
-                else if (Database.Games.Any(x => x.IsRunning && x.PluginId == game.PluginId))
+                else if (Database.Games.Any(x => (x.IsRunning || x.IsInstalling || x.IsUninstalling) && x.PluginId == game.PluginId))
                 {
-                    logger.Debug("Shutdown process canceled because another game from library was detected as running.");
+                    logger.Debug("Shutdown process canceled because another game from library was detected as having game action active.");
                 }
                 else
                 {

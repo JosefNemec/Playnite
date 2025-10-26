@@ -29,17 +29,21 @@ namespace Playnite.WebView
 
         public IWebView CreateView(int width, int height)
         {
-            return new WebView(width, height, appSettings.UseCompositionWebViewRenderer);
+            return new WebView(
+                new WebViewSettings() { WindowWidth = width, WindowHeight = height },
+                appSettings.UseCompositionWebViewRenderer);
         }
 
         public IWebView CreateView(int width, int height, Color background)
         {
-            return new WebView(width, height, background, string.Empty, appSettings.UseCompositionWebViewRenderer);
+            return new WebView(
+                new WebViewSettings() { WindowWidth = width, WindowHeight = height, WindowBackground = background },
+                appSettings.UseCompositionWebViewRenderer);
         }
 
         public IWebView CreateView(WebViewSettings settings)
         {
-            return new WebView(settings.WindowWidth, settings.WindowHeight, settings.WindowBackground, settings.UserAgent, appSettings.UseCompositionWebViewRenderer);
+            return new WebView(settings, appSettings.UseCompositionWebViewRenderer);
         }
     }
 }

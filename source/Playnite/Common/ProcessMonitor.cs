@@ -160,3 +160,34 @@ namespace Playnite.Common
         }
     }
 }
+
+public class MonitorProcessName
+{
+    public string ProcessName { get; }
+
+    public MonitorProcessName(string processName)
+    {
+        if (processName.IsNullOrWhiteSpace())
+        {
+            throw new Exception("Non empty process name must be specified.");
+        }
+
+        ProcessName = processName;
+    }
+
+    public int IsProcessRunning()
+    {
+        foreach (var process in Process.GetProcesses().Where(a => a.SessionId != 0))
+        {
+            using (process)
+            {
+                if (process.ProcessName == ProcessName)
+                {
+                    return process.Id;
+                }
+            }
+        }
+
+        return 0;
+    }
+}

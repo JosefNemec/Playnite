@@ -212,6 +212,8 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCMetaGameSourceAll">Mọi trò chơi từ cơ sở dữ liệu.</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tất cả các trò chơi hiện đang được chọn lọc.</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Chỉ các trò chơi đã chọn.</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Cửa Hàng Chính thức.</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vui lòng chọn trường nào sẽ được Playnite tự động điền và nguồn nào nên được sử dụng để lấy dữ liệu từ đó. </sys:String>
@@ -259,8 +261,8 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCMenuShutdownSystem">Tắt hệ thống</sys:String>
     <sys:String x:Key="LOCMenuSuspendSystem">Ngưng hệ thống</sys:String>
     <sys:String x:Key="LOCMenuHibernateSystem">Chế độ ngủ đông</sys:String>
-    <sys:String x:Key="LOCMenuLockSystem"></sys:String>
-    <sys:String x:Key="LOCMenuLogoutUser"></sys:String>
+    <sys:String x:Key="LOCMenuLockSystem">Hệ thống Khoá</sys:String>
+    <sys:String x:Key="LOCMenuLogoutUser">Đăng xuất Người dùng</sys:String>
     <sys:String x:Key="LOCMenuSelectRandomGame">Chọn một trò chơi ngẫu nhiên</sys:String>
     <!--Settings Window-->
     <sys:String x:Key="LOCSettingsDetailsPanelItems">Các lĩnh vực trò chơi được hiển thị trên bảng chi tiết:</sys:String>
@@ -549,8 +551,8 @@ Nó hiện đang được sử dụng bởi {1} (các) trò chơi và {2} trình
     <sys:String x:Key="LOCUseFilterStyleAndTitle">Khớp tất cả các bộ lọc</sys:String>
     <sys:String x:Key="LOCUseFilterStyleAndTooltip" xml:space="preserve">Nếu được bật, chỉ những trò chơi sử dụng tất cả các mục trong tất cả các bộ lọc mới được đưa vào chế độ xem.
 Nếu bị tắt, các trò chơi sử dụng bất kỳ mục nào trong bất kỳ bộ lọc nào sẽ được đưa vào chế độ xem.</sys:String>
-    <sys:String x:Key="LOCGameIsInstalledTitle">cài đặt</sys:String>
-    <sys:String x:Key="LOCGameIsGameInstalledTitle">cài đặt</sys:String>
+    <sys:String x:Key="LOCGameIsInstalledTitle">Đã cài đặt</sys:String>
+    <sys:String x:Key="LOCGameIsGameInstalledTitle">Đã cài đặt</sys:String>
     <sys:String x:Key="LOCGameIsUnInstalledTitle">Chưa cài đặt</sys:String>
     <sys:String x:Key="LOCGameHiddenTitle">Ẩn</sys:String>
     <sys:String x:Key="LOCGameFavoriteTitle">Sản phẩm yêu thích</sys:String>
@@ -764,7 +766,7 @@ Thông tin thêm tại https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSetGameCategory">Đặt danh mục…</sys:String>
     <sys:String x:Key="LOCSetCompletionStatus">Trạng thái hoàn thành</sys:String>
     <sys:String x:Key="LOCRemoveGame">Xóa bỏ</sys:String>
-    <sys:String x:Key="LOCPlayGame">Bắt đầu</sys:String>
+    <sys:String x:Key="LOCPlayGame">Chơi</sys:String>
     <sys:String x:Key="LOCInstallGame">Cài đặt</sys:String>
     <sys:String x:Key="LOCGameOptions">Cài đặt game</sys:String>
     <sys:String x:Key="LOCGameDetails">Thông tin chi tiết</sys:String>
@@ -792,13 +794,13 @@ Sự phát triển của Playnite được hỗ trợ bởi những khách hàng
     <sys:String x:Key="LOCTimePlayed">Thời gian chơi</sys:String>
     <sys:String x:Key="LOCLastPlayed">Lần chơi cuối</sys:String>
     <sys:String x:Key="LOCPlayedDays">{0} ngày {1} giờ {2} phút</sys:String>
-    <sys:String x:Key="LOCPlayedHours">{0}phút {1}giây</sys:String>
+    <sys:String x:Key="LOCPlayedHours">{0} giờ {1} phút</sys:String>
     <sys:String x:Key="LOCPlayedMinutes">{0} phút</sys:String>
     <sys:String x:Key="LOCPlayedSeconds">{0} giây</sys:String>
-    <sys:String x:Key="LOCPlayedNone">Không được</sys:String>
+    <sys:String x:Key="LOCPlayedNone">Chưa chơi</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Đang mở chế độ Máy tính để bàn…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Đang mở chế độ Toàn màn hình…</sys:String>
-    <sys:String x:Key="LOCOpeningDatabase">Đang tải thư viện trò chơi…</sys:String>
+    <sys:String x:Key="LOCOpeningDatabase"> </sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeMessage">Đang tính toán dung lượng cài đặt của …</sys:String>
     <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Đang tính toán dung lượng cài đặt của {0}…</sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Không cài đặt được tệp tập lệnh.</sys:String>
@@ -1257,6 +1259,6 @@ Những bản vá mới sẽ không hiển thị ở thông báo cập nhật.</
     
 Mở issue mới trên trang GitHub của Playnite để đề xuất sửa file bị hư hại của bạn.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Bạn có muốn lưu các thay đổi không?</sys:String>
-    <sys:String x:Key="LOCPortableInstallation"></sys:String>
+    <sys:String x:Key="LOCPortableInstallation">Trình cài đặt di động</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Không phát hiện được thiết bị điều khiển nào</sys:String>
 </ResourceDictionary>

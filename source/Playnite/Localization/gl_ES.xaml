@@ -210,6 +210,8 @@ Se escolles a opción &quot;Engadir á lista de exclusións&quot;, evitarase que
     <sys:String x:Key="LOCMetaGameSourceAll">Todos os xogos da base de datos</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Todos os xogos filtrados na actualidade</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Só os xogos escollidos</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Tenda Oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Por favor, escolle qué campos debe encher automáticamente Playnite y qué fontes empregar para obter os datos.</sys:String>

@@ -24,6 +24,16 @@ namespace Playnite
         }
     }
 
+    public class NotSupportedInDesktopException : Exception
+    {
+        public NotSupportedInDesktopException() : base("Not supported in Desktop mode.")
+        {
+        }
+        public NotSupportedInDesktopException(string message) : base(message)
+        {
+        }
+    }
+
     public class ExceptionInfo
     {
         public bool IsLiteDbCorruptionCrash;
@@ -90,7 +100,7 @@ namespace Playnite
                     }
                 }
 
-                var liteDbCrash = Regex.IsMatch(exception.Message, @"'LiteDB\..+?Page'");
+                var liteDbCrash = exception is LiteDB.LiteException || exception.Message.Contains("LiteDB.");
                 if (extDesc != null)
                 {
                     return new ExceptionInfo

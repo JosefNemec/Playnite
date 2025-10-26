@@ -47,9 +47,19 @@ namespace Playnite.FullscreenApp
             return Invoke(() => SystemDialogs.SaveFile(WindowManager.CurrentWindow, filter));
         }
 
+        public string SaveFile(string filter, string initialDir)
+        {
+            return Invoke(() => SystemDialogs.SaveFile(WindowManager.CurrentWindow, filter, initialDir));
+        }
+
         public string SaveFile(string filter, bool promptOverwrite)
         {
             return Invoke(() => SystemDialogs.SaveFile(WindowManager.CurrentWindow, filter, promptOverwrite));
+        }
+
+        public string SaveFile(string filter, bool promptOverwrite, string initialDir)
+        {
+            return Invoke(() => SystemDialogs.SaveFile(WindowManager.CurrentWindow, filter, promptOverwrite, initialDir));
         }
 
         public string SelectFile(string filter)
@@ -57,9 +67,19 @@ namespace Playnite.FullscreenApp
             return Invoke(() => SystemDialogs.SelectFile(WindowManager.CurrentWindow, filter));
         }
 
+        public string SelectFile(string filter, string initialDir)
+        {
+            return Invoke(() => SystemDialogs.SelectFile(WindowManager.CurrentWindow, filter, initialDir));
+        }
+
         public List<string> SelectFiles(string filter)
         {
             return Invoke(() => SystemDialogs.SelectFiles(WindowManager.CurrentWindow, filter));
+        }
+
+        public List<string> SelectFiles(string filter, string initialDir)
+        {
+            return Invoke(() => SystemDialogs.SelectFiles(WindowManager.CurrentWindow, filter, initialDir));
         }
 
         public string SelectFolder()
@@ -67,14 +87,29 @@ namespace Playnite.FullscreenApp
             return Invoke(() => SystemDialogs.SelectFolder(WindowManager.CurrentWindow));
         }
 
+        public string SelectFolder(string initialDir)
+        {
+            return Invoke(() => SystemDialogs.SelectFolder(WindowManager.CurrentWindow, initialDir));
+        }
+
         public string SelectIconFile()
         {
             return Invoke(() => SystemDialogs.SelectIconFile(WindowManager.CurrentWindow));
         }
 
+        public string SelectIconFile(string initialDir)
+        {
+            return Invoke(() => SystemDialogs.SelectIconFile(WindowManager.CurrentWindow, initialDir));
+        }
+
         public string SelectImagefile()
         {
             return Invoke(() => SystemDialogs.SelectImageFile(WindowManager.CurrentWindow));
+        }
+
+        public string SelectImagefile(string initialDir)
+        {
+            return Invoke(() => SystemDialogs.SelectImageFile(WindowManager.CurrentWindow, initialDir));
         }
 
         public StringSelectionDialogResult SelectString(string messageBoxText, string caption, string defaultInput)
@@ -159,7 +194,11 @@ namespace Playnite.FullscreenApp
 
         public Window CreateWindow(WindowCreationOptions options)
         {
-            throw new NotImplementedException();
+            return new WindowBase()
+            {
+                WindowStyle = WindowStyle.None,
+                Style = ResourceProvider.GetResource("ChildWindowStyle") as Style
+            };
         }
 
         public Window GetCurrentAppWindow()

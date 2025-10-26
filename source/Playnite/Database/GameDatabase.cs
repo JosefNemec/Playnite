@@ -61,7 +61,7 @@ namespace Playnite.Database
         string AddFile(MetadataFile file, Guid parentId, bool isImage, CancellationToken cancelToken);
         string AddFile(string path, Guid parentId, bool isImage, CancellationToken cancelToken);
         void RemoveFile(string dbPath);
-        BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null);
+        BitmapSource GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null);
         void CopyFile(string dbPath, string targetPath);
         void BeginBufferUpdate();
         void EndBufferUpdate();
@@ -426,8 +426,13 @@ namespace Playnite.Database
             }
         }
 
-        public static string GetDefaultPath(bool portable)
+        public static string GetDefaultPath(bool portable, string userDataDirOverride)
         {
+            if (!userDataDirOverride.IsNullOrWhiteSpace())
+            {
+                return Path.Combine(userDataDirOverride, "library");
+            }
+
             if (portable)
             {
                 return ExpandableVariables.PlayniteDirectory + @"\library";
@@ -833,12 +838,25 @@ namespace Playnite.Database
 
             if (path.IsHttpUrl())
             {
+                var extension = Path.GetExtension(new Uri(path).AbsolutePath);
+                var fileName = Guid.NewGuid().ToString() + extension;
+                var downPath = Path.Combine(targetDir, fileName);
+
                 try
                 {
-                    var extension = Path.GetExtension(new Uri(path).AbsolutePath);
-                    var fileName = Guid.NewGuid().ToString() + extension;
-                    var downPath = Path.Combine(targetDir, fileName);
                     HttpDownloader.DownloadFile(path, downPath, cancelToken);
+                    if (cancelToken.IsCancellationRequested)
+                    {
+                        FileSystem.DeleteFile(downPath);
+                        return null;
+                    }
+
+                    if (FileSystem.GetFileSize(downPath) == 0)
+                    {
+                        FileSystem.DeleteFile(downPath);
+                        return null;
+                    }
+
                     if (isImage)
                     {
                         var converted = Images.ConvertToCompatibleFormat(downPath, Path.Combine(targetDir, Path.GetFileNameWithoutExtension(fileName)));
@@ -862,8 +880,9 @@ namespace Playnite.Database
                         dbPath = Path.Combine(parentId.ToString(), fileName);
                     }
                 }
-                catch (WebException e)
+                catch (Exception e)
                 {
+                    FileSystem.DeleteFile(downPath);
                     logger.Error(e, $"Failed to add http {path} file to database.");
                     return null;
                 }
@@ -966,7 +985,7 @@ namespace Playnite.Database
             DatabaseFileChanged?.Invoke(this, new DatabaseFileEventArgs(dbPath, FileEvent.Removed));
         }
 
-        public BitmapImage GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
+        public BitmapSource GetFileAsImage(string dbPath, BitmapLoadProperties loadProperties = null)
         {
             CheckDbState();
             var filePath = GetFullFilePath(dbPath);

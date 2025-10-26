@@ -1,0 +1,4 @@
+A	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/CustomMenus.xaml
+M	source/Playnite.DesktopApp/Themes/Desktop/Default/Views/ExplorerPanel.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/GameMenu.xaml
+M	source/Playnite.FullscreenApp/Themes/Fullscreen/Default/Views/MainMenu.xaml

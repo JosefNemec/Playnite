@@ -116,6 +116,7 @@ namespace Playnite.Controllers
 
                 if (!emuProf.StartupScript.IsNullOrWhiteSpace())
                 {
+                    emuProf.StartupScript = Game.ExpandVariables(emuProf.StartupScript, false, emulator.InstallDir, romPath);
                     RunStartScript(
                         $"{emulator.Name} runtime for {Game.Name}",
                         emuProf.StartupScript,
@@ -183,7 +184,8 @@ namespace Playnite.Controllers
                     startupPath = Emulation.GetExecutable(emulator.InstallDir, profileDef, true);
                     if (startupPath.IsNullOrEmpty())
                     {
-                        throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound));
+                        throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound) +
+                            $"\n\nRegular expression lookup: {profileDef.StartupExecutable}");
                     }
 
                     if (action.OverrideDefaultArgs)
@@ -246,7 +248,8 @@ namespace Playnite.Controllers
                     // 2 is ERROR_FILE_NOT_FOUND
                     if (exc.NativeErrorCode == 2)
                     {
-                        throw new FileNotFoundException(LOC.ErrorEmulatorExecutableNotFound.GetLocalized());
+                        throw new FileNotFoundException(LOC.ErrorEmulatorExecutableNotFound.GetLocalized() +
+                            $"\n\n{path} in {workDir}");
                     }
                     else
                     {
@@ -283,6 +286,22 @@ namespace Playnite.Controllers
                     var monitor = new MonitorDirectory(watchDir);
                     if (monitor.IsTrackable())
                     {
+                        StartTracking(
+                            () => monitor.IsProcessRunning() > 0,
+                            startupCheck: () => monitor.IsProcessRunning(),
+                            gameStartedAction: (id) => gameStarted(id),
+                            gameStoppedAction: () => ExecuteEmulatorScript(currentEmuProfile?.ExitScript, startedEmulatorDir, startedRomFile, startedEmulator, startedEmulatorProfile));
+                    }
+                    else
+                    {
+                        InvokeOnStopped(new GameStoppedEventArgs());
+                    }
+                }
+                else if (trackingMode == TrackingMode.ProcessName)
+                {
+                    if (!trackingPath.IsNullOrWhiteSpace())
+                    {
+                        var monitor = new MonitorProcessName(trackingPath);
                         StartTracking(
                             () => monitor.IsProcessRunning() > 0,
                             startupCheck: () => monitor.IsProcessRunning(),
@@ -485,6 +504,7 @@ namespace Playnite.Controllers
                     throw new ArgumentNullException("Game script is not defined.");
                 }
 
+                action.Script = Game.ExpandVariables(action.Script, false);
                 RunStartScript(
                     $"{Game.Name} play script",
                     action.Script,
@@ -615,6 +635,22 @@ namespace Playnite.Controllers
                     var monitor = new MonitorDirectory(watchDir);
                     if (monitor.IsTrackable())
                     {
+                        StartTracking(
+                            () => monitor.IsProcessRunning() > 0,
+                            startupCheck: () => monitor.IsProcessRunning(),
+                            trackingFrequency: action.TrackingFrequency,
+                            trackingStartDelay: action.InitialTrackingDelay);
+                    }
+                    else
+                    {
+                        InvokeOnStopped(new GameStoppedEventArgs());
+                    }
+                }
+                else if (action.TrackingMode == TrackingMode.ProcessName)
+                {
+                    if (!action.TrackingPath.IsNullOrWhiteSpace())
+                    {
+                        var monitor = new MonitorProcessName(action.TrackingPath);
                         StartTracking(
                             () => monitor.IsProcessRunning() > 0,
                             startupCheck: () => monitor.IsProcessRunning(),

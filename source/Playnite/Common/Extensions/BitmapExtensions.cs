@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ImageMagick;
 using TGASharpLib;
 
 namespace System.Drawing.Imaging
@@ -115,6 +116,10 @@ namespace System.Drawing.Imaging
     public static partial class BitmapExtensions
     {
         private static ILogger logger = LogManager.GetLogger();
+        private static readonly byte[] webpSig = new byte[] { 0x57, 0x45, 0x42, 0x50 };
+        // Apparently both ftypavif and ftypmif1 can appear in avif encoded images
+        private static readonly byte[] avif1 = new byte[] { 0x66, 0x74, 0x79, 0x70, 0x61, 0x76, 0x69, 0x66 };
+        private static readonly byte[] avif2 = new byte[] { 0x66, 0x74, 0x79, 0x70, 0x6d, 0x69, 0x66, 0x31 };
 
         public static BitmapSource CreateSourceFromURI(Uri imageUri)
         {
@@ -142,7 +147,7 @@ namespace System.Drawing.Imaging
             }
         }
 
-        public static BitmapImage GetClone(this BitmapImage image, BitmapLoadProperties loadProperties = null)
+        public static BitmapSource GetClone(this BitmapSource image, BitmapLoadProperties loadProperties = null)
         {
             var encoder = new BmpBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(image));
@@ -153,7 +158,7 @@ namespace System.Drawing.Imaging
             }
         }
 
-        public static Windows.Controls.Image ToImage(this BitmapImage bitmap, BitmapScalingMode scaling = BitmapScalingMode.Fant)
+        public static Windows.Controls.Image ToImage(this BitmapSource bitmap, BitmapScalingMode scaling = BitmapScalingMode.Fant)
         {
             var image = new Windows.Controls.Image()
             {
@@ -164,7 +169,7 @@ namespace System.Drawing.Imaging
             return image;
         }
 
-        public static BitmapImage BitmapFromFile(string imagePath, BitmapLoadProperties loadProperties = null)
+        public static BitmapSource BitmapFromFile(string imagePath, BitmapLoadProperties loadProperties = null)
         {
             try
             {
@@ -180,12 +185,78 @@ namespace System.Drawing.Imaging
             }
         }
 
+        public static bool IsFormatForImageMagickDecode(Stream stream)
+        {
+            if (stream.Length < 12)
+                return false;
+
+            // WEBP
+            stream.Seek(8, SeekOrigin.Begin);
+            var buffer = new byte[4];
+            stream.Read(buffer, 0, 4);
+            if (buffer.SequenceEqual(webpSig))
+                return true;
+
+            // AVIF
+            stream.Seek(4, SeekOrigin.Begin);
+            buffer = new byte[8];
+            stream.Read(buffer, 0, 8);
+            if (buffer.SequenceEqual(avif1))
+                return true;
+
+            if (buffer.SequenceEqual(avif2))
+                return true;
+
+            return false;
+        }
+
+        public static BitmapSource HtmlComponentImageLoader(Stream stream)
+        {
+            if (IsFormatForImageMagickDecode(stream))
+                return BitmapFromStreamImageMagick(stream);
+
+            // This is exactly how HTML renderer loads them by default, for compatbility reasons.
+            // With an exception of IgnoreColorProfile, which speeds up image decode and doesn't really matter for our use case.
+            stream.Seek(0, SeekOrigin.Begin);
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.StreamSource = stream;
+            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            bitmap.CreateOptions = BitmapCreateOptions.IgnoreColorProfile;
+            bitmap.EndInit();
+            bitmap.Freeze();
+            return bitmap;
+        }
+
+        public static BitmapSource BitmapFromStreamImageMagick(Stream stream, BitmapLoadProperties loadProperties = null)
+        {
+            // It doesn't look look we can decode images from ImageMagick at specific size for speed and memory gains.
+            // So loadProperties are ignored for now.
+            // https://github.com/dlemstra/Magick.NET/discussions/1824#discussioncomment-12810888
+            //var info = new MagickImageInfo(stream);
+
+            stream.Seek(0, SeekOrigin.Begin);
+            using (var mImage = new MagickImage(stream))
+            {
+                var image = mImage.ToBitmapSource();
+                image.Freeze();
+                return image;
+            }
+        }
+
         // TODO: Modify scaling to scale by both axies.
         // This will currently work properly only if load properties force only width or height, not both.
-        public static BitmapImage BitmapFromStream(Stream stream, BitmapLoadProperties loadProperties = null)
+        public static BitmapSource BitmapFromStream(Stream stream, BitmapLoadProperties loadProperties = null)
         {
+            // Have to call .Freeze() on sources created here otherwise images decoded from non-UI
+            // thread won't load on UI thread.
             try
             {
+                // For webp and avif primarily, since Windows' decoder doesn't work properly with some files.
+                // Primary example being images in Steam store's game descriptions.
+                if (IsFormatForImageMagickDecode(stream))
+                    return BitmapFromStreamImageMagick(stream, loadProperties);
+
                 stream.Seek(0, SeekOrigin.Begin);
                 var properties = Images.GetImageProperties(stream);
                 var aspect = new AspectRatio(properties.Width, properties.Height);
@@ -277,7 +348,7 @@ namespace System.Drawing.Imaging
             }
         }
 
-        public static long GetSizeInMemory(this BitmapImage image)
+        public static long GetSizeInMemory(this BitmapSource image)
         {
             try
             {

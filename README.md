@@ -16,7 +16,7 @@ Download
 
 Grab the latest installer or portable package from the [download](https://playnite.link/download.html) page. Playnite will automatically notify you about a new version upon release.
 
-Requirements: Windows 7 and newer.
+Requirements: Windows 10 or 11
 
 FAQ, Known Issues, user manual
 ---------

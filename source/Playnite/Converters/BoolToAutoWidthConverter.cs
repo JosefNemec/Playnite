@@ -13,7 +13,10 @@ namespace Playnite.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return ((bool)value) == true ? Double.NaN : 0;
+            if (value is bool boolValue)
+                return boolValue ? Double.NaN : 0;
+
+            return 0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

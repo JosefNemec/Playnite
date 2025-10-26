@@ -10,6 +10,7 @@ using Playnite.FullscreenApp.Windows;
 using Playnite.Input;
 using Playnite.Plugins;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.WebView;
 using Playnite.Windows;
@@ -22,7 +23,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using static SDL2.SDL;
-using static SDL2.SDL_mixer;
 
 namespace Playnite.FullscreenApp
 {
@@ -43,6 +43,7 @@ namespace Playnite.FullscreenApp
 
         private SplashScreen splashScreen;
         private bool sdlInitialized = false;
+        private TimeSpan audioSleepTimeout = new TimeSpan(0, 0, 45);
         public static AudioEngine Audio { get; private set; }
         public static IntPtr NavigateSound { get; private set; }
         public static IntPtr ActivateSound { get; private set; }
@@ -139,13 +140,24 @@ namespace Playnite.FullscreenApp
         {
             if (e.PropertyName == nameof(PlayniteApplication.IsActive))
             {
-                if (AppSettings.Fullscreen.MuteInBackground && IsActive == false)
+                if (AppSettings.Fullscreen.BackgroundVolume > 0)
                 {
-                    Mix_PauseMusic();
-                }
-                else if (AppSettings.Fullscreen.MuteInBackground && IsActive == true)
-                {
-                    Mix_ResumeMusic();
+                    if (AppSettings.Fullscreen.MuteInBackground && IsActive == false)
+                    {
+                        Audio.PauseMusic();
+                    }
+                    else if (AppSettings.Fullscreen.MuteInBackground && IsActive == true)
+                    {
+                        if (Audio.AudioClosed)
+                        {
+                            Audio.PlayMusic(BackgroundMusic);
+                            Audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
+                        }
+                        else
+                        {
+                            Audio.ResumeMusic();
+                        }
+                    }
                 }
 
                 if (GameController != null && AppSettings.Fullscreen.EnableGameControllerSupport)
@@ -160,6 +172,15 @@ namespace Playnite.FullscreenApp
             Extensions.LoadPlugins(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             Extensions.LoadScripts(AppSettings.DisabledPlugins, CmdLine.SafeStartup, AppSettings.DevelExtenions.Where(a => a.Selected == true).Select(a => a.Item).ToList());
             OnExtensionsLoaded();
+
+            try
+            {
+                MainModel.ThirdPartyTools = ThirdPartyToolsList.GetTools(Extensions.LibraryPlugins);
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed to load third party tools.");
+            }
 
             splashScreen?.Close(new TimeSpan(0));
             MainModel.OpenView();
@@ -193,6 +214,7 @@ namespace Playnite.FullscreenApp
         public override void Restart(CmdLineOptions options, bool saveSettings)
         {
             options.MasterInstance = true;
+            options.UserDataDir = CmdLine.UserDataDir;
             QuitAndStart(PlaynitePaths.FullscreenExecutablePath, options.ToString(), saveSettings: saveSettings);
         }
 
@@ -205,7 +227,7 @@ namespace Playnite.FullscreenApp
         {
             if (mode == ApplicationMode.Desktop)
             {
-                MainModel.SwitchToDesktopMode();
+                MainModel?.SwitchToDesktopMode();
             }
             else
             {
@@ -224,9 +246,9 @@ namespace Playnite.FullscreenApp
             GameController?.Dispose();
             if (Audio != null)
             {
-                Mix_FreeChunk(NavigateSound);
-                Mix_FreeChunk(ActivateSound);
-                Mix_FreeMusic(BackgroundMusic);
+                Audio.DisposeSound(NavigateSound);
+                Audio.DisposeSound(ActivateSound);
+                Audio.DisposeMusic(BackgroundMusic);
                 Audio.Dispose();
             }
 
@@ -241,14 +263,7 @@ namespace Playnite.FullscreenApp
                 return;
             }
 
-            try
-            {
-                Mix_PlayChannel(-1, NavigateSound, 0);
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to play navigation sound.");
-            }
+            Audio.PlaySound(NavigateSound);
         }
 
         public static void PlayActivateSound()
@@ -258,14 +273,7 @@ namespace Playnite.FullscreenApp
                 return;
             }
 
-            try
-            {
-                Mix_PlayChannel(-1, ActivateSound, 0);
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(e, "Failed to play activation sound.");
-            }
+            Audio.PlaySound(ActivateSound);
         }
 
         private void InitSDL()
@@ -283,10 +291,15 @@ namespace Playnite.FullscreenApp
                 logger.Error(SDL_GetError());
             }
 
+            // This should fix some random XInput controller issues
+            // https://github.com/libsdl-org/SDL/issues/13047
+            // https://github.com/JosefNemec/Playnite/issues/3794
+            SDL_SetHint(SDL_HINT_JOYSTICK_RAWINPUT, "0");
             SDL_GameControllerEventState(SDL_IGNORE);
             SDLEventLoop();
             sdlInitialized = true;
         }
+
 
         private void SDLEventLoop()
         {
@@ -308,6 +321,14 @@ namespace Playnite.FullscreenApp
                     }
 
                     GameController?.ProcessInputs();
+                    if (Audio?.AudioInitialized == true)
+                    {
+                        if (!Audio.AudioClosed &&
+                            (AppSettings.Fullscreen.BackgroundVolume <= 0 || Audio.GetIsMusicPaused()) &&
+                            DateTime.Now - Audio.LastAudioEvent > audioSleepTimeout)
+                            Audio.CloseAudio();
+                    }
+
                     await Task.Delay(16);
                 }
             });
@@ -369,8 +390,8 @@ namespace Playnite.FullscreenApp
             {
                 try
                 {
-                    NavigateSound = Mix_LoadWAV(navigationFile);
-                    Mix_VolumeChunk(NavigateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
+                    NavigateSound = Audio.LoadSound(navigationFile);
+                    Audio.SetSoundVolume(NavigateSound, AppSettings.Fullscreen.InterfaceVolume);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -383,8 +404,8 @@ namespace Playnite.FullscreenApp
             {
                 try
                 {
-                    ActivateSound = Mix_LoadWAV(activationFile);
-                    Mix_VolumeChunk(ActivateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
+                    ActivateSound = Audio.LoadSound(activationFile);
+                    Audio.SetSoundVolume(ActivateSound, AppSettings.Fullscreen.InterfaceVolume);
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
@@ -397,11 +418,11 @@ namespace Playnite.FullscreenApp
             {
                 try
                 {
-                    BackgroundMusic = Mix_LoadMUS(backgroundSoundPath);
-                    Mix_VolumeMusic(AudioEngine.GetVolume(AppSettings.Fullscreen.BackgroundVolume));
+                    BackgroundMusic = Audio.LoadMusic(backgroundSoundPath);
+                    Audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
                     if (Current.AppSettings.Fullscreen.BackgroundVolume > 0)
                     {
-                        Mix_PlayMusic(BackgroundMusic, -1);
+                        Audio.PlayMusic(BackgroundMusic);
                     }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)

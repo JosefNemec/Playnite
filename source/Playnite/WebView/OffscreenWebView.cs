@@ -17,7 +17,7 @@ namespace Playnite.WebView
         private AutoResetEvent browserInitializedEvent = new AutoResetEvent(false);
         private AutoResetEvent loadCompleteEvent = new AutoResetEvent(false);
         private CefSharp.OffScreen.ChromiumWebBrowser browser;
-        private readonly string userAgent;
+        private readonly WebViewSettings settings;
 
         public bool CanExecuteJavascriptInMainFrame => browser.CanExecuteJavascriptInMainFrame;
         public Window WindowHost { get; }
@@ -27,31 +27,32 @@ namespace Playnite.WebView
 
         public OffscreenWebView()
         {
+            this.settings = new WebViewSettings();
             Initialize();
         }
 
         public OffscreenWebView(WebViewSettings settings)
         {
-            this.userAgent = settings.UserAgent;
+            this.settings = settings;
             Initialize(new BrowserSettings
             {
                 Javascript = settings.JavaScriptEnabled ? CefState.Enabled : CefState.Disabled
             });
         }
 
-        private void Initialize(BrowserSettings settings = null)
+        private void Initialize(BrowserSettings browserSettings = null)
         {
             browser = new CefSharp.OffScreen.ChromiumWebBrowser(automaticallyCreateBrowser: false);
-            if (!userAgent.IsNullOrEmpty())
+            if (!settings.UserAgent.IsNullOrWhiteSpace() || settings.ResourceLoadedCallback != null)
             {
-                browser.RequestHandler = new CustomRequestHandler(userAgent);
+                browser.RequestHandler = new CustomRequestHandler(settings);
             }
 
             browser.LoadingStateChanged += Browser_LoadingStateChanged;
             browser.BrowserInitialized += Browser_BrowserInitialized;
-            if (settings != null)
+            if (browserSettings != null)
             {
-                browser.CreateBrowser(null, settings);
+                browser.CreateBrowser(null, browserSettings);
             }
             else
             {
@@ -78,12 +79,12 @@ namespace Playnite.WebView
         private async void Browser_BrowserInitialized(object sender, EventArgs e)
         {
             browserInitializedEvent.Set();
-            if (!userAgent.IsNullOrEmpty())
+            if (!settings.UserAgent.IsNullOrWhiteSpace())
             {
                 using (var client = browser.GetDevToolsClient())
                 {
-                    await client.Network.SetUserAgentOverrideAsync(userAgent);
-                    await client.Emulation.SetUserAgentOverrideAsync(userAgent);
+                    await client.Network.SetUserAgentOverrideAsync(settings.UserAgent);
+                    await client.Emulation.SetUserAgentOverrideAsync(settings.UserAgent);
                 }
             }
         }

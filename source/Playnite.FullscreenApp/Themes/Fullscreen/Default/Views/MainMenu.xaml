@@ -144,4 +144,28 @@
             <TextBlock Text="{DynamicResource LOCMenuLogoutUser}" VerticalAlignment="Center" />
         </StackPanel>
     </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuClientsButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xec84;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuOpenClient}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuToolsButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xf013;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCMenuTools}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MainMenuExtensionsButtonTemplate">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="&#xefc7;" FontFamily="{DynamicResource FontIcoFont}" FontSize="24"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource LOCExtensions}" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>

@@ -193,7 +193,7 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                return GameTask.TrackingMode == TrackingMode.Directory && GameTask.Type != GameActionType.Emulator;
+                return (GameTask.TrackingMode == TrackingMode.Directory || GameTask.TrackingMode == TrackingMode.ProcessName) && GameTask.Type != GameActionType.Emulator;
             }
         }
 
@@ -219,7 +219,7 @@ namespace Playnite.DesktopApp.Controls
                     return false;
                 }
 
-                return GameTask.TrackingMode == TrackingMode.Directory && GameTask.Type != GameActionType.Emulator;
+                return (GameTask.TrackingMode == TrackingMode.Directory || GameTask.TrackingMode == TrackingMode.ProcessName) && GameTask.Type != GameActionType.Emulator;
             }
         }
 

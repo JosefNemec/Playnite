@@ -52,6 +52,17 @@ namespace Playnite.DesktopApp.Markup
         }
     }
 
+    public class SettingsBinding : Extensions.Markup.SettingsBinding
+    {
+        public SettingsBinding() : base()
+        {
+        }
+
+        public SettingsBinding(string path) : base(path)
+        {
+        }
+    }
+
     public class ThemeFile : Extensions.Markup.ThemeFile
     {
         public ThemeFile() : base(ApplicationMode.Desktop)
@@ -60,6 +71,11 @@ namespace Playnite.DesktopApp.Markup
 
         public ThemeFile(string path) : base(path, ApplicationMode.Desktop)
         {
+        }
+
+        public static ThemeManifest GetDesignTimeDefaultTheme()
+        {
+            return GetDesignTimeDefaultTheme(ApplicationMode.Desktop);
         }
     }
 

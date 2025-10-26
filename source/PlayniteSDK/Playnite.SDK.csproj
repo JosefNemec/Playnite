@@ -130,6 +130,7 @@
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SdkVersions.cs" />
+    <Compile Include="WebViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig">

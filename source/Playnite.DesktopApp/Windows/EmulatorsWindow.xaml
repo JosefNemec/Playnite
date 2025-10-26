@@ -283,7 +283,7 @@
                                                 Visibility="{Binding Data.SelectedCustomProfile, Source={StaticResource Proxy}, Converter={StaticResource NullToVisibilityConverter}}">
                                         <TabItem Header="{DynamicResource LOCGeneralLabel}">
                                             <controls:GridEx KeyboardNavigation.TabNavigation="Local" Margin="3"
-                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="8">
+                                                             AutoLayoutColumns="2" StarColumns="1" ColumnCount="2" RowCount="9">
                                                 <!--Name-->
                                                 <TextBlock Text="{DynamicResource LOCNameLabel}" />
                                                 <TextBox Name="TextEmulatorProfileName"
@@ -318,7 +318,13 @@
                                                            Visibility="{Binding TrackingMode, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static mods:TrackingMode.Directory}}" />
                                                 <pctrls:PathSelectionBox Text="{Binding TrackingPath}" ShowDirectorySelector="True"
                                                                          Visibility="{Binding TrackingMode, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static mods:TrackingMode.Directory}}" />
-                                                
+
+                                                <!--TrackingPathProcessName-->
+                                                <TextBlock Text="{DynamicResource LOCActionTrackingPath}"
+                                                           Visibility="{Binding TrackingMode, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static mods:TrackingMode.ProcessName}}" />
+                                                <TextBox Text="{Binding TrackingPath, UpdateSourceTrigger=PropertyChanged}"
+                                                         Visibility="{Binding TrackingMode, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter={x:Static mods:TrackingMode.ProcessName}}" />
+
                                                 <!--FileTypes-->
                                                 <TextBlock Text="{DynamicResource LOCSupportedFilesTitle}" />
                                                 <TextBox Name="TextImageExtension"

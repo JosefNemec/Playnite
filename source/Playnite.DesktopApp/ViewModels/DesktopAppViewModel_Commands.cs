@@ -22,7 +22,6 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> OpenFilterPanelCommand { get; private set; }
         public RelayCommand<object> CloseFilterPanelCommand { get; private set; }
         public RelayCommand<object> CloseNotificationPanelCommand { get; private set; }
-        public RelayCommand<ThirdPartyTool> ThirdPartyToolOpenCommand { get; private set; }
         public RelayCommand<object> UpdateGamesCommand { get; private set; }
         public RelayCommand<object> OpenSteamFriendsCommand { get; private set; }
         public RelayCommand<object> ReportIssueCommand { get; private set; }
@@ -128,11 +127,6 @@ namespace Playnite.DesktopApp.ViewModels
             CloseNotificationPanelCommand = new RelayCommand<object>((game) =>
             {
                 AppSettings.NotificationPanelVisible = false;
-            });
-
-            ThirdPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
-            {
-                StartThirdPartyTool(tool);
             });
 
             UpdateGamesCommand = new RelayCommand<object>((a) =>
@@ -264,7 +258,7 @@ namespace Playnite.DesktopApp.ViewModels
 
             DownloadMetadataCommand = new RelayCommand<object>((a) =>
             {
-                DownloadMetadata(new MetadataDownloadViewModel(new MetadataDownloadWindowFactory()));
+                DownloadMetadata(new MetadataDownloadViewModel(new MetadataDownloadWindowFactory(), Resources));
             }, (a) => GameAdditionAllowed,
             new KeyGesture(Key.D, ModifierKeys.Control));
 

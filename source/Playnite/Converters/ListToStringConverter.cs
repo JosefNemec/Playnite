@@ -83,13 +83,7 @@ namespace Playnite.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var stringVal = (string)value;
-
-            if (string.IsNullOrEmpty(stringVal))
-            {
-                return null;
-            }
-            else
+            if (value is string stringVal && !stringVal.IsNullOrEmpty())
             {
                 var converted = stringVal.Split(new char[] { ',' }).Select(a => a.Trim());
                 if (targetType == typeof(ComparableList<string>))
@@ -101,6 +95,8 @@ namespace Playnite.Converters
                     return converted.ToList();
                 }
             }
+
+            return null;
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
@@ -138,12 +134,7 @@ namespace Playnite.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var stringVal = (string)value;
-            if (string.IsNullOrEmpty(stringVal))
-            {
-                return null;
-            }
-            else
+            if (value is string stringVal && !stringVal.IsNullOrEmpty())
             {
                 var sep = defaultSeperator;
                 if (parameter is string customSep)
@@ -165,6 +156,8 @@ namespace Playnite.Converters
                     return converted.ToList();
                 }
             }
+
+            return null;
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
@@ -196,12 +189,7 @@ namespace Playnite.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var stringVal = (string)value;
-            if (string.IsNullOrEmpty(stringVal))
-            {
-                return null;
-            }
-            else
+            if (value is string stringVal && !stringVal.IsNullOrEmpty())
             {
                 var converted = stringVal.Split(splitter, StringSplitOptions.None).Select(a => a.Trim('\r')).ToArray();
                 if (targetType == typeof(ComparableList<string>))
@@ -217,6 +205,8 @@ namespace Playnite.Converters
                     return converted.ToList();
                 }
             }
+
+            return null;
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)

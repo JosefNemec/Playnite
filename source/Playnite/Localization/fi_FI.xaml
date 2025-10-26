@@ -59,9 +59,11 @@ Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diag
     <sys:String x:Key="LOCGameRemoveAskTitle">Poista peli(t)?</sys:String>
     <sys:String x:Key="LOCGameRemoveRunningError">Ei voi poistaa - peli tai asennusohjelma on käynnissä. </sys:String>
     <sys:String x:Key="LOCGameUninstallRunningError">Asennusta ei voi poistaa - peli on käynnissä.</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">Oletko varma, että haluat poistaa {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Haluatko varmasti poistaa {0} peliä?</sys:String>
-    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Oletko varma, että haluat poistaa {0}?
+
+Valitsemalla &quot;Lisää ohitus listalle&quot; valinnan estää pelin lisäämisen uudestaan seuraavalla kerralla kun kirjastoa päivitetään. </sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Haluatko varmasti poistaa {0} peliä?
 
 Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuoda uudestaan seuraavan kerran kun kirjasto päivitetään.</sys:String>
@@ -167,7 +169,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCDetailsViewLabel">Lisätietonäkymä</sys:String>
     <sys:String x:Key="LOCCustomLabel">Mukautettu</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">Erikois kiitos</sys:String>
     <sys:String x:Key="LOCLicenseLabel">Lisenssi</sys:String>
     <sys:String x:Key="LOCContributorsLabel">Avustajat</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite suljetaan…</sys:String>
@@ -209,6 +211,8 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCMetaGameSourceAll">Kaikki tietokannan pelit</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Kaikki suodatetut pelit</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Vain valitut pelit</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Virallinen kauppa</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Valitse kentät jotka Playniten tulisi automaattisesti täyttää ja mitä lähteitä datan hakemiseen tulisi käyttää.</sys:String>
@@ -784,8 +788,8 @@ Lisää oheinen tunniste raporttiisi:</sys:String>
     <sys:String x:Key="LOCOpeningDesktopModeMessage">Avataan työpöytätilaa…</sys:String>
     <sys:String x:Key="LOCOpeningFullscreenModeMessage">Avataan televisiotilaan…</sys:String>
     <sys:String x:Key="LOCOpeningDatabase">Ladataan pelikirjastoa…</sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeMessage"></sys:String>
-    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage"></sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeMessage">Lasketaan asennus kokoa...</sys:String>
+    <sys:String x:Key="LOCCalculatingInstallSizeOfGameMessage">Lasketaan {0} asennus kokoa... </sys:String>
     <sys:String x:Key="LOCScriptInstallFail">Skriptiä ei voitu asentaa.</sys:String>
     <sys:String x:Key="LOCScriptInstallSuccess">Skriptin asentaminen onnistui.</sys:String>
     <sys:String x:Key="LOCInstallScript">Asenna skripti</sys:String>

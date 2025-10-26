@@ -3,8 +3,6 @@ using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Playnite.Database
 {
@@ -32,803 +30,149 @@ namespace Playnite.Database
 
         public bool GetGameMatchesFilter(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
-            if (!filterSettings.IsActive)
-            {
-                if (game.Hidden)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            if (filterSettings.UseAndFilteringStyle)
-            {
-                return FilterByStyleAnd(game, filterSettings, useFuzzyNameMatch);
-            }
-            else
-            {
-                return FilterByStyleOr(game, filterSettings, useFuzzyNameMatch);
-            }
+            return new FilterMatcher(filterSettings, useFuzzyNameMatch).Match(game);
         }
 
         public IEnumerable<Game> GetFilteredGames(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
+            var fm = new FilterMatcher(filterSettings, useFuzzyNameMatch);
             foreach (var game in Games)
             {
-                if (GetGameMatchesFilter(game, filterSettings, useFuzzyNameMatch))
+                if (fm.Match(game))
                 {
                     yield return game;
                 }
             }
         }
+    }
 
-        /// <summary>
-        /// Match a filter dropdown selection to a field that has multiple possible values (OR filtering logic)
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <param name="idData"></param>
-        /// <param name="objectData"></param>
-        /// <returns></returns>
-        private bool IsFilterMatching(IdItemFilterItemProperties filter, List<Guid> idData, IEnumerable<DatabaseObject> objectData)
+    internal class FilterMatcher
+    {
+        private readonly FilterSettings filterSettings;
+        private readonly bool useFuzzyNameMatch;
+
+        public FilterMatcher(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
-            if (objectData == null && (filter == null || !filter.IsSet))
-            {
-                return true;
-            }
-
-            if (!filter.Text.IsNullOrEmpty())
-            {
-                if (objectData == null)
-                {
-                    return false;
-                }
-
-                return filter.Texts.IntersectsPartiallyWith(objectData.Select(a => a.Name));
-            }
-            else if (filter.Ids.HasItems())
-            {
-                if (filter.Ids.Contains(Guid.Empty) && !idData.HasItems())
-                {
-                    return true;
-                }
-                else if (!idData.HasItems())
-                {
-                    return false;
-                }
-                else
-                {
-                    return filter.Ids.Intersect(idData).Any();
-                }
-            }
-            else
-            {
-                return true;
-            }
+            this.filterSettings = filterSettings;
+            this.useFuzzyNameMatch = useFuzzyNameMatch;
         }
 
-        /// <summary>
-        /// Match a filter dropdown selection to a field that has 1 possible value (AND filtering logic)
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <param name="idData"></param>
-        /// <param name="objectData"></param>
-        /// <returns></returns>
-        private bool IsFilterMatchingSingleOnly(IdItemFilterItemProperties filter, Guid idData, DatabaseObject objectData)
+        public bool Match(Game game)
         {
-            if (objectData == null && (filter == null || !filter.IsSet))
-            {
+            if (!MatchInstallStatus(game))
+                return false;
+
+            if (!MatchFavorite(game))
+                return false;
+
+            if (!MatchHidden(game))
+                return false;
+
+            if (!MatchLibrary(game))
+                return false;
+
+            if (!MatchName(game))
+                return false;
+
+            if (!MatchReleaseYear(game))
+                return false;
+
+            if (!MatchPlaytime(game))
+                return false;
+
+            if (!MatchInstallSize(game))
+                return false;
+
+            if (!MatchVersion(game))
+                return false;
+
+            if (!MatchCompletionStatus(game))
+                return false;
+
+            if (!MatchLastActivity(game))
+                return false;
+
+            if (!MatchRecentActivity(game))
+                return false;
+
+            if (!MatchDateAdded(game))
+                return false;
+
+            if (!MatchDateModified(game))
+                return false;
+
+            if (!MatchUserScore(game))
+                return false;
+
+            if (!MatchCommunityScore(game))
+                return false;
+
+            if (!MatchCriticScore(game))
+                return false;
+
+            if (!MatchSeries(game))
+                return false;
+
+            if (!MatchRegions(game))
+                return false;
+
+            if (!MatchSource(game))
+                return false;
+
+            if (!MatchAgeRatings(game))
+                return false;
+
+            if (!MatchGenres(game))
+                return false;
+
+            if (!MatchPlatforms(game))
+                return false;
+
+            if (!MatchPublishers(game))
+                return false;
+
+            if (!MatchDevelopers(game))
+                return false;
+
+            if (!MatchCategories(game))
+                return false;
+
+            if (!MatchTags(game))
+                return false;
+
+            if (!MatchFeatures(game))
+                return false;
+
+            return true;
+        }
+
+        private bool MatchInstallStatus(Game game)
+        {
+            if (filterSettings.IsInstalled == filterSettings.IsUnInstalled)
                 return true;
-            }
 
-            if (!filter.Text.IsNullOrEmpty())
-            {
-                if (objectData == null)
-                {
-                    return false;
-                }
-
-                return filter.Texts.All(t => objectData.Name.Contains(t, StringComparison.InvariantCultureIgnoreCase));
-            }
-            if (filter.Ids.HasItems())
-            {
-                if (filter.Ids.Count != 1)
-                {
-                    return false;
-                }
-
-                if (filter.Ids.Contains(idData))
-                {
-                    return true;
-                }
-            }
-            else if (idData == Guid.Empty)
-            {
+            if (filterSettings.IsInstalled && game.IsInstalled)
                 return true;
-            }
+
+            if (filterSettings.IsUnInstalled && !game.IsInstalled)
+                return true;
 
             return false;
         }
 
-        /// <summary>
-        /// Match a filter dropdown selection to a field that has multiple possible values (AND filtering logic)
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <param name="listData"></param>
-        /// <param name="objectData"></param>
-        /// <returns></returns>
-        private bool IsFilterMatchingList(IdItemFilterItemProperties filter, List<Guid> listData, IEnumerable<DatabaseObject> objectData)
+        private bool MatchFavorite(Game game) => !filterSettings.Favorite || (filterSettings.Favorite && game.Favorite);
+
+        private bool MatchHidden(Game game) => filterSettings.Hidden == game.Hidden;
+
+        private bool MatchLibrary(Game game)
         {
-            if (objectData == null && (filter == null || !filter.IsSet))
-            {
+            if (filterSettings.Library?.IsSet != true)
                 return true;
-            }
 
-            if (!filter.Text.IsNullOrEmpty())
-            {
-                if (objectData == null)
-                {
-                    return false;
-                }
-
-                return filter.Texts.All(t => objectData.Any(o => o.Name.Contains(t, StringComparison.InvariantCultureIgnoreCase)));
-            }
-            if (filter.Ids.HasItems())
-            {
-                if (filter.Ids.Count == 1 && filter.Ids[0] == Guid.Empty && !listData.HasItems())
-                {
-                    return true;
-                }
-                else if (listData == null || !listData.HasItems())
-                {
-                    return false;
-                }
-                else if (filter.Ids.Intersect(listData).Count() != filter.Ids.Count())
-                {
-                    return false;
-                }
-            }
-            else if (listData != null && listData.HasItems())
-            {
-                return false;
-            }
-
-            return true;
+            return filterSettings.Library.Ids.Contains(game.PluginId);
         }
 
-        /// <summary>
-        /// Match a filter dropdown selection to a field that has 1 possible value (OR filtering logic)
-        /// </summary>
-        /// <param name="filter"></param>
-        /// <param name="idData"></param>
-        /// <param name="objectData"></param>
-        /// <returns></returns>
-        private bool IsFilterMatchingSingle(IdItemFilterItemProperties filter, Guid idData, DatabaseObject objectData)
-        {
-            if (objectData == null && (filter == null || !filter.IsSet))
-            {
-                return true;
-            }
-
-            if (!filter.Text.IsNullOrEmpty())
-            {
-                if (objectData == null)
-                {
-                    return false;
-                }
-
-                return filter.Texts.ContainsPartOfString(objectData.Name);
-            }
-            else if (filter.Ids.HasItems())
-            {
-                if (filter.Ids.Contains(Guid.Empty) && idData == Guid.Empty)
-                {
-                    return true;
-                }
-                else if (idData == Guid.Empty)
-                {
-                    return false;
-                }
-                else
-                {
-                    return filter.Ids.Contains(idData);
-                }
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        private bool IsScoreFilterMatching(EnumFilterItemProperties filter, ScoreGroup score)
-        {
-            return filter.Values.Contains((int)score);
-        }
-
-        private bool IsScoreFilterMatchingSingle(EnumFilterItemProperties filter, ScoreGroup score)
-        {
-            if (filter.Values.Count != 1)
-            {
-                return false;
-            }
-            return filter.Values.Contains((int)score);
-        }
-
-        private bool FilterByStyleAnd(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
-        {
-            // ------------------ Installed
-            bool installedResult = false;
-            if ((filterSettings.IsInstalled && filterSettings.IsUnInstalled) ||
-                (!filterSettings.IsInstalled && !filterSettings.IsUnInstalled))
-            {
-                installedResult = true;
-            }
-            else
-            {
-                if (filterSettings.IsInstalled && game.IsInstalled)
-                {
-                    installedResult = true;
-                }
-                else if (filterSettings.IsUnInstalled && !game.IsInstalled)
-                {
-                    installedResult = true;
-                }
-            }
-
-            if (!installedResult)
-            {
-                return false;
-            }
-
-            // ------------------ Hidden
-            if (filterSettings.Hidden != game.Hidden)
-            {
-                return false;
-            }
-
-            // ------------------ Favorite
-            if (filterSettings.Favorite && !game.Favorite)
-            {
-                return false;
-            }
-
-            // ------------------ Providers
-            if (filterSettings.Library?.IsSet == true)
-            {
-                if (filterSettings.Library.Ids?.Count != 1)
-                {
-                    return false;
-                }
-                else
-                {
-                    if (filterSettings.Library.Ids?.Contains(game.PluginId) == false)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            // ------------------ Name filter
-            if (!GetNameFilterResult(game, filterSettings, useFuzzyNameMatch))
-            {
-                return false;
-            }
-
-            // ------------------ Release Year
-            if (filterSettings.ReleaseYear?.IsSet == true)
-            {
-                if (filterSettings.ReleaseYear.Values.Count != 1)
-                {
-                    return false;
-                }
-                else if (game.ReleaseDate == null || !filterSettings.ReleaseYear.Values.Contains(game.ReleaseYear.ToString()))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Playtime
-            if (filterSettings.PlayTime?.IsSet == true)
-            {
-                if (filterSettings.PlayTime.Values.Count != 1)
-                {
-                    return false;
-                }
-                else if (filterSettings.PlayTime.Values.First() == ((int)game.PlaytimeCategory) == false)
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ InstallSize
-            if (filterSettings.InstallSize?.IsSet == true)
-            {
-                if (filterSettings.InstallSize.Values.Count != 1)
-                {
-                    return false;
-                }
-                else if (filterSettings.InstallSize.Values.First() == ((int)game.InstallSizeGroup) == false)
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Version
-            if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) != true)
-            {
-                return false;
-            }
-
-            // ------------------ Completion Status
-            if (filterSettings.CompletionStatuses?.IsSet == true)
-            {
-                if (!IsFilterMatchingSingleOnly(filterSettings.CompletionStatuses, game.CompletionStatusId, game.CompletionStatus))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Last Activity
-            if (filterSettings.LastActivity?.IsSet == true)
-            {
-                if (filterSettings.LastActivity.Values.Count != 1)
-                {
-                    return false;
-                }
-                else if (!filterSettings.LastActivity.Values.Contains((int)game.LastActivitySegment))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Recent Activity
-            if (filterSettings.RecentActivity?.IsSet == true)
-            {
-                if (filterSettings.RecentActivity.Values.Count != 1)
-                {
-                    return false;
-                }
-                else if (!filterSettings.RecentActivity.Values.Contains((int)game.RecentActivitySegment))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Added
-            if (filterSettings.Added?.IsSet == true)
-            {
-                if (filterSettings.Added.Values.Count != 1)
-                {
-                    return false;
-                }
-                else if (!filterSettings.Added.Values.Contains((int)game.AddedSegment))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Modified
-            if (filterSettings.Modified?.IsSet == true)
-            {
-                if (filterSettings.Modified.Values.Count != 1)
-                {
-                    return false;
-                }
-                else if (!filterSettings.Modified.Values.Contains((int)game.ModifiedSegment))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ User Score
-            if (filterSettings.UserScore != null)
-            {
-                if (!IsScoreFilterMatchingSingle(filterSettings.UserScore, game.UserScoreGroup))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Community Score
-            if (filterSettings.CommunityScore != null)
-            {
-                if (!IsScoreFilterMatchingSingle(filterSettings.CommunityScore, game.CommunityScoreGroup))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Critic Score
-            if (filterSettings.CriticScore != null)
-            {
-                if (!IsScoreFilterMatchingSingle(filterSettings.CriticScore, game.CriticScoreGroup))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Series filter
-            if (filterSettings.Series?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Series, game.SeriesIds, game.Series))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Region filter
-            if (filterSettings.Region?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Region, game.RegionIds, game.Regions))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Source filter
-            if (filterSettings.Source?.IsSet == true)
-            {
-                if (!IsFilterMatchingSingleOnly(filterSettings.Source, game.SourceId, game.Source))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ AgeRating filter
-            if (filterSettings.AgeRating?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.AgeRating, game.AgeRatingIds, game.AgeRatings))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Genre
-            if (filterSettings.Genre?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Genre, game.GenreIds, game.Genres))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Platform
-            if (filterSettings.Platform?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Platform, game.PlatformIds, game.Platforms))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Publisher
-            if (filterSettings.Publisher?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Publisher, game.PublisherIds, game.Publishers))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Developer
-            if (filterSettings.Developer?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Developer, game.DeveloperIds, game.Developers))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Category
-            if (filterSettings.Category?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Category, game.CategoryIds, game.Categories))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Tags
-            if (filterSettings.Tag?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Tag, game.TagIds, game.Tags))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Features
-            if (filterSettings.Feature?.IsSet == true)
-            {
-                if (!IsFilterMatchingList(filterSettings.Feature, game.FeatureIds, game.Features))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private bool FilterByStyleOr(Game game, FilterSettings filterSettings, bool useFuzzyNameMatch)
-        {
-            // ------------------ Installed
-            bool installedResult = false;
-            if ((filterSettings.IsInstalled && filterSettings.IsUnInstalled) ||
-                (!filterSettings.IsInstalled && !filterSettings.IsUnInstalled))
-            {
-                installedResult = true;
-            }
-            else
-            {
-                if (filterSettings.IsInstalled && game.IsInstalled)
-                {
-                    installedResult = true;
-                }
-                else if (filterSettings.IsUnInstalled && !game.IsInstalled)
-                {
-                    installedResult = true;
-                }
-            }
-
-            if (!installedResult)
-            {
-                return false;
-            }
-
-            // ------------------ Hidden
-            bool hiddenResult = true;
-            if (filterSettings.Hidden && game.Hidden)
-            {
-                hiddenResult = true;
-            }
-            else if (!filterSettings.Hidden && game.Hidden)
-            {
-                return false;
-            }
-            else if (filterSettings.Hidden && !game.Hidden)
-            {
-                return false;
-            }
-
-            if (!hiddenResult)
-            {
-                return false;
-            }
-
-            // ------------------ Favorite
-            bool favoriteResult = false;
-            if (filterSettings.Favorite && game.Favorite)
-            {
-                favoriteResult = true;
-            }
-            else if (!filterSettings.Favorite)
-            {
-                favoriteResult = true;
-            }
-
-            if (!favoriteResult)
-            {
-                return false;
-            }
-
-            // ------------------ Providers
-            bool librariesFilter = false;
-            if (filterSettings.Library?.IsSet == true)
-            {
-                librariesFilter = filterSettings.Library.Ids?.Contains(game.PluginId) == true;
-            }
-            else
-            {
-                librariesFilter = true;
-            }
-
-            if (!librariesFilter)
-            {
-                return false;
-            }
-
-            // ------------------ Name filter
-            if (!GetNameFilterResult(game, filterSettings, useFuzzyNameMatch))
-            {
-                return false;
-            }
-
-            // ------------------ Release Year
-            if (filterSettings.ReleaseYear?.IsSet == true)
-            {
-                if (game.ReleaseDate == null && !filterSettings.ReleaseYear.Values.Contains(FilterSettings.MissingFieldString))
-                {
-                    return false;
-                }
-                else if (game.ReleaseDate != null && !filterSettings.ReleaseYear.Values.Contains(game.ReleaseYear.ToString()))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Playtime
-            if (filterSettings.PlayTime?.IsSet == true && !filterSettings.PlayTime.Values.Contains((int)game.PlaytimeCategory))
-            {
-                return false;
-            }
-
-            // ------------------ InstallSize
-            if (filterSettings.InstallSize?.IsSet == true && !filterSettings.InstallSize.Values.Contains((int)game.InstallSizeGroup))
-            {
-                return false;
-            }
-
-            // ------------------ Version
-            if (!filterSettings.Version.IsNullOrEmpty() && game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) != true)
-            {
-                return false;
-            }
-
-            // ------------------ Completion Status
-            if (filterSettings.CompletionStatuses?.IsSet == true)
-            {
-                if (!IsFilterMatchingSingle(filterSettings.CompletionStatuses, game.CompletionStatusId, game.CompletionStatus))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Last Activity
-            if (filterSettings.LastActivity?.IsSet == true && !filterSettings.LastActivity.Values.Contains((int)game.LastActivitySegment))
-            {
-                return false;
-            }
-
-            // ------------------ Recent Activity
-            if (filterSettings.RecentActivity?.IsSet == true && !filterSettings.RecentActivity.Values.Contains((int)game.RecentActivitySegment))
-            {
-                return false;
-            }
-
-            // ------------------ Added
-            if (filterSettings.Added?.IsSet == true && !filterSettings.Added.Values.Contains((int)game.AddedSegment))
-            {
-                return false;
-            }
-
-            // ------------------ Modified
-            if (filterSettings.Modified?.IsSet == true && !filterSettings.Modified.Values.Contains((int)game.ModifiedSegment))
-            {
-                return false;
-            }
-
-            // ------------------ User Score
-            if (filterSettings.UserScore != null)
-            {
-                if (!IsScoreFilterMatching(filterSettings.UserScore, game.UserScoreGroup))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Community Score
-            if (filterSettings.CommunityScore != null)
-            {
-                if (!IsScoreFilterMatching(filterSettings.CommunityScore, game.CommunityScoreGroup))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Critic Score
-            if (filterSettings.CriticScore != null)
-            {
-                if (!IsScoreFilterMatching(filterSettings.CriticScore, game.CriticScoreGroup))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Series filter
-            if (filterSettings.Series?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Series, game.SeriesIds, game.Series))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Region filter
-            if (filterSettings.Region?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Region, game.RegionIds, game.Regions))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Source filter
-            if (filterSettings.Source?.IsSet == true)
-            {
-                if (!IsFilterMatchingSingle(filterSettings.Source, game.SourceId, game.Source))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ AgeRating filter
-            if (filterSettings.AgeRating?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.AgeRating, game.AgeRatingIds, game.AgeRatings))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Genre
-            if (filterSettings.Genre?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Genre, game.GenreIds, game.Genres))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Platform
-            if (filterSettings.Platform?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Platform, game.PlatformIds, game.Platforms))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Publisher
-            if (filterSettings.Publisher?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Publisher, game.PublisherIds, game.Publishers))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Developer
-            if (filterSettings.Developer?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Developer, game.DeveloperIds, game.Developers))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Category
-            if (filterSettings.Category?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Category, game.CategoryIds, game.Categories))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Tags
-            if (filterSettings.Tag?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Tag, game.TagIds, game.Tags))
-                {
-                    return false;
-                }
-            }
-
-            // ------------------ Features
-            if (filterSettings.Feature?.IsSet == true)
-            {
-                if (!IsFilterMatching(filterSettings.Feature, game.FeatureIds, game.Features))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private bool GetNameFilterResult(Game game, FilterSettings filterSettings, bool useFuzzyMatch)
+        private bool MatchName(Game game)
         {
             if (filterSettings.Name.IsNullOrEmpty())
             {
@@ -845,12 +189,184 @@ namespace Playnite.Database
                 return game.GetNameGroup() == filterSettings.Name[1];
             }
 
-            if (!useFuzzyMatch || filterSettings.Name[0] == '!' && useFuzzyMatch)
+            if (!useFuzzyNameMatch || filterSettings.Name[0] == '!')
             {
                 return game.Name.IndexOf(filterSettings.Name.Substring(1), StringComparison.OrdinalIgnoreCase) >= 0;
             }
 
             return SearchViewModel.MatchTextFilter(filterSettings.Name, game.Name, true);
+        }
+
+        private bool MatchReleaseYear(Game game)
+        {
+            if (filterSettings.ReleaseYear?.IsSet != true)
+                return true;
+
+            if (game.ReleaseDate == null)
+            {
+                return filterSettings.ReleaseYear.Values.Contains(FilterSettings.MissingFieldString);
+            }
+
+            return filterSettings.ReleaseYear.Values.Contains(game.ReleaseYear.ToString());
+        }
+
+        private bool MatchPlaytime(Game game) => MatchEnumField(filterSettings.PlayTime, (int)game.PlaytimeCategory);
+
+        private bool MatchInstallSize(Game game) => MatchEnumField(filterSettings.InstallSize, (int)game.InstallSizeGroup);
+
+        private bool MatchVersion(Game game)
+        {
+            if (filterSettings.Version.IsNullOrEmpty())
+                return true;
+
+            return game.Version?.Contains(filterSettings.Version, StringComparison.OrdinalIgnoreCase) == true;
+        }
+
+        private bool MatchCompletionStatus(Game game) => IsFilterMatchingSingle(filterSettings.CompletionStatuses, game.CompletionStatusId, game.CompletionStatus);
+
+        private bool MatchLastActivity(Game game) => MatchEnumField(filterSettings.LastActivity, (int)game.LastActivitySegment);
+
+        private bool MatchRecentActivity(Game game) => MatchEnumField(filterSettings.RecentActivity, (int)game.RecentActivitySegment);
+
+        private bool MatchDateAdded(Game game) => MatchEnumField(filterSettings.Added, (int)game.AddedSegment);
+
+        private bool MatchDateModified(Game game) => MatchEnumField(filterSettings.Modified, (int)game.ModifiedSegment);
+
+        private bool MatchUserScore(Game game) => IsScoreFilterMatching(filterSettings.UserScore, game.UserScoreGroup);
+
+        private bool MatchCommunityScore(Game game) => IsScoreFilterMatching(filterSettings.CommunityScore, game.CommunityScoreGroup);
+
+        private bool MatchCriticScore(Game game) => IsScoreFilterMatching(filterSettings.CriticScore, game.CriticScoreGroup);
+
+        private bool MatchSeries(Game game) => IsFilterMatchingList(filterSettings.Series, game.SeriesIds, game.Series);
+
+        private bool MatchRegions(Game game) => IsFilterMatchingList(filterSettings.Region, game.RegionIds, game.Regions);
+
+        private bool MatchSource(Game game) => IsFilterMatchingSingle(filterSettings.Source, game.SourceId, game.Source);
+
+        private bool MatchAgeRatings(Game game) => IsFilterMatchingList(filterSettings.AgeRating, game.AgeRatingIds, game.AgeRatings);
+
+        private bool MatchGenres(Game game) => IsFilterMatchingList(filterSettings.Genre, game.GenreIds, game.Genres);
+
+        private bool MatchPlatforms(Game game) => IsFilterMatchingList(filterSettings.Platform, game.PlatformIds, game.Platforms);
+
+        private bool MatchPublishers(Game game) => IsFilterMatchingList(filterSettings.Publisher, game.PublisherIds, game.Publishers);
+
+        private bool MatchDevelopers(Game game) => IsFilterMatchingList(filterSettings.Developer, game.DeveloperIds, game.Developers);
+
+        private bool MatchCategories(Game game) => IsFilterMatchingList(filterSettings.Category, game.CategoryIds, game.Categories);
+
+        private bool MatchTags(Game game) => IsFilterMatchingList(filterSettings.Tag, game.TagIds, game.Tags);
+
+        private bool MatchFeatures(Game game) => IsFilterMatchingList(filterSettings.Feature, game.FeatureIds, game.Features);
+
+        private static bool MatchEnumField(EnumFilterItemProperties enumFilter, int enumFieldValue)
+        {
+            if (enumFilter?.IsSet != true)
+                return true;
+
+            return enumFilter.Values.Contains(enumFieldValue);
+        }
+
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has 1 possible value (OR filtering logic)
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="idData"></param>
+        /// <param name="objectData"></param>
+        /// <returns></returns>
+        private static bool IsFilterMatchingSingle(IdItemFilterItemProperties filter, Guid idData, DatabaseObject objectData)
+        {
+            if (filter == null || !filter.IsSet)
+            {
+                return true;
+            }
+
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (objectData == null)
+                {
+                    return false;
+                }
+
+                return filter.Texts.ContainsPartOfString(objectData.Name);
+            }
+
+            if (filter.Ids.HasItems())
+            {
+                return filter.Ids.Contains(idData);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Match a filter dropdown selection to a field that has multiple possible values
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="gamePropertyIds"></param>
+        /// <param name="gamePropertyObjects"></param>
+        /// <returns></returns>
+        private bool IsFilterMatchingList(IdItemFilterItemProperties filter, List<Guid> gamePropertyIds, IReadOnlyCollection<DatabaseObject> gamePropertyObjects)
+        {
+            if (filter == null || !filter.IsSet)
+            {
+                return true;
+            }
+
+            if (!filter.Text.IsNullOrEmpty())
+            {
+                if (gamePropertyObjects == null)
+                {
+                    return false;
+                }
+
+                bool gameHasItemWithStringMatch(string t)
+                {
+                    return gamePropertyObjects.Any(o => o.Name.Contains(t, StringComparison.InvariantCultureIgnoreCase));
+                }
+
+                if (filterSettings.UseAndFilteringStyle)
+                {
+                    return filter.Texts.All(gameHasItemWithStringMatch);
+                }
+                else
+                {
+                    return filter.Texts.Any(gameHasItemWithStringMatch);
+                }
+            }
+
+            if (filter.Ids.HasItems())
+            {
+                bool gameHasItemWithIdMatch(Guid filterId)
+                {
+                    if (filterId == Guid.Empty)
+                    {
+                        return gamePropertyIds == null || gamePropertyIds.Count == 0;
+                    }
+
+                    return gamePropertyIds?.Contains(filterId) == true;
+                }
+
+                if (filterSettings.UseAndFilteringStyle)
+                {
+                    return filter.Ids.All(gameHasItemWithIdMatch);
+                }
+                else
+                {
+                    return filter.Ids.Any(gameHasItemWithIdMatch);
+                }
+            }
+
+            return true;
+        }
+
+        private static bool IsScoreFilterMatching(EnumFilterItemProperties filter, ScoreGroup score)
+        {
+            if (filter?.IsSet != true)
+                return true;
+
+            return filter.Values?.Contains((int)score) == true;
         }
     }
 }

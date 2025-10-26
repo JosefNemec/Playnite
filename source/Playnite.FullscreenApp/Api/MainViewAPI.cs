@@ -127,5 +127,30 @@ namespace Playnite.FullscreenApp.API
         {
             throw new NotSupportedInFullscreenException();
         }
+
+        public bool? OpenEditDialog(Guid gameId)
+        {
+            throw new NotSupportedInFullscreenException();
+        }
+
+        public bool? OpenEditDialog(List<Guid> gameIds)
+        {
+            throw new NotSupportedInFullscreenException();
+        }
+
+        public List<FilterPreset> GetSortedFilterPresets()
+        {
+            return mainModel.SortedFilterPresets.ToList();
+        }
+
+        public List<FilterPreset> GetSortedFilterFullscreenPresets()
+        {
+            return mainModel.SortedFilterFullscreenPresets.ToList();
+        }
+
+        public void ToggleFullscreenView()
+        {
+            UIDispatcher.Invoke(() => mainModel.ToggleGameDetailsCommand?.Execute(null));
+        }
     }
 }

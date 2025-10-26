@@ -170,7 +170,7 @@
     <sys:String x:Key="LOCDetailsViewLabel">자세히 보기</sys:String>
     <sys:String x:Key="LOCCustomLabel">사용자 지정</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
-    <sys:String x:Key="LOCSpecialThanks"></sys:String>
+    <sys:String x:Key="LOCSpecialThanks">도움 주신 분들</sys:String>
     <sys:String x:Key="LOCLicenseLabel">라이센스</sys:String>
     <sys:String x:Key="LOCContributorsLabel">기여자</sys:String>
     <sys:String x:Key="LOCClosingPlaynite">Playnite 나가는 중…</sys:String>
@@ -212,6 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">데이터베이스의 모든 게임</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">현재 필터된 모든 게임</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">선택한 게임만</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">공식 스토어</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">어떤 항목을 자동으로 채울지, 데이터를 얻기 위해 사용할 소스가 어디인지 선택하십시오.</sys:String>
@@ -251,8 +253,8 @@
     <sys:String x:Key="LOCMenuOpenFullscreen">전체 화면 모드로 전환</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">링크</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">도움말</sys:String>
-    <sys:String x:Key="LOCMenuPatreonSupport">후원자가 되어 후원하기</sys:String>
-    <sys:String x:Key="LOCMenuKofiSupport"></sys:String>
+    <sys:String x:Key="LOCMenuPatreonSupport">Patreon으로 후원하기</sys:String>
+    <sys:String x:Key="LOCMenuKofiSupport">Ko-fi로 후원하기</sys:String>
     <sys:String x:Key="LOCUserManual">사용자 설명서</sys:String>
     <sys:String x:Key="LOCSDKDocumentation">SDK 개발 문서</sys:String>
     <sys:String x:Key="LOCMenuRestartSystem">시스템 재시작</sys:String>
@@ -374,7 +376,7 @@
     <sys:String x:Key="LOCSettingsFullscreenBackgroundOnMainScreen">메인 화면에 배경 이미지 표시</sys:String>
     <sys:String x:Key="LOCBackgroundImageScreenOptionTooltip" xml:space="preserve">메타데이터를 다시 다운로드하지 않으면 기존 게임에는 소급 적용되지 않습니다.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportMode">플레이 시간 가져오기:</sys:String>
-    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Playnite 데이터베이스의 게임에 대해 라이브러리 플러그인이 보고한 플레이 시간을 Playnite가 가져올 시점를 구성합니다. 이 기능을 사용하려면 게임 처리를 담당하는 라이브러리 플러그인의 지원이 필요합니다.
+    <sys:String x:Key="LOCSettingsPlaytimeImportModeTooltip" xml:space="preserve">Playnite 데이터베이스의 게임에 대해 라이브러리 플러그인이 보고한 플레이 시간을 Playnite가 가져올 시점을 구성합니다. 이 기능을 사용하려면 게임 처리를 담당하는 라이브러리 플러그인의 지원이 필요합니다.
 
 항상: Playnite 새로 가져온 게임과 기존 게임의 플레이 시간을 가져옵니다.
 새로 가져온 게임에만: 새로 가져온 게임의 플레이 시간만 가져옵니다.
@@ -783,7 +785,7 @@
     <sys:String x:Key="LOCDescriptionSizeBytes">설치 용량은 바이트로 표시됩니다.</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">출시 날짜는 '년-월-일' 형식으로 작성되어야 합니다. 월, 일은 생략할 수 있습니다.</sys:String>
     <sys:String x:Key="LOCDescriptionScoreValues">0에서 100사이의 값 또는 점수가 없으면 빈칸.</sys:String>
-    <sys:String x:Key="LOCPatreonDevelopMessage"></sys:String>
+    <sys:String x:Key="LOCPatreonDevelopMessage">Playnite 개발은 다음의 Patron과 Ko-fi 후원자들의 지원을 받습니다.</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">코드, 번역 및 기타 기여는 특별한 순서가 없습니다:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">게임 모니터링을 취소하시겠습니까?</sys:String>
     <sys:String x:Key="LOCCancelMonitoringSetupAsk">설치 모니터링이 실행 중입니다. 중단하고 게임을 이전 상태로 되돌리시겠습니까?</sys:String>

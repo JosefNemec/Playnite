@@ -1,0 +1,57 @@
+Id: jgenesis
+Name: jgenesis
+Website: 'https://github.com/jsgroth/jgenesis'
+Profiles:
+  - Name: Master System
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware MasterSystem --fullscreen -f "{ImagePath}"'
+    Platforms: [sega_mastersystem]
+    ImageExtensions: [sms, zip, 7z]
+
+  - Name: Game Gear
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware MasterSystem --fullscreen -f "{ImagePath}"'
+    Platforms: [sega_gamegear]
+    ImageExtensions: [gg, zip, 7z]
+
+  - Name: Genesis
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware Genesis --fullscreen -f "{ImagePath}"'
+    Platforms: [sega_genesis]
+    ImageExtensions: [gen, md, bin, smd, zip, 7z]
+
+  - Name: Sega CD
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware SegaCd --fullscreen -f "{ImagePath}"'
+    Platforms: [sega_cd]
+    ImageExtensions: [cue, chd, zip, 7z]
+
+  - Name: Sega 32X
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware Sega32X --fullscreen -f "{ImagePath}"'
+    Platforms: [sega_32x]
+    ImageExtensions: [32x, bin, zip, 7z]
+
+  - Name: NES
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware Nes --fullscreen -f "{ImagePath}"'
+    Platforms: [nintendo_nes]
+    ImageExtensions: [nes, zip, 7z]
+
+  - Name: SNES
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware Snes --fullscreen -f "{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [sfc, smc, zip, 7z]
+
+  - Name: Game Boy
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware GameBoy --fullscreen -f "{ImagePath}"'
+    Platforms: [nintendo_gameboy]
+    ImageExtensions: [gb, zip, 7z]
+
+  - Name: Game Boy Color
+    StartupExecutable: ^jgenesis-cli\.exe$
+    StartupArguments: '--hardware GameBoy --fullscreen -f "{ImagePath}"'
+    Platforms: [nintendo_gameboycolor]
+    ImageExtensions: [gbc, zip, 7z]

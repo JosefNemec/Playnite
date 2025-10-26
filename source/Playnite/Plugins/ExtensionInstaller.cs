@@ -224,7 +224,7 @@ namespace Playnite.Plugins
             return InstallPackedFile<ExtensionManifest>(
                 path,
                 PlaynitePaths.ExtensionManifestFileName,
-                PlayniteSettings.IsPortable ? PlaynitePaths.ExtensionsProgramPath : PlaynitePaths.ExtensionsUserDataPath,
+                PlaynitePaths.ExtensionsUserDataPath,
                 (a) => ExtensionManifest.FromFile(a));
         }
 
@@ -233,7 +233,7 @@ namespace Playnite.Plugins
             return InstallPackedFile<ThemeManifest>(
                path,
                PlaynitePaths.ThemeManifestFileName,
-               PlayniteSettings.IsPortable ? PlaynitePaths.ThemesProgramPath : PlaynitePaths.ThemesUserDataPath,
+               PlaynitePaths.ThemesUserDataPath,
                (a) => new ThemeManifest(a));
         }
 

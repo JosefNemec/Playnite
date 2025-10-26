@@ -213,6 +213,8 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCMetaGameSourceAll">Všetky hry v databáze</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Všetky aktuálne zobrazené hry</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Iba vybrané hry</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Oficiálny bbchod</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vyberte, ktoré polia by mali byť automaticky doplnené apkou Playnite a ktoré zdroje by sa mali použiť pre získanie údajov.</sys:String>

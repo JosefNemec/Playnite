@@ -286,9 +286,9 @@ namespace Playnite.DesktopApp.ViewModels
 
             if (selectedItem.NewValue is TreeViewItem treeItem)
             {
-                if (treeItem.Tag != null)
+                if (treeItem.Tag != null && int.TryParse(treeItem.Tag.ToString(), out var treeIndex))
                 {
-                    viewIndex = int.Parse(treeItem.Tag.ToString());
+                    viewIndex = treeIndex;
                 }
             }
 

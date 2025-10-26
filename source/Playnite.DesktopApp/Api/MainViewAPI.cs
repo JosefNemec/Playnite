@@ -21,14 +21,17 @@ namespace Playnite.DesktopApp.API
         {
             get
             {
-                if (mainModel.SelectedGames == null && mainModel.SelectedGame != null)
+                return UIDispatcher.Invoke(() =>
                 {
-                    return new List<Game>() { mainModel.SelectedGame.Game };
-                }
-                else
-                {
-                    return mainModel.SelectedGames?.Select(a => a.Game).ToList();
-                }
+                    if (mainModel.SelectedGames == null && mainModel.SelectedGame != null)
+                    {
+                        return new List<Game>() { mainModel.SelectedGame.Game };
+                    }
+                    else
+                    {
+                        return mainModel.SelectedGames?.Select(a => a.Game).ToList();
+                    }
+                });
             }
         }
 
@@ -58,7 +61,7 @@ namespace Playnite.DesktopApp.API
             set => mainModel.AppSettings.ViewSettings.GroupingOrder = value;
         }
 
-        public List<Game> FilteredGames => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList();
+        public List<Game> FilteredGames => UIDispatcher.Invoke(() => mainModel.GamesView.CollectionView.Cast<GamesCollectionViewEntry>().Select(a => a.Game).Distinct().ToList());
 
         public Dispatcher UIDispatcher => PlayniteApplication.CurrentNative.Dispatcher;
 
@@ -123,6 +126,39 @@ namespace Playnite.DesktopApp.API
         public void OpenSearch(SearchContext context, string searchTerm)
         {
             mainModel.OpenSearch(context, searchTerm);
+        }
+
+        public bool? OpenEditDialog(Guid gameId)
+        {
+            var game = mainModel.Database.Games.Get(gameId);
+            if (game is null)
+                return null;
+
+            return mainModel.GamesEditor.EditGame(game);
+        }
+
+        public bool? OpenEditDialog(List<Guid> gameIds)
+        {
+            var games = mainModel.Database.Games.Get(gameIds);
+            if (!games.HasItems())
+                return null;
+
+            return mainModel.GamesEditor.EditGames(games);
+        }
+
+        public List<FilterPreset> GetSortedFilterPresets()
+        {
+            return mainModel.SortedFilterPresets.ToList();
+        }
+
+        public List<FilterPreset> GetSortedFilterFullscreenPresets()
+        {
+            return mainModel.SortedFilterFullscreenPresets.ToList();
+        }
+
+        public void ToggleFullscreenView()
+        {
+            throw new NotSupportedInDesktopException();
         }
     }
 }

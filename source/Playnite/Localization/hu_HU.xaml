@@ -213,6 +213,8 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCMetaGameSourceAll">Az adatbázis összes játéka</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">A jelenleg szűrt összes játék</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Csak a kiválasztott játékok</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Nincs metaadat mező kiválasztva</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Nincs letöltendő metaadat mező kiválasztva. Válassz ki legalább egyet, és jelölj ki egy metaadat szolgáltatót hozzá.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Hivatalos áruházból</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Kérlek válaszd ki mely mezőket frissítse a Playnite automatikusan, és milyen forrásból.</sys:String>
@@ -384,7 +386,7 @@ Sosem: semmilyen esetben sem importál játékidőt.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Csak új importált játékokat</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Sosem</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Játékvezérlő támogatása ablakos módban</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">/PS gomb teljesképernyős módra vált</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Guide/PS gomb teljesképernyős módra vált</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Automatikus metaadat beállítások új játékok hozzáadásánál.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Megjelenítő kiválasztása</sys:String>
     <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Mindig az elsődleges képernyő használata.</sys:String>
@@ -909,9 +911,9 @@ Hátterek: {2} megapixel</sys:String>
     <sys:String x:Key="LOCRandomGameLimistToFilter">Jeleneg szűrtekből válasszon</sys:String>
     <sys:String x:Key="LOCRandomGamePickAnother">Még egy véletlenszerűen</sys:String>
     <sys:String x:Key="LOCMenuAddons">Bővítmények…</sys:String>
-    <sys:String x:Key="LOCExtensionsInstalled">Telepített</sys:String>
+    <sys:String x:Key="LOCExtensionsInstalled">Telepített bővítmények</sys:String>
     <sys:String x:Key="LOCExtensionsSettings">Bővítmény beállítások</sys:String>
-    <sys:String x:Key="LOCExtensionsBrowse">Tallózás</sys:String>
+    <sys:String x:Key="LOCExtensionsBrowse">Bővítmények letöltése</sys:String>
     <sys:String x:Key="LOCExtensionsUpdates">Frissítések</sys:String>
     <sys:String x:Key="LOCExtensionsUpdatesCount">{0} frissítés</sys:String>
     <sys:String x:Key="LOCAddonsConfigMoveInfo">A telepített bővítmények és témák kezelése és a beállításaik az új &quot;Bővítmények&quot; menübe lettek áthelyezve.</sys:String>
@@ -1005,7 +1007,7 @@ Akkor kapcsold ki, ha olyan programokat használsz, ami játékvezérlő gombnyo
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Megfordítja az A/B gombok funkcionailtását, így az alapértelmezett A: OK és B: vissza épp ellenkezőleg fog működni.</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Csak az elsődleges játékvezérlő</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Csak az első játékvezérlővel tudod irányítani a Playnite-ot.</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">/PS gombbal előtérbe kerül a Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide/PS gombbal előtérbe kerül a Playnite</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Felület hangerő</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Háttérzene hangerő</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Háttérben némít</sys:String>

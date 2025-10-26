@@ -115,11 +115,11 @@
     <sys:String x:Key="LOCBackLabel">Назад</sys:String>
     <sys:String x:Key="LOCDoneCapLabel">ГОТОВО</sys:String>
     <sys:String x:Key="LOCBackCapLabel">НАЗАД</sys:String>
-    <sys:String x:Key="LOCClearCapLabel">CLEAR</sys:String>
-    <sys:String x:Key="LOCClearLabel">Изчистване</sys:String>
-    <sys:String x:Key="LOCDismiss">Отхвърляне</sys:String>
-    <sys:String x:Key="LOCDismissAll">Отхвърляне на всички</sys:String>
-    <sys:String x:Key="LOCImportLabel">Импортиране</sys:String>
+    <sys:String x:Key="LOCClearCapLabel">ИЗЧИСТИ</sys:String>
+    <sys:String x:Key="LOCClearLabel">Изчисти</sys:String>
+    <sys:String x:Key="LOCDismiss">Отхвърли</sys:String>
+    <sys:String x:Key="LOCDismissAll">Отхвърли всички</sys:String>
+    <sys:String x:Key="LOCImportLabel">Импортирай</sys:String>
     <sys:String x:Key="LOCNameLabel">Име</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Автор</sys:String>
     <sys:String x:Key="LOCModuleLabel">Модул</sys:String>
@@ -138,11 +138,11 @@
     <sys:String x:Key="LOCWebsiteLabel">Уебсайт</sys:String>
     <sys:String x:Key="LOCPathLabel">Път</sys:String>
     <sys:String x:Key="LOCOKLabel">OK</sys:String>
-    <sys:String x:Key="LOCSaveLabel">Запазване</sys:String>
-    <sys:String x:Key="LOCCloseLabel">Затваряне</sys:String>
+    <sys:String x:Key="LOCSaveLabel">Запази</sys:String>
+    <sys:String x:Key="LOCCloseLabel">Затвори</sys:String>
     <sys:String x:Key="LOCCancelLabel">Отказ</sys:String>
-    <sys:String x:Key="LOCConfirmLabel">Потвърждаване</sys:String>
-    <sys:String x:Key="LOCResetLabel">Нулиране</sys:String>
+    <sys:String x:Key="LOCConfirmLabel">Потвърди</sys:String>
+    <sys:String x:Key="LOCResetLabel">Занули</sys:String>
     <sys:String x:Key="LOCYesLabel">Да</sys:String>
     <sys:String x:Key="LOCNoLabel">Не</sys:String>
     <sys:String x:Key="LOCWelcomeLabel">Добре дошли</sys:String>
@@ -212,6 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">Всички игри от базата данни</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Всички филтрирани в момента игри</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Само избрани игри</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Няма избрани полета за метаданни</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Не са избрани полета за метаданни за изтегляне. Моля, изберете поне едно и активирайте поне един доставчик на метаданни за него.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Официален магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Моля, изберете кои полета да се попълват автоматично от Playnite и кои източници да се използват за получаване на данните.</sys:String>
@@ -837,7 +839,7 @@
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails">Темата/разширението използва неподдържана версия на API.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Инсталацията беше успешна.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Инсталиране на добавка?</sys:String>
-    <sys:String x:Key="LOCExtensionGeneric">Общо</sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Общи</sys:String>
     <sys:String x:Key="LOCAddonInstallFaild">Неуспешно инсталиране на &quot;{0}&quot; добавка.</sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Неуспешно инсталиране на разширение.
 

@@ -29,7 +29,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using static SDL2.SDL_mixer;
 
 namespace Playnite.FullscreenApp.ViewModels
 {
@@ -39,8 +38,8 @@ namespace Playnite.FullscreenApp.ViewModels
         private readonly SynchronizationContext context;
         private bool isInitialized = false;
         protected bool ignoreCloseActions = false;
-        private AudioEngine audio => FullscreenApplication.Audio;
         private readonly FullscreenApplication app;
+        private AudioEngine audio => FullscreenApplication.Audio;
 
         public GamesEditor GamesEditor { get; }
         public bool IsFullScreen { get; private set; } = true;
@@ -414,13 +413,26 @@ namespace Playnite.FullscreenApp.ViewModels
             AdjustGameItemsToScreenChanges();
         }
 
-        private void GameControllerInput_ButtonUp(object sender, GameControllerManager.ButtonUpEventArgs e)
+        private void GameControllerInput_ButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
         {
             if (AppSettings.Fullscreen.EnableGameControllerSupport &&
                 AppSettings.Fullscreen.GuideButtonFocus &&
-                e.Button == ControllerInput.Guide)
+                e.Button == ControllerInput.Guide &&
+                e.State == ControllerInputState.Released)
             {
-                WindowManager.LastActiveWindow?.RestoreWindow();
+                RestoreWindow();
+            }
+
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerButtonStateChanged(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller input.");
+                }
             }
         }
 
@@ -556,39 +568,53 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.InterfaceVolume))
             {
-                Mix_VolumeChunk(FullscreenApplication.ActivateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
-                Mix_VolumeChunk(FullscreenApplication.NavigateSound, AudioEngine.GetVolume(AppSettings.Fullscreen.InterfaceVolume));
+                audio.SetSoundVolume(FullscreenApplication.ActivateSound, AppSettings.Fullscreen.InterfaceVolume);
+                audio.SetSoundVolume(FullscreenApplication.NavigateSound, AppSettings.Fullscreen.InterfaceVolume);
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
                 if (AppSettings.Fullscreen.BackgroundVolume <= 0)
                 {
-                    Mix_HaltMusic();
+                    audio.StopMusic();
                 }
                 else
                 {
-                    Mix_VolumeMusic(AudioEngine.GetVolume(AppSettings.Fullscreen.BackgroundVolume));
-                    if (Mix_PlayingMusic() != 1)
+                    audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
+                    if (!audio.GetIsMusicPlaying())
                     {
-                        Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
+                        audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+                    }
+
+                    if (audio.GetIsMusicPaused())
+                    {
+                        audio.ResumeMusic();
                     }
                 }
             }
             else if (e.PropertyName == nameof(FullscreenSettings.IsMusicMuted))
             {
+                if (AppSettings.Fullscreen.BackgroundVolume <= 0)
+                    return;
+
                 if (AppSettings.Fullscreen.IsMusicMuted)
                 {
-                    Mix_PauseMusic();
+                    audio.PauseMusic();
                 }
                 else
                 {
-                    if (Mix_PausedMusic() == 1)
+                    if (audio.AudioClosed)
                     {
-                        Mix_ResumeMusic();
+                        audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+                        audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
+                    }
+                    else if (audio.GetIsMusicPaused())
+                    {
+                        audio.ResumeMusic();
                     }
                     else
                     {
-                        Mix_PlayMusic(FullscreenApplication.BackgroundMusic, -1);
+                        audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+                        audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
                     }
                 }
             }
@@ -696,7 +722,8 @@ namespace Playnite.FullscreenApp.ViewModels
                     SkipLibUpdate = true,
                     StartInDesktop = true,
                     MasterInstance = true,
-                    SafeStartup = App.CmdLine.SafeStartup
+                    SafeStartup = App.CmdLine.SafeStartup,
+                    UserDataDir = App.CmdLine.UserDataDir
                 }.ToString());
         }
 
@@ -790,6 +817,7 @@ namespace Playnite.FullscreenApp.ViewModels
             SetViewSizeAndPosition(IsFullScreen);
             App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
+            Window.Window.StateChanged += Window_StateChanged;
             InitializeView();
         }
 
@@ -839,22 +867,36 @@ namespace Playnite.FullscreenApp.ViewModels
                 screen = screens[0];
             }
 
-            var ratio = Sizes.GetAspectRatio(screen.Bounds);
-            ViewportWidth = ratio.GetWidth(ViewportHeight);
             var dpi = VisualTreeHelper.GetDpi(Window.Window);
-            if (fullscreen)
+            if (App.CmdLine.FullscreenHeight > 0 && App.CmdLine.FullscreenWidth > 0)
             {
+                var width = App.CmdLine.FullscreenWidth;
+                var height = App.CmdLine.FullscreenHeight;
+                var ratio = Sizes.GetAspectRatio(width, height);
+                ViewportWidth = ratio.GetWidth(ViewportHeight);
+                WindowWidth = width;
+                WindowHeight = height;
                 WindowLeft = screen.Bounds.X / dpi.DpiScaleX;
                 WindowTop = screen.Bounds.Y / dpi.DpiScaleY;
-                WindowWidth = screen.Bounds.Width / dpi.DpiScaleX;
-                WindowHeight = screen.Bounds.Height / dpi.DpiScaleY;
             }
             else
             {
-                WindowWidth = screen.Bounds.Width / 1.5;
-                WindowHeight = screen.Bounds.Height / 1.5;
-                WindowLeft = screen.Bounds.X + ((screen.Bounds.Width - WindowWidth) / 2);
-                WindowTop = screen.Bounds.Y + ((screen.Bounds.Height - WindowHeight) / 2);
+                var ratio = Sizes.GetAspectRatio(screen.Bounds);
+                ViewportWidth = ratio.GetWidth(ViewportHeight);
+                if (fullscreen)
+                {
+                    WindowLeft = screen.Bounds.X / dpi.DpiScaleX;
+                    WindowTop = screen.Bounds.Y / dpi.DpiScaleY;
+                    WindowWidth = screen.Bounds.Width / dpi.DpiScaleX;
+                    WindowHeight = screen.Bounds.Height / dpi.DpiScaleY;
+                }
+                else
+                {
+                    WindowWidth = screen.Bounds.Width / 1.5;
+                    WindowHeight = screen.Bounds.Height / 1.5;
+                    WindowLeft = screen.Bounds.X + ((screen.Bounds.Width - WindowWidth) / 2);
+                    WindowTop = screen.Bounds.Y + ((screen.Bounds.Height - WindowHeight) / 2);
+                }
             }
         }
 
@@ -862,7 +904,7 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (app.GameController != null)
             {
-                app.GameController.ButtonUp += GameControllerInput_ButtonUp;
+                app.GameController.ButtonChanged += GameControllerInput_ButtonChanged;
             }
 
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
@@ -997,12 +1039,33 @@ namespace Playnite.FullscreenApp.ViewModels
             IsDisposing = true;
             GamesView?.Dispose();
             Window.Window.LocationChanged -= Window_LocationChanged;
+            Window.Window.StateChanged -= Window_StateChanged;
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged -= SystemEvents_DisplaySettingsChanged;
         }
 
         private void Window_LocationChanged(object sender, EventArgs e)
         {
             App.UpdateScreenInformation(Window.Window);
+        }
+
+        // This is workaround for https://github.com/JosefNemec/Playnite/issues/4064
+        // There's really no good way to handle this via some MVVM binding without breaking theme changes to GameStatus view.
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (GameStatusVisible && Window.Window.WindowState != WindowState.Minimized)
+            {
+                var gameStatusScreen = ElementTreeHelper.FindVisualChildren<GameStatus>(Window.Window).FirstOrDefault();
+                if (gameStatusScreen is null)
+                    return;
+
+                if (gameStatusScreen.Template.FindName("PART_PanelActionButtons", gameStatusScreen) is Panel actionButtons &&
+                    actionButtons.Children.Count > 0)
+                {
+                    var child = actionButtons.Children[0];
+                    if (!child.IsFocused && child.Focusable)
+                        actionButtons.Children[0].Focus();
+                }
+            }
         }
 
         internal void ProcessUriRequest(PlayniteUriEventArgs args)

@@ -141,6 +141,17 @@ namespace Playnite.ViewModels
             }
         }
 
+        private List<ThirdPartyTool> thirdPartyTools = new List<ThirdPartyTool>();
+        public List<ThirdPartyTool> ThirdPartyTools
+        {
+            get => thirdPartyTools;
+            set
+            {
+                thirdPartyTools = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool IsDisposing { get; set; } = false;
         public RelayCommand<object> AddFilterPresetCommand { get; private set; }
         public RelayCommand<FilterPreset> RenameFilterPresetCommand { get; private set; }
@@ -153,6 +164,7 @@ namespace Playnite.ViewModels
         public RelayCommand RestartInSafeMode { get; private set; }
         public RelayCommand BackupDataCommand { get; private set; }
         public RelayCommand RestoreDataBackupCommand { get; private set; }
+        public RelayCommand<ThirdPartyTool> ThirdPartyToolOpenCommand { get; private set; }
 
         public IGameDatabaseMain Database { get; }
         public PlayniteApplication App { get; }
@@ -220,6 +232,11 @@ namespace Playnite.ViewModels
                 {
                     Dialogs.ShowErrorMessage("Failed to start interactive PowerShell.\n" + e.Message);
                 }
+            });
+
+            ThirdPartyToolOpenCommand = new RelayCommand<ThirdPartyTool>((tool) =>
+            {
+                StartThirdPartyTool(tool);
             });
 
             RestartApp = new RelayCommand(() => RestartAppSkipLibUpdate());
@@ -1099,6 +1116,19 @@ namespace Playnite.ViewModels
                     Backup = PlaynitePaths.BackupActionFile,
                     SkipLibUpdate = true
                 });
+            }
+        }
+
+        public void StartThirdPartyTool(ThirdPartyTool tool)
+        {
+            try
+            {
+                tool.Start();
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed to start 3rd party tool.");
+                Dialogs.ShowErrorMessage(Resources.GetString("LOCAppStartupError") + "\n\n" + e.Message, Resources.GetString("LOCStartupError"));
             }
         }
     }

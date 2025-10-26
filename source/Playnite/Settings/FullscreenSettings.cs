@@ -563,6 +563,51 @@ namespace Playnite
             }
         }
 
+        private bool mainMenuShowTools = true;
+        public bool MainMenuShowTools
+        {
+            get
+            {
+                return mainMenuShowTools;
+            }
+
+            set
+            {
+                mainMenuShowTools = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuExtensions = true;
+        public bool MainMenuShowExtensions
+        {
+            get
+            {
+                return mainMenuExtensions;
+            }
+
+            set
+            {
+                mainMenuExtensions = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool mainMenuClients = true;
+        public bool MainMenuShowClients
+        {
+            get
+            {
+                return mainMenuClients;
+            }
+
+            set
+            {
+                mainMenuClients = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool swapStartDetailsAction = false;
         public bool SwapStartDetailsAction
         {

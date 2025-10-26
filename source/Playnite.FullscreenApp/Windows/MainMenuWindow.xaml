@@ -64,6 +64,21 @@
                                      ContentTemplate="{DynamicResource MainMenuSettingsButtonTemplate}"
                                      Command="{Binding OpenSettingsCommand}"
                                      AutomationProperties.Name="{DynamicResource LOCSettingsLabel}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonClients"
+                                     ContentTemplate="{DynamicResource MainMenuClientsButtonTemplate}"
+                                     Command="{Binding OpenClientsCommand}"
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowClients, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuOpenClient}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonTools"
+                                     ContentTemplate="{DynamicResource MainMenuToolsButtonTemplate}"
+                                     Command="{Binding OpenToolsCommand}"
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowTools, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     AutomationProperties.Name="{DynamicResource LOCMenuTools}"/>
+                    <pctrls:ButtonEx x:Name="PART_ButtonExtensions"
+                                     ContentTemplate="{DynamicResource MainMenuExtensionsButtonTemplate}"
+                                     Visibility="{pmrk:SettingsBinding Fullscreen.MainMenuShowExtensions, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     Command="{Binding OpenExtensionsCommand}"
+                                     AutomationProperties.Name="{DynamicResource LOCExtensions}"/>
                     <Canvas Height="20" />
                     <pctrls:ButtonEx x:Name="PART_ButtonExitPlaynite"
                                      ContentTemplate="{DynamicResource MainMenuExitPlayniteButtonTemplate}"
