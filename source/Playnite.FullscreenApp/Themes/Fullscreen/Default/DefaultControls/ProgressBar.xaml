@@ -15,4 +15,9 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{DynamicResource SelectionLightBrush}" />
     </Style>
-</ResourceDictionary>
+
+    <Style x:Key="ProgressWindowProgressBarStyle" TargetType="ProgressBar" BasedOn="{StaticResource {x:Type ProgressBar}}">
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Margin" Value="0,20,0,0" />
+    </Style>
+</ResourceDictionary>  
