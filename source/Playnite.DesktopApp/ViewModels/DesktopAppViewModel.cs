@@ -1141,6 +1141,10 @@ namespace Playnite.DesktopApp.ViewModels
 
                     break;
 
+                case UriCommands.Restore:
+                    Window.Window.RestoreWindow();
+                    break;
+
                 default:
                     Logger.Warn($"Uknown URI command {command}");
                     break;

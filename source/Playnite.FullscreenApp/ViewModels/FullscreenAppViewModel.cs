@@ -1079,6 +1079,13 @@ namespace Playnite.FullscreenApp.ViewModels
             var command = arguments[0];
             switch (command)
             {
+                case UriCommands.Restore:
+                    if (WindowManager.LastActiveWindow != Window.Window)
+                        WindowManager.LastActiveWindow.Close();
+
+                    Window.Window.RestoreWindow();
+                    break;
+
                 default:
                     Logger.Warn($"Uknown URI command {command}");
                     break;
