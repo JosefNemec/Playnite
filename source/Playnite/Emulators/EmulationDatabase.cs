@@ -18,6 +18,7 @@ namespace Playnite.Emulators
             IEnumerable<DatGame> GetBySerial(string serial);
             IEnumerable<DatGame> GetByRomName(string romName);
             IEnumerable<DatGame> GetByRomNamePartial(string romNamePart);
+            void ClearStatementCache();
         }
 
         public class EmulationDatabaseReader : IEmulationDatabaseReader
@@ -30,6 +31,11 @@ namespace Playnite.Emulators
             {
                 DatabaseName = Path.GetFileNameWithoutExtension(dbPath);
                 db = new SQLiteDatabase(dbPath, SQLiteOpenOptions.SQLITE_OPEN_READONLY);
+            }
+
+            public void ClearStatementCache()
+            {
+                db.ClearStatementsCache();
             }
 
             public IEnumerable<DatGame> GetByCrc(string checksum)

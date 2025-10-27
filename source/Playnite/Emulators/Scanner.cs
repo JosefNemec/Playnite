@@ -1068,6 +1068,10 @@ namespace Playnite.Emulators
 
                 foreach (var db in databases)
                 {
+                    // This is quick fix for high memory usage due to SQLNado's statement cache use.
+                    // This is mostly caused on our side because how ineffiently this whole ROM db lookup stuff is implemented
+                    // and it should be rewritten, but that's going to be done in P11.
+                    db.ClearStatementCache();
                     foreach (var crc in crcs)
                     {
                         datRec = db.GetByCrc(crc).FirstOrDefault();
