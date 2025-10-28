@@ -56,7 +56,10 @@
             <ListBox ItemsSource="{Binding OnlineAddonList}"
                      SelectedItem="{Binding SelectedOnlineAddon}"
                      Name="ListOnlineAddons" Grid.Column="0" Grid.Row="1"
-                     ScrollViewer.CanContentScroll="False"
+                     VirtualizingPanel.IsVirtualizing="True"
+                     VirtualizingPanel.VirtualizationMode="Recycling"
+                     VirtualizingPanel.ScrollUnit="Pixel"
+                     ScrollViewer.CanContentScroll="True"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
