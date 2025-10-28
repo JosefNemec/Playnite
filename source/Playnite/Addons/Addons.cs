@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite
@@ -61,6 +62,7 @@ namespace Playnite
 
         private static List<AddonUpdate> CheckAddonsForUpdate(IEnumerable<BaseExtensionManifest> manifests, ServicesClient serviceClient)
         {
+            var random = new Random();
             var updateList = new List<AddonUpdate>();
             foreach (var manifest in manifests)
             {
@@ -72,7 +74,10 @@ namespace Playnite
                         continue;
                     }
 
+                    // This makes network call, usually to GitHub and could lead to 429 if user has a lot of addons.
+                    Thread.Sleep(TimeSpan.FromSeconds(random.Next(2, 8)));
                     var installer = addonManifest.InstallerManifest;
+
                     var package = installer.GetLatestCompatiblePackage();
                     var currentVersion = Version.Parse(manifest.Version);
                     var changeLog = string.Empty;
