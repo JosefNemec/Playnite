@@ -277,7 +277,7 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Poziția listei cu jocuri în modul de detalii</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Desenează separator între panouri</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Înălțimea copertei de joc</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Înălțimea pictogramei listei de jocuri</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fontul aplicației</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Font monospațiat</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Poziția Panoului de Filtre</sys:String>

@@ -212,8 +212,8 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCMetaGameSourceAll">Tots els jocs de la base de dades</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tots els jocs filtrats actualment</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Només els jocs seleccionats</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">No s'ha seleccionat cap camp de metadades</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">No s'ha seleccionat cap camp de metadades per descarregar. Si us plau, com a mínim, selecciona un camp i un proveïdor de metadades que li correspongui.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Botiga oficial</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Selecciona quins camps ha d'emplenar automàticament Playnite i quines fonts s’utilitzaran per obtenir les dades.</sys:String>

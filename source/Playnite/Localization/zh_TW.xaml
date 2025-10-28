@@ -212,8 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">數據庫中的所有遊戲</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">所有目前過濾出的遊戲</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">僅選中的遊戲</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">未選取任何元資料欄位</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">未選取任何需進行下載的元資料欄位。請至少選擇一個欄位並啟用至少一個元資料提供者以使用本功能。</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">請選擇透過Playnite自動輸入的資料範圍以及資料來源</sys:String>
