@@ -1026,7 +1026,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
         public void RestoreWindow()
         {
-            WindowManager.LastActiveWindow?.RestoreWindow();
+            Window.RestoreWindow();
         }
 
         public void MinimizeWindow()
