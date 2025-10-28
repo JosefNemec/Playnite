@@ -194,9 +194,6 @@ namespace Playnite.Windows
 
             try
             {
-                var interopHelper = new WindowInteropHelper(window);
-                var windowHandle = interopHelper.Handle;
-
                 if (PlayniteApplication.Current?.Mode == ApplicationMode.Fullscreen)
                 {
                     // Show() call is needed when restoring from minimized state otherwise restored window will
@@ -206,7 +203,6 @@ namespace Playnite.Windows
                     if (window.WindowState == WindowState.Minimized || window.Visibility != Visibility.Visible)
                     {
                         window.Show();
-                        User32.ShowWindow(windowHandle, (int)SW.RESTORE);
                     }
 
                     // This needs to be set always otherwise restore will not work if user alt-tabbed out of Playnite.
@@ -216,7 +212,6 @@ namespace Playnite.Windows
                     {
                         window.Topmost = true;
                         window.Topmost = false;
-                        User32.SetForegroundWindow(windowHandle);
                     }
                 }
                 else
@@ -235,7 +230,8 @@ namespace Playnite.Windows
                 }
 
                 //Get the process ID for this window's thread
-                var thisWindowThreadId = User32.GetWindowThreadProcessId(windowHandle, IntPtr.Zero);
+                var interopHelper = new WindowInteropHelper(window);
+                var thisWindowThreadId = User32.GetWindowThreadProcessId(interopHelper.Handle, IntPtr.Zero);
 
                 //Get the process ID for the foreground window's thread
                 var currentForegroundWindow = User32.GetForegroundWindow();
@@ -245,7 +241,7 @@ namespace Playnite.Windows
                 User32.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, true);
 
                 //Set the window position
-                User32.SetWindowPos(windowHandle, new IntPtr(0), 0, 0, 0, 0, SWP.NOSIZE | SWP.NOMOVE | SWP.SHOWWINDOW);
+                User32.SetWindowPos(interopHelper.Handle, new IntPtr(0), 0, 0, 0, 0, SWP.NOSIZE | SWP.NOMOVE | SWP.SHOWWINDOW);
 
                 //Detach this window's thread from the current window's thread
                 User32.AttachThreadInput(currentForegroundWindowThreadId, thisWindowThreadId, false);

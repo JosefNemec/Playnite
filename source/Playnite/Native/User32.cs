@@ -46,12 +46,6 @@ namespace Playnite.Native
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         [DllImport(dllName)]
-        public static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport(dllName)]
-        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-        [DllImport(dllName)]
         public static extern int ShowCursor(bool bShow);
 
         [DllImport(dllName, EntryPoint = "SetWindowPos", SetLastError = true)]
