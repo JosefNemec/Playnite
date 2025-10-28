@@ -339,7 +339,7 @@ namespace Playnite.Native
         SHOWWINDOW = 0x0040,
         TOPMOST = NOACTIVATE | NOOWNERZORDER | NOSIZE | NOMOVE | NOREDRAW | NOSENDCHANGING
     }
-    
+
     public enum MonitorOptions : uint
     {
         MONITOR_DEFAULTTONULL = 0x00000000,
