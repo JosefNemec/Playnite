@@ -182,5 +182,18 @@ namespace Playnite.Tests.Models
             var emulator = GenerateObject<Emulator>(random, true);
             Assert.AreEqual(Serialization.ToJson(emulator), Serialization.ToJson(emulator.GetCopy()));
         }
+
+        [Test]
+        public void NullCollectionCopyTest()
+        {
+            var game = new Game();
+            game.GameActions = null;
+            game.Links = null;
+            game.Roms = null;
+            var copy = game.GetCopy();
+            Assert.IsNotNull(copy.GameActions);
+            Assert.IsNotNull(copy.Links);
+            Assert.IsNotNull(copy.Roms);
+        }
     }
 }

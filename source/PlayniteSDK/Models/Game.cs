@@ -1663,6 +1663,9 @@ namespace Playnite.SDK.Models
         public Game() : base()
         {
             GameId = Guid.NewGuid().ToString();
+            GameActions = new ObservableCollection<GameAction>();
+            Links = new ObservableCollection<Link>();
+            Roms = new ObservableCollection<GameRom>();
         }
 
         /// <summary>
@@ -1740,9 +1743,9 @@ namespace Playnite.SDK.Models
                 Manual = Manual,
                 IncludeLibraryPluginAction = IncludeLibraryPluginAction,
                 OverrideInstallState = OverrideInstallState,
-                GameActions = GameActions?.Select(a => a.GetCopy()).ToObservable(),
-                Links = Links?.Select(a => a.GetCopy()).ToObservable(),
-                Roms = Roms?.Select(a => a.GetCopy()).ToObservable(),
+                GameActions = GameActions == null ? new ObservableCollection<GameAction>() : GameActions.Select(a => a.GetCopy()).ToObservable(),
+                Links = Links == null ? new ObservableCollection<Link>() : Links.Select(a => a.GetCopy()).ToObservable(),
+                Roms = Roms == null ? new ObservableCollection<GameRom>() : Roms.Select(a => a.GetCopy()).ToObservable(),
             };
         }
 
