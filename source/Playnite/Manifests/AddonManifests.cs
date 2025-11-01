@@ -225,7 +225,7 @@ namespace Playnite
 
                 if (InstallerManifestUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
                 {
-                    installerManifest = Serialization.FromYaml<AddonInstallerManifest>(HttpDownloader.DownloadString(InstallerManifestUrl, cancelToken));
+                    installerManifest = PlayniteApplication.Current.ServicesClient.GetAddonInstaller(AddonId);
                 }
                 else if (File.Exists(InstallerManifestUrl))
                 {

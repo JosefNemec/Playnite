@@ -73,11 +73,8 @@ namespace Playnite
                     {
                         continue;
                     }
-
-                    // This makes network call, usually to GitHub and could lead to 429 if user has a lot of addons.
-                    Thread.Sleep(TimeSpan.FromSeconds(random.Next(2, 8)));
+               
                     var installer = addonManifest.InstallerManifest;
-
                     var package = installer.GetLatestCompatiblePackage();
                     var currentVersion = Version.Parse(manifest.Version);
                     var changeLog = string.Empty;
