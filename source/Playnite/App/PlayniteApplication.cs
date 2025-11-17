@@ -326,7 +326,7 @@ namespace Playnite
                 {
                     if (!AppSettings.FirstTimeWizardComplete)
                     {
-                        var cultName = System.Globalization.CultureInfo.CurrentCulture.Name.Replace('-', '_');
+                        var cultName = System.Globalization.CultureInfo.CurrentUICulture.Name.Replace('-', '_');
                         var validLang = Localization.AvailableLanguages.FirstOrDefault(a => a.Id == cultName && a.TranslatedPercentage > 75);
                         if (validLang != null)
                         {
