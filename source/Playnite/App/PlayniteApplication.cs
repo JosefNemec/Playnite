@@ -588,7 +588,6 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            SkipLibUpdate = true,
                             StartClosedToTray = CmdLine.StartClosedToTray,
                             HideSplashScreen = CmdLine.HideSplashScreen
                         }, false);
@@ -627,7 +626,7 @@ namespace Playnite
                 {
                     if (restoreOptions == null || !restoreOptions.ClosedWhenDone)
                     {
-                        Restart(new CmdLineOptions { SkipLibUpdate = true }, false);
+                        Restart(new CmdLineOptions(), false);
                     }
                 }
 
@@ -821,8 +820,7 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            Backup = args.Args,
-                            SkipLibUpdate = true
+                            Backup = args.Args
                         });
                     }
                     break;
@@ -842,8 +840,7 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            RestoreBackup = args.Args,
-                            SkipLibUpdate = true
+                            RestoreBackup = args.Args
                         });
                     }
                     break;
