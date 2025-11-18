@@ -1120,5 +1120,25 @@ namespace Playnite.FullscreenApp.ViewModels
                 ActiveFilterPreset = selectedPreset;
             }
         }
+
+        public void SelectRandomGame()
+        {
+            var model = new RandomGameSelectViewModel(
+               Database,
+               GamesView,
+               new RandomGameSelectWindowFactory(),
+               Resources);
+            model.OpenView();
+            if (model.SelectedAction == RandomGameSelectAction.Play)
+            {
+                SelectGame(model.SelectedGame.Id);
+                GamesEditor.PlayGame(model.SelectedGame, true);
+            }
+            else if (model.SelectedAction == RandomGameSelectAction.Navigate)
+            {
+                ToggleGameDetailsCommand.Execute(null);
+                SelectGame(model.SelectedGame.Id);
+            }
+        }
     }
 }
