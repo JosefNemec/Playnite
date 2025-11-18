@@ -3430,6 +3430,10 @@ namespace Playnite
         /// </summary>
         public const string AddonLookingForUpdates = "LOCAddonLookingForUpdates";
         /// <summary>
+        /// Looking for program updates…
+        /// </summary>
+        public const string AppLookingForUpdates = "LOCAppLookingForUpdates";
+        /// <summary>
         /// One or more add-on updates are available.
         /// </summary>
         public const string AddonUpdatesAvailable = "LOCAddonUpdatesAvailable";

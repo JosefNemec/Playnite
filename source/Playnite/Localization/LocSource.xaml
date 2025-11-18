@@ -952,6 +952,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">License rejected</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Downloading {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Looking for add-on updates…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Looking for program updates…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">One or more add-on updates are available.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Select items to update</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Extension development instance</sys:String>

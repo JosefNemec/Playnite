@@ -917,28 +917,41 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CheckForUpdate()
         {
-            try
-            {
-                var updater = new Updater(App);
-                if (updater.IsUpdateAvailable)
+            var updater = new Updater(App);
+            var appUpdateAvailable = false;
+            var addonUpdates = new List<AddonUpdate>();
+            var dialogRes = Dialogs.ActivateGlobalProgress((args) =>
                 {
-                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs, App.Mode);
-                    model.OpenView();
-                }
-                else
-                {
-                    Dialogs.ShowMessage(Resources.GetString("LOCUpdateNoNewUpdateMessage"), string.Empty);
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    appUpdateAvailable = updater.IsUpdateAvailable;
+                    args.Text = LOC.AddonLookingForUpdates.GetLocalized();
+                    addonUpdates = Addons.CheckAddonUpdates(App.ServicesClient);
+                },
+                new GlobalProgressOptions(LOC.AppLookingForUpdates) { IsIndeterminate = true });
+
+            if (dialogRes.Result != true)
             {
-                Logger.Error(e, "Failed to check for update.");
-                Dialogs.ShowErrorMessage(Resources.GetString("LOCUpdateCheckFailMessage"), Resources.GetString("LOCUpdateError"));
+                Dialogs.ShowErrorMessage(dialogRes.Error?.Message ?? "Update check failed.");
+                return;
             }
 
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            CheckForAddonUpdates();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            if (!appUpdateAvailable && !addonUpdates.HasItems())
+            {
+                Dialogs.ShowMessage(LOC.UpdateNoNewUpdateMessage.GetLocalized(), string.Empty);
+                return;
+            }
+
+            if (appUpdateAvailable)
+            {
+                var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs, App.Mode);
+                if (model.OpenView() == true)
+                    return;
+            }
+
+            if (addonUpdates.HasItems())
+            {
+                var model = new AddonsViewModel(new AddonsWindowFactory(), Dialogs, Resources, App.ServicesClient, Extensions, AppSettings, App, addonUpdates);
+                model.OpenView();
+            }
         }
 
         public void SwitchToFullscreenMode()
