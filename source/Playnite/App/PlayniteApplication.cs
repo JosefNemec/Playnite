@@ -109,7 +109,7 @@ namespace Playnite
             Mode = mode;
             Current = this;
 
-            // if (!Debugger.IsAttached)
+            if (!Debugger.IsAttached)
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
