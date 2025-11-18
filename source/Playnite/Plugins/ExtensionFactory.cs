@@ -324,9 +324,15 @@ namespace Playnite.Plugins
             var manifests = GetInstalledManifests(externals).Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.Id)).ToList();
             foreach (var desc in manifests)
             {
-                if (desc.Id.IsNullOrEmpty())
+                if (desc.Id.IsNullOrWhiteSpace())
                 {
                     logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
+                if (desc.Module.IsNullOrWhiteSpace())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have module specified.");
                     continue;
                 }
 
@@ -392,6 +398,12 @@ namespace Playnite.Plugins
                 if (desc.Id.IsNullOrEmpty())
                 {
                     logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
+                if (desc.Module.IsNullOrWhiteSpace())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have module specified.");
                     continue;
                 }
 

@@ -109,7 +109,7 @@ namespace Playnite
             Mode = mode;
             Current = this;
 
-            if (!Debugger.IsAttached)
+            // if (!Debugger.IsAttached)
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
@@ -494,32 +494,6 @@ namespace Playnite
                 return;
             }
 
-            // unchecked use reason: https://stackoverflow.com/a/10043486/1107424
-
-                // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
-            if (exception is MissingMethodException ||
-                exception is BadImageFormatException ||
-                // Usually COM execution error from WindowsAPICodePack when opening folder selection dialog. As far as I can tell, this happens on "debloated" Windows edition only.
-                (exception is System.Runtime.InteropServices.COMException &&
-                    (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))))
-            {
-                Dialogs.ShowErrorMessage("Corrupted Playnite or Windows install detected.");
-                Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-                // ERROR_DISK_FULL
-            if (exception.HResult == unchecked((int)0x80070070) ||
-                // "device not ready" error. Happens when people run Playnite from attached storage as far as I can tell.
-                exception.HResult == unchecked((int)0x80070015) ||
-                // self-explanatory
-                exception is OutOfMemoryException)
-            {
-                Dialogs.ShowErrorMessage(exception.Message, LOC.CrashWindowTitle.GetLocalized());
-                Process.GetCurrentProcess().Kill();
-                return;
-            }
-
             if (crashInfo.IsExtensionCrash)
             {
                 crashModel = new CrashHandlerViewModel(
@@ -532,6 +506,32 @@ namespace Playnite
             }
             else
             {
+                // unchecked use reason: https://stackoverflow.com/a/10043486/1107424
+
+                // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
+                if (exception is MissingMethodException ||
+                    exception is BadImageFormatException ||
+                    // Usually COM execution error from WindowsAPICodePack when opening folder selection dialog. As far as I can tell, this happens on "debloated" Windows edition only.
+                    (exception is System.Runtime.InteropServices.COMException &&
+                     (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))))
+                {
+                    Dialogs.ShowErrorMessage("Corrupted Playnite or Windows install detected.");
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
+                // ERROR_DISK_FULL
+                if (exception.HResult == unchecked((int)0x80070070) ||
+                    // "device not ready" error. Happens when people run Playnite from attached storage as far as I can tell.
+                    exception.HResult == unchecked((int)0x80070015) ||
+                    // self-explanatory
+                    exception is OutOfMemoryException)
+                {
+                    Dialogs.ShowErrorMessage(exception.Message, LOC.CrashWindowTitle.GetLocalized());
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
                 crashModel = new CrashHandlerViewModel(
                     new CrashHandlerWindowFactory(),
                     Dialogs,

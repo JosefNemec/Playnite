@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Management.Automation;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace Playnite
 {
@@ -47,8 +49,22 @@ namespace Playnite
 
         public static ExceptionInfo GetExceptionInfo(Exception exception, ExtensionFactory extensions)
         {
+            var crashInfo = new ExceptionInfo();
+
             try
             {
+                if (// Seems to happen with extensions that use reflection that fails at runtime
+                    exception is RuntimeBinderException ||
+                    // This happens with systems that use extensions/themes with integrated media player
+                    // but the actual system player used by media player is broken somehow.
+                    exception.StackTrace?.Contains("MediaPlayerState") == true ||
+                    // Seems to happen with script extensions somehow calling PowerShell, or from PS, via blocking ProgressDialog
+                    exception is PSInvalidOperationException)
+                {
+                    crashInfo.IsExtensionCrash = true;
+                    return crashInfo;
+                }
+
                 var playniteStackCalls = 0;
                 var stack = new StackTrace(exception);
                 var crashModules = new List<Module>();
@@ -101,40 +117,25 @@ namespace Playnite
                 }
 
                 var liteDbCrash = exception is LiteDB.LiteException || exception.Message.Contains("LiteDB.");
+                crashInfo.IsLiteDbCorruptionCrash = liteDbCrash;
                 if (extDesc != null)
                 {
-                    return new ExceptionInfo
-                    {
-                        IsExtensionCrash = true,
-                        CrashExtension = extDesc.Description,
-                        IsLiteDbCorruptionCrash = liteDbCrash
-                    };
+                    crashInfo.IsExtensionCrash = true;
+                    crashInfo.CrashExtension = extDesc.Description;
+                    return crashInfo;
                 }
-                else
-                {
-                    // This usually happens if an exception occurs in XAML because of faulty custom theme.
-                    // The only stack entry would be Playnite's entry point or no entry at all.
-                    if (playniteStackCalls == 0 || playniteStackCalls == 1)
-                    {
-                        return new ExceptionInfo
-                        {
-                            IsExtensionCrash = true,
-                            IsLiteDbCorruptionCrash = liteDbCrash
-                        };
-                    }
-                    else
-                    {
-                        return new ExceptionInfo
-                        {
-                            IsLiteDbCorruptionCrash = liteDbCrash
-                        };
-                    }
-                }
+
+                // This usually happens if an exception occurs in XAML because of faulty custom theme.
+                // The only stack entry would be Playnite's entry point or no entry at all.
+                if (playniteStackCalls <= 1)
+                    crashInfo.IsExtensionCrash = true;
+
+                return crashInfo;
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 logger.Error(e, "Failed check crash stack trace.");
-                return new ExceptionInfo();
+                return crashInfo;
             }
         }
     }
