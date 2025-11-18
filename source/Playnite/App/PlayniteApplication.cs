@@ -589,7 +589,8 @@ namespace Playnite
                         Restart(new CmdLineOptions
                         {
                             StartClosedToTray = CmdLine.StartClosedToTray,
-                            HideSplashScreen = CmdLine.HideSplashScreen
+                            HideSplashScreen = CmdLine.HideSplashScreen,
+                            StartInFullscreen = CmdLine.StartInFullscreen
                         }, false);
                     }
                 }
