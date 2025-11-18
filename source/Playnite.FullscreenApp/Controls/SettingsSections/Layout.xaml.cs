@@ -33,7 +33,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
             InitializeComponent();
 
             SliderColumns.Minimum = 1;
-            SliderColumns.Maximum = 10;
+            SliderColumns.Maximum = 50;
             SliderColumns.TickFrequency = 1;
             SliderColumns.IsSnapToTickEnabled = true;
             BindingTools.SetBinding(
@@ -52,7 +52,7 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                     UpdateSourceTrigger.PropertyChanged);
 
             SliderRows.Minimum = 1;
-            SliderRows.Maximum = 10;
+            SliderRows.Maximum = 50;
             SliderRows.TickFrequency = 1;
             SliderRows.IsSnapToTickEnabled = true;
             BindingTools.SetBinding(
