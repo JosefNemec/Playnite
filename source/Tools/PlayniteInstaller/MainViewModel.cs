@@ -23,12 +23,24 @@ namespace PlayniteInstaller
         Installing
     }
 
+    public class CustomWebClient : WebClient
+    {
+        protected override WebRequest GetWebRequest(Uri address)
+        {
+            var request = base.GetWebRequest(address);
+            if (request != null)
+                request.Timeout = 10 * 1000;
+
+            return request;
+        }
+    }
+
     public class MainViewModel : ObservableObject
     {
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly Window windowHost;
         private readonly List<string> UrlMirrors;
-        private WebClient webClient;
+        private CustomWebClient webClient;
 
         private InstallStatus status;
         public InstallStatus Status
@@ -172,7 +184,7 @@ namespace PlayniteInstaller
                     webClient = null;
                 }
 
-                webClient = new WebClient();
+                webClient = new CustomWebClient();
                 var installerUrls = await TryDownloadManifest(UrlMirrors);
                 webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
                 if (await TryDownloadInstaller(installerUrls) == false)

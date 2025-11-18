@@ -32,25 +32,23 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Expander Header="Options" Margin="10" FontSize="{StaticResource FontSize}"
-                  Visibility="{Binding Status, Converter={StaticResource InstallStatusToVisibilityConverter}, ConverterParameter={x:Static local:InstallStatus.Idle}}">
-        <StackPanel>
-                <DockPanel Margin="5">
-                    <TextBlock Text="Destination Folder" DockPanel.Dock="Left" Margin="10,5,10,5" />
-                    <Button Content="Browse..." DockPanel.Dock="Right"
-                    Command="{Binding BrowseCommand}"
-                    Padding="10,0,10,0" Margin="10,0,10,0"/>
-                    <TextBox DockPanel.Dock="Left" VerticalContentAlignment="Center"
-                             Text="{Binding DestionationFolder,UpdateSourceTrigger=PropertyChanged}" />
-                </DockPanel>
+        <StackPanel Visibility="{Binding Status, Converter={StaticResource InstallStatusToVisibilityConverter}, ConverterParameter={x:Static local:InstallStatus.Idle}}"
+                    Margin="0,15,0,5">
+            <DockPanel Margin="5">
+                <TextBlock Text="Destination Folder" DockPanel.Dock="Left" Margin="10,5,10,5" />
+                <Button Content="Browse..." DockPanel.Dock="Right"
+                Command="{Binding BrowseCommand}"
+                Padding="10,0,10,0" Margin="10,0,10,0"/>
+                <TextBox DockPanel.Dock="Left" VerticalContentAlignment="Center"
+                         Text="{Binding DestionationFolder,UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
 
-                <CheckBox Content="Portable" HorizontalAlignment="Left"
-                          IsChecked="{Binding Portable}"
-                          ToolTipService.InitialShowDelay="0"
-                          ToolTip="Installs Playnite in Portable mode.&#x0a;All configuration files and game database will be stored in application's folder."
-                          Margin="15,10,10,10"/>
-            </StackPanel>
-        </Expander>
+            <CheckBox Content="Portable" HorizontalAlignment="Left"
+                      IsChecked="{Binding Portable}"
+                      ToolTipService.InitialShowDelay="0"
+                      ToolTip="Installs Playnite in Portable mode.&#x0a;All configuration files and game database will be stored in application's folder."
+                      Margin="15,10,10,10"/>
+        </StackPanel>
 
         <ProgressBar HorizontalAlignment="Stretch" Height="25" Margin="15,10,15,10"
                      Minimum="0" Maximum="100" Value="{Binding ProgressValue}">
