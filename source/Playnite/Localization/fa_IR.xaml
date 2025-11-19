@@ -952,6 +952,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">پروانه رد شد</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">بارگیری {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">به دنبال به‌روزرسانی‌های برافزا…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">یک یا چند به‌روزرسانی افزایه در دسترس است.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">موردها را برای به‌روزرسانی برگزینید</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">نمونهٔ توسعهٔ افزونه</sys:String>
@@ -972,6 +973,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">فرایند</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">پوشه</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">فرایند اصلی</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">ثبت پیام‌های ردیابی</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">دگرش‌های زیر دادهٔ همهٔ بازی‌هایی که هم‌اکنون برگزیده‌اند را بازنویسی می‌کند.</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">هیچ</sys:String>

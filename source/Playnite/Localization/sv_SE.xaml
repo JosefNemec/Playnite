@@ -942,6 +942,7 @@ Om du vill installera eller avinstallera ytterligare integreringar, använd alte
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licensen avvisades</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Hämtar {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Söker efter tilläggsuppdateringar…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Ett eller flera tilläggsuppdateringar finns tillgängliga.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Välj objekt att uppdatera</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Expansion för tilläggsutveckling</sys:String>
@@ -962,6 +963,7 @@ Om du vill installera eller avinstallera ytterligare integreringar, använd alte
     <sys:String x:Key="LOCActionTrackingModeProcess">Bearbeta</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mapp</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Ursprunglig process</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Logga spårningsmeddelanden</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Efter ändringar skriver du över data för alla valda spel!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ingen</sys:String>

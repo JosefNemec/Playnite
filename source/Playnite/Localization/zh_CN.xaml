@@ -952,6 +952,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">许可证被拒绝</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">正在下载 {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">寻找附加组件更新</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">正在查找程序更新…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">有一个或多个附加组件更新可用。</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">选择项目以更新</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">扩展开发实例</sys:String>
@@ -972,6 +973,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">进程</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">文件夹</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">原进程</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">记录追踪消息</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">以下变更将覆盖所有当前所选游戏的数据！</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">无</sys:String>

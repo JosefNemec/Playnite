@@ -951,6 +951,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">רישיון נדחה</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">מוריד {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">מחפש עדכוני הרחבות…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">ישנו עדכון הרחבה אחד או יותר זמין.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">בחר פריטים לעדכון</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -971,6 +972,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">תהליך</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">תיקיה</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">תהליך מקורי</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">תעד הודעות מעקב</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">ללא</sys:String>

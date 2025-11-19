@@ -953,6 +953,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Одбијена лиценца</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Преузимам {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Тражим ажурирања додатака...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Доступно једно или више ажурирања додатака.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Одаберите ствари за ажурирање:</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Развојна инстанца екстензије</sys:String>
@@ -973,6 +974,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">Процес</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Фолдер</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Оригинални процес</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Забележи причвршћене поруке</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Следеће измене преписују податке за све тренутно одабране игре!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ниједан</sys:String>

@@ -952,6 +952,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisans reddedildi</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} indiriliyor…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Eklenti güncellemeleri kontrol ediliyor…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Bir veya daha fazla eklenti güncellemesi mevcut.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Güncellenecek öğeleri seçin</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Uzantı geliştirme örneği</sys:String>
@@ -972,6 +973,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCActionTrackingModeProcess">İşlem</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Klasör</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Özgün işlem</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">İzleme mesajlarını günlüğe kaydet</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Yapılacak olan değişiklikler seçili olan tüm oyunların verilerinin üzerine yazılacaktır!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Hiçbiri</sys:String>

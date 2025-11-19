@@ -897,6 +897,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">परवाना नाकारला गेला</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} डाउनलोड करत आहे…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">अपडेट करण्यास वस्तू निवडा</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -917,6 +918,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">प्रक्रिया</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">फोल्डर</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">कोणतेही नाही</sys:String>

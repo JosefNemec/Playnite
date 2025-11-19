@@ -954,6 +954,7 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">S'ha rebutjat la llicència</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Descarregant {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Cercant actualitzacions de complements...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Hi ha disponibles una o més actualitzacions de complements.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Selecciona els elements que vols actualitzar</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instància de desenvolupament d'extensió</sys:String>
@@ -974,6 +975,7 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
     <sys:String x:Key="LOCActionTrackingModeProcess">Procés</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Carpeta</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Procés original</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Registrar missatges de seguiment</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Els següents canvis sobreescriuen les dades per tots els jocs actualment seleccionats!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Cap</sys:String>

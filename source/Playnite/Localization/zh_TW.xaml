@@ -956,6 +956,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">授權被拒</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">正在下載 {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">正在檢查附加元件更新…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">有一個以上的附加元件更新可用。</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">選擇更新項目</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">擴充功能開發用服務</sys:String>
@@ -976,6 +977,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">處理程序</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">資料夾</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">原始程序</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">紀錄追蹤訊息</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">以下更改將覆寫所有已選遊戲的資料!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">無</sys:String>

@@ -939,6 +939,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licensz elutasítva</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} letöltése…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Bővítmények frissítésének keresése…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Egy vagy több frissítés elérhető.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Válaszd ki a frissítendőket</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Bővítmény fejlesztői változat</sys:String>
@@ -959,6 +960,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCActionTrackingModeProcess">Folyamat</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mappa</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Eredeti folyamat</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Nyomonkövetési üzenetek naplózása</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">A módosítások felülírják az összes kijelölt játék szerkesztett adatát!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Nincs</sys:String>

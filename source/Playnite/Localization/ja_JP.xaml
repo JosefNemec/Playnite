@@ -212,8 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">データベースに登録されているすべてのゲーム</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">現在フィルターが適用されているすべてのゲーム</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">選択したゲームのみ</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">メタデータフィールドが選択されていません</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">ダウンロード対象のメタデータフィールドが選択されていません。少なくとも1つを選択し、少なくとも1つのメタデータプロバイダを有効にしてください。</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">公式ストア</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Playnite によって、どのソースからデータを取得し、どの項目に自動的に入力されるのかを選択してください。</sys:String>
@@ -958,6 +958,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">ライセンスが拒否されました</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} をダウンロード中…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">アドオンの更新を検索中...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">1 つ以上のアドオンの更新が利用可能です。</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">更新する項目を選択</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">拡張機能開発インスタンス</sys:String>
@@ -978,6 +979,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">プロセス</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">フォルダ</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">元のプロセス</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">メッセージをログに記録する</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">以下の変更は、現在選択されているすべてのゲームのデータを上書きします。</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">無し</sys:String>

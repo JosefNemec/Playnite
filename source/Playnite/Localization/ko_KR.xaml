@@ -950,6 +950,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">라이선스 동의 거절</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} 다운로드 중...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">업데이트된 애드온을 확인하는 중...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">하나 이상의 애드온 업데이트가 있습니다.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">업데이트 할 항목 선택</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">개발용 확장 프로그램</sys:String>
@@ -970,6 +971,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">프로세스</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">폴더</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">원본 프로세스</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">추적 메시지 로깅하기</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">다음 변경 사항은 현재 선택한 모든 게임의 데이터를 덮어씁니다!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">없음</sys:String>

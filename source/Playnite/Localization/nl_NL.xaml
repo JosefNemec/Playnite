@@ -971,6 +971,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licentie afgewezen</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Downloaden {0}</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Aan het zoeken naar add-on updates...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Eén of meerdere add-on updates zijn beschikbaar</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Selecteer items om te updaten</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Extensie ontwikkelings-instantie</sys:String>
@@ -991,6 +992,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
     <sys:String x:Key="LOCActionTrackingModeProcess">Proces</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Map</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Oorspronkelijk proces</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log trace berichten</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">De volgende wijzigingen overschrijven data voor alle geselecteerde spellen!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Geen</sys:String>

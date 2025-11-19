@@ -955,6 +955,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisens ble avvist</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Last ned {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Ser etter oppdateringer for tillegg …</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">En eller flere oppdateringer for tillegg er tilgjengelig.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Velg elementer som skal oppdateres</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Utvidelse utvikles eksternt</sys:String>
@@ -975,6 +976,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCActionTrackingModeProcess">Prosess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mappe</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Opprinnelig prosess</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Logg sporingsmeldinger</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Følgende endringer overskriver data for alle valgte spill!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ingen</sys:String>

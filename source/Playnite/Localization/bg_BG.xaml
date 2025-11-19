@@ -954,6 +954,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Лицензът е отхвърлен</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Изтегляне на {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Търсят се актуализации на добавки...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Налични са една или повече актуализации на добавките.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Изберете елементи за актуализиране</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Екземпляр за разработка на разширение</sys:String>
@@ -974,6 +975,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">Процес</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Папка</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Оригинален процес</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Регистриране на съобщения за проследяване</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Следващите промени презаписват данните за всички текущо избрани игри!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Няма</sys:String>

@@ -1010,6 +1010,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">رخصة مرفوضة</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">جارٍ التنزيل {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">جارٍ البحث عن تحديثات...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">يتوفر تحديث أو أكثر للإضافات.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">حدد الإضافات لتحديثها</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">جزء التطوير للإضافة</sys:String>
@@ -1030,6 +1031,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">الاجراء</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">مجلد</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">العملية الأصلية</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">رسائل سجل التتبع</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">التغييرات التالية ستستبدل بيانات جميع الألعاب المختارة حاليًا!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">بدون</sys:String>

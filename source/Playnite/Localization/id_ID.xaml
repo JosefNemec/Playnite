@@ -950,6 +950,7 @@ Jika anda ingin menginstal atau meng-uninstal integrasi tambahan, gunakan menu &
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisensi ditolak</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Mengunduh {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Mencari pembaruan add-on...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Terdapat satu atau lebih add-on tersedia untuk di-update.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Pilih item untuk di-update</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Sesi pengembangan ekstensi</sys:String>
@@ -970,6 +971,7 @@ Jika anda ingin menginstal atau meng-uninstal integrasi tambahan, gunakan menu &
     <sys:String x:Key="LOCActionTrackingModeProcess">Dalam Proses</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Folder</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Proses awal</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log pesan jejak</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Perubahan berikut ini akan menimpa data untuk semua game yang sedang dipilih!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Tidak ada</sys:String>

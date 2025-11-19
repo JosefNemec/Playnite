@@ -955,6 +955,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licenza rexeitada</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">A descargar {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Procurando actualizacións de complementos ...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Unha ou máis actualizacións de complementos están dispoñibles.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Selecciona artigos para actualizalos</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instancia de desenvolvemento da extensión</sys:String>
@@ -975,6 +976,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCActionTrackingModeProcess">Proceso</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Cartafol</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Proceso orixinal</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Rexistrar mensaxes de seguimento</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">As seguintes modificacións sobrescribirán os datos de todos os xogos seleccionados actualmente</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ningún</sys:String>

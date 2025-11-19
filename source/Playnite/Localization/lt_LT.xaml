@@ -915,6 +915,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licencija atmesta</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Atsiunčiama {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Ieškoma plėtinių atnaujinimų…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Rasta vieno arba daugiau plėtinių atnaujinimų.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -935,6 +936,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>

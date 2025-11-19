@@ -953,6 +953,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Ліцензію відхилено</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Завантаження: {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Пошук оновлень надбудов… </sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Перевірка оновлень програми...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Доступно одне або кілька оновлень надбудов. </sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Виберіть елементи для оновлення</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Екземпляр розширення</sys:String>
@@ -973,6 +974,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">Процес</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Тека</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Оригінальний процес</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Ім'я процесу</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Журналювати повідомлення відстеження</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Наступні зміни перепишуть дані для всіх вибраних ігор!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Відсутня</sys:String>

@@ -953,6 +953,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lizenz abgelehnt</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} wird heruntergeladen …</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Aktualisierungen für Add-ons werden gesucht …</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Für mindestens ein Add-on ist eine Aktualisierung verfügbar.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Wähle die zu aktualisierenden Elemente aus</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instanz für Erweiterungsentwicklung</sys:String>
@@ -973,6 +974,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCActionTrackingModeProcess">Prozess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Ordner</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Originalprozess</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Protokollmeldungen aufzeichnen</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Folgende Änderungen überschreiben Daten aller aktuell ausgewählten Spiele!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Keiner</sys:String>

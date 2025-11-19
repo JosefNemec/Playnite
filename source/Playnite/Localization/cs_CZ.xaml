@@ -952,6 +952,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licence zamítnuta</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Stahování {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Vyhledávají se aktualizace rozšíření…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Vyhledávají se aktualizace programu…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Jsou dostupné aktualizace pro některá rozšíření.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Vyberte položky k aktualizaci</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instance pro vývoj rozšíření</sys:String>
@@ -972,6 +973,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCActionTrackingModeProcess">Proces</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Adresář</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Původní proces</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Název procesu</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Ukládat logy o sledování</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Následující změny přepisují data pro všechny aktuálně vybrané hry!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Žádné</sys:String>

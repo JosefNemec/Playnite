@@ -213,7 +213,7 @@
     <sys:String x:Key="LOCMetaGameSourceAll">Все игры из базы данных</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Все отфильтрованные игры</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Только выбранные</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Поля метаданных не выбраны</sys:String>
     <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Поля метаданных для загрузки не выбраны. Пожалуйста, выберите хотя бы одно и включите хотя бы один источник метаданных.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Офиц. магазин</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
@@ -959,6 +959,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Лицензия отклонена</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Загрузка {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Проверка наличия новых версий дополнений…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Доступны новые версии дополнений.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Выберите элементы для обновления</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Экземпляр разработки расширения</sys:String>
@@ -979,6 +980,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">Процесс</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Папка</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Исходный процесс</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Сообщения о трассировке логов</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Последующие изменения перезаписывают данные для всех выбранных в данный момент игр!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ничего</sys:String>

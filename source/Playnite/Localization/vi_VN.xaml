@@ -955,6 +955,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Giấy phép bị từ chối</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Đang tải xuống {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Tìm kiếm bản cập nhật cho tiện ích bổ sung...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Một hoặc vài bản cập nhật cho tiện ích bổ sung đang khả dụng.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Chọn mục để cập nhật</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Phiên bản phát triển tiện ích mở rộng</sys:String>
@@ -975,6 +976,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
     <sys:String x:Key="LOCActionTrackingModeProcess">Tiến trình</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Thư mục</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Tiến trình ban đầu</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Kênh tin nhắn</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Các thay đổi sau sẽ ghi đè dữ liệu cho tất cả các trò chơi hiện được chọn!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Không có</sys:String>

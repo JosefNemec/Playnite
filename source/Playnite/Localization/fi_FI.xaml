@@ -940,6 +940,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisenssi hylätty</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Ladataan {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Haetaan lisäosien päivityksiä…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Yksi tai useampi lisäosapäivitys saatavilla.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Valitse päivitettävät kohteet</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -960,6 +961,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCActionTrackingModeProcess">Prosessi</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Kansio</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Alkuperäinen prosessi</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ei mitään</sys:String>

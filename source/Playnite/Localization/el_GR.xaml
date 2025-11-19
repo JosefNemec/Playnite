@@ -953,6 +953,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Η άδεια απορρίφθηκε</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Λήψη {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Γίνεται έλεγχος για ενημερώσεις πρόσθετων …</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Μία ή περισσότερες ενημερώσεις προσθέτων είναι διαθέσιμες</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Επιλέξτε στοιχεία για ενημέρωση</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Παράδειγμα ανάπτυξης επεκτάσεων</sys:String>
@@ -973,6 +974,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">Διεργασία</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Φάκελος</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Αρχική διεργασία</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Καταγραφή ίχνους μηνυμάτων </sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Οι ακόλουθες αλλαγές αντικαθιστούν δεδομένα για όλα τα τρέχοντα επιλεγμένα παιχνίδια!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Κανένα</sys:String>

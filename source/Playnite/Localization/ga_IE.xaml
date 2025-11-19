@@ -873,6 +873,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -893,6 +894,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>

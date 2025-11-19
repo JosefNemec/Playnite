@@ -952,6 +952,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Litsentsist keelduti</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Allalaadimine {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Lisade värskenduste otsimine…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Vähemalt ühele lisale on saadaval värskendus.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Vali, mis värskendada</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Laienduse arendusversioon</sys:String>
@@ -972,6 +973,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
     <sys:String x:Key="LOCActionTrackingModeProcess">Protsess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Kaust</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Esialgne protsess</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Logi jälgede teated</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Järgnevad muudatused kirjutavad üle kõigi hetkel valitud mängude andmed!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Puudub</sys:String>
