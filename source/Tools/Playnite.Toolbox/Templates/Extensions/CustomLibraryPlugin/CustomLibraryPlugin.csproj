@@ -61,6 +61,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="installer.yaml" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icon.png">
