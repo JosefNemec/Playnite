@@ -511,6 +511,9 @@ namespace Playnite
                 // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
                 if (exception is MissingMethodException ||
                     exception is BadImageFormatException ||
+                    // Looks like there are some nested TargetInvocationException with MissingMethodException actual extension,
+                    // which seems to look like corrupted installed where binaries from different version got mixed up.
+                    exception.StackTrace?.Contains("System.MissingMethodException") == true ||
                     // Usually COM execution error from WindowsAPICodePack when opening folder selection dialog. As far as I can tell, this happens on "debloated" Windows edition only.
                     (exception is System.Runtime.InteropServices.COMException &&
                      (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))))
