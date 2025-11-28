@@ -182,6 +182,14 @@ namespace Playnite.Scripting.PowerShell
             }
         }
 
+        public override void OnGameInstallationCancelled(OnGameInstallationCancelledEventArgs args)
+        {
+            if (SupportedEvents.Contains(ApplicationEvent.OnGameInstallationCancelled))
+            {
+                InvokeFunction(ApplicationEvent.OnGameInstallationCancelled.ToString(), new List<object> { args });
+            }
+        }
+
         public override void OnGameUninstalled(OnGameUninstalledEventArgs args)
         {
             if (SupportedEvents.Contains(ApplicationEvent.OnGameUninstalled))

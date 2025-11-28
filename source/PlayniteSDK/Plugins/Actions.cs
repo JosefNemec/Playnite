@@ -123,6 +123,7 @@ namespace Playnite.SDK.Plugins
     public abstract class InstallController : ControllerBase
     {
         internal event EventHandler<GameInstalledEventArgs> Installed;
+        internal event EventHandler<GameInstallationCancelledEventArgs> InstallCancelled;
 
         /// <summary>
         /// Creates new instance of <see cref="InstallController"/>.
@@ -145,6 +146,16 @@ namespace Playnite.SDK.Plugins
         {
             args.Source = this;
             execContext.Send((a) => Installed?.Invoke(this, args), null);
+        }
+
+        /// <summary>
+        /// Invoke to singal that installation was cancelled.
+        /// </summary>
+        /// <param name="args"></param>
+        protected void InvokeOnInstallationCancelled(GameInstallationCancelledEventArgs args)
+        {
+            args.Source = this;
+            execContext.Send((a) => InstallCancelled?.Invoke(this, args), null);
         }
     }
 
@@ -388,6 +399,21 @@ namespace Playnite.SDK.Plugins
         public GameInstalledEventArgs(GameInstallationData installData)
         {
             InstalledInfo = installData;
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class GameInstallationCancelledEventArgs
+    {
+        internal InstallController Source { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public GameInstallationCancelledEventArgs()
+        {
         }
     }
 }

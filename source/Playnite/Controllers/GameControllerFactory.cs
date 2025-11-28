@@ -27,6 +27,7 @@ namespace Playnite.Controllers
         public event EventHandler<GameStoppedEventArgs> Stopped;
         public event EventHandler<GameUninstalledEventArgs> Uninstalled;
         public event EventHandler<GameInstalledEventArgs> Installed;
+        public event EventHandler<GameInstallationCancelledEventArgs> InstallationCancelled;
         public event EventHandler<OnGameStartupCancelledEventArgs> StartupCancelled;
 
         public GameControllerFactory()
@@ -66,6 +67,7 @@ namespace Playnite.Controllers
         public void AddController(InstallController controller)
         {
             controller.Installed += Controller_Installed;
+            controller.InstallCancelled += Controller_InstallationCancelled;
             InstallControllers.Add(controller);
         }
 
@@ -121,6 +123,7 @@ namespace Playnite.Controllers
         public void RemoveController(InstallController controller)
         {
             controller.Installed -= Controller_Installed;
+            controller.InstallCancelled -= Controller_InstallationCancelled;
 
             try
             {
@@ -182,6 +185,11 @@ namespace Playnite.Controllers
         private void Controller_Installed(object sender, GameInstalledEventArgs e)
         {
             Installed?.Invoke(this, e);
+        }
+
+        private void Controller_InstallationCancelled(object sender, GameInstallationCancelledEventArgs e)
+        {
+            InstallationCancelled?.Invoke(this, e);
         }
 
         internal void InvokeOnStarting(object sender, OnGameStartingEventArgs e)

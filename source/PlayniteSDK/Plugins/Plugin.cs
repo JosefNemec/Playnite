@@ -252,6 +252,13 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when game installation has been cancelled.
+        /// </summary>
+        public virtual void OnGameInstallationCancelled(OnGameInstallationCancelledEventArgs args)
+        {
+        }
+
+        /// <summary>
         /// Called when game has been uninstalled.
         /// </summary>
         public virtual void OnGameUninstalled(OnGameUninstalledEventArgs args)

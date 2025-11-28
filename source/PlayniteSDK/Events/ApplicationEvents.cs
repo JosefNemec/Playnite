@@ -89,7 +89,11 @@ namespace Playnite.SDK.Events
         /// <summary>
         ///
         /// </summary>
-        OnGameStartupCancelled
+        OnGameStartupCancelled,
+        /// <summary>
+        ///
+        /// </summary>
+        OnGameInstallationCancelled
     }
 
     /// <summary>
@@ -207,6 +211,17 @@ namespace Playnite.SDK.Events
     /// Represents arguments for the event when a game is installed.
     /// </summary>
     public class OnGameInstalledEventArgs
+    {
+        /// <summary>
+        /// Gets or sets game object initiating the event.
+        /// </summary>
+        public Game Game { get; internal set; }
+    }
+
+    /// <summary>
+    /// REpresents argumetns for the vent when game installation is cancelled.
+    /// </summary>
+    public class OnGameInstallationCancelledEventArgs
     {
         /// <summary>
         /// Gets or sets game object initiating the event.
