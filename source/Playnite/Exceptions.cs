@@ -41,6 +41,7 @@ namespace Playnite
         public bool IsLiteDbCorruptionCrash;
         public bool IsExtensionCrash;
         public ExtensionManifest CrashExtension;
+        public int PlayniteStackCalls;
     }
 
     public class Exceptions
@@ -48,6 +49,25 @@ namespace Playnite
         private static readonly ILogger logger = LogManager.GetLogger();
 
         public static ExceptionInfo GetExceptionInfo(Exception exception, ExtensionFactory extensions)
+        {
+            ExceptionInfo innerCrash = null;
+            if (exception.InnerException != null)
+            {
+                innerCrash = GetExceptionInfoImpl(exception.InnerException, extensions);
+                if (innerCrash.IsExtensionCrash || innerCrash.IsLiteDbCorruptionCrash)
+                    return innerCrash;
+            }
+
+            var crashInfo = GetExceptionInfoImpl(exception.InnerException, extensions);
+            // This usually happens if an exception occurs in XAML because of faulty custom theme.
+            // The only stack entry would be Playnite's entry point or no entry at all.
+            if ((innerCrash?.PlayniteStackCalls ?? 0 + crashInfo.PlayniteStackCalls) <= 1)
+                crashInfo.IsExtensionCrash = true;
+
+            return crashInfo;
+        }
+
+        private static ExceptionInfo GetExceptionInfoImpl(Exception exception, ExtensionFactory extensions)
         {
             var crashInfo = new ExceptionInfo();
 
@@ -65,7 +85,6 @@ namespace Playnite
                     return crashInfo;
                 }
 
-                var playniteStackCalls = 0;
                 var stack = new StackTrace(exception);
                 var crashModules = new List<Module>();
                 foreach (var frame in stack.GetFrames())
@@ -78,30 +97,10 @@ namespace Playnite
 
                     if (module.Name.StartsWith("Playnite"))
                     {
-                        playniteStackCalls++;
+                        crashInfo.PlayniteStackCalls++;
                     }
 
                     crashModules.AddMissing(module);
-                }
-
-                if (exception.InnerException != null)
-                {
-                    stack = new StackTrace(exception.InnerException);
-                    foreach (var frame in stack.GetFrames())
-                    {
-                        var module = frame.GetMethod()?.Module;
-                        if (module == null)
-                        {
-                            continue;
-                        }
-
-                        if (module.Name.StartsWith("Playnite"))
-                        {
-                            playniteStackCalls++;
-                        }
-
-                        crashModules.AddMissing(module);
-                    }
                 }
 
                 LoadedPlugin extDesc = null;
@@ -122,13 +121,7 @@ namespace Playnite
                 {
                     crashInfo.IsExtensionCrash = true;
                     crashInfo.CrashExtension = extDesc.Description;
-                    return crashInfo;
                 }
-
-                // This usually happens if an exception occurs in XAML because of faulty custom theme.
-                // The only stack entry would be Playnite's entry point or no entry at all.
-                if (playniteStackCalls <= 1)
-                    crashInfo.IsExtensionCrash = true;
 
                 return crashInfo;
             }
