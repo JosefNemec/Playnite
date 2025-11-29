@@ -114,12 +114,12 @@ namespace Playnite.Controllers
                 expandedProfile.Executable = CheckPath(expandedProfile.Executable, nameof(expandedProfile.Executable), FileSystemItem.File);
                 expandedProfile.WorkingDirectory = CheckPath(expandedProfile.WorkingDirectory, nameof(expandedProfile.WorkingDirectory), FileSystemItem.Directory);
 
-                if (!emuProf.StartupScript.IsNullOrWhiteSpace())
+                if (!expandedProfile.StartupScript.IsNullOrWhiteSpace())
                 {
-                    emuProf.StartupScript = Game.ExpandVariables(emuProf.StartupScript, false, emulator.InstallDir, romPath);
+                    expandedProfile.StartupScript = Game.ExpandVariables(expandedProfile.StartupScript, false, emulator.InstallDir, romPath);
                     RunStartScript(
                         $"{emulator.Name} runtime for {Game.Name}",
-                        emuProf.StartupScript,
+                        expandedProfile.StartupScript,
                         emulator.InstallDir,
                         new Dictionary<string, object>
                         {
