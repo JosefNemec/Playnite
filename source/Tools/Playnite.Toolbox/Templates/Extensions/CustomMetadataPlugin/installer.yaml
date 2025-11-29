@@ -1,0 +1,8 @@
+AddonId: "_name__00000000-0000-0000-0000-000000000001"
+Packages:
+  - Version: 1.0
+    RequiredApiVersion: 6.13.0
+    ReleaseDate: XXXX-XX-XX
+    PackageUrl: <INSERT_PEXT_URL_HERE>
+    Changelog:
+      - Initial Release
