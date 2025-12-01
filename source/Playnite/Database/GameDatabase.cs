@@ -1202,11 +1202,110 @@ namespace Playnite.Database
             return toAdd;
         }
 
-        public List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode)
+        public class GameImportOperation
+        {
+            public enum OperationType { Add, Update }
+            public OperationType Type { get; set; }
+            public GameMetadata GameData { get; set; }
+            public Game ExistingGame { get; set; }
+            public Guid PluginId { get; set; }
+            public PlaytimeImportMode PlaytimeMode { get; set; }
+        }
+
+        public class GameImportQueue
+        {
+            public List<GameImportOperation> Operations { get; set; } = new List<GameImportOperation>();
+            public CompletionStatusSettings StatusSettings { get; set; }
+        }
+
+        public GameImportQueue PrepareGameImports(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode)
+        {
+            var queue = new GameImportQueue
+            {
+                StatusSettings = GetCompletionStatusSettings()
+            };
+
+            if (library.Properties?.HasCustomizedGameImport == true)
+            {
+                // For custom import, we need to handle this differently as it bypasses GameMetadata
+                // This path will need to be handled in the main ImportGames method
+                return queue;
+            }
+            else
+            {
+                foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }) ?? new List<GameMetadata>())
+                {
+                    if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
+                    {
+                        logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
+                        continue;
+                    }
+
+                    var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
+                    if (existingGame == null)
+                    {
+                        logger.Info(string.Format("Queuing new game {0} from {1} plugin for import", newGame.GameId, library.Name));
+                        queue.Operations.Add(new GameImportOperation
+                        {
+                            Type = GameImportOperation.OperationType.Add,
+                            GameData = newGame,
+                            PluginId = library.Id,
+                            PlaytimeMode = playtimeImportMode
+                        });
+                    }
+                    else
+                    {
+                        // Check if update is needed
+                        var needsUpdate = false;
+                        if (!existingGame.IsCustomGame && !existingGame.OverrideInstallState)
+                        {
+                            if (existingGame.IsInstalled != newGame.IsInstalled ||
+                                !string.Equals(existingGame.InstallDirectory, newGame.InstallDirectory, StringComparison.OrdinalIgnoreCase))
+                            {
+                                needsUpdate = true;
+                            }
+                        }
+
+                        if (playtimeImportMode == PlaytimeImportMode.Always && newGame.Playtime > 0)
+                        {
+                            if (existingGame.Playtime != newGame.Playtime ||
+                                (newGame.LastActivity != null && (existingGame.LastActivity == null || newGame.LastActivity > existingGame.LastActivity)))
+                            {
+                                needsUpdate = true;
+                            }
+                        }
+
+                        if (!existingGame.IsInstalled && newGame.InstallSize != null && newGame.InstallSize > 0 &&
+                            existingGame.InstallSize != newGame.InstallSize)
+                        {
+                            needsUpdate = true;
+                        }
+
+                        if (needsUpdate)
+                        {
+                            queue.Operations.Add(new GameImportOperation
+                            {
+                                Type = GameImportOperation.OperationType.Update,
+                                GameData = newGame,
+                                ExistingGame = existingGame,
+                                PluginId = library.Id,
+                                PlaytimeMode = playtimeImportMode
+                            });
+                        }
+                    }
+                }
+            }
+
+            return queue;
+        }
+
+        public List<Game> ApplyGameImports(GameImportQueue queue)
         {
             using (BufferedUpdate())
             {
-                var statusSettings = GetCompletionStatusSettings();
+                var addedGames = new List<Game>();
+                var statusSettings = queue.StatusSettings;
+
                 bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
                 {
                     var updated = false;
@@ -1226,59 +1325,38 @@ namespace Playnite.Database
                     return updated;
                 }
 
-                if (library.Properties?.HasCustomizedGameImport == true)
+                foreach (var operation in queue.Operations)
                 {
-                    var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
-                    foreach (var game in importedGames)
+                    try
                     {
-                        updateCompletionStatus(game, statusSettings);
-                    }
-
-                    return importedGames;
-                }
-                else
-                {
-                    var addedGames = new List<Game>();
-                    foreach (var newGame in library.GetGames(new LibraryGetGamesArgs { CancelToken = cancelToken }) ?? new List<GameMetadata>())
-                    {
-                        if (ImportExclusions[ImportExclusionItem.GetId(newGame.GameId, library.Id)] != null)
+                        if (operation.Type == GameImportOperation.OperationType.Add)
                         {
-                            logger.Debug($"Excluding {newGame.Name} {library.Name} from import.");
-                            continue;
-                        }
+                            logger.Info(string.Format("Adding new game {0} from plugin {1}", operation.GameData.GameId, operation.PluginId));
 
-                        var existingGame = Games.FirstOrDefault(a => a.GameId == newGame.GameId && a.PluginId == library.Id);
-                        if (existingGame == null)
-                        {
-                            logger.Info(string.Format("Adding new game {0} from {1} plugin", newGame.GameId, library.Name));
-                            try
+                            if (operation.GameData.Playtime != 0)
                             {
-                                if (newGame.Playtime != 0)
+                                var originalPlaytime = operation.GameData.Playtime;
+                                operation.GameData.Playtime = 0;
+                                if (operation.PlaytimeMode == PlaytimeImportMode.Always ||
+                                    operation.PlaytimeMode == PlaytimeImportMode.NewImportsOnly)
                                 {
-                                    var originalPlaytime = newGame.Playtime;
-                                    newGame.Playtime = 0;
-                                    if (playtimeImportMode == PlaytimeImportMode.Always ||
-                                        playtimeImportMode == PlaytimeImportMode.NewImportsOnly)
-                                    {
-                                        newGame.Playtime = originalPlaytime;
-                                    }
-                                }
-
-                                var importedGame = ImportGame(newGame, library.Id);
-                                addedGames.Add(importedGame);
-                                if (updateCompletionStatus(importedGame, statusSettings))
-                                {
-                                    Games.Update(importedGame);
+                                    operation.GameData.Playtime = originalPlaytime;
                                 }
                             }
-                            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+
+                            var importedGame = ImportGame(operation.GameData, operation.PluginId);
+                            addedGames.Add(importedGame);
+                            if (updateCompletionStatus(importedGame, statusSettings))
                             {
-                                logger.Error(e, "Failed to import game into database.");
+                                Games.Update(importedGame);
                             }
                         }
-                        else
+                        else if (operation.Type == GameImportOperation.OperationType.Update)
                         {
+                            var existingGame = operation.ExistingGame;
+                            var newGame = operation.GameData;
                             var existingGameUpdated = false;
+
                             if (!existingGame.IsCustomGame && !existingGame.OverrideInstallState)
                             {
                                 if (existingGame.IsInstalled != newGame.IsInstalled)
@@ -1294,7 +1372,7 @@ namespace Playnite.Database
                                 }
                             }
 
-                            if (playtimeImportMode == PlaytimeImportMode.Always && newGame.Playtime > 0)
+                            if (operation.PlaytimeMode == PlaytimeImportMode.Always && newGame.Playtime > 0)
                             {
                                 if (existingGame.Playtime != newGame.Playtime)
                                 {
@@ -1302,9 +1380,6 @@ namespace Playnite.Database
                                     existingGameUpdated = true;
                                 }
 
-                                // The LastActivity value of the newGame is only applied if newer than
-                                // the existing game, to prevent cases of DRM free games being launched without
-                                // the client or offline, which would prevent the date from being updated in the service
                                 if (newGame.LastActivity != null &&
                                     (existingGame.LastActivity == null || newGame.LastActivity > existingGame.LastActivity))
                                 {
@@ -1331,9 +1406,57 @@ namespace Playnite.Database
                             }
                         }
                     }
-
-                    return addedGames;
+                    catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    {
+                        logger.Error(e, "Failed to import game operation into database.");
+                    }
                 }
+
+                return addedGames;
+            }
+        }
+
+        public List<Game> ImportGames(LibraryPlugin library, CancellationToken cancelToken, PlaytimeImportMode playtimeImportMode)
+        {
+            // Handle custom import separately as it bypasses the queue system
+            if (library.Properties?.HasCustomizedGameImport == true)
+            {
+                using (BufferedUpdate())
+                {
+                    var statusSettings = GetCompletionStatusSettings();
+                    bool updateCompletionStatus(Game game, CompletionStatusSettings settings)
+                    {
+                        var updated = false;
+                        if ((game.Playtime > 0 && (game.CompletionStatusId == Guid.Empty || game.CompletionStatusId == settings.DefaultStatus)) &&
+                            game.CompletionStatusId != statusSettings.PlayedStatus)
+                        {
+                            game.CompletionStatusId = statusSettings.PlayedStatus;
+                            updated = true;
+                        }
+                        else if ((game.Playtime == 0 && game.CompletionStatusId == Guid.Empty) &&
+                            game.CompletionStatusId != statusSettings.DefaultStatus)
+                        {
+                            game.CompletionStatusId = statusSettings.DefaultStatus;
+                            updated = true;
+                        }
+
+                        return updated;
+                    }
+
+                    var importedGames = library.ImportGames(new LibraryImportGamesArgs { CancelToken = cancelToken })?.ToList() ?? new List<Game>();
+                    foreach (var game in importedGames)
+                    {
+                        updateCompletionStatus(game, statusSettings);
+                    }
+
+                    return importedGames;
+                }
+            }
+            else
+            {
+                // Use the new split approach for standard imports
+                var queue = PrepareGameImports(library, cancelToken, playtimeImportMode);
+                return ApplyGameImports(queue);
             }
         }
 
@@ -1410,12 +1533,12 @@ namespace Playnite.Database
                 Playtime = 115200,
                 LastActivity = DateTime.Today,
                 IsInstalled = true,
-                AgeRatingIds =  new List<Guid> { database.AgeRatings.First().Id },
+                AgeRatingIds = new List<Guid> { database.AgeRatings.First().Id },
                 CategoryIds = new List<Guid> { database.Categories.First().Id },
                 DeveloperIds = new List<Guid> { database.Companies.First().Id },
                 PublisherIds = new List<Guid> { database.Companies.Last().Id },
                 GenreIds = new List<Guid> { database.Genres.First().Id },
-                RegionIds =  new List<Guid> { database.Regions.First().Id },
+                RegionIds = new List<Guid> { database.Regions.First().Id },
                 SeriesIds = new List<Guid> { database.Series.First().Id },
                 SourceId = database.Sources.First().Id,
                 TagIds = new List<Guid> { database.Tags.First().Id },
