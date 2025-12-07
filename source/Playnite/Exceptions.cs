@@ -58,7 +58,7 @@ namespace Playnite
                     return innerCrash;
             }
 
-            var crashInfo = GetExceptionInfoImpl(exception.InnerException, extensions);
+            var crashInfo = GetExceptionInfoImpl(exception, extensions);
             // This usually happens if an exception occurs in XAML because of faulty custom theme.
             // The only stack entry would be Playnite's entry point or no entry at all.
             if ((innerCrash?.PlayniteStackCalls ?? 0 + crashInfo.PlayniteStackCalls) <= 1)
