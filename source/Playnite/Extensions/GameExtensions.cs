@@ -196,17 +196,17 @@ namespace Playnite
                 result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).LastOrDefault());
             }
 
-            if (romPath.IsNullOrEmpty() && game.Roms.HasItems())
+            if (romPath.IsNullOrWhiteSpace() && game.Roms.HasItems())
             {
                 var customPath = game.Roms[0].Path;
-                if (!customPath.IsNullOrEmpty())
+                if (!customPath.IsNullOrEmpty() && !Paths.ContainsInvalidFileNameChars(customPath))
                 {
                     result = result.Replace(ExpandableVariables.ImagePath, customPath);
                     result = result.Replace(ExpandableVariables.ImageNameNoExtension, Path.GetFileNameWithoutExtension(customPath));
                     result = result.Replace(ExpandableVariables.ImageName, Path.GetFileName(customPath));
                 }
             }
-            else if (!romPath.IsNullOrEmpty())
+            else if (!romPath.IsNullOrWhiteSpace() && !Paths.ContainsInvalidFileNameChars(romPath))
             {
                 result = result.Replace(ExpandableVariables.ImagePath, romPath);
                 result = result.Replace(ExpandableVariables.ImageNameNoExtension, Path.GetFileNameWithoutExtension(romPath));
