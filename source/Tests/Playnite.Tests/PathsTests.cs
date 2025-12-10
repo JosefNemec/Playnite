@@ -149,8 +149,8 @@ namespace Playnite.Tests
         [Test]
         public void ContainsInvalidFileNameCharsTest()
         {
-            Assert.IsTrue(Paths.ContainsInvalidFileNameChars(@"\aaa.txt"));
-            Assert.IsFalse(Paths.ContainsInvalidFileNameChars("aaa.txt"));
+            Assert.IsTrue(Paths.ContainsInvalidPathChars(@"c:\<>\aaa.txt"));
+            Assert.IsFalse(Paths.ContainsInvalidPathChars(@"c:\test\aaa.txt"));
         }
     }
 }

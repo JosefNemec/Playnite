@@ -167,9 +167,9 @@ namespace Playnite.Common
             }
         }
 
-        public static bool ContainsInvalidFileNameChars(string path)
+        public static bool ContainsInvalidPathChars(string path)
         {
-            return path.Intersect(Path.GetInvalidFileNameChars()).Any();
+            return path.Intersect(Path.GetInvalidPathChars()).Any();
         }
 
         public static string GetSafePathName(string filename)
