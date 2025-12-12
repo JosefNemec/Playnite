@@ -516,9 +516,11 @@ namespace Playnite
                     exception.StackTrace?.Contains("System.MissingMethodException") == true ||
                     // Usually COM execution error from WindowsAPICodePack when opening folder selection dialog. As far as I can tell, this happens on "debloated" Windows edition only.
                     (exception is System.Runtime.InteropServices.COMException &&
-                     (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))))
+                     (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))) ||
+                    // DWM_E_COMPOSITIONDISABLED, looks like this can happen when GPU driver crashes and doesn't reboot properly
+                    exception.HResult == unchecked((int)0x80263001))
                 {
-                    Dialogs.ShowErrorMessage("Corrupted Playnite or Windows install detected.");
+                    Dialogs.ShowErrorMessage("System issue or corrupted Playnite install detected.");
                     Process.GetCurrentProcess().Kill();
                     return;
                 }
