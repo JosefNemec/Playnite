@@ -44,7 +44,7 @@ namespace Playnite
 
         public static void SetBootupStateRegistration(bool runOnBootup, bool startClosed)
         {
-            var startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            var startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup, Environment.SpecialFolderOption.Create);
             var shortcutPath = Path.Combine(startupPath, "Playnite.lnk");
             if (runOnBootup)
             {
