@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Playnite.SDK, Version=6.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\PlayniteSDK.6.2.0\lib\net462\Playnite.SDK.dll</HintPath>
+    <Reference Include="Playnite.SDK, Version=6.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\PlayniteSDK.6.13.0\lib\net462\Playnite.SDK.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -61,6 +61,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="installer.yaml" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icon.png">

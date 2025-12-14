@@ -18,6 +18,7 @@ namespace Playnite.Toolbox
         private const string nameReplaceMask = "_name_";
         private const string namespaceReplaceMask = "_namespace_";
         private const string guidReplaceMask = "00000000-0000-0000-0000-000000000001";
+        private const string dateReplaceMask = "XXXX-XX-XX";
         private const string genericPluginProjectName = "GenericPlugin";
         private const string libraryPluginProjectName = "CustomLibraryPlugin";
         private const string metadataPluginProjectName = "CustomMetadataPlugin";
@@ -96,6 +97,12 @@ namespace Playnite.Toolbox
                     changed = true;
                 }
 
+                if (fileContent.Contains(dateReplaceMask))
+                {
+                    fileContent = fileContent.Replace(dateReplaceMask, DateTime.Now.ToString("yyyy-MM-dd"));
+                    changed = true;
+                }
+
                 if (changed)
                 {
                     File.WriteAllText(filePath, fileContent, Encoding.UTF8);
@@ -142,6 +149,12 @@ namespace Playnite.Toolbox
                 if (fileContent.Contains(guidReplaceMask))
                 {
                     fileContent = fileContent.Replace(guidReplaceMask, pluginId.ToString());
+                    changed = true;
+                }
+
+                if (fileContent.Contains(dateReplaceMask))
+                {
+                    fileContent = fileContent.Replace(dateReplaceMask, DateTime.Now.ToString("yyyy-MM-dd"));
                     changed = true;
                 }
 
