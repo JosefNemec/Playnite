@@ -32,10 +32,10 @@ namespace Playnite.Tests
                 }
             };
 
-            Assert.AreEqual(null, manifest.GetLatestCompatiblePackage(new Version(3, 0)));
-            Assert.AreEqual(new Version(1, 1), manifest.GetLatestCompatiblePackage(new Version(1, 0)).Version);
-            Assert.AreEqual(new Version(1, 2), manifest.GetLatestCompatiblePackage(new Version(1, 1)).Version);
-            Assert.AreEqual(new Version(1, 3), manifest.GetLatestCompatiblePackage(new Version(2, 0)).Version);
+            CollectionAssert.IsEmpty(manifest.GetCompatiblePackages(new Version(3, 0)));
+            Assert.AreEqual(new Version(1, 1), manifest.GetCompatiblePackages(new Version(1, 0)).First().Version);
+            Assert.AreEqual(new Version(1, 2), manifest.GetCompatiblePackages(new Version(1, 1)).First().Version);
+            Assert.AreEqual(new Version(1, 3), manifest.GetCompatiblePackages(new Version(2, 0)).First().Version);
         }
     }
 }
