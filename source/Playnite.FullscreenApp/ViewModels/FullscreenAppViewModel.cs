@@ -924,7 +924,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }).Result != true)
             {
                 Logger.Error(openProgress.FailException, "Failed to open library database.");
-                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{openProgress.FailException.Message}";
+                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{openProgress.FailException?.Message}";
                 Dialogs.ShowErrorMessage(message, "");
                 return;
             }

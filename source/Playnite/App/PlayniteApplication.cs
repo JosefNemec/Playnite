@@ -511,6 +511,7 @@ namespace Playnite
                 // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
                 if (exception is MissingMethodException ||
                     exception is BadImageFormatException ||
+                    exception is InvalidProgramException ||
                     // Looks like there are some nested TargetInvocationException with MissingMethodException actual extension,
                     // which seems to look like corrupted installed where binaries from different version got mixed up.
                     exception.StackTrace?.Contains("System.MissingMethodException") == true ||
