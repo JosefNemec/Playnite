@@ -942,6 +942,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCAddonChangesRestart">Application restart is required to apply pending changes.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">This add-on is scheduled for installation.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Install</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Re-install</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Uninstall</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Already installed</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">No new add-on updates found.</sys:String>

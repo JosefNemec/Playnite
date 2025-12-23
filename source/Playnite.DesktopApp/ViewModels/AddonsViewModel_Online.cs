@@ -48,6 +48,7 @@ namespace Playnite.DesktopApp.ViewModels
             get => selectedOnlineAddon;
             set
             {
+                AddonInstallerManifest manifest = null;
                 selectedOnlineAddon = value;
                 if (value != null)
                 {
@@ -56,7 +57,7 @@ namespace Playnite.DesktopApp.ViewModels
                             new GlobalProgressOptions(LOC.GettingsAddonInformation.GetLocalized(), true) { IsIndeterminate = true});
                     var progRes = progressModel.ActivateProgress((args) =>
                     {
-                        selectedOnlineAddon.DownloadInstallerManifest(args.CancelToken);
+                        manifest = selectedOnlineAddon.InstallerManifest;
                         if (selectedOnlineAddon.Links == null)
                         {
                             selectedOnlineAddon.Links = new Dictionary<string, string>();
@@ -78,6 +79,30 @@ namespace Playnite.DesktopApp.ViewModels
                     }
                 }
 
+                OnPropertyChanged();
+                AvailablePackages = manifest?.GetCompatiblePackages() ?? new List<AddonInstallerPackage>();
+                SelectedInstallPackage = AvailablePackages?.FirstOrDefault();
+            }
+        }
+
+        private AddonInstallerPackage selectedInstallVersion;
+        public AddonInstallerPackage SelectedInstallPackage
+        {
+            get => selectedInstallVersion;
+            set
+            {
+                selectedInstallVersion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<AddonInstallerPackage> availablePackages;
+        public List<AddonInstallerPackage> AvailablePackages
+        {
+            get => availablePackages;
+            set
+            {
+                availablePackages = value;
                 OnPropertyChanged();
             }
         }
@@ -161,20 +186,9 @@ namespace Playnite.DesktopApp.ViewModels
             if (licenseRes == false)
             {
                 return;
-            }
+            }    
 
-            AddonInstallerManifest manifest = null;
-            dialogs.ActivateGlobalProgress(
-                (a) => manifest = addon.InstallerManifest,
-                new GlobalProgressOptions(LOC.DownloadingLabel, false));
-            if (manifest == null || manifest.AddonId.IsNullOrEmpty())
-            {
-                dialogs.ShowErrorMessage(LOC.AddonErrorManifestDownloadError, string.Empty);
-                return;
-            }
-
-            var latestPackage = manifest.GetLatestCompatiblePackage();
-            if (latestPackage == null || latestPackage.PackageUrl.IsNullOrEmpty())
+            if (SelectedInstallPackage == null || SelectedInstallPackage.PackageUrl.IsNullOrEmpty())
             {
                 dialogs.ShowErrorMessage(LOC.AddonErrorNotCompatible, string.Empty);
                 return;
@@ -186,14 +200,14 @@ namespace Playnite.DesktopApp.ViewModels
                 FileSystem.DeleteFile(locaPath);
                 var res = dialogs.ActivateGlobalProgress((_) =>
                 {
-                    if (latestPackage.PackageUrl.IsHttpUrl())
+                    if (SelectedInstallPackage.PackageUrl.IsHttpUrl())
                     {
                         FileSystem.PrepareSaveFile(locaPath);
-                        HttpDownloader.DownloadFile(latestPackage.PackageUrl, locaPath);
+                        HttpDownloader.DownloadFile(SelectedInstallPackage.PackageUrl, locaPath);
                     }
                     else
                     {
-                        File.Copy(latestPackage.PackageUrl, locaPath);
+                        File.Copy(SelectedInstallPackage.PackageUrl, locaPath);
                     }
                 },
                 new GlobalProgressOptions(LOC.DownloadingLabel, false));
@@ -209,7 +223,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(e, $"Failed to download addon package {latestPackage.PackageUrl}");
+                logger.Error(e, $"Failed to download addon package {SelectedInstallPackage.PackageUrl}");
                 dialogs.ShowErrorMessage(LOC.AddonErrorDownloadFailed, string.Empty);
             }
         }

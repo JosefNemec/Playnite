@@ -3390,6 +3390,10 @@ namespace Playnite
         /// </summary>
         public const string AddonInstall = "LOCAddonInstall";
         /// <summary>
+        /// Re-install
+        /// </summary>
+        public const string AddonReinstall = "LOCAddonReinstall";
+        /// <summary>
         /// Uninstall
         /// </summary>
         public const string AddonUninstall = "LOCAddonUninstall";

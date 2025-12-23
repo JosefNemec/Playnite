@@ -110,22 +110,28 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <Button HorizontalAlignment="Left" Margin="0,15,0,0"
+                    <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                        <Button Margin="0,0,10,0"
                             Command="{Binding Data.InstallAddonCommand, Source={StaticResource RootDataContext}}"
                             CommandParameter="{Binding}"
-                            Visibility="{Binding IsQueuedForInstall, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
-                        <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                                <Setter Property="Content" Value="{DynamicResource LOCAddonInstall}" />
-                                <Style.Triggers>                                    
-                                    <DataTrigger Binding="{Binding IsInstalled}" Value="True">
-                                        <Setter Property="Content" Value="{DynamicResource LOCAddonAlreadyInstalled}" />
-                                        <Setter Property="IsEnabled" Value="False" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                            IsEnabled="{Binding IsQueuedForInstall, Converter={StaticResource NegateConverter}}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                    <Setter Property="Content" Value="{DynamicResource LOCAddonInstall}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsInstalled}" Value="True">
+                                            <Setter Property="Content" Value="{DynamicResource LOCAddonReinstall}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        
+                        <ComboBox MinWidth="100"
+                                  ItemsSource="{Binding Data.AvailablePackages, Source={StaticResource RootDataContext}}"
+                                  SelectedValue="{Binding Data.SelectedInstallPackage, Source={StaticResource RootDataContext}}"                                  
+                                  DisplayMemberPath="Version" />
+                    </StackPanel>
 
                     <TextBlock Text="{DynamicResource LOCAddonQueuedForInstall}"
                                Margin="0,10,0,0" TextWrapping="Wrap"

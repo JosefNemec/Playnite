@@ -28,10 +28,15 @@ namespace Playnite
             }
 
             var apiVersion = GetApiVersion(AddonType);
-            return GetLatestCompatiblePackage(apiVersion);
+            return GetCompatiblePackages(apiVersion).FirstOrDefault();
         }
 
-        public AddonInstallerPackage GetLatestCompatiblePackage(Version apiVersion)
+        public List<AddonInstallerPackage> GetCompatiblePackages()
+        {
+            return GetCompatiblePackages(GetApiVersion(AddonType));
+        }
+
+        public List<AddonInstallerPackage> GetCompatiblePackages(Version apiVersion)
         {
             if (!Packages.HasItems())
             {
@@ -40,7 +45,7 @@ namespace Playnite
 
             return Packages.
                 Where(a => a.RequiredApiVersion != null && a.RequiredApiVersion.Major == apiVersion.Major && a.RequiredApiVersion <= apiVersion).
-                OrderByDescending(a => a.Version).FirstOrDefault();
+                OrderByDescending(a => a.Version).ToList();
         }
 
         private static Version GetApiVersion(AddonType type)
