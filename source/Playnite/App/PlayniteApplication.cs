@@ -921,7 +921,8 @@ namespace Playnite
                             }
                             else
                             {
-                                var existingProcess = Process.GetProcesses().First(a => a.ProcessName.StartsWith("Playnite.") && a.Id != curProcess.Id);
+                                var existingProcess = Process.GetProcesses().
+                                    First(a => IsProcessPlayniteProcess(a) && a.Id != curProcess.Id);
                                 if (existingProcess.ProcessName == curProcess.ProcessName)
                                 {
                                     client.InvokeCommand(CmdlineCommand.Focus, string.Empty);
@@ -946,7 +947,7 @@ namespace Playnite
             }
             else
             {
-                var processes = Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).ToList();
+                var processes = Process.GetProcesses().Where(a => IsProcessPlayniteProcess(a)).ToList();
                 // In case multiple processes end up in this branch,
                 // the process with highest process id gets to live.
                 if (processes.Count > 1 && processes.Max(a => a.Id) != curProcess.Id)
@@ -1630,13 +1631,13 @@ namespace Playnite
 
         private void WaitForOtherInstacesToExit(bool throwOnTimetout)
         {
-            if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
+            if (Process.GetProcesses().Where(a => IsProcessPlayniteProcess(a)).Count() > 1)
             {
                 logger.Info("Multiple Playnite instances detected, waiting for them to close.");
                 for (int i = 0; i < 10; i++)
                 {
                     Thread.Sleep(500);
-                    if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
+                    if (Process.GetProcesses().Where(a => IsProcessPlayniteProcess(a)).Count() == 1)
                     {
                         break;
                     }
@@ -1653,6 +1654,11 @@ namespace Playnite
                     }
                 }
             }
+        }
+
+        public static bool IsProcessPlayniteProcess(Process process)
+        {
+            return process.ProcessName.StartsWith("Playnite.DesktopApp") || process.ProcessName.StartsWith("Playnite.FullscreenApp");
         }
 
         public abstract PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner);
