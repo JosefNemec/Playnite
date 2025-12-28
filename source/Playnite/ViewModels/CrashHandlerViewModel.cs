@@ -259,6 +259,12 @@ namespace Playnite.ViewModels
                 var uploadResult = GlobalProgress.ActivateProgress((_) =>
                     uploadedId = new ServicesClient().UploadDiagPackage(diagPath),
                     new GlobalProgressOptions("LOCDiagUploading"));
+                if (uploadedId == Guid.Empty)
+                {
+                    Explorer.NavigateToFileSystemEntry(diagPath);
+                    return;
+                }
+
                 if (uploadResult.Result == true)
                 {
                     if (mode == ApplicationMode.Desktop)
