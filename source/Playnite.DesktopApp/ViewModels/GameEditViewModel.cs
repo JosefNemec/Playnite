@@ -925,7 +925,7 @@ namespace Playnite.DesktopApp.ViewModels
                     game.OverrideInstallState = EditingGame.OverrideInstallState;
                 }
 
-                if (appSettings.GameSortingNameAutofill && string.IsNullOrEmpty(game.SortingName))
+                if (appSettings.GameSortingNameAutofill && string.IsNullOrWhiteSpace(game.SortingName))
                 {
                     var sortingName = sortableNameConverter.Convert(game.Name);
                     if (sortingName != game.Name)
