@@ -656,6 +656,10 @@ namespace Playnite.DesktopApp.ViewModels
 
             var changeDate = DateTime.Now;
             var gamesToUpdate = IsMultiGameEdit ? Games : new List<Game> { Game };
+            var sortableNameConverter = appSettings.GameSortingNameAutofill
+                ? new SortableNameConverter(appSettings.GameSortingNameRemovedArticles, IsMultiGameEdit)
+                : null;
+            
             database.Games.BeginBufferUpdate();
             foreach (var game in gamesToUpdate)
             {
@@ -919,6 +923,15 @@ namespace Playnite.DesktopApp.ViewModels
                 if (UseOverrideInstallState)
                 {
                     game.OverrideInstallState = EditingGame.OverrideInstallState;
+                }
+
+                if (appSettings.GameSortingNameAutofill && string.IsNullOrWhiteSpace(game.SortingName))
+                {
+                    var sortingName = sortableNameConverter.Convert(game.Name);
+                    if (sortingName != game.Name)
+                    {
+                        game.SortingName = sortingName;
+                    }
                 }
 
                 game.Modified = changeDate;
