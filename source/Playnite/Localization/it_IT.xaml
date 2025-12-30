@@ -953,6 +953,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCAddonChangesRestart">Riavvio dell'applicazione è richiesto per applicare le modifiche.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Questo componente aggiuntivo è previsto per l'installazione.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installa</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Disinstalla</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Già installato</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nessun aggiornamento disponibile per i componenti aggiuntivi.</sys:String>
@@ -963,7 +964,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licenza rifiutata</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Scaricando {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Controllo degli aggiornamenti per i componenti aggiuntivi...</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Ricerca aggiornamenti del programma...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Sono disponibili uno o più aggiornamenti per componenti aggiuntivi.
 </sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Seleziona gli elementi da aggiornare</sys:String>
@@ -985,7 +986,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCActionTrackingModeProcess">Processo</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Cartella</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Processo originale</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Nome del processo</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Registra i messaggi fissati</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Le seguenti modifiche sovrascriveranno i dati di tutti i giochi selezionati!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Nessuno</sys:String>
@@ -1120,8 +1121,8 @@ Se cominci ad avere qualche problema dopo l'installazione di un tema o di una es
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assegnato ai giochi giocati per la prima volta</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Impossibile inizializzare lo script PowerShell. Se sei un utente Windows 7, prova a (re)installare PowerShell 5.1 per riparare il problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Il preset del filtro con il nome specificato esiste già. Aggiornare il preset con le nuove impostazioni?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Riempi automaticamente il nome di ordinamento per i giochi aggiunti in gruppo</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Quando si aggiungono i giochi tramite un aggiornamento della libreria, una scansione della cartella emulatore, o una scansione della cartella normale, riempire automaticamente il campo &quot;Sorting Name&quot; con una migliore rappresentazione ordinabile del nome del gioco, per esempio &quot;The Witcher 3&quot; riceverà un Nome Ordinamento di &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Queste parole verranno rimosse dall'inizio del valore del nome di ordinamento compilato automaticamente:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Usalo per ignorare le parole all'inizio di una stringa per scopi di ordinamento. Il valore predefinito è &quot;The&quot;, &quot;An&quot; e &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Riempi il nome di ordinamento per i giochi senza uno</sys:String>

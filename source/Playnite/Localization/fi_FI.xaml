@@ -930,6 +930,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Tämä lisäosa on ajoitettu asennukseen</sys:String>
     <sys:String x:Key="LOCAddonInstall">Asenna</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Poista asennus</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Jo asennettu</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Uusia lisäosien päivityksiä ei löytynyt.</sys:String>

@@ -942,6 +942,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCAddonChangesRestart">Je vyžadován restart aplikace pro použití čekajících změn.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Toto rozšíření je plánováno k instalaci.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instalovat</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Přeinstalovat</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Odinstalovat</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Již nainstalováno</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nenalezeny žádné nové aktualizace rozšíření.</sys:String>
@@ -1109,7 +1110,7 @@ Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je
     <sys:String x:Key="LOCPowerShellCreationError">Nepodařilo se inicializovat PowerShell script runtime. Pokud jste uživatel Windows 7, zkuste (pře)instalovat PowerShell 5.1 pro vyřešní problému.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Předvolba filtrů se zadaným jménem již existuje. Aktualizovat předvolbu s novými nastaveními?</sys:String>
     <sys:String x:Key="LOCSortingNameAutofill">Automaticky vyplnit název pro řazení hry</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Přidáte-li hry prostřednictvím aktualizace knihovny, skenování emulátorů nebo skenování složek, automaticky vyplní pole &quot;Jméno, dle kterého řadit&quot; s lepším řaditelným jménem, například &quot;The Witcher 3&quot; se nastaví jako &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Když upravíte hru, přidáte hry prostřednictvím aktualizace knihovny, skenováním emulátorů nebo normálním skenování složek, tato volba automaticky vyplní pole &quot;Jméno, dle kterého řadit&quot;. Například, &quot;The Witcher 3&quot; získá jméno pro řazení &quot;Witcher 03&quot;. Tato volba nikdy nenastaví název, který je identicky jako jméno hry a automaticky aktualizuje jméno pro řazení pouze pokud je pole prázdné.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Tato slova budou odstraněna ze začátku hodnoty pro jméno řazení:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Použijte pro ignorování slov na začátku řetězce pro účely řazení. Výchozí hodnoty jsou &quot;The&quot;, &quot;An&quot; a &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Vyplňte řadící název u her které žádný nemají</sys:String>

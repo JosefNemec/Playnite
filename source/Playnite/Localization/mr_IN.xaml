@@ -887,6 +887,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">प्रलंबित बदल लागू करण्यास अ‍ॅप्लिकेशन रीस्टार्ट आवश्यक आहे.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">या अ‍ॅडऑनची स्थापना शेड्यूल केली गेली आहे.</sys:String>
     <sys:String x:Key="LOCAddonInstall">स्थापित करा</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">विस्थापित करा</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">आधिच स्थापित केले आहे</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">कोणतेही नवीन अ‍ॅडऑन अपडेट सापडले नाहीत.</sys:String>

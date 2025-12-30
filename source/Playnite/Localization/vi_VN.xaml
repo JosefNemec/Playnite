@@ -212,8 +212,8 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCMetaGameSourceAll">Mọi trò chơi từ cơ sở dữ liệu.</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tất cả các trò chơi hiện đang được chọn lọc.</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Chỉ các trò chơi đã chọn.</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Chưa chọn trường thông tin phụ</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Chưa chọn trường thông tin phụ để tải xuống. Vui long chọn ít nhất một, và kích hoạt ít nhất một nhà cung cấp cho nó.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Cửa Hàng Chính thức.</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Vui lòng chọn trường nào sẽ được Playnite tự động điền và nguồn nào nên được sử dụng để lấy dữ liệu từ đó. </sys:String>
@@ -945,6 +945,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
     <sys:String x:Key="LOCAddonChangesRestart">Khởi động lại ứng dụng là bắt buộc để áp dụng các thay đổi đang chờ xử lý.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Tiện ích bổ sung này được lên lịch cài đặt.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Cài đặt</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Cài đặt lại</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Gỡ cài đặt</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Đã được cài đặt</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Không tìm thấy bản cập nhật tiện ích bổ sung mới nào.</sys:String>
@@ -955,7 +956,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Giấy phép bị từ chối</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Đang tải xuống {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Tìm kiếm bản cập nhật cho tiện ích bổ sung...</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Đang tìm cập nhật của app</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Một hoặc vài bản cập nhật cho tiện ích bổ sung đang khả dụng.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Chọn mục để cập nhật</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Phiên bản phát triển tiện ích mở rộng</sys:String>
@@ -976,7 +977,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
     <sys:String x:Key="LOCActionTrackingModeProcess">Tiến trình</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Thư mục</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Tiến trình ban đầu</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Tên tiến trình</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Kênh tin nhắn</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Các thay đổi sau sẽ ghi đè dữ liệu cho tất cả các trò chơi hiện được chọn!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Không có</sys:String>
@@ -1111,8 +1112,8 @@ Nếu bạn bắt đầu gặp một số sự cố sau khi cài đặt chủ đ
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Trạng thái được chỉ định cho các trò chơi được chơi lần đầu tiên</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Không thể khởi chạy thời gian chạy tập lệnh PowerShell. Nếu bạn là người dùng Windows 7, hãy thử cài đặt (lại) PowerShell 5.1 để khắc phục sự cố.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Bộ lọc đặt trước với tên được chỉ định đã tồn tại. Cập nhật cài đặt trước với cài đặt mới?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Tự động điền tên sắp xếp cho những game được thêm hàng loạt</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Khi bạn thêm game thông qua trình cập nhật thư viện, quét thư mục trình giả lập, hoặc quét thư mục thông thường, hệ thống sẽ tự điền trường &quot;Tên Sắp xếp&quot; với phương thức trình bày hợp lý cho việc sắp xếp hơn (ví dụ: &quot;The Witcher 3&quot; sẽ có Tên Sắp xếp là &quot;Witcher 03&quot;)</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Tự động điền những tên bị thiếu cho game đã sửa thông tin hoặc thêm cả loạt</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Khi bạn sửa thông tin game, thêm game mới qua cập nhật của kho game, quét thư mục trình giả lập, hoặc quét thư mục thông thường, tự động điền trường 'Tên Sắp xếp' với tên dễ sắp xếp hơn của tên các game. Ví dụ, &quot;The Witcher 3&quot; sẽ có tên để xếp là &quot;Witcher 03&quot;. Như thế sẽ không đặt tên để xếp mà khác với tên game, và app sẽ chỉ tự động cập nhật tên để xếp mà còn trống.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Những từ sau sẽ bị gỡ bỏ khi khởi động tiến trình tự đặt Tên Sắp xếp:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Sử dụng tính năng này để bỏ qua những từ nằm ở đầu chuỗi ký tự để phục vụ việc sắp xếp. Mặc định là &quot;The&quot;, &quot;An&quot; và &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Điền Tên Sắp xếp cho những game chưa có</sys:String>

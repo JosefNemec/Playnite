@@ -940,6 +940,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">변경사항을 적용하려면 프로그램을 재시작해야 합니다.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">이 애드온은 설치될 예정입니다.</sys:String>
     <sys:String x:Key="LOCAddonInstall">설치</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">설치 제거</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">이미 설치 됨</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">새로운 업데이트가 없습니다.</sys:String>
@@ -1106,10 +1107,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">게임을 최초로 플레이했을 때의 상태</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell 스크립트 런타임을 초기화하지 못했습니다. 윈도우즈 7 사용자인 경우 PowerShell 5.1을 다시 설치하여 문제를 해결해 보십시오.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">지정한 이름의 필터 프리셋이 이미 있습니다. 프리셋을 새 설정으로 업데이트하시겠습니까?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">일괄 추가된 게임에 자동으로 정렬 이름 입력</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">에뮬레이터 폴더 검색이나 일반 폴더 검색 또는 라이브러리 업데이트를 통해 게임을 추가할 때, 더 나은 정렬 결과를 제공하기 위해 자동으로 &quot;정렬 이름&quot;필드를 입력합니다.
-예를 들어 &quot;The Withcer 3&quot;는 &quot;Withcer 03&quot;라는 정렬 이름이 부여됩니다.
-</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">다음 단어를 자동으로 부여되는 정렬 이름의 앞부분에서 제외</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">정렬을 위해 문자열의 시작 부분에 있는 단어를 무시할 때 사용합니다. 기본값은 &quot;The&quot;, &quot;An&quot; 및 &quot;A&quot;입니다.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">정렬 이름이 없는 게임의 값 채우기</sys:String>

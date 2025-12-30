@@ -651,7 +651,7 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Gör inget</sys:String>
     <sys:String x:Key="LOCMinimize">Minimera</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Återställ fönster</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI"></sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Återställ fönstret endast när det startats från UI.</sys:String>
     <sys:String x:Key="LOCClose">Stäng</sys:String>
     <sys:String x:Key="LOCChange">Ändra</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancerat</sys:String>
@@ -839,7 +839,7 @@ Mer information på https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallApiVersionFails"></sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallSuccess">Installationen lyckades.</sys:String>
     <sys:String x:Key="LOCGeneralExtensionInstallTitle">Installera tillägg?</sys:String>
-    <sys:String x:Key="LOCExtensionGeneric"></sys:String>
+    <sys:String x:Key="LOCExtensionGeneric">Allmänt </sys:String>
     <sys:String x:Key="LOCAddonInstallFaild"></sys:String>
     <sys:String x:Key="LOCExtensionInstallFail" xml:space="preserve">Misslyckades med att installera tillägget.
 
@@ -871,15 +871,15 @@ Ny version: {2}</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Visa Inte Igen</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Fil med tillägget {0} är inte kompatibel.</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionErrorTitle">Inkompatibel filändelse</sys:String>
-    <sys:String x:Key="LOCLargeMediaWarningTooltip"></sys:String>
+    <sys:String x:Key="LOCLargeMediaWarningTooltip">Den valda bilden kan vara för stor för optimal prestanda </sys:String>
     <sys:String x:Key="LOCThemeUninstallQuestion"></sys:String>
-    <sys:String x:Key="LOCThemeBuiltInUninstallHint"></sys:String>
-    <sys:String x:Key="LOCThemeUnsupported"></sys:String>
+    <sys:String x:Key="LOCThemeBuiltInUninstallHint">Standard tema kan inte avinstalleras.</sys:String>
+    <sys:String x:Key="LOCThemeUnsupported">Temat funkar inte med denna version av Playnite.</sys:String>
     <sys:String x:Key="LOCExtensionUninstallQuestion"></sys:String>
     <sys:String x:Key="LOCExtensionBuiltInUninstallHint"></sys:String>
     <sys:String x:Key="LOCExtensionUnsupported"></sys:String>
-    <sys:String x:Key="LOCExtensionInstallDir"></sys:String>
-    <sys:String x:Key="LOCExtensionDataDir"></sys:String>
+    <sys:String x:Key="LOCExtensionInstallDir">Installationsmapp</sys:String>
+    <sys:String x:Key="LOCExtensionDataDir">Datamapp </sys:String>
     <sys:String x:Key="LOCDiagGenerating"></sys:String>
     <sys:String x:Key="LOCDiagUploading"></sys:String>
     <sys:String x:Key="LOCAddFromExe"></sys:String>
@@ -888,11 +888,11 @@ Ny version: {2}</sys:String>
     <sys:String x:Key="LOCStatsTotalPlayTime">Total speltid</sys:String>
     <sys:String x:Key="LOCStatsAvaragePlayTime">Genomsnittlig speltid</sys:String>
     <sys:String x:Key="LOCStatsTopPlayTime">Högsta speltid</sys:String>
-    <sys:String x:Key="LOCStatsTotalInstallSize"></sys:String>
+    <sys:String x:Key="LOCStatsTotalInstallSize">Total installations storlek.</sys:String>
     <sys:String x:Key="LOCOverviewLabel">Överblick</sys:String>
     <sys:String x:Key="LOCSidebar">Sidofält</sys:String>
     <sys:String x:Key="LOCToolsShowOnSidebar"></sys:String>
-    <sys:String x:Key="LOCSettingsReset"></sys:String>
+    <sys:String x:Key="LOCSettingsReset">Återställ inställningar </sys:String>
     <sys:String x:Key="LOCSettingsDefaultResetDesc" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsForDevelopers"></sys:String>
     <sys:String x:Key="LOCSettingsExternalExtensions"></sys:String>
@@ -932,6 +932,7 @@ Om du vill installera eller avinstallera ytterligare integreringar, använd alte
     <sys:String x:Key="LOCAddonChangesRestart">Omstart av programmet krävs för att tillämpa väntande ändringar.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Det här tillägget är schemalagt för installation.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installera</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Ominstallera </sys:String>
     <sys:String x:Key="LOCAddonUninstall">Avinstallera</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Redan installerad</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Inga nya tilläggsuppdateringar hittades.</sys:String>
@@ -942,7 +943,7 @@ Om du vill installera eller avinstallera ytterligare integreringar, använd alte
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licensen avvisades</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Hämtar {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Söker efter tilläggsuppdateringar…</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Letar efter uppdateringar.</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Ett eller flera tilläggsuppdateringar finns tillgängliga.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Välj objekt att uppdatera</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Expansion för tilläggsutveckling</sys:String>

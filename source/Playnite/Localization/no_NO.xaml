@@ -945,6 +945,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCAddonChangesRestart">Omstart av programmet er påkrevd for at nye innstillinger skal tre i kraft.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Dette tillegget er satt i kø for installasjon.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Avinstaller</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Allerede installert</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Ingen nye oppdateringer for utvidelser er funnet.</sys:String>
@@ -1109,8 +1110,8 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status tilordnet spill som spilles for første gang</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Kunne ikke initialisere PowerShell-skriptkjøringsmiljø. Hvis du bruker Windows 7, kan du prøve å (re-)installere PowerShell 5.1 for å rett opp problemet.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Et filteroppsett med dette navnet eksisterer allerede. Vil du oppdatere oppsettet med nye innstillinger?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Fyll inn sorteringsnavn automatisk for gruppeimporterte spill</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Når du legger til spill via en biblioteksoppdatering, en emulator-mappeskanning eller en normal mappeskanning, fylles feltet for &quot;sorteringsnavn&quot; inn med en mer sorterbar utgave av spillets navn. For eksempel vil &quot;The Witcher 3&quot; få sorteringsnavnet &quot;Witcher 03&quot;.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Disse ordene vil bli fjernet fra begynnelsen av den automatisk innfylte sorteringsnavneverdien:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Bruk dette feltet for å ignorere ord i starten av en streng med tanke på sortering. Standardverdiene er &quot;The&quot;, &quot;An&quot;, og &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Fyll inn sorteringsnavn for spill som ikke har</sys:String>

@@ -942,6 +942,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">更改将在应用程序重开后生效。</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">该附加组件已被计划安装。</sys:String>
     <sys:String x:Key="LOCAddonInstall">安装</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">卸载</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">未发现新的附加组件更新。</sys:String>
@@ -973,7 +974,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">进程</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">文件夹</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">原进程</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">进程名称</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">记录追踪消息</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">以下变更将覆盖所有当前所选游戏的数据！</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">无</sys:String>
@@ -1110,8 +1111,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已指定首次游玩的游戏状态</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">无法初始化 PowerShell 脚本运行时。如果您是 Windows 7 用户，尝试安装或重装 PowerShell 5.1 以解决这个问题。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名称的筛选器预设。使用新的设置更新预设吗？</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">自动填写批量添加的游戏的排序名称</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">在您通过库更新、模拟器文件夹扫描或常规文件夹扫描添加游戏时，自动使用游戏名的易排序表述填写“排序名称”字段，例如“The Witcher 3”将得到排序名称为“Witcher 03”。</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">将在自动填充的排序名称的开头删除这些词：</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">就排序目的，利用它忽略掉字符串开头的一些字词。默认值为“The”、“An”和“A”。</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">填充游戏的为空的排序名称字段</sys:String>

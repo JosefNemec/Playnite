@@ -944,6 +944,7 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
     <sys:String x:Key="LOCAddonChangesRestart">És necessari reiniciar l'aplicació per poder aplicar els canvis pendents.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Aquest complement té programada la seva instal·lació.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instal·lar</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstal·lar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Ja instal·lat</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">No s'han trobat noves actualitzacions de complements.</sys:String>
@@ -1110,8 +1111,8 @@ Si comences a experimentar alguns problemes després d'instal·lar un tema o una
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estat assignat a jocs jugats per primer cop</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">No s'ha pogut iniciar el temps d'execució del script de PowerShell. Si ets usuari de Windows 7, prova de (re)instal·lar PowerShell 5.1 per resoldre el problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">El predefinit de filtratge amb el nom especificat ja existeix. Vols actualitzar el predefinit amb la nova configuració?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Omplir automàticament el nom d'ordenació pels jocs afegits per lots</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Quan afegeixis jocs mitjançant una actualització de la biblioteca, un escaneig de carpeta d'emulador o un escaneig de carpeta normal omple automàticament el camp &quot;Nom d'ordenació&quot; amb una millor representació ordenable del nom del joc, per exemple &quot;The Witcher 3&quot; obtindrà un nom de classificació de &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Aquestes paraules s'eliminaran del principi del valor de nom d'ordenació omplert automàticament:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Utilitza això per ignorar paraules al principi d'una cadena per propòsits d'ordenació. El valor per defecte és &quot;The&quot;, &quot;An&quot; i &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Omplir el nom d'ordenació de jocs sense un</sys:String>

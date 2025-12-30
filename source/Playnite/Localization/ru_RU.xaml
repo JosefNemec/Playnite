@@ -949,6 +949,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">Требуется перезапуск приложения для применения изменений.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Это дополнение запланировано к установке.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Установить</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Удалить</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Уже установлено</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Обновления для дополнений не найдены.</sys:String>
@@ -959,7 +960,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Лицензия отклонена</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Загрузка {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Проверка наличия новых версий дополнений…</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Поиск обновлений программы…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Доступны новые версии дополнений.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Выберите элементы для обновления</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Экземпляр разработки расширения</sys:String>
@@ -980,7 +981,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">Процесс</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Папка</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Исходный процесс</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Название процесса</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Сообщения о трассировке логов</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Последующие изменения перезаписывают данные для всех выбранных в данный момент игр!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ничего</sys:String>
@@ -1115,9 +1116,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, присваиваемый играм, которые запущены впервые</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Не удалось инициализировать среду выполнения сценария PowerShell. Если вы являетесь пользователем Windows 7, попробуйте (пере)установить PowerShell 5.1, чтобы устранить проблему.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Шаблон фильтра с указанным именем уже существует. Обновить шаблон с новыми настройками?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Автоматически заполнять имя сортировки для пакетного добавления игр</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Когда вы добавляете игры через обновление библиотеки, сканирование папки эмулятора или обычное сканирование папки, поле &quot;Имя сортировки&quot; автоматически заполняется более удобным для сортировки представлением названия игры, например, &quot;The Witcher 3&quot; получит имя сортировки &quot;Witcher 03&quot;.
-</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Эти слова будут удалены из начала автоматически заполняемого значения &quot;Имя сортировки&quot;:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Используется для игнорирования слов в начале строки в целях сортировки. По умолчанию используются слова &quot;The&quot;, &quot;An&quot; и &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Заполнять &quot;Имя Сортировки&quot; в играх без него</sys:String>

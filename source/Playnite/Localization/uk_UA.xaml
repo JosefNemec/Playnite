@@ -943,6 +943,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">Щоб застосувати очікувані зміни потрібно перезапустити застосунок. </sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Ця надбудова запланована для встановлення.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Встановити</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Перевстановити</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Видалити</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Вже встановлено</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Нових оновлень надбудов не знайдено.</sys:String>
@@ -1109,8 +1110,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, призначений іграм, які граються вперше</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Не вдалося ініціалізувати середовище виконання сценарію PowerShell. Якщо ви користуєтесь Windows 7, спробуйте (повторно) встановити PowerShell 5.1, щоб вирішити проблему.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Шаблон фільтрів із зазначеною назвою вже існує. Оновити шаблон з новими налаштуваннями? </sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Автоматично заповнювати поле &quot;Сортування&quot; для ігор доданих пакетом</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Коли ви додаєте ігри за допомогою оновлення бібліотеки, сканування теки емулятора або звичайного сканування теки, автоматично заповнювати поле «Сортування» найбільш слушною для сортування назвою гри, наприклад «The Witcher 3» отримає назву сортування &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Автоматично заповнювати пусті поля &quot;Сортування&quot; для ігор, що додаються масово</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Коли ви редагуєте гру, додайте ігри за допомогою оновлення бібліотеки, скануванням тек емуляторів або нормальним скануванням, автоматично заповнювати поле &quot;Сортування&quot; для кращого сортування ігор за назвами. Наприклад &quot;The Witcher 3&quot; отримає сортувальне ім'я &quot;Witcher 03&quot;. Сортувальне ім'я не буде присвоєно якщо воно не відрізняється від звичайної назви гри, і лише пусті поля сортування будуть автоматично заповнені.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Ці слова буде видалено з початку автоматично заповненого поля &quot;Сортування&quot;:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Використовуйте це для ігнорування слів на початку рядка з метою сортування. За замовчуванням це &quot;The&quot;, &quot;An&quot; і &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Заповнити поле &quot;Сортування&quot; для ігор з пустим полем</sys:String>

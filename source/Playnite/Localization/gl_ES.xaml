@@ -945,6 +945,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCAddonChangesRestart">Cómpre reiniciar a aplicación para aplicar as modificacións pendentes.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Este complemento está programado para a súa instalación.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Xa instalado</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Non se atoparon novas actualizacións de complementos.</sys:String>
@@ -1111,8 +1112,8 @@ Se empezas a ter problemas tras instalar un tema ou unha extensión, tenta desac
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado asignado aos xogos xogados por primeira vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Erro ao inicializar o tempo de execución do script de PowerShell. Se usas Windows 7, tenta (re)instalar PowerShell 5.1 para corrixir o problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">O filtro predefinido co nome especificado xa existe. Queres actualizar a predefinición con novos axustes?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Encher automaticamente o nome da orde para xogos engadidos en masa</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Ao engadir xogos mediante unha actualización da biblioteca, unha análise de cartafol de emulador ou unha análise de cartafol normal, enche automaticamente o campo &quot;Nome de orde&quot; cunha representación máis fácil de ordenar do nome do xogo; por exemplo, &quot;The Witcher 3&quot; terá o nome de orde &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Eliminaranse estas palabras do inicio do valor de nome de orde enchido automaticamente:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Usa isto para ignorar palabras ao inicio dunha cadea para a orde. Os valores predeterminados son &quot;The&quot;, &quot;An&quot; e &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Enche o nome de orde para xogos que non teñan un</sys:String>

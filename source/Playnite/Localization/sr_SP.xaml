@@ -943,6 +943,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">Неопходно је поново покренутри апликацију да би измене биле примењене.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Овај додатак има заказано ажурирање</sys:String>
     <sys:String x:Key="LOCAddonInstall">Инсталирај</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Деинсталирај</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Већ инсталирано</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Нису пронађена нова ажурирања</sys:String>

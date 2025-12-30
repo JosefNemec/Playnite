@@ -946,6 +946,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">需要重新啟動程式以套用更改。</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">本附加元件已被排入安裝排程</sys:String>
     <sys:String x:Key="LOCAddonInstall">安裝</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">移除</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">未發現新的附加元件更新檔</sys:String>
@@ -1112,8 +1113,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已調整首次遊玩的遊戲狀態</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">無法啟動PowerShell腳本執行環境。如果你是Windows7的使用者，請嘗試(重新)安裝PowerShell5.1。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名稱的過濾器預設，是否使用新設定更新預設?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">為批次新增的遊戲自動填入排序名稱</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">當你透過資料庫更新，模擬器資料夾掃描或者一般資料夾掃描來加入遊戲時，自動在&quot;排序名稱&quot;欄位填入比較適合排序的代表名。例如:&quot;The Witcher 3&quot; 會改名為 &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">將從自動填入的遊戲排序名稱的開頭刪除以下的字詞:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">使用這個功能以忽略用來排序的名稱開頭的字詞。預設是&quot;The&quot;，&quot;An&quot;，&quot;A&quot;。</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">幫沒有排序名稱的遊戲填入排序名稱</sys:String>

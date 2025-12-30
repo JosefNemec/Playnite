@@ -943,6 +943,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">Απαιτείται επανεκκίνηση της εφαρμογής για την εφαρμογή εκκρεμών αλλαγών.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Αυτό το πρόσθετο έχει προγραμματιστεί για εγκατάσταση.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Εγκατάσταση</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Απεγκατάσταση</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Ήδη εγκατεστημένο</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Δε βρέθηκαν νέες ενημερώσεις πρόσθετου.</sys:String>
@@ -1109,8 +1110,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">H κατάσταση που έχει ανατεθεί σε παιχνίδια που παίζονται για πρώτη φορά</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Αποτυχία πραγματοποίησης του σεναρίου εκτέλεσης PowerShell. Αν είστε χρήστης των Windows 7, δοκιμάστε (επαν)εγκατάσταση του PowerShell 5.1 για να διορθώσετε το πρόβλημα.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Προεπιλεγμένο φίλτρο με καθορισμένο το όνομα υπάρχει ήδη. Ενημέρωση της προεπιλογής με τις νέες ρυθμίσεις;</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Αυτόματη συμπλήρωση ονόματος ταξινόμησης για παιχνίδια με προσθήκη-παρτίδας</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Όταν προσθέτετε παιχνίδια μέσω μιας ενημέρωσης βιβλιοθήκης, μιας σάρωσης φακέλου εξομοιωτή ή μιας κανονικής σάρωσης φακέλων, αυτόματα συμπληρώνεται το πεδίο &quot;Όνομα Ταξινόμισης&quot; με μια καλύτερη ταξινομημένη αναπαράσταση του ονόματος του παιχνιδιού, για παράδειγμα το &quot;The Witcher 3&quot; θα λάβει ένα όνομα ταξινόμισης &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Αυτές οι λέξεις θα αφαιρεθούν εξ αρχής από την αυτόματη τιμή  του Ονόματος Ταξινόμησης:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Χρησιμοποιήστε αυτό για να αγνοήσετε λέξεις στην αρχή μιας συμβολοσειράς για λόγους ταξινόμησης. Η προεπιλογή είναι &quot;Η&quot;, &quot;Ένα&quot; και &quot;Α&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Συμπληρώστε το όνομα ταξινόμησης σε παιχνίδια που δεν έχουν</sys:String>

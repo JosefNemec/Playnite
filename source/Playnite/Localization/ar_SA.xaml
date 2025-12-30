@@ -1000,6 +1000,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">يتطلب التطبيق إعادة التشغيل لتطبيق التغييرات المعلقة.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">تمت جدولة هذه الإضافة للتثبيت.</sys:String>
     <sys:String x:Key="LOCAddonInstall">تثبيت</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">إزالة الإضافة</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">مثبتة</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">لا توجد تحديثات جديدة</sys:String>
@@ -1166,8 +1167,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">الحالة المخصصة للألعاب التي تم لعبها لأول مرة</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">فشل تهيئة وقت تشغيل البرنامج النصي PowerShell. إذا كنت من مستخدمي Windows 7 ، فحاول (إعادة) تثبيت PowerShell 5.1 لإصلاح المشكلة.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">الإعداد المسبق للمرشح بالاسم المحدد موجود بالفعل. هل تريد تحديث الإعداد المسبق بالإعدادات الجديدة؟</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">ملء اسم فرز الألعاب المضافة بالحِزمّ تلقائياً</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">عند إضافة ألعاب عن طريق تحديث المكتبة، أو مسح مجلد محاكي أو مسح مجلد عادي، ملء تلقائياً حقل &quot;فرز الاسم&quot; بعرض أفضل لاسم اللعبة، على سبيل المثال، &quot;The Witcher 3&quot; سيحصل على اسم فرز &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">سيتم إزالة هذه الكلمات من بداية ملء قيمة اسم الفرز تلقائياً:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">استخدم هذا لتجاهل الكلمات في بداية سلسلة لأغراض الفرز. الافتراضي هو &quot;The&quot; و &quot;An&quot; و &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">املأ اسم فرز الألعاب بدون اسم فرز</sys:String>

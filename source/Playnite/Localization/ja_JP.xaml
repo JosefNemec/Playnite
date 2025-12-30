@@ -948,6 +948,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart">変更を適用するにはアプリケーションの再起動が必要です。</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">このアドオンはインストール予定です。</sys:String>
     <sys:String x:Key="LOCAddonInstall">インストール</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">再インストール</sys:String>
     <sys:String x:Key="LOCAddonUninstall">アンインストール</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">インストール済み</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">新しいアドオンの更新は見つかりませんでした。</sys:String>
@@ -958,7 +959,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">ライセンスが拒否されました</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} をダウンロード中…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">アドオンの更新を検索中...</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">プログラムのアップデートを探しています…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">1 つ以上のアドオンの更新が利用可能です。</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">更新する項目を選択</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">拡張機能開発インスタンス</sys:String>
@@ -979,7 +980,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess">プロセス</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">フォルダ</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">元のプロセス</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">プロセス名</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">メッセージをログに記録する</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">以下の変更は、現在選択されているすべてのゲームのデータを上書きします。</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">無し</sys:String>
@@ -1115,8 +1116,8 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">初めてプレイするゲームに付与されるステータス</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell スクリプトランタイムの初期化に失敗しました。Windows 7 を使用している場合は、PowerShell 5.1 を (再) インストールすると問題が解決します。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">指定された名前のフィルタープリセットはすでに存在します。新しい設定でプリセットをアップデートしますか？</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">一括追加したゲームのソート用タイトルを自動的に入力</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">ライブラリの更新、エミュレータフォルダのスキャン、または通常のフォルダのスキャンを介してゲームを追加するとき、 「ソート用タイトル」フィールドにソートに適したゲーム名が自動的に入力されます。例えば、「The Witcher 3」は「Witcher 03」のソート用タイトルが入力されます。</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">これらの単語は自動的に入力されたソート用タイトルの先頭から削除されます:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">並べ替えの目的で文字列の先頭にある単語を無視する場合に使用します。デフォルトは &quot;The&quot;, &quot;An&quot;, &quot;A&quot; です。</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">ソート用タイトルのないゲームにソート名を設定</sys:String>

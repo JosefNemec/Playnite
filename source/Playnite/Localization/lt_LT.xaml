@@ -905,6 +905,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
     <sys:String x:Key="LOCAddonInstall">Įdiegti</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Išdiegti</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Jau įdiegta</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nerasta jokių plėtinio atnaujinimų.</sys:String>

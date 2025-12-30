@@ -961,6 +961,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
 </sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Installatie van deze add-on is ingepland.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installeer</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Verwijder</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Reeds geïnstalleerd</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Geen nieuwe extensie updates gevonden.</sys:String>
@@ -971,7 +972,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licentie afgewezen</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Downloaden {0}</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Aan het zoeken naar add-on updates...</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Op zoek naar programma-updates…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Eén of meerdere add-on updates zijn beschikbaar</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Selecteer items om te updaten</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Extensie ontwikkelings-instantie</sys:String>
@@ -992,7 +993,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
     <sys:String x:Key="LOCActionTrackingModeProcess">Proces</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Map</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Oorspronkelijk proces</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Procesnaam</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log trace berichten</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">De volgende wijzigingen overschrijven data voor alle geselecteerde spellen!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Geen</sys:String>
@@ -1127,8 +1128,8 @@ Als je problemen ervaart na het installeren van een thema of extensie, probeer d
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status die toegewezen wordt aan spellen die voor het eerst gespeeld zijn</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Kon de Powershell script runtime niet initializeren. Als u Windows 7 gebruikt, probeer dan PowerShell 5.1 (opnieuw) te installeren om dit op te lossen.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset met de opgegeven naam bestaat al. Preset updaten met nieuwe instellingen?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Automatisch sorteernaam invullen voor automatisch toegevoegde spellen</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Wanneer je spellen toevoegt via een bibliotheek update, een emulator map scan, of een normale map scan, vult dit automatisch het &quot;Sorteernaam&quot; veld met een beter sorteerbare weergave van de spelnaam. Bijvoorbeeld: &quot;The Witcher 3&quot; krijgt een Sorteernaam van &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Automatisch ontbrekende sorteernamen invullen voor spellen die in batch toegevoegd of bewerkt zijn</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Als je een spel bewerkt, voeg dan spellen toe via een bibliotheek update, een scan van een emulator map of een normale map, vul automatisch het &quot;Sorteernaam&quot; veld in met een betere weergave van de naam van het spel. Bijvoorbeeld &quot;The Witcher 3&quot; krijgt een Sorteernaam van &quot;Witcher 03&quot;. Dit zal nooit een sorteernaam instellen die niet verschilt van de spelnaam, en het zal alleen automatisch sorteernamen bijwerken die leeg zijn.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Deze woorden zullen verwijderd worden van het begin van de automatisch ingevulde sorteernaam:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Gebruik dit voor het negeren van woorden aan het begin van een naam voor sorteerdoeleinden. De standaardwaarde is &quot;The&quot;, &quot;An&quot; en &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Vul Sorteernaam voor spellen zonder</sys:String>

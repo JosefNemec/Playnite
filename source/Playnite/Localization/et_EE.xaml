@@ -942,6 +942,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
     <sys:String x:Key="LOCAddonChangesRestart">Ootel muudatuste rakendamiseks on vaja rakendus taaskäivitada.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">See lisa on installimise järjekorras.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Paigalda</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalli</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Juba installitud</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Lisade värskendusi ei leitud.</sys:String>
@@ -1108,8 +1109,8 @@ Kui pärast teema või laienduse installimist ilmnevad probleemid, proovi need e
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Esmakordselt mängitud mängudele määratud olek</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Ei saanud käivitada PowerShelli skripti. Kui kasutad Windows 7-t, proovi probleemi parandamiseks PowerShell 5.1 (uuesti) installida.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Sellise nimega filtri eelseadistus on juba olemas. Kas uuendada eelseadistus uute sätetega?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Automaatselt täida pakklisatud mängude sortimisnimi</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Lisades mänge kas teegi värskenduse, emulaatori kausta skannimise või tavalise kausta skannimise kaudu, täida väli &quot;Sortimisnimi&quot; automaatselt mängu nime paremini sorditava kujuga, näiteks &quot;The Witcher 3&quot; saab sortimisnimeks &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Need sõnad eemaldatakse automaatselt täidetud Sortimisnime algusest:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Kasuta seda, et sortimise eesmärkidel eirata sõnede alguses teatud sõnu. Vaikimisi valikuteks on &quot;The&quot;, &quot;An&quot; ja &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Täida Sortimisnimi ilma selleta mängudel</sys:String>

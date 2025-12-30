@@ -942,6 +942,7 @@ Se você deseja instalar ou desinstalar integrações adicionais, use a opção 
     <sys:String x:Key="LOCAddonChangesRestart">O reinício da aplicação é necessário para aplicar as alterações pendentes.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Esta extensão está agendada para instalação.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Reinstalar</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Já instalado</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nenhuma atualização de extensão foi encontrada.</sys:String>
@@ -1108,8 +1109,8 @@ Se você começar a experienciar problemas após a instalação de um tema ou ex
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado designado a jogos executados pela primeira vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Falha na inicialização da execução do script PowerShell. Se você for usuário Windows 7, tente (re)instalar PowerShell 5.1 para corrigir o problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Já existe uma filtro com o nome especificado. Atualizar com novas configurações? </sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Preencher automaticamente o nome de classificação para jogos adicionados em lote</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Quando você adiciona jogos através de uma atualização da biblioteca, um escaneamento de pastas do emulador ou um escaneamento de pastas normal, preencha automaticamente o campo &quot;Nome de Classificação&quot; com uma melhor representação classificável do nome do jogo, por exemplo &quot;The Witcher 3&quot; receberá um nome de classificação &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Preenche automaticamente nomes de classificação ausentes para jogos adicionados em lote ou editados</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Quando você editar um jogo, adicionar jogos através de uma atualização de biblioteca, um escaneamento de pastas de emuladores ou uma verificação de pasta normal, preencha automaticamente o campo &quot;Nome da Classificação&quot; com uma melhor representação classificável do nome do jogo. Por exemplo, &quot;The Witcher 3&quot; receberá &quot;Witcher 03&quot;. Isso nunca definirá um nome de classificação que não difere do nome do jogo, e só atualizará automaticamente os nomes de classificação vazios.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Estas palavras serão removidas do início do valor de Nome de Classificação preenchido automaticamente:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Usar isto para ignorar as palavras no início do nome do jogo para fins de classificação. O padrão é &quot;The&quot;, &quot;An&quot; e &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Preencher Nome de Classificação para jogos que não possuam nenhum</sys:String>

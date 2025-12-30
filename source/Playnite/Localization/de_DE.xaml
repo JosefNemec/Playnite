@@ -943,6 +943,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCAddonChangesRestart">Ein Neustart ist erforderlich, um ausstehende Änderungen anzuwenden.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Dieses Add-on ist für die Installation vorgemerkt.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installieren</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Deinstallieren</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Bereits installiert</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Keine neuen Aktualisierungen für Add-ons gefunden.</sys:String>
@@ -953,7 +954,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lizenz abgelehnt</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} wird heruntergeladen …</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Aktualisierungen für Add-ons werden gesucht …</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Suche nach Programmaktualisierungen...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Für mindestens ein Add-on ist eine Aktualisierung verfügbar.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Wähle die zu aktualisierenden Elemente aus</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instanz für Erweiterungsentwicklung</sys:String>
@@ -974,7 +975,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCActionTrackingModeProcess">Prozess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Ordner</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Originalprozess</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Prozessname</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Protokollmeldungen aufzeichnen</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Folgende Änderungen überschreiben Daten aller aktuell ausgewählten Spiele!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Keiner</sys:String>
@@ -1109,8 +1110,8 @@ Falls nach dem Installieren von Designs oder Erweiterungen Probleme auftreten, v
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Erstmalig gespielten Spielen zugeordneter Status</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Initialisierung der PowerShell-Skript-Laufzeitumgebung ist fehlgeschlagen. Falls du Windows 7 nutzt, versuche PowerShell 5.1 (erneut) zu installieren, um das Problem zu beheben.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filtervoreinstellung mit angegebenem Namen existiert bereits. Voreinstellung mit neuen Einstellungen aktualisieren?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Bei durch Stapelverarbeitung hinzugefügten Spielen Sortiernamen automatisch ausfüllen</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Wenn Spiele über eine Bibliotheksaktualisierung, einen Emulator-Ordnerscan oder einen normalen Ordnerscan hinzugefügt werden, das Feld »Sortiername« automatisch mit einer besser sortierbaren Darstellung des Spielenamens ausfüllen. Beispielsweise erhält »The Witcher 3« den Sortiernamen »Witcher 03«.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Diese Wörter werden vom Anfang des automatisch ausgefüllten Sortiernamens entfernt:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Verwende diese Option, um für Sortierzwecke Wörter am Anfang einer Zeichenkette zu ignorieren. Standard ist »The«, »An« und »A«.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Sortiernamen ausfüllen für Spiele ohne Sortiernamen</sys:String>
