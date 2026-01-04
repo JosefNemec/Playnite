@@ -20,8 +20,8 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        private LiteCollection<GameScannersSettings> settingsCollection;
-        private LiteCollection<GameScannersSettings> SettingsCollection
+        private ILiteCollection<GameScannersSettings> settingsCollection;
+        private ILiteCollection<GameScannersSettings> SettingsCollection
         {
             get
             {

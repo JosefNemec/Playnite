@@ -51,8 +51,8 @@ namespace Playnite.Database
     {
         public event EventHandler<FilterPresetsSettingsUpdateEvent> OnSettingsUpdated;
 
-        private LiteCollection<FilterPresetsSettings> settingsCollection;
-        private LiteCollection<FilterPresetsSettings> SettingsCollection
+        private ILiteCollection<FilterPresetsSettings> settingsCollection;
+        private ILiteCollection<FilterPresetsSettings> SettingsCollection
         {
             get
             {

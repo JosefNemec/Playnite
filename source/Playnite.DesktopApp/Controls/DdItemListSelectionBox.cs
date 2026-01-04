@@ -15,12 +15,12 @@ using System.Xml.Linq;
 namespace Playnite.DesktopApp.Controls
 {
     [TemplatePart(Name = "PART_ToggleSelectedOnly", Type = typeof(ToggleButton))]
-    [TemplatePart(Name = "PART_SearchBox", Type = typeof(SearchBox))]
+    [TemplatePart(Name = "PART_SearchBox", Type = typeof(PnSearchBox))]
     [TemplatePart(Name = "PART_ElemSearchHost", Type = typeof(FrameworkElement))]
     public class DdItemListSelectionBox : ComboBoxListBase
     {
         internal ToggleButton ToggleSelectedOnly;
-        internal SearchBox TextSearchBox;
+        internal PnSearchBox TextSearchBox;
         internal FrameworkElement ElemSearchHost;
 
         public bool ShowSearchBox
@@ -162,12 +162,12 @@ namespace Playnite.DesktopApp.Controls
                     converter: new Converters.BooleanToVisibilityConverter());
             }
 
-            TextSearchBox = Template.FindName("PART_SearchBox", this) as SearchBox;
+            TextSearchBox = Template.FindName("PART_SearchBox", this) as PnSearchBox;
             if (TextSearchBox != null)
             {
                 BindingTools.SetBinding(
                     TextSearchBox,
-                    SearchBox.TextProperty,
+                    PnSearchBox.TextProperty,
                     this,
                     nameof(ItemsList) + "." + nameof(ItemsList.SearchText),
                     BindingMode.TwoWay);

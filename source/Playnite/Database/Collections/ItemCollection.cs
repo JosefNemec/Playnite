@@ -47,7 +47,7 @@ namespace Playnite.Database
         private Dictionary<Guid, ItemUpdateEvent<TItem>> ItemUpdatesEventBuffer = new Dictionary<Guid, ItemUpdateEvent<TItem>>();
         private readonly bool isPersistent = true;
         internal LiteDatabase liteDb { get; private set; }
-        private LiteCollection<TItem> liteCollection;
+        private ILiteCollection<TItem> liteCollection;
         private BsonMapper mapper;
 
         public ConcurrentDictionary<Guid, TItem> Items { get; }

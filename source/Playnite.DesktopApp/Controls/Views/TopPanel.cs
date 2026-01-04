@@ -21,7 +21,7 @@ using BooleanToVisibilityConverter = System.Windows.Controls.BooleanToVisibility
 namespace Playnite.DesktopApp.Controls.Views
 {
     [TemplatePart(Name = "PART_ElemMainMenu", Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = "PART_TextMainSearch", Type = typeof(SearchBox))]
+    [TemplatePart(Name = "PART_TextMainSearch", Type = typeof(PnSearchBox))]
     [TemplatePart(Name = "PART_ToggleFilter", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ToggleNotifications", Type = typeof(ToggleButton))]
     [TemplatePart(Name = "PART_ProgressGlobal", Type = typeof(ProgressBar))]
@@ -33,7 +33,7 @@ namespace Playnite.DesktopApp.Controls.Views
     {
         private readonly DesktopAppViewModel mainModel;
         private FrameworkElement ElemMainMenu;
-        private SearchBox TextMainSearch;
+        private PnSearchBox TextMainSearch;
         private ToggleButton ToggleFilter;
         private ToggleButton ToggleNotifications;
         private ProgressBar ProgressGlobal;
@@ -244,22 +244,22 @@ namespace Playnite.DesktopApp.Controls.Views
                     converter: new BooleanToVisibilityConverter());
             }
 
-            TextMainSearch = Template.FindName("PART_TextMainSearch", this) as SearchBox;
+            TextMainSearch = Template.FindName("PART_TextMainSearch", this) as PnSearchBox;
             if (TextMainSearch != null)
             {
                 BindingTools.SetBinding(TextMainSearch,
-                    SearchBox.TextProperty,
+                    PnSearchBox.TextProperty,
                     mainModel.AppSettings.FilterSettings,
                     nameof(FilterSettings.Name),
                     BindingMode.TwoWay,
                     delay: 100);
                 BindingTools.SetBinding(TextMainSearch,
-                    SearchBox.VisibilityProperty,
+                    PnSearchBox.VisibilityProperty,
                     mainModel.AppSettings,
                     nameof(PlayniteSettings.ShowTopPanelSearchBox),
                     converter: new BooleanToVisibilityConverter());
                 BindingTools.SetBinding(TextMainSearch,
-                    SearchBox.IsFocusedProperty,
+                    PnSearchBox.IsFocusedProperty,
                     mainModel,
                     nameof(mainModel.SearchOpened),
                     BindingMode.TwoWay);

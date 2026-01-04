@@ -12,7 +12,7 @@
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:psdkm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:mods="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"

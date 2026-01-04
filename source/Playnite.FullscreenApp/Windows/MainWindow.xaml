@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"

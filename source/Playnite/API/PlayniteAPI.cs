@@ -15,7 +15,6 @@ using System.Windows;
 using Playnite.Plugins;
 using System.Threading;
 using Playnite.Database;
-using static Microsoft.Scripting.Hosting.Shell.ConsoleHostOptions;
 
 namespace Playnite.API
 {

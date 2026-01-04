@@ -238,9 +238,24 @@ namespace System.Drawing.Imaging
             stream.Seek(0, SeekOrigin.Begin);
             using (var mImage = new MagickImage(stream))
             {
-                var image = mImage.ToBitmapSource();
-                image.Freeze();
-                return image;
+                // 1. Create a memory stream to bridge Magick.NET to WPF
+                using (var ms = new System.IO.MemoryStream())
+                {
+                    // 2. Write to BMP format (fastest for WPF native decoding)
+                    mImage.Write(ms, MagickFormat.Bmp);
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    // 3. Create the WPF BitmapSource
+                    var bitmap = new System.Windows.Media.Imaging.BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
+                    bitmap.StreamSource = ms;
+                    bitmap.EndInit();
+
+                    // 4. Freeze makes the image cross-thread compatible and prevents memory leaks
+                    bitmap.Freeze();
+                    return bitmap;
+                }
             }
         }
 
@@ -303,10 +318,12 @@ namespace System.Drawing.Imaging
                     else if (loadProperties?.Scaling == ImageLoadScaling.Custom)
                     {
                         var settings = new ProcessImageSettings
-                        {
-                            SaveFormat = FileFormat.Bmp,
+                        {                            
                             Sharpen = false
                         };
+
+                        // Use the built-in helper to set the format to BMP
+                        settings.TrySetEncoderFormat(ImageMimeTypes.Bmp);
 
                         if (loadProperties.MaxDecodePixelWidth > 0 && properties?.Width > loadProperties?.MaxDecodePixelWidth)
                         {

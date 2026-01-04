@@ -460,19 +460,19 @@ namespace System.Collections.Generic
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
-        {
-            if (source == null)
-            {
-                return null;
-            }
+        //public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
+        //{
+        //    if (source == null)
+        //    {
+        //        return null;
+        //    }
 
-            if (!source.HasItems())
-            {
-                return new HashSet<T>();
-            }
+        //    if (!source.HasItems())
+        //    {
+        //        return new HashSet<T>();
+        //    }
 
-            return new HashSet<T>(source);
-        }
+        //    return new HashSet<T>(source);
+        //}
     }
 }

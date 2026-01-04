@@ -8,7 +8,7 @@
         xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
         mc:Ignorable="d"

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Pipes;
-using System.Linq;
+﻿using CoreWCF.Configuration;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using System.ServiceModel;
-using System.ServiceModel.Description;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.UI.WebUI;
 
 namespace Playnite
 {
@@ -15,20 +15,9 @@ namespace Playnite
 
     public class CommandExecutedEventArgs : EventArgs
     {
-        public CmdlineCommand Command
-        {
-            get; set;
-        }
-
-        public string Args
-        {
-            get; set;
-        }
-
-        public CommandExecutedEventArgs()
-        {
-        }
-
+        public CmdlineCommand Command { get; set; }
+        public string Args { get; set; }
+        public CommandExecutedEventArgs() { }
         public CommandExecutedEventArgs(CmdlineCommand command, string args)
         {
             Command = command;
@@ -36,14 +25,15 @@ namespace Playnite
         }
     }
 
-    [ServiceContract]
+    // 1. Ambiguity Fix: Use CoreWCF for Server Contract
+    [CoreWCF.ServiceContract]
     public interface IPipeService
     {
-        [OperationContract(IsOneWay = true)]
+        [CoreWCF.OperationContract(IsOneWay = true)]
         void InvokeCommand(CmdlineCommand command, string args);
     }
 
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
+    [CoreWCF.ServiceBehavior(ConcurrencyMode = CoreWCF.ConcurrencyMode.Multiple, InstanceContextMode = CoreWCF.InstanceContextMode.Single)]
     public class PipeService : IPipeService
     {
         private readonly SynchronizationContext syncContext;
@@ -56,13 +46,10 @@ namespace Playnite
 
         public void InvokeCommand(CmdlineCommand command, string args)
         {
-            // We don't want to block this call because it causes issues if some sync operation that shuts down server is also called.
-            // For example, mode switch or instance shutdown calls are stopping server,
-            // which results in serviceHost.Close() timeout, since server would be still waiting for InvokeCommand to finish.
             Task.Run(async () =>
             {
                 await Task.Delay(100);
-                syncContext.Post(_ => CommandExecuted?.Invoke(this, new CommandExecutedEventArgs(command, args)), null);
+                syncContext?.Post(_ => CommandExecuted?.Invoke(this, new CommandExecutedEventArgs(command, args)), null);
             });
         }
     }
@@ -70,30 +57,59 @@ namespace Playnite
     public class PipeServer
     {
         private string endpoint;
-        private ServiceHost serviceHost;
+        private IHost host; // Replaces ServiceHost
 
         public PipeServer(string endpoint)
         {
             this.endpoint = endpoint;
         }
 
-        public void StartServer(IPipeService service)
+        public async void StartServer(IPipeService service)
         {
-            serviceHost = new ServiceHost(service, new Uri[] { new Uri(endpoint) });
-            serviceHost.AddServiceEndpoint(typeof(IPipeService), new NetNamedPipeBinding(), "PlayniteService");
-            serviceHost.Open();
+            var builder = WebApplication.CreateBuilder();
+
+            // 2. Configure Named Pipe Transport
+            builder.WebHost.UseNetNamedPipe(options =>
+            {
+                options.Listen(endpoint);
+            });
+
+            // 3. Register service instance via Dependency Injection
+            builder.Services.AddServiceModelServices();
+            builder.Services.AddSingleton<IPipeService>(service);
+
+            var app = builder.Build();
+
+            // 4. Map the WCF Endpoint
+            app.UseServiceModel(serviceBuilder =>
+            {
+                serviceBuilder.AddService<IPipeService>();
+                serviceBuilder.AddServiceEndpoint<IPipeService, IPipeService>(
+                    new CoreWCF.NetNamedPipeBinding(),
+                    "/PlayniteService"
+                );
+            });
+
+            host = app;
+            await host.StartAsync(); // Starts host in background
         }
 
-        public void StopServer()
+        public async void StopServer()
         {
-            serviceHost.Close();
+            if (host != null)
+            {
+                await host.StopAsync();
+                host.Dispose();
+            }
         }
     }
 
+    // 5. CLIENT SIDE: Keep using System.ServiceModel
     public class PipeClient : ClientBase<IPipeService>
     {
         public PipeClient(string endpoint)
-            : base(new ServiceEndpoint(ContractDescription.GetContract(typeof(IPipeService)), new NetNamedPipeBinding(), new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService")))
+            : base(new System.ServiceModel.NetNamedPipeBinding(),
+                   new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService"))
         {
         }
 

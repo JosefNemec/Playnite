@@ -608,8 +608,8 @@ namespace LiteDBConversion
             _header = this.ReadPage(0);
 
             if (password == null && _header["salt"].AsBinary.IsFullZero() == false)
-            {
-                throw new LiteDB.LiteException("Current data file requires password");
+            {                
+                throw new LiteDB.LiteException(LiteDB.LiteException.INVALID_PASSWORD, "Current data file requirespassword");
             }
         }
 
@@ -693,7 +693,8 @@ namespace LiteDBConversion
                         {
                             var parts = doc["_id"].AsString.Split('\\');
 
-                            if (!int.TryParse(parts[1], out var n)) throw new LiteDB.LiteException("_id");
+                            // Better constant?
+                            if (!int.TryParse(parts[1], out var n)) throw new LiteDB.LiteException(LiteDB.LiteException.INVALID_INDEX_KEY, "_id");
 
                             doc["_id"] = new LiteDB.BsonDocument
                             {
@@ -745,7 +746,8 @@ namespace LiteDBConversion
 
                 if (string.CompareOrdinal(info, HeaderPage_HEADER_INFO) != 0 || ver != 7)
                 {
-                    throw new LiteDB.LiteException("");
+                    // Better constant?
+                    throw new LiteDB.LiteException(LiteDB.LiteException.INVALID_FORMAT, "");
                 }
 
                 // skip ChangeID + FreeEmptyPageID + LastPageID

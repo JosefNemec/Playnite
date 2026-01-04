@@ -1,4 +1,4 @@
-﻿using AngleSharp.Parser.Html;
+﻿using AngleSharp.Html.Parser;
 using Flurl;
 using Newtonsoft.Json;
 using Playnite.Common;
@@ -83,7 +83,8 @@ namespace Playnite
             var googleContent = await webView.GetPageSourceAsync();
             if (googleContent.Contains(".rg_meta", StringComparison.Ordinal))
             {
-                var document = parser.Parse(googleContent);
+                
+                var document = parser.ParseDocument(googleContent);
                 foreach (var imageElem in document.QuerySelectorAll(".rg_meta"))
                 {
                     images.Add(Serialization.FromJson<GoogleImage>(imageElem.InnerHtml));

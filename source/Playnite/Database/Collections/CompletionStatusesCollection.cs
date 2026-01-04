@@ -21,13 +21,17 @@ namespace Playnite.Database
     {
         private readonly GameDatabase db;
 
-        private LiteCollection<CompletionStatusSettings> settingsCollection;
-        private LiteCollection<CompletionStatusSettings> SettingsCollection
+        // 1. Change the private field type to ILiteCollection
+        private ILiteCollection<CompletionStatusSettings> settingsCollection;
+
+        // 2. Change the property type to ILiteCollection
+        private ILiteCollection<CompletionStatusSettings> SettingsCollection
         {
             get
             {
                 if (settingsCollection == null)
                 {
+                    // This now returns ILiteCollection<T> natively
                     settingsCollection = liteDb.GetCollection<CompletionStatusSettings>();
                 }
 

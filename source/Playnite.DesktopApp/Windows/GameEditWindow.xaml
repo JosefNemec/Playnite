@@ -9,7 +9,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:pm="clr-namespace:Playnite.SDK.Models;assembly=Playnite.SDK"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         xmlns:pctrls="clr-namespace:Playnite.DesktopApp.Controls"
         xmlns:psdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"

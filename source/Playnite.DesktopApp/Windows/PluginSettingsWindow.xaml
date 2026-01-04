@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Playnite.DesktopApp.Windows"
         xmlns:controls="clr-namespace:Playnite.Controls;assembly=Playnite"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:prism="clr-namespace:Prism.Interactivity;assembly=Prism.Wpf"
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"

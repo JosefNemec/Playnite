@@ -1,34 +1,36 @@
-﻿using Playnite.Controllers;
+﻿using Playnite.API;
+using Playnite.Common;
+using Playnite.Common.Web;
+using Playnite.Controllers;
+using Playnite.Database;
 using Playnite.Input;
-using Playnite.SDK;
 using Playnite.Plugins;
+using Playnite.SDK;
+using Playnite.SDK.Events;
+using Playnite.Services;
 using Playnite.ViewModels;
+using Playnite.Windows;
+using Polly;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Diagnostics;
-using Playnite.Database;
-using Playnite.API;
-using TheArtOfDev.HtmlRenderer;
-using Playnite.Services;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Reflection;
-using System.IO;
-using Playnite.Common;
-using System.ComponentModel;
-using Playnite.Windows;
-using Polly;
 using System.Windows.Media;
-using Playnite.SDK.Events;
 using System.Windows.Threading;
-using System.Net;
-using Playnite.Common.Web;
-using System.ServiceProcess;
-using System.Drawing.Imaging;
+using TheArtOfDev.HtmlRenderer;
+using TheArtOfDev.HtmlRenderer.Core;
+using TheArtOfDev.HtmlRenderer.WPF;
 
 namespace Playnite
 {
@@ -962,33 +964,41 @@ namespace Playnite
 
         public bool ConfigureApplication()
         {
-            HtmlRendererSettings.ImageCachePath = PlaynitePaths.ImagesCachePath;
-            HtmlRendererSettings.ImageLoader = BitmapExtensions.HtmlComponentImageLoader;
+            // The static ImageCachePath and ImageLoader are removed because 
+            // modern HtmlRenderer (1.5.0.6) handles this via instance events 
+            // or the HtmlContainer constructor.
+
+            // 1. Hardware Acceleration
             if (AppSettings.DisableHwAcceleration || CmdLine.ForceSoftwareRender)
             {
                 logger.Info("Enabling software rendering.");
                 System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
             }
 
+            // 2. Cache Cleanup
             if (CmdLine.ClearWebCache)
             {
                 try
                 {
-                    FileSystem.DeleteDirectory(PlaynitePaths.BrowserCachePath);
+                    if (Directory.Exists(PlaynitePaths.BrowserCachePath))
+                    {
+                        FileSystem.DeleteDirectory(PlaynitePaths.BrowserCachePath);
+                    }
                 }
                 catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
                 {
-                    logger.Error(exc, "Failed to clear CEF cache.");
+                    logger.Error(exc, "Failed to clear browser cache.");
                 }
             }
 
+            // 3. Browser Engine (CefSharp/WebView2)
             try
             {
                 CefTools.ConfigureCef(AppSettings.TraceLogEnabled);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
-                logger.Error(exc, "Failed to initialize CefSharp.");
+                logger.Error(exc, "Failed to initialize web browser engine.");
             }
 
             if (!CefTools.IsInitialized)
@@ -1000,41 +1010,18 @@ namespace Playnite
                 return false;
             }
 
-            try
-            {
-                ExtensionFactory.CreatePluginFolders();
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to script and plugin directories.");
-            }
+            // 4. Plugin and System Integration
+            try { ExtensionFactory.CreatePluginFolders(); }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors) { logger.Error(exc, "Failed to create plugin directories."); }
 
-            try
-            {
-                SystemIntegration.SetBootupStateRegistration(AppSettings.StartOnBoot, AppSettings.StartOnBootClosedToTray);
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to register Playnite to start on boot.");
-            }
+            try { SystemIntegration.SetBootupStateRegistration(AppSettings.StartOnBoot, AppSettings.StartOnBootClosedToTray); }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors) { logger.Error(exc, "Failed to register start on boot."); }
 
-            try
-            {
-                SystemIntegration.RegisterPlayniteUriProtocol();
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to register playnite URI scheme.");
-            }
+            try { SystemIntegration.RegisterPlayniteUriProtocol(); }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors) { logger.Error(exc, "Failed to register URI scheme."); }
 
-            try
-            {
-                SystemIntegration.RegisterFileExtensions();
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to register playnite extensions.");
-            }
+            try { SystemIntegration.RegisterFileExtensions(); }
+            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors) { logger.Error(exc, "Failed to register extensions."); }
 
             return true;
         }
