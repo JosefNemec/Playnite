@@ -2595,7 +2595,9 @@ namespace Playnite
 
         public static string GetAppConfigValue(string key)
         {
-            return ConfigurationManager.AppSettings[key];
+            var val = ConfigurationManager.AppSettings[key];
+
+            return val;
         }
 
         public static bool GetAppConfigBoolValue(string key)

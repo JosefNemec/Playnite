@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.WebUI;
@@ -26,10 +27,10 @@ namespace Playnite
     }
 
     // 1. Ambiguity Fix: Use CoreWCF for Server Contract
-    [CoreWCF.ServiceContract]
+    [ServiceContract]
     public interface IPipeService
     {
-        [CoreWCF.OperationContract(IsOneWay = true)]
+        [OperationContract(IsOneWay = true)]
         void InvokeCommand(CmdlineCommand command, string args);
     }
 
@@ -107,9 +108,19 @@ namespace Playnite
     // 5. CLIENT SIDE: Keep using System.ServiceModel
     public class PipeClient : ClientBase<IPipeService>
     {
+        //public PipeClient(string endpoint)
+        //    : base(new System.ServiceModel.NetNamedPipeBinding(),
+        //           new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService"))
+        //{
+        //}
+
+        //public void InvokeCommand(CmdlineCommand command, string args)
+        //{
+        //    Channel.InvokeCommand(command, args);
+        //}
+
         public PipeClient(string endpoint)
-            : base(new System.ServiceModel.NetNamedPipeBinding(),
-                   new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService"))
+    : base(new ServiceEndpoint(ContractDescription.GetContract(typeof(IPipeService)), new NetNamedPipeBinding(), new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService")))
         {
         }
 
