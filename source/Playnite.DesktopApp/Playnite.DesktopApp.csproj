@@ -9,6 +9,9 @@
     <AssemblyName>Playnite.DesktopApp</AssemblyName>
     <StartupObject>Playnite.DesktopApp.ProgramEntry</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Themes\Desktop\Default\Images\applogo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\contributors.txt" />
     <None Remove="Resources\igdbicon.png" />

@@ -8,6 +8,9 @@
     <Configurations>Debug;Release;Test</Configurations>
     <StartupObject>Playnite.FullscreenApp.ProgramEntry</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Themes\Fullscreen\Default\Images\applogo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Resource Include="..\..\references\Fonts\*.*">
       <Link>Fonts\%(Filename)%(Extension)</Link>
