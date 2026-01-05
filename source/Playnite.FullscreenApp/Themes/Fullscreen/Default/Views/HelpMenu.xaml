@@ -1,13 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls;assembly=Playnite.FullscreenApp"
-                    >
+                    xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp">
     
     <Style x:Key="HelpMenuBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource OverlayMenuBackgroundBrush}" />
     </Style>
 
-    <Style x:Key="HelpMenuButton" BasedOn="{StaticResource {x:Type ctrl:ButtonEx}}" TargetType="ctrl:ButtonEx">
+    <Style x:Key="HelpMenuButton" BasedOn="{StaticResource {x:Type ButtonEx}}" TargetType="ButtonEx">
         <Setter Property="Margin" Value="0,5,0,5" />
         <Setter Property="Padding" Value="20,3,20,3" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />

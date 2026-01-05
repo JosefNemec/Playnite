@@ -2,14 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     mc:Ignorable="d">
 
-    <Style TargetType="{x:Type views:SearchWindowGameItem}">
+    <Style TargetType="{x:Type SearchWindowGameItem}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:SearchWindowGameItem}">
+                <ControlTemplate TargetType="{x:Type SearchWindowGameItem}">
                     <DockPanel Margin="5,5,5,5">
                         <Image Name="PART_ImageGameIcon"
                                VerticalAlignment="Center" Height="32" Width="32" DockPanel.Dock="Left"
@@ -81,13 +79,13 @@
     </Style>
 
     <DataTemplate x:Key="SearchWindowGameItemTemplate">
-        <views:SearchWindowGameItem />
+        <SearchWindowGameItem />
     </DataTemplate>
 
-    <Style TargetType="{x:Type views:SearchWindowSearchItem}">
+    <Style TargetType="{x:Type SearchWindowSearchItem}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:SearchWindowSearchItem}">
+                <ControlTemplate TargetType="{x:Type SearchWindowSearchItem}">
                     <StackPanel Orientation="Horizontal" Margin="5,2,5,2">
                         <Viewbox Width="32" Height="32" VerticalAlignment="Center">
                             <ContentControl Name="PART_ContentIcon"
@@ -107,7 +105,7 @@
     </Style>
 
     <DataTemplate x:Key="SearchWindowSearchItemTemplate">
-        <views:SearchWindowSearchItem />
+        <SearchWindowSearchItem />
     </DataTemplate>
 
     <Style x:Key="SearchWindowSearchLabelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">

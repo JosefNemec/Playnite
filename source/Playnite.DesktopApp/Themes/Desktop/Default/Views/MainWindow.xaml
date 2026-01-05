@@ -2,14 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     mc:Ignorable="d">
 
-    <Style TargetType="{x:Type views:MainWindow}">
+    <Style TargetType="{x:Type MainWindow}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:MainWindow}">
+                <ControlTemplate TargetType="{x:Type MainWindow}">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
@@ -39,17 +37,17 @@
                             </Grid.Resources>
                             
                             <DockPanel>
-                                <views:Sidebar x:Name="PART_Sidebar" Panel.ZIndex="999"
-                                         DockPanel.Dock="{markupext:Settings SidebarPosition}" />                             
+                                <Sidebar x:Name="PART_Sidebar" Panel.ZIndex="999"
+                                         DockPanel.Dock="{Settings SidebarPosition}" />                             
                                 <ContentControl Name="PART_ContentView"
                                                 DockPanel.Dock="Top" />
-                            </DockPanel>
-                            <views:NotificationPanel x:Name="PART_Notifications"  
+                            </DockPanel>                            
+                            <NotificationPanel x:Name="PART_Notifications"  
                                                WindowChrome.IsHitTestVisibleInChrome="True"
                                                Width="260"
                                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
                                                HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                                               AnimatedVisibility.Visibility="{markupext:Settings NotificationPanelVisible}"
+                                               AnimatedVisibility.Visibility="{Settings NotificationPanelVisible}"
                                                AnimatedVisibility.Visible="{StaticResource VisibilityOn}"
                                                AnimatedVisibility.Collapsed="{StaticResource VisibilityOff}"/>
                         </Grid>

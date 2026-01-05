@@ -1,8 +1,5 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    >
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="ListViewGroupStyle" TargetType="{x:Type GroupItem}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}" />
@@ -11,12 +8,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GroupItem}">
-                    <ctrl:ExpanderEx BorderThickness="0" SaveGameGroupId="{Binding Name, Mode=OneWay}"
+                    <ExpanderEx BorderThickness="0" SaveGameGroupId="{Binding Name, Mode=OneWay}"
                                 IsExpanded="True">
-                        <ctrl:ExpanderEx.Header>                            
+                        <ExpanderEx.Header>                            
                             <DockPanel Background="Transparent">
                                 <DockPanel.ContextMenu>
-                                    <ctrl:GameGroupMenu />
+                                    <GameGroupMenu />
                                 </DockPanel.ContextMenu>
                                 <TextBlock DockPanel.Dock="Left"
                                            VerticalAlignment="Center" HorizontalAlignment="Left"
@@ -39,11 +36,11 @@
                                            VerticalAlignment="Center" HorizontalAlignment="Left"
                                            Style="{DynamicResource BaseTextBlockStyle}"
                                            DockPanel.Dock="Left" TextAlignment="Center"
-                                           Visibility="{markupext:Settings ShowGroupCount}"/>
+                                           Visibility="{Settings ShowGroupCount}"/>
                             </DockPanel>
-                        </ctrl:ExpanderEx.Header>
+                        </ExpanderEx.Header>
                         <ItemsPresenter />
-                    </ctrl:ExpanderEx>
+                    </ExpanderEx>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

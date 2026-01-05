@@ -2,20 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp">
+                    mc:Ignorable="d">
 
-    <Style TargetType="{x:Type views:DetailsViewGameOverview}">        
+    <Style TargetType="{x:Type DetailsViewGameOverview}">        
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:DetailsViewGameOverview}">
+                <ControlTemplate TargetType="{x:Type DetailsViewGameOverview}">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto"
                                   Style="{DynamicResource DetailsScrollViewer}"
                                   d:DesignWidth="1280"
                                   d:DesignHeight="1280"
-                                  d:DataContext="{x:Static views:DesignMainViewModel.DesignSelectedGameDetailsIntance}"
+                                  d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameDetailsIntance}"
                                   x:Name="PART_ScrollViewHost">
                         <Grid>
                             <FadeImage x:Name="PART_ImageBackground" Stretch="Uniform"
@@ -32,7 +30,7 @@
 
                             <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="{markupext:Settings CalculatedGameDetailsIndentation}"/>
+                                    <RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>                                
@@ -41,7 +39,7 @@
                                            Background="Transparent">                                    
                                     <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right"
-                                            Height="{markupext:Settings GameDetailsCoverHeight}"
+                                            Height="{Settings GameDetailsCoverHeight}"
                                             StretchDirection="Both" Stretch="Uniform"
                                             RenderOptions.BitmapScalingMode="Fant" />
                                     <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">

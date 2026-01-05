@@ -1,9 +1,8 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <ControlTemplate x:Key="FilterSelectionBoxTemplate" TargetType="{x:Type ctrl:FilterSelectionBoxBase}">
+    <ControlTemplate x:Key="FilterSelectionBoxTemplate" TargetType="{x:Type FilterSelectionBoxBase}">
         <Border BorderThickness="{DynamicResource ControlBorderThickness}"
                 CornerRadius="{DynamicResource ControlCornerRadius}"
                 Style="{DynamicResource HighlightBorder}"
@@ -75,19 +74,19 @@
         <Setter Property="Padding" Value="5" />
     </Style>
 
-    <Style TargetType="{x:Type ctrl:FilterEnumSelectionBox}">
+    <Style TargetType="{x:Type FilterEnumSelectionBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
+    </Style>
+    
+    <Style TargetType="{x:Type FilterStringSelectionBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Height" Value="24" />
         <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
     </Style>
 
-    <Style TargetType="{x:Type ctrl:FilterStringSelectionBox}">
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Height" Value="24" />
-        <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />
-    </Style>
-
-    <Style TargetType="{x:Type ctrl:FilterSelectionBox}">
+    <Style TargetType="{x:Type FilterSelectionBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Height" Value="24" />
         <Setter Property="Template" Value="{DynamicResource FilterSelectionBoxTemplate}" />

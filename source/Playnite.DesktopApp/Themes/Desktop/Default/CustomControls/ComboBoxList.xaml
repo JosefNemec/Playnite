@@ -1,9 +1,8 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <ControlTemplate x:Key="ComboBoxListBaseTemplate" TargetType="{x:Type ctrl:ComboBoxListBase}">
+    <ControlTemplate x:Key="ComboBoxListBaseTemplate" TargetType="{x:Type ComboBoxListBase}">
         <Border BorderThickness="{DynamicResource ControlBorderThickness}"
                 CornerRadius="{DynamicResource ControlCornerRadius}"
                 Style="{DynamicResource HighlightBorder}"
@@ -69,7 +68,7 @@
         </Border>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="FilterComboBoxListTemplate" TargetType="{x:Type ctrl:ComboBoxListBase}">
+    <ControlTemplate x:Key="FilterComboBoxListTemplate" TargetType="{x:Type ComboBoxListBase}">
         <Border BorderThickness="{DynamicResource ControlBorderThickness}"
                 CornerRadius="{DynamicResource ControlCornerRadius}"
                 Style="{DynamicResource HighlightBorder}"
@@ -138,7 +137,7 @@
                                           x:Name="PART_ToggleSelectedOnly"
                                           ToolTip="{DynamicResource LOCOnlyItemsSelectedTooltip}"
                                           FontFamily="{DynamicResource FontIcoFont}" />
-                                <ctrl:PnSearchBox DockPanel.Dock="Left" Margin="0,0,5,0" x:Name="PART_SearchBox" />
+                                <SearchBox DockPanel.Dock="Left" Margin="0,0,5,0" x:Name="PART_SearchBox" />
                             </DockPanel>
                             <ItemsControl x:Name="PART_ItemsPanel" Grid.Row="1" />
                         </Grid>
@@ -151,14 +150,14 @@
     <Style x:Key="ComboBoxListItemStyle" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
         <Setter Property="Padding" Value="5" />
     </Style>
-
-    <Style TargetType="{x:Type ctrl:ComboBoxList}">
+    
+    <Style TargetType="{x:Type ComboBoxList}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Height" Value="24" />
         <Setter Property="Template" Value="{DynamicResource ComboBoxListBaseTemplate}" />
     </Style>
-
-    <Style TargetType="{x:Type ctrl:DdItemListSelectionBox}">
+    
+    <Style TargetType="{x:Type DdItemListSelectionBox}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Height" Value="24" />
         <Setter Property="Template" Value="{DynamicResource FilterComboBoxListTemplate}" />        

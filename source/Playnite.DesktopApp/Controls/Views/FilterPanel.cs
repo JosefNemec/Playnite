@@ -264,10 +264,10 @@ namespace Playnite.DesktopApp.Controls.Views
                 return;
             }
 
-            var elem = new PnSearchBox();
-            elem.SetResourceReference(PnSearchBox.StyleProperty, "FilterPanelFilterSearchBox");
+            var elem = new SearchBox();
+            elem.SetResourceReference(SearchBox.StyleProperty, "FilterPanelFilterSearchBox");
             BindingTools.SetBinding(elem,
-                PnSearchBox.TextProperty,
+                SearchBox.TextProperty,
                 mainModel.AppSettings.FilterSettings,
                 filterBinding,
                 BindingMode.TwoWay,

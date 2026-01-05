@@ -14,7 +14,7 @@ namespace Playnite.DesktopApp.Controls
     [TemplatePart(Name = "PART_SeachIcon", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ClearTextIcon", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_TextInpuText", Type = typeof(TextBox))]
-    public class PnSearchBox : Control
+    public class SearchBox : Control
     {
         private FrameworkElement ElemSeachIcon;
         private FrameworkElement ElemClearTextIcon;
@@ -37,7 +37,7 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(PnSearchBox), new PropertyMetadata(string.Empty, TextPropertyChangedCallback));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(SearchBox), new PropertyMetadata(string.Empty, TextPropertyChangedCallback));
 
         public bool ShowImage
         {
@@ -52,7 +52,7 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        public static readonly DependencyProperty ShowImageProperty = DependencyProperty.Register(nameof(ShowImage), typeof(bool), typeof(PnSearchBox), new PropertyMetadata(true, ShowImagePropertyChangedCallback));
+        public static readonly DependencyProperty ShowImageProperty = DependencyProperty.Register(nameof(ShowImage), typeof(bool), typeof(SearchBox), new PropertyMetadata(true, ShowImagePropertyChangedCallback));
 
         public new bool IsFocused
         {
@@ -67,14 +67,14 @@ namespace Playnite.DesktopApp.Controls
             }
         }
 
-        public new static readonly DependencyProperty IsFocusedProperty = DependencyProperty.Register(nameof(IsFocused), typeof(bool), typeof(PnSearchBox), new PropertyMetadata(false, IsFocusedPropertyChangedCallback));
+        public new static readonly DependencyProperty IsFocusedProperty = DependencyProperty.Register(nameof(IsFocused), typeof(bool), typeof(SearchBox), new PropertyMetadata(false, IsFocusedPropertyChangedCallback));
 
-        static PnSearchBox()
+        static SearchBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(PnSearchBox), new FrameworkPropertyMetadata(typeof(PnSearchBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(SearchBox), new FrameworkPropertyMetadata(typeof(SearchBox)));
         }
 
-        public PnSearchBox()
+        public SearchBox()
         {
         }
 
@@ -186,7 +186,7 @@ namespace Playnite.DesktopApp.Controls
 
         private static void TextPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var obj = sender as PnSearchBox;
+            var obj = sender as SearchBox;
             if (obj.ignoreTextCallback)
             {
                 return;
@@ -206,13 +206,13 @@ namespace Playnite.DesktopApp.Controls
 
         private static void ShowImagePropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var obj = sender as PnSearchBox;
+            var obj = sender as SearchBox;
             obj.ShowImage = (bool)e.NewValue;
         }
 
         private static void IsFocusedPropertyChangedCallback(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var obj = sender as PnSearchBox;
+            var obj = sender as SearchBox;
             var shouldFocus = (bool)e.NewValue;
 
             if (!shouldFocus && !obj.TextInputText.IsFocused)

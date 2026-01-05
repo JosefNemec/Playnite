@@ -1,9 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls;assembly=Playnite.FullscreenApp"
-                    >
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="ButtonBottomMenu" TargetType="ctrl:ButtonEx">
+    <Style x:Key="ButtonBottomMenu" TargetType="ButtonEx">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -11,7 +9,7 @@
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ctrl:ButtonEx">
+                <ControlTemplate TargetType="ButtonEx">
                     <Border Background="{TemplateBinding Background}"
                             Margin="20,0,20,0">
                         <StackPanel Orientation="Horizontal">

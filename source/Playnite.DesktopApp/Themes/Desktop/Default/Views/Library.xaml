@@ -2,20 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d"
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels;assembly=Playnite.DesktopApp"
-                    >
+                    mc:Ignorable="d">
 
-    <Style TargetType="{x:Type views:Library}">
+    <Style TargetType="{x:Type Library}">
         <Setter Property="Background" Value="Yellow" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:Library}">
+                <ControlTemplate TargetType="{x:Type Library}">
                     <Grid d:DesignWidth="1500" d:DesignHeight="960"
-                          d:DataContext="{x:Static viewmodels:DesignMainViewModel.DesignIntance}">
+                          d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
@@ -28,22 +23,22 @@
                                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
                                    HorizontalAlignment="Center" VerticalAlignment="Top" />
 
-                        <views:TopPanel DockPanel.Dock="Top" Grid.Row="0" />
+                        <TopPanel DockPanel.Dock="Top" Grid.Row="0" />
                         
                         <DockPanel Grid.Row="1">
-                            <views:FilterPanel x:Name="PART_FilterPanel"
-                                         DockPanel.Dock="{markupext:Settings FilterPanelPosition}"
-                                         Width="{markupext:Settings FilterPanelWitdh}"
-                                         Visibility="{markupext:Settings FilterPanelVisible}"/>
+                            <FilterPanel x:Name="PART_FilterPanel"
+                                         DockPanel.Dock="{Settings FilterPanelPosition}"
+                                         Width="{Settings FilterPanelWitdh}"
+                                         Visibility="{Settings FilterPanelVisible}"/>
 
-                            <views:ExplorerPanel  Visibility="{markupext:Settings ExplorerPanelVisible}"
-                                           DockPanel.Dock="{markupext:Settings ExplorerPanelPosition}"
-                                           Width="{markupext:Settings ExplorerPanelWitdh}"/>
+                            <ExplorerPanel Visibility="{Settings ExplorerPanelVisible}"
+                                           DockPanel.Dock="{Settings ExplorerPanelPosition}"
+                                           Width="{Settings ExplorerPanelWitdh}"/>
                             
                             <Grid DockPanel.Dock="Left">                                
-                                <views:LibraryDetailsView x:Name="PART_ViewDetails" />
-                                <views:LibraryGridView x:Name="PART_ViewGrid" />
-                                <views:LibraryListView x:Name="PART_ViewList" />
+                                <LibraryDetailsView x:Name="PART_ViewDetails" />
+                                <LibraryGridView x:Name="PART_ViewGrid" />
+                                <LibraryListView x:Name="PART_ViewList" />
                             </Grid>
                         </DockPanel>
                     </Grid>

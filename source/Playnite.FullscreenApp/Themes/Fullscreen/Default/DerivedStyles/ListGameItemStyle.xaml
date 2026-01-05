@@ -2,10 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d"
-                    xmlns:markupext="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
-                    xmlns:viewmodels="clr-namespace:Playnite.FullscreenApp.ViewModels;assembly=Playnite.FullscreenApp"
-                    >
+                    mc:Ignorable="d">
 
     <Style x:Key="ListGameItemStyle" TargetType="ListBoxItem">        
         <Setter Property="Background" Value="Transparent" />
@@ -33,9 +30,9 @@
                                              From="1.06" To="1" Duration="0:0:0.2"/>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Grid Margin="{markupext:Settings FullscreenItemSpacingMargin}"
+                    <Grid Margin="{Settings FullscreenItemSpacingMargin}"
                           RenderTransformOrigin="0.5,0.5"
-                          d:DataContext="{x:Static viewmodels:DesignMainViewModel.DesignSelectedGameIntance}">
+                          d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
                         <Grid.RenderTransform>
                             <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" />
                         </Grid.RenderTransform>

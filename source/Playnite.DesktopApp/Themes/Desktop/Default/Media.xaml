@@ -1,11 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     xmlns:popt="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
 
-    <BitmapImage x:Key="TrayIcon" UriSource="{markupext:ThemeFile 'Images/applogo.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="TrayIconWhite" UriSource="{markupext:ThemeFile 'Images/applogo_black.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
-    <BitmapImage x:Key="TrayIconBlack" UriSource="{markupext:ThemeFile 'Images/applogo_white.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIcon" UriSource="{ThemeFile 'Images/applogo.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIconWhite" UriSource="{ThemeFile 'Images/applogo_black.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
+    <BitmapImage x:Key="TrayIconBlack" UriSource="{ThemeFile 'Images/applogo_white.ico'}" RenderOptions.BitmapScalingMode="Fant" popt:Freeze="True"/>
     <TextBlock x:Key="FullscreenModeIcon" Text="&#xea48;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
 
     <TextBlock x:Key="AddGameIcon" Text="&#xec3e;" FontFamily="{DynamicResource FontIcoFont}" Foreground="{DynamicResource TextBrush}" FontWeight="Light"/>
@@ -46,10 +45,10 @@
         <TextBlock Text="&#xed11;" FontFamily="{DynamicResource FontIcoFont}" />
     </DataTemplate>
 
-    <BitmapImage x:Key="PlayniteLogo" UriSource="{markupext:ThemeFile 'Images/applogo.png'}" popt:Freeze="True" />
-    <BitmapImage x:Key="DefaultGameIcon" UriSource="{markupext:ThemeFile 'Images/applogo_dark.png'}" popt:Freeze="True" />
-    <BitmapImage x:Key="DefaultGameCover" UriSource="{markupext:ThemeFile 'Images/custom_cover_background.png'}" popt:Freeze="True" />
+    <BitmapImage x:Key="PlayniteLogo" UriSource="{ThemeFile 'Images/applogo.png'}" popt:Freeze="True" />
+    <BitmapImage x:Key="DefaultGameIcon" UriSource="{ThemeFile 'Images/applogo_dark.png'}" popt:Freeze="True" />
+    <BitmapImage x:Key="DefaultGameCover" UriSource="{ThemeFile 'Images/custom_cover_background.png'}" popt:Freeze="True" />
 
-    <BitmapImage x:Key="PowerShellIcon" UriSource="{markupext:ThemeFile 'Images/powershell.ico'}" popt:Freeze="True" />
-    <BitmapImage x:Key="CsharpIcon" UriSource="{markupext:ThemeFile 'Images/csharp.ico'}" popt:Freeze="True" />
+    <BitmapImage x:Key="PowerShellIcon" UriSource="{ThemeFile 'Images/powershell.ico'}" popt:Freeze="True" />    
+    <BitmapImage x:Key="CsharpIcon" UriSource="{ThemeFile 'Images/csharp.ico'}" popt:Freeze="True" />
 </ResourceDictionary>

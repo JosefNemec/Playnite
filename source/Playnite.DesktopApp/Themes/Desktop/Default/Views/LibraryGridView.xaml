@@ -2,23 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    mc:Ignorable="d"
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels;assembly=Playnite.DesktopApp"
-                    >    
+                    mc:Ignorable="d">    
 
-    <Style TargetType="{x:Type views:LibraryGridView}">
+    <Style TargetType="{x:Type LibraryGridView}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type views:LibraryGridView}">
+                <ControlTemplate TargetType="{x:Type LibraryGridView}">
                     <DockPanel Background="{TemplateBinding Background}"
                                d:DesignWidth="1280" d:DesignHeight="960"
-                               d:DataContext="{x:Static viewmodels:DesignMainViewModel.DesignIntance}">
-                        <views:GridViewGameOverview x:Name="PART_ControlGameView"
-                                              Width="{markupext:Settings GrdiDetailsWitdh}"
-                                              DockPanel.Dock="{markupext:Settings GridViewDetailsPosition}" />                   
+                               d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                        <GridViewGameOverview x:Name="PART_ControlGameView"
+                                              Width="{Settings GrdiDetailsWitdh}"
+                                              DockPanel.Dock="{Settings GridViewDetailsPosition}" />                   
                         <Grid DockPanel.Dock="Left">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -32,7 +27,7 @@
                                              BorderThickness="0">
                                 <ExtendedListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <ctrl:GameListItem Style="{StaticResource GridViewItemTemplate}" />
+                                        <GameListItem Style="{StaticResource GridViewItemTemplate}" />
                                     </DataTemplate>
                                 </ExtendedListBox.ItemTemplate>
                                 <ExtendedListBox.GroupStyle>
@@ -55,7 +50,7 @@
                             </TextBlock>
                             <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="1">
                                 <Label Content="{DynamicResource LOCZoomLabel}" Margin="10,0,10,0"/>
-                                <ctrl:SliderWithPopup x:Name="PART_SliderZoom" />
+                                <SliderWithPopup x:Name="PART_SliderZoom" />
                             </StackPanel>
                         </Grid>
                     </DockPanel>

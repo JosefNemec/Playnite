@@ -2,27 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d"
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels;assembly=Playnite.DesktopApp"
-                    >
+                    mc:Ignorable="d">
 
-    <Style x:Key="GridViewItemTemplate" TargetType="{x:Type ctrl:GameListItem}">
+    <Style x:Key="GridViewItemTemplate" TargetType="{x:Type GameListItem}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ctrl:GameListItem}">
-                    <Border BorderThickness="{markupext:Settings GridItemMargin}" BorderBrush="{DynamicResource GridItemBackgroundBrush}">
+                <ControlTemplate TargetType="{x:Type GameListItem}">
+                    <Border BorderThickness="{Settings GridItemMargin}" BorderBrush="{DynamicResource GridItemBackgroundBrush}">
                         <StackPanel Name="PART_PanelHost"
-                                    d:DataContext="{x:Static viewmodels:DesignMainViewModel.DesignSelectedGameIntance}">
+                                    d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}">
 
-                            <Grid Width="{markupext:Settings GridItemWidth}"
-                              Height="{markupext:Settings GridItemHeight}">
+                            <Grid Width="{Settings GridItemWidth}"
+                              Height="{Settings GridItemHeight}">
                                 <Image Name="PART_ImageCover"
                                    RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Stretch="{markupext:Settings CoverArtStretch}" />
+                                   Stretch="{Settings CoverArtStretch}" />
                                 <Border Background="#99000000" x:Name="TextGameName" Visibility="Collapsed">
                                     <TextBlock Text="{Binding DisplayName}"
                                            TextWrapping="Wrap" Margin="5"
@@ -48,8 +43,8 @@
                                    TextAlignment="Center" TextTrimming="CharacterEllipsis"
                                    VerticalAlignment="Center"
                                    Padding="2,5,2,5" Grid.Row="1" Grid.Column="0"
-                                   Width="{markupext:Settings GridItemWidth}" 
-                                   Visibility="{markupext:Settings ShowNamesUnderCovers}" />
+                                   Width="{Settings GridItemWidth}" 
+                                   Visibility="{Settings ShowNamesUnderCovers}" />
                         </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -59,14 +54,14 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsInstalled}" Value="False" />
-                                <Condition Binding="{markupext:Settings DarkenUninstalledGamesGrid}" Value="True" />
+                                <Condition Binding="{Settings DarkenUninstalledGamesGrid}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderMouseOver" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding CoverImage}" Value="{x:Null}" />
-                                <Condition Binding="{markupext:Settings ShowNameEmptyCover}" Value="True" />
+                                <Condition Binding="{Settings ShowNameEmptyCover}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" TargetName="TextGameName"/>
                         </MultiDataTrigger>
