@@ -7,11 +7,6 @@
     <Configurations>Debug;Release;Test</Configurations>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj" />
   </ItemGroup>
   <ItemGroup>
