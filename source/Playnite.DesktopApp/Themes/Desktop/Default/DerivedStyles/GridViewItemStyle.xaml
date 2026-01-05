@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup"
                     >
 
     <Style x:Key="GridViewItemStyle" TargetType="{x:Type ListBoxItem}">

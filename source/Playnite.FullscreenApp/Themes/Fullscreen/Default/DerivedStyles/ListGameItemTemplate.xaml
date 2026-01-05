@@ -3,7 +3,7 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
-                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    xmlns:markupext="clr-namespace:Playnite.FullscreenApp.Markup"
                     mc:Ignorable="d">
 
     <Style x:Key="ListGameItemTemplate" TargetType="{x:Type ctrl:GameListItem}">

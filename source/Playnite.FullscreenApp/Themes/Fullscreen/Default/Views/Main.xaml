@@ -6,7 +6,7 @@
                     xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views"
                     xmlns:viewmodels="clr-namespace:Playnite.FullscreenApp.ViewModels"
                     xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
-                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    xmlns:markupext="clr-namespace:Playnite.FullscreenApp.Markup"
                     >
 
     <Style TargetType="{x:Type views:Main}">

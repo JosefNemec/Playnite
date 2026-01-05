@@ -13,6 +13,346 @@
     <None Remove="SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Remove="Themes\Desktop\Default\Common.xaml" />
+    <Page Remove="Themes\Desktop\Default\Constants.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\ComboBoxList.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\ExpanderEx.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\ExtendedDataGrid.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\ExtendedListBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\ExtendedListView.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\FilterSelectionBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\GameGroupMenu.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\GameMenu.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\HotKeyBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\HtmlTextView.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\NumericBoxes.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\PathSelectionBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\SearchBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\SidebarItem.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\SliderEx.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\TopPanelItem.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\TrayContextMenu.xaml" />
+    <Page Remove="Themes\Desktop\Default\CustomControls\WindowBase.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Border.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Button.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\CheckBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ComboBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ContextMenu.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\DataGrid.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\DatePicker.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Expander.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\GridSplitter.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\GroupBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Hyperlink.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Label.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ListBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ListView.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Menu.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\PasswordBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Popup.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ProgressBar.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\RadioButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\RepeatButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\RichTextBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ScrollViewer.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Slider.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\TabControl.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\TextBlock.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\TextBox.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\Thumb.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ToggleButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\ToolTip.xaml" />
+    <Page Remove="Themes\Desktop\Default\DefaultControls\TreeView.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\BottomButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\DetailsHyperlink.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\DetailsScrollViewer.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\DetailsViewGroupStyle.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\DetailsViewItemStyle.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\DetailsViewItemTemplate.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\GridViewGroupStyle.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\GridViewItemStyle.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\GridViewItemTemplate.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\HighlightBorder.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\ImageHighlightButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\ListViewGroupStyle.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\MainWindowStyle.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\NotificationMessage.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\PlayButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\PropertyItemButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\SimpleButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\StandardWindowStyle.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\TextBlockGameScore.xaml" />
+    <Page Remove="Themes\Desktop\Default\DerivedStyles\WindowBarButton.xaml" />
+    <Page Remove="Themes\Desktop\Default\Media.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\DetailsViewGameOverview.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\ExplorerPanel.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\FilterPanelView.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\GridViewGameOverview.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\Library.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\LibraryDetailsView.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\LibraryGridView.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\LibraryListView.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\MainWindow.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\NotificationPanel.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\SearchView.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\Sidebar.xaml" />
+    <Page Remove="Themes\Desktop\Default\Views\TopPanel.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\Desktop\Default\Common.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Constants.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ComboBoxList.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExpanderEx.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExtendedDataGrid.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExtendedListBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\ExtendedListView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\FilterSelectionBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\GameGroupMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\GameMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\HotKeyBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\HtmlTextView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\NumericBoxes.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\PathSelectionBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\SearchBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\SidebarItem.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\SliderEx.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\TopPanelItem.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\TrayContextMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\CustomControls\WindowBase.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Border.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Button.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\CheckBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ComboBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ContextMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\DataGrid.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\DatePicker.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Expander.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\GridSplitter.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\GroupBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Hyperlink.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Label.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ListBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ListView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Menu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\PasswordBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Popup.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ProgressBar.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\RadioButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\RepeatButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\RichTextBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ScrollViewer.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Slider.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\TabControl.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\TextBlock.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\TextBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\Thumb.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ToggleButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\ToolTip.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DefaultControls\TreeView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\BottomButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\DetailsHyperlink.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\DetailsScrollViewer.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\DetailsViewGroupStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\DetailsViewItemStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\DetailsViewItemTemplate.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\GridViewGroupStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\GridViewItemStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\GridViewItemTemplate.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\HighlightBorder.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\ImageHighlightButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\ListViewGroupStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\MainWindowStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\NotificationMessage.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\PlayButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\PropertyItemButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\SimpleButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\StandardWindowStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\TextBlockGameScore.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\DerivedStyles\WindowBarButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Media.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\DetailsViewGameOverview.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\ExplorerPanel.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\FilterPanelView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\GridViewGameOverview.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\Library.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\LibraryDetailsView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\LibraryGridView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\LibraryListView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\MainWindow.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\NotificationPanel.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\SearchView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\Sidebar.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Desktop\Default\Views\TopPanel.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
@@ -27,6 +367,48 @@
   <ItemGroup>
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\applogo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\applogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\applogo_black.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\applogo_dark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\applogo_white.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\csharp.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\custom_cover_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\discord.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\kofi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\patreon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\powershell.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\python.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\Images\reddit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Desktop\Default\theme.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

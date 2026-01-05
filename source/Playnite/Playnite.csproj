@@ -8,6 +8,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <Configurations>Debug;Release;Test</Configurations>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
   <ItemGroup>
     <Page Remove="Localization\af_ZA.xaml" />
@@ -72,11 +73,12 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="AngleSharp" Version="1.4.0" />
+    <PackageReference Include="CefSharp.Common.NETCore" Version="143.0.90" />
     <PackageReference Include="CefSharp.OffScreen.NETCore" Version="143.0.90" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="143.0.90" />
-    <PackageReference Include="chromiumembeddedframework.runtime.win-arm64" Version="143.0.9" />
-    <PackageReference Include="chromiumembeddedframework.runtime.win-x64" Version="143.0.9" />
-    <PackageReference Include="chromiumembeddedframework.runtime.win-x86" Version="143.0.9" />
+    <PackageReference Include="chromiumembeddedframework.runtime.win-arm64" Version="143.0.9" GeneratePathProperty="true" />
+    <PackageReference Include="chromiumembeddedframework.runtime.win-x64" Version="143.0.9" GeneratePathProperty="true" />
+    <PackageReference Include="chromiumembeddedframework.runtime.win-x86" Version="143.0.9" GeneratePathProperty="true" />
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
     <PackageReference Include="CoreWCF.NetNamedPipe" Version="1.8.0-preview.38" />
     <PackageReference Include="CoreWCF.Primitives" Version="1.8.0" />
