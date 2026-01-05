@@ -14,15 +14,8 @@ namespace Playnite.DesktopApp.Controls
     [TemplatePart(Name = "PART_ItemsPanel", Type = typeof(ItemsControl))]
     [TemplatePart(Name = "PART_ButtonClearFilter", Type = typeof(Button))]
     [TemplatePart(Name = "PART_TextFilterString", Type = typeof(TextBlock))]
-    public class ComboBoxListBase : Control
+    public abstract class ComboBoxListBase : Control
     {
-        public ComboBoxListBase() : base()
-        {
-            //// This is mandatory for custom controls to link to their XAML Styles
-            //DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBoxListBase),
-            //    new FrameworkPropertyMetadata(typeof(ComboBoxListBase)));
-        }
-
         internal ItemsControl ItemsPanel;
         internal Button ButtonClearFilter;
         internal TextBlock TextFilterString;
