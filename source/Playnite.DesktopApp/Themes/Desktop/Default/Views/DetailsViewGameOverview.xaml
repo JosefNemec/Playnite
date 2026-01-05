@@ -3,8 +3,8 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     mc:Ignorable="d"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views">
+                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp">
 
     <Style TargetType="{x:Type views:DetailsViewGameOverview}">        
         <Setter Property="Template">

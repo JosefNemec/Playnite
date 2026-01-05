@@ -3,10 +3,10 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views"
+                    xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
                     xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels"
-                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls"
+                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     mc:Ignorable="d">
 
     <DataTemplate x:Key="TopPanelGeneralViewSettingsTemplate">
