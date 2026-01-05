@@ -9,6 +9,49 @@
     <Configurations>Debug;Release;Test</Configurations>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
+
+    <!-- ========================================================= -->
+    <!-- 1. Explicit PlatformTarget (x86 / x64 / ARM64)            -->
+    <!-- ========================================================= -->
+    <_SdlArch Condition="'$(PlatformTarget)' != '' and '$(PlatformTarget)' != 'AnyCPU'">$(PlatformTarget)</_SdlArch>
+
+    <!-- ========================================================= -->
+    <!-- 2. Solution Platform (often x64 when forced in VS)        -->
+    <!-- ========================================================= -->
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(Platform)' != '' and '$(Platform)' != 'AnyCPU'">$(Platform)</_SdlArch>
+
+    <!-- ========================================================= -->
+    <!-- 3. RuntimeIdentifier (publish / RID-based builds)         -->
+    <!-- ========================================================= -->
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and
+                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('arm64'))">ARM64</_SdlArch>
+
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and
+                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('x64'))">x64</_SdlArch>
+
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and
+                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('x86'))">x86</_SdlArch>
+
+    <!-- ========================================================= -->
+    <!-- 4. PROCESSOR_ARCHITECTURE environment variable             -->
+    <!--    Reflects how MSBuild itself is running (ARM64/x64/x86) -->
+    <!-- ========================================================= -->
+    <_ProcArch>$([System.Environment]::GetEnvironmentVariable('PROCESSOR_ARCHITECTURE'))</_ProcArch>
+
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(_ProcArch)' == 'ARM64'">ARM64</_SdlArch>
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(_ProcArch)' == 'AMD64'">x64</_SdlArch>
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(_ProcArch)' == 'x86'">x86</_SdlArch>
+
+    <!-- ========================================================= -->
+    <!-- 5. Absolute fallback (should rarely happen)               -->
+    <!-- ========================================================= -->
+    <_SdlArch Condition="'$(_SdlArch)' == ''">x64</_SdlArch>
+
+    <!-- ========================================================= -->
+    <!-- 6. Trim for safety before using in file paths             -->
+    <!-- ========================================================= -->
+    <_SdlArchTrim>$([System.String]::Copy('$(_SdlArch)').Trim())</_SdlArchTrim>
+    
   </PropertyGroup>
   <ItemGroup>
     <Page Remove="Localization\af_ZA.xaml" />
@@ -111,6 +154,9 @@
     <None Include="Emulation\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Remove="Resources\Images\DesignBackground.jpg" />
+    <None Remove="Resources\Images\DesignCover.jpg" />
+    <None Remove="Resources\Images\DesignIcon.png" />
     <None Include="Localization\af_ZA.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -245,6 +291,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\DesignBackground.jpg" />
+    <Resource Include="Resources\Images\DesignCover.jpg" />
+    <Resource Include="Resources\Images\DesignIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Common.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -257,8 +308,32 @@
     <None Update="Localization\locstatus.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\playnite_extension.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Safe Mode.bat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <ContentWithTargetPath Include="..\..\references\SDL2\$(_SdlArch)\SDL2.dll">
+      <Link>Dependencies\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>SDL2.dll</TargetPath>
+    </ContentWithTargetPath>
+
+    <ContentWithTargetPath Include="..\..\references\SDL2\$(_SdlArch)\SDL2_mixer.dll">
+      <Link>Dependencies\SDL2_mixer.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>SDL2_mixer.dll</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+
+  <!-- Optional: warn when you’re AnyCPU with no RID (i.e., arch guess may be wrong) -->
+  <Target Name="WarnIfSdlArchGuessed" BeforeTargets="Build">
+    <Warning
+      Condition="'$(PlatformTarget)' == 'AnyCPU' and '$(Platform)' == 'AnyCPU' and '$(RuntimeIdentifier)' == ''"
+      Text="SDL2 arch selected as '$(_SdlArch)'. Build is AnyCPU with no RuntimeIdentifier, so runtime arch may differ. Consider building with -p:PlatformTarget=x64|ARM64 or setting -p:RuntimeIdentifier=win-x64|win-arm64." />
+  </Target>
 </Project>
