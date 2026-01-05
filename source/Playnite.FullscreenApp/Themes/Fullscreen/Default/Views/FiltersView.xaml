@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
-                    xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views"
+                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls;assembly=Playnite.FullscreenApp"
+                    xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views;assembly=Playnite.FullscreenApp"
                     >
 
     <Style x:Key="FilterPanelNagivationButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
