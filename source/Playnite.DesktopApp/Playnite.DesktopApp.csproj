@@ -10,6 +10,8 @@
     <StartupObject>Playnite.DesktopApp.ProgramEntry</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\contributors.txt" />
+    <None Remove="Resources\igdbicon.png" />
     <None Remove="SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +355,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\contributors.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
@@ -362,6 +367,10 @@
     <ProjectReference Include="..\Playnite\Playnite.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="..\..\references\Fonts\icofont.ttf">
+      <Link>Fonts\icofont.ttf</Link>
+    </Resource>
+    <Resource Include="Resources\igdbicon.png" />
     <Resource Include="SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>

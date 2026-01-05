@@ -18,9 +18,9 @@ namespace Playnite.DesktopApp.Controls
     {
         public ComboBoxListBase() : base()
         {
-            // This is mandatory for custom controls to link to their XAML Styles
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBoxListBase),
-                new FrameworkPropertyMetadata(typeof(ComboBoxListBase)));
+            //// This is mandatory for custom controls to link to their XAML Styles
+            //DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBoxListBase),
+            //    new FrameworkPropertyMetadata(typeof(ComboBoxListBase)));
         }
 
         internal ItemsControl ItemsPanel;

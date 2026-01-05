@@ -19,8 +19,8 @@ namespace Playnite.DesktopApp.Controls
         public FilterSelectionBoxBase() : base()
         {
             // This is mandatory for custom controls to link to their XAML Styles
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(FilterSelectionBoxBase),
-                new FrameworkPropertyMetadata(typeof(FilterSelectionBoxBase)));
+            //DefaultStyleKeyProperty.OverrideMetadata(typeof(FilterSelectionBoxBase),
+            //    new FrameworkPropertyMetadata(typeof(FilterSelectionBoxBase)));
         }
 
         internal TextBox TextFilterInput;
