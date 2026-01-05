@@ -5,8 +5,9 @@
     <OutputType>WinExe</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
-    <Configurations>Debug;Release;Test</Configurations>
-    <StartupObject>Playnite.FullscreenApp.ProgramEntry</StartupObject>
+    <Configurations>Debug;Release;DebugAll</Configurations>
+    <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
+    <StartupObject>Playnite.FullscreenApp.ProgramEntry</StartupObject>    
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Themes\Fullscreen\Default\Images\applogo.ico</ApplicationIcon>

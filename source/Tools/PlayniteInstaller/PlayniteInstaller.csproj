@@ -4,8 +4,9 @@
     <OutputType>WinExe</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
-    <Configurations>Debug;Release;Test</Configurations>
-    <ApplicationIcon>playnite-logo-default.ico</ApplicationIcon>
+    <Configurations>Debug;Release;DebugAll</Configurations>
+    <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
+    <ApplicationIcon>playnite-logo-default.ico</ApplicationIcon>    
   </PropertyGroup>
   <ItemGroup>
     <None Remove="installer_mirrors.txt" />

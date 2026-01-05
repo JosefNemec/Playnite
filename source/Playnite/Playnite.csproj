@@ -6,7 +6,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-    <Configurations>Debug;Release;Test</Configurations>
+    <Configurations>Debug;Release;DebugAll</Configurations>
+    <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
 
@@ -23,14 +24,11 @@
     <!-- ========================================================= -->
     <!-- 3. RuntimeIdentifier (publish / RID-based builds)         -->
     <!-- ========================================================= -->
-    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and
-                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('arm64'))">ARM64</_SdlArch>
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and&#xD;&#xA;                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('arm64'))">ARM64</_SdlArch>
 
-    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and
-                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('x64'))">x64</_SdlArch>
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and&#xD;&#xA;                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('x64'))">x64</_SdlArch>
 
-    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and
-                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('x86'))">x86</_SdlArch>
+    <_SdlArch Condition="'$(_SdlArch)' == '' and '$(RuntimeIdentifier)' != '' and&#xD;&#xA;                       $([System.String]::Copy('$(RuntimeIdentifier)').ToLower().Contains('x86'))">x86</_SdlArch>
 
     <!-- ========================================================= -->
     <!-- 4. PROCESSOR_ARCHITECTURE environment variable             -->
@@ -50,8 +48,7 @@
     <!-- ========================================================= -->
     <!-- 6. Trim for safety before using in file paths             -->
     <!-- ========================================================= -->
-    <_SdlArchTrim>$([System.String]::Copy('$(_SdlArch)').Trim())</_SdlArchTrim>
-    
+    <_SdlArchTrim>$([System.String]::Copy('$(_SdlArch)').Trim())</_SdlArchTrim>        
   </PropertyGroup>
   <ItemGroup>
     <Page Remove="Localization\af_ZA.xaml" />
@@ -332,8 +329,6 @@
 
   <!-- Optional: warn when you’re AnyCPU with no RID (i.e., arch guess may be wrong) -->
   <Target Name="WarnIfSdlArchGuessed" BeforeTargets="Build">
-    <Warning
-      Condition="'$(PlatformTarget)' == 'AnyCPU' and '$(Platform)' == 'AnyCPU' and '$(RuntimeIdentifier)' == ''"
-      Text="SDL2 arch selected as '$(_SdlArch)'. Build is AnyCPU with no RuntimeIdentifier, so runtime arch may differ. Consider building with -p:PlatformTarget=x64|ARM64 or setting -p:RuntimeIdentifier=win-x64|win-arm64." />
+    <Warning Condition="'$(PlatformTarget)' == 'AnyCPU' and '$(Platform)' == 'AnyCPU' and '$(RuntimeIdentifier)' == ''" Text="SDL2 arch selected as '$(_SdlArch)'. Build is AnyCPU with no RuntimeIdentifier, so runtime arch may differ. Consider building with -p:PlatformTarget=x64|ARM64 or setting -p:RuntimeIdentifier=win-x64|win-arm64." />
   </Target>
 </Project>
