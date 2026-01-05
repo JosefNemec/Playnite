@@ -7,6 +7,16 @@
     <Configurations>Debug;Release;Test</Configurations>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="installer_mirrors.txt" />
+    <None Remove="playnite-logo-default.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="installer_mirrors.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Playnite\Playnite.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="playnite-logo-default.ico" />
   </ItemGroup>
 </Project>
