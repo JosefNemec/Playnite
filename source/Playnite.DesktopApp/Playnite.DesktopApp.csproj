@@ -371,7 +371,7 @@
       <Link>Fonts\icofont.ttf</Link>
     </Resource>
     <Resource Include="Resources\igdbicon.png" />
-    <Resource Include="SplashScreen.png" />
+    <SplashScreen Include="SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App.config">

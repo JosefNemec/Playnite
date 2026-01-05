@@ -9,7 +9,54 @@
     <StartupObject>Playnite.FullscreenApp.ProgramEntry</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Resource Include="..\..\references\Fonts\*.*">
+      <Link>Fonts\%(Filename)%(Extension)</Link>
+    </Resource>
+    <None Include="..\Playnite\license.txt">
+      <Link>license.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Themes\Fullscreen\Default\audio\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Remove="SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Themes\Fullscreen\Default\Constants.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\CustomControls\FilterDbItemtSelection.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\CustomControls\FilterEnumListSelection.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\CustomControls\FilterPresetSelector.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\CustomControls\FilterStringListSelection.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\Button.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\CheckBox.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\ComboBox.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\ProgressBar.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\ScrollViewer.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\Slider.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\TextBox.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\ToggleButton.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DefaultControls\ToolTip.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DerivedStyles\ButtonBottomMenu.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DerivedStyles\ButtonTopMenu.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DerivedStyles\ListGameItemStyle.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\DerivedStyles\ListGameItemTemplate.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Images\ButtonPrompts\PlayStation\PlayStation.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Images\ButtonPrompts\Xbox\Xbox.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Media.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\CustomMenus.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\FiltersAdditional.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\FiltersView.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\GameDetails.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\GameMenu.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\GameStatus.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\HelpMenu.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\ItemSelection.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\Main.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\MainMenu.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\MessageBox.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\NotificationsMenu.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\SettingsMenus.xaml" />
+    <Page Remove="Themes\Fullscreen\Default\Views\TextInput.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
@@ -18,6 +65,172 @@
     <ProjectReference Include="..\Playnite\Playnite.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SplashScreen.png" />
+    <SplashScreen Include="SplashScreen.png" />
+    <Content Include="Themes\Fullscreen\Default\Constants.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\CustomControls\FilterDbItemtSelection.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\CustomControls\FilterEnumListSelection.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\CustomControls\FilterPresetSelector.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\CustomControls\FilterStringListSelection.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\Button.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\CheckBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\ComboBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\ProgressBar.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\ScrollViewer.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\Slider.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\TextBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\ToggleButton.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DefaultControls\ToolTip.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ButtonBottomMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ButtonTopMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ListGameItemStyle.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\DerivedStyles\ListGameItemTemplate.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Images\ButtonPrompts\PlayStation\PlayStation.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Images\ButtonPrompts\Xbox\Xbox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Media.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\CustomMenus.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\FiltersAdditional.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\FiltersView.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\GameDetails.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\GameMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\GameStatus.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\HelpMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\ItemSelection.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\Main.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\MainMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\MessageBox.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\NotificationsMenu.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\SettingsMenus.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Themes\Fullscreen\Default\Views\TextInput.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Themes\Fullscreen\Default\DescriptionView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Fullscreen\Default\Images\applogo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Fullscreen\Default\Images\applogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Fullscreen\Default\Images\applogo_clean.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Fullscreen\Default\Images\applogo_full.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Fullscreen\Default\Images\custom_cover_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Themes\Fullscreen\Default\theme.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Update="..\..\references\Fonts\icofont.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-Black.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-Bold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-BoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-ExtraLight.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-Italic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-Light.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-LightItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-SemiBold.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Update="..\..\references\Fonts\TitilliumWeb-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 </Project>
