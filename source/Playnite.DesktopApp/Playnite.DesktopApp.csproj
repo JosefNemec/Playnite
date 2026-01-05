@@ -16,6 +16,10 @@
     <None Remove="Resources\contributors.txt" />
     <None Remove="Resources\igdbicon.png" />
     <None Remove="SplashScreen.png" />
+    <None Include="..\Playnite\license.txt">
+      <Link>license.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Remove="Themes\Desktop\Default\Common.xaml" />
