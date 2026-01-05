@@ -122,26 +122,30 @@ namespace Playnite.Database
                 liteCollection = liteDb.GetCollection<TItem>();
                 liteCollection.EnsureIndex(a => a.Id, true);
             }
-
+           
             void loadCollections()
             {
+                // Fix 1: Materialize to List immediately to release the LiteDB Read Lock
+                var allFiles = liteCollection.FindAll().ToList();
+
                 Parallel.ForEach(
-                    liteCollection.FindAll(),
+                    allFiles,
                     new ParallelOptions { MaxDegreeOfParallelism = 4 },
                     (objectFile) =>
                     {
                         if (objectFile != null)
                         {
+                            // Now initMethod can safely call the DB because the 
+                            // outer FindAll() lock is already closed.
                             initMethod?.Invoke(objectFile);
                             Items.TryAdd(objectFile.Id, objectFile);
                         }
                     });
 
-                // Also try to load other collection to see if db is corrupted
+                // The rest of your "corruption check" is fine because it's sequential
                 foreach (var collName in liteDb.GetCollectionNames().Where(a => a != liteCollection.Name))
                 {
                     var coll = liteDb.GetCollection(collName);
-                    // One these would fail for known corruptions
                     coll.Count();
                     coll.FindAll().ToList();
                 }
