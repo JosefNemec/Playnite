@@ -2,12 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d">    
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views"
+                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    mc:Ignorable="d">
 
-    <Style TargetType="{x:Type ExplorerPanel}">
+    <Style TargetType="{x:Type views:ExplorerPanel}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ExplorerPanel}">
+                <ControlTemplate TargetType="{x:Type views:ExplorerPanel}">
                     <Border BorderBrush="{DynamicResource PanelSeparatorBrush}"
                             d:DesignWidth="200"
                             d:DesignHeight="400">
@@ -15,10 +17,10 @@
                             <Style TargetType="Border">
                                 <Setter Property="BorderThickness" Value="1,0,0,0" />
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Settings ExplorerPanelPosition}" Value="Left">
+                                    <DataTrigger Binding="{markupext:Settings ExplorerPanelPosition}" Value="Left">
                                         <Setter Property="BorderThickness" Value="0,0,1,0" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                    <DataTrigger Binding="{markupext:Settings ShowPanelSeparators}" Value="False">
                                         <Setter Property="BorderThickness" Value="0" />
                                     </DataTrigger>
                                 </Style.Triggers>

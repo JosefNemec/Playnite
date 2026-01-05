@@ -1,5 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls"
+                    >
 
     <Style x:Key="SliderExTrackButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -15,7 +17,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type SliderEx}" BasedOn="{StaticResource {x:Type Slider}}">
+    <Style TargetType="{x:Type ctrl:SliderEx}" BasedOn="{StaticResource {x:Type Slider}}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />

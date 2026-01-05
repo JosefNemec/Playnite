@@ -3,6 +3,10 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views"
+                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels"
+                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls"
                     mc:Ignorable="d">
 
     <DataTemplate x:Key="TopPanelGeneralViewSettingsTemplate">
@@ -146,7 +150,7 @@
                             <Border CornerRadius="3" Width="15" Height="15"
                                     Margin="20,0,0,0" Background="OrangeRed"
                                     HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                                <TextBlock Text="{Api Notifications.Count}" FontSize="12"
+                                <TextBlock Text="{markupext:Api Notifications.Count}" FontSize="12"
                                            Foreground="{DynamicResource TextBrush}"
                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
@@ -156,7 +160,7 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <DataTrigger Binding="{Api Notifications.Count}" Value="0">
+            <DataTrigger Binding="{markupext:Api Notifications.Count}" Value="0">
                 <Setter Property="Visibility" Value="Collapsed"/>
             </DataTrigger>
             <Trigger Property="IsMouseOver" Value="True">
@@ -165,19 +169,19 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type TopPanel}">
+    <Style TargetType="{x:Type views:TopPanel}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TopPanel}">
+                <ControlTemplate TargetType="{x:Type views:TopPanel}">
                     <Border Height="50" BorderBrush="{DynamicResource PanelSeparatorBrush}"
                             Background="{TemplateBinding Background}"
                             d:DesignWidth="1280"
-                            d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                            d:DataContext="{x:Static viewmodels:DesignMainViewModel.DesignIntance}">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BorderThickness" Value="0,0,0,1" />
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                    <DataTrigger Binding="{markupext:Settings ShowPanelSeparators}" Value="False">
                                         <Setter Property="BorderThickness" Value="0" />
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -187,12 +191,12 @@
                             <Border x:Name="PART_ElemMainMenu" Background="Transparent"
                                     DockPanel.Dock="Left" Margin="5,0,0,0" Cursor="Hand"
                                     WindowChrome.IsHitTestVisibleInChrome="True">
-                                <Image Source="{ThemeFile 'Images/applogo.png'}"
+                                <Image Source="{markupext:ThemeFile 'Images/applogo.png'}"
                                        Height="40" RenderOptions.BitmapScalingMode="Fant"
                                        Margin="10,0,5,0"/>
                             </Border>
 
-                            <SearchBox x:Name="PART_TextMainSearch"
+                            <ctrl:PnSearchBox x:Name="PART_TextMainSearch"
                                         Margin="5,6,0,6" DockPanel.Dock="Left"
                                         WindowChrome.IsHitTestVisibleInChrome="True"
                                         Width="300" />
@@ -210,7 +214,7 @@
 
                             <StackPanel x:Name="PART_PanelMainPluginItems" Orientation="Horizontal"
                                         VerticalAlignment="Stretch" Margin="15,6,15,6"
-                                        DockPanel.Dock="{Settings PluginTopPanelAlignment}"/>
+                                        DockPanel.Dock="{markupext:Settings PluginTopPanelAlignment}"/>
 
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left"
                                         HorizontalAlignment="Center" Margin="0,5,0,5">

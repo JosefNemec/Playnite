@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views"
                     mc:Ignorable="d">
 
     <Style x:Key="FilterPanelCheckBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
@@ -21,21 +24,21 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
-    <Style x:Key="FilterPanelFilterSearchBox" TargetType="SearchBox" BasedOn="{StaticResource {x:Type SearchBox}}">
+
+    <Style x:Key="FilterPanelFilterSearchBox" TargetType="ctrl:PnSearchBox" BasedOn="{StaticResource {x:Type ctrl:PnSearchBox}}">
         <Setter Property="Margin" Value="8,0,6,0" />
         <Setter Property="ShowImage" Value="False" />
     </Style>
-    
-    <Style x:Key="FilterPanelFilterSelectionBox" TargetType="FilterSelectionBox" BasedOn="{StaticResource {x:Type FilterSelectionBox}}">
+
+    <Style x:Key="FilterPanelFilterSelectionBox" TargetType="ctrl:FilterSelectionBox" BasedOn="{StaticResource {x:Type ctrl:FilterSelectionBox}}">
         <Setter Property="Margin" Value="8,0,6,0" />
     </Style>
-    
-    <Style x:Key="FilterPanelFilterEnumSelectionBox" TargetType="FilterEnumSelectionBox" BasedOn="{StaticResource {x:Type FilterEnumSelectionBox}}">
+
+    <Style x:Key="FilterPanelFilterEnumSelectionBox" TargetType="ctrl:FilterEnumSelectionBox" BasedOn="{StaticResource {x:Type ctrl:FilterEnumSelectionBox}}">
         <Setter Property="Margin" Value="8,0,6,0" />
     </Style>
-    
-    <Style x:Key="FilterPanelFilterStringSelectionBox" TargetType="FilterStringSelectionBox" BasedOn="{StaticResource {x:Type FilterStringSelectionBox}}">
+
+    <Style x:Key="FilterPanelFilterStringSelectionBox" TargetType="ctrl:FilterStringSelectionBox" BasedOn="{StaticResource {x:Type ctrl:FilterStringSelectionBox}}">
         <Setter Property="Margin" Value="8,0,6,0" />
     </Style>
 
@@ -47,20 +50,20 @@
         <Setter Property="DockPanel.Dock" Value="Right" />
     </Style>
 
-    <Style TargetType="{x:Type FilterPanel}">  
+    <Style TargetType="{x:Type views:FilterPanel}">  
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type FilterPanel}">
+                <ControlTemplate TargetType="{x:Type views:FilterPanel}">
                     <Border BorderBrush="{DynamicResource PanelSeparatorBrush}"
                             d:DesignWidth="200">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BorderThickness" Value="1,0,0,0" />
-                                <Style.Triggers>                                    
-                                    <DataTrigger Binding="{Settings FilterPanelPosition}" Value="Left">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{markupext:Settings FilterPanelPosition}" Value="Left">
                                         <Setter Property="BorderThickness" Value="0,0,1,0" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                    <DataTrigger Binding="{markupext:Settings ShowPanelSeparators}" Value="False">
                                         <Setter Property="BorderThickness" Value="0" />
                                     </DataTrigger>
                                 </Style.Triggers>

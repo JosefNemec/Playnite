@@ -1,6 +1,8 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls"
+                    >
 
-    <Style TargetType="{x:Type ExpanderEx}" BasedOn="{StaticResource {x:Type Expander}}">
+    <Style TargetType="{x:Type ctrl:ExpanderEx}" BasedOn="{StaticResource {x:Type Expander}}">
     </Style>
 </ResourceDictionary>

@@ -2,12 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views"
                     mc:Ignorable="d">
 
-    <Style TargetType="{x:Type NotificationPanel}">
+    <Style TargetType="{x:Type views:NotificationPanel}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="NotificationPanel">
+                <ControlTemplate TargetType="views:NotificationPanel">
                     <DockPanel Background="{DynamicResource PopupBackgroundBrush}"
                                d:DesignWidth="260" d:DesignHeight="400"
                                d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">

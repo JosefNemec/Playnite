@@ -3,7 +3,8 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     mc:Ignorable="d"
-                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp">
+                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views">
 
     <Style TargetType="{x:Type views:DetailsViewGameOverview}">        
         <Setter Property="Template">
@@ -31,7 +32,7 @@
 
                             <Grid HorizontalAlignment="Stretch" Margin="20,0,20,0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="{Settings CalculatedGameDetailsIndentation}"/>
+                                    <RowDefinition Height="{markupext:Settings CalculatedGameDetailsIndentation}"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>                                
@@ -40,7 +41,7 @@
                                            Background="Transparent">                                    
                                     <Image Name="PART_ImageCover" VerticalAlignment="Bottom"
                                             DockPanel.Dock="Right"
-                                            Height="{Settings GameDetailsCoverHeight}"
+                                            Height="{markupext:Settings GameDetailsCoverHeight}"
                                             StretchDirection="Both" Stretch="Uniform"
                                             RenderOptions.BitmapScalingMode="Fant" />
                                     <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Left">

@@ -2,12 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views"
+                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls"
                     mc:Ignorable="d">
 
-    <Style TargetType="{x:Type SearchWindowGameItem}">
+    <Style TargetType="{x:Type views:SearchWindowGameItem}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type SearchWindowGameItem}">
+                <ControlTemplate TargetType="{x:Type views:SearchWindowGameItem}">
                     <DockPanel Margin="5,5,5,5">
                         <Image Name="PART_ImageGameIcon"
                                VerticalAlignment="Center" Height="32" Width="32" DockPanel.Dock="Left"
@@ -79,13 +81,13 @@
     </Style>
 
     <DataTemplate x:Key="SearchWindowGameItemTemplate">
-        <SearchWindowGameItem />
+        <views:SearchWindowGameItem />
     </DataTemplate>
 
-    <Style TargetType="{x:Type SearchWindowSearchItem}">
+    <Style TargetType="{x:Type views:SearchWindowSearchItem}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type SearchWindowSearchItem}">
+                <ControlTemplate TargetType="{x:Type views:SearchWindowSearchItem}">
                     <StackPanel Orientation="Horizontal" Margin="5,2,5,2">
                         <Viewbox Width="32" Height="32" VerticalAlignment="Center">
                             <ContentControl Name="PART_ContentIcon"
@@ -105,7 +107,7 @@
     </Style>
 
     <DataTemplate x:Key="SearchWindowSearchItemTemplate">
-        <SearchWindowSearchItem />
+        <views:SearchWindowSearchItem />
     </DataTemplate>
 
     <Style x:Key="SearchWindowSearchLabelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">

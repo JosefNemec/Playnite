@@ -14,8 +14,15 @@ using System.Xml.Linq;
 namespace Playnite.DesktopApp.Controls
 {
     [TemplatePart(Name = "PART_TextFilterInput", Type = typeof(TextBox))]
-    public abstract class FilterSelectionBoxBase : ComboBoxListBase
+    public  class FilterSelectionBoxBase : ComboBoxListBase
     {
+        public FilterSelectionBoxBase() : base()
+        {
+            // This is mandatory for custom controls to link to their XAML Styles
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(FilterSelectionBoxBase),
+                new FrameworkPropertyMetadata(typeof(FilterSelectionBoxBase)));
+        }
+
         internal TextBox TextFilterInput;
 
         public bool IsFullTextEnabled

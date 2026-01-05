@@ -2,16 +2,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d">
+                    mc:Ignorable="d"
+                    xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls"
+                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views"
+                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels"
+                    >
 
-    <Style TargetType="{x:Type LibraryDetailsView}">
+    <Style TargetType="{x:Type views:LibraryDetailsView}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type LibraryDetailsView}">
+                <ControlTemplate TargetType="{x:Type views:LibraryDetailsView}">
                     <DockPanel d:DesignWidth="1280" d:DesignHeight="960"
-                               d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
-                        <Grid DockPanel.Dock="{Settings DetailsListPosition}"
-                              Width="{Settings DetailsListWitdh}">
+                               d:DataContext="{x:Static viewmodels:DesignMainViewModel.DesignIntance}">
+                        <Grid DockPanel.Dock="{markupext:Settings DetailsListPosition}"
+                              Width="{markupext:Settings DetailsListWitdh}">
                             <ExtendedListBox x:Name="PART_ListGames"
                                          BorderBrush="{DynamicResource PanelSeparatorBrush}"
                                          ItemContainerStyle="{DynamicResource DetailsViewItemStyle}"
@@ -21,10 +26,10 @@
                                     <Style TargetType="ExtendedListBox" BasedOn="{StaticResource {x:Type ExtendedListBox}}">
                                         <Setter Property="BorderThickness" Value="0,0,1,0" />
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Settings DetailsListPosition}" Value="Right">
+                                            <DataTrigger Binding="{markupext:Settings DetailsListPosition}" Value="Right">
                                                 <Setter Property="BorderThickness" Value="1,0,0,0" />
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Settings ShowPanelSeparators}" Value="False">
+                                            <DataTrigger Binding="{markupext:Settings ShowPanelSeparators}" Value="False">
                                                 <Setter Property="BorderThickness" Value="0" />
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -35,7 +40,7 @@
                                 </ExtendedListBox.GroupStyle>
                                 <ExtendedListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <GameListItem Style="{StaticResource DetailsViewItemTemplate}" />
+                                        <ctrl:GameListItem Style="{StaticResource DetailsViewItemTemplate}" />
                                     </DataTemplate>
                                 </ExtendedListBox.ItemTemplate>
                             </ExtendedListBox>
@@ -54,7 +59,7 @@
                                 </TextBlock.Style>
                             </TextBlock>
                         </Grid>
-                        <DetailsViewGameOverview x:Name="PART_ControlGameView" DockPanel.Dock="Left" />
+                        <views:DetailsViewGameOverview x:Name="PART_ControlGameView" DockPanel.Dock="Left" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
