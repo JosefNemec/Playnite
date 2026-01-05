@@ -90,6 +90,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\Extensions\CustomLibraryPlugin\_name_SettingsView.xaml" />
+    <None Include="Templates\Extensions\CustomMetadataPlugin\_name_SettingsView.xaml" />
+    <None Include="Templates\Extensions\GenericPlugin\_name_SettingsView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Templates\Themes\Desktop\Theme.csproj">
@@ -158,21 +161,17 @@
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
     <PackageReference Include="NLog" Version="4.7.6" />
   </ItemGroup>
-  <ItemGroup Label="Compile items now included by globbing that were not in the original project file">
-    <Compile Remove="Templates\Extensions\GenericPlugin\_name_SettingsView.xaml.cs" />
-    <Compile Remove="Templates\Extensions\GenericPlugin\_name_Settings.cs" />
-    <Compile Remove="Templates\Extensions\GenericPlugin\_name_.cs" />
-    <Compile Remove="Templates\Extensions\GenericPlugin\Properties\AssemblyInfo.cs" />
-    <Compile Remove="Templates\Extensions\CustomMetadataPlugin\_name_SettingsView.xaml.cs" />
-    <Compile Remove="Templates\Extensions\CustomMetadataPlugin\_name_Settings.cs" />
-    <Compile Remove="Templates\Extensions\CustomMetadataPlugin\_name_Provider.cs" />
-    <Compile Remove="Templates\Extensions\CustomMetadataPlugin\_name_.cs" />
-    <Compile Remove="Templates\Extensions\CustomMetadataPlugin\Properties\AssemblyInfo.cs" />
-    <Compile Remove="Templates\Extensions\CustomLibraryPlugin\_name_SettingsView.xaml.cs" />
-    <Compile Remove="Templates\Extensions\CustomLibraryPlugin\_name_Settings.cs" />
-    <Compile Remove="Templates\Extensions\CustomLibraryPlugin\_name_Client.cs" />
-    <Compile Remove="Templates\Extensions\CustomLibraryPlugin\_name_.cs" />
-    <Compile Remove="Templates\Extensions\CustomLibraryPlugin\Properties\AssemblyInfo.cs" />
+  
+  <ItemGroup>
+    <Compile Remove="Templates\Extensions\GenericPlugin\**\*.cs" />
+    <Compile Remove="Templates\Extensions\CustomMetadataPlugin\**\*.cs" />
+    <Compile Remove="Templates\Extensions\CustomLibraryPlugin\**\*.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Remove="Templates\Extensions\CustomLibraryPlugin\_name_SettingsView.xaml" />
+    <Page Remove="Templates\Extensions\CustomMetadataPlugin\_name_SettingsView.xaml" />
+    <Page Remove="Templates\Extensions\GenericPlugin\_name_SettingsView.xaml" />
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(SolutionDir)\Tools\Playnite.Toolbox\Templates\Themes\Changelog" "$(TargetDir)\Templates\Themes\Changelog\" /e /y</PostBuildEvent>
