@@ -10,6 +10,52 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Page Remove="Localization\af_ZA.xaml" />
+    <Page Remove="Localization\ar_SA.xaml" />
+    <Page Remove="Localization\bg_BG.xaml" />
+    <Page Remove="Localization\ca_ES.xaml" />
+    <Page Remove="Localization\cs_CZ.xaml" />
+    <Page Remove="Localization\cy_GB.xaml" />
+    <Page Remove="Localization\da_DK.xaml" />
+    <Page Remove="Localization\de_DE.xaml" />
+    <Page Remove="Localization\el_GR.xaml" />
+    <Page Remove="Localization\en_US.xaml" />
+    <Page Remove="Localization\eo_UY.xaml" />
+    <Page Remove="Localization\es_ES.xaml" />
+    <Page Remove="Localization\et_EE.xaml" />
+    <Page Remove="Localization\fa_IR.xaml" />
+    <Page Remove="Localization\fi_FI.xaml" />
+    <Page Remove="Localization\fr_FR.xaml" />
+    <Page Remove="Localization\ga_IE.xaml" />
+    <Page Remove="Localization\gl_ES.xaml" />
+    <Page Remove="Localization\he_IL.xaml" />
+    <Page Remove="Localization\hr_HR.xaml" />
+    <Page Remove="Localization\hu_HU.xaml" />
+    <Page Remove="Localization\id_ID.xaml" />
+    <Page Remove="Localization\it_IT.xaml" />
+    <Page Remove="Localization\ja_JP.xaml" />
+    <Page Remove="Localization\ko_KR.xaml" />
+    <Page Remove="Localization\lt_LT.xaml" />
+    <Page Remove="Localization\mr_IN.xaml" />
+    <Page Remove="Localization\nl_NL.xaml" />
+    <Page Remove="Localization\no_NO.xaml" />
+    <Page Remove="Localization\pl_PL.xaml" />
+    <Page Remove="Localization\pt_BR.xaml" />
+    <Page Remove="Localization\pt_PT.xaml" />
+    <Page Remove="Localization\ro_RO.xaml" />
+    <Page Remove="Localization\ru_RU.xaml" />
+    <Page Remove="Localization\si_LK.xaml" />
+    <Page Remove="Localization\sk_SK.xaml" />
+    <Page Remove="Localization\sl_SI.xaml" />
+    <Page Remove="Localization\sr_SP.xaml" />
+    <Page Remove="Localization\sv_SE.xaml" />
+    <Page Remove="Localization\tr_TR.xaml" />
+    <Page Remove="Localization\uk_UA.xaml" />
+    <Page Remove="Localization\vi_VN.xaml" />
+    <Page Remove="Localization\zh_CN.xaml" />
+    <Page Remove="Localization\zh_TW.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>0</VersionMinor>
@@ -28,6 +74,9 @@
     <PackageReference Include="AngleSharp" Version="1.4.0" />
     <PackageReference Include="CefSharp.OffScreen.NETCore" Version="143.0.90" />
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="143.0.90" />
+    <PackageReference Include="chromiumembeddedframework.runtime.win-arm64" Version="143.0.9" />
+    <PackageReference Include="chromiumembeddedframework.runtime.win-x64" Version="143.0.9" />
+    <PackageReference Include="chromiumembeddedframework.runtime.win-x86" Version="143.0.9" />
     <PackageReference Include="CommandLineParser" Version="2.8.0" />
     <PackageReference Include="CoreWCF.NetNamedPipe" Version="1.8.0-preview.38" />
     <PackageReference Include="CoreWCF.Primitives" Version="1.8.0" />
@@ -57,8 +106,154 @@
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Localization\af_ZA.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ar_SA.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\bg_BG.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ca_ES.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\cs_CZ.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\cy_GB.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\da_DK.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\de_DE.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\el_GR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\en_US.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\eo_UY.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\es_ES.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\et_EE.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\fa_IR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\fi_FI.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\fr_FR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ga_IE.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\gl_ES.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\he_IL.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\hr_HR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\hu_HU.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\id_ID.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\it_IT.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ja_JP.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ko_KR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\lt_LT.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\mr_IN.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\nl_NL.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\no_NO.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\pl_PL.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\pt_BR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\pt_PT.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ro_RO.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\ru_RU.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\si_LK.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\sk_SK.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\sl_SI.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\sr_SP.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\sv_SE.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\tr_TR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\uk_UA.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\vi_VN.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\zh_CN.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Localization\zh_TW.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Common.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="crash_reporter.cfg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="gamecontrollerdb.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Localization\locstatus.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Safe Mode.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
+                    >
 
-    <Style x:Key="ItemFilterQuickPreset" TargetType="CheckBoxEx">
+    <Style x:Key="ItemFilterQuickPreset" TargetType="ctrl:CheckBoxEx">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -9,7 +11,7 @@
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="CheckBoxEx">
+                <ControlTemplate TargetType="ctrl:CheckBoxEx">
                     <Border Background="{TemplateBinding Background}"
                             Margin="10,0,10,0">
                         <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
@@ -42,12 +44,12 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type FilterPresetSelector}">
+    <Style TargetType="{x:Type ctrl:FilterPresetSelector}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type FilterPresetSelector}">
-                    <ItemsControlEx x:Name="PART_ItemsFilterPresets" Focusable="False"
+                <ControlTemplate TargetType="{x:Type ctrl:FilterPresetSelector}">
+                    <ctrl:ItemsControlEx x:Name="PART_ItemsFilterPresets" Focusable="False"
                                     KeyboardNavigation.DirectionalNavigation="Once"
                                     HorizontalLayout="True">
                         <ItemsControl.ItemsPanel>                            
@@ -65,7 +67,7 @@
                                 </ScrollViewer>
                             </ControlTemplate>
                         </ItemsControl.Template>
-                    </ItemsControlEx>
+                    </ctrl:ItemsControlEx>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

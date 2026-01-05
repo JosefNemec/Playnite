@@ -2,16 +2,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                    mc:Ignorable="d">
+                    mc:Ignorable="d"
+                    xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views"
+                    xmlns:viewmodels="clr-namespace:Playnite.FullscreenApp.ViewModels"
+                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
+                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
+                    >
 
-    <Style TargetType="{x:Type Main}">
+    <Style TargetType="{x:Type views:Main}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Main}">
+                <ControlTemplate TargetType="{x:Type views:Main}">
                     <Grid x:Name="PART_MainHost"
                           d:DesignWidth="{StaticResource DesignWidth}"
                           d:DesignHeight="{StaticResource DesignHeight}"
-                          d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
+                          d:DataContext="{x:Static viewmodels:DesignMainViewModel.DesignIntance}">
                         <Grid x:Name="PART_ViewHost" Background="{DynamicResource MainBackgourndBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -36,7 +41,7 @@
                                     <ColumnDefinition Width="100" />
                                 </Grid.ColumnDefinitions>
 
-                                <FilterPresetSelector x:Name="PART_FilterPresetSelector" Grid.Column="1" Margin="0,0,50,0" />
+                                <ctrl:FilterPresetSelector x:Name="PART_FilterPresetSelector" Grid.Column="1" Margin="0,0,50,0" />
 
                                 <ContentControl x:Name="PART_ElemBatteryStatus" Focusable="False" FontSize="42"
                                             VerticalAlignment="Center" Margin="10,0,10,0"
@@ -74,18 +79,18 @@
                                        VerticalAlignment="Center" Margin="20,0,20,0"
                                        Grid.Column="4"/>
 
-                                <ButtonEx x:Name="PART_ButtonProgramUpdate" VerticalAlignment="Center"
+                                <ctrl:ButtonEx x:Name="PART_ButtonProgramUpdate" VerticalAlignment="Center"
                                           Margin="10,0,10,0" Height="48" MinWidth="48"
                                           Style="{DynamicResource ButtonTopMenu}"                                          
                                           Grid.Column="5">
-                                    <ButtonEx.Content>
+                                    <ctrl:ButtonEx.Content>
                                         <TextBlock Text="&#xef08;" FontFamily="{StaticResource FontIcoFont}"                                                   
                                                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2"
                                                    Foreground="{DynamicResource GlyphLightBrush}" FontSize="30" />
-                                    </ButtonEx.Content>
-                                </ButtonEx>
+                                    </ctrl:ButtonEx.Content>
+                                </ctrl:ButtonEx>
 
-                                <ButtonEx x:Name="PART_ButtonNotifications" VerticalAlignment="Center"
+                                <ctrl:ButtonEx x:Name="PART_ButtonNotifications" VerticalAlignment="Center"
                                           Margin="10,0,10,0" Height="48" MinWidth="48"
                                           Grid.Column="6">
                                     <Button.Content>
@@ -101,36 +106,36 @@
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource ButtonTopMenu}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Api Notifications.Count}" Value="0">
+                                                <DataTrigger Binding="{markupext:Api Notifications.Count}" Value="0">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Button.Style>
-                                </ButtonEx>
+                                </ctrl:ButtonEx>
 
-                                <ButtonEx x:Name="PART_ButtonMainMenu" VerticalAlignment="Center"
+                                <ctrl:ButtonEx x:Name="PART_ButtonMainMenu" VerticalAlignment="Center"
                                           Style="{DynamicResource ButtonTopMenu}"
                                           Margin="10,0,10,0" Height="48" MinWidth="48"
                                           Grid.Column="7">
                                     <Button.Content>
                                         <Image RenderOptions.BitmapScalingMode="Fant" Margin="2"
-                                           Source="{ThemeFile 'Images/applogo_clean.png'}" />
+                                           Source="{markupext:ThemeFile 'Images/applogo_clean.png'}" />
                                     </Button.Content>
-                                </ButtonEx>
+                                </ctrl:ButtonEx>
                             </Grid>
 
                             <DockPanel Grid.Row="1">
-                                <Filters x:Name="PART_ElemFilters"
+                                <views:Filters x:Name="PART_ElemFilters"
                                          DockPanel.Dock="Left" Focusable="False" />
 
-                                <FiltersAdditional x:Name="PART_ElemFiltersAdditional"
+                                <views:FiltersAdditional x:Name="PART_ElemFiltersAdditional"
                                                    DockPanel.Dock="Left" Focusable="False" />
 
                                 <ContentControl x:Name="PART_ContentFilterItems"
                                             DockPanel.Dock="Left" Focusable="False" />
 
-                                <ListBoxEx x:Name="PART_ListGameItems" Margin="25,0,25,0"
+                                <ctrl:ListBoxEx x:Name="PART_ListGameItems" Margin="25,0,25,0"
                                            Background="Transparent" BorderThickness="0"
                                            DockPanel.Dock="Right"
                                            KeyboardNavigation.DirectionalNavigation="Once" />
@@ -163,27 +168,27 @@
 
                                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                                     <!--Install-->
-                                    <ButtonEx x:Name="PART_ButtonInstall"
+                                    <ctrl:ButtonEx x:Name="PART_ButtonInstall"
                                               Style="{DynamicResource ButtonBottomMenu}"
                                               Content="{DynamicResource LOCInstallGame}" />
                                     <!--Play-->
-                                    <ButtonEx x:Name="PART_ButtonPlay"
+                                    <ctrl:ButtonEx x:Name="PART_ButtonPlay"
                                               Style="{DynamicResource ButtonBottomMenu}"
                                               Content="{DynamicResource LOCPlayGame}" />
                                     <!--Details-->
-                                    <ButtonEx x:Name="PART_ButtonDetails"
+                                    <ctrl:ButtonEx x:Name="PART_ButtonDetails"
                                               Style="{DynamicResource ButtonBottomMenu}"
                                               Content="{DynamicResource LOCGameDetails}" />
                                     <!--Options-->
-                                    <ButtonEx x:Name="PART_ButtonGameOptions"
+                                    <ctrl:ButtonEx x:Name="PART_ButtonGameOptions"
                                               Style="{DynamicResource ButtonBottomMenu}"
                                               Content="{DynamicResource LOCGameOptions}" />
                                     <!--Search-->
-                                    <ButtonEx x:Name="PART_ButtonSearch"
+                                    <ctrl:ButtonEx x:Name="PART_ButtonSearch"
                                               Style="{DynamicResource ButtonBottomMenu}"
                                               Content="{DynamicResource LOCSearchLabel}" />
                                     <!--Filter-->
-                                    <ButtonEx x:Name="PART_ButtonFilter"
+                                    <ctrl:ButtonEx x:Name="PART_ButtonFilter"
                                               Style="{DynamicResource ButtonBottomMenu}"
                                               Content="{DynamicResource LOCFilter}" />
                                 </StackPanel>
@@ -219,10 +224,10 @@
                             </Grid>
                         </Grid>
 
-                        <GameDetails x:Name="PART_ElemGameDetails" Grid.RowSpan="3"
+                        <views:GameDetails x:Name="PART_ElemGameDetails" Grid.RowSpan="3"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
-                        <GameStatus x:Name="PART_ElemGameStatus" Grid.RowSpan="3"
+                        <views:GameStatus x:Name="PART_ElemGameStatus" Grid.RowSpan="3"
                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </Grid>
                 </ControlTemplate>

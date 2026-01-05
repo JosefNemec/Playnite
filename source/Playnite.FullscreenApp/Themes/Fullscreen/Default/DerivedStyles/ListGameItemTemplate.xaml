@@ -2,20 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
+                    xmlns:markupext="clr-namespace:Playnite.Extensions.Markup;assembly=Playnite"
                     mc:Ignorable="d">
 
-    <Style x:Key="ListGameItemTemplate" TargetType="{x:Type GameListItem}">
+    <Style x:Key="ListGameItemTemplate" TargetType="{x:Type ctrl:GameListItem}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type GameListItem}">
+                <ControlTemplate TargetType="{x:Type ctrl:GameListItem}">
                     <Grid>
                         <Image x:Name="PART_ImageCover"
                                RenderOptions.BitmapScalingMode="Fant" StretchDirection="Both"
                                VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Stretch="{Settings CoverArtStretch}" />
+                               Stretch="{markupext:Settings CoverArtStretch}" />
                         <Border Background="#AA000000" x:Name="BorderDarken" Visibility="Collapsed" />
                         <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis"
-                                   Visibility="{Settings Fullscreen.ShowGameTitles}"
+                                   Visibility="{markupext:Settings Fullscreen.ShowGameTitles}"
                                    Style="{DynamicResource TextBlockBaseStyle}"
                                    FontSize="{DynamicResource FontSizeSmall}"
                                    HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
@@ -26,7 +28,7 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsInstalled}" Value="False" />
-                                <Condition Binding="{Settings Fullscreen.DarkenUninstalledGamesGrid}" Value="True" />
+                                <Condition Binding="{markupext:Settings Fullscreen.DarkenUninstalledGamesGrid}" Value="True" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" TargetName="BorderDarken" />
                         </MultiDataTrigger>

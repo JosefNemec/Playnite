@@ -1,6 +1,8 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
+                    >
 
     <Style x:Key="ScrollBarTrackButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -116,5 +118,5 @@
         </Setter>
     </Style>
 
-    <Style TargetType="ScrollViewerEx" BasedOn="{StaticResource {x:Type ScrollViewer}}" />
+    <Style TargetType="ctrl:ScrollViewerEx" BasedOn="{StaticResource {x:Type ScrollViewer}}" />
 </ResourceDictionary>

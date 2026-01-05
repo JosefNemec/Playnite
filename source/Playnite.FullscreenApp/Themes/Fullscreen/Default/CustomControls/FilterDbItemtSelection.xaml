@@ -1,15 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrl="clr-namespace:Playnite.FullscreenApp.Controls"
+                    >
 
-    <Style TargetType="{x:Type FilterDbItemtSelection}">
+    <Style TargetType="{x:Type ctrl:FilterDbItemtSelection}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type FilterDbItemtSelection}">
+                <ControlTemplate TargetType="{x:Type ctrl:FilterDbItemtSelection}">
                     <DockPanel Width="{DynamicResource FilterPanelWidth}"
                                Background="{DynamicResource OverlayMenuBackgroundBrush}"
                                x:Name="PART_MenuHost">
-                        <ButtonEx DockPanel.Dock="Top" Margin="15,5,15,5" BorderThickness="2"
+                        <ctrl:ButtonEx DockPanel.Dock="Top" Margin="15,5,15,5" BorderThickness="2"
                                   x:Name="PART_ButtonBack">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
@@ -21,13 +23,13 @@
                                                Style="{StaticResource TextBlockBaseStyle}"/>
                                 </StackPanel>
                             </Button.Content>
-                        </ButtonEx>
+                        </ctrl:ButtonEx>
 
-                        <ButtonEx Content="{DynamicResource LOCClearLabel}" DockPanel.Dock="Top"
+                        <ctrl:ButtonEx Content="{DynamicResource LOCClearLabel}" DockPanel.Dock="Top"
                                   Margin="15,5,15,5" BorderThickness="2"
                                   x:Name="PART_ButtonClear"/>
 
-                        <ItemsControlEx x:Name="PART_ItemsHost"
+                        <ctrl:ItemsControlEx x:Name="PART_ItemsHost"
                                         DockPanel.Dock="Top" Focusable="False"
                                         KeyboardNavigation.DirectionalNavigation="Once" />
                     </DockPanel>

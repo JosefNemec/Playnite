@@ -10,6 +10,9 @@
     <StartupObject>Playnite.DesktopApp.ProgramEntry</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
@@ -17,6 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Playnite\Playnite.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App.config">

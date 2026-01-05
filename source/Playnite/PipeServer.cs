@@ -107,18 +107,7 @@ namespace Playnite
 
     // 5. CLIENT SIDE: Keep using System.ServiceModel
     public class PipeClient : ClientBase<IPipeService>
-    {
-        //public PipeClient(string endpoint)
-        //    : base(new System.ServiceModel.NetNamedPipeBinding(),
-        //           new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService"))
-        //{
-        //}
-
-        //public void InvokeCommand(CmdlineCommand command, string args)
-        //{
-        //    Channel.InvokeCommand(command, args);
-        //}
-
+    {        
         public PipeClient(string endpoint)
     : base(new ServiceEndpoint(ContractDescription.GetContract(typeof(IPipeService)), new NetNamedPipeBinding(), new EndpointAddress(endpoint.TrimEnd('/') + @"/PlayniteService")))
         {
