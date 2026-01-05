@@ -5,7 +5,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:markupext="clr-namespace:Playnite.DesktopApp.Markup;assembly=Playnite.DesktopApp"
                     xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels"
+                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels;assembly=Playnite.DesktopApp"
                     xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     mc:Ignorable="d">
 

@@ -3,7 +3,7 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     xmlns:views="clr-namespace:Playnite.DesktopApp.Controls.Views;assembly=Playnite.DesktopApp"
-                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels"
+                    xmlns:viewmodels="clr-namespace:Playnite.DesktopApp.ViewModels;assembly=Playnite.DesktopApp"
                     xmlns:ctrl="clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp"
                     mc:Ignorable="d">
 
