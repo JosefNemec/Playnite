@@ -9,7 +9,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:views="clr-namespace:Playnite.FullscreenApp.Controls.Views"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
-        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:p="clr-namespace:Playnite;assembly=Playnite"
         mc:Ignorable="d"

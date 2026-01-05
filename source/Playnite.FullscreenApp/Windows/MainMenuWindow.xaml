@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Playnite.FullscreenApp.Windows"
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
-        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup"
+        xmlns:pmrk="clr-namespace:Playnite.FullscreenApp.Markup;assembly=Playnite.FullscreenApp"
         xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
