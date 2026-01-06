@@ -9,6 +9,9 @@
     <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
     <AssemblyName>Playnite.DesktopApp</AssemblyName>
     <StartupObject>Playnite.DesktopApp.ProgramEntry</StartupObject>
+    <LargeAddressAware>true</LargeAddressAware>
+    <LargeAddressAwareAfterTargets>PostBuildEvent</LargeAddressAwareAfterTargets>
+    <LargeAddressAwareTargetAssembly>$(OutDir)\Playnite.DesktopApp.exe</LargeAddressAwareTargetAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Themes\Desktop\Default\Images\applogo.ico</ApplicationIcon>
@@ -367,6 +370,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
+    <PackageReference Include="LargeAddressAware" Version="1.0.6" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.1" />

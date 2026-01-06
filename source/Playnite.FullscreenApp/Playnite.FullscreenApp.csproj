@@ -7,7 +7,10 @@
     <UseWPF>true</UseWPF>
     <Configurations>Debug;Release;DebugAll</Configurations>
     <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
-    <StartupObject>Playnite.FullscreenApp.ProgramEntry</StartupObject>    
+    <StartupObject>Playnite.FullscreenApp.ProgramEntry</StartupObject>
+    <LargeAddressAware>true</LargeAddressAware>
+    <LargeAddressAwareAfterTargets>PostBuildEvent</LargeAddressAwareAfterTargets>
+    <LargeAddressAwareTargetAssembly>$(OutDir)\Playnite.FullscreenApp.exe</LargeAddressAwareTargetAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Themes\Fullscreen\Default\Images\applogo.ico</ApplicationIcon>
@@ -63,6 +66,7 @@
     <Page Remove="Themes\Fullscreen\Default\Views\TextInput.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LargeAddressAware" Version="1.0.6" />
     <PackageReference Include="Prism.Wpf" Version="9.0.537" />
   </ItemGroup>
   <ItemGroup>

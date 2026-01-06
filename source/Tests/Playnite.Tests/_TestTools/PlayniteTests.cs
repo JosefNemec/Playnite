@@ -65,13 +65,14 @@ namespace Playnite.Tests
 
         public static void SetEntryAssembly(Assembly assembly)
         {
-            AppDomainManager manager = new AppDomainManager();
-            FieldInfo entryAssemblyfield = manager.GetType().GetField("m_entryAssembly", BindingFlags.Instance | BindingFlags.NonPublic);
-            entryAssemblyfield.SetValue(manager, assembly);
+            throw new NotImplementedException("Setting entry assembly not support in .NET core, tests should be refactored to pass Assembly directly or store Assemlby reference in static helper class");
+            //AppDomainManager manager = new AppDomainManager();
+            //FieldInfo entryAssemblyfield = manager.GetType().GetField("m_entryAssembly", BindingFlags.Instance | BindingFlags.NonPublic);
+            //entryAssemblyfield.SetValue(manager, assembly);
 
-            AppDomain domain = AppDomain.CurrentDomain;
-            FieldInfo domainManagerField = domain.GetType().GetField("_domainManager", BindingFlags.Instance | BindingFlags.NonPublic);
-            domainManagerField.SetValue(domain, manager);
+            //AppDomain domain = AppDomain.CurrentDomain;
+            //FieldInfo domainManagerField = domain.GetType().GetField("_domainManager", BindingFlags.Instance | BindingFlags.NonPublic);
+            //domainManagerField.SetValue(domain, manager);
         }
 
         public static Mock<IPlayniteAPI> GetTestingApi()
