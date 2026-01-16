@@ -219,5 +219,41 @@ namespace Playnite
                 }
             }
         }
+
+        public static bool IsHResultCloudError(int hresult)
+        {
+            return hresult == unchecked((int)0x80070166) || // ERROR_CLOUD_FILE_SYNC_ROOT_METADATA_CORRUPT
+                   hresult == unchecked((int)0x8007016A) || // ERROR_CLOUD_FILE_PROVIDER_NOT_RUNNING
+                   hresult == unchecked((int)0x8007016B) || // ERROR_CLOUD_FILE_METADATA_CORRUPT
+                   hresult == unchecked((int)0x8007016C) || // ERROR_CLOUD_FILE_METADATA_TOO_LARGE
+                   hresult == unchecked((int)0x8007016D) || // ERROR_CLOUD_FILE_PROPERTY_BLOB_TOO_LARGE
+                   hresult == unchecked((int)0x8007016E) || // ERROR_CLOUD_FILE_PROPERTY_BLOB_CHECKSUM_MISMATCH
+                   hresult == unchecked((int)0x80070176) || // ERROR_CLOUD_FILE_TOO_MANY_PROPERTY_BLOBS
+                   hresult == unchecked((int)0x80070177) || // ERROR_CLOUD_FILE_PROPERTY_VERSION_NOT_SUPPORTED
+                   hresult == unchecked((int)0x80070179) || // ERROR_CLOUD_FILE_NOT_IN_SYNC
+                   hresult == unchecked((int)0x8007017A) || // ERROR_CLOUD_FILE_ALREADY_CONNECTED
+                   hresult == unchecked((int)0x8007017B) || // ERROR_CLOUD_FILE_NOT_SUPPORTED
+                   hresult == unchecked((int)0x8007017C) || // ERROR_CLOUD_FILE_INVALID_REQUEST
+                   hresult == unchecked((int)0x8007017D) || // ERROR_CLOUD_FILE_READ_ONLY_VOLUME
+                   hresult == unchecked((int)0x8007017E) || // ERROR_CLOUD_FILE_CONNECTED_PROVIDER_ONLY
+                   hresult == unchecked((int)0x8007017F) || // ERROR_CLOUD_FILE_VALIDATION_FAILED
+                   hresult == unchecked((int)0x80070182) || // ERROR_CLOUD_FILE_AUTHENTICATION_FAILED
+                   hresult == unchecked((int)0x80070183) || // ERROR_CLOUD_FILE_INSUFFICIENT_RESOURCES
+                   hresult == unchecked((int)0x80070184) || // ERROR_CLOUD_FILE_NETWORK_UNAVAILABLE
+                   hresult == unchecked((int)0x80070185) || // ERROR_CLOUD_FILE_UNSUCCESSFUL
+                   hresult == unchecked((int)0x80070186) || // ERROR_CLOUD_FILE_NOT_UNDER_SYNC_ROOT
+                   hresult == unchecked((int)0x80070187) || // ERROR_CLOUD_FILE_IN_USE
+                   hresult == unchecked((int)0x80070188) || // ERROR_CLOUD_FILE_PINNED
+                   hresult == unchecked((int)0x80070189) || // ERROR_CLOUD_FILE_REQUEST_ABORTED
+                   hresult == unchecked((int)0x8007018A) || // ERROR_CLOUD_FILE_PROPERTY_CORRUPT
+                   hresult == unchecked((int)0x8007018B) || // ERROR_CLOUD_FILE_ACCESS_DENIED
+                   hresult == unchecked((int)0x8007018C) || // ERROR_CLOUD_FILE_INCOMPATIBLE_HARDLINKS
+                   hresult == unchecked((int)0x8007018D) || // ERROR_CLOUD_FILE_PROPERTY_LOCK_CONFLICT
+                   hresult == unchecked((int)0x8007018E) || // ERROR_CLOUD_FILE_REQUEST_CANCELED
+                   hresult == unchecked((int)0x80070194) || // ERROR_CLOUD_FILE_PROVIDER_TERMINATED
+                   hresult == unchecked((int)0x800701AA) || // ERROR_CLOUD_FILE_REQUEST_TIMEOUT
+                   hresult == unchecked((int)0x800701B2) || // ERROR_CLOUD_FILE_DEHYDRATION_DISALLOWED
+                   hresult == unchecked((int)0x800701DB);   // ERROR_CLOUD_FILE_US_MESSAGE_TIMEOUT
+        }
     }
 }

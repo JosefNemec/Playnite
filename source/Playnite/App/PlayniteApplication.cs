@@ -526,6 +526,16 @@ namespace Playnite
                     return;
                 }
 
+                // This seems to start happening after January Windows 11 update for libraries synced via cloud
+                // storage (OneDrive and DropBox reported by users). Looks like something fucked in that Windows update
+                // but we generally do not recommend/support storing files on cloud folders.
+                if (Diagnostic.IsHResultCloudError(exception.HResult))
+                {
+                    Dialogs.ShowErrorMessage("Cloud related file system operation failed. Might be issue with Windows or cloud sync app you are using.\n\nWe do not recommend storing Playnite files on cloud synced folders since it's been known to cause data corruption in the past.");
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
                 // ERROR_DISK_FULL
                 if (exception.HResult == unchecked((int)0x80070070) ||
                     // "device not ready" error. Happens when people run Playnite from attached storage as far as I can tell.
