@@ -1107,7 +1107,7 @@ Si vous rencontrez des problèmes après l'installation d'un thème ou d'une ext
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Statut des jeux lancés pour la première fois</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Échec de l'initialisation du script PowerShell. Il est recommandé aux utilisateurs de Windows 7 de (ré)installer PowerShell 5.1 pour résoudre ce problème.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Un préréglage portant ce nom existe déjà. Mettre à jour le préréglage avec les nouveaux paramètres ?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Remplissage automatique des noms de tri pour les jeux ajoutés ou modifiés par lots</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Les mots suivants seront ignorés lors de la génération de noms de tri automatique :</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Cette liste permet d'indiquer les premiers mots et lettres d'un nom de jeu que vous souhaitez ignorer lors du tri. &quot;The&quot;, &quot;An&quot; et &quot;A&quot; sont ignorés par défaut.</sys:String>

@@ -426,7 +426,7 @@ Se desativado, as imagens de fundo serão transferidas apenas quando necessária
     <sys:String x:Key="LOCOpenDirectoryCommand">Comando de abrir pasta</sys:String>
     <sys:String x:Key="LOCSettingsPreferredAgeRatingOrg"></sys:String>
     <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdate">Atualizar tamanho da instalação de jogos ao atualizar a biblioteca</sys:String>
-    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsScanLibInstallSizeOnLibUpdateTooltip">Verifica e atualiza o tamanho de instalação dos jogos se for detetado que os seus ficheiros foram modificados desde a última verificação</sys:String>
     <sys:String x:Key="LOCStrechNone">Nenhum</sys:String>
     <sys:String x:Key="LOCStrechFill">Preencher</sys:String>
     <sys:String x:Key="LOCStrechUniform">Uniforme</sys:String>
@@ -438,8 +438,8 @@ Se desativado, as imagens de fundo serão transferidas apenas quando necessária
     <sys:String x:Key="LOCImportError">Erro de Importação</sys:String>
     <sys:String x:Key="LOCLoginRequired">Autenticação necessária</sys:String>
     <sys:String x:Key="LOCLoginFailed">Falha na autenticação</sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRendering"></sys:String>
-    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip"></sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRendering">Modo alternativo de renderização da visualização da Web</sys:String>
+    <sys:String x:Key="LOCSettingsAltWebViewRenderingTooltip">Use quando tiver problemas com visualizações da Web, por exemplo, diálogos de autenticação de integração</sys:String>
     <sys:String x:Key="LOCSettingsPartialDescriptionLoading" xml:space="preserve">Carregamento parcial de grandes descrições do jogo</sys:String>
     <sys:String x:Key="LOCSettingsPartialDescriptionLoadingTooltip">Grandes descrições podem causar um atraso visível ao selecionar os jogos.
 
@@ -451,10 +451,10 @@ Quando ativado, somente parte do texto da descrição será inicialmente carrega
 Esta opção também pode ser alterada nas configurações da aplicação.</sys:String>
     <!--Emulator Import-->
     <sys:String x:Key="LOCEmuWizardWindowTitle">Assistente de Importação de Emulação</sys:String>
-    <sys:String x:Key="LOCEmuWizardIntro"></sys:String>
+    <sys:String x:Key="LOCEmuWizardIntro">Este feiticeiro irá guiá-lo pelo processo de transferência e importação de emuladores de consola e importação de jogos emulados</sys:String>
     <sys:String x:Key="LOCEmuWizardNotice">Tem em atenção que podes sempre adicionar outros emuladores e/ou jogos mais tarde, através do menu principal (na opção &quot;Biblioteca&quot; para configuração de emuladores e na opção &quot;Adicionar jogos&quot; para jogos emulados).</sys:String>
-    <sys:String x:Key="LOCEmuDownloadDescription"></sys:String>
-    <sys:String x:Key="LOCEmuWizardEmuImportIntro"></sys:String>
+    <sys:String x:Key="LOCEmuDownloadDescription">Abaixo está uma lista de emuladores que o Playnite consegue reconhecer e configurar automaticamente. Pode descarregar instaladores dos emuladores a partir das respetivas páginas Web. Após instalar os emuladores (manualmente), pode importá-los na caixa de diálogo de configuração do emulador.</sys:String>
+    <sys:String x:Key="LOCEmuWizardEmuImportIntro">Pode importar quaisquer emuladores instalados no seu computador clicando no botão &quot;Detetar automaticamente a partir da pasta… &quot;. O Playnite irá procurar na pasta selecionada quaisquer emuladores conhecidos e fornecerá a opção de os importar. Pode usar este botão várias vezes para importar emuladores de diferentes pastas. Os emuladores serão adicionados ao final da lista atual.</sys:String>
     <sys:String x:Key="LOCEmuWizardGameImportIntro"></sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorWarning">Não há emuladores selecionados para importação. Não poderás importar automaticamente nenhum jogo emulado sem antes configurar os emuladores. Tens a certeza que pretendes continuar e sair do processo de importação?</sys:String>
     <sys:String x:Key="LOCEmuWizardNoEmulatorForGamesWarning"></sys:String>

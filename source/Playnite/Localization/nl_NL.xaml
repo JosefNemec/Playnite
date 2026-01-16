@@ -961,7 +961,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
 </sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Installatie van deze add-on is ingepland.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installeer</sys:String>
-    <sys:String x:Key="LOCAddonReinstall"></sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Opnieuw installeren</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Verwijder</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Reeds geïnstalleerd</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Geen nieuwe extensie updates gevonden.</sys:String>

@@ -942,7 +942,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">更改将在应用程序重开后生效。</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">该附加组件已被计划安装。</sys:String>
     <sys:String x:Key="LOCAddonInstall">安装</sys:String>
-    <sys:String x:Key="LOCAddonReinstall"></sys:String>
+    <sys:String x:Key="LOCAddonReinstall">重新安装</sys:String>
     <sys:String x:Key="LOCAddonUninstall">卸载</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">未发现新的附加组件更新。</sys:String>

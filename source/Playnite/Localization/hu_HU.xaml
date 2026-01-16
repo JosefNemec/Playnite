@@ -1096,8 +1096,8 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatási hiba. Ha Windows 7 alól tolod, próbáld meg (újra)telepíteni a PowerShell 5.1-et.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Töltse ki automatikusan a rendezési nevet a tömegesen hozzáadott vagy szerkesztett játékoknál</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Ha könyvtárfrissítéssel, emulátor mappa beolvasással, vagy mappabeolvasással adsz hozzá játékokat, automatikusan töltse ki a &quot;Rendezési név&quot; mezőt egy könnyebben sorba rendezhető játéknévvel. Például a &quot;The Witcher 3&quot; a &quot;Witcher 03&quot;-as rendezési nevet fogja kapni. Nem fog az eredetitől különböző nevet adni, és csak az üres rendezési neveket tölti ki.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Ezeket a szavakat automatikusan eltávolítja a rendezési név elejéről:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Így lehet egyszerűen eltávolítani a rendezési nevek elejéről az extra szavakat. Alapértelmezésben a &quot;The&quot;, az &quot;An&quot; és az &quot;A&quot; kerül eltávolításra.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Rendezési név mező automatikus kitöltése</sys:String>

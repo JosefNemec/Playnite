@@ -1116,8 +1116,8 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">初めてプレイするゲームに付与されるステータス</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell スクリプトランタイムの初期化に失敗しました。Windows 7 を使用している場合は、PowerShell 5.1 を (再) インストールすると問題が解決します。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">指定された名前のフィルタープリセットはすでに存在します。新しい設定でプリセットをアップデートしますか？</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">一括追加または編集されたゲームについて、欠落しているソート名を自動的に補完する</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">ゲームを編集する際、ライブラリ更新、エミュレータフォルダスキャン、または通常のフォルダスキャンを通じてゲームを追加する際は、「ソート名」フィールドにゲームの名前をより適切にソートできる形式で自動的に入力します。例えば「ロックマン 3」の場合、ソート名は「ロックマン 03」となります。ゲーム名と同一のソート名は設定されず、空欄のソート名のみが自動的に更新されます。</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">これらの単語は自動的に入力されたソート用タイトルの先頭から削除されます:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">並べ替えの目的で文字列の先頭にある単語を無視する場合に使用します。デフォルトは &quot;The&quot;, &quot;An&quot;, &quot;A&quot; です。</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">ソート用タイトルのないゲームにソート名を設定</sys:String>
