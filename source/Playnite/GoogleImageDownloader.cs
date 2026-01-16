@@ -96,10 +96,14 @@ namespace Playnite
                 foreach (Match match in matches)
                 {
                     var data = Serialization.FromJson<List<List<object>>>($"[{match.Value}]");
+                    var imageUrl = data[1][0].ToString();
+                    if (images.Any(a => a.ImageUrl.Equals(imageUrl, StringComparison.OrdinalIgnoreCase)))
+                        continue;
+
                     images.Add(new GoogleImage
                     {
                         ThumbUrl = data[0][0].ToString(),
-                        ImageUrl = data[1][0].ToString(),
+                        ImageUrl = imageUrl,
                         Height = uint.Parse(data[1][1].ToString()),
                         Width = uint.Parse(data[1][2].ToString())
                     });
