@@ -43,7 +43,6 @@ namespace Playnite.SDK.Events
         RightStickUp,
         RightStickDown
     }
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
     /// <summary>
     /// Application wide events.
@@ -261,26 +260,16 @@ namespace Playnite.SDK.Events
     {
     }
 
-    /// <summary>
-    ///
-    /// </summary>
     public class OnControllerButtonStateChangedArgs
     {
-        /// <summary>
-        ///
-        /// </summary>
-        public ControllerInput Button { get; }
+        public ControllerInput Button { get; internal set; }
+        public ControllerInputState State { get; internal set; }
+        public GamepadController Controller { get; internal set; }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public ControllerInputState State { get; }
+        public OnControllerButtonStateChangedArgs()
+        {
+        }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="state"></param>
         public OnControllerButtonStateChangedArgs(ControllerInput input, ControllerInputState state)
         {
             Button = input;
@@ -288,4 +277,21 @@ namespace Playnite.SDK.Events
         }
     }
 
+    public class OnControllerConnectedArgs
+    {
+        public GamepadController Controller { get; internal set; }
+    }
+
+    public class OnControllerDisconnectedArgs
+    {
+        public GamepadController Controller { get; internal set; }
+    }
+
+    public class GamepadController
+    {
+        public int InstanceId { get; internal set; }
+        public string Path { get; internal set; }
+        public string Name { get; internal set; }
+        public bool Enabled { get; internal set; }
+    }
 }

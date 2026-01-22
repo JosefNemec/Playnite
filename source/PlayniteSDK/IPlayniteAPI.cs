@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Playnite.SDK.Events;
 
 namespace Playnite.SDK
 {
@@ -136,6 +137,12 @@ namespace Playnite.SDK
         /// <param name="source"></param>
         /// <param name="args"></param>
         void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        List<GamepadController> GetConnectedControllers();
     }
 
     /// <summary>

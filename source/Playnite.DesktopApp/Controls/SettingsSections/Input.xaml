@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.Input"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="600">
 
     <UserControl.Resources>
@@ -23,13 +23,16 @@
     </UserControl.Resources>
 
     <StackPanel Margin="20">
-        <CheckBox Content="{DynamicResource LOCSettingsXInputInDesktopMode}"
+        <CheckBox Content="{DynamicResource LOCSettingsXInputProcessing}"
                 ContentStringFormat="{}{0} *"
                 Name="CheckXInputEnabled"
-                IsChecked="{Binding Settings.EnableControllerInDesktop}"/>
-        <CheckBox Content="{DynamicResource LOCSettingsXInputGuideOpensFullscreen}"
-                Margin="15,15,0,0" 
-                IsChecked="{Binding Settings.GuideButtonOpensFullscreen}"
-                IsEnabled="{Binding IsChecked, ElementName=CheckXInputEnabled}"/>
+                IsChecked="{Binding Settings.EnableGameControllerSupport}"/>
+        <ItemsControl Margin="25,15,0,0" ItemsSource="{Binding Controllers}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding Enabled}" Content="{Binding Name}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </StackPanel>
 </UserControl>

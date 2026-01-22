@@ -81,7 +81,13 @@ namespace Playnite.Input
         public bool StandardProcessingEnabled { get; set; } = true;
 
         public event EventHandler<OnControllerButtonStateChangedArgs> ButtonChanged;
+        public event EventHandler<OnControllerConnectedArgs> ControllerConnected;
+        public event EventHandler<OnControllerDisconnectedArgs> ControllerDisconnected;
         public event EventHandler ControllersChanged;
+
+        private readonly OnControllerButtonStateChangedArgs controllerButtonStateChangedArgs = new OnControllerButtonStateChangedArgs();
+        private readonly OnControllerConnectedArgs controllerConnectedArgs = new OnControllerConnectedArgs();
+        private readonly OnControllerDisconnectedArgs controllerDisconnectedArgs = new OnControllerDisconnectedArgs();
 
         private readonly int resendDelay = 700;
         private readonly int resendRate = 80;
@@ -147,17 +153,13 @@ namespace Playnite.Input
         private readonly SynchronizationContext context;
 
         private readonly InputManager inputManager;
-        private readonly PlayniteSettings settings;
         private bool isDisposed = false;
 
-        public class LoadedGameController
+        public class LoadedGameController : GamepadController
         {
             public IntPtr Controller { get; }
             public IntPtr Joystic { get; }
-            public int InstanceId { get; }
-            public string Path { get; }
-            public string Name { get; }
-            public bool Enabled { get; set; } = true;
+            public new bool Enabled { get; set; }
 
             public readonly Dictionary<ControllerInput, ControllerInputState> LastInputState = new Dictionary<ControllerInput, ControllerInputState>()
             {
@@ -200,9 +202,8 @@ namespace Playnite.Input
 
         public readonly List<LoadedGameController> Controllers = new List<LoadedGameController>();
 
-        public GameControllerManager(InputManager input, PlayniteSettings settings)
+        public GameControllerManager(InputManager input, List<string> disabledList)
         {
-            this.settings = settings;
             inputManager = input;
             context = SynchronizationContext.Current;
 
@@ -210,7 +211,7 @@ namespace Playnite.Input
             {
                 if (SDL_IsGameController(i) == SDL_bool.SDL_TRUE)
                 {
-                    AddController(i);
+                    AddController(i, disabledList);
                 }
             }
         }
@@ -232,7 +233,7 @@ namespace Playnite.Input
             }
         }
 
-        public void AddController(int joyIndex)
+        public void AddController(int joyIndex, List<string> disabledList)
         {
             if (isDisposed)
             {
@@ -242,10 +243,15 @@ namespace Playnite.Input
             var controller = SDL_GameControllerOpen(joyIndex);
             var joystick = SDL_GameControllerGetJoystick(controller);
             var con = new LoadedGameController(controller, joystick, SDL_JoystickInstanceID(joystick), SDL_JoystickPath(joystick), SDL_JoystickName(joystick));
-            con.Enabled = !settings.Fullscreen.DisabledGameControllers.Contains(con.Path);
+            con.Enabled = !disabledList.Contains(con.Path);
             Controllers.Add(con);
-            logger.Info($"added controller index {con.InstanceId}, {con.Name}");
-            context.Send((a) => ControllersChanged?.Invoke(this, EventArgs.Empty), null);
+            logger.Info($"Added controller {con.InstanceId}, {con.Name}, {con.Path}");
+            controllerConnectedArgs.Controller = con;
+            context.Send((a) =>
+            {
+                ControllersChanged?.Invoke(this, EventArgs.Empty);
+                ControllerConnected?.Invoke(this, controllerConnectedArgs);
+            }, null);
         }
 
         public void RemoveController(int instanceId)
@@ -263,8 +269,13 @@ namespace Playnite.Input
 
             SDL_GameControllerClose(controller.Controller);
             Controllers.Remove(controller);
-            logger.Info($"removed controller {instanceId}, {controller.Name}");
-            context.Send((a) => ControllersChanged?.Invoke(this, EventArgs.Empty), null);
+            logger.Info($"Removed controller {instanceId}, {controller.Name}, {controller.Path}");
+            controllerDisconnectedArgs.Controller = controller;
+            context.Send((a) =>
+            {
+                ControllersChanged?.Invoke(this, EventArgs.Empty);
+                ControllerDisconnected?.Invoke(this, controllerDisconnectedArgs);
+            }, null);
         }
 
         public void Dispose()
@@ -409,12 +420,12 @@ namespace Playnite.Input
                 var lastState = controller.LastInputState[button];
                 if (pressed && lastState == ControllerInputState.Released)
                 {
-                    SendControllerInput(button, true);
+                    SendControllerInput(button, true, controller);
                     SimulateKeyInput(MapPadToKeyboard(button), true);
                 }
                 else if (!pressed && lastState == ControllerInputState.Pressed)
                 {
-                    SendControllerInput(button, false);
+                    SendControllerInput(button, false, controller);
                     SimulateKeyInput(MapPadToKeyboard(button), false);
                 }
 
@@ -424,14 +435,14 @@ namespace Playnite.Input
             {
                 if (pressed && ShouldResendKey(button))
                 {
-                    SendControllerInput(button, true);
+                    SendControllerInput(button, true, controller);
                     controller.LastInputState[button] = ControllerInputState.Pressed;
                     SimulateKeyInput(MapPadToKeyboard(button), true);
                 }
                 else if (!pressed && controller.LastInputState[button] == ControllerInputState.Pressed)
                 {
                     ResetButtonResend(button);
-                    SendControllerInput(button, false);
+                    SendControllerInput(button, false, controller);
                     controller.LastInputState[button] = ControllerInputState.Released;
                     SimulateKeyInput(MapPadToKeyboard(button), false);
                 }
@@ -461,20 +472,20 @@ namespace Playnite.Input
 
             if (pressed && ShouldResendKey(button))
             {
-                SendControllerInput(button, true);
+                SendControllerInput(button, true, controller);
                 controller.LastInputState[button] = ControllerInputState.Pressed;
                 SimulateKeyInput(MapPadToKeyboard(button), true);
             }
             else if (!pressed && controller.LastInputState[button] == ControllerInputState.Pressed)
             {
                 ResetButtonResend(button);
-                SendControllerInput(button, false);
+                SendControllerInput(button, false, controller);
                 controller.LastInputState[button] = ControllerInputState.Released;
                 SimulateKeyInput(MapPadToKeyboard(button), false);
             }
         }
 
-        private void SendControllerInput(ControllerInput button, bool pressed)
+        private void SendControllerInput(ControllerInput button, bool pressed, LoadedGameController controller)
         {
             context.Post((a) =>
             {
@@ -489,8 +500,10 @@ namespace Playnite.Input
                     inputManager.ProcessInput(args);
                 }
 
-                ButtonChanged?.Invoke(null,
-                    new OnControllerButtonStateChangedArgs(button, pressed ? ControllerInputState.Pressed : ControllerInputState.Released));
+                controllerButtonStateChangedArgs.Controller = controller;
+                controllerButtonStateChangedArgs.Button = button;
+                controllerButtonStateChangedArgs.State = pressed ? ControllerInputState.Pressed : ControllerInputState.Released;
+                ButtonChanged?.Invoke(null, controllerButtonStateChangedArgs);
             }, null);
         }
 

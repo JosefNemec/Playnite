@@ -413,7 +413,7 @@ namespace Playnite.FullscreenApp.ViewModels
             AdjustGameItemsToScreenChanges();
         }
 
-        private void GameControllerInput_ButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
+        private void GameControllerInputButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
         {
             if (AppSettings.Fullscreen.EnableGameControllerSupport &&
                 AppSettings.Fullscreen.GuideButtonFocus &&
@@ -432,6 +432,36 @@ namespace Playnite.FullscreenApp.ViewModels
                 catch (Exception exc)
                 {
                     Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller input.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerDisconnected(object sender, OnControllerDisconnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerDisconnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller connected event.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerConnected(object sender, OnControllerConnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerConnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller disconnected event.");
                 }
             }
         }
@@ -904,7 +934,9 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (app.GameController != null)
             {
-                app.GameController.ButtonChanged += GameControllerInput_ButtonChanged;
+                app.GameController.ButtonChanged += GameControllerInputButtonChanged;
+                app.GameController.ControllerConnected += GameControllerOnControllerConnected;
+                app.GameController.ControllerDisconnected += GameControllerOnControllerDisconnected;
             }
 
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);

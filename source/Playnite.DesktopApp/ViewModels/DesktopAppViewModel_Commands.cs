@@ -243,14 +243,6 @@ namespace Playnite.DesktopApp.ViewModels
                 SwitchToFullscreenMode();
             }, new KeyGesture(Key.F11));
 
-            OpenFullScreenFromControllerCommand = new RelayCommand<object>((a) =>
-            {
-                if (AppSettings.GuideButtonOpensFullscreen)
-                {
-                    SwitchToFullscreenMode();
-                }
-            }, new KeyGesture(Key.F11));
-
             ClearMessagesCommand = new RelayCommand<object>((a) =>
             {
                 ClearMessages();

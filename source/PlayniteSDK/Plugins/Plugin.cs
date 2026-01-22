@@ -301,6 +301,27 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when gamepad/controller button is pressed or released in Desktop mode.
+        /// </summary>
+        public virtual void OnDesktopControllerButtonStateChanged(OnControllerButtonStateChangedArgs args)
+        {
+        }
+
+        /// <summary>
+        /// Called when gamepad/controller is connected.
+        /// </summary>
+        public virtual void OnControllerConnected(OnControllerConnectedArgs args)
+        {
+        }
+
+        /// <summary>
+        /// Called when gamepad/controller is disconnected.
+        /// </summary>
+        public virtual void OnControllerDisconnected(OnControllerDisconnectedArgs args)
+        {
+        }
+
+        /// <summary>
         /// Gets list of items to be displayed in game's context menu.
         /// </summary>
         /// <param name="args">Contextual arguments.</param>

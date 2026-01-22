@@ -79,6 +79,7 @@ namespace Playnite
         public NotificationsAPI Notifications { get; }
         public PlayniteUriHandler UriHandler { get; }
         public PlayniteAPI PlayniteApiGlobal { get; set; }
+        public GameControllerManager GameController { get; set; }
 
         private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
         public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }

@@ -378,6 +378,13 @@ namespace Playnite.DesktopApp.ViewModels
 
         protected void InitializeView()
         {
+            if (App.GameController != null)
+            {
+                App.GameController.ButtonChanged += GameControllerInputButtonChanged;
+                App.GameController.ControllerConnected += GameControllerOnControllerConnected;
+                App.GameController.ControllerDisconnected += GameControllerOnControllerDisconnected;
+            }
+
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, SwitchToLibraryView, (g) =>
             {
@@ -1395,6 +1402,51 @@ namespace Playnite.DesktopApp.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to unregister system search hotkey.");
+            }
+        }
+
+        private void GameControllerInputButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnDesktopControllerButtonStateChanged(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller input.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerDisconnected(object sender, OnControllerDisconnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerDisconnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller connected event.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerConnected(object sender, OnControllerConnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerConnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller disconnected event.");
+                }
             }
         }
     }

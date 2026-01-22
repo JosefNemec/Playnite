@@ -70,6 +70,7 @@
                 <TreeViewItem Header="{DynamicResource LOCSettingsImportExclusionList}" Tag="{x:Static p:DesktopSettingsPage.ImportExlusionList}" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsBackup}" Tag="{x:Static p:DesktopSettingsPage.Backup}" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsForDevelopers}" Tag="{x:Static p:DesktopSettingsPage.Development}" />
+                <TreeViewItem Header="{DynamicResource LOCSettingsInputLabel}" Tag="{x:Static p:DesktopSettingsPage.Input}" />
                 <TreeViewItem Header="{DynamicResource LOCSettingsAdvancedLabel}" Tag="{x:Static p:DesktopSettingsPage.GeneralAdvanced}" IsExpanded="True">
                     <TreeViewItem Header="{DynamicResource LOCSettingsPerformanceLabel}" Tag="{x:Static p:DesktopSettingsPage.Performance}" />
                 </TreeViewItem>

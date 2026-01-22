@@ -777,6 +777,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>SDL2.dll</TargetPath>
     </ContentWithTargetPath>
+      <ContentWithTargetPath Include="..\..\references\SDL3.dll">
+          <Link>Dependencies\SDL3.dll</Link>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <TargetPath>SDL3.dll</TargetPath>
+      </ContentWithTargetPath>
     <ContentWithTargetPath Include="..\..\references\SDL2_mixer.dll">
       <Link>Dependencies\SDL2_mixer.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

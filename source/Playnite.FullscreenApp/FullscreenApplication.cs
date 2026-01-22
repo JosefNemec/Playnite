@@ -48,7 +48,6 @@ namespace Playnite.FullscreenApp
         public static IntPtr NavigateSound { get; private set; }
         public static IntPtr ActivateSound { get; private set; }
         public static IntPtr BackgroundMusic { get; private set; }
-        public GameControllerManager GameController { get; private set; }
         private bool exitSDLEventLoop = false;
 
         public new static FullscreenApplication Current
@@ -311,7 +310,7 @@ namespace Playnite.FullscreenApp
                     {
                         if (sdlEvent.type == SDL_EventType.SDL_CONTROLLERDEVICEADDED)
                         {
-                            GameController?.AddController(sdlEvent.cdevice.which);
+                            GameController?.AddController(sdlEvent.cdevice.which, AppSettings.Fullscreen.DisabledGameControllers);
                         }
 
                         if (sdlEvent.type == SDL_EventType.SDL_CONTROLLERDEVICEREMOVED)
@@ -345,7 +344,7 @@ namespace Playnite.FullscreenApp
             {
                 if (GameController == null)
                 {
-                    GameController = new GameControllerManager(InputManager.Current, AppSettings)
+                    GameController = new GameControllerManager(InputManager.Current, AppSettings.Fullscreen.DisabledGameControllers)
                     {
                         SimulateAllKeys = false,
                         SimulateNavigationKeys = true,
@@ -446,7 +445,7 @@ namespace Playnite.FullscreenApp
                 Notifications = Notifications,
                 Paths = new PlaynitePathsAPI(),
                 Resources = new ResourceProvider(),
-                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database, MainModel),
                 UriHandler = UriHandler,
                 WebViews = new WebViewFactory(AppSettings)
             };
@@ -466,7 +465,7 @@ namespace Playnite.FullscreenApp
                 Notifications = Notifications,
                 Paths = new PlaynitePathsAPI(),
                 Resources = new ResourceProvider(),
-                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database, MainModel),
                 UriHandler = UriHandler,
                 WebViews = new WebViewFactory(AppSettings)
             };

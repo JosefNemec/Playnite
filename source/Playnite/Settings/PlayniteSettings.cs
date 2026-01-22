@@ -1218,33 +1218,33 @@ namespace Playnite
             }
         }
 
-        private bool enableControolerInDesktop = false;
+        private bool enableGameControllerSupport = false;
         [RequiresRestart]
-        public bool EnableControllerInDesktop
+        public bool EnableGameControllerSupport
         {
             get
             {
-                return enableControolerInDesktop;
+                return enableGameControllerSupport;
             }
 
             set
             {
-                enableControolerInDesktop = value;
+                enableGameControllerSupport = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool guideButtonOpensFullscreen = false;
-        public bool GuideButtonOpensFullscreen
+        private List<string> disabledGameControllers = new List<string>();
+        public List<string> DisabledGameControllers
         {
             get
             {
-                return guideButtonOpensFullscreen;
+                return disabledGameControllers;
             }
 
             set
             {
-                guideButtonOpensFullscreen = value;
+                disabledGameControllers = value;
                 OnPropertyChanged();
             }
         }
