@@ -659,7 +659,7 @@ namespace Playnite.DesktopApp.ViewModels
             var sortableNameConverter = appSettings.GameSortingNameAutofill
                 ? new SortableNameConverter(appSettings.GameSortingNameRemovedArticles, IsMultiGameEdit)
                 : null;
-            
+
             database.Games.BeginBufferUpdate();
             foreach (var game in gamesToUpdate)
             {
@@ -1235,7 +1235,7 @@ namespace Playnite.DesktopApp.ViewModels
                 EditingGame.Roms.CollectionChanged += Roms_CollectionChanged;
             }
 
-            var newRom = new GameRom("NewRom", "NewPath");
+            var newRom = new GameRom("NewRom", "{InstallDir}");
             newRom.PropertyChanged += Rom_PropertyChanged;
             EditingGame.Roms.Add(newRom);
         }
