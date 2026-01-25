@@ -23,7 +23,7 @@
     </UserControl.Resources>
 
     <StackPanel Margin="20">
-        <CheckBox Content="{DynamicResource LOCSettingsXInputProcessing}"
+        <CheckBox Content="{DynamicResource LOCSettingsControllerApi}"
                 ContentStringFormat="{}{0} *"
                 Name="CheckXInputEnabled"
                 IsChecked="{Binding Settings.EnableGameControllerSupport}"/>

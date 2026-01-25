@@ -3662,6 +3662,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsFontSizeSmall = "LOCSettingsFontSizeSmall";
         /// <summary>
+        /// Enable game controller API support
+        /// </summary>
+        public const string SettingsControllerApi = "LOCSettingsControllerApi";
+        /// <summary>
         /// Game controller support
         /// </summary>
         public const string SettingsXInputProcessing = "LOCSettingsXInputProcessing";
@@ -4006,11 +4010,11 @@ namespace Playnite
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
         /// <summary>
-        /// Automatically fill sorting name for batch-added games
+        /// Automatically fill missing sorting names for batch-added or edited games
         /// </summary>
         public const string SortingNameAutofill = "LOCSortingNameAutofill";
         /// <summary>
-        /// When you add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name, for example "The Witcher 3" will get a Sorting Name of "Witcher 03"
+        /// When you edit a game, add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name. For example "The Witcher 3" will get a Sorting Name of "Witcher 03". This will never set a sorting name that doesn't differ from the game name, and it will only automatically update sorting names that are empty.
         /// </summary>
         public const string SortingNameAutofillTooltip = "LOCSortingNameAutofillTooltip";
         /// <summary>

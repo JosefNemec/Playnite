@@ -1012,6 +1012,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
 Disabling this can lead to issues with games not getting input focus on startup!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Font Size</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Font Size Small</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Enable game controller API support</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Game controller support</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">If disabled, Playnite won't accept any game controller inputs.
         
