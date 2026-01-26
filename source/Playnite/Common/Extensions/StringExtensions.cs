@@ -178,6 +178,49 @@ namespace System
             return newName.Trim();
         }
 
+        /// <summary>
+        /// <para>
+        /// Generates a machine-friendly key for matching game titles.
+        /// The result is lowercase and contains only letters and digits.
+        /// </para>
+        /// <para>
+        /// Examples:
+        /// "Witcher 3, The"           -> "thewitcher3"<br/>
+        /// "NieR: Automata™ [PC]"     -> "nierautomata"<br/>
+        /// "Final Fantasy VII Remake" -> "finalfantasyviiremake"
+        /// </para>
+        /// </summary>
+        internal static string ToGameKey(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return string.Empty;
+            }
+
+            var newName = str;
+            // Remove bracketed metadata, e.g. "The Witcher 3 (GOTY Edition)" -> "The Witcher 3"
+            newName = RemoveUnlessThatEmptiesTheString(newName, @"\[.*?\]");
+            newName = RemoveUnlessThatEmptiesTheString(newName, @"\(.*?\)");
+
+            // Moves ", The" suffix to the start of the string, e.g. "Witcher 3, The" -> "The Witcher 3"
+            var trimmed = newName.TrimEnd();
+            if (trimmed.EndsWith(", The", StringComparison.OrdinalIgnoreCase))
+            {
+                newName = "The " + trimmed.Substring(0, trimmed.Length - 5); // Remove ", The" (5 characters)
+            }
+
+            var sb = new StringBuilder(newName.Length);
+            foreach (char c in newName)
+            {
+                if (char.IsLetterOrDigit(c))
+                {
+                    sb.Append(char.ToLowerInvariant(c));
+                }
+            }
+
+            return sb.ToString();
+        }
+
         public static string GetSHA256Hash(this string input)
         {
             using (var sha = System.Security.Cryptography.SHA256.Create())
