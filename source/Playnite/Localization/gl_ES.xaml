@@ -1015,6 +1015,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
 Desactivar isto pode provocar problemas cos xogos que non reciban información de entrada ao inicio.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Tamaño da fonte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">tamaño de fonte pequeno</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Soporte de controlador de xogo</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se está desactivado, Playnite non aceptará ningunha entrada da interface XInput.
 

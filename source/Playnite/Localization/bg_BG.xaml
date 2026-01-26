@@ -1014,6 +1014,7 @@
 Деактивирането на това може да доведе до проблеми с игрите, които не получават фокус върху входа при стартиране!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Размер на шрифта</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Малък размер на шрифта</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Поддръжка на игрови контролери</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ако е деактивирано, Playnite няма да приеме входове на XInput интерфейс.
 

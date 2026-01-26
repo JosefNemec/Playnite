@@ -1012,6 +1012,7 @@
 از کار انداختن این گزینه می‌تواند منجر به مشکل‌هایی شود که باعث می‌شوند بازی‌ها در زمان راه‌اندازی تمرکز درونداد را دریافت نکنند!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">اندازهٔ قلم</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">اندازهٔ قلم کوچک</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">پشتیبانی از دستهٔ بازی</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">اگر نافعال باشد، Playnite هیچ دستهٔ بازی‌ای را نمی‌پذیرد.
 

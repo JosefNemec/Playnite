@@ -1012,6 +1012,7 @@
 禁用此项可能会导致游戏在启动时无法获得输入焦点！</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">字体大小</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">小字体</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">游戏控制器支持</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">如果禁用，Playnite 将不接受任何游戏控制器输入。
         

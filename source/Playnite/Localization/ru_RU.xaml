@@ -949,7 +949,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">Требуется перезапуск приложения для применения изменений.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Это дополнение запланировано к установке.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Установить</sys:String>
-    <sys:String x:Key="LOCAddonReinstall"></sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Переустановить</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Удалить</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Уже установлено</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Обновления для дополнений не найдены.</sys:String>
@@ -1019,6 +1019,7 @@
 Отключение этой опции может привести к проблемам, так как на игры не будет переводиться фокус системы при их запуске!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Размер текста</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Размер подсказок</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Поддержка игровых контроллеров</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Если этот параметр отключен, Playnite не будет принимать данные любых игровых контроллеров.
         

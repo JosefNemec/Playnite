@@ -1010,6 +1010,7 @@ Jika anda ingin menginstal atau meng-uninstal integrasi tambahan, gunakan menu &
 Menonaktifkan ini dapat menyebabkan masalah dengan permainan yang tidak mendapatkan fokus input saat startup!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Ukuran font</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Ukuran Font Kecil</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Dukungan kontroler game</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Jika dinonaktifkan, Playnite tidak akan menerima input kontroler game apa pun.
         

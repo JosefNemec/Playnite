@@ -1013,6 +1013,7 @@
 Η απενεργοποίηση αυτού μπορεί να οδηγήσει σε προβλήματα σε παιχνίδια που δεν περιλαμβάνουν εστίαση εισόδου κατά την εκκίνηση!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Μέγεθος Γραμματοσειράς</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Μέγεθος Γραμματοσειράς Μικρό</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Υποστήριξη χειριστηρίου παιχνιδιών</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Αν απενεργοποιηθεί, το Playnite δεν θα δέχεται καμία είσοδο χειριστηρίου παιχνιδιού.
         

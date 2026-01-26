@@ -1012,6 +1012,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
 Vypnutí této možnosti může vést k problémům se vstupem po spuštění hry!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Velikost písma</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Malá velikost písma</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Povolit podporu API pro herního ovladače </sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Podpora pro herní ovladače</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Je-li zakázáno, Playnite nebude přijímat žádné vstupy herních ovladačů.
         

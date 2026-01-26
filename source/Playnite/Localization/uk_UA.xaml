@@ -1013,6 +1013,7 @@
 Вимкнення цього може призвести до проблем, коли фокус не перемикається на ігри при запуску! </sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Розмір шрифту</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Маленький розмір шрифту</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Увімкнути API-підтримку контролера</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Підтримка ігрового контролера</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Якщо вимкнено, Playnite ігноруватиме контролер.
         

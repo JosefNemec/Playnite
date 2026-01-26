@@ -1012,6 +1012,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
 Selle keelamine võib kaasa tuua olukorra, kus mängud ei saa käivitumisel sisendeid kasutada!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Fondi suurus</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Fondi suurus väike</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Juhtpuldi tugi</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Kui keelatud, ei võta Playnite vastu mitte mingisuguseid juhtpuldi sisendeid.
         

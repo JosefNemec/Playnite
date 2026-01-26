@@ -1015,6 +1015,7 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
 Zablokowanie tej opcji może prowadzić do problemów z grami wymagającymi pełnej uwagi podczas uruchamiania!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Rozmiar czcionki</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mały rozmiar czcionki</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Wsparcie dla kontrolera gry</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Jeśli jest wyłączona, Playnite nie będzie akceptować żadnych wejść kontrolera gry.
 

@@ -1010,6 +1010,7 @@
 이 설정을 끄면 게임이 시작될 때 입력이 되지 않는 문제가 발생할 수 있습니다!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">글꼴 크기</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">작은 글꼴 크기</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">게임 컨트롤러 지원</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">이 설정을 해제하면 Playnite는 게임 컨트롤러 입력을 처리하지 않습니다.
         

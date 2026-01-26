@@ -1015,6 +1015,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
 Việc vô hiệu hóa tính năng này có thể dẫn đến sự cố game không nhận được đầu vào khi khởi động!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Kích cỡ phông chữ</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Kích thước phông chữ nhỏ</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Hỗ trợ tay cầm</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Nếu bị tắt, Playnite sẽ không chấp thuận bất kì đầu vào của thiết bị điều khiển nào.
 

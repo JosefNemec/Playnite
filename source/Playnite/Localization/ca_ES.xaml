@@ -1014,6 +1014,7 @@ Si vols instal·lar o desinstal·lar integracions addicionals, pots utilitzar l'
 Desactivar això pot portar problemes amb jocs que no rebin informació d'entrada a l'inici!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Mida de la font</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mida de la font petita</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Compatibilitat amb comandament de jocs</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si es desactiva, Playnite no acceptarà cap entrada de comandament de joc.
 

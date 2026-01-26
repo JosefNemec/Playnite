@@ -1018,6 +1018,7 @@ Version {2}</sys:String>
 無効にすると、ゲーム起動時に入力フォーカスが当たらないという問題が発生することがあります。</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">文字サイズ</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">フォントサイズ小</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">ゲームコントローラーAPIのサポートを有効にする</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">ゲームコントローラーのサポート</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">無効にすると、Playnite はあらゆるゲームコントローラーの入力を受け付けなくなります。
 

@@ -1015,6 +1015,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
 Deaktivering av denne funksjonen kan gjøre at spill ikke får fokus ved oppstart!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Skriftstørrelse</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Liten skriftstørrelse</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Støtte for spillkontroller</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Deaktivering vil gjøre at Playnite ikke tar imot kommandoer fra spillkontrollere.
 

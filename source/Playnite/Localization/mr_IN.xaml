@@ -957,6 +957,7 @@
 हे अक्षम केले तर गेम सुरू केल्यावर गेममध्ये इनपुट न मिळण्याच्या समस्या आढळू शकतील!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">फाँट आकार</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">छोटा फाँट आकार</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">गेम कंट्रोलर समर्थन</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">मेन मेन्यूवर वस्तू दाखवा:</sys:String>

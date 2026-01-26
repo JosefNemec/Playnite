@@ -1013,6 +1013,7 @@
 Онемогућавање овог може изазвати проблеме да игре не буду у фокусу након покретања!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Величине фонта</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Мали фонт</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Прикажи ставке у главном менију:</sys:String>

@@ -1024,6 +1024,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
 Disattivare questa opzione può portare a problemi con i giochi che non ottengono la messa a fuoco dei comandi all'avvio!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Dimensione carattere</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Dimensione caratteri piccola</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Supporto controller di gioco</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se disabilitato, Playnite non accetta nessun input del controller di gioco.
         

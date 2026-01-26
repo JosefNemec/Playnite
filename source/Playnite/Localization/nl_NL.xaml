@@ -1031,6 +1031,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
 Dit uitschakelen kan leiden tot problemen waarbij spellen geen invoer-focus krijgen bij het opstarten!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Lettertype grootte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Klein lettertype grootte</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Ondersteuning voor spelcontroller</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Als dit uitgeschakeld is accepteert Playnite geen spelcontrollerinvoer.
 

@@ -1070,6 +1070,7 @@
 يمكن أن يؤدي تعطيل هذا إلى حدوث مشكلات في الألعاب لا تركز على الإدخال عند بدء التشغيل!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">حجم الخط</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">حجم الخط الصغير</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">دعم وحدة التحكم باللعبة</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">إذا تم تعطيله، فلن يقبل Playnite أي مدخلات لواجهة XInput.
         

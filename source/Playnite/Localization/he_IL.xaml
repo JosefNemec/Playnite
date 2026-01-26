@@ -1017,6 +1017,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">צמצם את פליינייט אחרי שמשחק מתחיל</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">גודל גופן</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">גודל גופן קטן</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">תמיכה בבקר משחק</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">אם כבוי, פליינייט לא יקבל שום קלט מאף בקר משחק</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">הצג פריטים בתפריט הראשי:</sys:String>

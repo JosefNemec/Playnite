@@ -1013,6 +1013,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
 Das Deaktivieren dieser Option kann zu Problemen mit Spielen führen, die beim Start keinen Eingabefokus erhalten!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Schriftgröße</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Schriftgröße klein</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Unterstützung für Spielcontroller</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Falls deaktiviert, wird Playnite keinerlei Eingaben von Spielcontrollern akzeptieren.
         
