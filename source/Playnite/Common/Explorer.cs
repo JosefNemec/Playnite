@@ -10,12 +10,12 @@ namespace Playnite.Common
     {
         public static void NavigateToFileSystemEntry(string path)
         {
-            ProcessStarter.StartProcess("explorer.exe", $"/select,\"{path}\"");
+            ProcessStarter.StartProcess("explorer.exe", $"/select,\"{path}\"")?.Dispose();
         }
 
         public static void OpenDirectory(string path)
         {
-            ProcessStarter.StartProcess("explorer.exe", $"\"{path}\"");
+            ProcessStarter.StartProcess("explorer.exe", $"\"{path}\"")?.Dispose();
         }
     }
 }

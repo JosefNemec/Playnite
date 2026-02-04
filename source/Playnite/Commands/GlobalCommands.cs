@@ -43,12 +43,12 @@ namespace Playnite.Commands
                     catch (Exception e)
                     {
                         logger.Error(e, "Failed to open directory using custom command.");
-                        Process.Start(path);
+                        Process.Start(path)?.Dispose();
                     }
                 }
                 else
                 {
-                    ProcessStarter.StartProcess("explorer.exe", $"\"{path}\"");
+                    ProcessStarter.StartProcess("explorer.exe", $"\"{path}\"")?.Dispose();
                 }
             }
             catch (Exception e) when (!Debugger.IsAttached)
