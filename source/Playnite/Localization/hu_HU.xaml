@@ -999,7 +999,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
 Ha kikapcsolod, bizonyos játékoknál hibát okozhat, hogy nem kapnak indításkor beviteli elsőbbséget.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Betűméret</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Kis betűméret</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Játékvezérlő API támogatás</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">XInput támogatás</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ha ki van kapcsolva, a Playnite nem fogja használni a játékvezérlőket.
         

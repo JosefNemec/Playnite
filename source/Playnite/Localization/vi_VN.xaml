@@ -21,7 +21,7 @@
     <sys:String x:Key="LOCAboutAuthor">Được làm bởi Josef Němec</sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle">Xếp danh mục</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Đặt danh mục</sys:String>
-    <sys:String x:Key="LOCCategoryAddCatButton">Tạo danh mục</sys:String>
+    <sys:String x:Key="LOCCategoryAddCatButton">Thêm danh mục</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Đã chọn - Chỉ định danh mục 
 Bỏ chọn - Xóa danh mục 
 Không xác định - Không thay đổi (khi chỉnh sửa nhiều trò chơi) </sys:String>
@@ -522,7 +522,7 @@ Nó hiện đang được sử dụng bởi {1} (các) trò chơi và {2} trình
     <sys:String x:Key="LOCMenuSortDescending">Xếp giảm dần</sys:String>
     <sys:String x:Key="LOCMenuGroupDont">Đừng nhóm danh sách</sys:String>
     <sys:String x:Key="LOCMenuGroupProvider">Nhóm theo Thư viện</sys:String>
-    <sys:String x:Key="LOCMenuGroupCategory">Nhóm theo Thể loại</sys:String>
+    <sys:String x:Key="LOCMenuGroupCategory">Nhóm theo danh mục</sys:String>
     <sys:String x:Key="LOCMenuGroupPlatform">Nhóm theo Thể loại</sys:String>
     <sys:String x:Key="LOCViewType">Kiểu hiển thị:</sys:String>
     <sys:String x:Key="LOCMenuView">Hiển thị</sys:String>
@@ -540,7 +540,7 @@ Nó hiện đang được sử dụng bởi {1} (các) trò chơi và {2} trình
     <sys:String x:Key="LOCInstallDriveTitle">Ổ cài đặt</sys:String>
     <sys:String x:Key="LOCGameAccountNameTitle">Tên tài khoản</sys:String>
     <sys:String x:Key="LOCGamePlatformTitle">Nền tảng</sys:String>
-    <sys:String x:Key="LOCGameCategoriesTitle">Thể loại</sys:String>
+    <sys:String x:Key="LOCGameCategoriesTitle">Danh mục</sys:String>
     <sys:String x:Key="LOCGameGenresTitle">Thể Loại</sys:String>
     <sys:String x:Key="LOCGameReleaseDateTitle">Ngày phát hành</sys:String>
     <sys:String x:Key="LOCGameReleaseYearTitle">Năm phát hành</sys:String>
@@ -560,7 +560,7 @@ Nếu bị tắt, các trò chơi sử dụng bất kỳ mục nào trong bất 
     <sys:String x:Key="LOCGameHdrTooltip">Khi được bật, HDR sẽ được kích hoạt ở màn hình chính trước khi mở game.</sys:String>
     <sys:String x:Key="LOCGameHdrNotSupportedTooltip">Lưu ý rằng màn hình chính của bạn không hỗ trợ HDR.</sys:String>
     <sys:String x:Key="LOCGameLastActivityTitle">Lần chơi cuối</sys:String>
-    <sys:String x:Key="LOCGameCategoryTitle">Thể loại</sys:String>
+    <sys:String x:Key="LOCGameCategoryTitle">Danh mục</sys:String>
     <sys:String x:Key="LOCGameDescriptionTitle">Mô tả</sys:String>
     <sys:String x:Key="LOCGameInstallDirTitle">Thư mục cài đặt cửa hàng</sys:String>
     <sys:String x:Key="LOCGameCoverTitle">Ảnh bìa</sys:String>
@@ -574,7 +574,7 @@ Nếu bị tắt, các trò chơi sử dụng bất kỳ mục nào trong bất 
     <sys:String x:Key="LOCDevelopersLabel">Các nhà phát triển</sys:String>
     <sys:String x:Key="LOCPublisherLabel">Nhà xuất bản</sys:String>
     <sys:String x:Key="LOCPublishersLabel">Những nhà phát triển</sys:String>
-    <sys:String x:Key="LOCCategoryLabel">Thể loại</sys:String>
+    <sys:String x:Key="LOCCategoryLabel">Danh mục</sys:String>
     <sys:String x:Key="LOCCategoriesLabel">Các danh mục</sys:String>
     <sys:String x:Key="LOCTagLabel">Thẻ:</sys:String>
     <sys:String x:Key="LOCTagsLabel">Các thẻ</sys:String>
@@ -1015,7 +1015,7 @@ Nếu bạn muốn cài đặt hoặc gỡ cài đặt các tích hợp bổ sun
 Việc vô hiệu hóa tính năng này có thể dẫn đến sự cố game không nhận được đầu vào khi khởi động!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Kích cỡ phông chữ</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Kích thước phông chữ nhỏ</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Bật hỗ trợ cho API tay cầm trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Hỗ trợ tay cầm</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Nếu bị tắt, Playnite sẽ không chấp thuận bất kì đầu vào của thiết bị điều khiển nào.
 

@@ -1012,7 +1012,7 @@ Se você deseja instalar ou desinstalar integrações adicionais, use a opção 
 Desabilitar essa opção pode levar a problemas com os jogos não recebendo comandos ao iniciar!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Tamanho da fonte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Tamanho da fonte pequena</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Ativar suporte a API para controles de jogo</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Suporte para controles de jogo</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se desativado, o Playnite não aceitará nenhuma entrada do controle de jogo.
         
