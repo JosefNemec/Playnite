@@ -67,5 +67,87 @@ namespace Playnite.Tests.Extensions
             var sortedLevenshteinList = stringsList.OrderBy(str => str.GetLevenshteinDistance(stringPrefix));
             Assert.IsTrue(sortedList.SequenceEqual(sortedLevenshteinList));
         }
+
+        [Test]
+        public void ToGameKey_ResultTests()
+        {
+            // Basic normalization
+            Assert.AreEqual("thewitcher3", "Witcher 3, The".ToGameKey());
+            Assert.AreEqual("thewitcher3", "The Witcher 3".ToGameKey());
+
+            // Case insensitivity
+            Assert.AreEqual("nierautomata", "NieR: Automata".ToGameKey());
+            Assert.AreEqual("nierautomata", "NIER: AUTOMATA".ToGameKey());
+
+            // Special characters are removed
+            Assert.AreEqual("nierautomata", "NieR: Automata™".ToGameKey());
+            Assert.AreEqual("finalfantasyviiremake", "Final Fantasy VII: Remake!?$%$".ToGameKey());
+
+            // Trailing bracketed metadata is removed
+            Assert.AreEqual("nierautomata", "NieR: Automata [PC]".ToGameKey());
+            Assert.AreEqual("nierautomata", "NieR: Automata (Steam)".ToGameKey());
+
+            // Mix of previous cases
+            Assert.AreEqual("thewitcher3", "Witcher 3, The (GOTY Edition)".ToGameKey());
+            Assert.AreEqual("thelegendofzeldabreathofthewild", "Legend of Zelda, The: Breath of the Wild".ToGameKey());
+
+            // Empty and null handling
+            Assert.AreEqual(string.Empty, "".ToGameKey());
+            Assert.AreEqual(string.Empty, ((string)null).ToGameKey());
+
+            // Digits are preserved
+            Assert.AreEqual("ff7", "FF7".ToGameKey());
+        }
+
+        [Test]
+        public void ToGameKey_MatchingEquivalenceTests()
+        {
+            void AssertMatch(string a, string b)
+            {
+                Assert.AreEqual(a.ToGameKey(), b.ToGameKey(), $"Expected match: \"{a}\" <-> \"{b}\"");
+            }
+
+            // General cases
+            AssertMatch("Middle-earth™: Shadow of War™", "Middle-earth: Shadow of War");
+            AssertMatch("Command®   & Conquer™ Red_Alert 3™ : Uprising©:_Best Game", "Command & Conquer Red Alert 3: Uprising: Best Game");
+            AssertMatch("Pokemon.Red.[US].[l33th4xor].Test.[22]", "Pokemon Red Test");
+            AssertMatch("Pokemon.Red.[US].(l33th 4xor).Test.(22)", "Pokemon Red Test");
+            AssertMatch("[PROTOTYPE]™", "[PROTOTYPE]");
+            AssertMatch("(PROTOTYPE2)™", "(PROTOTYPE2)");
+
+            // Articles
+            AssertMatch("Witcher 3, The", "The Witcher 3");
+            AssertMatch("Legend of Zelda, The: Breath of the Wild", "The Legend of Zelda: Breath of the Wild");
+
+            // Platform / store metadata
+            AssertMatch("NieR: Automata", "NieR: Automata [PC]");
+            AssertMatch("NieR: Automata", "NieR: Automata (Steam)");
+            AssertMatch("DOOM", "DOOM (2016)");
+            AssertMatch("Final Fantasy VII Remake", "Final Fantasy VII Remake [PC]");
+
+            // Special characters & punctuation
+            AssertMatch("NieR: Automata™", "NieR - Automata");
+            AssertMatch("Dragon's Dogma", "Dragons Dogma");
+
+            // Case differences
+            AssertMatch("nier automata", "NieR: Automata");
+            AssertMatch("FINAL FANTASY X", "Final Fantasy X");
+
+            // Whitespace & formatting
+            AssertMatch("The Witcher 3", "   The   Witcher   3   ");
+            AssertMatch("Dark Souls III", "Dark   Souls   III");
+
+            // Edition words should not match unless you want them to
+            Assert.AreNotEqual("Persona 5".ToGameKey(), "Persona 5 Royal".ToGameKey());
+
+            // Numbers written differently will not match
+            Assert.AreNotEqual("Final Fantasy VII".ToGameKey(), "Final Fantasy 7".ToGameKey());
+
+            // Year metadata
+            AssertMatch("Resident Evil 4", "Resident Evil 4 (2005)");
+
+            // Region tags
+            AssertMatch("Silent Hill 2", "Silent Hill 2 [USA]");
+        }
     }
 }
