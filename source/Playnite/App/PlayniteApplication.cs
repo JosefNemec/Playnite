@@ -509,6 +509,16 @@ namespace Playnite
             {
                 // unchecked use reason: https://stackoverflow.com/a/10043486/1107424
 
+                // This started happening after the infamous 2026 January Win 11 update, Smart App Control is agersively blocking unsigned files from loading.
+                // Based on crash reports, this usually happens to SDL's and CefSharp's dlls, also random plugins.
+                if ((exception is FileLoadException || exception is DllNotFoundException) &&
+                    exception.Message.Contains("0x800711C7")) // This is actually not set in HResult, it's in exception message and replaced by .NET to generic 0x80131524
+                {
+                    Dialogs.ShowErrorMessage("Failed to load dependencies needed for Playnite to continue operating properly.\n\nThis is usually caused by Windows Smart App Control blocking dlls in Playnite's install folder.");
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
                 // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
                 if (exception is MissingMethodException ||
                     exception is BadImageFormatException ||
