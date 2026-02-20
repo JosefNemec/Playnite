@@ -5,5 +5,5 @@ Profiles:
   - Name: Default
     StartupArguments: '-dvd_path "{ImagePath}" -full-screen'
     Platforms: [xbox]
-    ImageExtensions: [iso]
+    ImageExtensions: [iso, xiso]
     StartupExecutable: ^xemu\.exe$
