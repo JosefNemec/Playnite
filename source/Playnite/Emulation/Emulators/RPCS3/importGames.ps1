@@ -59,7 +59,7 @@ function Get-ParamSfoValue
     return $null
 }
 
-[array]$games = Get-ChildItem -LiteralPath $ImportArgs.ScanDirectory -Recurse | Where { $_.Name -eq "ISO.BIN.EDAT" -or $_.Name -eq "EBOOT.BIN" }
+[array]$games = Get-ChildItem -LiteralPath $ImportArgs.ScanDirectory -Recurse | Where { $_.Name -eq "ISO.BIN.EDAT" -or $_.Name -eq "EBOOT.BIN" -or $_.Extension -ieq ".iso" }
 foreach ($game in $games)
 {
     $anyFunc = [Func[string,bool]]{ param($a) $a.Equals($game.FullName, 'OrdinalIgnoreCase') }
@@ -70,25 +70,67 @@ foreach ($game in $games)
 
     $scannedGame = New-Object "Playnite.Emulators.ScriptScannedGame"
     $scannedGame.Path = $game.FullName
-
-    $parentDir = $game.Directory.Parent.FullName
-    $paramSfoPath = Join-Path $parentDir "PARAM.SFO"
-
-    if (Test-Path -LiteralPath $paramSfoPath -PathType Leaf)
+    
+    if ($game.Extension -ieq '.iso')
     {
         try
         {
-            $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
-            if ($null -ne $scannedGame.Serial)
+            $DiskImage = Mount-DiskImage -ImagePath $game.FullName -StorageType ISO -NoDriveLetter -PassThru
+            New-PSDrive -Name ISOFile -PSProvider FileSystem -Root (Get-Volume -DiskImage $DiskImage).UniqueId | Out-Null
+            Push-Location ISOFile: | Out-Null
+
+            try
             {
-                $scannedGame.Name = Get-ParamSfoValue $paramSfoPath "TITLE"
-                $scannedGame
+                $paramSfoPath = (Get-ChildItem ISOFile: -Filter "param.sfo" -Recurse -File | Where { $_.DirectoryName -like "*PS3_GAME*" })[0].FullName
+
+                $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
+                if ($null -ne $scannedGame.Serial)
+                {
+                    $scannedGame.Name = Get-ParamSfoValue $paramSfoPath "TITLE"
+                }
+            }
+            finally
+            {
+                Pop-Location | Out-Null
+                Remove-PSDrive ISOFile | Out-Null
+                Dismount-DiskImage -StorageType ISO -ImagePath $DiskImage.ImagePath | Out-Null
             }
         }
         catch
         {
-            $__logger.Error($_.Exception, "Failed to scan PS3 PARAM.SFO file $paramSfoPath")
+            $__logger.Error($_.Exception, "Failed to scan PS3 .iso PARAM.SFO file $paramSfoPath")
             $__logger.Error($_.ScriptStackTrace)
+            
+            $scannedGame.Name = [System.IO.Path]::GetFileNameWithoutExtension($game.Name)
+            if ($game.Name -match '(BLUS|BLES|NPUB|NPEB)\d{5}')
+            {
+                $scannedGame.Serial = $matches[0]
+            }
+        }
+
+        $scannedGame
+    }
+    else
+    {
+        $parentDir = $game.Directory.Parent.FullName
+        $paramSfoPath = Join-Path $parentDir "PARAM.SFO"
+    
+        if (Test-Path -LiteralPath $paramSfoPath -PathType Leaf)
+        {
+            try
+            {
+                $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
+                if ($null -ne $scannedGame.Serial)
+                {
+                    $scannedGame.Name = Get-ParamSfoValue $paramSfoPath "TITLE"
+                    $scannedGame
+                }
+            }
+            catch
+            {
+                $__logger.Error($_.Exception, "Failed to scan PS3 PARAM.SFO file $paramSfoPath")
+                $__logger.Error($_.ScriptStackTrace)
+            }
         }
     }
 }
