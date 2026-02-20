@@ -27,7 +27,7 @@ Desmarcado - Remover categoria
 Indeterminado - Sem alterações (ao editar vários jogos)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sem Categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sem Plataforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ups! Algo correu mal...</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Ups! Algo correu mal…</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Um erro irrecuperável ocorreu.
  
 Se queres ajudar-nos a corrigir este problema, por favor descreve, de forma breve, que ações foram tomadas antes do erro ter ocorrido e depois cria um pacote de diagnóstico. Se estiveres online, o pacote será transferido para o servidor do Playnite para análise.

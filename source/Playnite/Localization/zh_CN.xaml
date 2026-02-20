@@ -1012,7 +1012,7 @@
 禁用此项可能会导致游戏在启动时无法获得输入焦点！</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">字体大小</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">小字体</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">启用游戏控制器API支持</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">游戏控制器支持</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">如果禁用，Playnite 将不接受任何游戏控制器输入。
         
@@ -1112,8 +1112,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已指定首次游玩的游戏状态</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">无法初始化 PowerShell 脚本运行时。如果您是 Windows 7 用户，尝试安装或重装 PowerShell 5.1 以解决这个问题。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名称的筛选器预设。使用新的设置更新预设吗？</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">自动填写批量添加或者修改后游戏缺失的排序名称</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">当您编辑游戏时，通过库更新,模拟器筛选器扫描或一般筛选器扫描添加游戏，自动填写“排序名称”字段以便更好进行游戏名的排序。 例如，“The Witcher 3”将得到“Witcher 03”的排序名称。 这不会设置一个与游戏名称没有不同的排序名称，而且只会自动更新空的排序名称。</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">将在自动填充的排序名称的开头删除这些词：</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">就排序目的，利用它忽略掉字符串开头的一些字词。默认值为“The”、“An”和“A”。</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">填充游戏的为空的排序名称字段</sys:String>

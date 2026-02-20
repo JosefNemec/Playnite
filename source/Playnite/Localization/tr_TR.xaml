@@ -1012,7 +1012,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
 Bunu devre dışı bırakmak, oyunların başlangıçta girdiye odaklanmamasıyla ilgili sorunlara yol açabilir!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Yazı Tipi Boyutu</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Yazı Tipi Boyutu Küçük</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Oyun kontrolcüsü API desteğini etkinleştir</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Oyun kolu desteği</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Devre dışı bırakılırsa Playnite hiçbir oyun kolu girişini kabul etmez.
         
@@ -1110,8 +1110,8 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">İlk kez oynanan oyunlara atanan statü</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell betiği çalışma zamanı başlatılamadı. Windows 7 kullanıcısıysanız, çözüm için PowerShell 5.1 (yeniden) kurmayı deneyin.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Belirtilen ada sahip filtre ön ayarı zaten var. Ön ayar yeni ayarlarla güncellensin mi?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Toplu eklenen veya düzenlenen oyunlar için eksik sıralama adlarını otomatik olarak doldur</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Bir oyunu düzenlediğinizde, kütüphane güncellemesi, emülatör klasörü taraması veya normal klasör taraması yoluyla oyun eklediğinizde, &quot;Sıralama Adı&quot; alanını oyunun adının daha iyi sıralanabilir bir temsilini otomatik olarak doldurun. Örneğin, &quot;The Witcher 3&quot; için Sıralama Adı &quot;Witcher 03&quot; olacaktır. Bu, oyun adından farklı olmayan bir sıralama adı belirlemez ve yalnızca boş olan sıralama adlarını otomatik olarak günceller.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Şu kelimeler, otomatik doldurulan Sıralama İsmi bilgisinin başlangıcından silinecektir:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Sıralama esnasında terimlerin başındaki kelimeleri göz ardı etmek için kullanın. Varsayılanlar, &quot;The&quot;, &quot;An&quot;, ve &quot;A&quot; kelimeleridir.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Sıralama İsmi boş olduğunda doldur</sys:String>
