@@ -48,7 +48,7 @@ namespace Playnite.Commands
                 }
                 else
                 {
-                    ProcessStarter.StartProcess("explorer.exe", $"\"{path}\"")?.Dispose();
+                    Explorer.OpenDirectory(path);
                 }
             }
             catch (Exception e) when (!Debugger.IsAttached)
