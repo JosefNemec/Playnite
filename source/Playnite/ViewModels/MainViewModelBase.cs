@@ -509,6 +509,117 @@ namespace Playnite.ViewModels
             return addedGames;
         }
 
+        private List<Game> ImportLibraryGamesMultithreaded(IEnumerable<LibraryPlugin> plugins, CancellationToken token)
+        {
+            var allAddedGames = new List<Game>();
+            if (token.IsCancellationRequested || !plugins.Any())
+            {
+                return allAddedGames;
+            }
+
+            var pluginsList = plugins.ToList();
+            Logger.Info($"Importing games from {pluginsList.Count} library plugins using multithreaded approach");
+            ProgressStatus = Resources.GetString(LOC.ProgressImportinGames).Format($"{pluginsList.Count} libraries (multithreaded)");
+
+            try
+            {
+                // Phase 1: Prepare all game imports in parallel (thread-safe data collection)
+                var importQueues = new Dictionary<LibraryPlugin, GameDatabase.GameImportQueue>();
+                var preparePhaseProgress = 0;
+                var preparePhaseLock = new object();
+                var preparePhaseErrors = new List<string>();
+
+                var prepareOptions = new ParallelOptions
+                {
+                    MaxDegreeOfParallelism = Math.Max(1, Math.Min(Environment.ProcessorCount, pluginsList.Count)),
+                    CancellationToken = token
+                };
+
+                Parallel.ForEach(pluginsList, prepareOptions, plugin =>
+                {
+                    try
+                    {
+                        if (token.IsCancellationRequested)
+                        {
+                            return;
+                        }
+
+                        Logger.Info($"Collecting games from {plugin.Name} (parallel)");
+                        var queue = ((GameDatabase)Database).PrepareGameImports(plugin, token, AppSettings.PlaytimeImportMode);
+
+                        lock (preparePhaseLock)
+                        {
+                            importQueues[plugin] = queue;
+                            preparePhaseProgress++;
+                            ProgressStatus = $"Collected data from {plugin.Name} ({preparePhaseProgress}/{pluginsList.Count})";
+                        }
+
+                        App.Notifications.Remove($"{plugin.Id} - download");
+                    }
+                    catch (Exception ex)
+                    {
+                        lock (preparePhaseLock)
+                        {
+                            preparePhaseProgress++;
+                            preparePhaseErrors.Add($"Failed to collect data from {plugin.Name}: {ex.Message}");
+                            Logger.Error(ex, $"Failed to collect data from {plugin.Name}");
+
+                            App.Notifications.Add(new NotificationMessage(
+                                $"{plugin.Id} - download",
+                                Resources.GetString(LOC.LibraryImportError).Format(plugin.Name) + $"\n{ex.Message}",
+                                NotificationType.Error));
+                        }
+                    }
+                });
+
+                if (token.IsCancellationRequested)
+                {
+                    return allAddedGames;
+                }
+
+                // Phase 2: Apply all imports sequentially (database operations must be single-threaded)
+                Logger.Info($"Starting sequential database updates for {importQueues.Count} libraries");
+
+                int applyPhaseProgress = 0;
+                foreach (var kvp in importQueues)
+                {
+                    if (token.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
+                    var plugin = kvp.Key;
+                    var queue = kvp.Value;
+
+                    try
+                    {
+                        applyPhaseProgress++;
+                        ProgressStatus = $"Applying updates from {plugin.Name} ({applyPhaseProgress}/{importQueues.Count})";
+                        Logger.Info($"Applying {queue.Operations.Count} operations from {plugin.Name}");
+
+                        var games = ((GameDatabase)Database).ApplyGameImports(queue);
+                        allAddedGames.AddRange(games);
+
+                        Logger.Info($"{plugin.Name}: {games.Count} games updated");
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Error(ex, $"Failed to apply updates from {plugin.Name}");
+                        App.Notifications.Add(new NotificationMessage(
+                            $"{plugin.Id} - download",
+                            Resources.GetString(LOC.LibraryImportError).Format(plugin.Name) + $"\n{ex.Message}",
+                            NotificationType.Error));
+                    }
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                Logger.Error(e, "Failed during multithreaded library import");
+            }
+
+            return allAddedGames;
+        }
+
         public async Task ProcessStartupLibUpdate()
         {
             if (App.CmdLine.SkipLibUpdate)
@@ -545,16 +656,8 @@ namespace Playnite.ViewModels
                 var addedGames = new List<Game>();
                 if (updateIntegrations)
                 {
-                    foreach (var plugin in Extensions.LibraryPlugins)
-                    {
-                        if (token.IsCancellationRequested)
-                        {
-                            return addedGames;
-                        }
-
-                        addedGames.AddRange(ImportLibraryGames(plugin, token));
-                    }
-
+                    // Use multithreaded library import for better performance
+                    addedGames.AddRange(ImportLibraryGamesMultithreaded(Extensions.LibraryPlugins, token));
                     AppSettings.LastLibraryUpdateCheck = DateTimes.Now;
                 }
 
