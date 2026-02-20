@@ -139,7 +139,7 @@ namespace Playnite.FullscreenApp
         {
             if (e.PropertyName == nameof(PlayniteApplication.IsActive))
             {
-                if (AppSettings.Fullscreen.BackgroundVolume > 0)
+                if (Audio != null && AppSettings.Fullscreen.BackgroundVolume > 0)
                 {
                     if (AppSettings.Fullscreen.MuteInBackground && IsActive == false)
                     {
@@ -262,7 +262,7 @@ namespace Playnite.FullscreenApp
                 return;
             }
 
-            Audio.PlaySound(NavigateSound);
+            Audio?.PlaySound(NavigateSound);
         }
 
         public static void PlayActivateSound()
@@ -272,7 +272,7 @@ namespace Playnite.FullscreenApp
                 return;
             }
 
-            Audio.PlaySound(ActivateSound);
+            Audio?.PlaySound(ActivateSound);
         }
 
         private void InitSDL()
