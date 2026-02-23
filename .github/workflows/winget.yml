@@ -11,5 +11,7 @@ jobs:
       - uses: vedantmgoyal9/winget-releaser@main
         with:
           identifier: Playnite.Playnite
+          installers-regex: 'Playnite\d+\.exe$'
           version: ${{ github.event.release.tag_name }}
           token: ${{ secrets.WINGET_TOKEN }}
+
