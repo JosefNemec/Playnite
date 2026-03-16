@@ -74,6 +74,23 @@ namespace Playnite.Tests
             Assert.IsTrue(Programs.IsFileScanExcluded("zsync.exe"));
             Assert.IsTrue(Programs.IsFileScanExcluded("zsyncmake.exe"));
             Assert.IsFalse(Programs.IsFileScanExcluded("otherPythonFile.exe"));
+
+            // Xbox/Gaming Services executables that may continue running after game exits
+            Assert.IsTrue(Programs.IsFileScanExcluded("XblAuthManager.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("XblGameSave.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("XboxNetApiSvc.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("XboxApp.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("XboxIdp.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("XboxLiveAuthManager.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("XboxLiveGameSave.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("XboxLiveNetworkingService.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("GameBar.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("GameBarFT.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("GameBarPresenceWriter.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("GamingServices.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("GamingServicesNet.exe"));
+            Assert.IsTrue(Programs.IsFileScanExcluded("Microsoft.GamingServices.exe"));
+            Assert.IsFalse(Programs.IsFileScanExcluded("MyGame.exe"));
         }
     }
 }

@@ -64,7 +64,22 @@ namespace Playnite.Common
             @"^python\.exe$",
             @"^pythonw\.exe$",
             @"^zsync\.exe$",
-            @"^zsyncmake\.exe$"
+            @"^zsyncmake\.exe$",
+            // Xbox/Gaming Services that may continue running after game exits
+            @"^XblAuthManager\.exe$",
+            @"^XblGameSave\.exe$",
+            @"^XboxNetApiSvc\.exe$",
+            @"^XboxApp\.exe$",
+            @"^XboxIdp\.exe$",
+            @"^XboxLiveAuthManager\.exe$",
+            @"^XboxLiveGameSave\.exe$",
+            @"^XboxLiveNetworkingService\.exe$",
+            @"^GameBar\.exe$",
+            @"^GameBarFT\.exe$",
+            @"^GameBarPresenceWriter\.exe$",
+            @"^GamingServices\.exe$",
+            @"^GamingServicesNet\.exe$",
+            @"^Microsoft\.GamingServices\.exe$"
         };
 
         private static ILogger logger = LogManager.GetLogger();
