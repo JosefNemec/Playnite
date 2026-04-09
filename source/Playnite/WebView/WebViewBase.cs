@@ -15,6 +15,7 @@ namespace Playnite.WebView
         private static readonly ILogger logger = LogManager.GetLogger();
         private readonly WebViewSettings settings;
         private readonly MemoryStream contentStream;
+        private bool contentRead = true;
 
         public CustomResourceRequestHandler(WebViewSettings settings)
         {
@@ -66,9 +67,14 @@ namespace Playnite.WebView
         protected override IResponseFilter GetResourceResponseFilter(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response)
         {
             if (settings.PassResourceContentStreamToCallback)
-                return new CefSharp.ResponseFilter.StreamResponseFilter(contentStream);
-            else
-                return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
+            {
+                if (settings.ShouldPassResourceContentFunc is null ||
+                    settings.ShouldPassResourceContentFunc(ConvertRequest(request)))
+                    return new CefSharp.ResponseFilter.StreamResponseFilter(contentStream);
+            }
+
+            contentRead = false;
+            return base.GetResourceResponseFilter(chromiumWebBrowser, browser, frame, request, response);
         }
 
         protected override void OnResourceLoadComplete(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
@@ -80,7 +86,7 @@ namespace Playnite.WebView
                     ConvertResponse(response),
                     (SDK.WebViewModels.UrlRequestStatus)status,
                     receivedContentLength);
-                if (settings.PassResourceContentStreamToCallback)
+                if (settings.PassResourceContentStreamToCallback && contentRead)
                     args.ResponseContent = contentStream;
 
                 try

@@ -79,6 +79,11 @@ namespace Playnite.SDK
         /// Gets or sets a value indicating whether response content strema should be passed to resource load callback.
         /// </summary>
         public bool PassResourceContentStreamToCallback { get; set; } = false;
+
+        /// <summary>
+        /// If set, resource content will be read only the function returns true.
+        /// </summary>
+        public Func<Playnite.SDK.WebViewModels.Request, bool> ShouldPassResourceContentFunc  { get; set; }
     }
 
     /// <summary>
