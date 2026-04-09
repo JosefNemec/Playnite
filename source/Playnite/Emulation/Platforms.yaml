@@ -3,17 +3,17 @@
   IgdbId: 50
   Databases: [The 3DO Company - 3DO]
   Emulators: [4do, retroarch]
-
+  
 - Name: Adobe Flash
   Id: adobe_flash
   Emulators: [flashplayerprojector, ruffle]
-
+  
 - Name: Amstrad CPC
   Id: amstrad_cpc
   IgdbId: 25
   Databases: [Amstrad - CPC]
   Emulators: [retroarch]
-
+  
 - Name: Apple II
   Id: apple_2
   IgdbId: 75
@@ -33,58 +33,58 @@
   IgdbId: 59
   Databases: [Atari - 2600]
   Emulators: [ares, bizhawk, retroarch, stella]
-
+  
 - Name: Atari 5200
   Id: atari_5200
   IgdbId: 66
   Databases: [Atari - 5200]
   Emulators: [altirra, atari800, retroarch]
-
+  
 - Name: Atari 7800
   Id: atari_7800
   IgdbId: 60
   Databases: [Atari - 7800]
   Emulators: [bizhawk, retroarch]
-
+  
 - Name: Atari 8-bit
   Id: atari_8bit
   IgdbId: 65
   Emulators: [altirra, atari800, retroarch]
-
+  
 - Name: Atari Falcon030
   Id: atari_falcon030
   Emulators: [retroarch]
-
+  
 - Name: Atari Jaguar
   Id: atari_jaguar
   IgdbId: 62
   Databases: [Atari - Jaguar]
   Emulators: [bizhawk, retroarch, virtualjaguar]
-
+  
 - Name: Atari Lynx
   Id: atari_lynx
   IgdbId: 61
   Databases: [Atari - Lynx]
   Emulators: [bizhawk, mednafen, retroarch]
-
+  
 - Name: Atari ST/STE
   Id: atari_st
   IgdbId: 63
   Databases: [Atari - ST]
   Emulators: [retroarch]
-
+  
 - Name: Bandai WonderSwan Color
   Id: bandai_wonderswan_color
   IgdbId: 123
   Databases: [Bandai - WonderSwan Color]
   Emulators: [ares, bizhawk, higan, mednafen, retroarch]
-
+  
 - Name: Bandai WonderSwan
   Id: bandai_wonderswan
   IgdbId: 57
   Databases: [Bandai - WonderSwan]
   Emulators: [ares, bizhawk, higan, mednafen, retroarch]
-
+  
 - Name: Coleco ColecoVision
   Id: coleco_vision
   IgdbId: 68
@@ -96,40 +96,40 @@
   IgdbId: 15
   Databases: [Commodore - 64, Commodore - 64 (PP), Commodore - 64 (Tapes)]
   Emulators: [bizhawk, retroarch, winvice]
-
+  
 - Name: Commodore Amiga CD32
   Id: commodore_amiga_cd32
   IgdbId: 114
   Databases: [Commodore - Amiga]
   Emulators: [fs-uae, winuae]
-
+  
 - Name: Commodore Amiga
   Id: commodore_amiga
   IgdbId: 16
   Databases: [Commodore - Amiga]
   Emulators: [fs-uae, retroarch, winuae]
-
+  
 - Name: Commodore CBM-5x0
   Id: commodore_cbm5x0
   Databases: [Commodore - CBM-5x0]
   Emulators: [retroarch]
-
+  
 - Name: Commodore CBM-II
   Id: commodore_cbm2
   Databases: [Commodore - CBM-II]
   Emulators: [retroarch]
-
+  
 - Name: Commodore PET
   Id: commodore_pet
   IgdbId: 90
   Emulators: [retroarch, winvice]
-
+  
 - Name: Commodore Plus/4
   Id: commodore_plus4
   IgdbId: 94
   Databases: [Commodore - Plus-4]
   Emulators: [winvice]
-
+  
 - Name: Commodore VIC20
   Id: commodore_vci20
   IgdbId: 71
@@ -145,17 +145,17 @@
   IgdbId: 67
   Databases: [GCE - Vectrex]
   Emulators: [bizhawk, retroarch]
-
+  
 - Name: Macintosh
   Id: macintosh
   IgdbId: 14
-
+  
 - Name: Magnavox Odyssey 2
   Id: magnavox_odyssey_2
   IgdbId: 133
   Databases: [Magnavox - Odyssey2]
   Emulators: [bizhawk]
-
+  
 - Name: Mattel Intellivision
   Id: mattel_intellivision
   IgdbId: 67
@@ -170,28 +170,28 @@
   Id: microsoft_msx
   IgdbId: 27
   Databases: [Microsoft - MSX]
-  Emulators: [ares, bluemsx, retroarch, fbneo]
-
+  Emulators: [ares, bluemsx, retroarch]
+  
 - Name: Microsoft MSX2
   Id: microsoft_msx2
   IgdbId: 53
   Databases: [Microsoft - MSX2]
   Emulators: [ares, bluemsx, retroarch]
-
+  
 - Name: Microsoft Xbox 360
   Id: xbox360
   IgdbId: 12
   Databases: [Microsoft - Xbox 360, Microsoft - XBOX 360 (Digital), Microsoft - XBOX 360 (Games on Demand)]
-  Emulators: [xenia, xenia_edge]
-
+  Emulators: [xenia]
+  
 - Name: Microsoft Xbox One
   Id: xbox_one
   IgdbId: 49
-
+  
 - Name: Microsoft Xbox Series
   Id: xbox_series
   IgdbId: 169
-
+  
 - Name: Microsoft Xbox
   Id: xbox
   IgdbId: 11
@@ -207,7 +207,7 @@
   IgdbId: 149
   Databases: [NEC - PC-98]
   Emulators: [retroarch]
-
+  
 - Name: NEC PC-FX
   Id: nec_pcfx
   IgdbId: 274
@@ -231,7 +231,7 @@
   IgdbId: 150
   Databases: [NEC - PC Engine CD - TurboGrafx-CD]
   Emulators: [ares, bizhawk, higan, mednafen, mesen, retroarch]
-
+  
 - Name: Nintendo 3DS
   Id: nintendo_3ds
   IgdbId: 37
@@ -249,13 +249,13 @@
   IgdbId: 20
   Databases: [Nintendo - Nintendo DS, Nintendo - Nintendo DS (Download Play)]
   Emulators: [bizhawk, desmume, gbe+, melonds, retroarch]
-
+  
 - Name: Nintendo DSi
   Id: nintendo_dsi
   IgdbId: 159
   Databases: [Nintendo - Nintendo DSi, Nintendo - Nintendo DSi (Digital)]
   Emulators: [bizhawk, melonds]
-
+  
 - Name: Nintendo Entertainment System
   Id: nintendo_nes
   IgdbId: 18
@@ -277,25 +277,25 @@
   IgdbId: 24
   Databases: [Nintendo - Game Boy Advance]
   Emulators: [ares, bizhawk, gbe+, higan, mednafen, mgba, nanoboyadvance, retroarch, visualboyadvance, visualboyadvance-m]
-
+  
 - Name: Nintendo Game Boy Color
   Id: nintendo_gameboycolor
   IgdbId: 22
   Databases: [Nintendo - Game Boy Color]
   Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, jgenesis, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
-
+  
 - Name: Nintendo Game Boy
   Id: nintendo_gameboy
   IgdbId: 33
   Databases: [Nintendo - Game Boy]
   Emulators: [ares, bgb, bizhawk, gambatte, gbe+, higan, jgenesis, mednafen, mesen, mgba, retroarch, sameboy, visualboyadvance, visualboyadvance-m]
-
+  
 - Name: Nintendo GameCube
   Id: nintendo_gamecube
   IgdbId: 21
   Databases: [Nintendo - GameCube]
   Emulators: [dolphin, retroarch]
-
+  
 - Name: Nintendo SNES
   Id: nintendo_super_nes
   IgdbId: 19
@@ -310,40 +310,40 @@
 - Name: Nintendo Switch 2
   Id: nintendo_switch2
   IgdbId: 508
-
+  
 - Name: Nintendo Virtual Boy
   Id: nintendo_virtualboy
   IgdbId: 87
   Databases: [Nintendo - Virtual Boy]
   Emulators: [bizhawk, mednafen, retroarch]
-
+  
 - Name: Nintendo Wii U
   Id: nintendo_wiiu
   IgdbId: 41
   Databases: [Nintendo - Wii U, Nintendo - Wii U (Digital)]
   Emulators: [cemu, decaf-emu]
-
+  
 - Name: Nintendo Wii
   Id: nintendo_wii
   IgdbId: 5
   Databases: [Nintendo - Wii, Nintendo - Wii (Digital)]
   Emulators: [dolphin, retroarch]
-
+  
 - Name: PC (DOS)
   Id: pc_dos
   IgdbId: 13
   Databases: [DOS]
   Emulators: [dosbox, pcem, retroarch, scummvm]
-
+  
 - Name: PC (Linux)
   Id: pc_linux
   IgdbId: 3
-
+  
 - Name: PC (Windows)
   Id: pc_windows
   IgdbId: 6
   Emulators: [pcem, scummvm]
-
+  
 - Name: Sega 32X
   Id: sega_32x
   IgdbId: 30
@@ -361,7 +361,7 @@
   IgdbId: 23
   Databases: [Sega - Dreamcast]
   Emulators: [demul, flycast, nulldc, redream, reicast, retroarch]
-
+  
 - Name: Sega Game Gear
   Id: sega_gamegear
   IgdbId: 35
@@ -385,7 +385,7 @@
   IgdbId: 32
   Databases: [Sega - Saturn]
   Emulators: [ares, bizhawk, mednafen, retroarch, yabuse, ymir]
-
+  
 - Name: Sega SG-1000
   Id: sega_sg1000
   IgdbId: 84
@@ -406,7 +406,7 @@
   Id: sinclair_zxspectrum3
   Databases: [Sinclair - ZX Spectrum +3]
   Emulators: [fuse, retroarch]
-
+  
 - Name: Sinclair ZX Spectrum
   Id: sinclair_zxspectrum
   IgdbId: 26
@@ -418,24 +418,24 @@
   IgdbId: 373
   Databases: [Sinclair - ZX 81]
   Emulators: [retroarch]
-
+  
 - Name: SNK Neo Geo AES
   Id: snk_neogeo_aes
   IgdbId: 80
   Emulators: [ares]
-
+  
 - Name: SNK Neo Geo CD
   Id: snk_neogeo_cd
   IgdbId: 136
   Databases: [SNK - Neo Geo CD]
-  Emulators: [fbneo, retroarch]
-
+  Emulators: [retroarch]
+  
 - Name: SNK Neo Geo Pocket Color
   Id: snk_neogeopocket_color
   IgdbId: 120
   Databases: [SNK - Neo Geo Pocket Color]
   Emulators: [ares, bizhawk, mednafen, retroarch]
-
+  
 - Name: SNK Neo Geo Pocket
   Id: snk_neogeopocket
   IgdbId: 119
@@ -447,40 +447,40 @@
   IgdbId: 8
   Databases: [Sony - PlayStation 2]
   Emulators: [pcsx2, retroarch]
-
+  
 - Name: Sony PlayStation 3
   Id: sony_playstation3
   IgdbId: 9
   Databases: [Sony - PlayStation 3, Sony - PlayStation 3 (PSN)]
   Emulators: [rpcs3]
-
+  
 - Name: Sony PlayStation 4
   Id: sony_playstation4
   IgdbId: 48
   Emulators: [shadps4]
-
+  
 - Name: Sony PlayStation 5
   Id: sony_playstation5
   IgdbId: 167
-
+  
 - Name: Sony PlayStation Portable
   Id: sony_psp
   IgdbId: 38
   Databases: [Sony - PlayStation Portable, Sony - PlayStation Portable (PSN), Sony - PlayStation Portable (PSX2PSP)]
   Emulators: [ppsspp, retroarch]
-
+  
 - Name: Sony PlayStation Vita
   Id: sony_vita
   IgdbId: 46
   Databases: [Sony - PlayStation Vita, Sony - PlayStation Vita (PSN)]
   Emulators: [vita3k]
-
+  
 - Name: Sony PlayStation
   Id: sony_playstation
   IgdbId: 7
   Databases: [Sony - PlayStation]
   Emulators: [ares, bizhawk, duckstation, epsxe, mednafen, pcsxr-pgxp, retroarch]
-
+  
 - Name: Texas Instruments TI-83
   Id: ti_83
   Databases: [TIC-80]
@@ -491,16 +491,16 @@
   IgdbId: 156
   Databases: [Thomson - MOTO]
   Emulators: [retroarch]
-
+  
 - Name: Thomson TO7
   Id: thomson_to7
   Databases: [Thomson - MOTO]
   Emulators: [retroarch]
-
+  
 - Name: TIC-80
   Id: tic_80
   Emulators: [bizhawk]
-
+  
 - Name: Uzebox
   Id: uzebox
   Databases: [Uzebox]
