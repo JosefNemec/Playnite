@@ -270,8 +270,8 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsGridItemDrawBackground">Vẽ nền mục lưới</sys:String>
     <sys:String x:Key="LOCSettingsGridItemCoverMargin">Chiều rộng đường viền mục lưới</sys:String>
     <sys:String x:Key="LOCSettingsDefaulIconSource">Thiếu nguồn biểu tượng trò chơi</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulCoverSource">Thiếu nguồn bìa game</sys:String>
-    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Thiếu nguồn nền trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulCoverSource">Thiếu nguồn ảnh bìa trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Thiếu nguồn hình nền trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Khoảng cách dọc đến chi tiết trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Vị trí chi tiết chế độ xem lưới</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Chi tiết xem vị trí danh sách trò chơi</sys:String>
@@ -584,8 +584,8 @@ Nếu bị tắt, các trò chơi sử dụng bất kỳ mục nào trong bất 
     <sys:String x:Key="LOCAgeRatingsLabel">Xếp hạng độ tuổi</sys:String>
     <sys:String x:Key="LOCRegionLabel">Khu vực</sys:String>
     <sys:String x:Key="LOCRegionsLabel">Các khu vực</sys:String>
-    <sys:String x:Key="LOCSourceLabel">Mã nguồn</sys:String>
-    <sys:String x:Key="LOCSourcesLabel">Các đoạn mã nguồn</sys:String>
+    <sys:String x:Key="LOCSourceLabel">Nguồn</sys:String>
+    <sys:String x:Key="LOCSourcesLabel">Nguồn</sys:String>
     <sys:String x:Key="LOCRecentActivityLabel">Hoạt động gần đây</sys:String>
     <!--Errors-->
     <sys:String x:Key="LOCDatabaseErroTitle">Lỗi cơ sở dữ liệu</sys:String>
@@ -611,7 +611,7 @@ Vui lòng đính kèm ID sau vào báo cáo sự cố của bạn:</sys:String>
 
 Thông tin thêm tại https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">Không thể nhập trình mô phỏng do tệp định nghĩa bị thiếu hoặc bị hỏng.</sys:String>
-    <sys:String x:Key="LOCMenuActionExecError">Không thực hiện được hành động trên menu.</sys:String>
+    <sys:String x:Key="LOCMenuActionExecError">Không thực hiện được trình đơn hành động.</sys:String>
     <!--GameEdit-->
     <sys:String x:Key="LOCGameEditWindowTitle">Sử Thông tin game</sys:String>
     <sys:String x:Key="LOCImageURL">URL ảnh</sys:String>
@@ -658,7 +658,7 @@ Thông tin thêm tại https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCNever">Không bao giờ</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Trạng thái</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Trạng thái hoàn thành</sys:String>
-    <sys:String x:Key="LOCUserScore">Thành tích của Game thủ</sys:String>
+    <sys:String x:Key="LOCUserScore">Điểm người chơi</sys:String>
     <sys:String x:Key="LOCCriticScore">Điểm phê bình</sys:String>
     <sys:String x:Key="LOCCommunityScore">Điểm cộng đồng</sys:String>
     <sys:String x:Key="LOCGameScripts">Mã lệnh game</sys:String>
@@ -754,11 +754,11 @@ Thông tin thêm tại https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSaveAsDefault">Lưu thành mặc định?</sys:String>
     <sys:String x:Key="LOCFavoriteGame">Thêm vào mục yêu thích</sys:String>
     <sys:String x:Key="LOCRemoveFavoriteGame">Loại bỏ khỏi mục ưa thích</sys:String>
-    <sys:String x:Key="LOCHideGame">Ẩn khỏi mục ưa thích</sys:String>
+    <sys:String x:Key="LOCHideGame">Ẩn trò chơi này</sys:String>
     <sys:String x:Key="LOCUnHideGame">Xóa khỏi danh sách ẩn</sys:String>
     <sys:String x:Key="LOCEnableHdr">Kích hoạt Hỗ trợ HDR</sys:String>
     <sys:String x:Key="LOCDisableHdr">Tắt Hỗ trợ HDR</sys:String>
-    <sys:String x:Key="LOCEditGame">chỉnh sửa</sys:String>
+    <sys:String x:Key="LOCEditGame">Chỉnh sửa</sys:String>
     <sys:String x:Key="LOCCalculateInstallSize">Tính toán kích cỡ cài đặt</sys:String>
     <sys:String x:Key="LOCCalculateGamesAllInstallSize">Tính toán dung lượng cài đặt (Tất cả game)</sys:String>
     <sys:String x:Key="LOCCalculateGamesMissingInstallSize">Tính toán dung lượng cài đặt (Chỉ đối với dữ liệu thiếu)</sys:String>

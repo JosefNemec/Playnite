@@ -384,7 +384,7 @@ Nunca: Nunca importa tiempo de juego bajo ninguna circunstancia.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeAlways">Siempre</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Sólo para los juegos recién importados</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Nunca</sys:String>
-    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Habilitar soporte para control en modo escritorio</sys:String>
+    <sys:String x:Key="LOCSettingsXInputInDesktopMode">Habilitar soporte para mando de juego en modo escritorio</sys:String>
     <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botón guía abre el modo pantalla completa</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Configuración de descarga automática de metadatos para juegos recién importados.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Pantalla objetivo</sys:String>
@@ -944,7 +944,7 @@ Si deseas instalar o desinstalar integraciones adicionales, use la opción &quot
     <sys:String x:Key="LOCAddonChangesRestart">Se requiere reiniciar la aplicación para aplicar cambios pendientes.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Este complemento está programado para su instalación.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
-    <sys:String x:Key="LOCAddonReinstall"></sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Reinstalar</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Ya instalado</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">No se han encontrado nuevas actualizaciones de complementos.</sys:String>
@@ -955,7 +955,7 @@ Si deseas instalar o desinstalar integraciones adicionales, use la opción &quot
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licencia rechazada</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Descargando {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Buscando actualizaciones para complementos ...</sys:String>
-    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Buscando actualizaciones del programa </sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Una o más actualizaciones de complementos están disponibles.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Seleccione los elementos para actualizar</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instancia de desarrollo de extensión</sys:String>
@@ -976,7 +976,7 @@ Si deseas instalar o desinstalar integraciones adicionales, use la opción &quot
     <sys:String x:Key="LOCActionTrackingModeProcess">Proceso</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Carpeta</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Proceso original</sys:String>
-    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Nombre del proceso</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Registrar mensajes trace</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">¡Los siguientes cambios sobrescriben los datos para todos los juegos seleccionados actualmente!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ninguno</sys:String>
@@ -1014,7 +1014,7 @@ Si deseas instalar o desinstalar integraciones adicionales, use la opción &quot
 ¡Desactivar esto puede llevar a problemas en juegos no recibiendo información de entrada en el inicio!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Tamaño de fuente</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Tamaño de fuente pequeño</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Activar soporte API para mando de juego</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Soporte para mandos de juegos</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si se desactiva, Playnite no aceptará ninguna entrada de mando de juego.
 
@@ -1024,8 +1024,8 @@ Desactiva esta opción si utilizas herramientas que traducen las entradas del ma
     <sys:String x:Key="LOCSettingsSwapMainViewXAButtonsDescriptions">Intercambia botones para comenzar un juego y mostrar la página de detalles del juego en la vista principal.</sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtons">Intercambiar enlace de botón de confirmación/cancelación</sys:String>
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Invierte los enlaces del botón A/B para confirmación y cancelación.</sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Sólo control primario</sys:String>
-    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Sólo aceptar entradas del control primario cuando esté activado.</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Sólo mando de juego principal</sys:String>
+    <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Sólo aceptar entradas del mando de juego principal cuando esté activado.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">El botón de la guía enfoca Playnite</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volumen de interfaz</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volumen de fondo</sys:String>
@@ -1113,7 +1113,7 @@ Si comienza a experimentar algunos problemas después de instalar un tema o una 
     <sys:String x:Key="LOCPowerShellCreationError">Error al inicializar el tiempo de ejecución del script de PowerShell. Si eres usuario de Windows 7, (re)intente instalando PowerShell 5.1 para solucionar el problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">El filtro preestablecido con el nombre especificado ya existe. ¿Actualizar filtro con las nuevas configuraciones?</sys:String>
     <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Cuando editas un juego, añades juegos mediante una actualización de la librería, escaneas una carpeta de emulación o escaneas una carpeta normal, completa automáticamente el campo &quot;nombre de ordenación&quot; con una mejor representación de la ordenación del nombre del juego. Por ejemplo The Witcher 3&quot; tendrá el nombre de ordenación &quot;Witcher 3&quot;. Nunca se pondrá un nombre de ordenación que no sea distinto al nombre del juego, y solo se actualizará automáticamente cuando el campo nombre de ordenación este vacio</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Estas palabras se eliminarán de el principio del valor de nombre automáticamente rellenado:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Utiliza esto para ignorar las palabras al principio de una cadena para propósitos de ordenación. El valor predeterminado es &quot;The&quot;, &quot;An&quot;, y &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Rellena el nombre de ordenación de los juegos sin uno</sys:String>

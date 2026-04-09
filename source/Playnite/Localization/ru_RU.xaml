@@ -1019,7 +1019,7 @@
 Отключение этой опции может привести к проблемам, так как на игры не будет переводиться фокус системы при их запуске!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Размер текста</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Размер подсказок</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Включить API-поддержку контроллера</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Поддержка игровых контроллеров</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Если этот параметр отключен, Playnite не будет принимать данные любых игровых контроллеров.
         
@@ -1117,8 +1117,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, присваиваемый играм, которые запущены впервые</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Не удалось инициализировать среду выполнения сценария PowerShell. Если вы являетесь пользователем Windows 7, попробуйте (пере)установить PowerShell 5.1, чтобы устранить проблему.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Шаблон фильтра с указанным именем уже существует. Обновить шаблон с новыми настройками?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Автоматически заполнять пустые поля &quot;Сортировка&quot; для игр, которые добавляются массово или отредактированных</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Когда вы редактируете игру, добавляете игры с помощью обновления библиотеки, сканирования папки эмулятора или нормального сканирования, поле «Сортировка» автоматически заполнится для лучшей сортировки игр по названиям. Например, «The Witcher 3» получит сортировочное имя «Witcher 03». Сортировочное имя не будет присвоено, если оно не отличается от обычного названия игры, и только пустые поля сортировки будут автоматически заполнены.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Эти слова будут удалены из начала автоматически заполняемого значения &quot;Имя сортировки&quot;:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Используется для игнорирования слов в начале строки в целях сортировки. По умолчанию используются слова &quot;The&quot;, &quot;An&quot; и &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Заполнять &quot;Имя Сортировки&quot; в играх без него</sys:String>
