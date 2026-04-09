@@ -1,0 +1,9 @@
+Id: azahar
+Name: Azahar
+Website: 'https://azahar-emu.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, cci, zcci, cxi, elf, cia]
+    StartupExecutable: ^azahar\.exe$

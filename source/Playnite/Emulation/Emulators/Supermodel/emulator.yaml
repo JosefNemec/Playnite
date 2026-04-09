@@ -1,0 +1,9 @@
+Id: supermodel
+Name: Supermodel
+Website: 'https://github.com/trzy/Supermodel'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}" -fullscreen'
+    Platforms: [arcade]
+    ImageExtensions: [zip]
+    StartupExecutable: ^supermodel\.exe$

@@ -1,0 +1,14 @@
+Id: fbneo
+Name: FinalBurn Neo
+Website: 'https://github.com/finalburnneo/FBNeo'
+Profiles:
+  - Name: Default 64bit
+    StartupArguments: '"{ImageNameNoExt}"'
+    Platforms: [arcade, fairchild_channelf, coleco_vision, microsoft_msx, nec_supergrafx, nec_turbografx_16, nintendo_nes, nintendo_famicom_disk, nintendo_super_nes, sega_gamegear, sega_genesis, sega_mastersystem, sega_sg1000, snk_neogeo_cd, snk_neogeopocket, sinclair_zxspectrum]
+    ImageExtensions: [7z, zip]
+    StartupExecutable: ^fbneo64\.exe$
+  - Name: Default 32bit
+    StartupArguments: '"{ImageNameNoExt}"'
+    Platforms: [arcade, fairchild_channelf, coleco_vision, microsoft_msx, nec_supergrafx, nec_turbografx_16, nintendo_nes, nintendo_famicom_disk, nintendo_super_nes, sega_gamegear, sega_genesis, sega_mastersystem, sega_sg1000, snk_neogeo_cd, snk_neogeopocket, sinclair_zxspectrum]
+    ImageExtensions: [7z, zip]
+    StartupExecutable: ^fbneo\.exe$

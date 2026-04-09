@@ -1,0 +1,9 @@
+Id: raproject64
+Name: RAProject64
+Website: 'https://github.com/RetroAchievements/RAProject64'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    ImageExtensions: [rom, n64, v64, z64, jap, pal, usa, zip, 7z]
+    Platforms: [nintendo_64]
+    StartupExecutable: ^RAProject64\.exe$

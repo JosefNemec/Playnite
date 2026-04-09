@@ -1,0 +1,9 @@
+Id: xenia_edge
+Name: Xenia Edge
+Website: 'https://github.com/has207/xenia-edge'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [xbox360]
+    ImageExtensions: [iso, xex, cci, cxi, elf, zar, <none>]
+    StartupExecutable: ^xenia_edge\.exe$

@@ -1,0 +1,9 @@
+Id: model2emulator
+Name: Model 2 Emulator
+Website: 'https://segaretro.org/Model_2_Emulator'
+Profiles:
+  - Name: Default
+    StartupArguments: '{ImageNameNoExt}'
+    Platforms: [arcade]
+    ImageExtensions: [zip]
+    StartupExecutable: ^emulator_multicpu\.exe$
