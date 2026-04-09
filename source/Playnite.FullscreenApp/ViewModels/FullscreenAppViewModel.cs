@@ -231,6 +231,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 gameDetailsVisible = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GameDetailsButtonVisible));
+                OnFullscreenViewChanged(value ? FullscreenView.Details : FullscreenView.List);
             }
         }
 
@@ -1170,6 +1171,26 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 ToggleGameDetailsCommand.Execute(null);
                 SelectGame(model.SelectedGame.Id);
+            }
+        }
+
+        private void OnFullscreenViewChanged(FullscreenView newView)
+        {
+            var args = new OnFullscreenViewChangedArgs()
+            {
+                NewView = newView
+            };
+
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnFullscreenViewChanged(args);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process OnFullscreenViewChanged event.");
+                }
             }
         }
     }

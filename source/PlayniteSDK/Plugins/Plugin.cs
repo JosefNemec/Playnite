@@ -322,6 +322,13 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when fullscreen view changes from list to game details and vice versa.
+        /// </summary>
+        public virtual void OnFullscreenViewChanged(OnFullscreenViewChangedArgs args)
+        {
+        }
+
+        /// <summary>
         /// Gets list of items to be displayed in game's context menu.
         /// </summary>
         /// <param name="args">Contextual arguments.</param>

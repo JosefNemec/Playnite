@@ -287,6 +287,11 @@ namespace Playnite.SDK.Events
         public GamepadController Controller { get; internal set; }
     }
 
+    public class OnFullscreenViewChangedArgs
+    {
+        public FullscreenView NewView { get; internal set; }
+    }
+
     public class GamepadController
     {
         public int InstanceId { get; internal set; }
