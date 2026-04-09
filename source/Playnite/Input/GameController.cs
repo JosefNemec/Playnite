@@ -281,7 +281,9 @@ namespace Playnite.Input
         public void Dispose()
         {
             isDisposed = true;
-            foreach (var controller in Controllers)
+            // There's some race condition here on shutdown according to crash reports.
+            // Needs ToList otherwise this fails in case controller is added or removed during dispose.
+            foreach (var controller in Controllers.ToList())
             {
                 SDL_GameControllerClose(controller.Controller);
             }
