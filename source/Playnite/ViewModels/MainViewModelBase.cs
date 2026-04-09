@@ -983,7 +983,7 @@ namespace Playnite.ViewModels
                             ["PlayniteApi"] = App.PlayniteApiGlobal
                         };
 
-                        runtime.Execute(PlaynitePaths.ExpandVariables(app.Script), variables: scriptVars);
+                        runtime.Execute(PlaynitePaths.ExpandVariables(app.Script), PlaynitePaths.ProgramPath, scriptVars);
                     }
                 }
             }

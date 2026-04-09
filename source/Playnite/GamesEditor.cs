@@ -1655,7 +1655,7 @@ namespace Playnite
                 }
                 else
                 {
-                    runtime.Execute(expandedScript, variables: scriptVars);
+                    runtime.Execute(expandedScript, PlaynitePaths.ProgramPath, scriptVars);
                 }
 
                 return true;

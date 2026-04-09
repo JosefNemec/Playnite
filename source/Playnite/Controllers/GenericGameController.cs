@@ -356,7 +356,7 @@ namespace Playnite.Controllers
                 }
                 else
                 {
-                    scriptRuntime.Execute(expandedScript, variables: scriptVars);
+                    scriptRuntime.Execute(expandedScript, PlaynitePaths.ProgramPath, scriptVars);
                 }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
