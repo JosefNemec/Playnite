@@ -21,6 +21,10 @@ namespace Playnite
             }
         }
 
+        // Technically # is also supported for in zip file references, but it's also valid file path character
+        // so we'll just roll without it for now. It would need an actual zip entry validation that we can't do here.
+        private static readonly char[] retroArchExtensionSeparators = new char[] { ':', '|' };
+
         public static List<M3UEntry> GetEntries(string filePath)
         {
             var entries = new List<M3UEntry>();
@@ -39,7 +43,19 @@ namespace Playnite
                 }
                 else
                 {
-                    currentEntry.Path = line;
+                    // https://github.com/JosefNemec/Playnite/issues/4267
+                    // Parse out Retroarch stuff they attach to the actual path instead of making it m3u extension...
+                    if (line.ContainsAny(retroArchExtensionSeparators))
+                    {
+                        var split = line.Split(retroArchExtensionSeparators);
+                        currentEntry.Path = split[0];
+                        currentEntry.Extensions.Add("RA", split[1]);
+                    }
+                    else
+                    {
+                        currentEntry.Path = line; 
+                    }
+
                     entries.Add(currentEntry);
                     currentEntry = new M3UEntry();
                 }

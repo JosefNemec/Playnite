@@ -16,7 +16,7 @@ namespace Playnite.Tests
         {
             var testm3uPath = Path.Combine(PlayniteTests.ResourcesPath, "test.m3u");
             var entires = M3U.GetEntries(testm3uPath);
-            Assert.AreEqual(14, entires.Count);
+            Assert.AreEqual(8, entires.Count);
 
             Assert.AreEqual(2, entires[0].Extensions.Count);
             Assert.AreEqual(@"111,The Orichalcon - ""megAsfear (Title)"" [http://doom2.ocremix.org - Delta-Q-Delta]", entires[0].Extensions["#EXTINF"]);
@@ -24,6 +24,9 @@ namespace Playnite.Tests
 
             Assert.AreEqual(0, entires[2].Extensions.Count);
             Assert.AreEqual(1, entires[3].Extensions.Count);
+
+            Assert.AreEqual("Space Crusade (1992)(Gremlin)(M4)[cr Nemesis](Disk 1 of 2).adf", entires[6].Path);
+            Assert.AreEqual("Space Crusade (1992)(Gremlin)(M4)[cr Nemesis](Disk 1 of 2).adf", entires[7].Path);
         }
     }
 }
