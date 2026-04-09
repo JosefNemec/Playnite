@@ -1,0 +1,9 @@
+Id: borked3ds
+Name: Borked3DS
+Website: 'https://github.com/Borked3DS/Borked3DS'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, cci, cxi, elf, cia]
+    StartupExecutable: ^borked3ds\.exe$

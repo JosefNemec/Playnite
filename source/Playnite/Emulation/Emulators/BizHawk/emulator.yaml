@@ -62,6 +62,12 @@ Profiles:
     ImageExtensions: [int, bin, rom, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
 
+  - Name: NEC PC-FX
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nec_pcfx]
+    ImageExtensions: [ccd, chd, cue, toc]
+    StartupExecutable: ^EmuHawk\.exe$
+    
   - Name: NEC TurboGrafx 16
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [nec_turbografx_16]
@@ -109,6 +115,12 @@ Profiles:
     Platforms: [nintendo_virtualboy]
     ImageExtensions: [vb, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
+    
+  - Name: Nintendo 3DS
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [3ds, 3dsx, cia, cxi]
+    StartupExecutable: ^EmuHawk\.exe$
 
   - Name: Nintendo 64
     StartupArguments: '"{ImagePath}" --fullscreen'
@@ -127,11 +139,29 @@ Profiles:
     Platforms: [sega_gamegear]
     ImageExtensions: [gg, zip, rar, 7z, gz]
     StartupExecutable: ^EmuHawk\.exe$
+    
+  - Name: SG-1000
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sega_sg1000]
+    ImageExtensions: [sg1000, sg, zip]
+    StartupExecutable: ^EmuHawk\.exe$
 
   - Name: Sega Genesis
     StartupArguments: '"{ImagePath}" --fullscreen'
     Platforms: [sega_genesis]
     ImageExtensions: [gen, md, smd, 32x, bin, cue, ccd, zip, rar, 7z, gz]
+    StartupExecutable: ^EmuHawk\.exe$
+    
+  - Name: Sega 32X
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sega_32x]
+    ImageExtensions: [32x]
+    StartupExecutable: ^EmuHawk\.exe$
+    
+  - Name: Sega CD
+    StartupArguments: '"{ImagePath}" --fullscreen'
+    Platforms: [sega_cd]
+    ImageExtensions: [chd, cue, ccd]
     StartupExecutable: ^EmuHawk\.exe$
 
   - Name: Sega Master System

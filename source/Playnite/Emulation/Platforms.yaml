@@ -18,7 +18,16 @@
   Id: apple_2
   IgdbId: 75
   Emulators: [bizhawk, mednafen]
-  
+
+- Name: Arcade
+  Id: arcade
+  IgdbId: 52
+  Emulators: [mame, fbneo, flycast, model2emulator, retroarch, supermodel, teknoparrot, visualpinballx]
+
+- Name: Arduboy
+  Id: arduboy
+  Emulators: [ralibretro, retroarch]
+
 - Name: Atari 2600
   Id: atari_2600
   IgdbId: 59
@@ -80,8 +89,8 @@
   Id: coleco_vision
   IgdbId: 68
   Databases: [Coleco - ColecoVision]
-  Emulators: [ares, bizhawk, bluemsx, fbalpha, retroarch]
-  
+  Emulators: [ares, bizhawk, bluemsx, fbalpha, fbneo, retroarch]
+
 - Name: Commodore 64
   Id: commodore_64
   IgdbId: 15
@@ -126,7 +135,11 @@
   IgdbId: 71
   Databases: [Commodore - VIC-20]
   Emulators: [retroarch, winvice]
-  
+
+- Name: Fairchild Channel F
+  Id: fairchild_channelf
+  Emulators: [ralibretro, fbneo]
+
 - Name: GCE Vectrex
   Id: vectrex
   IgdbId: 67
@@ -148,7 +161,11 @@
   IgdbId: 67
   Databases: [Mattel - Intellivision]
   Emulators: [bizhawk, retroarch]
-  
+
+- Name: Mega Duck
+  Id: megaduck
+  Emulators: [ralibretro]
+
 - Name: Microsoft MSX
   Id: microsoft_msx
   IgdbId: 27
@@ -180,7 +197,11 @@
   IgdbId: 11
   Databases: [Microsoft - Xbox]
   Emulators: [cxbx-reloaded, retroarch, xemu]
-  
+
+- Name: NEC PC-88
+  Id: nec_pc88
+  Emulators: [ralibretro]
+
 - Name: NEC PC-98
   Id: nec_pc98
   IgdbId: 149
@@ -191,20 +212,20 @@
   Id: nec_pcfx
   IgdbId: 274
   Databases: [NEC - PC-FX]
-  Emulators: [mednafen, retroarch]
-  
+  Emulators: [bizhawk, mednafen, retroarch]
+
 - Name: NEC SuperGrafx
   Id: nec_supergrafx
   IgdbId: 128
   Databases: [NEC - PC Engine SuperGrafx]
-  Emulators: [ares, bizhawk, higan, mednafen, mesen, retroarch]
-  
+  Emulators: [ares, bizhawk, fbneo, higan, mednafen, mesen, retroarch]
+
 - Name: NEC TurboGrafx 16
   Id: nec_turbografx_16
   IgdbId: 86
   Databases: [NEC - PC Engine - TurboGrafx 16]
-  Emulators: [ares, bizhawk, higan, mednafen, mesen, retroarch]
-  
+  Emulators: [ares, bizhawk, fbneo, higan, mednafen, mesen, retroarch]
+
 - Name: NEC TurboGrafx-CD
   Id: nec_turbografx_cd
   IgdbId: 150
@@ -215,14 +236,14 @@
   Id: nintendo_3ds
   IgdbId: 37
   Databases: [Nintendo - Nintendo 3DS, Nintendo - Nintendo 3DS (Digital)]
-  Emulators: [citra, retroarch]
-  
+  Emulators: [azahar, bizhawk, borked3ds, citra, retroarch]
+
 - Name: Nintendo 64
   Id: nintendo_64
   IgdbId: 4
   Databases: [Nintendo - Nintendo 64, Nintendo - Nintendo 64DD]
-  Emulators: [ares, bizhawk, m64p, m64py, project64, retroarch, rosaliesmupengui, simple64, gopher64]
-  
+  Emulators: [ares, bizhawk, m64p, m64py, raproject64, project64, retroarch, rosaliesmupengui, simple64, gopher64]
+
 - Name: Nintendo DS
   Id: nintendo_ds
   IgdbId: 20
@@ -239,14 +260,18 @@
   Id: nintendo_nes
   IgdbId: 18
   Databases: [Nintendo - Nintendo Entertainment System]
-  Emulators: [ares, bizhawk, fceux, higan, jgenesis, mednafen, mesen, nestopia, punes, retroarch]
-  
+  Emulators: [ares, bizhawk, fbneo, fceux, higan, jgenesis, mednafen, mesen, nestopia, punes, retroarch]
+
 - Name: Nintendo Family Computer Disk System
   Id: nintendo_famicom_disk
   IgdbId: 51
   Databases: [Nintendo - Family Computer Disk System]
-  Emulators: [fceux, retroarch]
-  
+  Emulators: [fbneo, fceux, retroarch]
+
+- Name: Nintendo Game & Watch
+  Id: nintendo_gameandwatch
+  Emulators: [ralibretro]
+
 - Name: Nintendo Game Boy Advance
   Id: nintendo_gameboyadvance
   IgdbId: 24
@@ -275,11 +300,12 @@
   Id: nintendo_super_nes
   IgdbId: 19
   Databases: [Nintendo - Super Nintendo Entertainment System]
-  Emulators: [ares, bizhawk, bsnes, bsnes-hd, bsnes-mt, higan, jgenesis, mednafen, mesen, mesen-s, retroarch, snes9x, zsnes]
-  
+  Emulators: [ares, bizhawk, bsnes, bsnes-hd, bsnes-mt, fbneo, higan, jgenesis, mednafen, mesen, mesen-s, retroarch, snes9x, zsnes]
+
 - Name: Nintendo Switch
   Id: nintendo_switch
   IgdbId: 130
+  Emulators: [eden, sudachi] #Suyu and Citron are supported but not recommended for download here due to inactivity (Suyu)/shady behavior (Citron)
 
 - Name: Nintendo Switch 2
   Id: nintendo_switch2
@@ -322,14 +348,14 @@
   Id: sega_32x
   IgdbId: 30
   Databases: [Sega - 32X]
-  Emulators: [ares, jgenesis, kegafusion, retroarch]
-  
+  Emulators: [ares, bizhawk, jgenesis, kegafusion, retroarch]
+
 - Name: Sega CD
   Id: sega_cd
   IgdbId: 78
   Databases: [Sega - Mega-CD - Sega CD]
-  Emulators: [ares, jgenesis, kegafusion, retroarch]
-  
+  Emulators: [ares, bizhawk, jgenesis, kegafusion, retroarch]
+
 - Name: Sega Dreamcast
   Id: sega_dreamcast
   IgdbId: 23
@@ -340,20 +366,20 @@
   Id: sega_gamegear
   IgdbId: 35
   Databases: [Sega - Game Gear]
-  Emulators: [ares, bizhawk, higan, jgenesis, kegafusion, mednafen, retroarch]
-  
+  Emulators: [ares, bizhawk, fbneo, higan, jgenesis, kegafusion, mednafen, retroarch]
+
 - Name: Sega Genesis
   Id: sega_genesis
   IgdbId: 29
   Databases: [Sega - Mega Drive - Genesis]
-  Emulators: [bizhawk, blastem, higan, jgenesis, kegafusion, mednafen, retroarch, ares]
-  
+  Emulators: [bizhawk, blastem, fbneo, higan, jgenesis, kegafusion, mednafen, retroarch, ares]
+
 - Name: Sega Master System
   Id: sega_mastersystem
   IgdbId: 64
   Databases: [Sega - Master System - Mark III]
-  Emulators: [ares, bizhawk, higan, jgenesis, kegafusion, mednafen, retroarch]
-  
+  Emulators: [ares, bizhawk, fbneo, higan, jgenesis, kegafusion, mednafen, retroarch]
+
 - Name: Sega Saturn
   Id: sega_saturn
   IgdbId: 32
@@ -364,14 +390,18 @@
   Id: sega_sg1000
   IgdbId: 84
   Databases: [Sega - SG-1000]
-  Emulators: [ares, retroarch]
-  
+  Emulators: [ares, bizhawk, fbneo, retroarch]
+
+- Name: Sharp X1
+  Id: sharp_x1
+  Emulators: [ralibretro]
+
 - Name: Sharp X68000
   Id: sharp_x68000
   IgdbId: 121
   Databases: [Sharp - X68000]
-  Emulators: [retroarch]
-  
+  Emulators: [retroarch, ralibretro]
+
 - Name: Sinclair ZX Spectrum +3
   Id: sinclair_zxspectrum3
   Databases: [Sinclair - ZX Spectrum +3]
@@ -381,8 +411,8 @@
   Id: sinclair_zxspectrum
   IgdbId: 26
   Databases: [Sinclair - ZX Spectrum]
-  Emulators: [bizhawk, fuse, retroarch]
-  
+  Emulators: [bizhawk, fbneo, fuse, retroarch]
+
 - Name: Sinclair ZX81
   Id: sinclair_zx81
   IgdbId: 373
@@ -410,8 +440,8 @@
   Id: snk_neogeopocket
   IgdbId: 119
   Databases: [SNK - Neo Geo Pocket]
-  Emulators: [ares, bizhawk, mednafen, retroarch]
-  
+  Emulators: [ares, bizhawk, fbneo, mednafen, retroarch]
+
 - Name: Sony PlayStation 2
   Id: sony_playstation2
   IgdbId: 8
@@ -454,8 +484,8 @@
 - Name: Texas Instruments TI-83
   Id: ti_83
   Databases: [TIC-80]
-  Emulators: [bizhawk]
-  
+  Emulators: [bizhawk, retroarch]
+
 - Name: Thomson MO5
   Id: thomson_mo5
   IgdbId: 156
@@ -476,6 +506,10 @@
   Databases: [Uzebox]
   Emulators: [bizhawk]
 
+- Name: WASM-4
+  Id: wasm4
+  Emulators: [ralibretro]
+
 - Name: Watara Supervision
   Id: watara_supervision
   Databases: [Watara - Supervision]
@@ -488,6 +522,4 @@
 - Name: Pokémon mini
   Id: pokemon_mini
   IgdbId: 166
-
-- Name: Arcade
-  Id: arcade
+  Emulators: [ralibretro]

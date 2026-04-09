@@ -6,5 +6,5 @@ Profiles:
     Platforms: [sony_playstation4]
     ProfileFiles: ['platforms\qwindows.dll']
     StartupExecutable: ^shadPS4.*\.exe$
-    StartupArguments: '-g "{ImagePath}"'
+    StartupArguments: '-d -g "{ImagePath}"'
     ScriptGameImport: true

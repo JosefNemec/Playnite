@@ -25,12 +25,12 @@ Profiles:
   - Name: Microsoft - MSX
     StartupArguments: '--system "MSX" "{ImagePath}" --fullscreen'
     Platforms: [microsoft_msx]
-    ImageExtensions: [zip, msx]
+    ImageExtensions: [zip, msx, rom, dsk, m3u]
     StartupExecutable: ^ares\.exe$
   - Name: Microsoft - MSX2
     StartupArguments: '--system "MSX2" "{ImagePath}" --fullscreen'
     Platforms: [microsoft_msx2]
-    ImageExtensions: [zip, msx2]
+    ImageExtensions: [zip, msx2, rom, dsk, m3u]
     StartupExecutable: ^ares\.exe$
   - Name: NEC - PC Engine
     StartupArguments: '--system "PC Engine" "{ImagePath}" --fullscreen'
