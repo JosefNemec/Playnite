@@ -34,6 +34,18 @@ namespace Playnite.SDK
         }
     }
 
+    public class ShouldPassResourceContentFuncArgs
+    {
+        public Playnite.SDK.WebViewModels.Request Request { get; }
+        public Playnite.SDK.WebViewModels.Response Response { get; }
+
+        public ShouldPassResourceContentFuncArgs(Playnite.SDK.WebViewModels.Request request, Playnite.SDK.WebViewModels.Response response)
+        {
+            Request = request;
+            Response = response;
+        }
+    }
+
     /// <summary>
     /// Represents browser view settings.
     /// </summary>
@@ -83,7 +95,7 @@ namespace Playnite.SDK
         /// <summary>
         /// If set, resource content will be read only the function returns true.
         /// </summary>
-        public Func<Playnite.SDK.WebViewModels.Request, bool> ShouldPassResourceContentFunc  { get; set; }
+        public Func<ShouldPassResourceContentFuncArgs, bool> ShouldPassResourceContentFunc  { get; set; }
     }
 
     /// <summary>

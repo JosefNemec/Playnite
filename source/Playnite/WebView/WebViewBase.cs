@@ -69,7 +69,7 @@ namespace Playnite.WebView
             if (settings.PassResourceContentStreamToCallback)
             {
                 if (settings.ShouldPassResourceContentFunc is null ||
-                    settings.ShouldPassResourceContentFunc(ConvertRequest(request)))
+                    settings.ShouldPassResourceContentFunc(new ShouldPassResourceContentFuncArgs(ConvertRequest(request), ConvertResponse(response))))
                     return new CefSharp.ResponseFilter.StreamResponseFilter(contentStream);
             }
 
