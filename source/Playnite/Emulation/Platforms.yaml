@@ -488,3 +488,6 @@
 - Name: Pokémon mini
   Id: pokemon_mini
   IgdbId: 166
+
+- Name: Arcade
+  Id: arcade
