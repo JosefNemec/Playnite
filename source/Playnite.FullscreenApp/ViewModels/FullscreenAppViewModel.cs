@@ -599,11 +599,14 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.InterfaceVolume))
             {
-                audio.SetSoundVolume(FullscreenApplication.ActivateSound, AppSettings.Fullscreen.InterfaceVolume);
-                audio.SetSoundVolume(FullscreenApplication.NavigateSound, AppSettings.Fullscreen.InterfaceVolume);
+                audio?.SetSoundVolume(FullscreenApplication.ActivateSound, AppSettings.Fullscreen.InterfaceVolume);
+                audio?.SetSoundVolume(FullscreenApplication.NavigateSound, AppSettings.Fullscreen.InterfaceVolume);
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
+                if (audio is null)
+                    return;
+
                 if (AppSettings.Fullscreen.BackgroundVolume <= 0)
                 {
                     audio.StopMusic();
@@ -624,7 +627,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.IsMusicMuted))
             {
-                if (AppSettings.Fullscreen.BackgroundVolume <= 0)
+                if (audio is null || AppSettings.Fullscreen.BackgroundVolume <= 0)
                     return;
 
                 if (AppSettings.Fullscreen.IsMusicMuted)
@@ -979,7 +982,7 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (AppSettings.Fullscreen.BackgroundVolume > 0)
             {
-                audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+                audio?.PlayMusic(FullscreenApplication.BackgroundMusic);
             }
 
             Extensions.NotifiyOnApplicationStarted();
