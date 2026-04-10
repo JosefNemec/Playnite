@@ -419,10 +419,6 @@ namespace Playnite.FullscreenApp
                 {
                     BackgroundMusic = Audio.LoadMusic(backgroundSoundPath);
                     Audio.SetMusicVolume(AppSettings.Fullscreen.BackgroundVolume);
-                    if (Current.AppSettings.Fullscreen.BackgroundVolume > 0)
-                    {
-                        Audio.PlayMusic(BackgroundMusic);
-                    }
                 }
                 catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                 {

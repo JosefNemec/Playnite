@@ -976,6 +976,12 @@ namespace Playnite.FullscreenApp.ViewModels
             GameListFocused = true;
             isInitialized = true;
             RunStartupScript();
+
+            if (AppSettings.Fullscreen.BackgroundVolume > 0)
+            {
+                audio.PlayMusic(FullscreenApplication.BackgroundMusic);
+            }
+
             Extensions.NotifiyOnApplicationStarted();
 
             try
