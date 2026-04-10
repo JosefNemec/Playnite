@@ -312,7 +312,7 @@ Profiles:
 
   - Name: Gearsystem
     StartupArguments: '--core gearsystem_libretro --system 11 --game "{ImagePath}"'
-    Platforms: [sega_mas]
+    Platforms: [sega_mastersystem]
     ImageExtensions: [bin, sms, rom]
     ProfileFiles: ['cores\gearsystem_libretro.dll']
     StartupExecutable: ^RALibretro\.exe\$
@@ -809,7 +809,7 @@ Profiles:
 
   - Name: PokeMini
     StartupArguments: '--core pokemini_libretro --system 24 --game "{ImagePath}"'
-    Platforms: [nintendo_pokemonmini]
+    Platforms: [pokemon_mini]
     ImageExtensions: [7z, bin, cso, elf, iso, isz, zip]
     ProfileFiles: ['cores\pokemini_libretro.dll']
     StartupExecutable: ^RALibretro\.exe\$
