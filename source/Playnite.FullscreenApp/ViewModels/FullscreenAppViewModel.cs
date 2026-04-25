@@ -946,21 +946,19 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
-            var openProgress = new ProgressViewViewModel(
-                new ProgressWindowFactory(),
-                new GlobalProgressOptions(LOC.OpeningDatabase));
 
-            if (openProgress.ActivateProgress(_ =>
+            try
             {
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
                     Database.OpenDatabase();
                 }
-            }).Result != true)
+            }
+            catch (Exception e)
             {
-                Logger.Error(openProgress.FailException, "Failed to open library database.");
-                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{openProgress.FailException?.Message}";
+                Logger.Error(e, "Failed to open library database.");
+                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{e.Message}";
                 Dialogs.ShowErrorMessage(message, "");
                 return;
             }
