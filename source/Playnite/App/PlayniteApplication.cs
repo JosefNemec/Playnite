@@ -478,9 +478,12 @@ namespace Playnite
             if (args.Name.StartsWith("Magick.NET"))
             {
                 var asmName = args.Name.Substring(0, args.Name.IndexOf(','));
-                var path = Path.Combine(PlaynitePaths.ProgramPath, $"{asmName}.dll");
                 if (magickAssemblies.TryGetValue(asmName, out var asm))
                     return asm;
+
+                var path = Path.Combine(PlaynitePaths.ProgramPath, $"{asmName}.dll");
+                if (!File.Exists(path))
+                    return null;
 
                 asm = Assembly.LoadFrom(path);
                 magickAssemblies.Add(asmName, asm);
