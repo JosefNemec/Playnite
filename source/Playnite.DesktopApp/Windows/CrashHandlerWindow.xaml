@@ -12,27 +12,23 @@
         AutomationProperties.AutomationId="WindowCrash">
 
     <DockPanel Margin="5">
-        <StackPanel DockPanel.Dock="Bottom">
-            <DockPanel LastChildFill="False">
-                <Button Name="ButtonRestart" Content="{DynamicResource LOCCrashRestartPlaynite}" DockPanel.Dock="Right"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding RestartCommand}"/>
-                <Button Name="ButtonSaveDiag" Content="{DynamicResource LOCCrashSendDiag}" DockPanel.Dock="Left"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding CreateDiagPackageCommand}"/>
-                <Button Name="ButtonReportIssue" Content="{DynamicResource LOCCrashReportIssue}" DockPanel.Dock="Left"
-                        Style="{StaticResource BottomButton}"
-                        Command="{Binding ReportIssueCommand}"/>
-            </DockPanel>
-            <Button Content="{DynamicResource LOCCrashRestartSafe}" HorizontalAlignment="Right"
+        <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
+            <Button Name="ButtonRestart" Content="{DynamicResource LOCCrashRestartPlaynite}" DockPanel.Dock="Right"
                     Style="{StaticResource BottomButton}"
-                    ToolTipService.InitialShowDelay="0"
-                    ToolTip="{DynamicResource LOCCrashRestartSafeTooltip}"
-                    Command="{Binding RestartSafeCommand}"/>
-        </StackPanel>
+                    Command="{Binding RestartCommand}"/>
+            <Button Name="ButtonSaveDiag" Content="{DynamicResource LOCCrashSendDiag}" DockPanel.Dock="Left"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding CreateDiagPackageCommand}"/>
+            <CheckBox Content="{DynamicResource LOCCrashRestartSafe}" DockPanel.Dock="Right"
+                      IsChecked="{Binding RestartInSafeMode}"
+                      VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <Button Name="ButtonReportIssue" Content="{DynamicResource LOCCrashReportIssue}" DockPanel.Dock="Left"
+                    Style="{StaticResource BottomButton}"
+                    Command="{Binding ReportIssueCommand}"/>
+        </DockPanel>
         <TextBlock Text="{DynamicResource LOCCrashDescription}"
                    Margin="5"
-                   VerticalAlignment="Center" DockPanel.Dock="Top" 
+                   VerticalAlignment="Center" DockPanel.Dock="Top"
                    TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
         <Label Content="{DynamicResource LOCCrashUserActionsDescription}" DockPanel.Dock="Top"
                Margin="5" FontSize="12"/>

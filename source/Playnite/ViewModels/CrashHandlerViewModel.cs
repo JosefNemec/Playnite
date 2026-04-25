@@ -42,6 +42,17 @@ namespace Playnite.ViewModels
             }
         }
 
+        private bool restartInSafeMode;
+        public bool RestartInSafeMode
+        {
+            get => restartInSafeMode;
+            set
+            {
+                restartInSafeMode = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool showDisableCheck;
         public bool ShowDisableCheck
         {
@@ -88,14 +99,6 @@ namespace Playnite.ViewModels
             get => new RelayCommand<object>((a) =>
             {
                 RestartApp();
-            });
-        }
-
-        public RelayCommand<object> RestartSafeCommand
-        {
-            get => new RelayCommand<object>((a) =>
-            {
-                RestartAppSafe();
             });
         }
 
@@ -178,31 +181,17 @@ namespace Playnite.ViewModels
 
         public void RestartApp()
         {
+            var options = new CmdLineOptions
+            {
+                SafeStartup = RestartInSafeMode,
+                UserDataDir = PlayniteApplication.Current.CmdLine.UserDataDir
+            };
+
             if (exInfo?.CrashExtension != null && exInfo?.IsExtensionCrash == true && DisableExtension)
             {
                 settings.DisabledPlugins.AddMissing(exInfo.CrashExtension.Id);
                 settings.SaveSettings();
             }
-
-            if (mode == ApplicationMode.Desktop)
-            {
-                Process.Start(PlaynitePaths.DesktopExecutablePath);
-            }
-            else
-            {
-                Process.Start(PlaynitePaths.FullscreenExecutablePath);
-            }
-
-            CloseView();
-        }
-
-        public void RestartAppSafe()
-        {
-            var options = new CmdLineOptions
-            {
-                SafeStartup = true,
-                UserDataDir = PlayniteApplication.Current.CmdLine.UserDataDir
-            };
 
             if (mode == ApplicationMode.Desktop)
             {
