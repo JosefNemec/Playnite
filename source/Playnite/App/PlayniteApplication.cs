@@ -44,6 +44,7 @@ namespace Playnite
         private bool installingAddon = false;
         private AddonLoadError themeLoadError = AddonLoadError.None;
         private ThemeManifest customTheme;
+        private readonly Dictionary<string, Assembly> magickAssemblies = new Dictionary<string, Assembly>();
 
         private bool isActive;
         public bool IsActive
@@ -114,6 +115,8 @@ namespace Playnite
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
+
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             if (!CmdLine.MasterInstance)
             {
@@ -465,6 +468,26 @@ namespace Playnite
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             ReleaseResources();
+        }
+
+        // This is necessary because automatic and manual assembly redirects via App.config don't work
+        // for Magick.NET, for some reason, don't know why. Any plugin that uses this dependency breaks
+        // any time we update Magick.NET.
+        private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.StartsWith("Magick.NET"))
+            {
+                var asmName = args.Name.Substring(0, args.Name.IndexOf(','));
+                var path = Path.Combine(PlaynitePaths.ProgramPath, $"{asmName}.dll");
+                if (magickAssemblies.TryGetValue(asmName, out var asm))
+                    return asm;
+
+                asm = Assembly.LoadFrom(path);
+                magickAssemblies.Add(asmName, asm);
+                return asm;
+            }
+
+            return null;
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
