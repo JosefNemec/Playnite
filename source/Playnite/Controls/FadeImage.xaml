@@ -6,12 +6,6 @@
              mc:Ignorable="d" 
              Name="ControlRoot"             
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <UserControl.CacheMode>
-        <BitmapCache EnableClearType="False" 
-                     RenderAtScale="1" 
-                     SnapsToDevicePixels="False" />
-    </UserControl.CacheMode>
 
     <UserControl.Resources>
         <Storyboard x:Key="Image1FadeIn">
