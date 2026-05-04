@@ -3,12 +3,12 @@ Name: Ryujinx
 Website: 'https://ryujinx.org/'
 Profiles:
   - Name: Default
-    StartupArguments: '"{ImagePath}"'
+    StartupArguments: '--fullscreen "{ImagePath}"'
     Platforms: [nintendo_switch]
     ImageExtensions: [xci, nsp]
     StartupExecutable: ^ryujinx\.exe$
   - Name: Avalonia
-    StartupArguments: '"{ImagePath}"'
+    StartupArguments: '--fullscreen "{ImagePath}"'
     Platforms: [nintendo_switch]
     ImageExtensions: [xci, nsp]
     StartupExecutable: ^ryujinx\.ava\.exe$
