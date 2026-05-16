@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
@@ -167,19 +168,25 @@ namespace Playnite.DesktopApp.Controls
                 case SearchMode.Normal:
                     ElemModeButton.Content = "⌕";
                     ElemModeButton.ToolTip =
-                        "Normal Search\nFinds exact text matches.";
+                        ResourceProvider.GetString(LOC.SearchModeNormalLabel) +
+                        Environment.NewLine +
+                        ResourceProvider.GetString(LOC.SearchModeNormalDescription);
                     break;
 
                 case SearchMode.Fuzzy:
                     ElemModeButton.Content = "≈";
                     ElemModeButton.ToolTip =
-                        "Fuzzy Search\nApproximate matching that tolerates typos and partial matches.";
+                        ResourceProvider.GetString(LOC.SearchModeFuzzyLabel) +
+                        Environment.NewLine +
+                        ResourceProvider.GetString(LOC.SearchModeFuzzyDescription);
                     break;
 
                 case SearchMode.Regex:
                     ElemModeButton.Content = ".*";
                     ElemModeButton.ToolTip =
-                        "Regex Search\nUses regular expression patterns.";
+                        ResourceProvider.GetString(LOC.SearchModeRegexLabel) +
+                        Environment.NewLine +
+                        ResourceProvider.GetString(LOC.SearchModeRegexDescription);
                     break;
             }
         }

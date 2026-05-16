@@ -4290,6 +4290,30 @@ namespace Playnite
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
         /// <summary>
+        /// Normal search mode
+        /// </summary>
+        public const string SearchModeNormalLabel = "LOCSearchModeNormalLabel";
+        /// <summary>
+        /// Fuzzy search mode
+        /// </summary>
+        public const string SearchModeFuzzyLabel = "LOCSearchModeFuzzyLabel";
+        /// <summary>
+        /// Regex search mode
+        /// </summary>
+        public const string SearchModeRegexLabel = "LOCSearchModeRegexLabel";
+        /// <summary>
+        /// Finds exact text matches.
+        /// </summary>
+        public const string SearchModeNormalDescription = "LOCSearchModeNormalDescription";
+        /// <summary>
+        /// Approximate matching that tolerates typos and partial matches.
+        /// </summary>
+        public const string SearchModeFuzzyDescription = "LOCSearchModeFuzzyDescription";
+        /// <summary>
+        /// Uses regular expression patterns.
+        /// </summary>
+        public const string SearchModeRegexDescription = "LOCSearchModeRegexDescription";
+        /// <summary>
         /// Fields to be displayed for game results:
         /// </summary>
         public const string SearchViewGameFieldOptions = "LOCSearchViewGameFieldOptions";
