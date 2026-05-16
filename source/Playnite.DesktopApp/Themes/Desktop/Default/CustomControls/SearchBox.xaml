@@ -10,16 +10,32 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type SearchBox}">
                     <Grid>
-                        <ContentControl x:Name="PART_SeachIcon"
-                                        ContentTemplate="{DynamicResource SearchTextIconTemplate}"
-                                        VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"
-                                        Foreground="{DynamicResource TextBrushDarker}" />
-                        <TextBox x:Name="PART_TextInpuText"
-                                 VerticalContentAlignment="Center" Padding="5,0,25,0"/>
-                        <ContentControl x:Name="PART_ClearTextIcon"
-                                        ContentTemplate="{DynamicResource ClearTextIconTemplate}" 
-                                        FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
-                                        Foreground="{DynamicResource TextBrushDarker}" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid Grid.Column="0">
+                            <ContentControl x:Name="PART_SeachIcon"
+                                            ContentTemplate="{DynamicResource SearchTextIconTemplate}"
+                                            VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"
+                                            Foreground="{DynamicResource TextBrushDarker}" />
+
+                            <TextBox x:Name="PART_TextInpuText"
+                                     VerticalContentAlignment="Center" Padding="5,0,25,0"/>
+
+                            <ContentControl x:Name="PART_ClearTextIcon"
+                                            ContentTemplate="{DynamicResource ClearTextIconTemplate}" 
+                                            FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0" 
+                                            Foreground="{DynamicResource TextBrushDarker}" />
+                        </Grid>
+                        
+                        <Button x:Name="PART_ModeButton"
+                                Grid.Column="1"
+                                FontSize="18"
+                                Margin="4,0,0,0"
+                                Foreground="{DynamicResource TextBrushDarker}" />
+
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

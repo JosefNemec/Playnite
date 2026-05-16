@@ -1,5 +1,6 @@
 ﻿using Playnite.Common;
 using Playnite.DesktopApp.ViewModels;
+using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,47 @@ namespace Playnite.DesktopApp.Controls
     [TemplatePart(Name = "PART_SeachIcon", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_ClearTextIcon", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_TextInpuText", Type = typeof(TextBox))]
+    [TemplatePart(Name = "PART_ModeButton", Type = typeof(Button))]
     public class SearchBox : Control
     {
         private FrameworkElement ElemSeachIcon;
         private FrameworkElement ElemClearTextIcon;
         private TextBox TextInputText;
+        private Button ElemModeButton;
 
         private int oldCarret;
         private bool ignoreTextCallback;
+
         internal IInputElement previousFocus;
+
+        public SearchMode SearchMode
+        {
+            get
+            {
+                return (SearchMode)GetValue(SearchModeProperty);
+            }
+            set
+            {
+                SetValue(SearchModeProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty SearchModeProperty =
+            DependencyProperty.Register(
+                nameof(SearchMode),
+                typeof(SearchMode),
+                typeof(SearchBox),
+                new PropertyMetadata(
+                    SearchMode.Normal,
+                    SearchModeChangedCalllback));
+
+        private static void SearchModeChangedCalllback(
+            DependencyObject sender,
+            DependencyPropertyChangedEventArgs e)
+        {
+            var control = (SearchBox)sender;
+            control.UpdateModeButton();
+        }
 
         public string Text
         {
@@ -87,6 +120,14 @@ namespace Playnite.DesktopApp.Controls
             {
             }
 
+            ElemModeButton = Template.FindName("PART_ModeButton", this) as Button;
+            if (ElemModeButton != null)
+            {
+                ElemModeButton.Click += ModeButton_Click;
+                // To keep textbox focused
+                ElemModeButton.Focusable = false;
+            }
+
             ElemClearTextIcon = Template.FindName("PART_ClearTextIcon", this) as FrameworkElement;
             if (ElemClearTextIcon != null)
             {
@@ -110,13 +151,64 @@ namespace Playnite.DesktopApp.Controls
                     trigger: System.Windows.Data.UpdateSourceTrigger.PropertyChanged);
             }
 
+            UpdateModeButton();
             UpdateIconStates();
+        }
+
+        private void UpdateModeButton()
+        {
+            if (ElemModeButton == null)
+            {
+                return;
+            }
+
+            switch (SearchMode)
+            {
+                case SearchMode.Normal:
+                    ElemModeButton.Content = "⌕";
+                    ElemModeButton.ToolTip =
+                        "Normal Search\nFinds exact text matches.";
+                    break;
+
+                case SearchMode.Fuzzy:
+                    ElemModeButton.Content = "≈";
+                    ElemModeButton.ToolTip =
+                        "Fuzzy Search\nApproximate matching that tolerates typos and partial matches.";
+                    break;
+
+                case SearchMode.Regex:
+                    ElemModeButton.Content = ".*";
+                    ElemModeButton.ToolTip =
+                        "Regex Search\nUses regular expression patterns.";
+                    break;
+            }
+        }
+
+        private void ModeButton_Click(
+            object sender,
+            RoutedEventArgs e)
+        {
+            switch (SearchMode)
+            {
+                case SearchMode.Normal:
+                    SearchMode = SearchMode.Fuzzy;
+                    break;
+
+                case SearchMode.Fuzzy:
+                    SearchMode = SearchMode.Regex;
+                    break;
+
+                case SearchMode.Regex:
+                    SearchMode = SearchMode.Normal;
+                    break;
+            }
         }
 
         private void TextInputText_GotFocus(object sender, RoutedEventArgs e)
         {
             UpdateIconStates();
         }
+
 
         private void UpdateIconStates()
         {
