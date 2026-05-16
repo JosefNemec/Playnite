@@ -305,6 +305,10 @@ namespace Playnite.Common
         {
             double totalScore = 0;
 
+            var comparison = IgnoreCase
+                ? StringComparison.OrdinalIgnoreCase
+                : StringComparison.Ordinal;
+
             for (int i = 0; i < queryWords.Length; i++)
             {
                 var queryWord = queryWords[i];
@@ -314,25 +318,80 @@ namespace Playnite.Common
                 for (int j = 0; j < targetWords.Length; j++)
                 {
                     var targetWord = targetWords[j];
+                    double similarity;
 
-                    var similarity = GetSimilarity(
+                    // Exact word
+                    if (string.Equals(
                         queryWord,
-                        targetWord);
-
-                    if (targetWord.StartsWith(
-                        queryWord,
-                        IgnoreCase
-                            ? StringComparison.OrdinalIgnoreCase
-                            : StringComparison.Ordinal))
+                        targetWord,
+                        comparison))
                     {
-                        similarity += .15;
+                        similarity = 1;
+                    }
+
+                    // Prefix:
+                    // pers -> Persona
+                    else if (
+                        targetWord.StartsWith(
+                            queryWord,
+                            comparison))
+                    {
+                        similarity = .95;
+                    }
+
+                    // Contains:
+                    // sona -> Persona
+                    else if (targetWord.IndexOf(
+                        queryWord,
+                        comparison) >= 0)
+                    {
+                        similarity = .85;
+                    }
+
+                    else
+                    {
+                        similarity = GetSimilarity(
+                            queryWord,
+                            targetWord);
+
+                        // Reject suspicious Jaro scores
+                        // from unrelated words by checking length
+                        // difference and first char match and applying a
+                        // penalty if they do not line up.
+
+                        var lengthDifference = Math.Abs(
+                            queryWord.Length -
+                            targetWord.Length);
+
+                        var longestLength = Math.Max(
+                            queryWord.Length,
+                            targetWord.Length);
+
+                        var lengthPenalty =
+                            (double)lengthDifference /
+                            longestLength;
+
+                        // Cap penalty so long words
+                        // do not become impossible.
+
+                        lengthPenalty = Math.Min(
+                            lengthPenalty,
+                            .50);
+
+                        similarity *= 1 - lengthPenalty;
+
+                        // Require stronger similarity
+                        // when first chars differ
+                        if (char.ToUpperInvariant(queryWord[0]) !=
+                            char.ToUpperInvariant(targetWord[0]))
+                        {
+                            similarity *= .5;
+                        }
                     }
 
                     if (similarity > bestScore)
                     {
                         bestScore = similarity;
-
-                        // Already a very good match, no need to check other words
                         if (bestScore >= .95)
                         {
                             break;
@@ -342,13 +401,8 @@ namespace Playnite.Common
 
                 totalScore += bestScore;
 
-                // Fail early
-                var average =
-                    totalScore /
-                    (i + 1);
-
-                if (average <
-                    EarlyFailThreshold)
+                var average = totalScore / (i + 1);
+                if (average < EarlyFailThreshold)
                 {
                     return average;
                 }
