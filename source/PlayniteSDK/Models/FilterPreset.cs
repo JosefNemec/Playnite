@@ -82,9 +82,9 @@ namespace Playnite.SDK.Models
 
     public enum SearchMode : int
     {
-        Normal = 0,
-        Fuzzy = 1,
-        Regex = 2
+        [Description("LOCSearchModeNormalLabel")] Normal = 0,
+        [Description("LOCSearchModeFuzzyLabel")] Fuzzy = 1,
+        [Description("LOCSearchModeRegexLabel")] Regex = 2
     }
 
     public class FilterPresetSettings
