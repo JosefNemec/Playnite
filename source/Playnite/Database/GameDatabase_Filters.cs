@@ -188,7 +188,7 @@ namespace Playnite.Database
             }
 
             // Special branches for Explorer Panel functionality when using Name filter
-            const string NameInitialPrefix = "[NameInitial]:";
+            const string NameInitialPrefix = "^:";
             if (filterSettings.Name.Length == NameInitialPrefix.Length + 1 &&
                 filterSettings.Name.StartsWith(NameInitialPrefix))
             {
