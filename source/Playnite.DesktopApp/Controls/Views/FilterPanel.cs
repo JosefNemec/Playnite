@@ -138,7 +138,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Libraries), nameof(FilterSettings.Library), false);
 
             SetLabelTag(nameof(FilterSettings.Name), LOC.NameLabel, new StringNullOrEmptyToBoolConverter(), nameof(FilterSettings.Name));
-            SetFilterSearchBoxFilter(nameof(FilterSettings.Name));
+            SetFilterSearchBoxBindings(nameof(FilterSettings.Name), nameof(FilterSettings.NameSearchMode));
 
             SetLabelTag(nameof(FilterSettings.Genre), LOC.GenreLabel);
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Genres), nameof(FilterSettings.Genre));
@@ -183,7 +183,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.AgeRatings), nameof(FilterSettings.AgeRating));
 
             SetLabelTag(nameof(FilterSettings.Version), LOC.VersionLabel, new StringNullOrEmptyToBoolConverter(), nameof(FilterSettings.Version));
-            SetFilterSearchBoxFilter(nameof(FilterSettings.Version));
+            SetFilterSearchBoxBindings(nameof(FilterSettings.Version), nameof(FilterSettings.VersionSearchMode));
 
             SetLabelTag(nameof(FilterSettings.UserScore), LOC.UserScore);
             SetFilterEnumSelectionBoxFilter(nameof(FilterSettings.UserScore), typeof(ScoreGroup));
@@ -257,7 +257,7 @@ namespace Playnite.DesktopApp.Controls.Views
             PanelItemsHost.Children.Add(elem);
         }
 
-        private void SetFilterSearchBoxFilter(string filterBinding)
+        private void SetFilterSearchBoxBindings(string filterBinding, string searchModeBinding)
         {
             if (PanelItemsHost == null)
             {
@@ -266,6 +266,14 @@ namespace Playnite.DesktopApp.Controls.Views
 
             var elem = new SearchBox();
             elem.SetResourceReference(SearchBox.StyleProperty, "FilterPanelFilterSearchBox");
+
+            BindingTools.SetBinding(elem,
+                SearchBox.SearchModeProperty,
+                mainModel.AppSettings.FilterSettings,
+                searchModeBinding,
+                BindingMode.TwoWay,
+                delay: 100);
+
             BindingTools.SetBinding(elem,
                 SearchBox.TextProperty,
                 mainModel.AppSettings.FilterSettings,
