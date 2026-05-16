@@ -187,7 +187,11 @@ namespace Playnite.Database
                 return false;
             }
 
-            if (filterSettings.NameSearchMode == SearchMode.Normal)
+            if (filterSettings.NameSearchMode == SearchMode.Fuzzy || useFuzzyNameMatch)
+            {
+                return nameMatcher.IsFuzzyMatch(filterSettings.Name, game.Name);
+            }
+            else if (filterSettings.NameSearchMode == SearchMode.Normal)
             {
                 if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
                 {
@@ -195,10 +199,6 @@ namespace Playnite.Database
                 }
 
                 return nameMatcher.IsMatch(filterSettings.Name, game.Name);
-            }
-            else if (filterSettings.NameSearchMode == SearchMode.Fuzzy)
-            {
-                return nameMatcher.IsFuzzyMatch(filterSettings.Name, game.Name);
             }
             else if (filterSettings.NameSearchMode == SearchMode.Regex)
             {
