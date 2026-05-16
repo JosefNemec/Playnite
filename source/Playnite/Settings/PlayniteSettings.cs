@@ -1871,17 +1871,6 @@ namespace Playnite
             }
         }
 
-        private bool fuzzyMatchingInNameFilter = true;
-        public bool FuzzyMatchingInNameFilter
-        {
-            get => fuzzyMatchingInNameFilter;
-            set
-            {
-                fuzzyMatchingInNameFilter = value;
-                OnPropertyChanged();
-            }
-        }
-
         private double topPanelSectionSeparatorWidth = 15;
         public double TopPanelSectionSeparatorWidth
         {

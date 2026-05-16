@@ -63,7 +63,7 @@ namespace Playnite
                 return false;
             }
 
-            return Database.GetGameMatchesFilter(entry.Game, filterSettings, settings.FuzzyMatchingInNameFilter);
+            return Database.GetGameMatchesFilter(entry.Game, filterSettings, false);
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
