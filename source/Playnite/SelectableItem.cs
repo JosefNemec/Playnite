@@ -515,7 +515,8 @@ namespace System
     public class SelectableDbItemList : SelectableIdItemList<DatabaseObject>, INotifyCollectionChanged
     {
         private readonly bool includeNoneItem;
-        private readonly TextMatcher textMatcher = new TextMatcher();
+        private readonly TextMatcher textMatcher =
+            new TextMatcher() { NormalMatchAcronymStart = true };
         private bool showSelectedOnly = false;
         public bool ShowSelectedOnly
         {

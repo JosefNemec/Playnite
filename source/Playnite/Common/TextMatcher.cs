@@ -42,8 +42,9 @@ namespace Playnite.Common
         private readonly HashSet<string> invalidRegexPatterns =
             new HashSet<string>();
 
-        public bool MatchAcronymStart { get; set; } = true;
-
+        public bool NormalMatchAcronymStart { get; set; } = false;
+        public bool FuzzyMatchAcronymStart { get; set; } = true;
+       
         public bool IgnoreCase { get; set; } = true;
 
         public double MinimumSimilarity { get; set; } = 0.92;
@@ -60,6 +61,12 @@ namespace Playnite.Common
             if (candidate is null)
             {
                 throw new ArgumentNullException(nameof(candidate));
+            }
+
+            if (NormalMatchAcronymStart &&
+                query.IsStartOfStringAcronym(candidate))
+            {
+                return true;
             }
 
             return candidate.IndexOf(
@@ -159,7 +166,7 @@ namespace Playnite.Common
                 return true;
             }
 
-            if (MatchAcronymStart &&
+            if (FuzzyMatchAcronymStart &&
                 filter.IsStartOfStringAcronym(target))
             {
                 return true;

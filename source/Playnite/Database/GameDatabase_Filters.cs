@@ -57,7 +57,7 @@ namespace Playnite.Database
         {
             this.filterSettings = filterSettings;
             this.useFuzzyNameMatch = useFuzzyNameMatch;
-            this.nameMatcher = new TextMatcher();
+            this.nameMatcher = new TextMatcher { NormalMatchAcronymStart = true };
         }
 
         public bool Match(Game game)
