@@ -4290,14 +4290,6 @@ namespace Playnite
         /// </summary>
         public const string SearchIncludeCommandsInDefaultTooltip = "LOCSearchIncludeCommandsInDefaultTooltip";
         /// <summary>
-        /// Use fuzzy matching in name filter
-        /// </summary>
-        public const string NameFilterUseFuzzyMatching = "NameFilterUseFuzzyMatching";
-        /// <summary>
-        /// When enabled, name filter will match game names the same way as global search.
-        /// </summary>
-        public const string NameFilterUseFuzzyMatchingTooltip = "NameFilterUseFuzzyMatchingTooltip";
-        /// <summary>
         /// Fields to be displayed for game results:
         /// </summary>
         public const string SearchViewGameFieldOptions = "LOCSearchViewGameFieldOptions";
