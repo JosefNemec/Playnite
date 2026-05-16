@@ -161,11 +161,11 @@ namespace Playnite.Common
             }
         }
 
-        private string CreateRegexCacheKey(
+        private static string CreateRegexCacheKey(
             string pattern,
             RegexOptions options)
         {
-            return $"{pattern}\u001F{(int)options}";
+            return string.Concat(pattern, "\u001F", (int)options);
         }
 
         public void ClearRegexCaches()
