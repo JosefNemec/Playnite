@@ -187,17 +187,22 @@ namespace Playnite.Database
                 return false;
             }
 
+            // Special branches for Explorer Panel functionality when using Name filter
+            if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+            {
+                return game.GetNameGroup() == filterSettings.Name[1];
+            }
+            else if (filterSettings.Name[0] == '!')
+            {
+                return game.Name.IndexOf(filterSettings.Name.Substring(1), StringComparison.OrdinalIgnoreCase) >= 0;
+            }
+
             if (filterSettings.NameSearchMode == SearchMode.Fuzzy || useFuzzyNameMatch)
             {
                 return nameMatcher.IsFuzzyMatch(filterSettings.Name, game.Name);
             }
             else if (filterSettings.NameSearchMode == SearchMode.Normal)
             {
-                if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
-                {
-                    return game.GetNameGroup() == filterSettings.Name[1];
-                }
-
                 return nameMatcher.IsMatch(filterSettings.Name, game.Name);
             }
             else if (filterSettings.NameSearchMode == SearchMode.Regex)
