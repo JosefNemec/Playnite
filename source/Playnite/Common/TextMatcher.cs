@@ -14,11 +14,21 @@ namespace Playnite.Common
 {
     public sealed class TextMatcher
     {
+        private const int MaxFuzzyMatchTokenCacheSize = 2000;
+
+        private const int MaxFuzzyMatchSimilarityCacheSize = 5000;
+
         private readonly Dictionary<string, string[]> tokenCache =
             new Dictionary<string, string[]>();
 
         private readonly Dictionary<string, double> similarityCache =
             new Dictionary<string, double>();
+
+        private readonly Queue<string> tokenCacheOrder =
+            new Queue<string>();
+
+        private readonly Queue<string> similarityCacheOrder =
+            new Queue<string>();
 
         private const double EarlyFailThreshold = .4;
 
@@ -361,6 +371,13 @@ namespace Playnite.Common
             similarity = left.GetJaroWinklerSimilarityIgnoreCase(right);
             similarityCache[key] = similarity;
 
+            similarityCacheOrder.Enqueue(key);
+            while (similarityCacheOrder.Count > MaxFuzzyMatchSimilarityCacheSize)
+            {
+                var oldest = similarityCacheOrder.Dequeue();
+                similarityCache.Remove(oldest);
+            }
+
             return similarity;
         }
 
@@ -373,6 +390,13 @@ namespace Playnite.Common
 
             tokens = Tokenize(text);
             tokenCache[text] = tokens;
+
+            tokenCacheOrder.Enqueue(text);
+            while (tokenCacheOrder.Count > MaxFuzzyMatchTokenCacheSize)
+            {
+                var oldest = tokenCacheOrder.Dequeue();
+                tokenCache.Remove(oldest);
+            }
 
             return tokens;
         }
