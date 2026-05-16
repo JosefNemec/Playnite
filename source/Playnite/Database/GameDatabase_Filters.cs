@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.Common;
+using Playnite.SDK.Models;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -50,11 +51,13 @@ namespace Playnite.Database
     {
         private readonly FilterSettings filterSettings;
         private readonly bool useFuzzyNameMatch;
+        private readonly TextMatcher nameMatcher;
 
         public FilterMatcher(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             this.filterSettings = filterSettings;
             this.useFuzzyNameMatch = useFuzzyNameMatch;
+            this.nameMatcher = new TextMatcher();
         }
 
         public bool Match(Game game)
@@ -184,17 +187,25 @@ namespace Playnite.Database
                 return false;
             }
 
-            if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+            if (filterSettings.NameSearchMode == SearchMode.Normal)
             {
-                return game.GetNameGroup() == filterSettings.Name[1];
+                if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+                {
+                    return game.GetNameGroup() == filterSettings.Name[1];
+                }
+
+                return nameMatcher.IsMatch(filterSettings.Name, game.Name);
+            }
+            else if (filterSettings.NameSearchMode == SearchMode.Fuzzy)
+            {
+                return nameMatcher.IsFuzzyMatch(filterSettings.Name, game.Name);
+            }
+            else if (filterSettings.NameSearchMode == SearchMode.Regex)
+            {
+                return nameMatcher.IsRegexMatch(filterSettings.Name, game.Name);
             }
 
-            if (!useFuzzyNameMatch || filterSettings.Name[0] == '!')
-            {
-                return game.Name.IndexOf(filterSettings.Name.Substring(1), StringComparison.OrdinalIgnoreCase) >= 0;
-            }
-
-            return SearchViewModel.MatchTextFilter(filterSettings.Name, game.Name, true);
+            return false;
         }
 
         private bool MatchReleaseYear(Game game)
