@@ -51,13 +51,13 @@ namespace Playnite.Database
     {
         private readonly FilterSettings filterSettings;
         private readonly bool useFuzzyNameMatch;
-        private readonly TextMatcher nameMatcher;
+        private static readonly TextMatcher nameMatcher =
+            new TextMatcher { NormalMatchAcronymStart = true };
 
         public FilterMatcher(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
             this.filterSettings = filterSettings;
             this.useFuzzyNameMatch = useFuzzyNameMatch;
-            this.nameMatcher = new TextMatcher { NormalMatchAcronymStart = true };
         }
 
         public bool Match(Game game)
