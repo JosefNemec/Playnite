@@ -80,6 +80,13 @@ namespace Playnite.SDK.Models
         [Description("LOCRecentActivityLabel")] RecentActivity = 26
     }
 
+    public enum SearchMode : int
+    {
+        Normal = 0,
+        Fuzzy = 1,
+        Regex = 2
+    }
+
     public class FilterPresetSettings
     {
         public bool UseAndFilteringStyle { get; set; }
@@ -88,7 +95,9 @@ namespace Playnite.SDK.Models
         public bool Hidden { get; set; }
         public bool Favorite { get; set; }
         public string Name { get; set; }
+        public SearchMode NameSearchMode { get; set; } = SearchMode.Normal;
         public string Version { get; set; }
+        public SearchMode VersionSearchMode { get; set; } = SearchMode.Normal;
         public StringFilterItemProperties ReleaseYear { get; set; }
         public IdItemFilterItemProperties Genre { get; set; }
         public IdItemFilterItemProperties Platform { get; set; }
