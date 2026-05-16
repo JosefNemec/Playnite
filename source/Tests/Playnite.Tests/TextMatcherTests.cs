@@ -209,11 +209,227 @@ namespace Playnite.Tests
         [Test]
         public void FuzzyWordMatchTest()
         {
-            var matcher = new TextMatcher();
+            var matcher = new TextMatcher
+            {
+                FuzzyMatchAcronymStart = true,
+                IgnoreCase = true
+            };
+
+            // Exact
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "Persona",
+                    "Persona"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "persona",
+                    "Persona"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "PERSONA",
+                    "Persona"));
+
+            // Partial words
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "pers",
+                    "Persona"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "meta",
+                    "Metaphor ReFantazio"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "roy",
+                    "Persona 5 Royal"));
+
+            // Typo correction
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "persna",
+                    "Persona"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "metphor",
+                    "Metaphor"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "fnal fantasy",
+                    "Final Fantasy"));
+
+            // Multi-word
+
             Assert.IsTrue(
                 matcher.IsFuzzyMatch(
                     "pers 5",
                     "Persona 5 Royal"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "persona royal",
+                    "Persona 5 Royal"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "fant 7",
+                    "Final Fantasy 7 Remake"));
+
+            // Acronyms
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "p5",
+                    "Persona 5"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "ac",
+                    "Assassin's Creed"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "ff",
+                    "Final Fantasy"));
+
+            // Word-start behavior for tiny searches
+
+            // Too short, default obtained fuzzy score is 0.90 and minimum is 0.92 for two chars
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "pe",
+                    "Persona"));
+
+            // Too short, default obtained fuzzy score is 0.90 and minimum is 0.92 for two chars
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "me",
+                    "Metaphor"));
+
+            // Tiny searches should not match everything
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "a",
+                    "Persona"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "e",
+                    "Metaphor"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "o",
+                    "Game Beta"));
+
+            // Symbols should not create garbage matches
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "^A",
+                    "Game Beta"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    ".*",
+                    "Persona"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "---",
+                    "Persona"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "()",
+                    "Persona"));
+
+            // Wrong words
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "Halo",
+                    "Persona"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "Mario",
+                    "Metaphor"));
+
+            // Gibberish
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "xyzabc",
+                    "Persona"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "qwerty",
+                    "Final Fantasy"));
+
+            // Punctuation separators
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "street 6",
+                    "Street-Fighter_6"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "fighter",
+                    "Street.Fighter:6"));
+
+
+
+            // Ordering
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "persona 5",
+                    "Persona 5 Royal"));
+
+            // Fuzzy Score: 0.68756613756613749
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "royal persona impossible",
+                    "Persona 5"));
+
+            // Whitespace handling
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "   persona",
+                    "Persona"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "persona   ",
+                    "Persona"));
+
+            // Long titles
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "red dead",
+                    "Red Dead Redemption 2"));
+
+            Assert.IsTrue(
+                matcher.IsFuzzyMatch(
+                    "redemptn",
+                    "Red Dead Redemption 2"));
+
+            // Very short non-acronym garbage
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "x",
+                    "Red Dead Redemption"));
+
+            Assert.IsFalse(
+                matcher.IsFuzzyMatch(
+                    "z",
+                    "Final Fantasy"));
         }
 
         [Test]

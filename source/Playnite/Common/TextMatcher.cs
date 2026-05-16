@@ -1,4 +1,5 @@
-﻿using NLog.Filters;
+﻿using Microsoft.Scripting.Actions.Calls;
+using NLog.Filters;
 using NLog.Targets;
 using Playnite.SDK.Models;
 using System;
@@ -13,6 +14,14 @@ namespace Playnite.Common
 {
     public sealed class TextMatcher
     {
+        private readonly Dictionary<string, string[]> tokenCache =
+            new Dictionary<string, string[]>();
+
+        private readonly Dictionary<string, double> similarityCache =
+            new Dictionary<string, double>();
+
+        private const double EarlyFailThreshold = .4;
+
         private static readonly char[] WordSeparators =
         {
             ' ',
@@ -24,7 +33,7 @@ namespace Playnite.Common
             ')'
         };
 
-        private const int MaxRegexCacheSize = 15;
+        private const int MaxRegexCacheSize = 12;
 
         public static readonly TimeSpan RegexTimeout =
             TimeSpan.FromMilliseconds(100);
@@ -46,8 +55,7 @@ namespace Playnite.Common
         public bool FuzzyMatchAcronymStart { get; set; } = true;
        
         public bool IgnoreCase { get; set; } = true;
-
-        public double MinimumSimilarity { get; set; } = 0.92;
+        public double MinimumFuzzyScore { get; set; } = 0.70;
 
         public bool IsMatch(
             string query,
@@ -147,7 +155,7 @@ namespace Playnite.Common
             string pattern,
             RegexOptions options)
         {
-            return pattern + "\u001F" + (int)options;
+            return $"{pattern}\u001F{(int)options}";
         }
 
         public void ClearRegexCaches()
@@ -158,88 +166,283 @@ namespace Playnite.Common
         }
 
         public bool IsFuzzyMatch(
-            string filter,
+            string query,
             string target)
         {
-            if (IsMatch(filter, target))
+            var fuzzyScore = GetFuzzyScore(
+                query,
+                target);
+            var minimumFuzzyScore = GetMinimumFuzzyScore(query);
+            return fuzzyScore >= minimumFuzzyScore;
+        }
+
+        public double GetFuzzyScore(
+            string query,
+            string target)
+        {
+            if (query is null)
             {
-                return true;
+                throw new ArgumentNullException(nameof(query));
             }
 
+            if (target is null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            if (query.Length == 0 ||
+                target.Length == 0)
+            {
+                return 0;
+            }
+
+            // To prevent unecessarily allocating new strings if there
+            // is no whitespace at the start or end of the query/target.
+            if (char.IsWhiteSpace(query[0]) ||
+                char.IsWhiteSpace(query[query.Length - 1]))
+            {
+                query = query.Trim();
+            }
+
+            if (char.IsWhiteSpace(target[0]) ||
+                char.IsWhiteSpace(target[target.Length - 1]))
+            {
+                target = target.Trim();
+            }
+
+            if (query.Length == 0 ||
+                target.Length == 0)
+            {
+                return 0;
+            }
+
+            var comparison = IgnoreCase
+                ? StringComparison.OrdinalIgnoreCase
+                : StringComparison.Ordinal;
+
+            // Exact
+            if (string.Equals(
+                query,
+                target,
+                comparison))
+            {
+                return 1.0;
+            }
+
+            // p5 -> Persona 5
+            // ac -> Assassin's Creed
+            // GOW -> Gears of War (Not God of War, the inferior franchise)
             if (FuzzyMatchAcronymStart &&
-                filter.IsStartOfStringAcronym(target))
+                query.IsStartOfStringAcronym(target))
             {
-                return true;
+                return .95;
             }
 
-            if (filter
-                .GetJaroWinklerSimilarityIgnoreCase(
-                    target)
-                >= MinimumSimilarity)
+            // Tiny searches can produce very bad similarity scores due to the way Jaro-Winkler works,
+            // so we can short circuit some of the more expensive checks for very short queries.
+            // using a specially tuned scoring method for short queries.
+            if (query.Length <= 2)
             {
-                return true;
+                return ScoreShortQuery(
+                    query,
+                    target,
+                    comparison);
             }
 
-            if (filter.Length >
-                target.Length)
+            if (target.IndexOf(query,comparison) >= 0)
+            {
+                return .95;
+            }
+
+            if (target.StartsWith(query, comparison))
+            {
+                return .90;
+            }
+
+            // Expensive path
+            var queryWords = GetTokens(query);
+            if (queryWords.Length == 0)
+            {
+                return 0;
+            }
+
+            var targetWords = GetTokens(target);
+            return ScoreWords(
+                queryWords,
+                targetWords);
+        }
+
+        private double ScoreShortQuery(
+            string query,
+            string target,
+            StringComparison comparison)
+        {
+            var words = GetTokens(target);
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i].StartsWith(query, comparison))
+                {
+                    return .90;
+                }
+            }
+
+            return 0;
+        }
+
+        private double ScoreWords(
+            string[] queryWords,
+            string[] targetWords)
+        {
+            double totalScore = 0;
+
+            for (int i = 0; i < queryWords.Length; i++)
+            {
+                var queryWord = queryWords[i];
+
+                double bestScore = 0;
+
+                for (int j = 0; j < targetWords.Length; j++)
+                {
+                    var targetWord = targetWords[j];
+
+                    var similarity = GetSimilarity(
+                        queryWord,
+                        targetWord);
+
+                    if (targetWord.StartsWith(
+                        queryWord,
+                        IgnoreCase
+                            ? StringComparison.OrdinalIgnoreCase
+                            : StringComparison.Ordinal))
+                    {
+                        similarity += .15;
+                    }
+
+                    if (similarity > bestScore)
+                    {
+                        bestScore = similarity;
+
+                        // Already a very good match, no need to check other words
+                        if (bestScore >= .95)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                totalScore += bestScore;
+
+                // Fail early
+                var average =
+                    totalScore /
+                    (i + 1);
+
+                if (average <
+                    EarlyFailThreshold)
+                {
+                    return average;
+                }
+            }
+
+            return totalScore / queryWords.Length;
+        }
+
+        private double GetSimilarity(
+            string left,
+            string right)
+        {
+            var key = string.Concat(left, "\u001F", right);
+            if (similarityCache.TryGetValue(key,
+                out var similarity))
+            {
+                return similarity;
+            }
+
+            similarity = left.GetJaroWinklerSimilarityIgnoreCase(right);
+            similarityCache[key] = similarity;
+
+            return similarity;
+        }
+
+        private string[] GetTokens(string text)
+        {
+            if (tokenCache.TryGetValue(text, out  var tokens))
+            {
+                return tokens;
+            }
+
+            tokens = Tokenize(text);
+            tokenCache[text] = tokens;
+
+            return tokens;
+        }
+
+        private static string[] Tokenize(string text)
+        {
+            var split =
+                text.Split(
+                    WordSeparators,
+                    StringSplitOptions.RemoveEmptyEntries);
+
+            var result = new List<string>(split.Length);
+            for (int i = 0; i < split.Length; i++)
+            {
+                if (IsValidToken(split[i]))
+                {
+                    result.Add(split[i]);
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        private static bool IsValidToken(
+            string value)
+        {
+            if (value.IsNullOrWhiteSpace())
             {
                 return false;
             }
 
-            var filterWords =
-                filter.Split(
-                    WordSeparators,
-                    StringSplitOptions.RemoveEmptyEntries);
-
-            var targetWords =
-                target.Split(
-                    WordSeparators,
-                    StringSplitOptions.RemoveEmptyEntries);
-
+            int alphaNumericCount = 0;
             for (int i = 0;
-                 i < filterWords.Length;
+                 i < value.Length;
                  i++)
             {
-                var matched = false;
-
-                var filterWord =
-                    filterWords[i];
-
-                for (int j = 0;
-                     j < targetWords.Length;
-                     j++)
+                if (char.IsLetterOrDigit(
+                    value[i]))
                 {
-                    var targetWord =
-                        targetWords[j];
+                    alphaNumericCount++;
 
-                    if (targetWord
-                        .ContainsInvariantCulture(
-                            filterWord,
-                            CompareOptions.IgnoreCase |
-                            CompareOptions.IgnoreSymbols |
-                            CompareOptions.IgnoreNonSpace))
+                    if (alphaNumericCount >= 2)
                     {
-                        matched = true;
-                        break;
+                        return true;
                     }
-
-                    if (filterWord
-                        .GetJaroWinklerSimilarityIgnoreCase(
-                            targetWord)
-                        >= MinimumSimilarity)
-                    {
-                        matched = true;
-                        break;
-                    }
-                }
-
-                if (!matched)
-                {
-                    return false;
                 }
             }
 
-            return true;
+            return false;
         }
+
+        private double GetMinimumFuzzyScore(string query)
+        {
+            if (query.Length <= 1)
+            {
+                return .98;
+            }
+
+            if (query.Length == 2)
+            {
+                return .92;
+            }
+
+            if (query.Length == 3)
+            {
+                return .80;
+            }
+
+            return MinimumFuzzyScore;
+        }
+
     }
 }
