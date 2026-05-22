@@ -133,6 +133,11 @@ namespace Playnite.Common
             {
                 logger.Error(e, $"Failed to get target path for a directory {directory}");
             }
+
+            dir = dir
+                .Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar)
+                .TrimEnd(Path.DirectorySeparatorChar)
+                + Path.DirectorySeparatorChar;
         }
 
         public bool IsTrackable()
