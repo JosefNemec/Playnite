@@ -1,0 +1,9 @@
+Id: super_zsnes
+Name: SUPER ZSNES
+Website: 'https://www.zsnes.com/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_super_nes]
+    ImageExtensions: [zip, smc, sfc, swc, ufo]
+    StartupExecutable: ^SUPERZSNES\.exe$
