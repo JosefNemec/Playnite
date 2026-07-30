@@ -15,6 +15,7 @@ using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace Playnite.Controls
@@ -219,6 +220,7 @@ namespace Playnite.Controls
 
         public WindowBase() : base()
         {
+            Language = XmlLanguage.GetLanguage(Localization.ApplicationLanguageCultureInfo.IetfLanguageTag);
             emptyAutomationPeer = new EmptyWindowAutomationPeer(this);
             Style defaultStyle = (Style)Application.Current?.TryFindResource(typeof(WindowBase));
             if (defaultStyle != null)
