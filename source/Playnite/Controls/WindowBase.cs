@@ -220,7 +220,7 @@ namespace Playnite.Controls
 
         public WindowBase() : base()
         {
-            Language = XmlLanguage.GetLanguage(Localization.ApplicationLanguageCultureInfo.IetfLanguageTag);
+            Language = XmlLanguage.GetLanguage(Localization.ApplicationLanguageCultureInfo.Name);
             emptyAutomationPeer = new EmptyWindowAutomationPeer(this);
             Style defaultStyle = (Style)Application.Current?.TryFindResource(typeof(WindowBase));
             if (defaultStyle != null)
