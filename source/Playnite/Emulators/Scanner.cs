@@ -589,8 +589,8 @@ namespace Playnite.Emulators
 
                     if (scriptTask.IsCompleted)
                     {
-                        return ParseScriptScanResult(
-                            scannedGames, emuProf);
+                        var scriptResults = ParseScriptScanResult(scannedGames, emuProf);
+                        return FilterScriptScanResults(scriptResults, fileExclusions, directoryExclusions);
                     }
 
                     if (scriptTask.IsCanceled || scriptTask.IsFaulted)
@@ -1184,6 +1184,59 @@ namespace Playnite.Emulators
             }
 
             return game;
+        }
+
+        private List<ScannedGame> FilterScriptScanResults(
+            List<ScannedGame> games,
+            List<GameScanner.ScanExclusion> fileExclusions,
+            List<GameScanner.ScanExclusion> directoryExclusions)
+        {
+            if (!fileExclusions.HasItems() && !directoryExclusions.HasItems())
+            {
+                return games;
+            }
+
+            var result = new List<ScannedGame>();
+
+            foreach (var game in games)
+            {
+                var filteredRoms = new ObservableCollection<ScannedRom>();
+
+                foreach (var rom in game.Roms)
+                {
+                    var romPath = Path.GetFullPath(rom.Path);
+                    var romDirectory = Path.GetDirectoryName(romPath);
+
+                    bool isFileExcluded = fileExclusions.HasItems() &&
+                                          GetFileExclusionMatches(new List<string> { romPath }, fileExclusions).HasItems();
+
+                    bool isDirExcluded = false;
+                    if (directoryExclusions.HasItems() && !string.IsNullOrEmpty(romDirectory))
+                    {
+                        foreach (var excl in directoryExclusions)
+                        {
+                            if (romDirectory.StartsWith(excl.Path.TrimEnd('\\', '/'), StringComparison.OrdinalIgnoreCase))
+                            {
+                                isDirExcluded = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!isFileExcluded && !isDirExcluded)
+                    {
+                        filteredRoms.Add(rom);
+                    }
+                }
+
+                if (filteredRoms.HasItems())
+                {
+                    game.Roms = filteredRoms;
+                    result.Add(game);
+                }
+            }
+
+            return result;
         }
 
         private List<ScannedGame> ParseScriptScanResult(
