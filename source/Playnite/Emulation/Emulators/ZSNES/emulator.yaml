@@ -1,6 +1,6 @@
 Id: zsnes
 Name: ZSNES
-Website: 'https://www.zsnes.com/'
+Website: 'https://www.zsnes.com/old/'
 Profiles:
   - Name: Default
     StartupArguments: '"{ImagePath}"'
