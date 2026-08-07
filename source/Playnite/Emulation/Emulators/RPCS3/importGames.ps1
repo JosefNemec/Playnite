@@ -7,6 +7,8 @@ if (-not [System.IO.Directory]::Exists($ImportArgs.ScanDirectory))
     return
 }
 
+$ignoreCategories = "GD", "2D", "PP"
+
 function Get-NullTerminatedString
 {
     param([Array]$bytes, [int]$offset)
@@ -82,7 +84,12 @@ foreach ($game in $games)
             try
             {
                 $paramSfoPath = (Get-ChildItem ISOFile: -Filter "param.sfo" -Recurse -File | Where { $_.DirectoryName -like "*PS3_GAME*" })[0].FullName
-
+                $category = Get-ParamSfoValue $paramSfoPath "CATEGORY"
+                if ($ignoreCategories.Contains($category))
+                {
+                    continue
+                }
+                
                 $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
                 if ($null -ne $scannedGame.Serial)
                 {
@@ -119,6 +126,12 @@ foreach ($game in $games)
         {
             try
             {
+                $category = Get-ParamSfoValue $paramSfoPath "CATEGORY"
+                if ($ignoreCategories.Contains($category))
+                {
+                    continue
+                }
+
                 $scannedGame.Serial = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
                 if ($null -ne $scannedGame.Serial)
                 {
