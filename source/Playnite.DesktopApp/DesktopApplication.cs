@@ -26,6 +26,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,7 +43,7 @@ namespace Playnite.DesktopApp
         private TaskbarIcon trayIcon;
         private SplashScreen splashScreen;
         private bool sdlInitialized = false;
-        private bool exitSDLEventLoop = false;
+        private volatile bool exitSDLEventLoop = false;
 
         private DesktopAppViewModel mainModel;
         public DesktopAppViewModel MainModel
@@ -396,7 +397,10 @@ namespace Playnite.DesktopApp
 
         private void SDLEventLoop()
         {
-            Task.Run(async () =>
+            // SDL's event pump and the Windows joystick hotplug path expect a single thread.
+            // Task.Run + await resumes on whatever pool thread is free, which moved every SDL
+            // call in this loop to a different thread on each tick.
+            var sdlThread = new Thread(() =>
             {
                 while (!exitSDLEventLoop)
                 {
@@ -414,9 +418,15 @@ namespace Playnite.DesktopApp
                     }
 
                     GameController?.ProcessInputs();
-                    await Task.Delay(16);
+                    Thread.Sleep(16);
                 }
-            });
+            })
+            {
+                IsBackground = true,
+                Name = "SDLEventLoop"
+            };
+
+            sdlThread.Start();
         }
 
         public void SetupInputs()
