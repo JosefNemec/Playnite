@@ -945,6 +945,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCAddonChangesRestart">Cómpre reiniciar a aplicación para aplicar as modificacións pendentes.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Este complemento está programado para a súa instalación.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instalar</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalar</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Xa instalado</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Non se atoparon novas actualizacións de complementos.</sys:String>
@@ -955,6 +956,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licenza rexeitada</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">A descargar {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Procurando actualizacións de complementos ...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Unha ou máis actualizacións de complementos están dispoñibles.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Selecciona artigos para actualizalos</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instancia de desenvolvemento da extensión</sys:String>
@@ -975,6 +977,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
     <sys:String x:Key="LOCActionTrackingModeProcess">Proceso</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Cartafol</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Proceso orixinal</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Rexistrar mensaxes de seguimento</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">As seguintes modificacións sobrescribirán os datos de todos os xogos seleccionados actualmente</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ningún</sys:String>
@@ -1012,6 +1015,7 @@ Se queres instalar ou desinstalar integracións adicionáis, vai a opción &quot
 Desactivar isto pode provocar problemas cos xogos que non reciban información de entrada ao inicio.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Tamaño da fonte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">tamaño de fonte pequeno</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Soporte de controlador de xogo</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se está desactivado, Playnite non aceptará ningunha entrada da interface XInput.
 
@@ -1109,8 +1113,8 @@ Se empezas a ter problemas tras instalar un tema ou unha extensión, tenta desac
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Estado asignado aos xogos xogados por primeira vez</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Erro ao inicializar o tempo de execución do script de PowerShell. Se usas Windows 7, tenta (re)instalar PowerShell 5.1 para corrixir o problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">O filtro predefinido co nome especificado xa existe. Queres actualizar a predefinición con novos axustes?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Encher automaticamente o nome da orde para xogos engadidos en masa</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Ao engadir xogos mediante unha actualización da biblioteca, unha análise de cartafol de emulador ou unha análise de cartafol normal, enche automaticamente o campo &quot;Nome de orde&quot; cunha representación máis fácil de ordenar do nome do xogo; por exemplo, &quot;The Witcher 3&quot; terá o nome de orde &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Eliminaranse estas palabras do inicio do valor de nome de orde enchido automaticamente:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Usa isto para ignorar palabras ao inicio dunha cadea para a orde. Os valores predeterminados son &quot;The&quot;, &quot;An&quot; e &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Enche o nome de orde para xogos que non teñan un</sys:String>
@@ -1255,4 +1259,6 @@ Abre un problema na páxina de GitHub de Playnite e solicita que se arranxe o pr
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Queres gardar os cambios realizados?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Instalación portátil</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Non se detectaron controladores</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

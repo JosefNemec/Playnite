@@ -347,7 +347,7 @@ namespace System
                 return source;
             }
 
-            return source.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+            return source.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
         }
 
         public static string PrefixWithDirSeparator(this string source)

@@ -1,0 +1,9 @@
+Id: visualpinballx
+Name: Visual Pinball X
+Website: ''
+Profiles:
+  - Name: Default 64 bit
+    StartupArguments: '-Minimized -Play "{ImagePath}"'
+    Platforms: [arcade]
+    ImageExtensions: [vpx]
+    StartupExecutable: ^VPinballX64\.exe$

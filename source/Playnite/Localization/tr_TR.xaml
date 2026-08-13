@@ -942,6 +942,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCAddonChangesRestart">Yeni ayarları uygulamak için yeniden başlatma gerekiyor.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Bu eklenti kurulum için planlandı.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Kur</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Təzədən Quraşdırmaq</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Kaldır</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Zaten kurulmuş</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Yeni eklenti güncellemesi bulunamadı.</sys:String>
@@ -952,6 +953,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisans reddedildi</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} indiriliyor…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Eklenti güncellemeleri kontrol ediliyor…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Program güncellemeleri kontrol ediliyor…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Bir veya daha fazla eklenti güncellemesi mevcut.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Güncellenecek öğeleri seçin</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Uzantı geliştirme örneği</sys:String>
@@ -972,6 +974,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
     <sys:String x:Key="LOCActionTrackingModeProcess">İşlem</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Klasör</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Özgün işlem</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">İşlem adı</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">İzleme mesajlarını günlüğe kaydet</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Yapılacak olan değişiklikler seçili olan tüm oyunların verilerinin üzerine yazılacaktır!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Hiçbiri</sys:String>
@@ -1009,6 +1012,7 @@ Ek bütünleştirmeler kurmak veya kaldırmak istiyorsanız ana menüden &quot;E
 Bunu devre dışı bırakmak, oyunların başlangıçta girdiye odaklanmamasıyla ilgili sorunlara yol açabilir!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Yazı Tipi Boyutu</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Yazı Tipi Boyutu Küçük</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Oyun kontrolcüsü API desteğini etkinleştir</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Oyun kolu desteği</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Devre dışı bırakılırsa Playnite hiçbir oyun kolu girişini kabul etmez.
         
@@ -1106,8 +1110,8 @@ Bir tema veya uzantı yükledikten sonra bazı sorunlar yaşamaya başlarsanız,
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">İlk kez oynanan oyunlara atanan statü</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell betiği çalışma zamanı başlatılamadı. Windows 7 kullanıcısıysanız, çözüm için PowerShell 5.1 (yeniden) kurmayı deneyin.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Belirtilen ada sahip filtre ön ayarı zaten var. Ön ayar yeni ayarlarla güncellensin mi?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Topluca eklenen oyunlar için sıralama ismini otomatik doldur</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Kütüphane güncellemesiyle veya emülatör ya da normal klasör taraması ile oyun eklediğinizde, &quot;Sıralama İsmi&quot; alanı otomatik olarak daha iyi sıralama sağlayacak bir metinle doldurulur. Örneğin &quot;The Witcher 3&quot; adlı oyun için Sıralama İsmi, &quot;Witcher 03&quot; olarak belirlenecektir</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Toplu eklenen veya düzenlenen oyunlar için eksik sıralama adlarını otomatik olarak doldur</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Bir oyunu düzenlediğinizde, kütüphane güncellemesi, emülatör klasörü taraması veya normal klasör taraması yoluyla oyun eklediğinizde, &quot;Sıralama Adı&quot; alanını oyunun adının daha iyi sıralanabilir bir temsilini otomatik olarak doldurun. Örneğin, &quot;The Witcher 3&quot; için Sıralama Adı &quot;Witcher 03&quot; olacaktır. Bu, oyun adından farklı olmayan bir sıralama adı belirlemez ve yalnızca boş olan sıralama adlarını otomatik olarak günceller.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Şu kelimeler, otomatik doldurulan Sıralama İsmi bilgisinin başlangıcından silinecektir:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Sıralama esnasında terimlerin başındaki kelimeleri göz ardı etmek için kullanın. Varsayılanlar, &quot;The&quot;, &quot;An&quot;, ve &quot;A&quot; kelimeleridir.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Sıralama İsmi boş olduğunda doldur</sys:String>
@@ -1258,4 +1262,6 @@ Playnite GitHub sayfasında yeni bir hata kaydı oluşturarak arızalı dosyalar
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Yaptığınız değişiklikleri kaydetmek istiyor musunuz?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Taşınabilir kurulum</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Hiçbir oyun kolu algılanmadı</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Varsayılan kaynak</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Web görüntüsü araması başarısız oldu. Bu çeşitli nedenlerden dolayı gerçekleşebilir. Daha fazla ayrıntı ve sorun giderme ipuçları için aşağıdaki bağlantıya bakın.</sys:String>
 </ResourceDictionary>

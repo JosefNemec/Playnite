@@ -196,21 +196,23 @@ namespace Playnite
                 result = result.Replace(ExpandableVariables.InstallationDirName, game.InstallDirectory.Split(Paths.DirectorySeparators, StringSplitOptions.RemoveEmptyEntries).LastOrDefault());
             }
 
-            if (romPath.IsNullOrEmpty() && game.Roms.HasItems())
+            if (romPath.IsNullOrWhiteSpace() && game.Roms.HasItems())
             {
                 var customPath = game.Roms[0].Path;
-                if (!customPath.IsNullOrEmpty())
+                if (!customPath.IsNullOrEmpty() && !Paths.ContainsInvalidPathChars(customPath))
                 {
                     result = result.Replace(ExpandableVariables.ImagePath, customPath);
                     result = result.Replace(ExpandableVariables.ImageNameNoExtension, Path.GetFileNameWithoutExtension(customPath));
                     result = result.Replace(ExpandableVariables.ImageName, Path.GetFileName(customPath));
+                    result = result.Replace(ExpandableVariables.ImageDir, Path.GetDirectoryName(customPath));
                 }
             }
-            else if (!romPath.IsNullOrEmpty())
+            else if (!romPath.IsNullOrWhiteSpace() && !Paths.ContainsInvalidPathChars(romPath))
             {
                 result = result.Replace(ExpandableVariables.ImagePath, romPath);
                 result = result.Replace(ExpandableVariables.ImageNameNoExtension, Path.GetFileNameWithoutExtension(romPath));
                 result = result.Replace(ExpandableVariables.ImageName, Path.GetFileName(romPath));
+                result = result.Replace(ExpandableVariables.ImageDir, Path.GetDirectoryName(romPath));
             }
 
             result = result.Replace(ExpandableVariables.PlayniteDirectory, PlaynitePaths.ProgramPath);
@@ -257,6 +259,7 @@ namespace Playnite
                     result = result.Replace(ExpandableVariables.ImagePath, romPath);
                     result = result.Replace(ExpandableVariables.ImageNameNoExtension, Path.GetFileNameWithoutExtension(romPath));
                     result = result.Replace(ExpandableVariables.ImageName, Path.GetFileName(romPath));
+                    result = result.Replace(ExpandableVariables.ImageDir, Path.GetDirectoryName(romPath));
                 }
             }
 

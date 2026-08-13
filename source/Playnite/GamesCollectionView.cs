@@ -79,9 +79,11 @@ namespace Playnite
 
         public LibraryPlugin GetLibraryPlugin(Game game)
         {
-            if (game.PluginId != Guid.Empty && extensions.Plugins.TryGetValue(game.PluginId, out var plugin))
+            if (game.PluginId != Guid.Empty &&
+                extensions.Plugins.TryGetValue(game.PluginId, out var plugin) &&
+                plugin.Plugin is LibraryPlugin libPlugin)
             {
-                return (LibraryPlugin)plugin.Plugin;
+                return libPlugin;
             }
 
             return null;

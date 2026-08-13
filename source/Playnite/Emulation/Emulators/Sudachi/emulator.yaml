@@ -1,0 +1,9 @@
+Id: sudachi
+Name: Sudachi
+Website: 'https://github.com/sudachi-emu/sudachi/'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_switch]
+    ImageExtensions: [nso, nro, nca, xci, nsp]
+    StartupExecutable: ^sudachi\.exe$

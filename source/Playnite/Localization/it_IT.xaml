@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">Italian</sys:String>
+    <sys:String x:Key="LanguageName">Italiano</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">Lingua Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Esci</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro attivo</sys:String>
@@ -280,7 +280,7 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Altezza icona lista giochi</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Carattere dell'applicazione</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Carattere monospaziato</sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione del pannello filtro</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">Posizione pannello filtro</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Posizione pannello esplora</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Rendering copertina</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Rapporto d'aspetto dell'oggetto</sys:String>
@@ -656,7 +656,7 @@ Maggiori informazioni su https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Non fare niente</sys:String>
     <sys:String x:Key="LOCMinimize">Minimizza</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Ripristina finestra</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Ripristina la finestra solo quando viene lanciata dall'interfaccia utente</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Ripristina finestra solo quando lanciata dall'interfaccia utente</sys:String>
     <sys:String x:Key="LOCClose">Chiudi</sys:String>
     <sys:String x:Key="LOCChange">Cambia</sys:String>
     <sys:String x:Key="LOCAdvanced">Avanzate</sys:String>
@@ -953,6 +953,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCAddonChangesRestart">Riavvio dell'applicazione è richiesto per applicare le modifiche.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Questo componente aggiuntivo è previsto per l'installazione.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installa</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Reinstalla</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Disinstalla</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Già installato</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nessun aggiornamento disponibile per i componenti aggiuntivi.</sys:String>
@@ -963,6 +964,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licenza rifiutata</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Scaricando {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Controllo degli aggiornamenti per i componenti aggiuntivi...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Ricerca aggiornamenti del programma...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Sono disponibili uno o più aggiornamenti per componenti aggiuntivi.
 </sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Seleziona gli elementi da aggiornare</sys:String>
@@ -984,6 +986,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
     <sys:String x:Key="LOCActionTrackingModeProcess">Processo</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Cartella</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Processo originale</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Nome del processo</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Registra i messaggi fissati</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Le seguenti modifiche sovrascriveranno i dati di tutti i giochi selezionati!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Nessuno</sys:String>
@@ -1021,6 +1024,7 @@ Se vuoi installare o disinstallare ulteriori integrazioni, usa l'opzione &quot;E
 Disattivare questa opzione può portare a problemi con i giochi che non ottengono la messa a fuoco dei comandi all'avvio!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Dimensione carattere</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Dimensione caratteri piccola</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Abilita il supporto API del controller di gioco</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Supporto controller di gioco</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Se disabilitato, Playnite non accetta nessun input del controller di gioco.
         
@@ -1118,8 +1122,8 @@ Se cominci ad avere qualche problema dopo l'installazione di un tema o di una es
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assegnato ai giochi giocati per la prima volta</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Impossibile inizializzare lo script PowerShell. Se sei un utente Windows 7, prova a (re)installare PowerShell 5.1 per riparare il problema.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Il preset del filtro con il nome specificato esiste già. Aggiornare il preset con le nuove impostazioni?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Riempi automaticamente il nome di ordinamento per i giochi aggiunti in gruppo</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Quando si aggiungono i giochi tramite un aggiornamento della libreria, una scansione della cartella emulatore, o una scansione della cartella normale, riempire automaticamente il campo &quot;Sorting Name&quot; con una migliore rappresentazione ordinabile del nome del gioco, per esempio &quot;The Witcher 3&quot; riceverà un Nome Ordinamento di &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Riempi automaticamente i nomi di ordinamento mancanti per i giochi aggiunti o modificati in batch</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Quando modifichi un gioco, aggiungi giochi tramite un aggiornamento della libreria, una scansione della cartella dell'emulatore o una normale scansione della cartella, compila automaticamente il campo “Nome di ordinamento” con una rappresentazione del nome del gioco più facilmente ordinabile. Ad esempio, “The Witcher 3” avrà come nome di ordinamento “Witcher 03”. In questo modo non verrà mai impostato un nome di ordinamento che non differisca dal nome del gioco e verranno aggiornati automaticamente solo i nomi di ordinamento vuoti.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Queste parole verranno rimosse dall'inizio del valore del nome di ordinamento compilato automaticamente:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Usalo per ignorare le parole all'inizio di una stringa per scopi di ordinamento. Il valore predefinito è &quot;The&quot;, &quot;An&quot; e &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Riempi il nome di ordinamento per i giochi senza uno</sys:String>
@@ -1270,4 +1274,6 @@ Apri un nuovo problema sulla pagina GitHub di Playnite con una richiesta di corr
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Vuoi salvare le modifiche?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Installazione portatile</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nessun controllore rilevato</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Fonte predefinita</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Ricerca immagini web non riuscita. Questo può accadere per vari motivi. Vedere il seguente collegamento per maggiori dettagli e suggerimenti alla risoluzione dei problemi.</sys:String>
 </ResourceDictionary>

@@ -907,6 +907,7 @@ Nova verzija: {2}</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
     <sys:String x:Key="LOCAddonInstall">Instaliraj</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall"></sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Već instalirano</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
@@ -917,6 +918,7 @@ Nova verzija: {2}</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -937,6 +939,7 @@ Nova verzija: {2}</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>
@@ -974,6 +977,7 @@ Nova verzija: {2}</sys:String>
 Isključivanje ove postavke može dovesti do poteškoća s igrama koje ne dobivaju fokus pri pokretanju!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Veličina znakovlja</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mala veličina znakovlja</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
@@ -1183,4 +1187,6 @@ Isključivanje ove postavke može dovesti do poteškoća s igrama koje ne dobiva
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
     <sys:String x:Key="LOCPortableInstallation"></sys:String>
     <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

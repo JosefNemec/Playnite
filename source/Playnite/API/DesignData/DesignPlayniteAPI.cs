@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Playnite.SDK.Events;
 
 namespace Playnite.API.DesignData
 {
@@ -81,6 +82,11 @@ namespace Playnite.API.DesignData
         }
 
         public void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<GamepadController> GetConnectedControllers()
         {
             throw new NotImplementedException();
         }

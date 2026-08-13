@@ -77,7 +77,7 @@ namespace Playnite.FullscreenApp
             }
 
             SplashScreen splash = null;
-            var procCount = Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count();
+            var procCount = Process.GetProcesses().Where(a => PlayniteApplication.IsProcessPlayniteProcess(a)).Count();
             if (cmdLine.Start.IsNullOrEmpty() && !cmdLine.HideSplashScreen && procCount == 1)
             {
                 splash = new SplashScreen("SplashScreen.png");

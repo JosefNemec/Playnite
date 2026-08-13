@@ -429,6 +429,7 @@ namespace Playnite.ViewModels
         public RelayCommand<KeyEventArgs> TextBoxKeyUpCommand => new RelayCommand<KeyEventArgs>((keyArgs) => TextBoxKeyUp(keyArgs));
         public RelayCommand<EventArgs> WindowClosedCommand => new RelayCommand<EventArgs>((_) => WindowClosed(_));
         public RelayCommand<EventArgs> WindowDeactivatedCommand => new RelayCommand<EventArgs>((_) => WindowDeactivated(_));
+        public RelayCommand<EventArgs> WindowClosingCommand => new RelayCommand<EventArgs>((_) => WindowClosing(_));
         public RelayCommand ToggleHintCommand => new RelayCommand(() => ToggleHint());
         public RelayCommand OpenSearchSettingsCommand => new RelayCommand(() => OpenSearchSettings());
         public RelayCommand DeactiveCurrentContextCommand => new RelayCommand(() => DeactiveCurrentContext());
@@ -572,6 +573,11 @@ namespace Playnite.ViewModels
             }
 
             Close();
+        }
+
+        private void WindowClosing(EventArgs args)
+        {
+            isClosing = true;
         }
 
         private void WindowClosed(EventArgs args)

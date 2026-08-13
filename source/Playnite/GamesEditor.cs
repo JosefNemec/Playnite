@@ -138,6 +138,7 @@ namespace Playnite
             this.actionSelector = actionSelector;
             controllers = controllerFactory;
             controllers.Installed += Controllers_Installed;
+            controllers.InstallationCancelled += Controllers_InstallationCancelled;
             controllers.Uninstalled += Controllers_Uninstalled;
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
@@ -165,7 +166,9 @@ namespace Playnite
                 UpdateGameState(controller.Game.Id, null, false, false, false, false);
             }
 
+
             controllers.Installed -= Controllers_Installed;
+            controllers.InstallationCancelled -= Controllers_InstallationCancelled;
             controllers.Uninstalled -= Controllers_Uninstalled;
             controllers.Started -= Controllers_Started;
             controllers.Stopped -= Controllers_Stopped;
@@ -1587,6 +1590,17 @@ namespace Playnite
             controllers.RemoveController(args.Source);
         }
 
+        private void Controllers_InstallationCancelled(object sender, GameInstallationCancelledEventArgs args)
+        {
+            var game = args.Source.Game;
+            logger.Info($"Game {game.Name} installation cancelled.");
+
+            var dbGame = Database.Games.Get(game.Id);
+            dbGame.IsInstalling = false;
+            Database.Games.Update(dbGame);
+            controllers.RemoveController(args.Source);
+        }
+
         private void Controllers_Uninstalled(object sender, GameUninstalledEventArgs args)
         {
             var game = args.Source.Game;
@@ -1641,7 +1655,7 @@ namespace Playnite
                 }
                 else
                 {
-                    runtime.Execute(expandedScript, variables: scriptVars);
+                    runtime.Execute(expandedScript, PlaynitePaths.ProgramPath, scriptVars);
                 }
 
                 return true;

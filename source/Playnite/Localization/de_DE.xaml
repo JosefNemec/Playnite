@@ -69,7 +69,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
 
 Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen Bibliotheksaktualisierungen das erneute Importieren der Spiele verhindern.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Möchtest du wirklich {0} derzeit nicht verwendete Einträge entfernen?</sys:String>
-    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Keine unbenutzen Felder gefunden.</sys:String>
+    <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Keine unbenutzten Felder gefunden.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (zur Ausschlussliste hinzufügen)</sys:String>
     <sys:String x:Key="LOCGameEditChangeNotif">Es existieren ungespeicherte Änderungen in diesem Abschnitt</sys:String>
     <sys:String x:Key="LOCDBUpgradeProgress">Spielebibliotheksformat wird aktualisiert …</sys:String>
@@ -467,16 +467,15 @@ Kann auch in den Anwendungseinstellungen geändert werden.</sys:String>
     <sys:String x:Key="LOCEmuWizardScanningSpecific">{0} wird durchsucht …</sys:String>
     <!--FirstTime Wizard-->
     <sys:String x:Key="LOCFirstWindowTitle">Einrichtungsassistent</sys:String>
-    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Dieser Assistent hilft dir beim automatischen Importieren von Spielen und der Konfiguration externer Spielebibliotheken. Playnite kann Spiele von mehreren Spieleplattformen wie Steam oder GOG automatisch importieren und zudem deine Bibliothek durch automatisches Aktualisieren während des Programmstarts aktuell halten.
-        
-Natürlich kannst du auch später Spiele sämtlicher Plattformen manuell hinzufügen, indem du im Hauptmenü auf die Schaltfläche »Playnite« klickst.
-.</sys:String>
-    <sys:String x:Key="LOCFirstExternalTitle">Bibliotheksintegration</sys:String>
-    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Spiele automatisch von den unten aufgeführten Diensten importieren. Spätere Spieländerungen (Installationsstatus) werden beim Starten von Playnite automatisch oder aber manuell ausgelöst aktualisiert. Die ausgewählten Einstellungen beeinflussen die ursprünglichen und alle nachfolgenden Importe.</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguration abgeschlossen</sys:String>
-    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Die Ersteinrichtung wurde abgeschlossen. Du kannst jedoch alle Einstellungen auch später im Menü »Einstellungen« ändern.
+    <sys:String x:Key="LOCFirstIntro" xml:space="preserve">Dieser Assistent führt dich durch den automatischen Import und die Konfiguration externer Spielebibliotheken. Playnite kann Spiele automatisch aus verschiedenen Spielediensten wie Steam oder GOG importieren.
 
-Weiterhin kannst du jederzeit weitere Spiele inzufügen, indem du auf das Playnite-Logo klickst.</sys:String>
+Beachte bitte, dass du später über das Hauptmenü auch manuell beliebige benutzerdefinierte oder emulierte Spiele für jede beliebige Plattform hinzufügen kannst.</sys:String>
+    <sys:String x:Key="LOCFirstExternalTitle">Bibliotheksintegration</sys:String>
+    <sys:String x:Key="LOCFirstImportIntroduction" xml:space="preserve">Im Folgenden findest du eine Liste ausgewählter Bibliotheksintegrationen, die Playnite unterstützt. Bitte wähle diejenigen aus, die du installieren möchtest.
+
+Weitere Integrationen können später über das Menü »Add-ons« installiert werden.</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedTitle">Konfiguration abgeschlossen</sys:String>
+    <sys:String x:Key="LOCFirstConfigFinishedText" xml:space="preserve">Die Ersteinrichtung ist abgeschlossen. Denke daran, dass du alle Einstellungen später ändern und über das Hauptmenü weitere Integrationen hinzufügen kannst.</sys:String>
     <sys:String x:Key="LOCFirstPluginDownloadError" xml:space="preserve">Mindestens eine Erweiterung konnte nicht heruntergeladen werden.
 
 Du kannst versuchen, diese erneut aus dem Add-on-Menü herunterzuladen, nachdem der Assistent für die erste Ausführung abgeschlossen ist.</sys:String>
@@ -657,9 +656,9 @@ Mehr Informationen unter https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCNever">Nie</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Spielfortschritt</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Spielfortschritte</sys:String>
-    <sys:String x:Key="LOCUserScore">Nutzerwertung</sys:String>
-    <sys:String x:Key="LOCCriticScore">Expertenwertung</sys:String>
-    <sys:String x:Key="LOCCommunityScore">Communitywertung</sys:String>
+    <sys:String x:Key="LOCUserScore">Wertung: Nutzer</sys:String>
+    <sys:String x:Key="LOCCriticScore">Wertung: Experten</sys:String>
+    <sys:String x:Key="LOCCommunityScore">Wertung: Community</sys:String>
     <sys:String x:Key="LOCGameScripts">Spielskripte</sys:String>
     <sys:String x:Key="LOCApplicationScripts">Anwendungsskripte</sys:String>
     <sys:String x:Key="LOCScripts">Skripte</sys:String>
@@ -783,7 +782,7 @@ Mehr Informationen unter https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDescriptionPlaytimeSeconds">Spielzeit wird in Sekunden gemessen.</sys:String>
     <sys:String x:Key="LOCDescriptionSizeBytes">Installationsgröße wird in Bytes angegeben</sys:String>
     <sys:String x:Key="LOCReleaseDateTooltip">Das Erscheinungsdatum muss im Format »Jahr-Monat-Tag« festgelegt werden. Die Werte für Monat und Tag können ausgelassen werden.</sys:String>
-    <sys:String x:Key="LOCDescriptionScoreValues">Werte von 0 bis 100 oder leer für keine Bewertung.</sys:String>
+    <sys:String x:Key="LOCDescriptionScoreValues">Werte von 0 bis 100 oder leer für keine Wertung.</sys:String>
     <sys:String x:Key="LOCPatreonDevelopMessage">Playnite's Entwicklung wird von diesen Schirmherren und Ko-Fi-Mitgliedern unterstützt:</sys:String>
     <sys:String x:Key="LOCAboutContributorsMessage">Mitwirkende bei Code, Lokalisierung etc:</sys:String>
     <sys:String x:Key="LOCCancelMonitoringAskTitle">Spielüberwachung beenden?</sys:String>
@@ -943,6 +942,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCAddonChangesRestart">Ein Neustart ist erforderlich, um ausstehende Änderungen anzuwenden.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Dieses Add-on ist für die Installation vorgemerkt.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installieren</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Erneut installieren</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Deinstallieren</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Bereits installiert</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Keine neuen Aktualisierungen für Add-ons gefunden.</sys:String>
@@ -953,6 +953,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lizenz abgelehnt</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} wird heruntergeladen …</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Aktualisierungen für Add-ons werden gesucht …</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Suche nach Programmaktualisierungen...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Für mindestens ein Add-on ist eine Aktualisierung verfügbar.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Wähle die zu aktualisierenden Elemente aus</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instanz für Erweiterungsentwicklung</sys:String>
@@ -973,6 +974,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
     <sys:String x:Key="LOCActionTrackingModeProcess">Prozess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Ordner</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Originalprozess</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Prozessname</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Protokollmeldungen aufzeichnen</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Folgende Änderungen überschreiben Daten aller aktuell ausgewählten Spiele!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Keiner</sys:String>
@@ -1010,6 +1012,7 @@ Falls du weitere Integrationen installieren oder deinstallieren möchtest, verwe
 Das Deaktivieren dieser Option kann zu Problemen mit Spielen führen, die beim Start keinen Eingabefokus erhalten!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Schriftgröße</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Schriftgröße klein</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Unterstützung für Spielcontroller-API aktivieren</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Unterstützung für Spielcontroller</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Falls deaktiviert, wird Playnite keinerlei Eingaben von Spielcontrollern akzeptieren.
         
@@ -1107,8 +1110,8 @@ Falls nach dem Installieren von Designs oder Erweiterungen Probleme auftreten, v
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Erstmalig gespielten Spielen zugeordneter Status</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Initialisierung der PowerShell-Skript-Laufzeitumgebung ist fehlgeschlagen. Falls du Windows 7 nutzt, versuche PowerShell 5.1 (erneut) zu installieren, um das Problem zu beheben.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filtervoreinstellung mit angegebenem Namen existiert bereits. Voreinstellung mit neuen Einstellungen aktualisieren?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Bei durch Stapelverarbeitung hinzugefügten Spielen Sortiernamen automatisch ausfüllen</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Wenn Spiele über eine Bibliotheksaktualisierung, einen Emulator-Ordnerscan oder einen normalen Ordnerscan hinzugefügt werden, das Feld »Sortiername« automatisch mit einer besser sortierbaren Darstellung des Spielenamens ausfüllen. Beispielsweise erhält »The Witcher 3« den Sortiernamen »Witcher 03«.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Fülle automatisch fehlende Sortiernamen für Massen-hinzugefügte oder bearbeitete Spiele</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Wenn du ein Spiel bearbeitest, füge Spiele über ein Bibliotheksupdate, einen Emulator Ordner oder einen normalen Ordner-Scan hinzu füllen Sie automatisch das Feld &quot;Sortiername&quot; mit einer besser sortierbaren Darstellung des Spielnamens aus. Zum Beispiel &quot;The Witcher 3&quot; bekommt einen Sortiernamen von &quot;Witcher 03&quot;. Dies wird niemals einen Sortiernamen angeben, der sich nicht vom Spielnamen unterscheidet, und es wird nur automatisch die Sortierung leerer Namen aktualisieren.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Diese Wörter werden vom Anfang des automatisch ausgefüllten Sortiernamens entfernt:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Verwende diese Option, um für Sortierzwecke Wörter am Anfang einer Zeichenkette zu ignorieren. Standard ist »The«, »An« und »A«.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Sortiernamen ausfüllen für Spiele ohne Sortiernamen</sys:String>
@@ -1259,4 +1262,6 @@ Melde das Problem auf der GitHub-Seite von Playnite mit einer Anfrage, die Besch
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Möchtest du die vorgenommenen Änderungen speichern?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Portable Installation</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Keine Controller erkannt</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

@@ -945,6 +945,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCAddonChangesRestart">Omstart av programmet er påkrevd for at nye innstillinger skal tre i kraft.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Dette tillegget er satt i kø for installasjon.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Avinstaller</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Allerede installert</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Ingen nye oppdateringer for utvidelser er funnet.</sys:String>
@@ -955,6 +956,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisens ble avvist</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Last ned {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Ser etter oppdateringer for tillegg …</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">En eller flere oppdateringer for tillegg er tilgjengelig.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Velg elementer som skal oppdateres</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Utvidelse utvikles eksternt</sys:String>
@@ -975,6 +977,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
     <sys:String x:Key="LOCActionTrackingModeProcess">Prosess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mappe</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Opprinnelig prosess</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Logg sporingsmeldinger</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Følgende endringer overskriver data for alle valgte spill!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ingen</sys:String>
@@ -1012,6 +1015,7 @@ Hvis du vil installere eller avinstallere ytterligere integrasjoner, kan du bruk
 Deaktivering av denne funksjonen kan gjøre at spill ikke får fokus ved oppstart!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Skriftstørrelse</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Liten skriftstørrelse</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Støtte for spillkontroller</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Deaktivering vil gjøre at Playnite ikke tar imot kommandoer fra spillkontrollere.
 
@@ -1107,8 +1111,8 @@ Bedre bildekvalitet, medium hastighet, lav minnebruk.</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status tilordnet spill som spilles for første gang</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Kunne ikke initialisere PowerShell-skriptkjøringsmiljø. Hvis du bruker Windows 7, kan du prøve å (re-)installere PowerShell 5.1 for å rett opp problemet.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Et filteroppsett med dette navnet eksisterer allerede. Vil du oppdatere oppsettet med nye innstillinger?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Fyll inn sorteringsnavn automatisk for gruppeimporterte spill</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Når du legger til spill via en biblioteksoppdatering, en emulator-mappeskanning eller en normal mappeskanning, fylles feltet for &quot;sorteringsnavn&quot; inn med en mer sorterbar utgave av spillets navn. For eksempel vil &quot;The Witcher 3&quot; få sorteringsnavnet &quot;Witcher 03&quot;.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Disse ordene vil bli fjernet fra begynnelsen av den automatisk innfylte sorteringsnavneverdien:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Bruk dette feltet for å ignorere ord i starten av en streng med tanke på sortering. Standardverdiene er &quot;The&quot;, &quot;An&quot;, og &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Fyll inn sorteringsnavn for spill som ikke har</sys:String>
@@ -1259,4 +1263,6 @@ Det angitte datoformatet vil bli brukt til alle andre datoer.</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Vil du lagre endringene du har gjort?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Flyttbar installasjon</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Ingen kontrollere funnet</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

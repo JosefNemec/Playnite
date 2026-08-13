@@ -28,7 +28,7 @@ SOFTWARE.
 ----------------------------------------------------------------------------------------
 Audio
 
-Background music for default Fullscreen theme obtained from https://www.zapsplat.com (Attribution license)
+Background music for default Fullscreen theme obtained from https://www.zapsplat.com/music/shades-of-orange-a-serene-relaxing-warm-ambient-piece-with-slow-mellow-chords-perfect-for-relaxation-meditation-etc/ (Attribution license)
 Mavigation sounds for default Fullscreen theme obtained from https://www.kenney.nl (CC0 license)
 
 ----------------------------------------------------------------------------------------

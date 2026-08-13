@@ -114,12 +114,12 @@ namespace Playnite.Controllers
                 expandedProfile.Executable = CheckPath(expandedProfile.Executable, nameof(expandedProfile.Executable), FileSystemItem.File);
                 expandedProfile.WorkingDirectory = CheckPath(expandedProfile.WorkingDirectory, nameof(expandedProfile.WorkingDirectory), FileSystemItem.Directory);
 
-                if (!emuProf.StartupScript.IsNullOrWhiteSpace())
+                if (!expandedProfile.StartupScript.IsNullOrWhiteSpace())
                 {
-                    emuProf.StartupScript = Game.ExpandVariables(emuProf.StartupScript, false, emulator.InstallDir, romPath);
+                    expandedProfile.StartupScript = Game.ExpandVariables(expandedProfile.StartupScript, false, emulator.InstallDir, romPath);
                     RunStartScript(
                         $"{emulator.Name} runtime for {Game.Name}",
-                        emuProf.StartupScript,
+                        expandedProfile.StartupScript,
                         emulator.InstallDir,
                         new Dictionary<string, object>
                         {
@@ -356,7 +356,7 @@ namespace Playnite.Controllers
                 }
                 else
                 {
-                    scriptRuntime.Execute(expandedScript, variables: scriptVars);
+                    scriptRuntime.Execute(expandedScript, PlaynitePaths.ProgramPath, scriptVars);
                 }
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
@@ -547,9 +547,7 @@ namespace Playnite.Controllers
                                 }
                             }
 
-                            // TODO switch to WatchUwpApp once we are building as 64bit app
-                            //procMon.WatchUwpApp(uwpMatch.Groups[1].Value, false);
-                            var monitor = new MonitorProcessNames(scanDirectory);
+                            var monitor = new MonitorDirectory(scanDirectory);
                             if (monitor.IsTrackable())
                             {
                                 StartTracking(

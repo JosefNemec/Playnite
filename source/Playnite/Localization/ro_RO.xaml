@@ -277,7 +277,7 @@ Selectarea opțiunii „adaugă la lista de excludere” va împiedica jocurile 
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Poziția listei cu jocuri în modul de detalii</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Desenează separator între panouri</sys:String>
     <sys:String x:Key="LOCSettingsGameDetailsCoverHeight">Înălțimea copertei de joc</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsListIconSize"></sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsListIconSize">Înălțimea pictogramei listei de jocuri</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">Fontul aplicației</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">Font monospațiat</sys:String>
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Poziția Panoului de Filtre</sys:String>
@@ -902,6 +902,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
     <sys:String x:Key="LOCAddonInstall"></sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall"></sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled"></sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
@@ -912,6 +913,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -932,6 +934,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone"></sys:String>
@@ -967,6 +970,7 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsFontSize"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
@@ -1176,4 +1180,6 @@ Versiunea {2}</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
     <sys:String x:Key="LOCPortableInstallation"></sys:String>
     <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

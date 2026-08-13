@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Playnite
@@ -61,6 +62,7 @@ namespace Playnite
 
         private static List<AddonUpdate> CheckAddonsForUpdate(IEnumerable<BaseExtensionManifest> manifests, ServicesClient serviceClient)
         {
+            var random = new Random();
             var updateList = new List<AddonUpdate>();
             foreach (var manifest in manifests)
             {
@@ -71,7 +73,7 @@ namespace Playnite
                     {
                         continue;
                     }
-
+               
                     var installer = addonManifest.InstallerManifest;
                     var package = installer.GetLatestCompatiblePackage();
                     var currentVersion = Version.Parse(manifest.Version);

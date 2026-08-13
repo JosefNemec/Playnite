@@ -16,18 +16,21 @@
             <Button Content="{DynamicResource LOCCrashSaveLog}" DockPanel.Dock="Left"
                     Style="{StaticResource BottomButton}"
                     Command="{Binding SaveLogCommand}"/>
-            <Button Content="{DynamicResource LOCCrashRestartPlaynite}" DockPanel.Dock="Right" 
+            <Button Content="{DynamicResource LOCCrashRestartPlaynite}" DockPanel.Dock="Right"
                     Style="{StaticResource BottomButton}"
                     Command="{Binding RestartCommand}"/>
             <CheckBox Content="{DynamicResource LOCCrashDisableExtension}" DockPanel.Dock="Right"
                       IsChecked="{Binding DisableExtension}"
                       Visibility="{Binding ShowDisableCheck, Converter={StaticResource BooleanToVisibilityConverter}}"
                       VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <CheckBox Content="{DynamicResource LOCCrashRestartSafe}" DockPanel.Dock="Right"
+                      IsChecked="{Binding RestartInSafeMode}"
+                      VerticalAlignment="Center" Margin="0,0,10,0"/>
         </DockPanel>
         <TextBlock Text="{Binding ExtCrashDescription}"
                    Margin="10,10,10,15"
                    FontSize="{DynamicResource FontSize}"
-                   VerticalAlignment="Center" DockPanel.Dock="Top" 
+                   VerticalAlignment="Center" DockPanel.Dock="Top"
                    TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
     </DockPanel>
 </controls:WindowBase>

@@ -105,6 +105,7 @@ namespace Playnite.Tests
             Assert.AreEqual(@"test\", "test".EndWithDirSeparator());
             Assert.AreEqual(@"test\", @"test\".EndWithDirSeparator());
             Assert.AreEqual(@"test\", @"test\\\".EndWithDirSeparator());
+            Assert.AreEqual(@"test\", @"test/".EndWithDirSeparator());
         }
     }
 }

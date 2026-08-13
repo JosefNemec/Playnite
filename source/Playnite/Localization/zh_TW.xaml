@@ -212,8 +212,8 @@
     <sys:String x:Key="LOCMetaGameSourceAll">數據庫中的所有遊戲</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">所有目前過濾出的遊戲</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">僅選中的遊戲</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">未選取任何元資料欄位</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">未選取任何需進行下載的元資料欄位。請至少選擇一個欄位並啟用至少一個元資料提供者以使用本功能。</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">官方商店</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">請選擇透過Playnite自動輸入的資料範圍以及資料來源</sys:String>
@@ -946,6 +946,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">需要重新啟動程式以套用更改。</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">本附加元件已被排入安裝排程</sys:String>
     <sys:String x:Key="LOCAddonInstall">安裝</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">重新安裝</sys:String>
     <sys:String x:Key="LOCAddonUninstall">移除</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">已安裝</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">未發現新的附加元件更新檔</sys:String>
@@ -956,6 +957,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">授權被拒</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">正在下載 {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">正在檢查附加元件更新…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">正在搜尋程式更新……</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">有一個以上的附加元件更新可用。</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">選擇更新項目</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">擴充功能開發用服務</sys:String>
@@ -976,6 +978,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">處理程序</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">資料夾</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">原始程序</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">處理程序名稱</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">紀錄追蹤訊息</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">以下更改將覆寫所有已選遊戲的資料!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">無</sys:String>
@@ -1013,6 +1016,7 @@
 如將此功能關閉可能會造成遊戲無法在啟動時取得輸入焦點而導致問題發生!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">字型大小</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">字體小</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">遊戲控制器支援</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">若停用此選項，則Playnite不會接受任何遊戲控制器輸入的訊號。
         
@@ -1110,8 +1114,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">已調整首次遊玩的遊戲狀態</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">無法啟動PowerShell腳本執行環境。如果你是Windows7的使用者，請嘗試(重新)安裝PowerShell5.1。</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">已存在指定名稱的過濾器預設，是否使用新設定更新預設?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">為批次新增的遊戲自動填入排序名稱</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">當你透過資料庫更新，模擬器資料夾掃描或者一般資料夾掃描來加入遊戲時，自動在&quot;排序名稱&quot;欄位填入比較適合排序的代表名。例如:&quot;The Witcher 3&quot; 會改名為 &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">批次新增或編輯遊戲時，自動補齊缺少的排序名稱</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">當你編輯遊戲、透過資料庫更新新增遊戲、掃描模擬器資料夾或一般資料夾掃描時，系統會自動將「排序名稱」欄位填入更適合排序的名稱。例如「The Witcher 3」的排序名稱會變成「Witcher 03」。若排序名稱與遊戲名稱相同，則不會設定；且只有在排序名稱為空白時才會自動更新。</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">將從自動填入的遊戲排序名稱的開頭刪除以下的字詞:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">使用這個功能以忽略用來排序的名稱開頭的字詞。預設是&quot;The&quot;，&quot;An&quot;，&quot;A&quot;。</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">幫沒有排序名稱的遊戲填入排序名稱</sys:String>
@@ -1262,4 +1266,6 @@ Playnite將會重新啟動並開始備份資料</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">是否要儲存所做的更改？</sys:String>
     <sys:String x:Key="LOCPortableInstallation">可攜式安裝</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">未偵測到搖桿</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">預設來源</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">網頁圖片搜尋失敗。失敗原因可能有多種。請點選以下連結查看詳細說明和解決方法。</sys:String>
 </ResourceDictionary>

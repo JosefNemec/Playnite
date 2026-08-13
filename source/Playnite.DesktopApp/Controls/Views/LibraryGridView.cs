@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Xml.Linq;
+using WpfToolkit.Controls;
 using BooleanToVisibilityConverter = Playnite.Converters.BooleanToVisibilityConverter;
 
 namespace Playnite.DesktopApp.Controls.Views
@@ -106,6 +107,10 @@ namespace Playnite.DesktopApp.Controls.Views
                     ScrollViewerBehaviours.SmoothScrollEnabledProperty,
                     mainModel.AppSettings,
                     nameof(PlayniteSettings.GridViewSmoothScrollEnabled));
+
+                VirtualizingPanel.SetScrollUnit(ListGames, ScrollUnit.Pixel);
+                VirtualizingPanel.SetIsVirtualizingWhenGrouping(ListGames, true);
+                VirtualizingPanel.SetVirtualizationMode(ListGames, VirtualizationMode.Recycling);
             }
 
             if (ControlGameView != null)
@@ -147,9 +152,11 @@ namespace Playnite.DesktopApp.Controls.Views
         {
             XNamespace pns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation";
             XNamespace pctrls = "clr-namespace:Playnite.DesktopApp.Controls;assembly=Playnite.DesktopApp";
+            XNamespace virtPanel = "clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel";
             var templateDoc = new XDocument(
                 new XElement(pns + nameof(ItemsPanelTemplate),
-                    new XElement(pctrls + nameof(GridViewPanel))));
+                    new XElement(virtPanel + nameof(VirtualizingWrapPanel),
+                        new XAttribute(nameof(VirtualizingWrapPanel.SpacingMode), SpacingMode.StartAndEndOnly))));
 
             return Xaml.FromString<ItemsPanelTemplate>(templateDoc.ToString());
         }

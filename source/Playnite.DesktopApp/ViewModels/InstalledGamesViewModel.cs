@@ -337,8 +337,15 @@ namespace Playnite.DesktopApp.ViewModels
 
                 if (program.IconSource != null &&  program.IconSource != ImportableProgram.EmptyImage)
                 {
-                    var bitmap = (BitmapSource)program.IconSource;
-                    newGame.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
+                    try
+                    {
+                        var bitmap = (BitmapSource)program.IconSource;
+                        newGame.Icon = new MetadataFile(Guid.NewGuid().ToString() + ".png", bitmap.ToPngArray());
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Error(e, "Failed to convert bitmap to png.");
+                    }
                 }
 
                 SelectedGames.Add(newGame);

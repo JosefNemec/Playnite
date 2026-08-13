@@ -393,6 +393,7 @@ namespace Playnite
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObject)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CoverImageObjectCached)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GridViewCoverObjectCached)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FullscreenListItemCoverObject)));
             }
 
             if (propertyName == nameof(Game.BackgroundImage))

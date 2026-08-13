@@ -2371,11 +2371,21 @@ namespace Playnite.SDK.Models
             {
                 return '#';
             }
-            else
+
+            foreach (var c in nameMatch)
             {
-                var firstChar = char.ToUpper(nameMatch[0]);
-                return char.IsLetter(firstChar) ? firstChar : '#';
+                if (char.IsDigit(c))
+                {
+                    return '#';
+                }
+
+                if (char.IsLetter(c))
+                {
+                    return char.ToUpper(c);
+                }
             }
+
+            return '#';
         }
 
         /// <summary>

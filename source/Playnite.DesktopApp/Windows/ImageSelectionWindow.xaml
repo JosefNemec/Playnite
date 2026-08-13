@@ -38,14 +38,19 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="4" Background="#33000000">
-                        <Image Width="{Binding DataContext.ItemWidth, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
-                               Height="{Binding DataContext.ItemHeight, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
-                               Source="{Binding Path}"
-                               Stretch="Uniform" StretchDirection="Both" />
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftDoubleClick"
                                           Command="{Binding DataContext.ItemDoubleClickCommand, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}" />
                         </Border.InputBindings>
+                        <DockPanel Background="Transparent">
+                            <Image Width="{Binding DataContext.ItemWidth, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                                   Height="{Binding DataContext.ItemHeight, RelativeSource={RelativeSource AncestorType=controls:WindowBase}}"
+                                   Source="{Binding Path}"
+                                   Stretch="Uniform" StretchDirection="Both" DockPanel.Dock="Top" />
+                            <TextBlock Text="{Binding Description}"
+                                       Visibility="{Binding Description, Converter={StaticResource StringNullOrEmptyToVisibilityConverter}}"
+                                       TextTrimming="CharacterEllipsis" DockPanel.Dock="Top" Margin="4,4,4,0"/>
+                        </DockPanel>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>

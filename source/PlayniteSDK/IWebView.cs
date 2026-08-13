@@ -34,6 +34,18 @@ namespace Playnite.SDK
         }
     }
 
+    public class ShouldPassResourceContentFuncArgs
+    {
+        public Playnite.SDK.WebViewModels.Request Request { get; }
+        public Playnite.SDK.WebViewModels.Response Response { get; }
+
+        public ShouldPassResourceContentFuncArgs(Playnite.SDK.WebViewModels.Request request, Playnite.SDK.WebViewModels.Response response)
+        {
+            Request = request;
+            Response = response;
+        }
+    }
+
     /// <summary>
     /// Represents browser view settings.
     /// </summary>
@@ -79,6 +91,11 @@ namespace Playnite.SDK
         /// Gets or sets a value indicating whether response content strema should be passed to resource load callback.
         /// </summary>
         public bool PassResourceContentStreamToCallback { get; set; } = false;
+
+        /// <summary>
+        /// If set, resource content will be read only the function returns true.
+        /// </summary>
+        public Func<ShouldPassResourceContentFuncArgs, bool> ShouldPassResourceContentFunc  { get; set; }
     }
 
     /// <summary>

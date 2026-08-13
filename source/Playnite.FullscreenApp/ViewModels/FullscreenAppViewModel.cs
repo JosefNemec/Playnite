@@ -231,6 +231,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 gameDetailsVisible = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GameDetailsButtonVisible));
+                OnFullscreenViewChanged(value ? FullscreenView.Details : FullscreenView.List);
             }
         }
 
@@ -413,7 +414,7 @@ namespace Playnite.FullscreenApp.ViewModels
             AdjustGameItemsToScreenChanges();
         }
 
-        private void GameControllerInput_ButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
+        private void GameControllerInputButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
         {
             if (AppSettings.Fullscreen.EnableGameControllerSupport &&
                 AppSettings.Fullscreen.GuideButtonFocus &&
@@ -432,6 +433,36 @@ namespace Playnite.FullscreenApp.ViewModels
                 catch (Exception exc)
                 {
                     Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller input.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerDisconnected(object sender, OnControllerDisconnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerDisconnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller connected event.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerConnected(object sender, OnControllerConnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerConnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller disconnected event.");
                 }
             }
         }
@@ -568,11 +599,14 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.InterfaceVolume))
             {
-                audio.SetSoundVolume(FullscreenApplication.ActivateSound, AppSettings.Fullscreen.InterfaceVolume);
-                audio.SetSoundVolume(FullscreenApplication.NavigateSound, AppSettings.Fullscreen.InterfaceVolume);
+                audio?.SetSoundVolume(FullscreenApplication.ActivateSound, AppSettings.Fullscreen.InterfaceVolume);
+                audio?.SetSoundVolume(FullscreenApplication.NavigateSound, AppSettings.Fullscreen.InterfaceVolume);
             }
             else if (e.PropertyName == nameof(FullscreenSettings.BackgroundVolume))
             {
+                if (audio is null)
+                    return;
+
                 if (AppSettings.Fullscreen.BackgroundVolume <= 0)
                 {
                     audio.StopMusic();
@@ -593,7 +627,7 @@ namespace Playnite.FullscreenApp.ViewModels
             }
             else if (e.PropertyName == nameof(FullscreenSettings.IsMusicMuted))
             {
-                if (AppSettings.Fullscreen.BackgroundVolume <= 0)
+                if (audio is null || AppSettings.Fullscreen.BackgroundVolume <= 0)
                     return;
 
                 if (AppSettings.Fullscreen.IsMusicMuted)
@@ -904,27 +938,27 @@ namespace Playnite.FullscreenApp.ViewModels
         {
             if (app.GameController != null)
             {
-                app.GameController.ButtonChanged += GameControllerInput_ButtonChanged;
+                app.GameController.ButtonChanged += GameControllerInputButtonChanged;
+                app.GameController.ControllerConnected += GameControllerOnControllerConnected;
+                app.GameController.ControllerDisconnected += GameControllerOnControllerDisconnected;
             }
 
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.Fullscreen.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
-            var openProgress = new ProgressViewViewModel(
-                new ProgressWindowFactory(),
-                new GlobalProgressOptions(LOC.OpeningDatabase));
 
-            if (openProgress.ActivateProgress(_ =>
+            try
             {
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
                     Database.OpenDatabase();
                 }
-            }).Result != true)
+            }
+            catch (Exception e)
             {
-                Logger.Error(openProgress.FailException, "Failed to open library database.");
-                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{openProgress.FailException.Message}";
+                Logger.Error(e, "Failed to open library database.");
+                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{e.Message}";
                 Dialogs.ShowErrorMessage(message, "");
                 return;
             }
@@ -943,6 +977,12 @@ namespace Playnite.FullscreenApp.ViewModels
             GameListFocused = true;
             isInitialized = true;
             RunStartupScript();
+
+            if (AppSettings.Fullscreen.BackgroundVolume > 0)
+            {
+                audio?.PlayMusic(FullscreenApplication.BackgroundMusic);
+            }
+
             Extensions.NotifiyOnApplicationStarted();
 
             try
@@ -1079,6 +1119,13 @@ namespace Playnite.FullscreenApp.ViewModels
             var command = arguments[0];
             switch (command)
             {
+                case UriCommands.Restore:
+                    if (WindowManager.LastActiveWindow != Window.Window)
+                        WindowManager.LastActiveWindow.Close();
+
+                    Window.Window.RestoreWindow();
+                    break;
+
                 default:
                     Logger.Warn($"Uknown URI command {command}");
                     break;
@@ -1111,6 +1158,49 @@ namespace Playnite.FullscreenApp.ViewModels
                 out var selectedPreset))
             {
                 ActiveFilterPreset = selectedPreset;
+            }
+        }
+
+        public void SelectRandomGame()
+        {
+            var model = new RandomGameSelectViewModel(
+               Database,
+               GamesView,
+               new RandomGameSelectWindowFactory(),
+               Resources);
+            model.OpenView();
+            if (model.SelectedAction == RandomGameSelectAction.Play)
+            {
+                SelectGame(model.SelectedGame.Id);
+                GamesEditor.PlayGame(model.SelectedGame, true);
+            }
+            else if (model.SelectedAction == RandomGameSelectAction.Navigate)
+            {
+                ToggleGameDetailsCommand.Execute(null);
+                SelectGame(model.SelectedGame.Id);
+            }
+        }
+
+        private void OnFullscreenViewChanged(FullscreenView newView)
+        {
+            if (DesignerTools.IsInDesignMode)
+                return;
+
+            var args = new OnFullscreenViewChangedArgs()
+            {
+                NewView = newView
+            };
+
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnFullscreenViewChanged(args);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process OnFullscreenViewChanged event.");
+                }
             }
         }
     }

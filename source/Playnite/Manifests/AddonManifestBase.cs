@@ -43,6 +43,7 @@ namespace Playnite
         public List<string> Tags { get; set; }
         public AddonUserAgreement UserAgreement { get; set; }
         public string SourceUrl { get; set; }
+        public string CommunityNote { get; set; }
     }
 
     public class AddonInstallerPackage

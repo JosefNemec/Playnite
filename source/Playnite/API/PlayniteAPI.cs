@@ -15,6 +15,8 @@ using System.Windows;
 using Playnite.Plugins;
 using System.Threading;
 using Playnite.Database;
+using Playnite.Input;
+using Playnite.SDK.Events;
 using static Microsoft.Scripting.Hosting.Shell.ConsoleHostOptions;
 
 namespace Playnite.API
@@ -30,6 +32,7 @@ namespace Playnite.API
         void AddCustomElementSupport(Plugin source, AddCustomElementSupportArgs args);
         void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
         void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args);
+        List<GamepadController> GetConnectedControllers();
     }
 
     public class PlayniteApiRoot : IPlayniteAPIRoot
@@ -38,16 +41,19 @@ namespace Playnite.API
         private readonly GamesEditor gameEditor;
         private readonly ExtensionFactory extensions;
         private readonly GameDatabase database;
+        private readonly ViewModels.MainViewModelBase mainModel;
         private readonly SynchronizationContext execContext;
 
         public PlayniteApiRoot(
             GamesEditor gameEditor,
             ExtensionFactory extensions,
-            GameDatabase database)
+            GameDatabase database,
+            ViewModels.MainViewModelBase mainModel)
         {
             this.gameEditor = gameEditor;
             this.extensions = extensions;
             this.database = database;
+            this.mainModel = mainModel;
             execContext = SynchronizationContext.Current;
         }
 
@@ -121,6 +127,11 @@ namespace Playnite.API
         {
             extensions.AddConvertersSupport(source, args);
         }
+
+        public List<GamepadController> GetConnectedControllers()
+        {
+            return mainModel.App.GameController.Controllers.Cast<GamepadController>().ToList();
+        }
     }
 
     public class PlayniteAPI : IPlayniteAPI
@@ -186,6 +197,11 @@ namespace Playnite.API
         public void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args)
         {
             RootApi.AddConvertersSupport(source, args);
+        }
+
+        public List<GamepadController> GetConnectedControllers()
+        {
+            return RootApi.GetConnectedControllers();
         }
     }
 }

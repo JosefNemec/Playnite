@@ -945,6 +945,7 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
     <sys:String x:Key="LOCAddonChangesRestart">Wymagane jest ponowne uruchomienie aplikacji, aby zastosować oczekujące zmiany.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Ten dodatek został zakolejkowany do instalacji.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instaluj</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Ponowna instalacja</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Odinstaluj</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Zainstalowano</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nie znaleziono nowych aktualizacji dodatku.</sys:String>
@@ -955,6 +956,7 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licencja odrzucona</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Pobieranie {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Wyszukiwanie aktualizacji dodatków...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Wyszukiwanie aktualizacji programu…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">aktualizacja jednego lub większej ilości dodatków jest dostępna.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Wybierz elementy do aktualizacji</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instancja rozwoju rozszerzenia</sys:String>
@@ -975,6 +977,7 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
     <sys:String x:Key="LOCActionTrackingModeProcess">Proces</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Folder</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Oryginalny proces</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Nazwa procesu</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Rejestruj powiadomienia śledzenia</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Powyższe zmiany nadpiszą dane dla wszystkich wybranych gier!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Brak</sys:String>
@@ -1012,6 +1015,7 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
 Zablokowanie tej opcji może prowadzić do problemów z grami wymagającymi pełnej uwagi podczas uruchamiania!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Rozmiar czcionki</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mały rozmiar czcionki</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Włącz obsługę API kontrolera gier</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Wsparcie dla kontrolera gry</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Jeśli jest wyłączona, Playnite nie będzie akceptować żadnych wejść kontrolera gry.
 
@@ -1109,8 +1113,8 @@ Jeżeli doświadczasz problemów po instalacji motywu lub rozszerzenia, spróbuj
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status przypisany do gier uruchomianych po raz pierwszy</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Nie udało się znacjonalizować skryptu uruchomienia PowerShell. Jeżeli używasz Windows 7, spróbuj przeinstalować PowerShell 5.1 aby naprawić problem.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Szablon filtrowania o podanej nazwie już istnieje. Zaktualizować przy pomocy nowych ustawień?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Automatycznie wypełnij nazwę sortowania gier dodanych do partii</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Po dodaniu gier poprzez aktualizację biblioteki, skanowanie folderów emulatorów, lub skanowanie folderów normalnych, automatycznie wypełnij pole &quot;Nazwa Sortowana&quot; lepiej sortowalną reprezentacją nazwy gry. Na przykład &quot;Wiedźmin 3&quot; otrzyma Nazwę Sortowania &quot;Wiedźmin 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Automatyczne uzupełnianie brakujących nazw sortowania dla gier dodanych lub edytowanych zbiorczo</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Podczas edycji gry, dodawania gier poprzez aktualizację biblioteki, skanowania folderu emulatora lub normalnego skanowania folderu program automatycznie wypełni pole „Nazwa sortowania” lepszym, łatwiejszym do sortowania oznaczeniem nazwy gry. Na przykład „The Witcher 3” otrzyma nazwę sortowania „Witcher 03”. Nie zostanie ustawiona nazwa sortowania, która różni się od nazwy gry, przy czym automatycznie aktualizowane będą tylko puste nazwy sortowania.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Te słowa zostaną usunięte z początku automatycznie wypełnionej wartości Nazwa Sortowania:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Użyj tego, aby zignorować słowa na początku ciągu do sortowania. Wartością domyślną jest &quot;The&quot;, &quot;An&quot; i &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Wypełnij Nazwę Sortowania dla gier, które go nie mają</sys:String>
@@ -1264,4 +1268,6 @@ Otwórz nowy problem na stronie GitHub Playnite z prośbą o naprawienie uszkodz
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Czy chcesz zapisać zmiany?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Instalacja przenośna</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nie wykryto kontrolerów</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Źródło domyślne</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Wyszukiwanie obrazów w Internecie nieudane. Może to wynikać z różnych przyczyn. Więcej informacji oraz wskazówki dotyczące rozwiązywania problemów znajdziesz pod poniższym linkiem.</sys:String>
 </ResourceDictionary>

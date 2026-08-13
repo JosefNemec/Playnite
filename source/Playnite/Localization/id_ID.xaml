@@ -940,6 +940,7 @@ Jika anda ingin menginstal atau meng-uninstal integrasi tambahan, gunakan menu &
     <sys:String x:Key="LOCAddonChangesRestart">Mulai ulang aplikasi diperlukan untuk menerapkan perubahan yang tertunda.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Add-on ini dijadwalkan untuk penginstalan.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Pasang</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Hapus</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Telah dipasang</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Tidak ditemukan pembaruan add-on baru.</sys:String>
@@ -950,6 +951,7 @@ Jika anda ingin menginstal atau meng-uninstal integrasi tambahan, gunakan menu &
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisensi ditolak</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Mengunduh {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Mencari pembaruan add-on...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Terdapat satu atau lebih add-on tersedia untuk di-update.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Pilih item untuk di-update</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Sesi pengembangan ekstensi</sys:String>
@@ -970,6 +972,7 @@ Jika anda ingin menginstal atau meng-uninstal integrasi tambahan, gunakan menu &
     <sys:String x:Key="LOCActionTrackingModeProcess">Dalam Proses</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Folder</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Proses awal</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log pesan jejak</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Perubahan berikut ini akan menimpa data untuk semua game yang sedang dipilih!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Tidak ada</sys:String>
@@ -1007,6 +1010,7 @@ Jika anda ingin menginstal atau meng-uninstal integrasi tambahan, gunakan menu &
 Menonaktifkan ini dapat menyebabkan masalah dengan permainan yang tidak mendapatkan fokus input saat startup!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Ukuran font</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Ukuran Font Kecil</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Dukungan kontroler game</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Jika dinonaktifkan, Playnite tidak akan menerima input kontroler game apa pun.
         
@@ -1104,8 +1108,8 @@ Jika Anda mulai mengalami masalah setelah menginstal tema atau ekstensi, coba no
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status diterapkan untuk game yang dimainkan untuk pertamakalinya</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Gagal meninisialisasi PowerShell script runtime. Jika anda pengguna Windows 7, coba install (ulang) PowerShell 5.1 untuk memperbaiki isu ini.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset dengan nama yang ditentukan telah tersedia. Perbarui preset dengan pengaturan yang baru?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Mengisi nama urutan secara otomatis untuk game yang ditambahkan secara batch</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Ketika anda menambahkan game melalui pembaruan pustaka, pemindaian folder emulator, atau pemindaian folder secara normal,  secara otomatis mengisi bidang “Nama Pengurutan” dengan representasi yang dapat diurutkan dengan lebih baik dari nama game tersebut, sebagai contoh &quot;The Witcher 3&quot; akan mendapat nama pengurutan &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Kata-kata ini akan dihapus dari awal nilai Nama Pengurutan yang diisi secara otomatis:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Gunakan ini untuk mengabaikan kata yang berada di awal untuk kepentingan pengurutan. Secara defaultnya &quot;The&quot;, &quot;An&quot;, dan &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Isi Nama Pengurutan untuk game yang tidak memiliki nama</sys:String>
@@ -1256,4 +1260,6 @@ Buka masalah baru di halaman GitHub Playnite dengan permintaan untuk memperbaiki
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Apakah Anda ingin menyimpan perubahan yang Anda buat?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Pemasangan portabel</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Tidak ada kontroler yang terdeteksi</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

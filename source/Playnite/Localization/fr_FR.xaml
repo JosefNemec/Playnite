@@ -939,6 +939,7 @@ Pour installer ou désinstaller des intégrations, utilisez le gestionnaire d'ex
     <sys:String x:Key="LOCAddonChangesRestart">Un redémarrage est requis pour appliquer les paramètres.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Cette extension est en attente d'installation.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Installer</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Réinstaller</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Désinstaller</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Déjà installé</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Aucune mise à jour disponible</sys:String>
@@ -949,6 +950,7 @@ Pour installer ou désinstaller des intégrations, utilisez le gestionnaire d'ex
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licence rejetée</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Téléchargement en cours {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Recherche de mises à jour d'extensions…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Recherche de mises à jour du programme…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Une ou plusieurs mises à jour sont disponibles.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Sélectionner le ou les éléments à mettre à jour</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instance de développement d'extension</sys:String>
@@ -969,6 +971,7 @@ Pour installer ou désinstaller des intégrations, utilisez le gestionnaire d'ex
     <sys:String x:Key="LOCActionTrackingModeProcess">Processus</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Dossier</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Processus originel</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Nom du processus</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Log</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Les modifications suivantes vont écraser les données pour tous les jeux sélectionnés !</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Aucun</sys:String>
@@ -1006,6 +1009,7 @@ Pour installer ou désinstaller des intégrations, utilisez le gestionnaire d'ex
 Désactiver cette option peut créer des problèmes de lancement avec certains jeux.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Taille de police</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Taille de police réduite</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Activer la prise en charge de l'API de la manette de jeu</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Prise en charge des manettes de jeu</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si désactivé, Playnite n'acceptera aucune entrée de contrôleur de jeu.
         
@@ -1104,8 +1108,8 @@ Si vous rencontrez des problèmes après l'installation d'un thème ou d'une ext
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Statut des jeux lancés pour la première fois</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Échec de l'initialisation du script PowerShell. Il est recommandé aux utilisateurs de Windows 7 de (ré)installer PowerShell 5.1 pour résoudre ce problème.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Un préréglage portant ce nom existe déjà. Mettre à jour le préréglage avec les nouveaux paramètres ?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Remplir automatiquement le champ &quot;Nom de tri&quot; lors d'un ajout automatique</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Cette option permet de remplir automatiquement le champ &quot;Nom de tri&quot; avec un équivalent approprié (par exemple, &quot;The Witcher 3&quot; aura pour nom de tri &quot;Witcher 03&quot;) lors d'un ajout de jeu via une mise à jour de la bibliothèque, un scan de dossier d'émulateur ou une analyse de dossier.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Remplissage automatique des noms de tri pour les jeux ajoutés ou modifiés par lots</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Les mots suivants seront ignorés lors de la génération de noms de tri automatique :</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Cette liste permet d'indiquer les premiers mots et lettres d'un nom de jeu que vous souhaitez ignorer lors du tri. &quot;The&quot;, &quot;An&quot; et &quot;A&quot; sont ignorés par défaut.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Ajouter un nom de tri à tous les jeux</sys:String>
@@ -1257,4 +1261,6 @@ Si vous voyez ce message, veuillez ouvrir un ticket sur la page Github de Playni
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Voulez-vous enregistrer les modifications que vous avez apportées ?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Installation portable</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Aucune manette détectée</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

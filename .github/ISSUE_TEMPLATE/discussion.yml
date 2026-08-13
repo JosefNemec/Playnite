@@ -1,0 +1,13 @@
+name: Feedback or question
+description: Post general feedback or question that doesn't fall under "bug" or "feature request" topics.
+labels: ['discussion']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please post in English language only!
+  - type: textarea
+    attributes:
+      label: Feedback text
+    validations:
+      required: true

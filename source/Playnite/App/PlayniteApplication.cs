@@ -44,6 +44,7 @@ namespace Playnite
         private bool installingAddon = false;
         private AddonLoadError themeLoadError = AddonLoadError.None;
         private ThemeManifest customTheme;
+        private readonly Dictionary<string, Assembly> magickAssemblies = new Dictionary<string, Assembly>();
 
         private bool isActive;
         public bool IsActive
@@ -79,6 +80,7 @@ namespace Playnite
         public NotificationsAPI Notifications { get; }
         public PlayniteUriHandler UriHandler { get; }
         public PlayniteAPI PlayniteApiGlobal { get; set; }
+        public GameControllerManager GameController { get; set; }
 
         private ExtensionsStatusBinder extensionsStatusBinder = new ExtensionsStatusBinder();
         public ExtensionsStatusBinder ExtensionsStatusBinder { get => extensionsStatusBinder; set => SetValue(ref extensionsStatusBinder, value); }
@@ -113,6 +115,8 @@ namespace Playnite
             {
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             }
+
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             if (!CmdLine.MasterInstance)
             {
@@ -326,7 +330,7 @@ namespace Playnite
                 {
                     if (!AppSettings.FirstTimeWizardComplete)
                     {
-                        var cultName = System.Globalization.CultureInfo.CurrentCulture.Name.Replace('-', '_');
+                        var cultName = System.Globalization.CultureInfo.CurrentUICulture.Name.Replace('-', '_');
                         var validLang = Localization.AvailableLanguages.FirstOrDefault(a => a.Id == cultName && a.TranslatedPercentage > 75);
                         if (validLang != null)
                         {
@@ -466,6 +470,29 @@ namespace Playnite
             ReleaseResources();
         }
 
+        // This is necessary because automatic and manual assembly redirects via App.config don't work
+        // for Magick.NET, for some reason, don't know why. Any plugin that uses this dependency breaks
+        // any time we update Magick.NET.
+        private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.StartsWith("Magick.NET"))
+            {
+                var asmName = args.Name.Substring(0, args.Name.IndexOf(','));
+                if (magickAssemblies.TryGetValue(asmName, out var asm))
+                    return asm;
+
+                var path = Path.Combine(PlaynitePaths.ProgramPath, $"{asmName}.dll");
+                if (!File.Exists(path))
+                    return null;
+
+                asm = Assembly.LoadFrom(path);
+                magickAssemblies.Add(asmName, asm);
+                return asm;
+            }
+
+            return null;
+        }
+
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             // Running under Wine is not supported
@@ -494,32 +521,6 @@ namespace Playnite
                 return;
             }
 
-            // unchecked use reason: https://stackoverflow.com/a/10043486/1107424
-
-                // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
-            if (exception is MissingMethodException ||
-                exception is BadImageFormatException ||
-                // Usually COM execution error from WindowsAPICodePack when opening folder selection dialog. As far as I can tell, this happens on "debloated" Windows edition only.
-                (exception is System.Runtime.InteropServices.COMException &&
-                    (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))))
-            {
-                Dialogs.ShowErrorMessage("Corrupted Playnite or Windows install detected.");
-                Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-                // ERROR_DISK_FULL
-            if (exception.HResult == unchecked((int)0x80070070) ||
-                // "device not ready" error. Happens when people run Playnite from attached storage as far as I can tell.
-                exception.HResult == unchecked((int)0x80070015) ||
-                // self-explanatory
-                exception is OutOfMemoryException)
-            {
-                Dialogs.ShowErrorMessage(exception.Message, LOC.CrashWindowTitle.GetLocalized());
-                Process.GetCurrentProcess().Kill();
-                return;
-            }
-
             if (crashInfo.IsExtensionCrash)
             {
                 crashModel = new CrashHandlerViewModel(
@@ -532,6 +533,58 @@ namespace Playnite
             }
             else
             {
+                // unchecked use reason: https://stackoverflow.com/a/10043486/1107424
+
+                // This started happening after the infamous 2026 January Win 11 update, Smart App Control is agersively blocking unsigned files from loading.
+                // Based on crash reports, this usually happens to SDL's and CefSharp's dlls, also random plugins.
+                if ((exception is FileLoadException || exception is DllNotFoundException) &&
+                    exception.Message.Contains("0x800711C7")) // This is actually not set in HResult, it's in exception message and replaced by .NET to generic 0x80131524
+                {
+                    Dialogs.ShowErrorMessage("Failed to load dependencies needed for Playnite to continue operating properly.\n\nThis is usually caused by Windows Smart App Control blocking dlls in Playnite's install folder.");
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
+                // Have nonsense crashes with this about normal .NET runtime methods and Playnite class methods missing.
+                if (exception is MissingMethodException ||
+                    exception is BadImageFormatException ||
+                    exception is InvalidProgramException ||
+                    // Looks like there are some nested TargetInvocationException with MissingMethodException actual extension,
+                    // which seems to look like corrupted installed where binaries from different version got mixed up.
+                    exception.StackTrace?.Contains("System.MissingMethodException") == true ||
+                    // Usually COM execution error from WindowsAPICodePack when opening folder selection dialog. As far as I can tell, this happens on "debloated" Windows edition only.
+                    (exception is System.Runtime.InteropServices.COMException &&
+                     (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))) ||
+                    // DWM_E_COMPOSITIONDISABLED, looks like this can happen when GPU driver crashes and doesn't reboot properly
+                    exception.HResult == unchecked((int)0x80263001))
+                {
+                    Dialogs.ShowErrorMessage("System issue or corrupted Playnite install detected.");
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
+                // This seems to start happening after January Windows 11 update for libraries synced via cloud
+                // storage (OneDrive and DropBox reported by users). Looks like something fucked in that Windows update
+                // but we generally do not recommend/support storing files on cloud folders.
+                if (Diagnostic.IsHResultCloudError(exception.HResult))
+                {
+                    Dialogs.ShowErrorMessage("Cloud related file system operation failed. Might be issue with Windows or cloud sync app you are using.\n\nWe do not recommend storing Playnite files on cloud synced folders since it's been known to cause data corruption in the past.");
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
+                // ERROR_DISK_FULL
+                if (exception.HResult == unchecked((int)0x80070070) ||
+                    // "device not ready" error. Happens when people run Playnite from attached storage as far as I can tell.
+                    exception.HResult == unchecked((int)0x80070015) ||
+                    // self-explanatory
+                    exception is OutOfMemoryException)
+                {
+                    Dialogs.ShowErrorMessage(exception.Message, LOC.CrashWindowTitle.GetLocalized());
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
                 crashModel = new CrashHandlerViewModel(
                     new CrashHandlerWindowFactory(),
                     Dialogs,
@@ -588,9 +641,9 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            SkipLibUpdate = true,
                             StartClosedToTray = CmdLine.StartClosedToTray,
-                            HideSplashScreen = CmdLine.HideSplashScreen
+                            HideSplashScreen = CmdLine.HideSplashScreen,
+                            StartInFullscreen = CmdLine.StartInFullscreen
                         }, false);
                     }
                 }
@@ -627,7 +680,7 @@ namespace Playnite
                 {
                     if (restoreOptions == null || !restoreOptions.ClosedWhenDone)
                     {
-                        Restart(new CmdLineOptions { SkipLibUpdate = true }, false);
+                        Restart(new CmdLineOptions(), false);
                     }
                 }
 
@@ -821,8 +874,7 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            Backup = args.Args,
-                            SkipLibUpdate = true
+                            Backup = args.Args
                         });
                     }
                     break;
@@ -842,8 +894,7 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            RestoreBackup = args.Args,
-                            SkipLibUpdate = true
+                            RestoreBackup = args.Args
                         });
                     }
                     break;
@@ -917,7 +968,8 @@ namespace Playnite
                             }
                             else
                             {
-                                var existingProcess = Process.GetProcesses().First(a => a.ProcessName.StartsWith("Playnite.") && a.Id != curProcess.Id);
+                                var existingProcess = Process.GetProcesses().
+                                    First(a => IsProcessPlayniteProcess(a) && a.Id != curProcess.Id);
                                 if (existingProcess.ProcessName == curProcess.ProcessName)
                                 {
                                     client.InvokeCommand(CmdlineCommand.Focus, string.Empty);
@@ -942,7 +994,7 @@ namespace Playnite
             }
             else
             {
-                var processes = Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).ToList();
+                var processes = Process.GetProcesses().Where(a => IsProcessPlayniteProcess(a)).ToList();
                 // In case multiple processes end up in this branch,
                 // the process with highest process id gets to live.
                 if (processes.Count > 1 && processes.Max(a => a.Id) != curProcess.Id)
@@ -1626,13 +1678,13 @@ namespace Playnite
 
         private void WaitForOtherInstacesToExit(bool throwOnTimetout)
         {
-            if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() > 1)
+            if (Process.GetProcesses().Where(a => IsProcessPlayniteProcess(a)).Count() > 1)
             {
                 logger.Info("Multiple Playnite instances detected, waiting for them to close.");
                 for (int i = 0; i < 10; i++)
                 {
                     Thread.Sleep(500);
-                    if (Process.GetProcesses().Where(a => a.ProcessName.StartsWith("Playnite.")).Count() == 1)
+                    if (Process.GetProcesses().Where(a => IsProcessPlayniteProcess(a)).Count() == 1)
                     {
                         break;
                     }
@@ -1649,6 +1701,11 @@ namespace Playnite
                     }
                 }
             }
+        }
+
+        public static bool IsProcessPlayniteProcess(Process process)
+        {
+            return process.ProcessName.StartsWith("Playnite.DesktopApp") || process.ProcessName.StartsWith("Playnite.FullscreenApp");
         }
 
         public abstract PlayniteAPI GetApiInstance(ExtensionManifest pluginOwner);

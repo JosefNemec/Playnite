@@ -942,6 +942,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCAddonChangesRestart">Application restart is required to apply pending changes.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">This add-on is scheduled for installation.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Install</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Re-install</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Uninstall</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Already installed</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">No new add-on updates found.</sys:String>
@@ -952,6 +953,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">License rejected</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Downloading {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Looking for add-on updates…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Looking for program updates…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">One or more add-on updates are available.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Select items to update</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Extension development instance</sys:String>
@@ -1010,6 +1012,7 @@ If you want to install or uninstall additional integrations, use "Add-ons" optio
 Disabling this can lead to issues with games not getting input focus on startup!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Font Size</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Font Size Small</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Enable game controller API support</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Game controller support</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">If disabled, Playnite won't accept any game controller inputs.
         
@@ -1107,8 +1110,8 @@ If you start experiencing some issues after installing a theme or an extension, 
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Status assigned to games played for the first time</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Failed to initialize PowerShell script runtime. If you are Windows 7 user, try (re)installing PowerShell 5.1 to fix the issue.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filter preset with specified name already exists. Update preset with new settings?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Automatically fill sorting name for batch-added games</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">When you add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name, for example "The Witcher 3" will get a Sorting Name of "Witcher 03"</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Automatically fill missing sorting names for batch-added or edited games</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">When you edit a game, add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name. For example "The Witcher 3" will get a Sorting Name of "Witcher 03". This will never set a sorting name that doesn't differ from the game name, and it will only automatically update sorting names that are empty.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">These words will be removed from the start of the automatically filled Sorting Name value:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Use this for ignoring words at the start of a string for sorting purposes. The default is "The", "An", and "A".</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Fill Sorting Name for games without one</sys:String>
@@ -1259,4 +1262,6 @@ Open new issue on Playnite's GitHub page with a request to fix corruption in you
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Do you want to save changes you made?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Portable installation</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">No controllers detected</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Default source</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Web image search failed. This can happen for various reasons. See the following link for more details and troubleshooting tips.</sys:String>
 </ResourceDictionary>

@@ -133,6 +133,10 @@ namespace Playnite.Common
             {
                 logger.Error(e, $"Failed to get target path for a directory {directory}");
             }
+
+            // This is need so we wrongly don't match similar paths,
+            // like tracking c:\Fallout would match c:\Fallout 2\ as well otherwise.
+            dir = dir.EndWithDirSeparator();
         }
 
         public bool IsTrackable()
@@ -150,7 +154,7 @@ namespace Playnite.Common
             foreach (var process in Process.GetProcesses().Where(a => a.SessionId != 0))
             {
                 if (process.TryGetMainModuleFileName(out var procPath) &&
-                    procPath.IndexOf(dir, StringComparison.OrdinalIgnoreCase) >= 0)
+                    procPath.StartsWith(dir, StringComparison.OrdinalIgnoreCase))
                 {
                     return process.Id;
                 }

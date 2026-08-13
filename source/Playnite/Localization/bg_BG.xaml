@@ -944,6 +944,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">Необходимо е рестартиране на приложението, за да се приложат чакащи промени.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Тази добавка е планирана за инсталиране.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Инсталиране</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Пре-инсталиране</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Деинсталиране</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Вече инсталиран</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Няма намерени нови актуализации на добавки.</sys:String>
@@ -954,6 +955,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Лицензът е отхвърлен</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Изтегляне на {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Търсят се актуализации на добавки...</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Търсене за актуализации на програмата…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Налични са една или повече актуализации на добавките.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Изберете елементи за актуализиране</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Екземпляр за разработка на разширение</sys:String>
@@ -974,6 +976,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">Процес</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Папка</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Оригинален процес</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Име на процеса</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Регистриране на съобщения за проследяване</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Следващите промени презаписват данните за всички текущо избрани игри!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Няма</sys:String>
@@ -1011,6 +1014,7 @@
 Деактивирането на това може да доведе до проблеми с игрите, които не получават фокус върху входа при стартиране!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Размер на шрифта</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Малък размер на шрифта</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Активиране на поддръжката на API за игрови контролер.</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Поддръжка на игрови контролери</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ако е деактивирано, Playnite няма да приеме входове на XInput интерфейс.
 
@@ -1108,8 +1112,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Статус, присвоен на игри, играни за първи път</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Неуспешно инициализиране на времето за изпълнение на скрипт PowerShell. Ако сте потребител на Windows 7, опитайте (пре)инсталирайте PowerShell 5.1, за да коригирате проблема.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Вече съществува предварително зададен филтър с посочено име. Актуализиране на предварителна настройка с нови настройки?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Автоматично попълване на име за сортиране за групово добавени игри</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Когато добавяте игри чрез актуализация на библиотека, сканиране на папка на емулатор или нормално сканиране на папка, автоматично попълвайте &quot;Име за сортиране&quot; поле с по-добро сортируемо представяне на името на играта, например &quot;The Witcher 3&quot; ще получи име за сортиране на &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Автоматично попълване на липсващи имена за сортиране при групово добавени или редактирани игри.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Когато редактирате игра, добавяте игри чрез обновяване на библиотеката, сканиране на папка на емулатор или обикновено сканиране на папка, полето „Име за сортиране“ автоматично ще се попълва с по-подходяща форма на името на играта за сортиране. Например „The Witcher 3“ ще получи име за сортиране „Witcher 03“. Тази функция никога няма да зададе име за сортиране, което не се различава от името на играта, и автоматично ще актуализира само празни полета за сортиране.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Тези думи ще бъдат премахнати от началото на автоматично попълнената стойност за име за сортиране:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Използвайте това за игнориране на думи в началото на низ с цел сортиране. По подразбиране е &quot;The&quot;, &quot;An&quot; и &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Попълване на име за сортиране за игри без такова</sys:String>
@@ -1260,4 +1264,6 @@ Playnite автоматично ще се рестартира, за да ста
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Искате ли да запазите направените промени?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Портативна инсталация</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Няма открити контролери</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

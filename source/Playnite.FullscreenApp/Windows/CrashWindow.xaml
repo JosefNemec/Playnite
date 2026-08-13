@@ -38,19 +38,17 @@
                                VerticalAlignment="Center" Margin="5,0,5,25"
                                TextWrapping="Wrap" Foreground="{StaticResource TextBrush}" />
                     <DockPanel LastChildFill="False">
-                        <pctrls:ButtonEx Content="{DynamicResource LOCAboutSendDiagButton}"  
+                        <pctrls:ButtonEx Content="{DynamicResource LOCAboutSendDiagButton}"
                                 Style="{StaticResource MessageBoxButton}"
                                 Command="{Binding CreateDiagPackageCommand}"
                                 x:Name="ButtonGeneratePackage" />
-                        <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartPlaynite}"                       
-                                Style="{StaticResource MessageBoxButton}"
-                                Command="{Binding RestartCommand}"
-                                x:Name="ButtonRestart" />
-                        <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartSafe}"  
-                                TooltipEx="{DynamicResource LOCCrashRestartSafeTooltip}"                     
-                                Style="{StaticResource MessageBoxButton}"
-                                Command="{Binding RestartSafeCommand}"
-                                DockPanel.Dock="Right"/>
+                        <pctrls:ButtonEx Content="{DynamicResource LOCCrashRestartPlaynite}"
+                                          Style="{StaticResource MessageBoxButton}"
+                                          Command="{Binding RestartCommand}"
+                                          x:Name="ButtonRestart" DockPanel.Dock="Right" />
+                        <pctrls:CheckBoxEx Content="{DynamicResource LOCCrashRestartSafe}"
+                                           IsChecked="{Binding RestartInSafeMode}"
+                                           VerticalAlignment="Center" Margin="20,0,0,0" DockPanel.Dock="Right"/>
                     </DockPanel>
                 </StackPanel>
 

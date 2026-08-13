@@ -252,6 +252,13 @@ namespace Playnite.SDK.Plugins
         }
 
         /// <summary>
+        /// Called when game installation has been cancelled.
+        /// </summary>
+        public virtual void OnGameInstallationCancelled(OnGameInstallationCancelledEventArgs args)
+        {
+        }
+
+        /// <summary>
         /// Called when game has been uninstalled.
         /// </summary>
         public virtual void OnGameUninstalled(OnGameUninstalledEventArgs args)
@@ -290,6 +297,34 @@ namespace Playnite.SDK.Plugins
         /// Called when gamepad/controller button is pressed or released.
         /// </summary>
         public virtual void OnControllerButtonStateChanged(OnControllerButtonStateChangedArgs args)
+        {
+        }
+
+        /// <summary>
+        /// Called when gamepad/controller button is pressed or released in Desktop mode.
+        /// </summary>
+        public virtual void OnDesktopControllerButtonStateChanged(OnControllerButtonStateChangedArgs args)
+        {
+        }
+
+        /// <summary>
+        /// Called when gamepad/controller is connected.
+        /// </summary>
+        public virtual void OnControllerConnected(OnControllerConnectedArgs args)
+        {
+        }
+
+        /// <summary>
+        /// Called when gamepad/controller is disconnected.
+        /// </summary>
+        public virtual void OnControllerDisconnected(OnControllerDisconnectedArgs args)
+        {
+        }
+
+        /// <summary>
+        /// Called when fullscreen view changes from list to game details and vice versa.
+        /// </summary>
+        public virtual void OnFullscreenViewChanged(OnFullscreenViewChangedArgs args)
         {
         }
 

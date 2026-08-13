@@ -87,10 +87,8 @@ namespace Playnite
                 options.BackupItems = new List<BackupDataItem>();
             }
 
-            var tmpFile = options.OutputFile + ".tmp";
-            FileSystem.PrepareSaveFile(tmpFile);
-
-            using (var zipFile = new FileStream(tmpFile, FileMode.Create))
+            FileSystem.DeleteFile(options.OutputFile);
+            using (var zipFile = new FileStream(options.OutputFile, FileMode.Create))
             using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Create))
             {
                 // Settings
@@ -190,13 +188,10 @@ namespace Playnite
         archiveDone:
             if (cancelToken.IsCancellationRequested)
             {
-                FileSystem.DeleteFile(tmpFile);
+                FileSystem.DeleteFile(options.OutputFile);
             }
             else
             {
-                FileSystem.DeleteFile(options.OutputFile);
-                File.Move(tmpFile, options.OutputFile);
-
                 var backupDir = Path.GetDirectoryName(options.OutputFile);
                 var files = Directory.GetFiles(backupDir, $"{autoBackupFileName}*.zip").Where(a => Regex.IsMatch(a, autoBackupFilePattern)).OrderBy(a => a).ToArray();
                 if (files.Length > options.RotatingBackups + 1)

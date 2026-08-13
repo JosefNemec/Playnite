@@ -102,6 +102,7 @@ namespace Playnite.Plugins
             this.controllers = controllers;
             this.apiGenerator = apiGenerator;
             controllers.Installed += Controllers_Installed;
+            controllers.InstallationCancelled += Controllers_InstallationCancelled;
             controllers.Starting += Controllers_Starting;
             controllers.Started += Controllers_Started;
             controllers.Stopped += Controllers_Stopped;
@@ -114,6 +115,7 @@ namespace Playnite.Plugins
             DisposePlugins();
             DisposeScripts();
             controllers.Installed -= Controllers_Installed;
+            controllers.InstallationCancelled -= Controllers_InstallationCancelled;
             controllers.Starting -= Controllers_Starting;
             controllers.Started -= Controllers_Started;
             controllers.Stopped -= Controllers_Stopped;
@@ -324,9 +326,15 @@ namespace Playnite.Plugins
             var manifests = GetInstalledManifests(externals).Where(a => a.Type == ExtensionType.Script && !ignoreList.Contains(a.Id)).ToList();
             foreach (var desc in manifests)
             {
-                if (desc.Id.IsNullOrEmpty())
+                if (desc.Id.IsNullOrWhiteSpace())
                 {
                     logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
+                if (desc.Module.IsNullOrWhiteSpace())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have module specified.");
                     continue;
                 }
 
@@ -392,6 +400,12 @@ namespace Playnite.Plugins
                 if (desc.Id.IsNullOrEmpty())
                 {
                     logger.Error($"Extension {desc.Name}, doesn't have ID.");
+                    continue;
+                }
+
+                if (desc.Module.IsNullOrWhiteSpace())
+                {
+                    logger.Error($"Extension {desc.Name}, doesn't have module specified.");
                     continue;
                 }
 
@@ -706,6 +720,40 @@ namespace Playnite.Plugins
                 catch (Exception e)
                 {
                     logger.Error(e, $"Failed to execute OnGameInstalled method from {plugin.Description.Name} plugin.");
+                }
+            }
+        }
+
+        private void Controllers_InstallationCancelled(object sender, GameInstallationCancelledEventArgs args)
+        {
+            if (args.Source?.Game?.Id == null)
+            {
+                logger.Error("No game controller information found!");
+                return;
+            }
+
+            var callbackArgs = new SDK.Events.OnGameInstallationCancelledEventArgs { Game = database.Games[args.Source.Game.Id] };
+            foreach (var script in Scripts)
+            {
+                try
+                {
+                    script.OnGameInstallationCancelled(callbackArgs);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to execute OnGameInstallationCancelled method from {script.Name} script.");
+                }
+            }
+
+            foreach (var plugin in Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnGameInstallationCancelled(callbackArgs);
+                }
+                catch (Exception e)
+                {
+                    logger.Error(e, $"Failed to execute OnGameInstallationCancelled method from {plugin.Description.Name} plugin.");
                 }
             }
         }

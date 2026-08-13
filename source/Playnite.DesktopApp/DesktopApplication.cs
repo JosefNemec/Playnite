@@ -29,7 +29,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using Playnite.Input;
+using static SDL2.SDL;
 
 namespace Playnite.DesktopApp
 {
@@ -38,6 +41,8 @@ namespace Playnite.DesktopApp
         private ILogger logger = LogManager.GetLogger();
         private TaskbarIcon trayIcon;
         private SplashScreen splashScreen;
+        private bool sdlInitialized = false;
+        private bool exitSDLEventLoop = false;
 
         private DesktopAppViewModel mainModel;
         public DesktopAppViewModel MainModel
@@ -85,9 +90,14 @@ namespace Playnite.DesktopApp
             AppUriHandler = MainModel.ProcessUriRequest;
             var isFirstStart = ProcessStartupWizard();
             MigrateDatabase();
+#pragma warning disable CS4014
+            if (AppSettings.EnableGameControllerSupport)
+            {
+                InitSDL();
+                SetupInputs();
+            }
             OpenMainViewAsync(isFirstStart);
             LoadTrayIcon();
-#pragma warning disable CS4014
             StartUpdateCheckerAsync();
 #pragma warning restore CS4014
             ProcessArguments();
@@ -114,6 +124,9 @@ namespace Playnite.DesktopApp
         {
             trayIcon?.Dispose();
             MainModel?.UnregisterSystemSearchHotkey();
+            exitSDLEventLoop = true;
+            GameController?.Dispose();
+            if (sdlInitialized) SDL_Quit();
             base.ReleaseResources(releaseCefSharp);
         }
 
@@ -330,7 +343,7 @@ namespace Playnite.DesktopApp
                 Notifications = Notifications,
                 Paths = new PlaynitePathsAPI(),
                 Resources = new ResourceProvider(),
-                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database, MainModel),
                 UriHandler = UriHandler,
                 WebViews = new WebViewFactory(AppSettings)
             };
@@ -350,10 +363,86 @@ namespace Playnite.DesktopApp
                 Notifications = Notifications,
                 Paths = new PlaynitePathsAPI(),
                 Resources = new ResourceProvider(),
-                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database),
+                RootApi = new PlayniteApiRoot(GamesEditor, Extensions, Database, MainModel),
                 UriHandler = UriHandler,
                 WebViews = new WebViewFactory(AppSettings)
             };
         }
+
+
+        private void InitSDL()
+        {
+            if (SDL_Init(SDL_INIT_GAMECONTROLLER) < 0)
+            {
+                logger.Error("SDL2 failed to initialize:");
+                logger.Error(SDL_GetError());
+                return;
+            }
+
+            if (SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt") == -1)
+            {
+                logger.Error("Failed to load game controller mappings:");
+                logger.Error(SDL_GetError());
+            }
+
+            // This should fix some random XInput controller issues
+            // https://github.com/libsdl-org/SDL/issues/13047
+            // https://github.com/JosefNemec/Playnite/issues/3794
+            SDL_SetHint(SDL_HINT_JOYSTICK_RAWINPUT, "0");
+            SDL_GameControllerEventState(SDL_IGNORE);
+            SDLEventLoop();
+            sdlInitialized = true;
+        }
+
+        private void SDLEventLoop()
+        {
+            Task.Run(async () =>
+            {
+                while (!exitSDLEventLoop)
+                {
+                    while (SDL_PollEvent(out var sdlEvent) == 1)
+                    {
+                        if (sdlEvent.type == SDL_EventType.SDL_CONTROLLERDEVICEADDED)
+                        {
+                            GameController?.AddController(sdlEvent.cdevice.which, AppSettings.DisabledGameControllers);
+                        }
+
+                        if (sdlEvent.type == SDL_EventType.SDL_CONTROLLERDEVICEREMOVED)
+                        {
+                            GameController?.RemoveController(sdlEvent.cdevice.which);
+                        }
+                    }
+
+                    GameController?.ProcessInputs();
+                    await Task.Delay(16);
+                }
+            });
+        }
+
+        public void SetupInputs()
+        {
+            if (!sdlInitialized)
+            {
+                return;
+            }
+
+            try
+            {
+                if (GameController == null)
+                {
+                    GameController = new GameControllerManager(InputManager.Current, AppSettings.DisabledGameControllers)
+                    {
+                        SimulateAllKeys = false,
+                        SimulateNavigationKeys = false,
+                        StandardProcessingEnabled = false
+                    };
+                }
+            }
+            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+            {
+                logger.Error(e, "Failed intitialize game controller devices.");
+            }
+        }
+
     }
 }

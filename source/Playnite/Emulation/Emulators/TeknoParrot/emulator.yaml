@@ -1,0 +1,9 @@
+Id: teknoparrot
+Name: TeknoParrot
+Website: 'https://teknoparrot.com'
+Profiles:
+  - Name: Default
+    StartupArguments: '--profile={ImageNameNoExt}.xml --startMinimized'
+    Platforms: [arcade]
+    ImageExtensions: [teknoparrot, parrot, zip, game,7z ,xml]
+    StartupExecutable: ^TeknoParrotUi\.exe$

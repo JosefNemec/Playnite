@@ -37,6 +37,11 @@ namespace Playnite.SDK
         public const string ImageName = "{ImageName}";
 
         /// <summary>
+        /// Gets variable name for game's image directory path.
+        /// </summary>
+        public const string ImageDir = "{ImageDir}";
+
+        /// <summary>
         /// Gets variable name for Playnite's installation directory path.
         /// </summary>
         public const string PlayniteDirectory = "{PlayniteDir}";

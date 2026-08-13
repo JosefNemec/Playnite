@@ -37,6 +37,21 @@ namespace Playnite.Common.Web
         Task DownloadFileAsync(IEnumerable<string> mirrors, string path, Action<DownloadProgressChangedEventArgs> progressHandler);
     }
 
+    // The default timeout of WebClient is 100 seconds which is just too much and doesn't make sense.
+    // This is apparatenly the only way to change timeout for the entire WebClient instance.
+    // We should be using HttpClient but that's not very safe changes for P10 right now.
+    public class CustomWebClient : WebClient
+    {
+        protected override WebRequest GetWebRequest(Uri address)
+        {
+            var request = base.GetWebRequest(address);
+            if (request != null)
+                request.Timeout = 15 * 1000;
+
+            return request;
+        }
+    }
+
     public class Downloader : IDownloader
     {
         private static ILogger logger = LogManager.GetLogger();
@@ -75,7 +90,7 @@ namespace Playnite.Common.Web
 
             try
             {
-                using (var webClient = new WebClient { Encoding = Encoding.UTF8 })
+                using (var webClient = new CustomWebClient { Encoding = Encoding.UTF8 })
                 using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
                     webClient.Headers.Add("User-Agent", playniteUserAgent);
@@ -92,7 +107,7 @@ namespace Playnite.Common.Web
         public string DownloadString(string url, Encoding encoding)
         {
             logger.Debug($"Downloading string content from {url} using {encoding} encoding.");
-            using (var webClient = new WebClient { Encoding = encoding })
+            using (var webClient = new CustomWebClient { Encoding = encoding })
             {
                 webClient.Headers.Add("User-Agent", playniteUserAgent);
                 return webClient.DownloadString(url);
@@ -107,7 +122,7 @@ namespace Playnite.Common.Web
         public string DownloadString(string url, List<Cookie> cookies, Encoding encoding)
         {
             logger.Debug($"Downloading string content from {url} using cookies and {encoding} encoding.");
-            using (var webClient = new WebClient { Encoding = encoding })
+            using (var webClient = new CustomWebClient { Encoding = encoding })
             {
                 webClient.Headers.Add("User-Agent", playniteUserAgent);
                 if (cookies?.Any() == true)
@@ -128,7 +143,7 @@ namespace Playnite.Common.Web
         public void DownloadString(string url, string path, Encoding encoding)
         {
             logger.Debug($"Downloading string content from {url} to {path} using {encoding} encoding.");
-            using (var webClient = new WebClient { Encoding = encoding })
+            using (var webClient = new CustomWebClient { Encoding = encoding })
             {
                 webClient.Headers.Add("User-Agent", playniteUserAgent);
                 var data = webClient.DownloadString(url);
@@ -139,7 +154,7 @@ namespace Playnite.Common.Web
         public byte[] DownloadData(string url)
         {
             logger.Debug($"Downloading data from {url}.");
-            using (var webClient = new WebClient())
+            using (var webClient = new CustomWebClient())
             {
                 webClient.Headers.Add("User-Agent", playniteUserAgent);
                 return webClient.DownloadData(url);
@@ -152,7 +167,7 @@ namespace Playnite.Common.Web
 
             try
             {
-                using (var webClient = new WebClient())
+                using (var webClient = new CustomWebClient())
                 using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
                     webClient.Headers.Add("User-Agent", playniteUserAgent);
@@ -170,7 +185,7 @@ namespace Playnite.Common.Web
         {
             logger.Debug($"Downloading data from {url} to {path}.");
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
-            using (var webClient = new WebClient())
+            using (var webClient = new CustomWebClient())
             {
                 webClient.Headers.Add("User-Agent", playniteUserAgent);
                 webClient.DownloadFile(url, path);
@@ -184,7 +199,7 @@ namespace Playnite.Common.Web
 
             try
             {
-                using (var webClient = new WebClient())
+                using (var webClient = new CustomWebClient())
                 using (var registration = cancelToken.Register(() => webClient.CancelAsync()))
                 {
                     webClient.Headers.Add("User-Agent", playniteUserAgent);
@@ -205,7 +220,7 @@ namespace Playnite.Common.Web
         {
             logger.Debug($"Downloading data async from {url} to {path}.");
             FileSystem.CreateDirectory(Path.GetDirectoryName(path));
-            using (var webClient = new WebClient())
+            using (var webClient = new CustomWebClient())
             {
                 webClient.Headers.Add("User-Agent", playniteUserAgent);
                 webClient.DownloadProgressChanged += (s, e) => progressHandler(e);

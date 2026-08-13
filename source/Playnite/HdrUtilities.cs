@@ -149,7 +149,8 @@ namespace Playnite
                  .FirstOrDefault(IsPrimaryDisplayMode);
 
             var targetInfo =
-                paths.FirstOrDefault(p => p.sourceInfo.id == primaryDisplayMode.id)
+                paths.FirstOrDefault(p => p.sourceInfo.id == primaryDisplayMode.id &&
+                                          p.sourceInfo.adapterId.Equals(primaryDisplayMode.adapterId))
                 .targetInfo;
 
             return targetInfo;

@@ -46,6 +46,9 @@
         <i:EventTrigger EventName="Deactivated" >
             <i:InvokeCommandAction Command="{Binding WindowDeactivatedCommand}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Closing" >
+            <i:InvokeCommandAction Command="{Binding WindowClosingCommand}" />
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <DockPanel Margin="0,-25,0,0">

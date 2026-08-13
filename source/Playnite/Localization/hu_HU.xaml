@@ -929,6 +929,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCAddonChangesRestart">A Playnite újraindítása szükséges a változtatások alkalmazásához.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">A bővítmény telepítése ütemezve.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Telepítés</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Újratelepítés</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Eltávolítás</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Már telepített</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nem találtam frissítést a bővítményekhez.</sys:String>
@@ -939,6 +940,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licensz elutasítva</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} letöltése…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Bővítmények frissítésének keresése…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Frissítések keresése…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Egy vagy több frissítés elérhető.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Válaszd ki a frissítendőket</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Bővítmény fejlesztői változat</sys:String>
@@ -959,6 +961,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
     <sys:String x:Key="LOCActionTrackingModeProcess">Folyamat</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Mappa</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Eredeti folyamat</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Folyamat neve</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Nyomonkövetési üzenetek naplózása</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">A módosítások felülírják az összes kijelölt játék szerkesztett adatát!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Nincs</sys:String>
@@ -996,6 +999,7 @@ Ha telepíteni vagy eltávolítani szeretnéd őket, használd a főmenü &quot;
 Ha kikapcsolod, bizonyos játékoknál hibát okozhat, hogy nem kapnak indításkor beviteli elsőbbséget.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Betűméret</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Kis betűméret</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Játékvezérlő API támogatás</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">XInput támogatás</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Ha ki van kapcsolva, a Playnite nem fogja használni a játékvezérlőket.
         
@@ -1093,8 +1097,8 @@ Ha problémákat észlelsz egy téma vagy bővítmény telepítése után, érde
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Elsőnek játszott játékok automatikus állapota</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">PowerShell szkript futtatási hiba. Ha Windows 7 alól tolod, próbáld meg (újra)telepíteni a PowerShell 5.1-et.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Már van ilyen névvel szűrőséma. Felülírod az új beállításokkal?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Töltse ki automatikusan a rendezési nevet a tömegesen hozzáadott játékoknál</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Ha könyvtárfrissítéssel, emulátor mappa beolvasással, vagy mappabeolvasással adsz hozzá játékokat, automatikusan töltse ki a &quot;Rendezési név&quot; mezőt egy könnyebben sorba rendezhető játéknévvel. Például a &quot;The Witcher 3&quot; a &quot;Witcher 03&quot;-as rendezési nevet fogja kapni.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Töltse ki automatikusan a rendezési nevet a tömegesen hozzáadott vagy szerkesztett játékoknál</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Ha könyvtárfrissítéssel, emulátor mappa beolvasással, vagy mappabeolvasással adsz hozzá játékokat, automatikusan töltse ki a &quot;Rendezési név&quot; mezőt egy könnyebben sorba rendezhető játéknévvel. Például a &quot;The Witcher 3&quot; a &quot;Witcher 03&quot;-as rendezési nevet fogja kapni. Nem fog az eredetitől különböző nevet adni, és csak az üres rendezési neveket tölti ki.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Ezeket a szavakat automatikusan eltávolítja a rendezési név elejéről:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Így lehet egyszerűen eltávolítani a rendezési nevek elejéről az extra szavakat. Alapértelmezésben a &quot;The&quot;, az &quot;An&quot; és az &quot;A&quot; kerül eltávolításra.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Rendezési név mező automatikus kitöltése</sys:String>
@@ -1246,4 +1250,6 @@ Kérlek nyiss egy új jegyet a Playnite GitHub oldalán angolul, kérve, hogy ja
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Szeretnéd menteni változtatásaidat?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Hordozható (portable) telepítés</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nem található játékvezérlő</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

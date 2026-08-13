@@ -378,6 +378,13 @@ namespace Playnite.DesktopApp.ViewModels
 
         protected void InitializeView()
         {
+            if (App.GameController != null)
+            {
+                App.GameController.ButtonChanged += GameControllerInputButtonChanged;
+                App.GameController.ControllerConnected += GameControllerOnControllerConnected;
+                App.GameController.ControllerDisconnected += GameControllerOnControllerDisconnected;
+            }
+
             GamesCollectionViewEntry.InitItemViewProperties(App, AppSettings);
             LibraryStats = new StatisticsViewModel(Database, Extensions, AppSettings, SwitchToLibraryView, (g) =>
             {
@@ -389,21 +396,18 @@ namespace Playnite.DesktopApp.ViewModels
             DatabaseFilters = new DatabaseFilter(Database, Extensions, AppSettings, AppSettings.FilterSettings);
             DatabaseExplorer = new DatabaseExplorer(Database, Extensions, AppSettings, this);
 
-            var openProgress = new ProgressViewViewModel(
-                new ProgressWindowFactory(),
-                new GlobalProgressOptions(LOC.OpeningDatabase));
-
-            if (openProgress.ActivateProgress((_) =>
+            try
             {
                 if (!Database.IsOpen)
                 {
                     Database.SetDatabasePath(AppSettings.DatabasePath);
                     Database.OpenDatabase();
                 }
-            }).Result != true)
+            }
+            catch (Exception e)
             {
-                Logger.Error(openProgress.FailException, "Failed to open library database.");
-                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{openProgress.FailException?.Message}";
+                Logger.Error(e, "Failed to open library database.");
+                var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{e.Message}";
                 Dialogs.ShowErrorMessage(message, "");
                 GameAdditionAllowed = false;
                 return;
@@ -634,7 +638,6 @@ namespace Playnite.DesktopApp.ViewModels
             var newGame = new Game()
             {
                 Name = "New Game",
-                IsInstalled = true,
                 CompletionStatusId = Database.GetCompletionStatusSettings().DefaultStatus
             };
 
@@ -917,28 +920,41 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void CheckForUpdate()
         {
-            try
-            {
-                var updater = new Updater(App);
-                if (updater.IsUpdateAvailable)
+            var updater = new Updater(App);
+            var appUpdateAvailable = false;
+            var addonUpdates = new List<AddonUpdate>();
+            var dialogRes = Dialogs.ActivateGlobalProgress((args) =>
                 {
-                    var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs, App.Mode);
-                    model.OpenView();
-                }
-                else
-                {
-                    Dialogs.ShowMessage(Resources.GetString("LOCUpdateNoNewUpdateMessage"), string.Empty);
-                }
-            }
-            catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
+                    appUpdateAvailable = updater.IsUpdateAvailable;
+                    args.Text = LOC.AddonLookingForUpdates.GetLocalized();
+                    addonUpdates = Addons.CheckAddonUpdates(App.ServicesClient);
+                },
+                new GlobalProgressOptions(LOC.AppLookingForUpdates) { IsIndeterminate = true });
+
+            if (dialogRes.Result != true)
             {
-                Logger.Error(e, "Failed to check for update.");
-                Dialogs.ShowErrorMessage(Resources.GetString("LOCUpdateCheckFailMessage"), Resources.GetString("LOCUpdateError"));
+                Dialogs.ShowErrorMessage(dialogRes.Error?.Message ?? "Update check failed.");
+                return;
             }
 
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-            CheckForAddonUpdates();
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            if (!appUpdateAvailable && !addonUpdates.HasItems())
+            {
+                Dialogs.ShowMessage(LOC.UpdateNoNewUpdateMessage.GetLocalized(), string.Empty);
+                return;
+            }
+
+            if (appUpdateAvailable)
+            {
+                var model = new UpdateViewModel(updater, new UpdateWindowFactory(), Resources, Dialogs, App.Mode);
+                if (model.OpenView() == true)
+                    return;
+            }
+
+            if (addonUpdates.HasItems())
+            {
+                var model = new AddonsViewModel(new AddonsWindowFactory(), Dialogs, Resources, App.ServicesClient, Extensions, AppSettings, App, addonUpdates);
+                model.OpenView();
+            }
         }
 
         public void SwitchToFullscreenMode()
@@ -1139,6 +1155,10 @@ namespace Playnite.DesktopApp.ViewModels
                         Logger.Error($"Can't display game, failed to parse game id: {arguments[1]}");
                     }
 
+                    break;
+
+                case UriCommands.Restore:
+                    Window.Window.RestoreWindow();
                     break;
 
                 default:
@@ -1379,6 +1399,51 @@ namespace Playnite.DesktopApp.ViewModels
             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
             {
                 Logger.Error(e, "Failed to unregister system search hotkey.");
+            }
+        }
+
+        private void GameControllerInputButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnDesktopControllerButtonStateChanged(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller input.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerDisconnected(object sender, OnControllerDisconnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerDisconnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller connected event.");
+                }
+            }
+        }
+
+        private void GameControllerOnControllerConnected(object sender, OnControllerConnectedArgs e)
+        {
+            foreach (var plugin in Extensions.Plugins.Values)
+            {
+                try
+                {
+                    plugin.Plugin.OnControllerConnected(e);
+                }
+                catch (Exception exc)
+                {
+                    Logger.Error(exc, $"Plugin {plugin.Description.Id} failed to process controller disconnected event.");
+                }
             }
         }
     }

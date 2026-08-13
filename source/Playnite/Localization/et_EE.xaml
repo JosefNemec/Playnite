@@ -212,8 +212,8 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCMetaGameSourceAll">Kõik mängud andmebaasist</sys:String>
     <sys:String x:Key="LOCMetaGameSourceFiltered">Kõik hetkel filtreeritud mängud</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Ainult valitud mängud</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption"></sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage"></sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Ühtegi metaandmete välja pole valitud</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Allalaadimiseks pole valitud ühtegi metaandmete välja. Valige vähemalt üks ja aktiveerige selle jaoks vähemalt üks metaandmete pakkuja.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Ametlik pood</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Palun vali, millised väljad peaks Playnite automaatselt andmetega täitma ja millistest allikatest andmeid hankima.</sys:String>
@@ -942,6 +942,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
     <sys:String x:Key="LOCAddonChangesRestart">Ootel muudatuste rakendamiseks on vaja rakendus taaskäivitada.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">See lisa on installimise järjekorras.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Paigalda</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Desinstalli</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Juba installitud</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Lisade värskendusi ei leitud.</sys:String>
@@ -952,6 +953,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Litsentsist keelduti</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Allalaadimine {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Lisade värskenduste otsimine…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Vähemalt ühele lisale on saadaval värskendus.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Vali, mis värskendada</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Laienduse arendusversioon</sys:String>
@@ -972,6 +974,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
     <sys:String x:Key="LOCActionTrackingModeProcess">Protsess</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Kaust</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Esialgne protsess</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Logi jälgede teated</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Järgnevad muudatused kirjutavad üle kõigi hetkel valitud mängude andmed!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Puudub</sys:String>
@@ -1009,6 +1012,7 @@ Kui tahad integratsioone installida või desinstallida, kasuta menüüd &quot;Li
 Selle keelamine võib kaasa tuua olukorra, kus mängud ei saa käivitumisel sisendeid kasutada!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Fondi suurus</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Fondi suurus väike</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Juhtpuldi tugi</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Kui keelatud, ei võta Playnite vastu mitte mingisuguseid juhtpuldi sisendeid.
         
@@ -1106,8 +1110,8 @@ Kui pärast teema või laienduse installimist ilmnevad probleemid, proovi need e
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Esmakordselt mängitud mängudele määratud olek</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Ei saanud käivitada PowerShelli skripti. Kui kasutad Windows 7-t, proovi probleemi parandamiseks PowerShell 5.1 (uuesti) installida.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Sellise nimega filtri eelseadistus on juba olemas. Kas uuendada eelseadistus uute sätetega?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Automaatselt täida pakklisatud mängude sortimisnimi</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Lisades mänge kas teegi värskenduse, emulaatori kausta skannimise või tavalise kausta skannimise kaudu, täida väli &quot;Sortimisnimi&quot; automaatselt mängu nime paremini sorditava kujuga, näiteks &quot;The Witcher 3&quot; saab sortimisnimeks &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill"></sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip"></sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Need sõnad eemaldatakse automaatselt täidetud Sortimisnime algusest:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Kasuta seda, et sortimise eesmärkidel eirata sõnede alguses teatud sõnu. Vaikimisi valikuteks on &quot;The&quot;, &quot;An&quot; ja &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Täida Sortimisnimi ilma selleta mängudel</sys:String>
@@ -1258,4 +1262,6 @@ Ava Playnite'i GitHubi lehel uus vearaport taotlusega parandada oma rikutud fail
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Kas tahad tehtud muudatused salvestada?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Portatiivne paigaldus</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Juhtpulte ei tuvastatud</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

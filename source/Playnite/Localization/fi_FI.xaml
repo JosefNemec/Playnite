@@ -930,6 +930,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Tämä lisäosa on ajoitettu asennukseen</sys:String>
     <sys:String x:Key="LOCAddonInstall">Asenna</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">Poista asennus</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Jo asennettu</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Uusia lisäosien päivityksiä ei löytynyt.</sys:String>
@@ -940,6 +941,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Lisenssi hylätty</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Ladataan {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Haetaan lisäosien päivityksiä…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Yksi tai useampi lisäosapäivitys saatavilla.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Valitse päivitettävät kohteet</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -960,6 +962,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
     <sys:String x:Key="LOCActionTrackingModeProcess">Prosessi</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Kansio</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Alkuperäinen prosessi</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ei mitään</sys:String>
@@ -997,6 +1000,7 @@ Sovelluksen uudelleenkäynnistys vaaditaan. Haluatko varmasti nollata asetukset?
 Tämän asetuksen käytöstä pois ottaminen voi johtaa syötön ongelmiin peliä käynnistettäessä!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Fonttikoko</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Pieni fonttikoko</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">Näytä kohteet päävalikossa:</sys:String>
@@ -1215,4 +1219,6 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
     <sys:String x:Key="LOCPortableInstallation"></sys:String>
     <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

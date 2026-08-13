@@ -53,5 +53,9 @@ namespace Playnite.Tests
         {
             return getBySerial(serial);
         }
+
+        public void ClearStatementCache()
+        {
+        }
     }
 }

@@ -16,6 +16,20 @@ Profiles:
     ProfileFiles: ['cores\a5200_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
+  - Name: Ardens
+    StartupArguments: '-L ".\cores\ardens_libretro.dll" "{ImagePath}"'
+    Platforms: [arduboy]
+    ImageExtensions: [hex, arduboy]
+    ProfileFiles: ['cores\ardens_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: Arduous
+    StartupArguments: '-L ".\cores\arduous_libretro.dll" "{ImagePath}"'
+    Platforms: [arduboy]
+    ImageExtensions: [hex]
+    ProfileFiles: ['cores\arduous_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
   - Name: Atari800
     StartupArguments: '-L ".\cores\atari800_libretro.dll" "{ImagePath}"'
     Platforms: [atari_5200, atari_8bit]
@@ -373,6 +387,13 @@ Profiles:
     ProfileFiles: ['cores\fceumm_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
+  - Name: FinalBurn Neo
+    StartupArguments: '-L ".\cores\fbneo_libretro.dll" "{ImagePath}"'
+    Platforms: [arcade]
+    ImageExtensions: [zip,7z]
+    ProfileFiles: ['cores\fbneo_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
   - Name: fixGB
     StartupArguments: '-L ".\cores\fixgb_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_gameboy, nintendo_gameboycolor]
@@ -389,14 +410,14 @@ Profiles:
 
   - Name: Flycast
     StartupArguments: '-L ".\cores\flycast_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_dreamcast]
+    Platforms: [sega_dreamcast, arcade]
     ImageExtensions: [7z, bin, cdi, chd, cue, dat, elf, gdi, lst, m3u, zip]
     ProfileFiles: ['cores\flycast_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
   - Name: Flycast GLES2
     StartupArguments: '-L ".\cores\flycast_gles2_libretro.dll" "{ImagePath}"'
-    Platforms: [sega_dreamcast]
+    Platforms: [sega_dreamcast, arcade]
     ImageExtensions: [7z, bin, cdi, chd, cue, dat, elf, gdi, iso, lst, m3u, zip]
     ProfileFiles: ['cores\flycast_gles2_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
@@ -478,6 +499,13 @@ Profiles:
     ProfileFiles: ['cores\genesis_plus_gx_wide_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
+  - Name: Geolith
+    StartupArguments: '-L ".\cores\geolith_libretro.dll" "{ImagePath}"'
+    Platforms: [snk_neogeo_aes, arcade]
+    ImageExtensions: [neo]
+    ProfileFiles: ['cores\geolith_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
   - Name: gpSP
     StartupArguments: '-L ".\cores\gpsp_libretro.dll" "{ImagePath}"'
     Platforms: [nintendo_gameboyadvance]
@@ -525,6 +553,20 @@ Profiles:
     Platforms: [sega_saturn]
     ImageExtensions: [7z, ccd, chd, cue, iso, m3u, mds, zip]
     ProfileFiles: ['cores\kronos_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: Mame
+    StartupArguments: '-L ".\cores\mame_libretro.dll" "{ImagePath}"'
+    Platforms: [arcade]
+    ImageExtensions: [zip]
+    ProfileFiles: ['cores\mame_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: Mame 2003 Plus
+    StartupArguments: '-L ".\cores\mame2003_plus_libretro.dll" "{ImagePath}"'
+    Platforms: [arcade]
+    ImageExtensions: [zip, cdh]
+    ProfileFiles: ['cores\mame2003_plus_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
   - Name: melonDS
@@ -644,6 +686,13 @@ Profiles:
     Platforms: [nintendo_gameboy, nintendo_gameboycolor, nintendo_super_nes]
     ImageExtensions: [7z, bml, gb, gbc, rom, sfc, smc, zip]
     ProfileFiles: ['cores\higan_sfc_balanced_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: Numero
+    StartupArguments: '-L ".\cores\numero_libretro.dll" "{ImagePath}"'
+    Platforms: [ti_83]
+    ImageExtensions: [8xp, 8xk, 8xg]
+    ProfileFiles: ['cores\numero_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
   - Name: Opera
@@ -819,6 +868,13 @@ Profiles:
     Platforms: [nintendo_gameboy, nintendo_gameboycolor]
     ImageExtensions: [7z, gb, gbc, zip]
     ProfileFiles: ['cores\sameboy_libretro.dll']
+    StartupExecutable: ^retroarch\.exe$
+
+  - Name: ScummVM
+    StartupArguments: '-L ".\cores\scummvm_libretro.dll" "{ImagePath}"'
+    Platforms: [pc_dos, pc_windows]
+    ImageExtensions: [scummvm]
+    ProfileFiles: ['cores\scummvm_libretro.dll']
     StartupExecutable: ^retroarch\.exe$
 
   - Name: Sinclair ZX 81

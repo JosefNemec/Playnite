@@ -942,6 +942,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCAddonChangesRestart">Je vyžadován restart aplikace pro použití čekajících změn.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">Toto rozšíření je plánováno k instalaci.</sys:String>
     <sys:String x:Key="LOCAddonInstall">Instalovat</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">Přeinstalovat</sys:String>
     <sys:String x:Key="LOCAddonUninstall">Odinstalovat</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">Již nainstalováno</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">Nenalezeny žádné nové aktualizace rozšíření.</sys:String>
@@ -952,6 +953,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">Licence zamítnuta</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">Stahování {0}...</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">Vyhledávají se aktualizace rozšíření…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">Vyhledávají se aktualizace programu…</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">Jsou dostupné aktualizace pro některá rozšíření.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">Vyberte položky k aktualizaci</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">Instance pro vývoj rozšíření</sys:String>
@@ -972,6 +974,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
     <sys:String x:Key="LOCActionTrackingModeProcess">Proces</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">Adresář</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Původní proces</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">Název procesu</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">Ukládat logy o sledování</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Následující změny přepisují data pro všechny aktuálně vybrané hry!</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Žádné</sys:String>
@@ -1009,6 +1012,7 @@ Pokud chcete instalovat nebo odinstalovat dodatečně integrace, použijte možn
 Vypnutí této možnosti může vést k problémům se vstupem po spuštění hry!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Velikost písma</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Malá velikost písma</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Povolit podporu API pro herního ovladače </sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Podpora pro herní ovladače</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Je-li zakázáno, Playnite nebude přijímat žádné vstupy herních ovladačů.
         
@@ -1107,7 +1111,7 @@ Pokud se setkáte s potížemi po instalaci motivu nebo rozšíření, zkuste je
     <sys:String x:Key="LOCPowerShellCreationError">Nepodařilo se inicializovat PowerShell script runtime. Pokud jste uživatel Windows 7, zkuste (pře)instalovat PowerShell 5.1 pro vyřešní problému.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Předvolba filtrů se zadaným jménem již existuje. Aktualizovat předvolbu s novými nastaveními?</sys:String>
     <sys:String x:Key="LOCSortingNameAutofill">Automaticky vyplnit název pro řazení hry</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Přidáte-li hry prostřednictvím aktualizace knihovny, skenování emulátorů nebo skenování složek, automaticky vyplní pole &quot;Jméno, dle kterého řadit&quot; s lepším řaditelným jménem, například &quot;The Witcher 3&quot; se nastaví jako &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Když upravíte hru, přidáte hry prostřednictvím aktualizace knihovny, skenováním emulátorů nebo normálním skenování složek, tato volba automaticky vyplní pole &quot;Jméno, dle kterého řadit&quot;. Například, &quot;The Witcher 3&quot; získá jméno pro řazení &quot;Witcher 03&quot;. Tato volba nikdy nenastaví název, který je identicky jako jméno hry a automaticky aktualizuje jméno pro řazení pouze pokud je pole prázdné.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Tato slova budou odstraněna ze začátku hodnoty pro jméno řazení:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Použijte pro ignorování slov na začátku řetězce pro účely řazení. Výchozí hodnoty jsou &quot;The&quot;, &quot;An&quot; a &quot;A&quot;.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Vyplňte řadící název u her které žádný nemají</sys:String>
@@ -1258,4 +1262,6 @@ Reportujte problém na Playnite stránce GitHubu s požadavkem na opravu soubor�
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Chcete uložit provedené změny?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Přenosná instalace</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nebyly nalezeny žádné ovladače</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Výchozí zdroj</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Vyhledávání webových obrázků se nezdařilo. To se může stát z různých důvodů. Na následujícím odkazu naleznete více informací a tipů na řešení tohoto problému.</sys:String>
 </ResourceDictionary>

@@ -49,6 +49,22 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private WebImageSearchSource source = WebImageSearchSource.Google;
+        public WebImageSearchSource Source
+        {
+            get => source;
+            set
+            {
+                var old = source;
+                source = value;
+                OnPropertyChanged();
+                if (old != source)
+                {
+                    Search();
+                }
+            }
+        }
+
         private string searchTerm;
         public string SearchTerm
         {
@@ -194,12 +210,14 @@ namespace Playnite.DesktopApp.ViewModels
             IResourceProvider resources,
             string initialSearch,
             SafeSearchSettings safeSearch,
+            WebImageSearchSource source,
             double itemWidth = 0,
             double itemHeigth = 0)
         {
             this.window = window;
             this.resources = resources;
             this.safeSearch = safeSearch;
+            this.source = source;
             if (itemWidth != 0)
             {
                 ItemWidth = itemWidth;
@@ -239,24 +257,28 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void Search()
         {
+            DisplayImages.Clear();
             AvailableImages = new List<GoogleImage>();
             var query = SearchTerm;
-            if (SearchWidth != null && SearchHeight != null && !query.Contains("imagesize:"))
+            if (source == WebImageSearchSource.Google && SearchWidth != null && SearchHeight != null && !query.Contains("imagesize:"))
             {
                 query = $"{query} imagesize:{SearchWidth}x{SearchHeight}";
             }
 
             if (GlobalProgress.ActivateProgress((_) =>
             {
-                AvailableImages = downloader.GetImages(query, SafeSearch, Transparent).GetAwaiter().GetResult();
+                if (source == WebImageSearchSource.Google)
+                    AvailableImages = downloader.GetImages(query, SafeSearch, Transparent).GetAwaiter().GetResult();
+                else
+                    AvailableImages = downloader.GetDdgImages(query, Transparent);
             }, new GlobalProgressOptions("LOCDownloadingLabel")).Result == true)
             {
                 if (!AvailableImages.HasItems())
                 {
+                    Dialogs.ShowErrorMessage(LOC.WebImageDownloadError.GetLocalized() + "\n\n" + "https://playnite.link/webimageissues", "");
                     return;
                 }
 
-                DisplayImages.Clear();
                 if (AvailableImages.Count > 20)
                 {
                     DisplayImages.AddRange(AvailableImages.Take(20));

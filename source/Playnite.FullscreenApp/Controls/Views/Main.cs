@@ -232,6 +232,7 @@ namespace Playnite.FullscreenApp.Controls.Views
                 if (ViewHost != null)
                 {
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenMainMenuCommand, Key = Key.F1 });
+                    ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.SelectRandomGameCommand, Key = Key.F6 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.PrevFilterViewCommand, Key = Key.F2 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.NextFilterViewCommand, Key = Key.F3 });
                     ViewHost.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenSearchCommand, Key = Key.Y });

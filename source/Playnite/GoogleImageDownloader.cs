@@ -32,19 +32,84 @@ namespace Playnite
         public string Size => $"{Width}x{Height}";
     }
 
+    public class DDGImageSearchResult
+    {
+        public class Results
+        {
+            public uint height { get; set; }
+            public uint width { get; set; }
+            public string thumbnail { get; set; }
+            public string image { get; set; }
+        }
+
+        public Results[] results { get; set; }
+    }
+
     public class GoogleImageDownloader : IDisposable
     {
         private static ILogger logger = LogManager.GetLogger();
 
         private readonly OffscreenWebView webView;
+        private TaskCompletionSource<DDGImageSearchResult> ddgResult = null;
+
         public GoogleImageDownloader()
         {
-            webView = new OffscreenWebView();
+            webView = new OffscreenWebView(new WebViewSettings
+            {
+                PassResourceContentStreamToCallback = true,
+                ShouldPassResourceContentFunc = (a) => UrlMatchesDdgImageSearch(a.Request.Url),
+                ResourceLoadedCallback = ResourceLoadedCallback
+            });
         }
 
         public void Dispose()
         {
             webView.Dispose();
+        }
+
+        private bool UrlMatchesDdgImageSearch(string url)
+        {
+            return url?.Contains("duckduckgo.com/i.js", StringComparison.OrdinalIgnoreCase) == true;
+        }
+
+        private void ResourceLoadedCallback(WebViewResourceLoadedCallback args)
+        {
+            if (!UrlMatchesDdgImageSearch(args.Request.Url))
+                return;
+
+            args.ResponseContent.Seek(0, SeekOrigin.Begin);
+            if (Serialization.TryFromJsonStream<DDGImageSearchResult>(args.ResponseContent, out var searchResult))
+                ddgResult.SetResult(searchResult);
+        }
+
+        public List<GoogleImage> GetDdgImages(string searchTerm, bool transparent = false)
+        {
+            ddgResult = new TaskCompletionSource<DDGImageSearchResult>();
+            var url = new Url("https://duckduckgo.com");
+            url.SetQueryParam("ia", "images");
+            url.SetQueryParam("iax", "images");
+            url.SetQueryParam("q", searchTerm);
+
+            if (transparent)
+                url.SetQueryParam("iaf", "type:transparent");
+
+            webView.NavigateAndWait(url.ToString());
+            if (!ddgResult.Task.Wait(TimeSpan.FromSeconds(10)))
+                return new List<GoogleImage>();
+
+            var results = ddgResult.Task.Result;
+            if (results?.results.HasItems() == true)
+            {
+                return results.results.Select(a => new GoogleImage
+                {
+                    Height = a.height,
+                    Width = a.width,
+                    ThumbUrl = a.thumbnail,
+                    ImageUrl = a.image,
+                }).ToList();
+            }
+
+            return new List<GoogleImage>();
         }
 
         public async Task<List<GoogleImage>> GetImages(string searchTerm, SafeSearchSettings safeSearch, bool transparent = false)
@@ -96,10 +161,14 @@ namespace Playnite
                 foreach (Match match in matches)
                 {
                     var data = Serialization.FromJson<List<List<object>>>($"[{match.Value}]");
+                    var imageUrl = data[1][0].ToString();
+                    if (images.Any(a => a.ImageUrl.Equals(imageUrl, StringComparison.OrdinalIgnoreCase)))
+                        continue;
+
                     images.Add(new GoogleImage
                     {
                         ThumbUrl = data[0][0].ToString(),
-                        ImageUrl = data[1][0].ToString(),
+                        ImageUrl = imageUrl,
                         Height = uint.Parse(data[1][1].ToString()),
                         Width = uint.Parse(data[1][2].ToString())
                     });

@@ -481,43 +481,6 @@ namespace Playnite.ViewModels
 
         public abstract NotificationMessage GetAddonUpdatesFoundMessage(List<AddonUpdate> updates);
 
-        public async Task CheckForAddonUpdates()
-        {
-            if (GlobalTaskHandler.ProgressTask != null && GlobalTaskHandler.ProgressTask.Status == TaskStatus.Running)
-            {
-                GlobalTaskHandler.CancelToken.Cancel();
-                await GlobalTaskHandler.ProgressTask;
-            }
-
-            GlobalTaskHandler.CancelToken = new CancellationTokenSource();
-            GlobalTaskHandler.ProgressTask = Task.Run(() =>
-            {
-                ProgressActive = true;
-                ProgressValue = 0;
-                ProgressTotal = 1;
-                ProgressStatus = Resources.GetString(LOC.AddonLookingForUpdates);
-
-                try
-                {
-                    var updates = Addons.CheckAddonUpdates(App.ServicesClient);
-                    if (updates.HasItems())
-                    {
-                        App.Notifications.Add(GetAddonUpdatesFoundMessage(updates));
-                    }
-                }
-                catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
-                {
-                    Logger.Error(e, "Failed to check for addon updates.");
-                }
-                finally
-                {
-                    ProgressActive = false;
-                }
-            });
-
-            await GlobalTaskHandler.ProgressTask;
-        }
-
         private List<Game> ImportLibraryGames(LibraryPlugin plugin, CancellationToken token)
         {
             var addedGames = new List<Game>();
@@ -653,8 +616,6 @@ namespace Playnite.ViewModels
 
                 Logger.Info($"Starting Library Install Size scan");
                 ProgressStatus = Resources.GetString(progressMessageLocKey);
-                var errorStrings = new List<string>();
-                var errorsCount = 0;
                 using (Database.Games.BufferedUpdate())
                 {
                     foreach (var game in games)
@@ -676,11 +637,7 @@ namespace Playnite.ViewModels
                         }
                         catch (Exception e)
                         {
-                            errorsCount++;
-                            if (errorStrings.Count < 10)
-                            {
-                                errorStrings.Add($"{game.Name}: {e.Message}");
-                            }
+                            Logger.Error(e, $"Failed to calculate install size for {game.InstallDirectory}");
                         }
 
                         ProgressValue++;
@@ -688,29 +645,6 @@ namespace Playnite.ViewModels
                 }
 
                 Logger.Info($"Finished Library Install Size scan");
-                if (errorsCount > 0)
-                {
-                    var errorMessage = ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount)
-                        + $"\n\n" + string.Join("\n", errorStrings);
-                    if (errorsCount > 10)
-                    {
-                        errorMessage += "\n...";
-                    }
-
-                    App.Notifications.Add(new NotificationMessage(
-                            $"LibUpdateScanSizeError - {DateTime.Now}",
-                            ResourceProvider.GetString("LOCCalculateGamesSizeErrorMessage").Format(errorsCount),
-                            NotificationType.Error,
-                            () =>
-                            {
-                                Dialogs.ShowMessage(
-                                    errorMessage,
-                                    Resources.GetString("LOCCalculateGameSizeErrorCaption"),
-                                    MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
-                        )
-                    );
-                }
             }
             finally
             {
@@ -1020,7 +954,7 @@ namespace Playnite.ViewModels
                             ["PlayniteApi"] = App.PlayniteApiGlobal
                         };
 
-                        runtime.Execute(PlaynitePaths.ExpandVariables(app.Script), variables: scriptVars);
+                        runtime.Execute(PlaynitePaths.ExpandVariables(app.Script), PlaynitePaths.ProgramPath, scriptVars);
                     }
                 }
             }

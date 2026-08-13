@@ -1,0 +1,9 @@
+Id:  mame
+Name: MAME
+Website: 'https://www.mamedev.org/'
+Profiles:
+  - Name: Default
+    StartupArguments: '{ImageNameNoExt}'
+    Platforms: [arcade]
+    ImageExtensions: [zip]
+    StartupExecutable: ^mame\.exe$

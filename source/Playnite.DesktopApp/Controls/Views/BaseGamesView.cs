@@ -126,12 +126,6 @@ namespace Playnite.DesktopApp.Controls.Views
                 }
 
                 ListGames.SelectionMode = SelectionMode.Extended;
-                VirtualizingPanel.SetCacheLengthUnit(ListGames, VirtualizationCacheLengthUnit.Item);
-                VirtualizingPanel.SetCacheLength(ListGames, new VirtualizationCacheLength(5));
-                VirtualizingPanel.SetScrollUnit(ListGames, ScrollUnit.Pixel);
-                VirtualizingPanel.SetIsVirtualizingWhenGrouping(ListGames, true);
-                VirtualizingPanel.SetVirtualizationMode(ListGames, VirtualizationMode.Recycling);
-
                 SetViewActiveBindings();
             }
 

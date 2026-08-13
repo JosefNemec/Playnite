@@ -3138,7 +3138,7 @@ namespace Playnite
         /// </summary>
         public const string UrlNavigationMessage = "LOCUrlNavigationMessage";
         /// <summary>
-        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage. 
+        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage.
         /// </summary>
         public const string GameImageSizeWarning = "LOCGameImageSizeWarning";
         /// <summary>
@@ -3390,6 +3390,10 @@ namespace Playnite
         /// </summary>
         public const string AddonInstall = "LOCAddonInstall";
         /// <summary>
+        /// Re-install
+        /// </summary>
+        public const string AddonReinstall = "LOCAddonReinstall";
+        /// <summary>
         /// Uninstall
         /// </summary>
         public const string AddonUninstall = "LOCAddonUninstall";
@@ -3429,6 +3433,10 @@ namespace Playnite
         /// Looking for add-on updates…
         /// </summary>
         public const string AddonLookingForUpdates = "LOCAddonLookingForUpdates";
+        /// <summary>
+        /// Looking for program updates…
+        /// </summary>
+        public const string AppLookingForUpdates = "LOCAppLookingForUpdates";
         /// <summary>
         /// One or more add-on updates are available.
         /// </summary>
@@ -3653,6 +3661,10 @@ namespace Playnite
         /// Font Size Small
         /// </summary>
         public const string SettingsFontSizeSmall = "LOCSettingsFontSizeSmall";
+        /// <summary>
+        /// Enable game controller API support
+        /// </summary>
+        public const string SettingsControllerApi = "LOCSettingsControllerApi";
         /// <summary>
         /// Game controller support
         /// </summary>
@@ -3998,11 +4010,11 @@ namespace Playnite
         /// </summary>
         public const string FilterPresetNameConflict = "LOCFilterPresetNameConflict";
         /// <summary>
-        /// Automatically fill sorting name for batch-added games
+        /// Automatically fill missing sorting names for batch-added or edited games
         /// </summary>
         public const string SortingNameAutofill = "LOCSortingNameAutofill";
         /// <summary>
-        /// When you add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name, for example "The Witcher 3" will get a Sorting Name of "Witcher 03"
+        /// When you edit a game, add games via a library update, an emulator folder scan, or a normal folder scan, automatically fill the "Sorting Name" field with a better sortable representation of the game's name. For example "The Witcher 3" will get a Sorting Name of "Witcher 03". This will never set a sorting name that doesn't differ from the game name, and it will only automatically update sorting names that are empty.
         /// </summary>
         public const string SortingNameAutofillTooltip = "LOCSortingNameAutofillTooltip";
         /// <summary>
@@ -4477,5 +4489,13 @@ namespace Playnite
         /// No controllers detected
         /// </summary>
         public const string NoControllersDetected = "LOCNoControllersDetected";
+        /// <summary>
+        /// Default source
+        /// </summary>
+        public const string DefaultWebImageSource = "LOCDefaultWebImageSource";
+        /// <summary>
+        /// Default source
+        /// </summary>
+        public const string WebImageDownloadError = "LOCWebImageDownloadError";
     }
 }

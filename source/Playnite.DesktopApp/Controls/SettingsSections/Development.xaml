@@ -10,17 +10,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
 
-    <StackPanel Margin="5">
-        <StackPanel.Resources>
+    <DockPanel Margin="5">
+        <DockPanel.Resources>
             <p:BindingProxy x:Key="Proxy" Data="{Binding}" />
             <CollectionViewSource x:Key="DevelExtenionsSource" Source="{Binding Settings.DevelExtenions}">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="Item" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-        </StackPanel.Resources>
-        <TextBlock Margin="0,0,0,5" Text="{DynamicResource LOCSettingsExternalExtensions}" Style="{DynamicResource BaseTextBlockStyle}" />
-        <ListView DockPanel.Dock="Top" Name="ListDevelExtensions" Height="300"
+        </DockPanel.Resources>
+        <CheckBox Content="{DynamicResource LOCDevelTraceLogEnable}" DockPanel.Dock="Top"
+                  IsChecked="{Binding Settings.TraceLogEnabled}" />
+        <TextBlock Margin="0,15,0,5" Text="{DynamicResource LOCSettingsExternalExtensions}" Style="{DynamicResource BaseTextBlockStyle}" DockPanel.Dock="Top" />
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,10" MinWidth="80"
+                    Command="{Binding AddDevelExtensionCommand}" />
+        </StackPanel>
+
+        <ListView DockPanel.Dock="Top" Name="ListDevelExtensions"
                   ItemsSource="{Binding Source={StaticResource DevelExtenionsSource}}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource {x:Type ListViewItem}}">
@@ -55,11 +62,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="{DynamicResource LOCAddTitle}" Margin="0,5,0,0" MinWidth="80"
-                    Command="{Binding AddDevelExtensionCommand}" />
-        </StackPanel>
-        <CheckBox Content="{DynamicResource LOCDevelTraceLogEnable}" Margin="0,15,0,0"
-                  IsChecked="{Binding Settings.TraceLogEnabled}" />
-    </StackPanel>
+    </DockPanel>
 </UserControl>

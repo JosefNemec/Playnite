@@ -1,3 +1,3 @@
-**Code contributions (pull requests) are currently not being accepted while majority of code base is being rewritten for Playnite 11.**
+Pull requests are generally on pause because majority of code base is being rewritten for Playnite 11.
 
-**Please wait with any pull requests after P11 is at least in beta state.**
+Smaller "safe" changes for P10 might get accepted based on what they and if they come with test coverage. If you plan to work on bigger changes, please discuss it first in related issue or on Discord, thank you.

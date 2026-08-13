@@ -942,6 +942,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">بازراه‌اندازی برنامه برای به‌کاربندی دگرش‌های در دست انجام نیاز است.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">این برافزا برای نصب زمان‌بندی شده است.</sys:String>
     <sys:String x:Key="LOCAddonInstall">نصب</sys:String>
+    <sys:String x:Key="LOCAddonReinstall">نصب مجدد</sys:String>
     <sys:String x:Key="LOCAddonUninstall">حذف نصب</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">هم‌اکنون نصب‌شده است</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">هیچ به‌روزرسانی نویی برای برافزا یافت نشد.</sys:String>
@@ -952,6 +953,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">پروانه رد شد</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">بارگیری {0}…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates">به دنبال به‌روزرسانی‌های برافزا…</sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates">جستجوی به‌روزرسانی‌های برنامه...</sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable">یک یا چند به‌روزرسانی افزایه در دسترس است.</sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">موردها را برای به‌روزرسانی برگزینید</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded">نمونهٔ توسعهٔ افزونه</sys:String>
@@ -972,6 +974,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">فرایند</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">پوشه</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">فرایند اصلی</sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName">نام فرآیند</sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable">ثبت پیام‌های ردیابی</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">دگرش‌های زیر دادهٔ همهٔ بازی‌هایی که هم‌اکنون برگزیده‌اند را بازنویسی می‌کند.</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">هیچ</sys:String>
@@ -1009,6 +1012,7 @@
 از کار انداختن این گزینه می‌تواند منجر به مشکل‌هایی شود که باعث می‌شوند بازی‌ها در زمان راه‌اندازی تمرکز درونداد را دریافت نکنند!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">اندازهٔ قلم</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">اندازهٔ قلم کوچک</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">فعال کردن پشتیبانی از API کنترلر بازی</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">پشتیبانی از دستهٔ بازی</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">اگر نافعال باشد، Playnite هیچ دستهٔ بازی‌ای را نمی‌پذیرد.
 
@@ -1106,8 +1110,8 @@
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">وضعیت اختصاص داده شده به بازی‌هایی که برای اولین بار انجام می شوند</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">خطا در راه‌اندازی محیط اجرای اسکریپت PowerShell. اگر از کاربران ویندوز 7 هستید، سعی کنید PowerShell 5.1 را نصب یا مجدداً نصب کنید تا مشکل برطرف شود.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">فیلتر از پیش تعیین شده با نام مشخص از قبل موجود است. از پیش تنظیم شده با تنظیمات جدید به روز شود؟</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">نام مرتب‌سازی بازی‌های اضافه‌شده را به‌طور خودکار پر کنید</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">وقتی بازی‌ها را از طریق به‌روزرسانی کتابخانه، اسکن پوشه شبیه‌ساز یا اسکن پوشه معمولی اضافه می‌کنید، به‌طور خودکار فیلد «مرتب‌سازی نام» را با نمایش قابل مرتب‌سازی بهتری از نام بازی پر کنید، برای مثال «The Witcher 3» یک نام مرتب‌سازی دریافت می‌کند. از &quot;Witcher 03&quot;</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">نام‌های مرتب‌سازی از دست رفته را برای بازی‌های اضافه شده یا ویرایش شده به صورت دسته‌ای، به طور خودکار پر کنید</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">وقتی یک بازی را ویرایش می‌کنید، از طریق به‌روزرسانی کتابخانه، اسکن پوشه شبیه‌ساز یا اسکن پوشه معمولی، بازی‌ها را اضافه می‌کنید، فیلد «نام مرتب‌سازی» به طور خودکار با نمایش مرتب‌سازی بهتری از نام بازی پر می‌شود. برای مثال، «The Witcher 3» نام مرتب‌سازی «Witcher 03» را دریافت می‌کند. این کار هرگز نام مرتب‌سازی‌ای را که با نام بازی متفاوت نیست، تنظیم نمی‌کند و فقط نام‌های مرتب‌سازی خالی را به طور خودکار به‌روزرسانی می‌کند.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">این کلمات از ابتدای مقدار نام مرتب‌سازی که به طور خودکار پر شده حذف می شوند:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">از این برای نادیده گرفتن کلمات در ابتدای رشته برای اهداف مرتب‌سازی استفاده کنید. پیش فرض &quot;The&quot;، &quot;An&quot; و &quot;A&quot; است.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">نام مرتب‌سازی را برای بازی‌های بدون آن پر کنید</sys:String>
@@ -1258,4 +1262,6 @@ Playnite به طور خودکار راه‌اندازی مجدد می شود ت�
     <sys:String x:Key="LOCUnsavedChangesAskMessage">آیا می خواهید تغییراتی را که ایجاد کرده اید ذخیره کنید؟</sys:String>
     <sys:String x:Key="LOCPortableInstallation">نصب قابل حمل</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">کنترلری شناسایی نشد</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

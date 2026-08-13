@@ -887,6 +887,7 @@
     <sys:String x:Key="LOCAddonChangesRestart">प्रलंबित बदल लागू करण्यास अ‍ॅप्लिकेशन रीस्टार्ट आवश्यक आहे.</sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall">या अ‍ॅडऑनची स्थापना शेड्यूल केली गेली आहे.</sys:String>
     <sys:String x:Key="LOCAddonInstall">स्थापित करा</sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall">विस्थापित करा</sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled">आधिच स्थापित केले आहे</sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable">कोणतेही नवीन अ‍ॅडऑन अपडेट सापडले नाहीत.</sys:String>
@@ -897,6 +898,7 @@
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected">परवाना नाकारला गेला</sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon">{0} डाउनलोड करत आहे…</sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate">अपडेट करण्यास वस्तू निवडा</sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -917,6 +919,7 @@
     <sys:String x:Key="LOCActionTrackingModeProcess">प्रक्रिया</sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory">फोल्डर</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">कोणतेही नाही</sys:String>
@@ -954,6 +957,7 @@
 हे अक्षम केले तर गेम सुरू केल्यावर गेममध्ये इनपुट न मिळण्याच्या समस्या आढळू शकतील!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">फाँट आकार</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">छोटा फाँट आकार</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">गेम कंट्रोलर समर्थन</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">मेन मेन्यूवर वस्तू दाखवा:</sys:String>
@@ -1165,4 +1169,6 @@
     <sys:String x:Key="LOCUnsavedChangesAskMessage">तुम्ही केलेले बदल तुम्हाला सेव्ह करायचे आहेत का?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">सुवाह्य स्थापना</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">कोणतेही कंट्रोलर सापडले नाहीत</sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

@@ -86,9 +86,9 @@ namespace Playnite.ViewModels
             }
         }
 
-        public void OpenView()
+        public bool? OpenView()
         {
-            window.CreateAndOpenDialog(this);
+            return window.CreateAndOpenDialog(this);
         }
 
         public void CloseView()
@@ -117,7 +117,7 @@ namespace Playnite.ViewModels
                 }
                 else
                 {
-                    window.Close();
+                    window.Close(false);
                     return;
                 }
             }
@@ -130,6 +130,7 @@ namespace Playnite.ViewModels
                     context.Post((a) => UpdateProgress = e.ProgressPercentage, null);
                 });
                 updater.InstallUpdate(mode);
+                window.Close(true);
             }
             catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
             {
@@ -141,7 +142,7 @@ namespace Playnite.ViewModels
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
 
-                window.Close();
+                window.Close(false);
                 return;
             }
         }

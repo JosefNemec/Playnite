@@ -12,3 +12,8 @@ Profiles:
     Platforms: [xbox360]
     ImageExtensions: [iso, xex, cci, cxi, elf, zar, <none>]
     StartupExecutable: ^xenia_canary\.exe$
+  - Name: Canary Netplay
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [xbox360]
+    ImageExtensions: [iso, xex, cci, cxi, elf, zar, <none>]
+    StartupExecutable: ^xenia_canary_netplay\.exe$

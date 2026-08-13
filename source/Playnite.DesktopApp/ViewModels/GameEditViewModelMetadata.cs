@@ -712,6 +712,7 @@ namespace Playnite.DesktopApp.ViewModels
                 resources,
                 searchTerm,
                 appSettings.WebImageSafeSearch,
+                appSettings.DefaultWebImageSource,
                 imageWidth,
                 imageHeight);
             if (model.OpenView() == true)

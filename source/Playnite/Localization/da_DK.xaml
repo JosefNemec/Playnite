@@ -885,6 +885,7 @@ Når aktiveret, vil kun en del af beskrivelse tekst i første omgang blive indl�
     <sys:String x:Key="LOCAddonChangesRestart"></sys:String>
     <sys:String x:Key="LOCAddonQueuedForInstall"></sys:String>
     <sys:String x:Key="LOCAddonInstall"></sys:String>
+    <sys:String x:Key="LOCAddonReinstall"></sys:String>
     <sys:String x:Key="LOCAddonUninstall"></sys:String>
     <sys:String x:Key="LOCAddonAlreadyInstalled"></sys:String>
     <sys:String x:Key="LOCAddonNoAddonsAvailable"></sys:String>
@@ -895,6 +896,7 @@ Når aktiveret, vil kun en del af beskrivelse tekst i første omgang blive indl�
     <sys:String x:Key="LOCAddonUpdateStatusLicenseRejected"></sys:String>
     <sys:String x:Key="LOCAddonDownloadingAddon"></sys:String>
     <sys:String x:Key="LOCAddonLookingForUpdates"></sys:String>
+    <sys:String x:Key="LOCAppLookingForUpdates"></sys:String>
     <sys:String x:Key="LOCAddonUpdatesAvailable"></sys:String>
     <sys:String x:Key="LOCAddonSelectToUpdate"></sys:String>
     <sys:String x:Key="LOCAddonDevReferenceLoaded"></sys:String>
@@ -915,6 +917,7 @@ Når aktiveret, vil kun en del af beskrivelse tekst i første omgang blive indl�
     <sys:String x:Key="LOCActionTrackingModeProcess"></sys:String>
     <sys:String x:Key="LOCActionTrackingModeDirectory"></sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess"></sys:String>
+    <sys:String x:Key="LOCActionTrackingProcessName"></sys:String>
     <sys:String x:Key="LOCDevelTraceLogEnable"></sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning"></sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Ingen</sys:String>
@@ -950,6 +953,7 @@ Når aktiveret, vil kun en del af beskrivelse tekst i første omgang blive indl�
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsFontSize"></sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing"></sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader"></sys:String>
@@ -1162,4 +1166,6 @@ Streng matchning kan håndhæves på en individuel sag ved at præfikse filter m
     <sys:String x:Key="LOCUnsavedChangesAskMessage"></sys:String>
     <sys:String x:Key="LOCPortableInstallation"></sys:String>
     <sys:String x:Key="LOCNoControllersDetected"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
 </ResourceDictionary>

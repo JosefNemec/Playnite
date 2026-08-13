@@ -26,6 +26,7 @@ using Playnite.Scripting.PowerShell;
 using System.Collections.ObjectModel;
 using Playnite.Converters;
 using System.Globalization;
+using Playnite.Input;
 using Playnite.SDK.Models;
 
 namespace Playnite.DesktopApp.ViewModels
@@ -95,6 +96,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
         public ObservableCollection<string> SortingNameRemovedArticles { get; }
+        public ObservableCollection<GameControllerManager.LoadedGameController> Controllers { get; }
 
         public List<LoadedPlugin> GenericPlugins
         {
@@ -469,6 +471,15 @@ namespace Playnite.DesktopApp.ViewModels
 
             ImportExclusionList = new ObservableCollection<ImportExclusionItem>(database.ImportExclusions.OrderBy(a => a.Name));
             SortingNameRemovedArticles = new ObservableCollection<string>(settings.GameSortingNameRemovedArticles.OrderBy(a => a));
+
+            if (app.AppSettings.EnableGameControllerSupport && app.GameController != null)
+            {
+                Controllers = app.GameController.Controllers.ToObservable();
+            }
+            else
+            {
+                Controllers = new ObservableCollection<GameControllerManager.LoadedGameController>();
+            }
         }
 
         private void SettingsTreeSelectedItemChanged(RoutedPropertyChangedEventArgs<object> selectedItem)
@@ -546,6 +557,24 @@ namespace Playnite.DesktopApp.ViewModels
                 {
                     Settings.CustomSearchKeywrods.Add(search.SearchId, search.Keyword);
                 }
+            }
+
+            if (Settings.EnableGameControllerSupport && application.GameController != null)
+            {
+                var newList = Settings.DisabledGameControllers.GetClone();
+                foreach (var controller in Controllers)
+                {
+                    if (controller.Enabled && newList.Contains(controller.Path))
+                    {
+                        newList.Remove(controller.Path);
+                    }
+                    else if (!controller.Enabled)
+                    {
+                        newList.AddMissing(controller.Path);
+                    }
+                }
+
+                Settings.DisabledGameControllers = newList;
             }
 
             EndEdit();
