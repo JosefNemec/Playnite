@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -48,7 +49,7 @@ namespace Playnite.FullscreenApp
         public static IntPtr NavigateSound { get; private set; }
         public static IntPtr ActivateSound { get; private set; }
         public static IntPtr BackgroundMusic { get; private set; }
-        private bool exitSDLEventLoop = false;
+        private volatile bool exitSDLEventLoop = false;
 
         public new static FullscreenApplication Current
         {
@@ -302,7 +303,10 @@ namespace Playnite.FullscreenApp
 
         private void SDLEventLoop()
         {
-            Task.Run(async () =>
+            // SDL's event pump and the Windows joystick hotplug path expect a single thread.
+            // Task.Run + await resumes on whatever pool thread is free, which moved every SDL
+            // call in this loop to a different thread on each tick.
+            var sdlThread = new Thread(() =>
             {
                 while (!exitSDLEventLoop)
                 {
@@ -328,9 +332,15 @@ namespace Playnite.FullscreenApp
                             Audio.CloseAudio();
                     }
 
-                    await Task.Delay(16);
+                    Thread.Sleep(16);
                 }
-            });
+            })
+            {
+                IsBackground = true,
+                Name = "SDLEventLoop"
+            };
+
+            sdlThread.Start();
         }
 
         public void SetupInputs()
