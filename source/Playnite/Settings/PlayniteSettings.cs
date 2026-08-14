@@ -1936,7 +1936,7 @@ namespace Playnite
             }
         }
 
-        private PlaytimeImportMode playtimeImportMode = PlaytimeImportMode.NewImportsOnly;
+        private PlaytimeImportMode playtimeImportMode = PlaytimeImportMode.Always;
         public PlaytimeImportMode PlaytimeImportMode
         {
             get => playtimeImportMode;
