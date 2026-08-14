@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
                     mc:Ignorable="d">
 
     <Style TargetType="{x:Type GridViewGameOverview}">
@@ -218,9 +219,10 @@
                                                           HtmlFontSize="{DynamicResource FontSize}"
                                                           HtmlFontFamily="{DynamicResource FontFamily}"
                                                           HtmlForeground="{DynamicResource TextColor}"
-                                                          LinkForeground="{DynamicResource GlyphColor}"                                      
+                                                          LinkForeground="{DynamicResource GlyphColor}"
                                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                          pbeh:FocusBahaviors.BlockBringIntoViewRequest="True" />
                                         </StackPanel>
                                     </DockPanel>
                                 </ScrollViewer>

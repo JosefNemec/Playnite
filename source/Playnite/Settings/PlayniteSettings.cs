@@ -258,6 +258,42 @@ namespace Playnite
         }
     }
 
+    public class ScrollBehaviorOptions : ObservableObject
+    {
+        private double sensitivity = 1.25;
+        public double Sensitivity
+        {
+            get => sensitivity;
+            set
+            {
+                sensitivity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private long speed = 250 * TimeSpan.TicksPerMillisecond;
+        public long Speed
+        {
+            get => speed;
+            set
+            {
+                speed = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool smoothEnabled = false;
+        public bool SmoothEnabled
+        {
+            get => smoothEnabled;
+            set
+            {
+                smoothEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public class PlayniteSettings : ObservableObject
     {
         private static SDK.ILogger logger = SDK.LogManager.GetLogger();
@@ -1646,101 +1682,57 @@ namespace Playnite
             }
         }
 
-        private double gridViewScrollSensitivity = 1.5;
-        public double GridViewScrollSensitivity
+        private ScrollBehaviorOptions gridViewListScrollOptions = new ScrollBehaviorOptions();
+        public ScrollBehaviorOptions GridViewListScrollOptions
         {
-            get => gridViewScrollSensitivity;
+            get => gridViewListScrollOptions;
             set
             {
-                gridViewScrollSensitivity = value;
+                gridViewListScrollOptions = value;
                 OnPropertyChanged();
             }
         }
 
-        private long gridViewScrollSpeed = 250 * TimeSpan.TicksPerMillisecond;
-        public long GridViewScrollSpeed
+        private ScrollBehaviorOptions gridViewDetailsScrollOptions = new ScrollBehaviorOptions { Sensitivity = 0.75 };
+        public ScrollBehaviorOptions GridViewDetailsScrollOptions
         {
-            get => gridViewScrollSpeed;
+            get => gridViewDetailsScrollOptions;
             set
             {
-                gridViewScrollSpeed = value;
+                gridViewDetailsScrollOptions = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool gridViewSmoothScrollEnabled = false;
-        public bool GridViewSmoothScrollEnabled
+        private ScrollBehaviorOptions detailsViewListScrollOptions = new ScrollBehaviorOptions();
+        public ScrollBehaviorOptions DetailsViewListScrollOptions
         {
-            get => gridViewSmoothScrollEnabled;
+            get => detailsViewListScrollOptions;
             set
             {
-                gridViewSmoothScrollEnabled = value;
+                detailsViewListScrollOptions = value;
                 OnPropertyChanged();
             }
         }
 
-        private double detailsViewScrollSensitivity = 1.5;
-        public double DetailsViewScrollSensitivity
+        private ScrollBehaviorOptions detailsViewDetailsScrollOptions = new ScrollBehaviorOptions { Sensitivity = 0.75 };
+        public ScrollBehaviorOptions DetailsViewDetailsScrollOptions
         {
-            get => detailsViewScrollSensitivity;
+            get => detailsViewDetailsScrollOptions;
             set
             {
-                detailsViewScrollSensitivity = value;
+                detailsViewDetailsScrollOptions = value;
                 OnPropertyChanged();
             }
         }
 
-        private long detailsViewScrollSpeed = 250 * TimeSpan.TicksPerMillisecond;
-        public long DetailsViewScrollSpeed
+        private ScrollBehaviorOptions listViewListScrollOptions = new ScrollBehaviorOptions();
+        public ScrollBehaviorOptions ListViewListScrollOptions
         {
-            get => detailsViewScrollSpeed;
+            get => listViewListScrollOptions;
             set
             {
-                detailsViewScrollSpeed = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool detailsViewSmoothScrollEnabled = false;
-        public bool DetailsViewSmoothScrollEnabled
-        {
-            get => detailsViewSmoothScrollEnabled;
-            set
-            {
-                detailsViewSmoothScrollEnabled = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double listViewScrollSensitivity = 1.5;
-        public double ListViewScrollSensitivity
-        {
-            get => listViewScrollSensitivity;
-            set
-            {
-                listViewScrollSensitivity = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private long listViewScrollSpeed = 250 * TimeSpan.TicksPerMillisecond;
-        public long ListViewScrollSpeed
-        {
-            get => listViewScrollSpeed;
-            set
-            {
-                listViewScrollSpeed = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool listViewSmoothScrollEnabled = false;
-        public bool ListViewSmoothScrollEnabled
-        {
-            get => listViewSmoothScrollEnabled;
-            set
-            {
-                listViewSmoothScrollEnabled = value;
+                listViewListScrollOptions = value;
                 OnPropertyChanged();
             }
         }

@@ -140,5 +140,38 @@ namespace Playnite.Behaviors
             }
         }
 
+        private static readonly DependencyProperty BlockBringIntoViewRequestProperty =
+            DependencyProperty.RegisterAttached(
+                "BlockBringIntoViewRequest",
+                typeof(bool),
+                typeof(FocusBahaviors),
+                new PropertyMetadata(new PropertyChangedCallback(BlockBringIntoViewRequestPropertyChanged)));
+
+        public static bool GetBlockBringIntoViewRequest(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(BlockBringIntoViewRequestProperty);
+        }
+
+        public static void SetBlockBringIntoViewRequest(DependencyObject obj, bool value)
+        {
+            obj.SetValue(BlockBringIntoViewRequestProperty, value);
+        }
+
+        private static void BlockBringIntoViewRequestPropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            if (DesignerProperties.GetIsInDesignMode(obj))
+                return;
+
+            var control = (FrameworkElement)obj;
+            if (args.NewValue is true)
+                control.RequestBringIntoView += ControlOnRequestBringIntoView;
+            else
+                control.RequestBringIntoView -= ControlOnRequestBringIntoView;
+        }
+
+        private static void ControlOnRequestBringIntoView(object sender, RequestBringIntoViewEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
