@@ -12,6 +12,8 @@ namespace Playnite.FullscreenApp.Controls
 {
     public class ScrollViewerEx : ScrollViewer
     {
+        public double CustomScrollAmount { get; set; } = 0;
+
         static ScrollViewerEx()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ScrollViewerEx), new FrameworkPropertyMetadata(typeof(ScrollViewerEx)));
@@ -82,6 +84,18 @@ namespace Playnite.FullscreenApp.Controls
             else if (VerticalOffset >= ScrollableHeight)
             {
                 MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
+                e.Handled = true;
+            }
+            else if (CustomScrollAmount > 0)
+            {
+                if (Math.Abs(e.VerticalChange) >= CustomScrollAmount)
+                    return;
+
+                if (e.VerticalChange > 0)
+                    ScrollToVerticalOffset(VerticalOffset + CustomScrollAmount);
+                else
+                    ScrollToVerticalOffset(VerticalOffset - CustomScrollAmount);
+
                 e.Handled = true;
             }
         }
