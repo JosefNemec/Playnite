@@ -109,6 +109,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\references\HtmlRenderer.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="MathConverter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c3adc7c4c35d5d95, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathConverter.2.2.1\lib\net35\MathConverter.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
