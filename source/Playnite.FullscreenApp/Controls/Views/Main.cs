@@ -140,7 +140,8 @@ namespace Playnite.FullscreenApp.Controls.Views
             {
                 SetBackgroundEffect();
             }
-            else if (e.PropertyName == nameof(FullscreenSettings.SwapStartDetailsAction))
+            else if (e.PropertyName == nameof(FullscreenSettings.SwapStartDetailsAction) ||
+                     e.PropertyName == nameof(FullscreenSettings.SwapConfirmCancelButtons))
             {
                 SetListCommandBindings();
             }
@@ -154,17 +155,20 @@ namespace Playnite.FullscreenApp.Controls.Views
             }
 
             var swapStartInput = mainModel.AppSettings.Fullscreen.SwapStartDetailsAction;
+            // was hardcoded to A, which ignored the confirm/cancel swap setting
+            var confirmInput = GameControllerGesture.ConfirmationBinding;
+            var confirmHint = confirmInput == ControllerInput.B ? "ButtonPromptB" : "ButtonPromptA";
             ListGameItems.InputBindings.Clear();
             ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.OpenGameMenuCommand, Key = swapStartInput ? Key.A : Key.X });
             ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ToggleGameDetailsCommand, Key = swapStartInput ? Key.X : Key.A });
             ListGameItems.InputBindings.Add(new KeyBinding() { Command = mainModel.ActivateSelectedCommand, Key = Key.Enter });
             ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.OpenGameMenuCommand, ControllerInput.Start));
-            ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.ToggleGameDetailsCommand, swapStartInput ? ControllerInput.X : ControllerInput.A));
-            ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.ActivateSelectedCommand, swapStartInput ? ControllerInput.A : ControllerInput.X));
+            ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.ToggleGameDetailsCommand, swapStartInput ? ControllerInput.X : confirmInput));
+            ListGameItems.InputBindings.Add(new GameControllerInputBinding(mainModel.ActivateSelectedCommand, swapStartInput ? confirmInput : ControllerInput.X));
 
-            ButtonPlay?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? "ButtonPromptA" : "ButtonPromptX");
-            ButtonInstall?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? "ButtonPromptA" : "ButtonPromptX");
-            ButtonDetails?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? "ButtonPromptX" : "ButtonPromptA");
+            ButtonPlay?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? confirmHint : "ButtonPromptX");
+            ButtonInstall?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? confirmHint : "ButtonPromptX");
+            ButtonDetails?.SetResourceReference(ButtonEx.InputHintProperty, swapStartInput ? "ButtonPromptX" : confirmHint);
         }
 
         private void SetBackgroundBinding()
