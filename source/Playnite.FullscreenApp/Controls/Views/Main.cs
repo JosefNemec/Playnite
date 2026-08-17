@@ -101,12 +101,6 @@ namespace Playnite.FullscreenApp.Controls.Views
 
             this.mainModel.AppSettings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             this.mainModel.PropertyChanged += MainModel_PropertyChanged;
-            GameControllerGesture.ConfirmationBindingChanged += GameControllerGesture_ConfirmationBindingChanged;
-        }
-
-        private void GameControllerGesture_ConfirmationBindingChanged(object sender, EventArgs e)
-        {
-            SetListCommandBindings();
         }
 
         private void MainModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -146,7 +140,8 @@ namespace Playnite.FullscreenApp.Controls.Views
             {
                 SetBackgroundEffect();
             }
-            else if (e.PropertyName == nameof(FullscreenSettings.SwapStartDetailsAction))
+            else if (e.PropertyName == nameof(FullscreenSettings.SwapStartDetailsAction) ||
+                     e.PropertyName == nameof(FullscreenSettings.SwapConfirmCancelButtons))
             {
                 SetListCommandBindings();
             }
