@@ -1,4 +1,5 @@
-﻿using Playnite.SDK.Models;
+﻿using Playnite.Common;
+using Playnite.SDK.Models;
 using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,8 @@ namespace Playnite.Database
     {
         private readonly FilterSettings filterSettings;
         private readonly bool useFuzzyNameMatch;
+        private static readonly TextMatcher nameMatcher =
+            new TextMatcher { NormalMatchAcronymStart = true };
 
         public FilterMatcher(FilterSettings filterSettings, bool useFuzzyNameMatch)
         {
@@ -184,17 +187,32 @@ namespace Playnite.Database
                 return false;
             }
 
-            if (filterSettings.Name.Length >= 2 && filterSettings.Name[0] == '^')
+            // Special branches for Explorer Panel functionality when using Name filter
+            const string NameInitialPrefix = "^:";
+            if (filterSettings.Name.Length == NameInitialPrefix.Length + 1 &&
+                filterSettings.Name.StartsWith(NameInitialPrefix))
             {
-                return game.GetNameGroup() == filterSettings.Name[1];
+                return game.GetNameGroup() == filterSettings.Name[NameInitialPrefix.Length];
             }
-
-            if (!useFuzzyNameMatch || filterSettings.Name[0] == '!')
+            else if (filterSettings.Name[0] == '!')
             {
                 return game.Name.IndexOf(filterSettings.Name.Substring(1), StringComparison.OrdinalIgnoreCase) >= 0;
             }
 
-            return SearchViewModel.MatchTextFilter(filterSettings.Name, game.Name, true);
+            if (filterSettings.NameSearchMode == SearchMode.Fuzzy || useFuzzyNameMatch)
+            {
+                return nameMatcher.IsFuzzyMatch(filterSettings.Name, game.Name);
+            }
+            else if (filterSettings.NameSearchMode == SearchMode.Normal)
+            {
+                return nameMatcher.IsMatch(filterSettings.Name, game.Name);
+            }
+            else if (filterSettings.NameSearchMode == SearchMode.Regex)
+            {
+                return nameMatcher.IsRegexMatch(filterSettings.Name, game.Name);
+            }
+
+            return false;
         }
 
         private bool MatchReleaseYear(Game game)

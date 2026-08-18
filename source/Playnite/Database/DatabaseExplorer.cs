@@ -898,8 +898,8 @@ namespace Playnite.Database
                     values.AddRange(database.GetSortedFilterPresets().Select(a => new SelectionObject(a)));
                     break;
                 case ExplorerField.Name:
-                    values.Add(new SelectionObject("^#", "#"));
-                    values.AddRange(Enumerable.Range('A', 26).Select(a => new SelectionObject("^" + ((char)a).ToString(), ((char)a).ToString())));
+                    values.Add(new SelectionObject("^:#", "#"));
+                    values.AddRange(Enumerable.Range('A', 26).Select(a => new SelectionObject("^:" + ((char)a).ToString(), ((char)a).ToString())));
                     break;
                 case ExplorerField.InstallStatus:
                     values.Add(new SelectionObject(true, LOC.GameIsInstalledTitle.GetLocalized()));

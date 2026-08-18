@@ -254,6 +254,12 @@ namespace Playnite.DesktopApp.Controls.Views
                     BindingMode.TwoWay,
                     delay: 100);
                 BindingTools.SetBinding(TextMainSearch,
+                    SearchBox.SearchModeProperty,
+                    mainModel.AppSettings.FilterSettings,
+                    nameof(FilterSettings.NameSearchMode),
+                    BindingMode.TwoWay,
+                    delay: 100);
+                BindingTools.SetBinding(TextMainSearch,
                     SearchBox.VisibilityProperty,
                     mainModel.AppSettings,
                     nameof(PlayniteSettings.ShowTopPanelSearchBox),

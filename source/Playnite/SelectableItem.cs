@@ -1,4 +1,5 @@
 ﻿using Playnite;
+using Playnite.Common;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
@@ -514,7 +515,8 @@ namespace System
     public class SelectableDbItemList : SelectableIdItemList<DatabaseObject>, INotifyCollectionChanged
     {
         private readonly bool includeNoneItem;
-
+        private readonly TextMatcher textMatcher =
+            new TextMatcher() { NormalMatchAcronymStart = true };
         private bool showSelectedOnly = false;
         public bool ShowSelectedOnly
         {
@@ -542,6 +544,22 @@ namespace System
             set
             {
                 searchText = value;
+                OnPropertyChanged();
+                CollectionView?.Refresh();
+            }
+        }
+
+        private SearchMode searchMode = SearchMode.Normal;
+        public SearchMode SearchMode
+        {
+            get
+            {
+                return searchMode;
+            }
+
+            set
+            {
+                searchMode = value;
                 OnPropertyChanged();
                 CollectionView?.Refresh();
             }
@@ -693,7 +711,31 @@ namespace System
         private bool CollectionViewFilter(object item)
         {
             var entry = (SelectableItem<DatabaseObject>)item;
-            return (ShowSelectedOnly ? entry.Selected == true : true) && entry.Item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
+            if (ShowSelectedOnly && entry.Selected == false)
+            {
+                return false;
+            }
+
+            if (SearchMode == SearchMode.Normal)
+            {
+                return textMatcher.IsMatch(
+                    SearchText,
+                    entry.Item.Name);
+            }
+            else if (SearchMode == SearchMode.Fuzzy)
+            {
+                return textMatcher.IsFuzzyMatch(
+                    SearchText,
+                    entry.Item.Name);
+            }
+            else if (SearchMode == SearchMode.Regex)
+            {
+                return textMatcher.IsRegexMatch(
+                    SearchText,
+                    entry.Item.Name);
+            }
+
+            return false;
         }
 
         public override string ToString()
