@@ -25,7 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>9</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -263,6 +263,7 @@
     <Compile Include="Common\M3U.cs" />
     <Compile Include="Common\Network.cs" />
     <Compile Include="Controls\HotKeyBox.cs" />
+    <Compile Include="Converters\GameDataConverters.cs" />
     <Compile Include="Converters\NullableUlongBytesSizeToStringConverter.cs" />
     <Compile Include="Converters\TicksToTimeSpanConverter.cs" />
     <Compile Include="Database\GameDatabase_Filters.cs" />
