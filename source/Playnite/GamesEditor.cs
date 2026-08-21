@@ -186,7 +186,7 @@ namespace Playnite
             }
         }
 
-        public void PlayGame(Game game, bool launchedFromUI)
+        public void PlayGame(Game game, bool launchedFromUI, int actionIndex = -1)
         {
             if (!game.IsInstalled)
             {
@@ -223,21 +223,21 @@ namespace Playnite
                     return;
                 }
 
+                var allActions = new List<object>();
+                allActions.AddRange(gameActions.Item1);
+                allActions.AddRange(gameActions.Item2);
+
                 object playAction = null;
-                if ((gameActions.Item1.Count + gameActions.Item2.Count) > 1)
+                if (allActions.Count > 1)
                 {
-                    playAction = actionSelector.SelectPlayAction(gameActions.Item1, gameActions.Item2);
+                    if (actionIndex < 0 || actionIndex + 1 > allActions.Count)
+                        playAction = actionSelector.SelectPlayAction(gameActions.Item1, gameActions.Item2);
+                    else
+                        playAction = allActions[actionIndex];
                 }
                 else
                 {
-                    if (gameActions.Item1.Count > 0)
-                    {
-                        playAction = gameActions.Item1[0];
-                    }
-                    else
-                    {
-                        playAction = gameActions.Item2[0];
-                    }
+                    playAction = allActions[0];
                 }
 
                 if (playAction == null)

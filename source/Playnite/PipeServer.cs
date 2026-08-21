@@ -20,16 +20,27 @@ namespace Playnite
             get; set;
         }
 
-        public string Args
+        public List<string> Args
         {
             get; set;
-        }
+        } = new();
 
         public CommandExecutedEventArgs()
         {
         }
 
+        public CommandExecutedEventArgs(CmdlineCommand command)
+        {
+            Command = command;
+        }
+
         public CommandExecutedEventArgs(CmdlineCommand command, string args)
+        {
+            Command = command;
+            Args.Add(args);
+        }
+
+        public CommandExecutedEventArgs(CmdlineCommand command, List<string> args)
         {
             Command = command;
             Args = args;
@@ -40,7 +51,7 @@ namespace Playnite
     public interface IPipeService
     {
         [OperationContract(IsOneWay = true)]
-        void InvokeCommand(CmdlineCommand command, string args);
+        void InvokeCommand(CmdlineCommand command, List<string> args);
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
@@ -54,7 +65,7 @@ namespace Playnite
             syncContext = SynchronizationContext.Current;
         }
 
-        public void InvokeCommand(CmdlineCommand command, string args)
+        public void InvokeCommand(CmdlineCommand command, List<string> args)
         {
             // We don't want to block this call because it causes issues if some sync operation that shuts down server is also called.
             // For example, mode switch or instance shutdown calls are stopping server,
@@ -98,6 +109,11 @@ namespace Playnite
         }
 
         public void InvokeCommand(CmdlineCommand command, string args)
+        {
+            Channel.InvokeCommand(command, [args]);
+        }
+
+        public void InvokeCommand(CmdlineCommand command, List<string> args)
         {
             Channel.InvokeCommand(command, args);
         }

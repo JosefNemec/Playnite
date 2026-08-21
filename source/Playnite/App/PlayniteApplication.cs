@@ -788,7 +788,10 @@ namespace Playnite
                     break;
 
                 case CmdlineCommand.Start:
-                    if (Guid.TryParse(args.Args, out var gameId))
+                    if (args.Args.Count < 1)
+                        return;
+
+                    if (Guid.TryParse(args.Args[0], out var gameId))
                     {
                         var game = Database.Games[gameId];
                         if (game == null)
@@ -797,7 +800,10 @@ namespace Playnite
                         }
                         else
                         {
-                            GamesEditor.PlayGame(game, false);
+                            if (args.Args.Count >= 2 && int.TryParse(args.Args[1], out var actionIndex))
+                                GamesEditor.PlayGame(game, false, actionIndex);
+                            else
+                                GamesEditor.PlayGame(game, false);
                         }
                     }
                     else
@@ -808,7 +814,7 @@ namespace Playnite
                     break;
 
                 case CmdlineCommand.UriRequest:
-                    UriHandler.ProcessUri(args.Args);
+                    UriHandler.ProcessUri(args.Args.FirstOrDefault());
                     break;
 
                 case CmdlineCommand.ExtensionInstall:
@@ -817,7 +823,10 @@ namespace Playnite
                         return;
                     }
 
-                    var extPath = args.Args;
+                    var extPath = args.Args.FirstOrDefault();
+                    if (extPath.IsNullOrWhiteSpace())
+                        return;
+
                     if (!File.Exists(extPath))
                     {
                         logger.Error($"Cannot install extension, file doesn't exists: {extPath}");
@@ -841,17 +850,18 @@ namespace Playnite
                     break;
 
                 case CmdlineCommand.SwitchMode:
-                    if (args.Args == "desktop")
+                    var mode = args.Args.FirstOrDefault() ?? "";
+                    if (mode == "desktop")
                     {
                         SyncContext.Post(_ => SwitchAppMode(ApplicationMode.Desktop), null);
                     }
-                    else if (args.Args == "fullscreen")
+                    else if (mode == "fullscreen")
                     {
                         SyncContext.Post(_ => SwitchAppMode(ApplicationMode.Fullscreen), null);
                     }
                     else
                     {
-                        logger.Error($"Can't switch to uknwon application mode: {args.Args}");
+                        logger.Error($"Can't switch to uknwon application mode: {mode}");
                     }
                     break;
 
@@ -860,12 +870,16 @@ namespace Playnite
                     break;
 
                 case CmdlineCommand.BackupData:
-                    if (!File.Exists(args.Args))
+                    var backupFile = args.Args.FirstOrDefault();
+                    if (backupFile.IsNullOrWhiteSpace())
+                        return;
+
+                    if (!File.Exists(backupFile))
                     {
                         return;
                     }
 
-                    var backupOptions = Serialization.FromJsonFile<BackupOptions>(args.Args);
+                    var backupOptions = Serialization.FromJsonFile<BackupOptions>(backupFile);
                     if (backupOptions.CancelIfGameRunning && GamesEditor.RunningGames.HasItems())
                     {
                         return;
@@ -874,18 +888,22 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            Backup = args.Args
+                            Backup = backupFile
                         });
                     }
                     break;
 
                 case CmdlineCommand.RestoreBackup:
-                    if (!File.Exists(args.Args))
+                    var restoreFile = args.Args.FirstOrDefault();
+                    if (restoreFile.IsNullOrWhiteSpace())
+                        return;
+
+                    if (!File.Exists(restoreFile))
                     {
                         return;
                     }
 
-                    var restoreOptions = Serialization.FromJsonFile<BackupRestoreOptions>(args.Args);
+                    var restoreOptions = Serialization.FromJsonFile<BackupRestoreOptions>(restoreFile);
                     if (restoreOptions.CancelIfGameRunning && GamesEditor.RunningGames.HasItems())
                     {
                         return;
@@ -894,7 +912,7 @@ namespace Playnite
                     {
                         Restart(new CmdLineOptions
                         {
-                            RestoreBackup = args.Args
+                            RestoreBackup = restoreFile
                         });
                     }
                     break;
@@ -936,7 +954,7 @@ namespace Playnite
                             var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
                             if (!CmdLine.Start.IsNullOrEmpty())
                             {
-                                client.InvokeCommand(CmdlineCommand.Start, CmdLine.Start);
+                                client.InvokeCommand(CmdlineCommand.Start, [CmdLine.Start, CmdLine.ActionIndex.ToString()]);
                             }
                             else if (!CmdLine.UriData.IsNullOrEmpty())
                             {
@@ -956,7 +974,7 @@ namespace Playnite
                             }
                             else if (CmdLine.Shutdown)
                             {
-                                client.InvokeCommand(CmdlineCommand.Shutdown, null);
+                                client.InvokeCommand(CmdlineCommand.Shutdown, "");
                             }
                             else if (!CmdLine.Backup.IsNullOrEmpty())
                             {
@@ -1091,7 +1109,11 @@ namespace Playnite
             UriHandler.Handlers.Add("playnite", ProcessUriRequest);
             if (!CmdLine.Start.IsNullOrEmpty())
             {
-                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start, CmdLine.Start));
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start,
+                [
+                    CmdLine.Start,
+                    CmdLine.ActionIndex.ToString()
+                ]));
             }
             else if (!CmdLine.UriData.IsNullOrEmpty())
             {
@@ -1111,7 +1133,7 @@ namespace Playnite
             }
             else if (CmdLine.Shutdown)
             {
-                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Shutdown, null));
+                PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Shutdown));
             }
         }
 
@@ -1131,7 +1153,7 @@ namespace Playnite
                     break;
 
                 case UriCommands.StartGame:
-                    if (arguments.Count() != 2)
+                    if (arguments.Length < 2)
                     {
                         return;
                     }
@@ -1145,7 +1167,10 @@ namespace Playnite
                         }
                         else
                         {
-                            GamesEditor.PlayGame(game, false);
+                            if (arguments.Length > 2 && int.TryParse(arguments[2], out var actionIndex))
+                                GamesEditor.PlayGame(game, false, actionIndex);
+                            else
+                                GamesEditor.PlayGame(game, false);
                         }
                     }
                     else
