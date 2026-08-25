@@ -155,13 +155,24 @@ namespace Playnite.Input
         private readonly InputManager inputManager;
         private bool isDisposed = false;
 
-        public class LoadedGameController : GamepadController
+        public class LoadedGameController : GamepadController, IGamepad
         {
             public IntPtr Controller { get; }
             public IntPtr Joystic { get; }
-            public new bool Enabled { get; set; }
+            public IReadOnlyDictionary<ControllerInput, short> AnalogInputState => LastAnalogInputState;
+            public IReadOnlyDictionary<ControllerInput, ControllerInputState> ButtonInputState => LastInputState;
 
-            public readonly Dictionary<ControllerInput, ControllerInputState> LastInputState = new Dictionary<ControllerInput, ControllerInputState>()
+            public Dictionary<ControllerInput, short> LastAnalogInputState { get; } = new()
+            {
+                { ControllerInput.LeftStickX, 0 },
+                { ControllerInput.LeftStickY, 0 },
+                { ControllerInput.RightStickX, 0 },
+                { ControllerInput.RightStickY, 0 },
+                { ControllerInput.TriggerLeft, 0 },
+                { ControllerInput.TriggerRight, 0 },
+            };
+
+            public readonly Dictionary<ControllerInput, ControllerInputState> LastInputState = new()
             {
                 {  ControllerInput.A, ControllerInputState.Released },
                 {  ControllerInput.B, ControllerInputState.Released },
@@ -324,20 +335,33 @@ namespace Playnite.Input
             ProcessButtonState(SDL_GameControllerGetButton(controller.Controller, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_DPAD_RIGHT), ControllerInput.DPadRight, controller);
             ProcessButtonState(SDL_GameControllerGetButton(controller.Controller, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_DPAD_UP), ControllerInput.DPadUp, controller);
 
-            ProcessAxisState(SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_TRIGGERLEFT), ControllerInput.TriggerLeft, true, controller);
-            ProcessAxisState(SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_TRIGGERRIGHT), ControllerInput.TriggerRight, true, controller);
-            var state = SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_LEFTX);
+            var state = SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_TRIGGERLEFT);
+            ProcessAxisState(state, ControllerInput.TriggerLeft, true, controller);
+            controller.LastAnalogInputState[ControllerInput.TriggerLeft] = state;
+
+            state = SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_TRIGGERRIGHT);
+            ProcessAxisState(state, ControllerInput.TriggerRight, true, controller);
+            controller.LastAnalogInputState[ControllerInput.TriggerRight] = state;
+
+            state = SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_LEFTX);
             ProcessAxisState(state, ControllerInput.LeftStickLeft, false, controller);
             ProcessAxisState(state, ControllerInput.LeftStickRight, true, controller);
+            controller.LastAnalogInputState[ControllerInput.LeftStickX] = state;
+
             state = SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_LEFTY);
             ProcessAxisState(state, ControllerInput.LeftStickUp, false, controller);
             ProcessAxisState(state, ControllerInput.LeftStickDown, true, controller);
+            controller.LastAnalogInputState[ControllerInput.LeftStickY] = state;
+
             state = SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_RIGHTX);
             ProcessAxisState(state, ControllerInput.RightStickLeft, false, controller);
             ProcessAxisState(state, ControllerInput.RightStickRight, true, controller);
+            controller.LastAnalogInputState[ControllerInput.RightStickX] = state;
+
             state = SDL_GameControllerGetAxis(controller.Controller, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_RIGHTY);
             ProcessAxisState(state, ControllerInput.RightStickUp, false, controller);
             ProcessAxisState(state, ControllerInput.RightStickDown, true, controller);
+            controller.LastAnalogInputState[ControllerInput.RightStickY] = state;
         }
 
         private bool IsButtonNotNavigation(ControllerInput button)

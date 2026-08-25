@@ -33,6 +33,7 @@ namespace Playnite.API
         void AddSettingsSupport(Plugin source, AddSettingsSupportArgs args);
         void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args);
         List<GamepadController> GetConnectedControllers();
+        IReadOnlyList<IGamepad> GetConnectedControllers2();
     }
 
     public class PlayniteApiRoot : IPlayniteAPIRoot
@@ -132,6 +133,11 @@ namespace Playnite.API
         {
             return mainModel.App.GameController.Controllers.Cast<GamepadController>().ToList();
         }
+
+        public IReadOnlyList<IGamepad> GetConnectedControllers2()
+        {
+            return mainModel.App.GameController.Controllers;
+        }
     }
 
     public class PlayniteAPI : IPlayniteAPI
@@ -202,6 +208,11 @@ namespace Playnite.API
         public List<GamepadController> GetConnectedControllers()
         {
             return RootApi.GetConnectedControllers();
+        }
+
+        public IReadOnlyList<IGamepad> GetConnectedControllers2()
+        {
+            return RootApi.GetConnectedControllers2();
         }
     }
 }

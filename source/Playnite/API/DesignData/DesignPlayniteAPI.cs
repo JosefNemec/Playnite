@@ -91,6 +91,11 @@ namespace Playnite.API.DesignData
             throw new NotImplementedException();
         }
 
+        public IReadOnlyList<IGamepad> GetConnectedControllers2()
+        {
+            throw new NotImplementedException();
+        }
+
         public string ExpandGameVariables(Game game, string inputString, string emulatorDir)
         {
             throw new NotImplementedException();
