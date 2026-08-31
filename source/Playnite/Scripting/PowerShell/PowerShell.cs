@@ -139,11 +139,11 @@ namespace Playnite.Scripting.PowerShell
             // - Enter-PSHostProcess is blocking so we can't pass any command after it
             // - We can't redirect stdin because then user wouldn't be able to interact witht the console
             // - Messages like WM_PASTE don't work on PowerShell console
-            // - Passing CTLR-V and ENTER is not possible, because the only reliable method works globaly and can't be sent directly to window handle
+            // - Passing CTRL-V and ENTER is not possible, because the only reliable method works globaly and can't be sent directly to window handle
             interactiveProcess.StartInfo.Arguments = $"-NoExit -Command \"" +
                 $"Write-Host \"`n" +
                 $"`tConnected to Playnite process.`n" +
-                $"`tUse CTLR-V and ENTER to paste commands to initialize basic SDK variables.`n" +
+                $"`tUse CTRL-V and ENTER to paste commands to initialize basic SDK variables.`n" +
                 $"`tMore information at:`n" +
                 $"`thttps://playnite.link/docs/master/tutorials/extensions/scriptingDebugging.html`n" +
                 $"\" -ForegroundColor Green;" +
