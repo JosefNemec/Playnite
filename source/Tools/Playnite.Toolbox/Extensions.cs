@@ -157,7 +157,7 @@ namespace Playnite.Toolbox
             }
 
             var outProjectFile = Path.Combine(outDir, normalizedName + ".csproj");
-            var outSolutionFile = Path.Combine(outDir, normalizedName + ".sln");
+            var outSolutionFile = Path.Combine(outDir, normalizedName + ".slnx");
             var baseProjectName = genericPluginProjectName;
 
             switch (type)
@@ -174,7 +174,7 @@ namespace Playnite.Toolbox
             }
 
             File.Move(Path.Combine(outDir, baseProjectName + ".csproj"), outProjectFile);
-            File.Move(Path.Combine(outDir, baseProjectName + ".sln"), outSolutionFile);
+            File.Move(Path.Combine(outDir, baseProjectName + ".slnx"), outSolutionFile);
             FileSystem.ReplaceStringInFile(outProjectFile, baseProjectName, normalizedName);
             FileSystem.ReplaceStringInFile(outSolutionFile, baseProjectName, normalizedName);
             return outDir;

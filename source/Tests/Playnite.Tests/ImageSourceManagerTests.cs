@@ -30,7 +30,7 @@ namespace Playnite.Tests
         [Test]
         public void ResourceTest()
         {
-            var image = ImageSourceManager.GetImage("resources:/Resources/Images/icon_dark.png", false);
+            var image = ImageSourceManager.GetImage("resources:/icon_dark.png", false);
             Assert.IsNotNull(image);
             Assert.AreNotEqual(DependencyProperty.UnsetValue, image);
         }

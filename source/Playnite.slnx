@@ -1,0 +1,46 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Playnite.DesktopApp.Tests/Playnite.DesktopApp.Tests.csproj">
+      <Platform Project="x86" />
+    </Project>
+    <Project Path="Tests/Playnite.FullscreenApp.Tests/Playnite.FullscreenApp.Tests.csproj">
+      <Platform Project="x86" />
+    </Project>
+    <Project Path="Tests/Playnite.Tests/Playnite.Tests.csproj">
+      <BuildDependency Project="Tests/TestApp/TestApp.csproj" />
+      <BuildDependency Project="Tests/TestGameLibrary/TestGameLibrary.csproj" />
+      <BuildDependency Project="Tests/TestPlugin/TestPlugin.csproj" />
+      <Platform Project="x86" />
+    </Project>
+    <Project Path="Tests/Playnite.Toolbox.Tests/Playnite.Toolbox.Tests.csproj">
+      <Platform Project="x86" />
+    </Project>
+    <Project Path="Tests/TestApp/TestApp.csproj" />
+    <Project Path="Tests/TestGameLibrary/TestGameLibrary.csproj" />
+    <Project Path="Tests/TestMetadataPlugin/TestMetadataPlugin.csproj" />
+    <Project Path="Tests/TestPlugin/TestPlugin.csproj" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="Tools/Playnite.Toolbox/Playnite.Toolbox.csproj">
+      <Platform Project="x86" />
+    </Project>
+    <Project Path="Tools/Playnite.Utilities/Playnite.Utilities.csproj">
+      <Platform Project="x86" />
+    </Project>
+    <Project Path="Tools/PlayniteInstaller/PlayniteInstaller.csproj" />
+  </Folder>
+  <Project Path="Playnite.Deps/Playnite.Deps.csproj" />
+  <Project Path="Playnite.DesktopApp/Playnite.DesktopApp.csproj">
+    <Platform Project="x86" />
+  </Project>
+  <Project Path="Playnite.FullscreenApp/Playnite.FullscreenApp.csproj">
+    <Platform Project="x86" />
+  </Project>
+  <Project Path="Playnite/Playnite.csproj">
+    <Platform Project="x86" />
+  </Project>
+  <Project Path="PlayniteSDK/Playnite.SDK.csproj" />
+</Solution>

@@ -66,10 +66,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public string Contributors
         {
-            get
-            {
-                return Resources.ReadFileFromResource("Playnite.DesktopApp.Resources.contributors.txt");
-            }
+            get;
         }
 
         private string patronsList;
@@ -135,6 +132,10 @@ namespace Playnite.DesktopApp.ViewModels
             this.dialogs = dialogs;
             this.resources = resources;
             this.client = client;
+
+            var combPath = Path.Combine(PlaynitePaths.ProgramPath, "contributors.txt");
+            if (File.Exists(combPath))
+                Contributors = File.ReadAllText(combPath);
         }
 
         public void OpenView()

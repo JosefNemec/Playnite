@@ -28,10 +28,14 @@ param(
 
     [switch]$SdkNuget,
 
-    [string]$OnlineInstallerConfig
+    [string]$OnlineInstallerConfig,
+
+    [string]$MSBuildPath = "C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\MSBuild.exe"
 )
 
-$ErrorActionPreference = "Stop"
+$global:ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
+
 if (!(Get-InstalledModule "powershell-yaml" -EA 0))
 {
     Install-Module powershell-yaml
@@ -149,8 +153,6 @@ if (!$SkipBuild)
     }
 
     $solutionDir = Join-Path $pwd "..\source"
-    Invoke-Nuget "restore ..\source\Playnite.sln"
-    $msbuildpath = Get-MsBuildPath
     $arguments = "build.xml /p:SolutionDir=`"$solutionDir\\`" /p:OutputPath=`"$OutputDir`";Configuration=$configuration /property:Platform=$Platform /t:Build"
     $compilerResult = StartAndWait $msbuildPath $arguments
     if ($compilerResult -ne 0)
@@ -163,17 +165,12 @@ if (!$SkipBuild)
     PackExtensionTemplate "CustomMetadataPlugin" $OutputDir
     PackExtensionTemplate "GenericPlugin" $OutputDir
     PackExtensionTemplate "PowerShellScript" $OutputDir
+
+    Remove-Item (Join-Path $OutputDir "System.Management.Automation.dll")
+    Remove-Item (Join-Path $OutputDir "Windows.winmd")
 }
 
 New-Folder $InstallerDir
-
-# -------------------------------------------
-#            SDK nuget
-# -------------------------------------------
-if ($SdkNuget)
-{
-    & .\buildSdkNuget.ps1 -SkipBuild -OutputPath $OutputDir | Out-Null
-}
 
 # -------------------------------------------
 #            Build zip package
@@ -185,5 +182,5 @@ if ($Package)
     New-ZipFromDirectory $OutputDir $packageName
 }
 
-(Get-ChildItem (Join-Path $OutputDir "Playnite.dll")).VersionInfo.FileVersion | Write-Host -ForegroundColor Green
+(Get-FileHash (Join-Path $OutputDir "Playnite.dll") -Algorithm SHA1).Hash | Write-Host -ForegroundColor Green
 return $true
