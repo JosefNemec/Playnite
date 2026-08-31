@@ -1291,6 +1291,21 @@ namespace Playnite
             }
         }
 
+        private bool guideControllerButtonSwitchesFullscreen = false;
+        public bool GuideControllerButtonSwitchesFullscreen
+        {
+            get
+            {
+                return guideControllerButtonSwitchesFullscreen;
+            }
+
+            set
+            {
+                guideControllerButtonSwitchesFullscreen = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool showPanelSeparators = true;
         public bool ShowPanelSeparators
         {

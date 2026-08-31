@@ -1264,4 +1264,5 @@ Open new issue on Playnite's GitHub page with a request to fix corruption in you
     <sys:String x:Key="LOCNoControllersDetected">No controllers detected</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Default source</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Web image search failed. This can happen for various reasons. See the following link for more details and troubleshooting tips.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Guide button switches to Fullscreen mode</sys:String>
 </ResourceDictionary>
