@@ -287,7 +287,7 @@ namespace Playnite
             }
         }
 
-        private bool enableMainBackgroundImage = false;
+        private bool enableMainBackgroundImage = true;
         public bool EnableMainBackgroundImage
         {
             get

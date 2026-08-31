@@ -149,7 +149,7 @@ namespace Playnite.DesktopApp.Controls.Views
         private Image ImageCover;
         private Image ImageIcon;
         private FadeImage ImageBackground;
-        private ScrollViewer ScrollViewHost;
+        internal ScrollViewer ScrollViewHost;
 
         static GameOverview()
         {

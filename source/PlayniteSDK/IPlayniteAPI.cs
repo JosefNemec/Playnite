@@ -143,6 +143,12 @@ namespace Playnite.SDK
         /// </summary>
         /// <returns></returns>
         List<GamepadController> GetConnectedControllers();
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        IReadOnlyList<IGamepad> GetConnectedControllers2();
     }
 
     /// <summary>

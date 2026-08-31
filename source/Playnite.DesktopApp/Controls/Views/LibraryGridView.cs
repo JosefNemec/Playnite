@@ -97,16 +97,16 @@ namespace Playnite.DesktopApp.Controls.Views
                 BindingTools.SetBinding(ListGames,
                     ScrollViewerBehaviours.SensitivityProperty,
                     mainModel.AppSettings,
-                    nameof(PlayniteSettings.GridViewScrollSensitivity));
+                    $"{nameof(PlayniteSettings.GridViewListScrollOptions)}.{nameof(ScrollBehaviorOptions.Sensitivity)}");
                 BindingTools.SetBinding(ListGames,
                     ScrollViewerBehaviours.SpeedProperty,
                     mainModel.AppSettings,
-                    nameof(PlayniteSettings.GridViewScrollSpeed),
+                    $"{nameof(PlayniteSettings.GridViewListScrollOptions)}.{nameof(ScrollBehaviorOptions.Speed)}",
                     converter: new TicksToTimeSpanConverter());
                 BindingTools.SetBinding(ListGames,
                     ScrollViewerBehaviours.SmoothScrollEnabledProperty,
                     mainModel.AppSettings,
-                    nameof(PlayniteSettings.GridViewSmoothScrollEnabled));
+                    $"{nameof(PlayniteSettings.GridViewListScrollOptions)}.{nameof(ScrollBehaviorOptions.SmoothEnabled)}");
 
                 VirtualizingPanel.SetScrollUnit(ListGames, ScrollUnit.Pixel);
                 VirtualizingPanel.SetIsVirtualizingWhenGrouping(ListGames, true);

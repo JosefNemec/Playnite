@@ -21,6 +21,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -141,6 +142,7 @@
     <Compile Include="BackupTests.cs" />
     <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="InstallSizeScanTests.cs" />
+    <Compile Include="LibraryObjectNameMatchToBoolConverterTests.cs" />
     <Compile Include="M3UTests.cs" />
     <Compile Include="SearchViewModelTests.cs" />
     <Compile Include="_TestTools\GameDbTestWrapper.cs" />

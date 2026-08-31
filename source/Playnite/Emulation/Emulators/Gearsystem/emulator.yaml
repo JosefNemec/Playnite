@@ -1,0 +1,9 @@
+Id: gearsystem
+Name: Gearsystem
+Website: 'https://github.com/drhelius/gearsystem'
+Profiles:
+  - Name: Default
+    StartupArguments: '-f "{ImagePath}"'
+    Platforms: [sega_gamegear, sega_sg1000, sega_mastersystem]
+    ImageExtensions: [sms, gg, sg, mv, zip]
+    StartupExecutable: ^gearsystem\.exe$

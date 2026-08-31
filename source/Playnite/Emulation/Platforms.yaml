@@ -366,7 +366,7 @@
   Id: sega_gamegear
   IgdbId: 35
   Databases: [Sega - Game Gear]
-  Emulators: [ares, bizhawk, fbneo, higan, jgenesis, kegafusion, mednafen, retroarch]
+  Emulators: [ares, bizhawk, fbneo, higan, jgenesis, kegafusion, mednafen, retroarch, gearsystem]
 
 - Name: Sega Genesis
   Id: sega_genesis
@@ -378,7 +378,7 @@
   Id: sega_mastersystem
   IgdbId: 64
   Databases: [Sega - Master System - Mark III]
-  Emulators: [ares, bizhawk, fbneo, higan, jgenesis, kegafusion, mednafen, retroarch]
+  Emulators: [ares, bizhawk, fbneo, higan, jgenesis, kegafusion, mednafen, retroarch, gearsystem]
 
 - Name: Sega Saturn
   Id: sega_saturn
@@ -390,7 +390,7 @@
   Id: sega_sg1000
   IgdbId: 84
   Databases: [Sega - SG-1000]
-  Emulators: [ares, bizhawk, fbneo, retroarch]
+  Emulators: [ares, bizhawk, fbneo, retroarch, gearsystem]
 
 - Name: Sharp X1
   Id: sharp_x1

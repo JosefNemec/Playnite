@@ -41,7 +41,11 @@ namespace Playnite.SDK.Events
         RightStickLeft,
         RightStickRight,
         RightStickUp,
-        RightStickDown
+        RightStickDown,
+        LeftStickX,
+        LeftStickY,
+        RightStickX,
+        RightStickY,
     }
 
     /// <summary>
@@ -297,6 +301,16 @@ namespace Playnite.SDK.Events
         public int InstanceId { get; internal set; }
         public string Path { get; internal set; }
         public string Name { get; internal set; }
-        public bool Enabled { get; internal set; }
+        public bool Enabled { get; set; }
+    }
+
+    public interface IGamepad
+    {
+        int InstanceId { get; }
+        string Path { get; }
+        string Name { get; }
+        bool Enabled { get; set; }
+        IReadOnlyDictionary<ControllerInput, short> AnalogInputState { get; }
+        IReadOnlyDictionary<ControllerInput, ControllerInputState> ButtonInputState { get; }
     }
 }
