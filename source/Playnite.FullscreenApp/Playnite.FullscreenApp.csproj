@@ -61,7 +61,7 @@
     <PackageReference Include="LargeAddressAware" version="1.0.5" />
     <PackageReference Include="MathConverter" version="2.2.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" version="1.1.39" />
-    <PackageReference Include="Playnite.Deps" version="10.17.0" />
+    <PackageReference Include="Playnite.Deps" version="10.56.0" />
     <PackageReference Include="Prism.Core" version="6.3.0" />
     <PackageReference Include="Prism.Wpf" version="6.3.0" />
     <PackageReference Include="System.IO.Abstractions" version="2.1.0.227" />

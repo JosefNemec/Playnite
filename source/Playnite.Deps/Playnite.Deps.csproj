@@ -3,9 +3,9 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Playnite.Deps</AssemblyName>
     <PackageId>Playnite.Deps</PackageId>
-    <Version>10.0</Version>
+    <Version>10.56</Version>
     <Copyright>Copyright © Josef Nemec 2026 onwards</Copyright>
-    <Description>Plugin binary dependencies.</Description>
+    <Description>Playnite binary dependencies.</Description>
   </PropertyGroup>
 
   <ItemGroup>

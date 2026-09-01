@@ -93,7 +93,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="NLog" Version="4.7.6" />
     <PackageReference Include="PhotoSauce.MagicScaler" Version="0.11.2" />
-    <PackageReference Include="Playnite.Deps" Version="10.17.0" />
+    <PackageReference Include="Playnite.Deps" Version="10.56.0" />
     <PackageReference Include="Polly" Version="5.1.0" />
     <PackageReference Include="Prism.Core" Version="6.3.0" />
     <PackageReference Include="Prism.Wpf" Version="6.3.0" />
