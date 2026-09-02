@@ -42,4 +42,8 @@
             </Trigger>
         </Style.Triggers>
     </Style>                  
+
+    <Style x:Key="LoadMoreButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+        <Setter Property="Margin" Value="0,5,0,5" />
+    </Style>               
 </ResourceDictionary>
