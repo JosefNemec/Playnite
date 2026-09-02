@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheArtOfDev.HtmlRenderer.WPF;
+using Playnite.SDK;
 
 namespace Playnite.Controls
 {
@@ -59,6 +60,7 @@ namespace Playnite.Controls
         internal string templateContent = string.Empty;
         private readonly HtmlPanel htmlPanel;
         private readonly Button moreButton;
+        public static Func<Button> CreateMoreButton { get; set; }
 
         public string TemplatePath
         {
@@ -287,13 +289,14 @@ namespace Playnite.Controls
             }
             else
             {
-                moreButton.Visibility = Visibility.Hidden;
+                moreButton.Visibility = Visibility.Collapsed;
                 SetHtmlContent(HtmlText ?? string.Empty);
             };
         }
 
         internal void SetHtmlContent(string htmlContent)
         {
+            htmlPanel.Focusable = !HtmlText.IsNullOrEmpty();
             var content = string.Empty;
             if (!templateContent.IsNullOrEmpty())
             {
@@ -328,20 +331,18 @@ namespace Playnite.Controls
             ScrollViewer.SetHorizontalScrollBarVisibility(htmlPanel, ScrollBarVisibility.Disabled);
             ScrollViewer.SetVerticalScrollBarVisibility(htmlPanel, ScrollBarVisibility.Disabled);
 
-            moreButton = new Button
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Content = LOC.LoadMore.GetLocalized(),
-                Visibility = Visibility.Hidden,
-                Margin = new Thickness(0, 0, 0, 5)
-            };
+            moreButton = CreateMoreButton?.Invoke() ?? new Button();
+            moreButton.HorizontalAlignment = HorizontalAlignment.Center;
+            moreButton.Content = LOC.LoadMore.GetLocalized();
+            moreButton.Visibility = Visibility.Collapsed;
+            moreButton.Style = ResourceProvider.GetResource("LoadMoreButton") as Style;
 
             moreButton.Click += (_, __) =>
             {
                 currentLoadedLength += loadPartLength;
                 if (currentLoadedLength > HtmlText.Length)
                 {
-                    moreButton.Visibility = Visibility.Hidden;
+                    moreButton.Visibility = Visibility.Collapsed;
                     SetHtmlContent(HtmlText);
                 }
                 else
