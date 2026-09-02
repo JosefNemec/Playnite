@@ -24,6 +24,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using static SDL2.SDL;
+using Playnite.Controls;
+using Playnite.FullscreenApp.Controls;
 
 namespace Playnite.FullscreenApp
 {
@@ -71,6 +73,7 @@ namespace Playnite.FullscreenApp
             UpdateWindowFactory.SetWindowType<UpdateWindow>();
             SingleItemSelectionWindowFactory.SetWindowType<SingleItemSelectionWindow>();
             MultiItemSelectionWindowFactory.SetWindowType<MultiItemSelectionWindow>();
+            HtmlTextView.CreateMoreButton = () => new ButtonEx();
             Dialogs = new FullscreenDialogs();
             Playnite.Dialogs.SetHandler(Dialogs);
         }
