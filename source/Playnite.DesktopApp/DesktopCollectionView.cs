@@ -139,11 +139,7 @@ namespace Playnite.DesktopApp
 
         private void Settings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PlayniteSettings.FuzzyMatchingInNameFilter))
-            {
-                Logger.Debug("Refreshing collection view filter.");
-                CollectionView.Refresh();
-            }
+
         }
 
         private void ViewSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)

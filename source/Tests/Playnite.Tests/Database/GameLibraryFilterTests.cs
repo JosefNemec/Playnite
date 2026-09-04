@@ -269,10 +269,10 @@ namespace Playnite.Tests.Database
             AssertNameMatch("game alpga", true, GameA);
             AssertNameMatch("game alpga", false, expected: Array.Empty<Game>());
             AssertNameMatch("!game alpga", true, expected: Array.Empty<Game>());
-            AssertNameMatch("^A", false, expected: Array.Empty<Game>()); //^ at the start of strings matches the name grouping character
-            AssertNameMatch("^A", true, expected: Array.Empty<Game>());
-            AssertNameMatch("^G", false, GameNone, GameA, GameB, GameBoth);
-            AssertNameMatch("^G", true, GameNone, GameA, GameB, GameBoth);
+            AssertNameMatch("^:A", false, expected: Array.Empty<Game>()); //^: at the start of strings matches the name grouping character
+            AssertNameMatch("^:A", true, expected: Array.Empty<Game>());
+            AssertNameMatch("^:G", false, GameNone, GameA, GameB, GameBoth);
+            AssertNameMatch("^:G", true, GameNone, GameA, GameB, GameBoth);
         }
 
         [Test]

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Playnite.Common;
+using Playnite.SDK.Models;
 using SdkModels = Playnite.SDK.Models;
 
 namespace Playnite
@@ -372,6 +373,48 @@ namespace Playnite
                     name = value;
                     OnPropertyChanged();
                     OnFilterChanged(nameof(Name));
+                    OnPropertyChanged(nameof(IsActive));
+                    OnPropertyChanged(nameof(SearchActive));
+                }
+            }
+        }
+
+        private SearchMode nameSearchMode;
+        public SearchMode NameSearchMode
+        {
+            get
+            {
+                return nameSearchMode;
+            }
+
+            set
+            {
+                if (nameSearchMode != value)
+                {
+                    nameSearchMode = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(NameSearchMode));
+                    OnPropertyChanged(nameof(IsActive));
+                    OnPropertyChanged(nameof(SearchActive));
+                }
+            }
+        }
+
+        private SearchMode versionSearchMode;
+        public SearchMode VersionSearchMode
+        {
+            get
+            {
+                return versionSearchMode;
+            }
+
+            set
+            {
+                if (versionSearchMode != value)
+                {
+                    versionSearchMode = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(VersionSearchMode));
                     OnPropertyChanged(nameof(IsActive));
                     OnPropertyChanged(nameof(SearchActive));
                 }
@@ -964,6 +1007,12 @@ namespace Playnite
                 filterChanges.Add(nameof(Name));
             }
 
+            if (NameSearchMode != SearchMode.Normal)
+            {
+                NameSearchMode = SearchMode.Normal;
+                filterChanges.Add(nameof(NameSearchMode));
+            }
+
             if (Genre?.IsSet == true)
             {
                 Genre = null;
@@ -986,6 +1035,12 @@ namespace Playnite
             {
                 Version = null;
                 filterChanges.Add(nameof(Version));
+            }
+
+            if (VersionSearchMode != SearchMode.Normal)
+            {
+                VersionSearchMode = SearchMode.Normal;
+                filterChanges.Add(nameof(VersionSearchMode));
             }
 
             if (Publisher?.IsSet == true)
@@ -1155,7 +1210,9 @@ namespace Playnite
                 Hidden = Hidden,
                 Favorite = Favorite,
                 Name = Name,
+                NameSearchMode = NameSearchMode,
                 Version = Version,
+                VersionSearchMode = VersionSearchMode,
                 ReleaseYear = ReleaseYear?.ToSdkModel(),
                 Genre = Genre?.ToSdkModel(),
                 Platform = Platform?.ToSdkModel(),
@@ -1191,7 +1248,9 @@ namespace Playnite
                 Hidden = settings.Hidden,
                 Favorite = settings.Favorite,
                 Name = settings.Name,
+                NameSearchMode = settings.NameSearchMode,
                 Version = settings.Version,
+                VersionSearchMode = settings.VersionSearchMode,
                 ReleaseYear = StringFilterItemProperties.FromSdkModel(settings.ReleaseYear),
                 Genre = IdItemFilterItemProperties.FromSdkModel(settings.Genre),
                 Platform = IdItemFilterItemProperties.FromSdkModel(settings.Platform),
@@ -1233,6 +1292,18 @@ namespace Playnite
             {
                 Name = settings.Name;
                 filterChanges.Add(nameof(Name));
+            }
+
+            if (NameSearchMode != settings.NameSearchMode)
+            {
+                NameSearchMode = settings.NameSearchMode;
+                filterChanges.Add(nameof(NameSearchMode));
+            }
+
+            if (VersionSearchMode != settings.VersionSearchMode)
+            {
+                VersionSearchMode = settings.VersionSearchMode;
+                filterChanges.Add(nameof(VersionSearchMode));
             }
 
             if (Genre?.Equals(settings.Genre) != true)

@@ -171,6 +171,14 @@ namespace Playnite.DesktopApp.Controls
                     this,
                     nameof(ItemsList) + "." + nameof(ItemsList.SearchText),
                     BindingMode.TwoWay);
+
+                BindingTools.SetBinding(
+                    TextSearchBox,
+                    SearchBox.SearchModeProperty,
+                    this,
+                    nameof(ItemsList) + "." + nameof(ItemsList.SearchMode),
+                    BindingMode.TwoWay,
+                    delay: 100);
             }
 
             UpdateTextStatus();
