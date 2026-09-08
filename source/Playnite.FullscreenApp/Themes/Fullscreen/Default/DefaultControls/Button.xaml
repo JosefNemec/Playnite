@@ -27,7 +27,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 x:Name="BorderStandard" />
                         
-                        <Border x:Name="BorderFocus" Margin="-3"
+                        <Border x:Name="BorderFocus" Margin="0,-3,0,-3"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 BorderBrush="{DynamicResource SelectionBrush}"
                                 BorderThickness="3" Visibility="Hidden" />
@@ -56,5 +56,9 @@
     </Style>
 
     <Style TargetType="ButtonEx" BasedOn="{StaticResource {x:Type Button}}">
+    </Style>
+
+    <Style x:Key="LoadMoreButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="ButtonEx">
+        <Setter Property="Margin" Value="0,0,0,5" />
     </Style>
 </ResourceDictionary>
