@@ -94,11 +94,11 @@ namespace Playnite
         /// </summary>
         public const string NoPlatform = "LOCNoPlatform";
         /// <summary>
-        /// Whoops! Something went wrong…
+        /// An unrecoverable error has occurred
         /// </summary>
         public const string CrashWindowTitle = "LOCCrashWindowTitle";
         /// <summary>
-        /// An unrecoverable error has occurred.
+        /// Please briefly describe the actions taken before the crash, and then send diagnostic information.
         /// </summary>
         public const string CrashDescription = "LOCCrashDescription";
         /// <summary>
@@ -114,7 +114,7 @@ namespace Playnite
         /// </summary>
         public const string ExtCrashDescriptionUknown = "LOCExtCrashDescriptionUknown";
         /// <summary>
-        /// Unrecoverable error occurred.
+        /// An unrecoverable error has occurred.
         /// </summary>
         public const string CrashDescriptionFullscreen = "LOCCrashDescriptionFullscreen";
         /// <summary>
@@ -4509,5 +4509,13 @@ namespace Playnite
         /// Game list navigation speed
         /// </summary>
         public const string GameListNavigationSpeed = "LOCGameListNavigationSpeed";
+        /// <summary>
+        /// Failed to update game data. The original game state was not found in the library, looks like the game has been removed.
+        /// </summary>
+        public const string GameDataUpdateSaveError = "LOCGameDataUpdateSaveError";
+        /// <summary>
+        /// Can't remove library item. The item was not found in the library.
+        /// </summary>
+        public const string LibraryDataRemovalNotFound = "LOCLibraryDataRemovalNotFound";
     }
 }

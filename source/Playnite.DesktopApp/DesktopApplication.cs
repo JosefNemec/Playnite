@@ -123,12 +123,16 @@ namespace Playnite.DesktopApp
 
         public override void ReleaseResources(bool releaseCefSharp = true)
         {
+            if (ResourcesReleased)
+                return;
+
+            base.ReleaseResources(releaseCefSharp);
             trayIcon?.Dispose();
             MainModel?.UnregisterSystemSearchHotkey();
             exitSDLEventLoop = true;
             GameController?.Dispose();
-            if (sdlInitialized) SDL_Quit();
-            base.ReleaseResources(releaseCefSharp);
+            if (sdlInitialized)
+                SDL_Quit();
         }
 
         public override void Restart(bool saveSettings)

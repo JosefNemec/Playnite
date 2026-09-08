@@ -394,15 +394,22 @@ namespace Playnite.ViewModels
 
         private void RemoveFilterPreset(FilterPreset preset)
         {
-            if (preset == null)
+            if (preset is null)
+                return;
+
+            preset = Database.FilterPresets.Get(preset.Id);
+            if (preset is null)
             {
+                // This can happen when AutoFilterPresets plugin is installed.
+                // https://codeberg.org/ashpynov/AutoFilterPresets/issues/1
+                Dialogs.ShowErrorMessage(LOC.LibraryDataRemovalNotFound.GetLocalized());
                 return;
             }
 
             if (Dialogs.ShowMessage(LOC.AskRemoveItemMessage, LOC.AskRemoveItemTitle, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 Database.FilterPresets.Remove(preset);
-                if (ActiveFilterPreset == preset)
+                if (ActiveFilterPreset?.Id == preset.Id)
                 {
                     ActiveFilterPreset = null;
                 }
@@ -511,6 +518,9 @@ namespace Playnite.ViewModels
 
         public async Task ProcessStartupLibUpdate()
         {
+            if (!GameAdditionAllowed)
+                return;
+
             if (App.CmdLine.SkipLibUpdate)
             {
                 Logger.Warn("Startup library update disabled via cmdline.");

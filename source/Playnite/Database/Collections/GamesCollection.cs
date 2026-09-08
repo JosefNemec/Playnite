@@ -99,6 +99,7 @@ namespace Playnite.Database
 
         public override bool Remove(Guid id)
         {
+            logger.Debug($"Removing game {id}");
             var item = Get(id);
             var result = base.Remove(id);
             db.RemoveFile(item.Icon);
@@ -125,6 +126,7 @@ namespace Playnite.Database
         {
             foreach (var item in items)
             {
+                logger.Debug($"Removing game {item.Id}");
                 // Get item from in case that passed platform doesn't have actual metadata.
                 var dbItem = Get(item.Id);
                 db.RemoveFile(dbItem.Icon);
@@ -147,6 +149,12 @@ namespace Playnite.Database
         public override void Update(Game itemToUpdate)
         {
             var dbItem = Get(itemToUpdate.Id);
+            if (dbItem is null)
+            {
+                logger.Error($"Trying to update game that no longer exists {itemToUpdate.Id}");
+                // Let it crash afterwards since there are some weird crashes related to this that need further investigation
+            }
+
             if (!dbItem.Icon.IsNullOrEmpty() && dbItem.Icon != itemToUpdate.Icon)
             {
                 db.RemoveFile(dbItem.Icon);
@@ -174,6 +182,12 @@ namespace Playnite.Database
             foreach (var item in itemsToUpdate)
             {
                 var dbItem = Get(item.Id);
+                if (dbItem is null)
+                {
+                    logger.Error($"Trying to update game that no longer exists {item.Id}");
+                    // Let it crash afterwards since there are some weird crashes related to this that need further investigation
+                }
+
                 if (!dbItem.Icon.IsNullOrEmpty() && dbItem.Icon != item.Icon)
                 {
                     db.RemoveFile(dbItem.Icon);

@@ -859,7 +859,19 @@ namespace Playnite.FullscreenApp.ViewModels
         public void OpenView()
         {
             Window.Show(this);
-            SetViewSizeAndPosition(IsFullScreen);
+            try
+            {
+                SetViewSizeAndPosition(IsFullScreen);
+            }
+            catch (Exception e)
+            {
+                // Got some weird crashes here from systems with 0x0 display resolution...
+                Logger.Error(e, "Failed to initialize view size and position.");
+                Dialogs.ShowErrorMessage("Failed to initialize view size and position.");
+                App.Quit();
+                return;
+            }
+
             App.UpdateScreenInformation(Window.Window);
             Window.Window.LocationChanged += Window_LocationChanged;
             Window.Window.StateChanged += Window_StateChanged;
@@ -971,6 +983,7 @@ namespace Playnite.FullscreenApp.ViewModels
                 Logger.Error(e, "Failed to open library database.");
                 var message = Resources.GetString("LOCDatabaseOpenError") + $"\n{e.Message}";
                 Dialogs.ShowErrorMessage(message, "");
+                GameAdditionAllowed = false;
                 return;
             }
 

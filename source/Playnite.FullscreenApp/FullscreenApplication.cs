@@ -245,6 +245,7 @@ namespace Playnite.FullscreenApp
                 return;
             }
 
+            base.ReleaseResources(releaseCefSharp);
             exitSDLEventLoop = true;
             GameController?.Dispose();
             if (Audio != null)
@@ -256,7 +257,6 @@ namespace Playnite.FullscreenApp
             }
 
             SDL_Quit();
-            base.ReleaseResources(releaseCefSharp);
         }
 
         public static void PlayNavigateSound()

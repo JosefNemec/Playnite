@@ -182,5 +182,11 @@ if ($Package)
     New-ZipFromDirectory $OutputDir $packageName
 }
 
-(Get-FileHash (Join-Path $OutputDir "Playnite.dll") -Algorithm SHA256).Hash | Write-Host -ForegroundColor Green
+@{
+    "Playnite" = (Get-FileHash (Join-Path $OutputDir "Playnite.dll") -Algorithm SHA256).Hash;
+    "SDK" = (Get-FileHash (Join-Path $OutputDir "Playnite.SDK.dll") -Algorithm SHA256).Hash;
+    "DesktopApp" = (Get-FileHash (Join-Path $OutputDir "Playnite.DesktopApp.exe") -Algorithm SHA256).Hash;
+    "FullscreenApp" = (Get-FileHash (Join-Path $OutputDir "Playnite.FullscreenApp.exe") -Algorithm SHA256).Hash;
+} | ConvertTo-Json
+
 return $true

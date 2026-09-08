@@ -935,6 +935,12 @@ namespace Playnite.DesktopApp.ViewModels
                 }
 
                 game.Modified = changeDate;
+                if (database.Games.Get(game.Id) is null)
+                {
+                    Dialogs.ShowErrorMessage(LOC.GameDataUpdateSaveError.GetLocalized(), LOC.GameError.GetLocalized());
+                    continue;
+                }
+
                 database.Games.Update(game);
             }
 
