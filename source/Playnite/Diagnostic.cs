@@ -12,6 +12,12 @@ namespace Playnite
     {
         private static ILogger logger = LogManager.GetLogger();
 
+        public static string GetPlayniteChecksum()
+        {
+            var dllPath = Path.Combine(PlaynitePaths.ProgramPath, "Playnite.dll");
+            return FileSystem.GetSHA256(dllPath);
+        }
+
         private static List<string> GetPlayniteFilesList()
         {
             var progPath = PlaynitePaths.ProgramPath;

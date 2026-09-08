@@ -182,5 +182,5 @@ if ($Package)
     New-ZipFromDirectory $OutputDir $packageName
 }
 
-(Get-FileHash (Join-Path $OutputDir "Playnite.dll") -Algorithm SHA1).Hash | Write-Host -ForegroundColor Green
+(Get-FileHash (Join-Path $OutputDir "Playnite.dll") -Algorithm SHA256).Hash | Write-Host -ForegroundColor Green
 return $true
