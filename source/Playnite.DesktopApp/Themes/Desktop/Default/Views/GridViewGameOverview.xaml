@@ -31,7 +31,7 @@
                                     Command="{MainViewModel CloseGameSideBarCommand}"
                                     DockPanel.Dock="Top" Margin="0,10,15,5" />
 
-                            <TextBlock Text="{DynamicResource LOCErrorNoGameSelected}" 
+                            <TextBlock Text="{DynamicResource LOCErrorNoGameSelected}"
                                    Margin="0,20,0,0" DockPanel.Dock="Top"
                                    HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock.Style>
@@ -123,23 +123,23 @@
                                                 </Grid.Resources>
 
                                                 <Label Name="PART_ElemAdded" Content="{DynamicResource LOCDateAddedLabel}" />
-                                                <TextBlock Name="PART_TextAdded" VerticalAlignment="Center" />
-                                                
+                                                <TextBlock Name="PART_TextAdded" VerticalAlignment="Center" TextWrapping="Wrap" />
+
                                                 <Label Name="PART_ElemPlayTime" Content="{DynamicResource LOCTimePlayed}" />
-                                                <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" />
+                                                <TextBlock Name="PART_TextPlayTime" VerticalAlignment="Center" TextWrapping="Wrap" />
 
                                                 <Label Name="PART_ElemLastPlayed" Content="{DynamicResource LOCLastPlayed}" />
-                                                <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center" />
+                                                <TextBlock Name="PART_TextLastActivity" VerticalAlignment="Center" TextWrapping="Wrap" />
 
                                                 <Label Name="PART_ElemCompletionStatus" Content="{DynamicResource LOCCompletionStatus}" />
                                                 <Button Name="PART_ButtonCompletionStatus" VerticalAlignment="Center" />
 
                                                 <Label Name="PART_ElemInstallDirectory" Content="{DynamicResource LOCGameInstallDirTitle}" />
                                                 <Button Name="PART_ButtonInstallDirectory" VerticalAlignment="Center" />
-                                                
+
                                                 <Label Name="PART_ElemInstallSize" Content="{DynamicResource LOCInstallSizeLabel}" />
-                                                <TextBlock Name="PART_TextInstallSize" VerticalAlignment="Center" />
-                                                
+                                                <TextBlock Name="PART_TextInstallSize" VerticalAlignment="Center" TextWrapping="Wrap" />
+
                                                 <Label Name="PART_ElemLibrary" Content="{DynamicResource LOCGameProviderTitle}" />
                                                 <Button Name="PART_ButtonLibrary" VerticalAlignment="Center" />
 
@@ -198,7 +198,7 @@
                                                 <ItemsControl Name="PART_ItemsLinks" />
                                             </GridEx>
                                         </StackPanel>
-                                        
+
                                         <StackPanel Name="PART_ElemNotes" DockPanel.Dock="Top"
                                                     Margin="5,0,5,15">
                                             <TextBlock Text="{DynamicResource LOCNotesLabel}"
@@ -228,7 +228,7 @@
                                 </ScrollViewer>
                             </DockPanel>
                         </DockPanel>
-                    </Border>                    
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

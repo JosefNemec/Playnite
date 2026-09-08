@@ -273,6 +273,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Missing game background source</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertical spacing to game details</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Properties panel width</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details view game list position</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Draw separator between panels</sys:String>

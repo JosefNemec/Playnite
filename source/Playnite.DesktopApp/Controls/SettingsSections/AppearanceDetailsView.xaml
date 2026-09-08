@@ -36,6 +36,12 @@
                                    IsEnabled="{Binding Settings.IndentGameDetails}" />
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                <TextBlock Text="{DynamicResource LOCSettingsPropertiesPanelWidth}" VerticalAlignment="Center" />
+                <pctrls:LongNumericBox MinLongValue="0" MaxLongValue="4096" Width="60" Margin="10,0,0,0"
+                                       LongValue="{Binding Settings.PropertiesPanelWith}" />
+            </StackPanel>
+
             <GroupBox Header="Game list scroll">
                 <StackPanel Margin="12">
                     <StackPanel Orientation="Horizontal">

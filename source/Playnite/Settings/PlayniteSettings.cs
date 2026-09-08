@@ -403,6 +403,21 @@ namespace Playnite
             }
         }
 
+        private int propertiesPanelWith = 300;
+        public int PropertiesPanelWith
+        {
+            get
+            {
+                return propertiesPanelWith;
+            }
+
+            set
+            {
+                propertiesPanelWith = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Dock gridViewDetailsPosition = Dock.Right;
         public Dock GridViewDetailsPosition
         {
