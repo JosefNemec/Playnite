@@ -75,6 +75,18 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
 
+            SliderNavigationSpeed.Minimum = 20;
+            SliderNavigationSpeed.Maximum = 300;
+            SliderNavigationSpeed.TickFrequency = 10;
+            SliderNavigationSpeed.IsSnapToTickEnabled = true;
+            BindingTools.SetBinding(
+                SliderNavigationSpeed,
+                Slider.ValueProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.ListNavigationSpeed),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
             app = mainModel.App as FullscreenApplication;
             if (app.GameController != null)
             {

@@ -16,8 +16,10 @@ namespace Playnite.FullscreenApp.Controls
         private FullscreenTilePanel itemsPanel;
         private bool ignoreKeyRepeat = false;
         private bool ignoreMouseRepeat = false;
-        private readonly System.Timers.Timer keyRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 150 };
-        private readonly System.Timers.Timer mouseRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = 150 };
+        private readonly System.Timers.Timer keyRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = InputRepeatInterval };
+        private readonly System.Timers.Timer mouseRepeatTimer = new System.Timers.Timer { AutoReset = false, Interval = InputRepeatInterval };
+
+        public static int InputRepeatInterval { get; set; } = 150;
 
         static ListBoxEx()
         {
@@ -55,6 +57,7 @@ namespace Playnite.FullscreenApp.Controls
 
                 ignoreKeyRepeat = true;
                 keyRepeatTimer.Stop();
+                keyRepeatTimer.Interval = InputRepeatInterval;
                 keyRepeatTimer.Start();
             }
         }
@@ -74,6 +77,7 @@ namespace Playnite.FullscreenApp.Controls
 
             ignoreMouseRepeat = true;
             mouseRepeatTimer.Stop();
+            mouseRepeatTimer.Interval = InputRepeatInterval;
             mouseRepeatTimer.Start();
 
             // Not sure how this can happen since it's not null even if no physical keyboard is connected.

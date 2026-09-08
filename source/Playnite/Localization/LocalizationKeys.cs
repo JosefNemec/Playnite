@@ -4501,5 +4501,9 @@ namespace Playnite
         /// Guide button switches to Fullscreen mode
         /// </summary>
         public const string GuideButtonFullscreenSwitch = "LOCGuideButtonFullscreenSwitch";
+        /// <summary>
+        /// Game list navigation speed
+        /// </summary>
+        public const string GameListNavigationSpeed = "LOCGameListNavigationSpeed";
     }
 }

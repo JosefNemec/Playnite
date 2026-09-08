@@ -217,7 +217,7 @@ namespace Playnite.FullscreenApp.Controls
 
         // This has to be lower than key delay from ListBoxEx, because layout will get desynced otherwise.
         // TODO: fix the desync.
-        private readonly TimeSpan animationLength = new TimeSpan(0, 0, 0, 0, 140);
+        public static TimeSpan AnimationLength { get; set; } = new(0, 0, 0, 0, 140);
         private readonly DoubleAnimation scrollAnimation = new DoubleAnimation();
 
         public FullscreenTilePanel() : base()
@@ -706,7 +706,7 @@ namespace Playnite.FullscreenApp.Controls
         {
             if (SmoothScrollEnabled)
             {
-                BeginAnimation(HorizontalOffset, HorizontalOffset - itemWidth, animationLength, HorizontalOffsetProperty);
+                BeginAnimation(HorizontalOffset, HorizontalOffset - itemWidth, AnimationLength, HorizontalOffsetProperty);
             }
             else
             {
@@ -718,7 +718,7 @@ namespace Playnite.FullscreenApp.Controls
         {
             if (SmoothScrollEnabled)
             {
-                BeginAnimation(HorizontalOffset, HorizontalOffset + itemWidth, animationLength, HorizontalOffsetProperty);
+                BeginAnimation(HorizontalOffset, HorizontalOffset + itemWidth, AnimationLength, HorizontalOffsetProperty);
             }
             else
             {
@@ -730,7 +730,7 @@ namespace Playnite.FullscreenApp.Controls
         {
             if (SmoothScrollEnabled)
             {
-                BeginAnimation(VerticalOffset, VerticalOffset - itemHeight, animationLength, VerticalOffsetProperty);
+                BeginAnimation(VerticalOffset, VerticalOffset - itemHeight, AnimationLength, VerticalOffsetProperty);
             }
             else
             {
@@ -742,7 +742,7 @@ namespace Playnite.FullscreenApp.Controls
         {
             if (SmoothScrollEnabled)
             {
-                BeginAnimation(VerticalOffset, VerticalOffset + itemHeight, animationLength, VerticalOffsetProperty);
+                BeginAnimation(VerticalOffset, VerticalOffset + itemHeight, AnimationLength, VerticalOffsetProperty);
             }
             else
             {

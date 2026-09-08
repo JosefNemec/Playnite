@@ -405,6 +405,14 @@ namespace Playnite.FullscreenApp.ViewModels
             app.Controllers.Stopped += Controllers_Stopped;
             app.Controllers.StartupCancelled += Controllers_StartupCancelled;
             Microsoft.Win32.SystemEvents.DisplaySettingsChanged += SystemEvents_DisplaySettingsChanged;
+            SetListGameListNavigationSpeed();
+        }
+
+        private void SetListGameListNavigationSpeed()
+        {
+            ListBoxEx.InputRepeatInterval = AppSettings.Fullscreen.ListNavigationSpeed;
+            // This has to be lower than key delay from ListBoxEx, because layout will get desynced otherwise.
+            FullscreenTilePanel.AnimationLength = new(0, 0, 0, 0, AppSettings.Fullscreen.ListNavigationSpeed - 10);
         }
 
         private void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
@@ -667,6 +675,9 @@ namespace Playnite.FullscreenApp.ViewModels
             {
                 app.UpdateConfirmCancelBindings();
             }
+
+            if (e.PropertyName == nameof(FullscreenSettings.ListNavigationSpeed))
+                SetListGameListNavigationSpeed();
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)

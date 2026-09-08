@@ -719,5 +719,16 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private int listNavigationSpeed = 100;
+        public int ListNavigationSpeed
+        {
+            get => listNavigationSpeed;
+            set
+            {
+                listNavigationSpeed = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
