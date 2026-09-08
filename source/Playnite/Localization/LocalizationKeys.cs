@@ -990,6 +990,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsIndentGameDetails = "LOCSettingsIndentGameDetails";
         /// <summary>
+        /// Properties panel width
+        /// </summary>
+        public const string SettingsPropertiesPanelWidth = "LOCSettingsPropertiesPanelWidth";
+        /// <summary>
         /// Grid view details position
         /// </summary>
         public const string SettingsGridViewDetailsPosition = "LOCSettingsGridViewDetailsPosition";
