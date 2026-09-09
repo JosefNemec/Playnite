@@ -331,11 +331,18 @@ namespace Playnite.Controls
             ScrollViewer.SetHorizontalScrollBarVisibility(htmlPanel, ScrollBarVisibility.Disabled);
             ScrollViewer.SetVerticalScrollBarVisibility(htmlPanel, ScrollBarVisibility.Disabled);
 
-            moreButton = CreateMoreButton?.Invoke() ?? new Button();
-            moreButton.HorizontalAlignment = HorizontalAlignment.Center;
-            moreButton.Content = LOC.LoadMore.GetLocalized();
-            moreButton.Visibility = Visibility.Collapsed;
-            moreButton.Style = ResourceProvider.GetResource("LoadMoreButton") as Style;
+            if (DesignerTools.IsInDesignMode)
+            {
+                moreButton = new Button();
+            }
+            else
+            {
+                moreButton = CreateMoreButton?.Invoke() ?? new Button();
+                moreButton.HorizontalAlignment = HorizontalAlignment.Center;
+                moreButton.Content = LOC.LoadMore.GetLocalized();
+                moreButton.Visibility = Visibility.Collapsed;
+                moreButton.Style = ResourceProvider.GetResource("LoadMoreButton") as Style;
+            }
 
             moreButton.Click += (_, __) =>
             {
