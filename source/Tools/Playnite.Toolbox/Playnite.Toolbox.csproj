@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AssemblyName>Toolbox</AssemblyName>
     <Copyright>Copyright © Josef Nemec 2026</Copyright>
     <TargetFramework>net462</TargetFramework>
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <Platforms>x86</Platforms>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <None Include="..\..\..\references\Fonts\icofont.ttf">
       <Link>Templates\Themes\Fonts\icofont.ttf</Link>
@@ -34,11 +34,11 @@
   <ItemGroup>
     <Compile Remove="Templates\**" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Folder Include="Templates\Themes\Desktop\Fonts\" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <None Include="..\..\Playnite.DesktopApp\App.xaml">
       <Link>Templates\Themes\Desktop\App.xaml</Link>
@@ -85,7 +85,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\..\PlayniteSDK\Playnite.SDK.csproj" />
     <ProjectReference Include="..\..\Playnite\Playnite.csproj" />
