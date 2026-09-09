@@ -84,9 +84,9 @@
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
     <PackageReference Include="Flurl" Version="2.7.1" />
     <PackageReference Include="LiteDB" Version="4.1.4" />
-    <PackageReference Include="Magick.NET-Q8-x86" Version="14.16.0" />
-    <PackageReference Include="Magick.NET.Core" Version="14.16.0" />
-    <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="8.0.25" />
+    <PackageReference Include="Magick.NET-Q8-x86" Version="14.17.1" />
+    <PackageReference Include="Magick.NET.Core" Version="14.17.1" />
+    <PackageReference Include="Magick.NET.SystemWindowsMedia" Version="8.0.27" />
     <PackageReference Include="Markdig" Version="0.18.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="Nett" Version="0.10.1" />
