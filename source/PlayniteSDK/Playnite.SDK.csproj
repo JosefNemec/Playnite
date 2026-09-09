@@ -3,7 +3,7 @@
     <TargetFramework>net462</TargetFramework>
     <AssemblyName>Playnite.SDK</AssemblyName>
     <PackageId>PlayniteSDK</PackageId>
-    <Version>6.16.0.0</Version>
+    <Version>6.17.0.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>https://playnite.link/docs/changelog.html</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/JosefNemec/Playnite</PackageProjectUrl>
