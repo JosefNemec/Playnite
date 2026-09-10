@@ -27,14 +27,12 @@ Nezaškrtnuto - Odstranit kategorii
 Neurčen - Žádné změny (při úpravách více her)</sys:String>
     <sys:String x:Key="LOCNoCategory">Bez Kategorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Bez Platformy</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Jejda! Něco se pokazilo...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Nastala závažná chyba.
-        
-Pokud nám chcete pomoci chybu opravit, prosím krátce popište Váš postup před tím, než program spadl, a poté odešlete diagnostické informace. Pokud jste připojeni k internetu, tento balíček bude nahrán na server Playnite k analýze.
+    <sys:String x:Key="LOCCrashWindowTitle">Došlo k závažné chybě</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Popište prosím stručně kroky které vedly k pádu a pak odešlete diagnostické informace.
 
-Alternativně můžete použít tlačítko 'Nahlásit pád' pro vytvoření hlášení na GitHubu a nahlásit chybu manuálně.
+Případně můžete kliknout na tlačítko &quot;Nahlásit pád&quot; pro vytvoření nového reportu na GitHubu a nahlásit pád ručně.
 
-Děkujeme za pomoc.</sys:String>
+Děkujeme za vaši pomoc.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Rozšíření &quot;{0}&quot; způsobilo závažnou chybu.
 
 Doporučujeme uložit diagnostické soubory a nahlášení problému jejímu vývojáři. Pokud tento problém přetrvává, rozšíření zakažte.</sys:String>
@@ -44,9 +42,9 @@ Doporučujeme nahlásit problém jejímu vývojáři. Pokud tento problém přet
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Neznámé rozšíření nebo motiv způsobily neopravitelnou chybu.
 
 Doporučujeme zakázat všechna rozšíření třetích stran, izolovat problematické rozšíření a nahlásit problém jeho vývojáři.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Nastala závažná chyba.
-        
-Pokud nám chcete pomoci tento problém opravit, odešlete prosím diagnostické informace. Děkujeme.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Došlo k závažné chybě.
+
+Pokud nám chcete pomoci tento problém vyřešit, pošlete prosím diagnostické informace. Děkujeme.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Zakázat rozšíření</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Uložit log soubory</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Odeslat diag. info</sys:String>
@@ -273,6 +271,7 @@ Zvolením možnosti &quot;přidat do seznamu výjimek&quot; hry vyjmete z pří�
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Pro chybějící zdroj obálky hry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Pro chybějící zdroj pozadí hry</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikální odsazení podrobností o hře</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Šířka panelu vlastností</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozice detailů v zobrazení mřížky</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozice seznamu her v zobrazení detailů</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Vykreslovat oddělovač mezi panely</sys:String>
@@ -1264,4 +1263,8 @@ Reportujte problém na Playnite stránce GitHubu s požadavkem na opravu soubor�
     <sys:String x:Key="LOCNoControllersDetected">Nebyly nalezeny žádné ovladače</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Výchozí zdroj</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Vyhledávání webových obrázků se nezdařilo. To se může stát z různých důvodů. Na následujícím odkazu naleznete více informací a tipů na řešení tohoto problému.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Guide tlačítko přepne do režimu celé obrazovky</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Rychlost navigace v herním seznamu</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Aktualizace dat hry se nezdařila. Původní stav hry nebyl nalezen v knihovně, zdá se, že hra byla odstraněna.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Položku knihovny nelze odstranit. Položka nebyla v knihovně nalezena.</sys:String>
 </ResourceDictionary>

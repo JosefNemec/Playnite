@@ -27,14 +27,12 @@ Uitgevinkt - Verwijder categorie
 Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCNoCategory">Geen Categorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Geen Platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Oops! Er ging iets fout...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Er onherstelbare fout heeft opgetreden.
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Omschrijf kort de stappen hiervoor voordat het programma vastliep en stuur vervolgens gediagnosticeerde informatie.
 
-Als je ons wilt helpen dit probleem op te lossen, omschrijf dan alsjeblieft kort welke acties je hebt ondernomen vóór de crash, en maak dan een diagnose pakket. Als je online bent wordt dit pakket geüpload naar de Playnite server voor analyse.
+Optioneel klikt u op de knop 'Meld Fout' om een nieuw GitHub probleem aan te maken en de melding handmatig te melden.
 
-Als alternatief kan je de 'Rapporteer Crash' knop gebruiken om een nieuw probleem topic aan te maken op GitHub en de crash handmatig te rapporteren.
-
-Bedankt voor je hulp.</sys:String>
+</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Extensie {0} veroorzaakte een onherstelbare fout.
 
 We raden aan om het log bestand op te slaan en het probleem te rapporteren aan extensie ontwikkelaar. Als het probleem zich blijft voordoen. Schakel de extensie dan uit.</sys:String>
@@ -44,9 +42,9 @@ We raden aan om het probleem te rapporteren aan de extensie ontwikkelaar. Als he
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Onbekende extensie of thema veroorzaakte een onherstelbare fout.
 
 We bevelen aan extensies van derde partijen uit te schakelen, de problematische extensie te isoleren en het probleem te rapporteren aan de ontwikkelaar van die extensie.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Onherstelbare fout opgetreden.
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Er ontstond een onoplosbare fout.
 
-Als je ons wilt helpen dit probleem op te lossen, stuur ons dan alsjeblieft diagnostische informatie. Bedankt.</sys:String>
+Als u ons wilt helpen met het oplossen van deze fout, stuurt u alsjeblieft de gediagnosticeerde informatie. Bij voorbaat dank.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Schakel de extensie uit.</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Sla het log bestand op.</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Verstuur diag. info</sys:String>
@@ -277,6 +275,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Bron ontbrekende spelomslag</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Mist game achtergrond bron</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Verticale afstand tot speldetails</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Positie details in rasterweergave</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Positie spellijst in detailsweergave</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Teken scheidingslijn tussen panelen</sys:String>
@@ -1283,4 +1282,8 @@ Open het nieuwe probleem op Playnite's GitHub-pagina met een verzoek om corrupti
     <sys:String x:Key="LOCNoControllersDetected">Geen controllers gedetecteerd</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Het bijwerken van de spelgegevens is mislukt. De originele staat van het spel is niet in de bibliotheek gevonden, het duidt erop dat het spel verwijderd is.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

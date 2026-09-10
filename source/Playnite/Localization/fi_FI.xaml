@@ -27,15 +27,8 @@ Ei valittu - Poista kategoria
 Määrittelemätön - Ei muutoksia (kun muokataan useita pelejä)</sys:String>
     <sys:String x:Key="LOCNoCategory">Ei kategoriaa</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ei alustaa</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Hups, jokin meni pieleen…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Tapahtui peruuttamaton virhe.
-
-Jos haluat auttaa meitä korjaamaan tämän ongelman, kirjoita lyhyt kuvaus siitä, mitä teit ennen virheen tapahtumista ja lähetä
-diagnostiikkatiedot. Jos olet yhdistettynä verkkoon, paketti lähetetään Playnite-palvelimelle tutkimusta varten.
-
-Vaihtoehtoisesti voit painaa &quot;Ilmoita ohjelman kaatumisesta&quot; -nappia ja luoda GitHubiin uuden korjausehdotuksen ja raportoida virheen suoraan sinne.
-
-Kiitos avustasi.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Laajennus &quot;{0}&quot; aiheutti peruuttamattoman virheen.
 
 Suosittelemme, että tallennat lokitiedoston ja raportoit virheestä laajennuksen kehittäjälle. Jos ongelma toistuu, poista laajennus käytöstä.</sys:String>
@@ -43,9 +36,7 @@ Suosittelemme, että tallennat lokitiedoston ja raportoit virheestä laajennukse
 
 Suosittelemme, että raportoit virheestä laajennuksen kehittäjälle. Jos ongelma toistuu, ota laajennus pois käytöstä.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Peruuttamaton virhe tapahtui.
-
-Jos haluat auttaa meitä korjaamaan tämän ongelman, ole hyvä ja lähetä diagnostiikkatiedot. Kiitos.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Poista laajennus käytöstä</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Tallenna lokitiedosto</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Lähetä diagnostiikkatiedot</sys:String>
@@ -272,6 +263,7 @@ Jos valitset &quot;lisää ohituslistalle&quot; -valinnan näitä pelejä ei tuo
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuttuvan kansikuvan lähde</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Puuttuvan taustakuvan lähde</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Pystysuora välistys pelin lisätietoihin</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Ruudukkonäkymän tietojen paikka</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pelilistan asema lisätietonäkymässä</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Piirrä erotin paneelien väliin</sys:String>
@@ -1221,4 +1213,8 @@ Jos ongelmia ilmenee teeman tai laajennuksen asentamisen jälkeen, kokeile poist
     <sys:String x:Key="LOCNoControllersDetected"></sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

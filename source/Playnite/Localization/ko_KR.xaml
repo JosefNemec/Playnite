@@ -27,14 +27,8 @@
 다중 값 - 변경 사항 없음 (여러 게임 편집 시)</sys:String>
     <sys:String x:Key="LOCNoCategory">카테고리 없음</sys:String>
     <sys:String x:Key="LOCNoPlatform">플랫폼 없음</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">이런! 문제가 발생했어요…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">복구할 수 없는 오류가 발생했습니다.
-
-이 문제를 해결할 수 있도록 도움을 주시고 싶으시다면 오류가 발생하기 이전에 헀던 동작에 대해서 설명해주시고 분석 정보를 보내주세요. 온라인이면 패키지가 분석을 위해서 Playnite 서버로 보내집니다.
-
-또는 '충돌 보고' 버튼을 눌러서 GitHub에 직접 새로운 이슈를 만들어서 보고할 수도 있습니다.
-
-도움을 주셔서 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">확장 프로그램 &quot;{0}&quot;에 의해 복구할 수 없는 오류가 발생했습니다.
 
 로그 파일을 저장한 다음 확장 개발자에게 이 문제를 보고하는 것을 권장합니다. 오류가 계속 발생한다면 확장을 비활성화해주세요.</sys:String>
@@ -44,9 +38,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">알 수 없는 확장 프로그램 또는 테마로 인해 복구할 수 없는 오류가 발생했습니다.
 
 서드파티 애드온을 비활성화하고 문제가 있는 애드온을 제거한 뒤 애드온 개발자에게 이 문제를 보고하는 것을 권장합니다.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">복구할 수 없는 오류가 발생했습니다.
-
-이 이슈를 고칠 수 있도록 돕고 싶다면 분석 정보를 보내주세요. 감사합니다.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">확장 프로그램 비활성화</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">로그 파일 저장</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">분석 정보 보내기</sys:String>
@@ -273,6 +265,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">게임 이미지 없음</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">게임 배경 출처 없음</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">상세보기 세로 간격</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">바둑판식 방식에서 상세정보 위치</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">상세보기에서 게임 목록 위치</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">구분선 그리기</sys:String>
@@ -1262,4 +1255,8 @@ Playnite GitHub 페이지에서 손상된 파일을 수정해 달라는 이슈�
     <sys:String x:Key="LOCNoControllersDetected">컨트롤러가 감지되지 않음</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

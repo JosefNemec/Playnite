@@ -25,7 +25,7 @@
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCNoCategory">वर्ग नाही</sys:String>
     <sys:String x:Key="LOCNoPlatform">प्लॅटफॉर्म नाही</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">अरेरे! काहीतरी गडबड झाली आहे...</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve"></sys:String>
@@ -257,6 +257,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">गेम कव्हर स्रोत अनुपस्थित</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">गेम पार्श्वभूमी स्रोत अनुपस्थित</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">ग्रिड दृश्यात तपशील स्थान</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">तपशील दृश्यात गेम यादी स्थान</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">पॅनलांच्या मध्ये विभाजक लावा</sys:String>
@@ -1171,4 +1172,8 @@
     <sys:String x:Key="LOCNoControllersDetected">कोणतेही कंट्रोलर सापडले नाहीत</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

@@ -27,14 +27,8 @@ Märgistamata - Eemalda kategooria
 Määratlemata - Ei muuda (mitme mängu korraga muutmisel)</sys:String>
     <sys:String x:Key="LOCNoCategory">Kategooriata</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platvormita</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ups! Miskit läks valesti…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ilmnes parandamatu tõrge.
-
-Kui soovid aidata meil seda probleemi lahendada, kirjelda lühidalt enne kokkujooksmist tehtud toiminguid ja seejärel saada diagnostikateave. Kui oled internetiga ühendatud, siis laaditakse pakett analüüsimiseks Playnite'i serverisse.
-
-Võid ka klõpsata nupul &quot;Teavita krahhist&quot;, et teenuses GitHub luua uus probleemiteade ja teavitada krahhist käsitsi.
-
-Täname abi eest.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Laiendus &quot;{0}&quot; põhjustas parandamatu tõrke.
 
 Soovitame salvestada logifaili ja teavitada sellest probleemist laienduse arendajat. Probleemi järjepideval ilmnemisel keela laiendus.</sys:String>
@@ -44,9 +38,7 @@ Soovitame sellest probleemist teavitada laienduse arendajat. Probleemi järjepid
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Tundmatu laiendus või teema põhjustas parandamatu tõrke.
 
 Soovitame keelata 3. osapoole lisad, isoleerida problemaatilise ja teavitada sellest veast lisa arendajat.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ilmnes parandamatu tõrge.
-
-Kui soovid aidata meil seda probleemi lahendada, saada meile diagnostikateave. Aitäh.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Keela laiendus</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Salvesta logifail</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Saada diagn. teave</sys:String>
@@ -273,6 +265,7 @@ Kui valid valiku &quot;lisa välistamiste loendisse&quot;, ei impordita mänge u
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Puuduva mängu kaanepildi allikas</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Puuduva mängu taustpildi allikas</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Mängu üksikasjade vertikaalne vahe</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Ruudustiku vaates üksikasjade asukoht</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Mängude loendi asukoht üksikasjade vaates</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Joonesta paneelide vahele eraldaja</sys:String>
@@ -1264,4 +1257,8 @@ Ava Playnite'i GitHubi lehel uus vearaport taotlusega parandada oma rikutud fail
     <sys:String x:Key="LOCNoControllersDetected">Juhtpulte ei tuvastatud</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

@@ -27,14 +27,8 @@
 ביניים - ללא שינוי (בעריכה של מספר משחקים)</sys:String>
     <sys:String x:Key="LOCNoCategory">אין קטגוריה</sys:String>
     <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">אופס! משהו השתבש…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">קרתה שגיאה שלא ניתנת לתיקון.
-        
-אם ברצונך לעזור לנו לתקן את הבעיה, אנא תאר בקצרה את הפעולות שנעשו לפני הקריסה ולאחר מכן שלח מידע אבחוני. אם אתם מקוונים, האבחון יועלה לשרתי פליינייט לבדיקה.
-
-ניתן גם להשתמש בכפתור &quot;Report Crash&quot; ליצירת באג חדש בGitHub ולדווח על הקריסה באופן ידני.
-
-תודה על העזרה.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">ההרחבה &quot;{0}&quot; גרמה לשגיאה שלא ניתנת לתיקון.
 
 אנו ממליצים לשמור את קובץ הלוג ולדווח על הבעיה למפתח ההרחבה. אם הבעיה ממשיכה להופיע שוב, השבת את ההרחבה.
@@ -46,8 +40,7 @@
 
 אנו ממליצים להשבית הרחבות של צד שלישי, לבודד את הבעייתית ולדווח על הבעיה למפתח ההרחבה.
 </sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">אירעה שגיאה שלא ניתנת לתיקון.
-אם ברצונך לעזור לנו לתקן את הבעיה, אנא אבחן את התקלה ושלח לנו את מידע האבחון. תודה.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">השבתת ההרחבה</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">שמור קובץ יומן (log) </sys:String>
     <sys:String x:Key="LOCCrashSendDiag">שלח מידע אבחון</sys:String>
@@ -275,6 +268,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">מקור עטיפת משחק חסר</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">מקור רקע משחק חסר</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">ריווח אנכי לפרטי משחק</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">מיקום פרטי פריט רשת</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">מיקום רשימת משחקים בתצוגה מפורטת</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">צייר הפרדה בין פאנלים</sys:String>
@@ -1017,7 +1011,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">צמצם את פליינייט אחרי שמשחק מתחיל</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">גודל גופן</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">גודל גופן קטן</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">הפעל תמיכה ב-API של בקרי משחק</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">תמיכה בבקר משחק</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">אם כבוי, פליינייט לא יקבל שום קלט מאף בקר משחק</sys:String>
     <sys:String x:Key="LOCSettingsShowItemsMainMenuHeader">הצג פריטים בתפריט הראשי:</sys:String>
@@ -1266,6 +1260,10 @@ SHIFT-ENTER: פתיחת תפריט</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">האם לשמור את השינויים שביצעת?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">התקנה ניידת</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">לא נמצאו בקרים</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">מקור ברירת מחדל</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">חיפוש תמונות באינטרנט נכשל. זה יכול לקרות מסיבות שונות. עיין בקישור הבא לקבלת פרטים נוספים וטיפים לפתרון בעיות.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

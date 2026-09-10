@@ -27,14 +27,8 @@ Av - Fjern kategori
 Ubestemt - Ingen endringer (ved redigering av flere spill)</sys:String>
     <sys:String x:Key="LOCNoCategory">Ingen kategori</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ingen plattform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Huff da! Noe gikk galt ...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">En uopprettelig feil har oppstått.
-
-Hvis du vil hjelpe oss med å løse dette problemet, kan du kort beskrive handlingene som ble utført før krasjet, og deretter sende diagnoseinformasjon. Hvis du er tilkoblet internett, blir pakken lastet opp til Playnite-serveren for analyse.
-
-Alternativt kan du trykke på &quot;Rapporter krasj&quot;-knappen for å opprette en ny issue på GitHub og rapportere krasjet manuelt.
-
-Takk for hjelpen.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Utvidelsen &quot;{0}&quot; forårsaket en uopprettelig feil.
 
 Vi anbefaler at du lagrer loggfilen og rapporterer problemet til utvikleren av utvidelsen. Hvis problemet fortsetter bør du deaktivere utvidelsen.</sys:String>
@@ -44,9 +38,7 @@ Vi anbefaler at du rapporterer problemet til utvikleren av utvidelsen. Hvis prob
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">En ukjent utvidelse eller et ukjent tema forårsaket en uopprettelig feil.
 
 Vi anbefaler at du deaktiverer tredjepartstillegg etter tur for å isolere den som skaper problemer, og rapporterer feilen til utvikleren av tillegget.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Uopprettelig feil oppstod.
-
-Hvis du vil hjelpe oss med å løse dette problemet, gjerne send oss diagnoseinformasjon. Takk.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Deaktiver utvidelse</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Lagre loggfil</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Send diagnoseinformasjon</sys:String>
@@ -273,6 +265,7 @@ Velger du alternativet &quot;legg til ekskluderingsliste&quot;, blir ikke spille
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Kilde for manglende spillomslag</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Manglende bakgrunnskilde for spillet</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikal avstand til spilldetaljer</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detaljkolonnens posisjon i rutenettvisning</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spillistens posisjon i detaljvisning</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Tegn separator mellom panelene</sys:String>
@@ -1265,4 +1258,8 @@ Det angitte datoformatet vil bli brukt til alle andre datoer.</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Ingen kontrollere funnet</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

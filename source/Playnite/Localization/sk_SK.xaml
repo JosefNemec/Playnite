@@ -27,14 +27,8 @@ Nezačiarknuté - Odobrať kategóriu
 Neurčité - Žiadne zmeny (pri úprave viacerých hier)</sys:String>
     <sys:String x:Key="LOCNoCategory">Bez kategórie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Bez platformy</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ojoj! Niečo sa pokazilo…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Stala sa závažná chyba.
-
-Ak by ste nám chceli pomôcť chybu opraviť, opíšte prosím v skratke vaše akcie, ktoré viedli k pádu programu a následne odošlite diagnostický balíček. Ak ste pripojený na internet, tento balíček sa nahrá na servery Playnite a bude podrobený analýze.
-
-Prípadne môžete tiež použiť tlačítko 'Nahlásiť pád' a tým sa vytvorí nový záznam o chybe na GitHub kde budete môcť popísať problém sami.
-
-Ďakujeme za pomoc.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Rozšírenie &quot;{0}&quot; spôsobilo neodstrániteľnú chybu.
 
 Odporúčame uložiť súbor so záznamami (log) a nahlásiť tento problém vývojárovi rozšírenia. Ak problém pretrváva, tak toto rozšírenie vypnite.</sys:String>
@@ -44,9 +38,7 @@ Odporúčame to nahlásiť vývojárovi rozšírenia. Ak sa táto chyba opakuje,
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Neznáme rozšírenie alebo téma spôsobila neodstrániteľnú chybu.
 
 Odporúčame zakázať doplnky tretej strany, izolovanie problematického doplnku a nahlásenie chyby vývojárovi doplnku.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Vyskytla sa neopraviteľná chyba.
-
-Ak nám chcete pomôcť tento problém opraviť, odošlite prosím diagnostický balíček. Ďakujeme.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Vypnúť rozšírenie</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Uložiť záznamy (log)</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Odoslať diagnostické informácie</sys:String>
@@ -274,6 +266,7 @@ Výber možnosti „pridať do zoznamu vylúčených“ zabráni ďalšiemu impo
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Chýbajúci zdroj obalov hier</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Chýbajúci zdroj pozadí hier</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikálne odsadenie podrobností o hre</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozícia detailov v zobrazení mriežky</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozícia zoznamu hier v zobrazení detailov</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Vykresľovať oddelovač medzi panelmi</sys:String>
@@ -1204,4 +1197,8 @@ Pozadia: {2} mega pixelov</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nenašli sa žiadne ovládače</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

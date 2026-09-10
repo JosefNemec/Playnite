@@ -27,14 +27,8 @@ Non selezionato - Rimuovi categoria
 Indeterminato - Nessuna modifica (mentre si modificano più giochi)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nessuna categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nessuna piattaforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ops! Qualcosa è andato storto...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Si è verificato un errore irrecuperabile.
-
-Se vuoi aiutarci a risolvere questo problema, per favore descrivi brevemente le azioni intraprese prima del crash e poi invia le informazioni diagnostiche. Se sei online, il pacchetto sarà caricato sul server di Playnite per l'analisi.
-
-In alternativa, puoi cliccare sul pulsante &quot;Segnala Crash&quot; per creare un nuovo problema su GitHub e segnalare il crash manualmente.
-
-Grazie per il tuo aiuto.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">L'Estensione &quot;{0}&quot; ha causato un errore irreparabile.
 
 Consigliamo di salvare il file di registro e di riportare il problema allo sviluppatore dell'estensione. Se il problema persiste, disattivare l'estensione.</sys:String>
@@ -44,9 +38,7 @@ Consigliamo di riportare il problema allo sviluppatore dell'estensione. Se il pr
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Estensione o un tema sconosciuto hanno causato un errore irrecuperabile.
 
 Consigliamo di disattivare le estensioni di terze parti, isolando quello problematico e segnalando il problema allo sviluppatore dell'estensione.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Si è verificato un errore fatale.
- 
-Se vuoi aiutarci a risolvere questo problema, invia informazioni diagnostiche. Grazie.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Disattiva l'estensione</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Salva il file di registro</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Invia info di diagnostica</sys:String>
@@ -273,6 +265,7 @@ Selezionando l'opzione &quot;Aggiungi alla lista delle esclusioni&quot; i giochi
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte della copertina del gioco mancante</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Fonte dello sfondo di gioco mancante</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Spaziatura verticale ai dettagli del gioco</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posizione dettagli a griglia</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posizione lista dettagli</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Disegna separatore tra i pannelli</sys:String>
@@ -1276,4 +1269,8 @@ Apri un nuovo problema sulla pagina GitHub di Playnite con una richiesta di corr
     <sys:String x:Key="LOCNoControllersDetected">Nessun controllore rilevato</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Fonte predefinita</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Ricerca immagini web non riuscita. Questo può accadere per vari motivi. Vedere il seguente collegamento per maggiori dettagli e suggerimenti alla risoluzione dei problemi.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

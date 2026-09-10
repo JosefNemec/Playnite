@@ -27,14 +27,12 @@
 不確定 - 変更なし (複数のゲームを編集する場合)</sys:String>
     <sys:String x:Key="LOCNoCategory">カテゴリーなし</sys:String>
     <sys:String x:Key="LOCNoPlatform">プラットフォームなし</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">おっと！ 何か間違いがあったようです。</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">回復不能なエラーが発生しました。
+    <sys:String x:Key="LOCCrashWindowTitle">回復できないエラーが発生しました</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">クラッシュが発生する前の操作について簡単に説明し、その後、診断情報を送信してください。
 
-この問題の修正を支援する場合は、クラッシュの前に実行されたアクションを簡単に説明してから、診断パッケージを作成してください。オンラインの場合、そのパッケージは解析のためにPlayniteサーバーにアップロードされます。
+あるいは、「クラッシュを報告」ボタンをクリックして、新しいGitHubイシューを作成し、手動でクラッシュを報告することもできます。
 
-「クラッシュのレポート」ボタンを使用して、GitHubで新しい問題を作成し、クラッシュを手動でレポートすることもできます。
-
-ご協力ありがとうございます。</sys:String>
+ご協力ありがとうございました。</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">拡張機能 &quot;{0}&quot; で回復不能なエラーが発生しました。
 
 ログファイルを保存し、問題を拡張機能の開発者に報告することをお勧めします。問題が再発する場合は、拡張機能を無効にしてください。</sys:String>
@@ -273,6 +271,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">ゲームカバーのソースがない場合</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">ゲーム背景のソースがない場合</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">ゲーム詳細の垂直方向の間隔</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">プロパティ パネルの幅</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">グリッドビューの詳細表示の位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">ゲームリストの詳細表示の位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">パネル間のセパレーターを描画する</sys:String>
@@ -1267,6 +1266,10 @@ Playnite の Github ページで新しい issue を開き、ファイルの破�
     <sys:String x:Key="LOCUnsavedChangesAskMessage">変更した内容を保存しますか？</sys:String>
     <sys:String x:Key="LOCPortableInstallation">ポータブルインストール</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">コントローラーが検出されませんでした</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">既定のソース</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Web 画像検索に失敗しました。原因はいくつか考えられます。詳細やトラブルシューティングのヒントについては、次のリンクを参照してください。</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">ガイドボタンをフルスクリーンモードに切り替える</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">ゲームリストのナビゲーション速度</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">ゲームデータの更新に失敗しました。元のゲームの状態がライブラリに見つかりませんでした。ゲームが削除されたようです。</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">ライブラリ項目を削除できません。項目がライブラリに見つかりませんでした。</sys:String>
 </ResourceDictionary>

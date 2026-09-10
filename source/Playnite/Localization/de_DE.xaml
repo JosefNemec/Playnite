@@ -27,14 +27,8 @@ Deaktiviert - Kategorie entfernen
 Unentschieden - Keine Änderungen (beim Bearbeiten mehrerer Spiele)</sys:String>
     <sys:String x:Key="LOCNoCategory">Keine Kategorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Keine Plattform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Hoppla! Etwas ist schief gelaufen …</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ein nicht behebbarer Fehler ist aufgetreten.
-
-Falls du uns bei diesem Problem helfen möchtest, beschreibe bitte kurz die vor dem Absturz unternommenen Aktionen und sende dann die Diagnosedaten. Falls du online bist, werden diese zur Analyse auf den Playnite-Server hochgeladen.
-
-Ersatzweise kannst du auf die Schaltfläche »Absturz melden« klicken, um einen neuen Fehlerbericht auf GitHub zu erstellen und den Absturz manuell zu melden.
-
-Vielen Dank für deine Hilfe.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Erweiterung »{0}« hat einen nicht behebbaren Fehler verursacht.
 
 Wir empfehlen, die Diagnosedatei zu speichern und das Problem dem Entwickler der Erweiterung zu melden. Falls das Problem wiederholt auftritt, deaktiviere die Erweiterung.</sys:String>
@@ -44,9 +38,7 @@ Wir empfehlen, das Problem dem Entwickler der Erweiterung zu melden. Falls das P
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Unbekannte Erweiterung oder Design verursachte einen nicht behebbaren Fehler.
 
 Wir empfehlen alle Drittanbieter-Add-ons zu deaktivieren, um das problematische zu isolieren und das Problem dem Entwickler des Add-ons mitzuteilen.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ein nicht behebbarer Fehler ist aufgetreten.
-
-Falls du uns bei diesem Problem helfen möchtest, sende bitte Diagnoseinformationen. Vielen Dank.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Erweiterung deaktivieren</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Protokolldatei speichern</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Diagnoseinformationen senden</sys:String>
@@ -273,6 +265,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Quelle für fehlende Spielecover</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Quelle für fehlende Spielhintergründe</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikaler Abstand zu Spieldetails</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spielelistenposition in Detailansicht</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Trennlinien zwischen Leisten zeichnen</sys:String>
@@ -1264,4 +1257,8 @@ Melde das Problem auf der GitHub-Seite von Playnite mit einer Anfrage, die Besch
     <sys:String x:Key="LOCNoControllersDetected">Keine Controller erkannt</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

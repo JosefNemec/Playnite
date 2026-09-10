@@ -27,28 +27,28 @@ Não selecionada - Remove a categoria
 Indeterminada - Nenhuma alteração (quando editando vários jogos)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sem categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sem plataforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ops! Algo deu errado…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ocorreu um erro irrecuperável.
+    <sys:String x:Key="LOCCrashWindowTitle">Ocorreu um erro irrecuperável</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Por favor, descreva brevemente o que você estava fazendo antes da falha e, em seguida, envie as informações de diagnóstico.
 
-Se você deseja nos ajudar à arrumar este problema, por favor, explique brevemente as ações realizadas antes do erro, e envie os dados de diagnóstico. Se você estiver online, o pacote será enviado para os servidores da Playnite para análise.
+Como alternativa, você pode clicar no botão &quot;Reportar Falha&quot; para criar uma nova issue no GitHub e relatar o problema manualmente.
 
-Ou também, você pode clicar em &quot;Relatar Falha&quot; e criar um tópico no GitHub e relatar o travamento manualmente.
-
-Obrigado pela sua ajuda.</sys:String>
+Agradecemos pela ajuda.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">A extensão &quot;{0}&quot; causou um erro irrecuperável.
 
 Recomendamos que você salve o arquivo de log e relate o problema para o desenvolvedor da extensão. Se os problemas persistirem, desabilite a extensão.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">A extensão &quot;{0}&quot; causou um erro irrecuperável.
 
 Recomendamos que você relate o problema para o desenvolvedor da extensão. Se os problemas persistirem, desabilite a extensão.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Uma extensão ou tema desconhecido causou um erro irrecuperável.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Uma extensão ou tema desconhecido causou um erro irrecuperável.
+
+Recomendamos desativar os complementos de terceiros, isolar o que está com problemas e relatar a falha ao desenvolvedor do complemento.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ocorreu um erro irrecuperável.
- 
-Se você deseja nos ajudar a corrigir este problema, por favor envie informações de diagnóstico. Obrigado.</sys:String>
+
+Se quiser nos ajudar a corrigir este problema, envie as informações de diagnóstico. Obrigado.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Desabilitar extensão</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Salvar arquivo de log</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Enviar diagnóstico</sys:String>
-    <sys:String x:Key="LOCCrashReportIssue">Relatar falha</sys:String>
+    <sys:String x:Key="LOCCrashReportIssue">Reportar Falha</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">Reiniciar no modo de segurança</sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip">Desabilitando todas as extensões de terceiros e usando o tema padrão.</sys:String>
@@ -271,6 +271,7 @@ Selecionar a opção &quot;adicionar a lista de exclusão&quot; impedirá que o 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte da capa do jogo ausente</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Fonte do fundo do jogo ausente</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espaçamento vertical nos detalhes do jogo</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Largura do painel de propriedades</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posição dos detalhes na visualização de grade</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posição da lista de jogos na visualização de detalhes</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Desenhar separador entre painéis</sys:String>
@@ -383,7 +384,7 @@ Nunca: Não importe o tempo de jogo sob nenhuma circunstância.</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNewImportsOnly">Somente para jogos recém-importados</sys:String>
     <sys:String x:Key="LOCSettingsPlaytimeImportModeNever">Nunca</sys:String>
     <sys:String x:Key="LOCSettingsXInputInDesktopMode">Habilitar suporte para controles no modo janela</sys:String>
-    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">Botão painel abre o modo tela cheia</sys:String>
+    <sys:String x:Key="LOCSettingsXInputGuideOpensFullscreen">O botão Guia abre o modo Tela Cheia</sys:String>
     <sys:String x:Key="LOCSettingsDefaultMetadataDescription">Download automático de metadados para jogos importados recentemente.</sys:String>
     <sys:String x:Key="LOCSettingsTargetDisplay">Monitor de destino</sys:String>
     <sys:String x:Key="LOCSettingsAlwaysUsePrimaryDisplay">Sempre usar monitor principal</sys:String>
@@ -1024,7 +1025,7 @@ Desative se você usar ferramentas que traduzem entradas de controle de jogo par
     <sys:String x:Key="LOCSettingsSwapConfirmCancelButtonsDescriptions">Inverte o botão A/B para confirmação e cancelamento.</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Apenas o controlador primário</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Apenas aceitar as entradas do controlador primário quando habilitado.</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Botão guia foca o Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButton">O botão Guia foca no Playnite</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volume da interface</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volume em segundo plano</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Silenciar quando em segundo plano</sys:String>
@@ -1262,6 +1263,10 @@ Avise do problema na página do Playnite no GitHub com um pedido de correção.<
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Você quer salvar as alterações feitas?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Instalação portátil</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nenhum controle detectado</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Fonte padrão</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Busca de imagens web falhou. Isto pode acontecer por vários motivos. Consulte o seguinte link para mais detalhes e dicas de solução.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">O botão Guia alterna para o modo Tela Cheia</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Velocidade de navegação na lista de jogos</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Falha ao atualizar os dados do jogo. O estado original do jogo não foi encontrado na biblioteca; parece que ele foi removido.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Não foi possível remover o item da biblioteca. O item não foi encontrado na biblioteca.</sys:String>
 </ResourceDictionary>

@@ -27,14 +27,8 @@
 غير معروف - لا تغيرات (عند تحرير ألعاب متعددة)</sys:String>
     <sys:String x:Key="LOCNoCategory">بلا فئة</sys:String>
     <sys:String x:Key="LOCNoPlatform">بلا منصة</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">عفواً! حصل خطأ ما.</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">حدث خطأ غير قابل للاسترداد.
-
-إذا كنت تودّ مساعدتنا في حل هذه المشكلة، فالمرجو وصف الإجراءات التي تم اتخاذها قبل العطل الذي حصل ثم بعد ذلك قم بإنشاء حزمة تشخيص. إذا كنت متصلا بالأنترنت فسيتم رفع الحزمة على سيرفر Playnite ليتم تحليلها.
-
-بدلًا من ذلك، يمكنك استخدام زر خيار &quot;تبليغ الخلل&quot; لإنشاء خطأ جديد على GitHub والإبلاغ عن الأعطال يدويًا.
-
-شكرا لك على مساعدتك.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">تسبب الملحق &quot;{0}&quot; في حدوث خطأ لا يمكن إصلاحه.
 نوصي بحفظ ملف السجل والإبلاغ عن المشكلة لمطوّر الامتداد أو الملحق. إذا أستمرت المشكلة فقم بتعطيله.
 </sys:String>
@@ -42,9 +36,7 @@
 نوصي بالإبلاغ عن المشكلة لمطوّر الامتداد أو الملحق ، إذا أستمرت المشكلة مرة أخرى فقم بتعطيله</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">إضافة غير معروفة أو سمة جمالية &quot;ثيم&quot; قد تسببت بعطل لا يمكن اصلاحه.
 ننصحك بإقاف إضافات الطرف الثالث, وعزل الاضافات التي قد تسبب مشاكل, وإبلاغ مطور الإضافة بالمشكلة.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">حدث خطأ غير قابل للاسترداد.
-
-إذا أردت مساعدتنا في حل هذه المشكلة، فرجاءً قم بإرسال معلومات التّشخيص. شكرا لك.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">تعطيل التمديد
 </sys:String>
     <sys:String x:Key="LOCCrashSaveLog">حفظ ملف السجل</sys:String>
@@ -283,6 +275,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">مصدر غلاف اللعبة المفقود</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">مصدر خلفية اللعبة المفقود</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">التباعد العمودي لتفاصيل الألعاب</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">موضع تفاصيل العرض الشبكي</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">موضع عرض تفاصيل قائمة الألعاب</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">رسم فاصل بين اللوحات</sys:String>
@@ -1319,6 +1312,10 @@ SHIFT-ENTER: فتح قائمة العناصر</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">هل تريد حفظ التغييرات التي أجريتها؟</sys:String>
     <sys:String x:Key="LOCPortableInstallation">التثبيت المحمول</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">لم يتم العثور على أي وحدة تحكم</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">المصدر الافتراضي</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">فشل البحث عن صورة الويب. يمكن أن يحدث هذا لأسباب مختلفة. راجع الرابط التالي لمزيد من التفاصيل ونصائح استكشاف الأخطاء وإصلاحها.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>
