@@ -27,10 +27,8 @@
 Négyzet - Ne változzon (több játék állításakor)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nincs kategória</sys:String>
     <sys:String x:Key="LOCNoPlatform">Ismeretlen platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Hoppá! Valami hiba történt…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Helyrehozhatatlan hiba történt.
-
-Ha segíteni szeretnél a hiba elhárításában, röviden foglald össze, mit csináltál az összeomlás előtt és hozz létre egy diagnosztikai csomagot. Ha online vagy, a csomagot elküldöm a Playnite szerverre, elemzésre.
+    <sys:String x:Key="LOCCrashWindowTitle">Helyrehozhatatlan hiba történt</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Ha segíteni szeretnél a hiba elhárításában, röviden foglald össze, mit csináltál az összeomlás előtt és hozz létre egy diagnosztikai csomagot. Ha online vagy, a csomagot elküldöm a Playnite szerverre, elemzésre.
 
 Más esetben használhatod a 'Hibajelentés küldése' gombot, hogy új hibajegyet hozz létre a GitHub-on és kézzel készítsd el a hibáról az összefoglalót. Angol nyelven kommunikálj, ha kérhetem.
 
@@ -119,7 +117,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCClearCapLabel">TÖRÖL</sys:String>
     <sys:String x:Key="LOCClearLabel">Szűrők törlése</sys:String>
     <sys:String x:Key="LOCDismiss">Mégsem</sys:String>
-    <sys:String x:Key="LOCDismissAll">Inkább mégsem</sys:String>
+    <sys:String x:Key="LOCDismissAll">Összes törlése</sys:String>
     <sys:String x:Key="LOCImportLabel">Importálás</sys:String>
     <sys:String x:Key="LOCNameLabel">Név</sys:String>
     <sys:String x:Key="LOCAuthorLabel">Szerző</sys:String>
@@ -274,6 +272,7 @@ A &quot;hozzáadás a kivételekhez&quot; beállítást választva megakadályoz
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Helykitöltő borítókép</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Helykitöltő háttérkép</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Függőleges távolság a játékinfók felett</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Tulajdonságok panel szélessége</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Rácsnézet részletek helye</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Részletes nézet játéklista helye</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Elválasztó a panelek közé</sys:String>
@@ -1250,6 +1249,10 @@ Kérlek nyiss egy új jegyet a Playnite GitHub oldalán angolul, kérve, hogy ja
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Szeretnéd menteni változtatásaidat?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Hordozható (portable) telepítés</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nem található játékvezérlő</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Alapértelmezett forrás</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">A webes képkeresés sikerten. A hiba okáról és a hibaelhárítási tippekről az alábbi linken tudsz tájékozódni</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Guide/PS gomb teljes képernyőre vált</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Játéklista lépegetés sebessége</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Játékadatok frissítése sikertelen. Az eredeti játékállapot nem található a könyvtáradban, úgy tűnik a játékot eltávolították.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Nem lehet eltávolítani a játékot, mert nem található a játékkönyvtárban.</sys:String>
 </ResourceDictionary>

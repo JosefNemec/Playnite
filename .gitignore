@@ -280,3 +280,6 @@ source/PlayniteServices/twitchTokens.json
 XBOXONE.ttf
 PlayStation4.ttf
 source/Playnite.FullscreenApp/Themes/Fullscreen/Default/audio/*
+
+source/Playnite.Deps/include/*
+source/Playnite.Deps/include_native_x86/*

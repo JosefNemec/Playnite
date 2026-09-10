@@ -27,14 +27,8 @@ Non Sinalado - Eliminar Categoría
 Indeterminado - Sen Trocos (ó editar múltiples xogos)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sen categoría</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sen plataforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">¡Ups! Algunha cousa foi mal…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Sucedeu un erro irrecuperábel.
-
-Se desexa axudarnos a solucionar este problema, expoña brevemente as accións feitas antes do error e logo envíe a información de diagnose. Se está en liña, o paquete cargarase no servidor de Playnite para a súa análisise.
-
-Doutro xeito, pode premer no botón 'Informar do Erro' para crear unha nova versión de GitHub e informar do erro a man.
-
-Gracias pola súa axuda.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">A extensión &quot;{0}&quot; causou un erro irrecuperábel.
 
 Aconsellamos gardar o arquivo de rexistro e informar do erro ó desenvolvedor da extensión. Se o erro segue a repetirse, deshabilite a extensión.</sys:String>
@@ -42,9 +36,7 @@ Aconsellamos gardar o arquivo de rexistro e informar do erro ó desenvolvedor da
 
 Aconsellamos que informe do erro ó desenvolvedor da extensión. Se o erro segue a repetirse, deshabilite a extensión.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Unha extensión descoñecida ou un tema causou un erro irrecuperable.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Producíuse un erro irrecuperábel.
-
-Se desexa axudarnos a corexir este erro, por favor envíe a información de diagnose. Moitas grazas.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Deshabilitar extensión</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Gardar arquivo de rexistro</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Enviar información de diagnose</sys:String>
@@ -275,6 +267,7 @@ Debuxa o fondo do elemento da reixa</sys:String>
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Falta unha fonte da careta do xogo</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Falta a fonte de fondo do xogo</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espazamento vertical dos detalles do xogo</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posición de detalles da vista da reixa</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posición da lista de xogos á vista dos detalles</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Debuxa separador entre paneis</sys:String>
@@ -1261,4 +1254,8 @@ Abre un problema na páxina de GitHub de Playnite e solicita que se arranxe o pr
     <sys:String x:Key="LOCNoControllersDetected">Non se detectaron controladores</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

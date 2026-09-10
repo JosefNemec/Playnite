@@ -27,14 +27,12 @@ Bỏ chọn - Xóa danh mục
 Không xác định - Không thay đổi (khi chỉnh sửa nhiều trò chơi) </sys:String>
     <sys:String x:Key="LOCNoCategory">Không có danh mục</sys:String>
     <sys:String x:Key="LOCNoPlatform">Không có nền tảng</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Rất tiếc! Đã xảy ra lỗi.</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Đã xảy ra lỗi không thể khôi phục.
+    <sys:String x:Key="LOCCrashWindowTitle">Có lỗi không khắc phục được xảy ra</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Vui lòng mô tả ngắn gọn thao tác đã làm trước khi lỗi, và gửi kèm thông tin trẩn đoán.
 
-Nếu bạn muốn giúp chúng tôi khắc phục sự cố này, vui lòng mô tả ngắn gọn các hành động đã thực hiện trước khi xảy ra sự cố, sau đó gửi thông tin chẩn đoán cho chúng tôi. Nếu bạn đang trực tuyến, thông tin này sẽ được gửi lên máy chủ của Playnite để phân tích.
+Cách khác, bạn có thể nhấn vào nút 'Báo cáo Lỗi' để tạo mới yêu cầu trên GitHub, và báo cáo lỗi thủ công.
 
-Ngoài ra, bạn có thể nhấp vào nút 'Báo cáo sự cố' để tạo sự cố mới trên GitHub và báo cáo sự cố theo cách thủ công.
-
-Cám ơn sự giúp đỡ của bạn.</sys:String>
+Cảm ơn sự giúp đỡ của bạn.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Tiện ích mở rộng &quot;{0}&quot; đã gây ra lỗi không thể khôi phục.
 
 Chúng tôi khuyên bạn nên lưu tệp nhật ký và báo cáo vấn đề cho nhà phát triển của tiện ích. Nếu sự cố vẫn tái diễn, hãy tắt tiện ích mở rộng.</sys:String>
@@ -44,9 +42,9 @@ Chúng tôi khuyên bạn nên báo cáo vấn đề này cho nhà phát triển
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Tiện ích mở rộng không xác định hoặc chủ đề gây ra lỗi không thể khôi phục.
 
 Chúng tôi khuyên bạn nên tắt tiện ích bổ sung của bên thứ 3, cô lập tiện ích bổ sung có vấn đề và báo cáo vấn đề với nhà phát triển tiện ích bổ sung.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Đã xảy ra lỗi không thể khôi phục.
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Lỗi không thể khắc phục đã xảy ra.
 
-Nếu bạn muốn giúp chúng tôi khắc phục sự cố này, xin vui lòng gửi thông tin chẩn đoán đến cho chúng tôi. Xin cám ơn.</sys:String>
+Nếu bạn muốn giúp sửa lỗi này, vui lòng gửi thông tin trẩn đoán. Cảm ơn.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Tắt tiện ích mở rộng</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Lưu tệp nhật ký</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Gửi thông tin chuẩn đoán</sys:String>
@@ -273,6 +271,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Thiếu nguồn ảnh bìa trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Thiếu nguồn hình nền trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Khoảng cách dọc đến chi tiết trò chơi</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Chiều rộng khung thuộc tính</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Vị trí chi tiết chế độ xem lưới</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Chi tiết xem vị trí danh sách trò chơi</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Vẽ dấu phân cách giữa các bảng</sys:String>
@@ -1267,4 +1266,8 @@ Mở issue mới trên trang GitHub của Playnite để đề xuất sửa file
     <sys:String x:Key="LOCNoControllersDetected">Không phát hiện được thiết bị điều khiển nào</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Nguồn mặc định</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Tìm hình trên mạng lỗi. Có thể do một vài lý do. Xem đường liên kết sau để có chi tiết và gợi ý xử lý.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Nút Hướng Dẫn mở chế độ toàn màn hình</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Tốc độ duyệt danh sách trò chơi</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Không cập nhật được thông tin trò chơi. Trạng thái ban đầu trò chơi không thấy trong thư viện, có vẻ trò chơi đã được bỏ đi.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Không bỏ được mục trong thư viện. Mục đó không thấy trong thư viện.</sys:String>
 </ResourceDictionary>

@@ -1404,6 +1404,15 @@ namespace Playnite.DesktopApp.ViewModels
 
         private void GameControllerInputButtonChanged(object sender, OnControllerButtonStateChangedArgs e)
         {
+            if (AppSettings.EnableGameControllerSupport &&
+                AppSettings.GuideControllerButtonSwitchesFullscreen &&
+                e.Button == ControllerInput.Guide &&
+                e.State == ControllerInputState.Released)
+            {
+                SwitchToFullscreenMode();
+                return;
+            }
+
             foreach (var plugin in Extensions.Plugins.Values)
             {
                 try

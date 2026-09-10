@@ -38,7 +38,6 @@ namespace Playnite.DesktopApp.ViewModels
         public RelayCommand<object> AddEmulatedGamesCommand { get; private set; }
         public RelayCommand<object> AddWindowsStoreGamesCommand { get; private set; }
         public RelayCommand<object> OpenFullScreenCommand { get; private set; }
-        public RelayCommand<object> OpenFullScreenFromControllerCommand { get; private set; }
         public RelayCommand<object> ClearMessagesCommand { get; private set; }
         public RelayCommand<object> DownloadMetadataCommand { get; private set; }
         public RelayCommand<object> OpenSoftwareToolsCommand { get; private set; }

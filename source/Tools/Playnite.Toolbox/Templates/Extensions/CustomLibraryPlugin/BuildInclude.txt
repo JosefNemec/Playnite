@@ -1,13 +1,10 @@
-Properties\AssemblyInfo.cs
 Localization\en_US.xaml
 CustomLibraryPlugin.csproj
-CustomLibraryPlugin.sln
+CustomLibraryPlugin.slnx
 extension.yaml
 icon.png
-packages.config
 _name_.cs
 _name_Client.cs
 _name_Settings.cs
 _name_SettingsView.xaml
 _name_SettingsView.xaml.cs
-App.xaml

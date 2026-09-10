@@ -403,6 +403,21 @@ namespace Playnite
             }
         }
 
+        private int propertiesPanelWith = 300;
+        public int PropertiesPanelWith
+        {
+            get
+            {
+                return propertiesPanelWith;
+            }
+
+            set
+            {
+                propertiesPanelWith = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Dock gridViewDetailsPosition = Dock.Right;
         public Dock GridViewDetailsPosition
         {
@@ -1287,6 +1302,21 @@ namespace Playnite
             set
             {
                 disabledGameControllers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool guideControllerButtonSwitchesFullscreen = false;
+        public bool GuideControllerButtonSwitchesFullscreen
+        {
+            get
+            {
+                return guideControllerButtonSwitchesFullscreen;
+            }
+
+            set
+            {
+                guideControllerButtonSwitchesFullscreen = value;
                 OnPropertyChanged();
             }
         }

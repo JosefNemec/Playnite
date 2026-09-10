@@ -1,13 +1,10 @@
-Properties\AssemblyInfo.cs
 Localization\en_US.xaml
 CustomMetadataPlugin.csproj
-CustomMetadataPlugin.sln
+CustomMetadataPlugin.slnx
 extension.yaml
 icon.png
-packages.config
 _name_.cs
 _name_Provider.cs
 _name_Settings.cs
 _name_SettingsView.xaml
 _name_SettingsView.xaml.cs
-App.xaml

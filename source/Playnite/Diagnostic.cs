@@ -97,15 +97,16 @@ namespace Playnite
                     try
                     {
                         var extensionsPath = Path.Combine(diagTemp, "extensions.txt");
-                        File.AppendAllText(extensionsPath, "----- User data extensions: -----\n\n");
-                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName));
-                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesUserDataPath, PlaynitePaths.ThemeManifestFileName));
-                        if (PlayniteSettings.IsPortable)
+                        if (!PlayniteSettings.IsPortable)
                         {
-                            File.AppendAllText(extensionsPath, "\n\n----- Program dir extensions: -----\n\n");
-                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName));
-                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesProgramPath, PlaynitePaths.ThemeManifestFileName));
+                            File.AppendAllText(extensionsPath, "----- User data extensions: -----\n\n");
+                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsUserDataPath, PlaynitePaths.ExtensionManifestFileName));
+                            File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesUserDataPath, PlaynitePaths.ThemeManifestFileName));
                         }
+
+                        File.AppendAllText(extensionsPath, "\n\n----- Program dir extensions: -----\n\n");
+                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ExtensionsProgramPath, PlaynitePaths.ExtensionManifestFileName));
+                        File.AppendAllText(extensionsPath, GetManifestInfo(PlaynitePaths.ThemesProgramPath, PlaynitePaths.ThemeManifestFileName));
 
                         archive.CreateEntryFromFile(extensionsPath, Path.GetFileName(extensionsPath));
                     }
@@ -136,10 +137,10 @@ namespace Playnite
                         { "Path", PlayniteProcess.Path },
                         { "Cmdline", PlayniteProcess.Cmdline },
                         { "Elevated", PlayniteEnvironment.IsElevated },
-                        { "Playnite.DesktopApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.DesktopExecutablePath) },
-                        { "Playnite.FullscreenApp.exe_MD5", FileSystem.GetMD5(PlaynitePaths.FullscreenExecutablePath) },
-                        { "Playnite.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteAssemblyPath) },
-                        { "Playnite.SDK.dll_MD5", FileSystem.GetMD5(PlaynitePaths.PlayniteSDKAssemblyPath) }
+                        { "DesktopApp", FileSystem.GetSHA256(PlaynitePaths.DesktopExecutablePath) },
+                        { "FullscreenApp", FileSystem.GetSHA256(PlaynitePaths.FullscreenExecutablePath) },
+                        { "Playnite", FileSystem.GetSHA256(PlaynitePaths.PlayniteAssemblyPath) },
+                        { "SDK", FileSystem.GetSHA256(PlaynitePaths.PlayniteSDKAssemblyPath) }
                     };
 
                     File.WriteAllText(playnitePath, Serialization.ToJson(playniteInfo, true));

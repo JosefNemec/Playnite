@@ -27,14 +27,8 @@
 Неодређено - Без промена (када се измењује више игара)</sys:String>
     <sys:String x:Key="LOCNoCategory">Нема категорије</sys:String>
     <sys:String x:Key="LOCNoPlatform">Нема платформе</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Упс! Нешто је пошло наопако…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Непоправљива грешка се догодила.
-
-Ако желите да нам помогнете да поправимо овај проблем, молимо да кратко опишете све што сте радили пре грешке и онда пошаљете дијагностичке информације. Ако тренутно имате интернет конекцију, информације ће бити отпремљене на Playnite сервер за анализу.
-
-Алтернативно, можете користити &quot;Пријави проблем&quot; дугме да бисте пријавили нови проблем на GitHub-у и ручно пријавили проблем.
-
-Хвала вам за помоћ.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Екстензија &quot;{0}&quot; је проузроковала непоправљиву грешку.
 
 Препоручујемо вам да сачувате записни фајл и пријавите проблем девелоперу екстензије. Ако се проблем поново појављује, искључите екстензију.</sys:String>
@@ -44,9 +38,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Непозната екстензија или тема је изазвала непоправљиву грешку.
 
 Препоручујемо да онемогућите додатке треће стране, изолујете проблематични и пријавите проблем програмеру додатка.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Непоправљива грешка се догодила.
-
-Ако желите да нам помогнете да поправимо овај проблем, молимо да нам пошаљете дијагностичке информације. Хвала.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Искључи екстензију</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Сачувај записни фајл</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Пошаљи дијагностичке информације</sys:String>
@@ -273,6 +265,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Извор у случају да недостаје насловница игре</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Извор у случају да недостаје позадина игре</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Вертикални размак између детаља игре</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Позиција детаља у приказу мреже</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Позиција листе игара у приказу детаља</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Нацртај сеператор између панела</sys:String>
@@ -1255,4 +1248,8 @@ Playnite ће се аутоматски поновно покренути да �
     <sys:String x:Key="LOCNoControllersDetected">Ниједан контролер није препознат</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

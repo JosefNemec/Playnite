@@ -26,6 +26,12 @@
         <pctrls:CheckBoxEx x:Name="ToggleGuideFocus"
                            IsEnabled="{Binding IsChecked, ElementName=ToggleControllerInput}"
                            Content="{DynamicResource LOCSettingsRefocusOnGuidButton}"/>
+        <DockPanel Margin="0,10,0,10">
+            <TextBlock Text="{DynamicResource LOCGameListNavigationSpeed}"
+                       Style="{DynamicResource SettingsSectionText}"/>
+            <pctrls:SliderEx x:Name="SliderNavigationSpeed"
+                             DockPanel.Dock="Right" Margin="25,0,0,0"/>
+        </DockPanel>
         <pctrls:CheckBoxEx x:Name="ToggleControllerInput"
                            Content="{DynamicResource LOCSettingsXInputProcessing}"
                            Tag="{DynamicResource LOCSettingsXInputProcessingDescription}"/>

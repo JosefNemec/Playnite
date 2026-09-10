@@ -27,14 +27,8 @@
 Невизначено - Без змін (коли редагується кілька ігор)</sys:String>
     <sys:String x:Key="LOCNoCategory">Немає категорії</sys:String>
     <sys:String x:Key="LOCNoPlatform">Немає платформи</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Дідько! Щось пішло не так...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Сталася невиправна помилка.
-
-Якщо ви хочете допомогти нам виправити цю проблему, будь ласка коротко опишіть ваші дії до збою, після чого вишліть інформацію для діагностики. Якщо ви в мережі, пакунок буде надіслано на сервер Playnite для аналізу.
-
-Як альтернатива, ви можете натиснути на кнопку &quot;Повідомити про Збій&quot; щоб створити нову проблему на GitHub і повідомити про збій вручну.
-
-Дякуємо за вашу допомогу.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Розширення &quot;{0}&quot; призвело до невиправної помилки.
 
 Ми рекомендуємо зберегти лог-файл і повідомити про проблему розробнику розширення. Якщо проблема повторюється знову і знову, вимкніть розширення.</sys:String>
@@ -43,9 +37,7 @@
 Ми рекомендуємо повідомити про проблему розробнику розширення. Якщо проблема повторюється знову і знову, вимкніть розширення.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Невідоме розширення або тема спричинили непоправну помилку.
 Ми рекомендуємо відключити доповнення сторонніх розробників, виділити проблемне та повідомити про проблему розробнику доповнення.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Сталася невиправна помилка.
-
-Якщо ви хочете допомогти нам виправити цю проблему, будь ласка відправте інформацію для діагностики. Дякуємо.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Вимкнути розширення</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Зберегти лог-файл</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Вислати діаг. інформацію</sys:String>
@@ -272,6 +264,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Відсутнє джерело обкладинки гри</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Відсутнє джерело фонового зображення гри</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Вертикальний відступ до деталей гри</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Ширина панелі параметрів</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Розташування деталей у Сітці</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Розташування списку ігор в детальному перегляді</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Малювати розділювач між панелями</sys:String>
@@ -1265,6 +1258,10 @@ Playnite автоматично перезапуститься та почне �
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Бажаєте зберегти внесені зміни?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Портативна установка</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Контролерів не знайдено</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Джерело за замовчуванням</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Не вдалося знайти зображення в мережі. Причин може бути декілька. Перейдіть за посиланням, щоб дізнатися деталі та поради з усунення проблем.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Кнопка Guide відкриває повноекранний режим</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Швидкість навігації списку ігор</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

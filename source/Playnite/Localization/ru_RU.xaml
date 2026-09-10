@@ -27,14 +27,8 @@
 Не определено - Без изменений (когда редактируется несколько игр)</sys:String>
     <sys:String x:Key="LOCNoCategory">Нет категории</sys:String>
     <sys:String x:Key="LOCNoPlatform">Нет платформы</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ой! Что-то пошло не так…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Произошла неисправимая ошибка.
-        
-Если вы хотите помочь нам исправить эту проблему, кратко опишите действия, предпринятые перед сбоем, а затем отправьте сведения для диагностики. Если вы подключены к Интернету, диагностический пакет будет сам загружен на сервер Playnite для анализа.
-
-Кроме того, вы можете нажать на кнопку «Отчёт о сбое», чтобы самостоятельно указать на проблему в разделе «Issues» репозитория на GitHub, приложив туда этот отчёт.
-
-Спасибо вам за вашу помощь.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Расширение &quot;{0}&quot; вызвало неисправимую ошибку.
 
 Мы рекомендуем сохранить лог-файл и сообщить о проблеме разработчику расширения. Если проблема снова возникнет, отключите расширение.</sys:String>
@@ -44,9 +38,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Неизвестный компонент (расширение или тема) вызвал неустранимую ошибку.
 
 Рекомендуем поочередно отключать сторонние дополнения, чтобы выявить проблемное и затем рассказать о проблеме его разработчику.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Произошла неустранимая ошибка.
-
-Чтобы помочь решить проблему, пожалуйста, вышлите нам данные для диагностики. Спасибо.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Отключить расширение</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Сохранить лог файл</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Выслать диагн. данные</sys:String>
@@ -274,6 +266,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Источник при отсутствии обложки игры</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Источник при отсутствии фона игры</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Расстояние по вертикали до описания игр</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Ширина панели характеристик</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Положение панели подробностей</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Положение списка игр</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Рисовать разделитель между панелями</sys:String>
@@ -661,7 +654,7 @@
     <sys:String x:Key="LOCNever">Никогда</sys:String>
     <sys:String x:Key="LOCCompletionStatus">Статус</sys:String>
     <sys:String x:Key="LOCCompletionStatuses">Статус завершения</sys:String>
-    <sys:String x:Key="LOCUserScore">Оценка пользователей</sys:String>
+    <sys:String x:Key="LOCUserScore">Моя оценка</sys:String>
     <sys:String x:Key="LOCCriticScore">Оценка критиков</sys:String>
     <sys:String x:Key="LOCCommunityScore">Оценка сообщества</sys:String>
     <sys:String x:Key="LOCGameScripts">Скрипты игры</sys:String>
@@ -1270,6 +1263,10 @@ Playnite будет автоматически перезапущен для н�
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Сохранить сделанные вами изменения?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Портативная установка</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Контроллеры не обнаружены</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Источник по умолчанию</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Поиск изображений в интернете не удался. Это может произойти по разным причинам. Для получения более подробной информации и советов по устранению неполадок перейдите по следующей ссылке.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Кнопка Guide переключает в полноэкр. режим</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Скорость навигации по списку игр</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

@@ -27,14 +27,8 @@
 不决定 - 不做更改（编辑多个游戏时）</sys:String>
     <sys:String x:Key="LOCNoCategory">没有分类</sys:String>
     <sys:String x:Key="LOCNoPlatform">没有平台</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">糟糕，出错了！</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">发生了一个无法恢复的错误。
-
-如果您想要协助我们修复这个问题，请简要描述在发生这个错误之前您做过的行为，并发送诊断信息。如果您现在有连接网络，诊断数据包将被上传至 Playnite 服务器以供分析。
-
-或者，您可以点击“报告崩溃”按钮在 Github 上手动创建一个问题（issue）来反馈这次崩溃。
-
-感谢您的帮助。</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">扩展“{0}”导致了一个无法恢复的错误。
 
 我们建议保存日志文件并向扩展开发者报告该问题。若问题仍然发生，请禁用该扩展。</sys:String>
@@ -44,9 +38,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">未知的扩展或主题导致了一个无法恢复的错误。
 
 我们建议禁用第三方附加组件，隔离其中导致问题的附加组件并向其开发者报告该问题。</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">发生了不可恢复的错误。
-
-如果您想帮助我们解决此问题，请向我们发送诊断信息。 谢谢！</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">停用扩展</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">保存记录文件</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">发送诊断信息</sys:String>
@@ -273,6 +265,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">缺少游戏背景源</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">到游戏详情的竖直间距</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详情位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">详情视图游戏列表位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">在面板之间绘制分隔线</sys:String>
@@ -1262,6 +1255,10 @@ Playnite 将自动重启以开始备份过程。</sys:String>
     <sys:String x:Key="LOCUnsavedChangesAskMessage">您想要保存您所作的更改吗？</sys:String>
     <sys:String x:Key="LOCPortableInstallation">便携式安装</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">未检测到控制器</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">默认来源</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">网页图像搜索失败。这可能有各种原因。请参阅以下链接以了解更多详情和故障排除提示。</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

@@ -27,14 +27,8 @@ Nečekirano - Obriši kategoriju
 Neodređeno - Bez izmjena (kada izmjenjujete više igara)</sys:String>
     <sys:String x:Key="LOCNoCategory">Bez kategorije</sys:String>
     <sys:String x:Key="LOCNoPlatform">Bez platforme</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ups! Nešto je pošlo po krivom...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Neoporavljiva greška se dogodila.
-
-Ako nam želite pomoći popraviti situaciju, molimo opis poduzetih akcija prije pada, te slanje dijagnostičkih podataka. Ako ste priključeni na internet, paket će se učitati na Playnite poslužitelje za analizu.
-
-Alternativno, možete kliknuti na 'Prijavi Pad' tipku da napravite novi GitHub slučaj i prijavite pad ručno.
-
-Hvala ti na tvojoj pomoći.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Dodatak &quot;{0}&quot; uzrokovao je neoporavljivu grešku.
 
 Preporučamo da spremite datoteku zapisa i prijavite slučaj razvijatelju dodatka. Ako se slučaj ponovi, onemogućite dodatak.</sys:String>
@@ -44,9 +38,7 @@ Preporučamo da prijavite slučaj razvijatelju dodatka. Ako se slučaj ponovi, o
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Nepoznati dodatak ili tema su uzrokovali nepopravljivu grešku.
 
 Preporučujemo da isključite vanjske dodatke, izolirate problematični dodatak i prijavite problem razvojnom timu dodatka.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Nepopravljiva greška se dogodila.
-
-Ako nam želite pomoći da riješimo ovaj problem, molimo da nam pošaljete dijagnostičke informacije. Hvala vam.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Onemogući dodatak</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Spremi datoteku zapisa</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Pošalji dijag. info</sys:String>
@@ -271,6 +263,7 @@ Odabir opcije &quot;dodaj na listu izuzetaka&quot; će spriječiti da igre budu 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Izvor za igre koje nedostaju naslovnicu</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Izvor za igre koje nedostaju pozadinu</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikalni razmak detalja igre</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozicija detalja na rešetkastom prikazu</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozicija liste igara na detaljnom prikazu</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Nacrtaj separator između panela</sys:String>
@@ -1189,4 +1182,8 @@ Isključivanje ove postavke može dovesti do poteškoća s igrama koje ne dobiva
     <sys:String x:Key="LOCNoControllersDetected"></sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

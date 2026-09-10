@@ -50,6 +50,13 @@ namespace Playnite.Common
             }
         }
 
+        public static string GetSHA256(string filePath)
+        {
+            using var fileStream = File.OpenRead(filePath);
+            using var cryptoProvider = new SHA256CryptoServiceProvider();
+            return BitConverter.ToString(cryptoProvider.ComputeHash(fileStream)).Replace("-", "");
+        }
+
         public static bool AreFileContentsEqual(string path1, string path2)
         {
             var info1 = new FileInfo(path1);

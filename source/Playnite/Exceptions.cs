@@ -48,17 +48,17 @@ namespace Playnite
     {
         private static readonly ILogger logger = LogManager.GetLogger();
 
-        public static ExceptionInfo GetExceptionInfo(Exception exception, ExtensionFactory extensions)
+        public static ExceptionInfo GetExceptionInfo(Exception exception, ExtensionFactory extensions, bool customThemeInUse)
         {
             ExceptionInfo innerCrash = null;
             if (exception.InnerException != null)
             {
-                innerCrash = GetExceptionInfoImpl(exception.InnerException, extensions);
+                innerCrash = GetExceptionInfoImpl(exception.InnerException, extensions, customThemeInUse);
                 if (innerCrash.IsExtensionCrash || innerCrash.IsLiteDbCorruptionCrash)
                     return innerCrash;
             }
 
-            var crashInfo = GetExceptionInfoImpl(exception, extensions);
+            var crashInfo = GetExceptionInfoImpl(exception, extensions, customThemeInUse);
             // This usually happens if an exception occurs in XAML because of faulty custom theme.
             // The only stack entry would be Playnite's entry point or no entry at all.
             if ((innerCrash?.PlayniteStackCalls ?? 0 + crashInfo.PlayniteStackCalls) <= 1)
@@ -67,7 +67,7 @@ namespace Playnite
             return crashInfo;
         }
 
-        private static ExceptionInfo GetExceptionInfoImpl(Exception exception, ExtensionFactory extensions)
+        private static ExceptionInfo GetExceptionInfoImpl(Exception exception, ExtensionFactory extensions, bool customThemeInUse)
         {
             var crashInfo = new ExceptionInfo();
 
@@ -82,6 +82,13 @@ namespace Playnite
                     exception is PSInvalidOperationException ||
                     // Typical issue in themes where theme dev uses color where brush should be and vice versa
                     exception.Message.Contains("Media.Color") && exception.Message.Contains("Media.Brush"))
+                {
+                    crashInfo.IsExtensionCrash = true;
+                    return crashInfo;
+                }
+
+                // These are common suspects for issues with custom themes that often come up in automated crash reports.
+                if (customThemeInUse && exception is InvalidOperationException or InvalidCastException)
                 {
                     crashInfo.IsExtensionCrash = true;
                     return crashInfo;

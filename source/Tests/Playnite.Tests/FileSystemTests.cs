@@ -66,6 +66,7 @@ namespace Playnite.Tests
         {
             var testFile = Path.Combine(PlayniteTests.ResourcesPath, "TestIni.ini");
             StringAssert.AreEqualIgnoringCase("46fcb37aa8e69b4ead0d702fd459299d", FileSystem.GetMD5(testFile));
+            StringAssert.AreEqualIgnoringCase("551524459280522dd8f31c1217a6df8ca476b6700c837313bce31d3abb0952c5", FileSystem.GetSHA256(testFile));
             StringAssert.AreEqualIgnoringCase("D8B22F5D", FileSystem.GetCRC32(testFile));
         }
 

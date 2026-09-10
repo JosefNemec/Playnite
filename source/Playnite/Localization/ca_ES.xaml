@@ -27,12 +27,10 @@ No seleccionat - Eliminar categoria
 Indeterminat - Sense canvis (en editar diversos jocs)</sys:String>
     <sys:String x:Key="LOCNoCategory">Sense categoria</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sense plataforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Vaja! Alguna cosa ha anat malament…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">S'ha produït un error irrecuperable.
+    <sys:String x:Key="LOCCrashWindowTitle">S'ha produït un error irrecuperable</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Si us plau, descriu breument quines accions has dut a terme abans de la fallada i envia la informació de diagnòstic.
 
-Si ens vols ajudar a solucionar el problema, descriu breument les accions preses abans del problema i envia la informació de diagnosi. Si estàs connectat a Internet, el paquet es penjarà al servidor de Playnite per a analitzar-se.
-
-També pots clicar al botó 'Informar d'una fallada' per crear una nova incidència al Github i informar manualment del problema.
+Com a alternativa, pots fer clic al botó &quot;Informar d'una fallada&quot; per crear una nova incidència a GitHub i informar de la fallada manualment.
 
 Gràcies per la teva ajuda.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">L'extensió &quot;{0}&quot; ha provocat un error irrecuperable.
@@ -273,6 +271,7 @@ Si selecciones l'opció &quot;Afegir a la llista d'exclusions&quot;, s'evitarà 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Font de la caràtula faltant del joc</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Font de la imatge de fons faltant del joc</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espai vertical dels detalls del joc</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Amplada del panell de propietats</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posició de detalls en la vista de quadrícula</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posició de la llista de jocs en la vista detallada</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Posar un separador entre panells</sys:String>
@@ -1264,6 +1263,10 @@ Obre una nova incidència a la pàgina de GitHub de Playnite amb una sol·licitu
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Vols desar els canvis que has fet?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Instal·lació portàtil</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">No s'han detectat comandaments</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Font predeterminada</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Ha fallat la cerca d'imatges web. Pot ser per diverses raons. Segueix l'enllaç de sota per més detalls i consells de resolució.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">El botó Guia canvia al mode de pantalla completa</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Velocitat de desplaçament per la llista de jocs</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">No s'han pogut actualitzar les dades del joc. No s'ha trobat l'estat original del joc a la biblioteca; sembla que el joc s'ha eliminat.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">No s'ha pogut eliminar l'element de la biblioteca. L'element no s'ha trobat a la biblioteca.</sys:String>
 </ResourceDictionary>

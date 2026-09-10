@@ -27,14 +27,8 @@ Tidak dicek - Hilangkan kategori
 Tidak tentu - Tidak ada perubahan (ketika mengedit banyak game)</sys:String>
     <sys:String x:Key="LOCNoCategory">Tidak ada kategori</sys:String>
     <sys:String x:Key="LOCNoPlatform">Tidak ada Platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ups! ada kesalahan…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Kesalahan permanen telah terjadi.
-
-Jika butuh bantuan kami, mohon deskripsikan tindakan sebelum kegagalan, lalu kirim informasi diagnostik. Jika online, paket akan di unggah ke server Playnite untuk di analisa.
-
-Alternatifnya, anda bisa ketuk tombol 'Lapor Kegagalan' untuk membuat isu GitHub baru dan melaporkan kegagalan secara manual.
-
-Terimakasih atas bantuannya.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Ekstensi &quot;{0}&quot; menyebabkan masalah yang tidak dapat dipulihkan.
 
 Sebaiknya simpan file log dan laporkan masalah tersebut ke pengembang ekstensi. Jika masalah terus berulang, nonaktifkan ekstensi.</sys:String>
@@ -44,9 +38,7 @@ Sebaiknya laporkan masalah ini ke pengembang ekstensi. Jika masalah terus berula
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Ekstensi atau tema yang tidak dikenal menyebabkan kesalahan yang tidak dapat diperbaiki.
 
 Kami merekomendasikan untuk menonaktifkan add-on pihak ketiga, serta memisahkan add-on yang bermasalah dan melaporkan masalah kepada pengembang add-on.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Terjadi kesalahan yang tidak dapat dipulihkan.
-
-Jika kamu ingin membantu kami memperbaiki issue ini, mohon kirim informasi diagnostik. Terima kasih.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Nonaktifkan ekstensi</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Simpan file log</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Kirim info diag.</sys:String>
@@ -275,6 +267,7 @@ Mengaktifkan opsi ini akan melewatkan unduhan metadata pada bidang data yang sud
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Sumber cover game tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Sumber background game tidak ditemukan</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Spasi vertikal dalam detail game</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posisi detail Grid View</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posisi daftar game di Detail view</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Tambah separator di antara panel</sys:String>
@@ -1262,4 +1255,8 @@ Buka masalah baru di halaman GitHub Playnite dengan permintaan untuk memperbaiki
     <sys:String x:Key="LOCNoControllersDetected">Tidak ada kontroler yang terdeteksi</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

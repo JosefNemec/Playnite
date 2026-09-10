@@ -144,6 +144,9 @@ namespace Playnite.Extensions.Markup
             }
             else
             {
+                if (Paths.ContainsInvalidPathChars(relPath))
+                    return null;
+
                 relPath = Paths.FixSeparators(relPath).TrimStart(new char[] { Path.DirectorySeparatorChar });
                 string searchFile(string dir)
                 {

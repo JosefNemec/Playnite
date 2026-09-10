@@ -27,14 +27,8 @@
 Неопределено - Без промени (при редактиране на няколко игри)</sys:String>
     <sys:String x:Key="LOCNoCategory">Няма категория</sys:String>
     <sys:String x:Key="LOCNoPlatform">Няма платформа</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ами сега! Нещо се обърка...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Възникна непоправима грешка.
-
-Ако искате да ни помогнете да коригираме този проблем, моля, опишете накратко действията, предприети преди срива, и след това изпратете диагностична информация. Ако сте онлайн, пакетът ще бъде качен на сървъра на Playnite за анализ.
-
-Като алтернатива можете да щракнете върху бутона „Докладване за срив“, за да създадете нов проблем с GitHub и да докладвате ръчно за срива.
-
-Благодаря ви за помощта.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Разширение &quot;{0}&quot; предизвика непоправима грешка.
 
 Препоръчваме да запазите регистрационния файл и да докладвате за проблема на разработчика на разширението. Ако проблемът продължава да се появява, деактивирайте разширението.</sys:String>
@@ -44,9 +38,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Неизвестно разширение или тема причиниха непоправима грешка.
 
 Препоръчваме да деактивирате добавките на трети страни, да изолирате проблемната и да докладвате за проблема на разработчика на добавката.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Възникна непоправима грешка.
-
-Ако искате да ни помогнете да разрешим този проблем, моля, изпратете диагностична информация. Благодаря ви.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Деактивиране на разширението</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Запазване на регистрационния файл</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Изпращане на диаг. информация</sys:String>
@@ -273,6 +265,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Липсващ източник на обложката на играта</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Липсващ фонов източник на играта</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Вертикално разстояние до подробностите за играта</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Позиция на детайлите на мрежовия изглед</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Подробности за позицията на списъка с игри</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Изчертаване на разделител между панелите</sys:String>
@@ -1266,4 +1259,8 @@ Playnite автоматично ще се рестартира, за да ста
     <sys:String x:Key="LOCNoControllersDetected">Няма открити контролери</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

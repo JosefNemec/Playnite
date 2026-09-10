@@ -179,6 +179,11 @@ namespace Playnite.FullscreenApp.Controls.Views
                     BindingTools.SetBinding(HtmlDescription,
                         HtmlTextView.HtmlTextProperty,
                         nameof(GamesCollectionViewEntry.Description));
+                    BindingTools.SetBinding(HtmlDescription,
+                        HtmlTextView.PartialLoadEnabledProperty,
+                        mainModel.AppSettings,
+                        nameof(PlayniteSettings.PartialDescriptionLoading),
+                        mode: BindingMode.OneWay);
                     HtmlDescription.TemplatePath = ThemeFile.GetFilePath("DescriptionView.html");
                 }
 

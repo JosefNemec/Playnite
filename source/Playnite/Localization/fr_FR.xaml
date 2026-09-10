@@ -27,14 +27,8 @@ Non sélectionné - Retire une catégorie
 Indéterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCNoCategory">Sans catégorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sans plateforme</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Oh non, quelque chose s'est mal passé…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Une erreur est survenue.
-        
-Si vous souhaitez nous aider à corriger ce problème, vous pouvez brièvement décrire ce que vous faisiez au moment du crash puis créer un dossier de diagnostic. Si vous êtes connecté à internet, le rapport généré sera automatiquement envoyé aux serveurs de Playnite pour être analysé.
-
-Vous pouvez également cliquer sur le bouton 'Signaler un Crash' pour créer une nouvelle entrée dans GitHub et rédiger le rapport de crash manuellement. 
-
-Merci de votre aide.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">L'extension &quot;{0}&quot; a causé une erreur critique.
 
 Il est recommandé de signaler ce problème au développeur de l'extension (via un fichier log) et de la désactiver si il devait persister.</sys:String>
@@ -44,9 +38,7 @@ Il est recommandé de signaler ce problème au développeur de l'extension et de
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Une extension ou un thème a provoqué une erreur irrécupérable.
 
 Nous vous recommandons de désactiver les modules complémentaires, d'isoler celui qui pose problème et de signaler le problème au développeur du module en question.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur est survenue.
-        
-Si vous souhaitez nous aider à corriger ce problème, veuillez créer un rapport de bug. Merci.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Désactiver l'extension</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Enregistrer le fichier log</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Envoyer les informations de diagnostic</sys:String>
@@ -213,7 +205,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCMetaGameSourceFiltered">Tous les jeux actuellement filtrés</sys:String>
     <sys:String x:Key="LOCMetaGameSourceSelected">Le ou les jeux actuellement sélectionnés</sys:String>
     <sys:String x:Key="LOCMetaNoFieldsSelectedErrorCaption">Aucun champ de métadonnées sélectionné</sys:String>
-    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Aucun champ de métadonnées n'est sélectionné pour le téléchargement. Veuillez en sélectionner au moins un, et activer au moins un fournisseur de métadonnées.</sys:String>
+    <sys:String x:Key="LOCMetaNoFieldsSelectedErrorMessage">Aucun champ de métadonnées n'a été sélectionné pour le téléchargement. Veuillez en sélectionner au moins un, puis activez au moins un fournisseur de métadonnées.</sys:String>
     <sys:String x:Key="LOCMetaSourceStore">Magasin officiel</sys:String>
     <sys:String x:Key="LOCMetaSourceIGDB">IGDB</sys:String>
     <sys:String x:Key="LOCMetaDescriptionFields">Veuillez sélectionner les champs qui doivent être automatiquement remplis par Playnite et les sources à utiliser pour obtenir les données.</sys:String>
@@ -273,6 +265,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Type de jaquette par défaut</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Image de fond par défaut</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espacement vertical par rapport aux détails du jeu</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Largeur du panneau de propriétés</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Position des détails (affichage en grille)</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Position de la liste (affichage détaillé)</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Afficher un séparateur entre les panneaux</sys:String>
@@ -646,7 +639,7 @@ Plus d'informations sur https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCDoNothing">Ne rien faire</sys:String>
     <sys:String x:Key="LOCMinimize">Minimiser</sys:String>
     <sys:String x:Key="LOCRestoreWindow">Restaurer</sys:String>
-    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restaurer la fenêtre uniquement lorsque lancé depuis l'interface utilisateur</sys:String>
+    <sys:String x:Key="LOCRestoreWindowOnlyFromUI">Restaurer seulement si le jeu a été lancé depuis Playnite</sys:String>
     <sys:String x:Key="LOCClose">Fermer</sys:String>
     <sys:String x:Key="LOCChange">Changer</sys:String>
     <sys:String x:Key="LOCAdvanced">Avancé</sys:String>
@@ -972,7 +965,7 @@ Pour installer ou désinstaller des intégrations, utilisez le gestionnaire d'ex
     <sys:String x:Key="LOCActionTrackingModeDirectory">Dossier</sys:String>
     <sys:String x:Key="LOCActionTrackingOriginalProcess">Processus originel</sys:String>
     <sys:String x:Key="LOCActionTrackingProcessName">Nom du processus</sys:String>
-    <sys:String x:Key="LOCDevelTraceLogEnable">Log</sys:String>
+    <sys:String x:Key="LOCDevelTraceLogEnable">Activer les traces log</sys:String>
     <sys:String x:Key="LOCMultiEditOverwriteWarning">Les modifications suivantes vont écraser les données pour tous les jeux sélectionnés !</sys:String>    
     <sys:String x:Key="LOCGridViewSpacingModeNone">Aucun</sys:String>
     <sys:String x:Key="LOCGridViewSpacingModeUniform">Uniforme</sys:String>
@@ -1009,7 +1002,7 @@ Pour installer ou désinstaller des intégrations, utilisez le gestionnaire d'ex
 Désactiver cette option peut créer des problèmes de lancement avec certains jeux.</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Taille de police</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Taille de police réduite</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi">Activer la prise en charge de l'API de la manette de jeu</sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Activer l'API de prise en charge des manettes de jeu</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Prise en charge des manettes de jeu</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Si désactivé, Playnite n'acceptera aucune entrée de contrôleur de jeu.
         
@@ -1261,6 +1254,10 @@ Si vous voyez ce message, veuillez ouvrir un ticket sur la page Github de Playni
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Voulez-vous enregistrer les modifications que vous avez apportées ?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Installation portable</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Aucune manette détectée</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Source par défaut</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">La recherche d'image Web a échoué. Cela peut se produire pour diverses raisons. Consultez le lien suivant pour plus de détails et des conseils de dépannage.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Vitesse de défilement de la liste de jeux</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

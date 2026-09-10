@@ -58,13 +58,16 @@ namespace Playnite.Common
             "DXSETUP",
             @"vc_redist\.x64",
             @"vc_redist\.x86",
-            @"^UnityCrashHandler32\.exe$",
-            @"^UnityCrashHandler64\.exe$",
             @"^notification_helper\.exe$",
             @"^python\.exe$",
             @"^pythonw\.exe$",
             @"^zsync\.exe$",
-            @"^zsyncmake\.exe$"
+            @"^zsyncmake\.exe$",
+            "update",
+            "vcredist",
+            "crashhandler",
+            "crashreport",
+            "helper",
         };
 
         private static ILogger logger = LogManager.GetLogger();

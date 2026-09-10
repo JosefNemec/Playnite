@@ -94,11 +94,11 @@ namespace Playnite
         /// </summary>
         public const string NoPlatform = "LOCNoPlatform";
         /// <summary>
-        /// Whoops! Something went wrong…
+        /// An unrecoverable error has occurred
         /// </summary>
         public const string CrashWindowTitle = "LOCCrashWindowTitle";
         /// <summary>
-        /// An unrecoverable error has occurred.
+        /// Please briefly describe the actions taken before the crash, and then send diagnostic information.
         /// </summary>
         public const string CrashDescription = "LOCCrashDescription";
         /// <summary>
@@ -114,7 +114,7 @@ namespace Playnite
         /// </summary>
         public const string ExtCrashDescriptionUknown = "LOCExtCrashDescriptionUknown";
         /// <summary>
-        /// Unrecoverable error occurred.
+        /// An unrecoverable error has occurred.
         /// </summary>
         public const string CrashDescriptionFullscreen = "LOCCrashDescriptionFullscreen";
         /// <summary>
@@ -989,6 +989,10 @@ namespace Playnite
         /// Vertical spacing to game details
         /// </summary>
         public const string SettingsIndentGameDetails = "LOCSettingsIndentGameDetails";
+        /// <summary>
+        /// Properties panel width
+        /// </summary>
+        public const string SettingsPropertiesPanelWidth = "LOCSettingsPropertiesPanelWidth";
         /// <summary>
         /// Grid view details position
         /// </summary>
@@ -3138,7 +3142,7 @@ namespace Playnite
         /// </summary>
         public const string UrlNavigationMessage = "LOCUrlNavigationMessage";
         /// <summary>
-        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage.
+        /// The selected image(s) might be too large for optimal performance. Using very large images can result in worse UI responsiveness and increased memory usage. 
         /// </summary>
         public const string GameImageSizeWarning = "LOCGameImageSizeWarning";
         /// <summary>
@@ -4494,8 +4498,24 @@ namespace Playnite
         /// </summary>
         public const string DefaultWebImageSource = "LOCDefaultWebImageSource";
         /// <summary>
-        /// Default source
+        /// Web image search failed. This can happen for various reasons. See the following link for more details and troubleshooting tips.
         /// </summary>
         public const string WebImageDownloadError = "LOCWebImageDownloadError";
+        /// <summary>
+        /// Guide button switches to Fullscreen mode
+        /// </summary>
+        public const string GuideButtonFullscreenSwitch = "LOCGuideButtonFullscreenSwitch";
+        /// <summary>
+        /// Game list navigation speed
+        /// </summary>
+        public const string GameListNavigationSpeed = "LOCGameListNavigationSpeed";
+        /// <summary>
+        /// Failed to update game data. The original game state was not found in the library, looks like the game has been removed.
+        /// </summary>
+        public const string GameDataUpdateSaveError = "LOCGameDataUpdateSaveError";
+        /// <summary>
+        /// Can't remove library item. The item was not found in the library.
+        /// </summary>
+        public const string LibraryDataRemovalNotFound = "LOCLibraryDataRemovalNotFound";
     }
 }

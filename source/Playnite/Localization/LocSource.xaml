@@ -27,10 +27,8 @@ Unchecked - Remove category
 Indeterminate - No changes (when editing multiple games)</sys:String>
     <sys:String x:Key="LOCNoCategory">No Category</sys:String>
     <sys:String x:Key="LOCNoPlatform">No Platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Whoops! Something went wrong…</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">An unrecoverable error has occurred.
-
-If you would like to help us fix this issue, please briefly describe the actions taken before the crash, and then send diagnostic information. If you are online, the package will be uploaded to the Playnite server for analysis.
+    <sys:String x:Key="LOCCrashWindowTitle">An unrecoverable error has occurred</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Please briefly describe the actions taken before the crash, and then send diagnostic information.
 
 Alternatively, you can click on the 'Report Crash' button to create a new GitHub issue and report the crash manually.
 
@@ -44,7 +42,7 @@ We recommend reporting the issue to extension's developer. If the issue keeps re
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Unknown extension or a theme caused an unrecoverable error.
 
 We recommend disabling 3rd party add-ons, isolating the problematic one and reporting the issue to add-on's developer.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Unrecoverable error occurred.
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">An unrecoverable error has occurred.
 
 If you want to help us fix this issue, please send diagnostic information. Thank you.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Disable extension</sys:String>
@@ -273,6 +271,7 @@ Selecting "add to exclusion list" option will prevent games from being imported 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Missing game cover source</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Missing game background source</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertical spacing to game details</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Properties panel width</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Grid view details position</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Details view game list position</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Draw separator between panels</sys:String>
@@ -1264,4 +1263,8 @@ Open new issue on Playnite's GitHub page with a request to fix corruption in you
     <sys:String x:Key="LOCNoControllersDetected">No controllers detected</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Default source</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Web image search failed. This can happen for various reasons. See the following link for more details and troubleshooting tips.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Guide button switches to Fullscreen mode</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Game list navigation speed</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Failed to update game data. The original game state was not found in the library, looks like the game has been removed.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Can't remove library item. The item was not found in the library.</sys:String>
 </ResourceDictionary>

@@ -27,14 +27,8 @@ Atžymėžta - Pašalinti kategoriją
 Nepažymėta - Jokių pakeitimų (Kai modifikuojami keli žaidimai)</sys:String>
     <sys:String x:Key="LOCNoCategory">Nenurodyta kategorija</sys:String>
     <sys:String x:Key="LOCNoPlatform">Nenurodyta platforma</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">Ooops!Taškas nutiko blogai...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Įvyko nepataisoma klaida.
-
-Jei norite padėti išspręsti šią problemą, trumpai apibūdinkite, ką darėt prieš užlužima, tada atsiųskite diagnostikos informaciją. Jei esate prisijungę, paketas bus įkeltas į Playnite serverį analizei.
-
-Arba galite spustelėti mygtuką „Pranešti apie gedimą“, kad sukurtumėte naują „GitHub“ problemą ir praneštumėte apie gedimą rankiniu būdu.
-
-Ačiū už pagalbą.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Plėtinys &quot;{0}&quot; sukėlė nesuprantama klaida.
 
 Mes rekomenduojame išsaugoti &quot;log&quot; failą ir pranešti problema plėtinio kurėjui.Jeigu klaida tesiasi, išjunkite plėtinį.</sys:String>
@@ -44,9 +38,7 @@ Mes rekomenduojame pranešti problema plėtinio kurėjui.Jeigu klaida tesiasi, i
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Nežinomas priedo ar tema sukėlė nepataisoma klaida.
 
 Rekomenduojame išjungti trečiūjų šalių priedus, izoliuoti problematiška prieda ir pranešti gedimą  priedo kūrėjui ne mum</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Nesuprantama atsitiko klaida.
-
-Jeigu norite padėti sutaisyti klaidą, atsiųskite diagnostine informaciną.Ačių.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Išjunkite plėtinį</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Išsaugoti &quot;log&quot; failą</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Siųsti diag. informaciją</sys:String>
@@ -273,6 +265,7 @@ Pasirinkus opciją &quot;pridėti į išimčių sąrašą&quot; programa neleis 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Nenurodytas žaidimo viršelio šaltinis</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Nenurodytas žaidimo fono šaltinis</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikalus atsstumas tarp žaidimų detalių</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Papildomos informacijos pozicija tinklelio rėžimu</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Detalus žaidimų pozicijų sarašas</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Rodyti skirtuka tarp panelių</sys:String>
@@ -1185,4 +1178,8 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCNoControllersDetected"></sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

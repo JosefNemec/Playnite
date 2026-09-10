@@ -503,8 +503,12 @@ namespace Playnite
                 return;
             }
 
+            var customThemeInUse = Mode == ApplicationMode.Desktop ?
+                AppSettings.Theme != ThemeManager.DefaultDesktopThemeId :
+                AppSettings.Fullscreen.Theme != ThemeManager.DefaultFullscreenThemeId;
+
             var exception = (Exception)e.ExceptionObject;
-            var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions);
+            var crashInfo = Exceptions.GetExceptionInfo(exception, Extensions, customThemeInUse);
             logger.Error(exception, $"Unhandled exception occured.");
             logger.Error($"HResult: 0x{exception.HResult:X8}");
             if (exception is Win32Exception win32exc)
@@ -537,10 +541,18 @@ namespace Playnite
 
                 // This started happening after the infamous 2026 January Win 11 update, Smart App Control is agersively blocking unsigned files from loading.
                 // Based on crash reports, this usually happens to SDL's and CefSharp's dlls, also random plugins.
-                if ((exception is FileLoadException || exception is DllNotFoundException) &&
-                    exception.Message.Contains("0x800711C7")) // This is actually not set in HResult, it's in exception message and replaced by .NET to generic 0x80131524
+                // 0x800711C7 is actually not set in HResult, it's in exception message and replaced by .NET to generic 0x80131524
+                if ((exception is FileLoadException or DllNotFoundException && exception.Message.Contains("0x800711C7")))
                 {
                     Dialogs.ShowErrorMessage("Failed to load dependencies needed for Playnite to continue operating properly.\n\nThis is usually caused by Windows Smart App Control blocking dlls in Playnite's install folder.");
+                    Process.GetCurrentProcess().Kill();
+                    return;
+                }
+
+                // There's bunch of crashes from people with IOException running from network share or external devices tied to LiteDB
+                if (exception is IOException && exception.StackTrace?.Contains("LiteDB") == true)
+                {
+                    Dialogs.ShowErrorMessage("File system I/O error detected.");
                     Process.GetCurrentProcess().Kill();
                     return;
                 }
@@ -549,6 +561,9 @@ namespace Playnite
                 if (exception is MissingMethodException ||
                     exception is BadImageFormatException ||
                     exception is InvalidProgramException ||
+                    exception is DllNotFoundException ||
+                    exception is EntryPointNotFoundException ||
+                    exception is TypeLoadException ||
                     // Looks like there are some nested TargetInvocationException with MissingMethodException actual extension,
                     // which seems to look like corrupted installed where binaries from different version got mixed up.
                     exception.StackTrace?.Contains("System.MissingMethodException") == true ||
@@ -556,7 +571,11 @@ namespace Playnite
                     (exception is System.Runtime.InteropServices.COMException &&
                      (exception.HResult == unchecked((int)0x80004005) || exception.HResult == unchecked((int)0x80040111))) ||
                     // DWM_E_COMPOSITIONDISABLED, looks like this can happen when GPU driver crashes and doesn't reboot properly
-                    exception.HResult == unchecked((int)0x80263001))
+                    exception.HResult == unchecked((int)0x80263001) ||
+                    // There are various (mostly UnauthorizedAccessException) exceptions when something prevents WPF writing into its temp dir
+                    exception.Message.Contains(@"Local\Temp\WPF") ||
+                    // This is different CefSharp load error tied specifically to FileNotFoundException exception
+                    (exception is FileNotFoundException && exception.Message.Contains("CefSharp")))
                 {
                     Dialogs.ShowErrorMessage("System issue or corrupted Playnite install detected.");
                     Process.GetCurrentProcess().Kill();
@@ -1047,15 +1066,7 @@ namespace Playnite
                 }
             }
 
-            try
-            {
-                CefTools.ConfigureCef(AppSettings.TraceLogEnabled);
-            }
-            catch (Exception exc) when (!PlayniteEnvironment.ThrowAllErrors)
-            {
-                logger.Error(exc, "Failed to initialize CefSharp.");
-            }
-
+            CefTools.ConfigureCef(AppSettings.TraceLogEnabled);
             if (!CefTools.IsInitialized)
             {
                 Dialogs.ShowErrorMessage(

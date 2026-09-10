@@ -36,7 +36,7 @@ namespace Playnite.Database
             }
         }
 
-        private ILogger logger = LogManager.GetLogger(typeof(TItem).Name + "_coll");
+        public ILogger logger = LogManager.GetLogger(typeof(TItem).Name + "_coll");
         private readonly object collectionLock = new object();
         private string storagePath;
         private readonly Action<TItem> initMethod;
@@ -412,7 +412,7 @@ namespace Playnite.Database
             var item = Get(id);
             if (item == null)
             {
-                throw new Exception($"Item {item.Id} doesn't exists.");
+                throw new Exception($"Item {id} doesn't exists.");
             }
 
             lock (collectionLock)
@@ -498,7 +498,7 @@ namespace Playnite.Database
 
                 if (oldData == null)
                 {
-                    throw new Exception($"Item {oldData.Id} doesn't exists.");
+                    throw new Exception($"Item {itemToUpdate.Id} doesn't exists.");
                 }
 
                 if (isPersistent)
@@ -547,7 +547,7 @@ namespace Playnite.Database
 
                     if (oldData == null)
                     {
-                        throw new Exception($"Item {oldData.Id} doesn't exists.");
+                        throw new Exception($"Item {item.Id} doesn't exists.");
                     }
 
                     if (isPersistent)

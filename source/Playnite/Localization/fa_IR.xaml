@@ -27,14 +27,8 @@
 نامعین - بدون تغییر (هنگام ویرایش چندین بازی)</sys:String>
     <sys:String x:Key="LOCNoCategory">بدون دسته‌بندی</sys:String>
     <sys:String x:Key="LOCNoPlatform">بدون سکو</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle">اوه! مشکلی پیش آمد...</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">یک خطای غیرقابل بازگشت رخ داده است.
-
-اگر مایلید به ما در رفع این مشکل کمک کنید، لطفاً اقدامات انجام شده قبل از خرابی را به طور خلاصه توضیح دهید و سپس اطلاعات تشخیصی را ارسال کنید. اگر آنلاین هستید، بسته برای تجزیه و تحلیل به سرور برنامه ارسال می‌شود.
-
-در غیر این صورت، می‌توانید روی دکمه &quot;گزارش خرابی&quot; کلیک کنید تا یک مشکل جدید در گیت‌هاب ایجاد کرده و خرابی را به صورت دستی گزارش دهید.
-
-از همکاری شما متشکریم.</sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">افزونه &quot;{0}&quot; باعث ایجاد یک خطای غیرقابل بازگشت شد.
 
 توصیه می‌کنیم فایل گزارش را ذخیره کرده و مشکل را به توسعه‌دهنده افزونه گزارش دهید. اگر مشکل همچنان تکرار می‌شود، افزونه را غیرفعال کنید.</sys:String>
@@ -44,9 +38,7 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">افزونه یا زمینه‌ی ناشناخته باعث خطایی بازیابی‌ناپذیر شد.
 
 ما سفارش می‌کنیم افزونه‌ی شخص ثالث را ازکارانداخته، مشکل‌ساز را جدا کرده و مشکل را به سازنده‌ی افزونه گزارش دهید.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">خطایی بازیابی‌ناپذیر رخ داد.
-
-اگر میخواهید در رفع این مشکل کمک کنید، لطفاً اطلاعات تشخیصی را بفرستید. سپاسگزاریم.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">ازکارانداختن افزونه</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">ذخیره پرونده‌ی گزارش‌ها</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">فرستادن اطلاعات .diag</sys:String>
@@ -167,7 +159,7 @@
     <sys:String x:Key="LOCListViewLabel">نمای فهرست</sys:String>
     <sys:String x:Key="LOCCoversLabel">کاورها</sys:String>
     <sys:String x:Key="LOCGridViewLabel">نمای توری</sys:String>
-    <sys:String x:Key="LOCDetailsViewLabel">نمای جزییات</sys:String>
+    <sys:String x:Key="LOCDetailsViewLabel">نمای جزئیات</sys:String>
     <sys:String x:Key="LOCCustomLabel">سفارشی</sys:String>
     <sys:String x:Key="LOCURLLabel">URL</sys:String>
     <sys:String x:Key="LOCSpecialThanks">سپاس ویژه</sys:String>
@@ -274,6 +266,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">منبع کاور بازی گمشده</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">منبع پس‌زمینه بازی گمشده</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">فاصله‌ی عمودی تا جزئیات بازی</sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">جایگاه جزئیات نمای توری</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">جایگاه نمای جزئیات فهرست بازی</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">کشیدن میان پهنه‌های جداگر</sys:String>
@@ -301,7 +294,7 @@
     <sys:String x:Key="LOCSettingsGeneralLabel">عمومی</sys:String>
     <sys:String x:Key="LOCSettingsTopPanelLabel">پهنه‌ی بالایی</sys:String>
     <sys:String x:Key="LOCSettingsAppearanceLabel">ظاهر</sys:String>
-    <sys:String x:Key="LOCSettingsGameDetailsLabel">جزییات بازی</sys:String>
+    <sys:String x:Key="LOCSettingsGameDetailsLabel">جزئیات بازی</sys:String>
     <sys:String x:Key="LOCSettingsLayoutLabel">چیدمان</sys:String>
     <sys:String x:Key="LOCSettingsAdvancedLabel">پیشرفته</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLabel">تمام‌صفحه</sys:String>
@@ -611,7 +604,7 @@
     <sys:String x:Key="LOCEmulatorImportNoDefinitionsError">به دلیل گمشدگی یا خرابی پرونده‌ی تعریفی، نمی‌توان شبیه‌سازها را درون‌برد کرد.</sys:String>
     <sys:String x:Key="LOCMenuActionExecError">ناکامی در اجرای کنش فهرست.</sys:String>
     <!--GameEdit-->
-    <sys:String x:Key="LOCGameEditWindowTitle">ویرایش جزییات بازی</sys:String>
+    <sys:String x:Key="LOCGameEditWindowTitle">ویرایش جزئیات بازی</sys:String>
     <sys:String x:Key="LOCImageURL">URL تصویر</sys:String>
     <sys:String x:Key="LOCAddLinkButton">افزودن پیوند</sys:String>
     <sys:String x:Key="LOCAddRom">افزودن ROM</sys:String>
@@ -1262,6 +1255,10 @@ Playnite به طور خودکار راه‌اندازی مجدد می شود ت�
     <sys:String x:Key="LOCUnsavedChangesAskMessage">آیا می خواهید تغییراتی را که ایجاد کرده اید ذخیره کنید؟</sys:String>
     <sys:String x:Key="LOCPortableInstallation">نصب قابل حمل</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">کنترلری شناسایی نشد</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">منبع پیش‌فرض</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">جستجوی تصویر در وب ناموفق بود. این مشکل می‌تواند به دلایل مختلفی رخ دهد. برای جزئیات بیشتر و نکات عیب‌یابی به لینک زیر مراجعه کنید.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
 </ResourceDictionary>

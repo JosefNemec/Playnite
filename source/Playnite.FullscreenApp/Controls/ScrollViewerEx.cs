@@ -12,6 +12,7 @@ namespace Playnite.FullscreenApp.Controls
 {
     public class ScrollViewerEx : ScrollViewer
     {
+        private bool focusMovedWithin;
         public double CustomScrollAmount { get; set; } = 0;
 
         static ScrollViewerEx()
@@ -29,12 +30,19 @@ namespace Playnite.FullscreenApp.Controls
         {
             ScrollChanged += ScrollViewerEx_ScrollChanged;
             PreviewKeyDown += ScrollViewerEx_PreviewKeyDown;
+            GotKeyboardFocus += ScrollViewerEx_GotKeyboardFocus;
         }
 
         private void ScrollViewerEx_Unloaded(object sender, RoutedEventArgs e)
         {
             ScrollChanged -= ScrollViewerEx_ScrollChanged;
             PreviewKeyDown -= ScrollViewerEx_PreviewKeyDown;
+            GotKeyboardFocus -= ScrollViewerEx_GotKeyboardFocus;
+        }
+
+        private void ScrollViewerEx_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            focusMovedWithin = e.NewFocus is DependencyObject newFocus && IsAncestorOf(newFocus);
         }
 
         private void ScrollViewerEx_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -71,6 +79,9 @@ namespace Playnite.FullscreenApp.Controls
 
         private void ScrollViewerEx_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            var focusJustMoved = focusMovedWithin;
+            focusMovedWithin = false;
+
             if (e.VerticalChange == 0 && e.HorizontalChange == 0)
             {
                 return;
@@ -81,7 +92,7 @@ namespace Playnite.FullscreenApp.Controls
                 MoveFocus(new TraversalRequest(FocusNavigationDirection.Up));
                 e.Handled = true;
             }
-            else if (VerticalOffset >= ScrollableHeight)
+            else if (!focusJustMoved && VerticalOffset >= ScrollableHeight)
             {
                 MoveFocus(new TraversalRequest(FocusNavigationDirection.Down));
                 e.Handled = true;
