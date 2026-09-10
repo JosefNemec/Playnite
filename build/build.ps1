@@ -151,8 +151,11 @@ if (!$SkipBuild)
             Copy-Item $OnlineInstallerConfig $locaConfigPath -Force
         }
     }
-
+    
     $solutionDir = Join-Path $pwd "..\source"
+
+    dotnet restore (Join-Path $solutionDir "Playnite.slnx")
+
     $arguments = "build.xml /p:SolutionDir=`"$solutionDir\\`" /p:OutputPath=`"$OutputDir`";Configuration=$configuration /property:Platform=$Platform /t:Build"
     $compilerResult = StartAndWait $msbuildPath $arguments
     if ($compilerResult -ne 0)
