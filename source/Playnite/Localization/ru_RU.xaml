@@ -27,8 +27,12 @@
 Не определено - Без изменений (когда редактируется несколько игр)</sys:String>
     <sys:String x:Key="LOCNoCategory">Нет категории</sys:String>
     <sys:String x:Key="LOCNoPlatform">Нет платформы</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Произошла неустранимая ошибка</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Пожалуйста, кратко опишите действия, выполненные перед сбоем, а затем отправьте диагностическую информацию.
+
+Кроме того, вы можете нажать кнопку «Сообщить о сбое», чтобы создать новую задачу (issue) на GitHub и сообщить о сбое вручную.
+
+Спасибо за вашу помощь.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Расширение &quot;{0}&quot; вызвало неисправимую ошибку.
 
 Мы рекомендуем сохранить лог-файл и сообщить о проблеме разработчику расширения. Если проблема снова возникнет, отключите расширение.</sys:String>
@@ -38,7 +42,9 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Неизвестный компонент (расширение или тема) вызвал неустранимую ошибку.
 
 Рекомендуем поочередно отключать сторонние дополнения, чтобы выявить проблемное и затем рассказать о проблеме его разработчику.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Произошла неустранимая ошибка.
+
+Если вы хотите помочь нам устранить эту проблему, пожалуйста, отправьте диагностическую информацию. Спасибо.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Отключить расширение</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Сохранить лог файл</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Выслать диагн. данные</sys:String>
@@ -1267,6 +1273,6 @@ Playnite будет автоматически перезапущен для н�
     <sys:String x:Key="LOCWebImageDownloadError">Поиск изображений в интернете не удался. Это может произойти по разным причинам. Для получения более подробной информации и советов по устранению неполадок перейдите по следующей ссылке.</sys:String>
     <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Кнопка Guide переключает в полноэкр. режим</sys:String>
     <sys:String x:Key="LOCGameListNavigationSpeed">Скорость навигации по списку игр</sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Не удалось обновить данные игры. Исходное состояние игры не найдено в библиотеке, похоже, что игра была удалена.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Не удалось удалить элемент библиотеки. Элемент не найден в библиотеке.</sys:String>
 </ResourceDictionary>
