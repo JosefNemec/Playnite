@@ -176,6 +176,8 @@ if (!$SkipBuild)
     # We are self-hosting CEF so these are not needed
     Join-Path $OutputDir "CefSharp.BrowserSubprocess.exe" | Remove-Item
     Join-Path $OutputDir "CefSharp.BrowserSubprocess.pdb" | Remove-Item
+    Join-Path $OutputDir "CefSharp.BrowserSubprocess.Core.pdb" | Remove-Item
+    Join-Path $OutputDir "CefSharp.Core.Runtime.pdb" | Remove-Item
 }
 
 New-Folder $InstallerDir
