@@ -220,7 +220,9 @@ namespace Playnite.Controls
 
         public WindowBase() : base()
         {
-            Language = XmlLanguage.GetLanguage(Localization.ApplicationLanguageCultureInfo.Name);
+            // Disabled as this breaks combobox binding on multiple places: https://github.com/JosefNemec/Playnite/issues/4385
+            // It's originally a fix from: https://github.com/JosefNemec/Playnite/pull/4359
+            //Language = XmlLanguage.GetLanguage(Localization.ApplicationLanguageCultureInfo.Name);
             emptyAutomationPeer = new EmptyWindowAutomationPeer(this);
             Style defaultStyle = (Style)Application.Current?.TryFindResource(typeof(WindowBase));
             if (defaultStyle != null)
@@ -228,10 +230,11 @@ namespace Playnite.Controls
                 Style = defaultStyle;
             }
 
-            if (Localization.IsRightToLeft)
-            {
+            if (ThemeManager.ForceLTRLayout)
+                FlowDirection = FlowDirection.LeftToRight;
+
+            else if (Localization.IsRightToLeft)
                 FlowDirection = FlowDirection.RightToLeft;
-            }
 
             TextOptions.SetTextFormattingMode(this, TextFormattingMode);
             TextOptions.SetTextRenderingMode(this, TextRenderingMode);

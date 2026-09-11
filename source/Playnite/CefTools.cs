@@ -45,9 +45,11 @@ namespace Playnite
             settings.PersistSessionCookies = true;
             settings.LogFile = Path.Combine(PlaynitePaths.ConfigRootPath, "cef.log");
             settings.LogSeverity =  traceLogsEnabled ? LogSeverity.Verbose : LogSeverity.Info;
-            IsInitialized = Cef.Initialize(settings);
-            if (!IsInitialized)            
-                logger.Error($"CEF failed to initialize: {Cef.GetExitCode()}");            
+            settings.BrowserSubprocessPath = PlaynitePaths.BrowserProcessExecutablePath;
+
+            IsInitialized = Cef.Initialize(settings, performDependencyCheck: false);
+            if (!IsInitialized)
+                logger.Error($"CEF failed to initialize: {Cef.GetExitCode()}");
         }
 
         public static void Shutdown()

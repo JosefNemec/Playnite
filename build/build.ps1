@@ -169,8 +169,13 @@ if (!$SkipBuild)
     PackExtensionTemplate "GenericPlugin" $OutputDir
     PackExtensionTemplate "PowerShellScript" $OutputDir
 
-    Remove-Item (Join-Path $OutputDir "System.Management.Automation.dll")
-    Remove-Item (Join-Path $OutputDir "Windows.winmd")
+    # These will be loaded from system's files and don't need to be in the output
+    Join-Path $OutputDir "System.Management.Automation.dll" | Remove-Item
+    Join-Path $OutputDir "Windows.winmd" | Remove-Item
+
+    # We are self-hosting CEF so these are not needed
+    Join-Path $OutputDir "CefSharp.BrowserSubprocess.exe" | Remove-Item
+    Join-Path $OutputDir "CefSharp.BrowserSubprocess.pdb" | Remove-Item
 }
 
 New-Folder $InstallerDir

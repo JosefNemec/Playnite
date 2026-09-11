@@ -29,6 +29,7 @@ namespace Playnite
         public const string DefaultDesktopThemeId = "Playnite_builtin_DefaultDesktop";
         public const string DefaultFullscreenThemeId = "Playnite_builtin_DefaultFullscreen";
         public const string DefaultThemeDirName = "Default";
+        public static bool ForceLTRLayout { get; set; }
 
         public static System.Version GetApiVersion(ApplicationMode mode)
         {
@@ -216,6 +217,7 @@ namespace Playnite
                 return AddonLoadError.Uknown;
             }
 
+            ForceLTRLayout = theme.ForceLTRLayout;
             return AddonLoadError.None;
         }
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Copyright>Copyright © Josef Nemec 2026</Copyright>
-    <Version>10.58</Version>
+    <Version>10.59</Version>
     <TargetFramework>net462</TargetFramework>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>

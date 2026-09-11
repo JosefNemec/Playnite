@@ -575,7 +575,10 @@ namespace Playnite
                     // There are various (mostly UnauthorizedAccessException) exceptions when something prevents WPF writing into its temp dir
                     exception.Message.Contains(@"Local\Temp\WPF") ||
                     // This is different CefSharp load error tied specifically to FileNotFoundException exception
-                    (exception is FileNotFoundException && exception.Message.Contains("CefSharp")))
+                    (exception is FileNotFoundException &&
+                        (exception.Message.Contains("CefSharp") || exception.Message.Contains("BrowserSubprocessPath") ||
+                         // This is to handle missing .NET assemblies
+                         exception.Message.Contains("PublicKeyToken"))))
                 {
                     Dialogs.ShowErrorMessage("System issue or corrupted Playnite install detected.");
                     Process.GetCurrentProcess().Kill();
@@ -973,7 +976,7 @@ namespace Playnite
                             var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
                             if (!CmdLine.Start.IsNullOrEmpty())
                             {
-                                client.InvokeCommand(CmdlineCommand.Start, [CmdLine.Start, CmdLine.ActionIndex.ToString()]);
+                                client.InvokeCommand(CmdlineCommand.Start, [CmdLine.Start, CmdLine.ActionIndex?.ToString()]);
                             }
                             else if (!CmdLine.UriData.IsNullOrEmpty())
                             {
@@ -1123,7 +1126,7 @@ namespace Playnite
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start,
                 [
                     CmdLine.Start,
-                    CmdLine.ActionIndex.ToString()
+                    CmdLine.ActionIndex?.ToString()
                 ]));
             }
             else if (!CmdLine.UriData.IsNullOrEmpty())

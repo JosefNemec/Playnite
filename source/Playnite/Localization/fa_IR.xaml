@@ -27,8 +27,12 @@
 نامعین - بدون تغییر (هنگام ویرایش چندین بازی)</sys:String>
     <sys:String x:Key="LOCNoCategory">بدون دسته‌بندی</sys:String>
     <sys:String x:Key="LOCNoPlatform">بدون سکو</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">خطایی غیرقابل‌بازیابی رخ داده است</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">لطفاً اقدامات انجام‌شده پیش از بروز خرابی را به‌طور خلاصه شرح دهید و سپس اطلاعات عیب‌یابی را ارسال کنید.
+
+همچنین می‌توانید با کلیک روی دکمه «گزارش خرابی»، یک Issue جدید در گیت‌هاب ایجاد کرده و خرابی را به‌صورت دستی گزارش دهید.
+
+از همکاری شما سپاسگزاریم.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">افزونه &quot;{0}&quot; باعث ایجاد یک خطای غیرقابل بازگشت شد.
 
 توصیه می‌کنیم فایل گزارش را ذخیره کرده و مشکل را به توسعه‌دهنده افزونه گزارش دهید. اگر مشکل همچنان تکرار می‌شود، افزونه را غیرفعال کنید.</sys:String>
@@ -38,7 +42,9 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">افزونه یا زمینه‌ی ناشناخته باعث خطایی بازیابی‌ناپذیر شد.
 
 ما سفارش می‌کنیم افزونه‌ی شخص ثالث را ازکارانداخته، مشکل‌ساز را جدا کرده و مشکل را به سازنده‌ی افزونه گزارش دهید.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">خطایی غیرقابل‌رفع رخ داده است.
+
+اگر مایلید در رفع این مشکل به ما کمک کنید، لطفاً اطلاعات عیب‌یابی را ارسال نمایید. با تشکر.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">ازکارانداختن افزونه</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">ذخیره پرونده‌ی گزارش‌ها</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">فرستادن اطلاعات .diag</sys:String>
@@ -266,7 +272,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">منبع کاور بازی گمشده</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">منبع پس‌زمینه بازی گمشده</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">فاصله‌ی عمودی تا جزئیات بازی</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">عرض پنل ویژگی‌ها</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">جایگاه جزئیات نمای توری</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">جایگاه نمای جزئیات فهرست بازی</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">کشیدن میان پهنه‌های جداگر</sys:String>
@@ -1257,8 +1263,8 @@ Playnite به طور خودکار راه‌اندازی مجدد می شود ت�
     <sys:String x:Key="LOCNoControllersDetected">کنترلری شناسایی نشد</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">منبع پیش‌فرض</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">جستجوی تصویر در وب ناموفق بود. این مشکل می‌تواند به دلایل مختلفی رخ دهد. برای جزئیات بیشتر و نکات عیب‌یابی به لینک زیر مراجعه کنید.</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">دکمه راهنما به حالت تمام‌صفحه تغییر وضعیت می‌دهد.</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">سرعت پیمایش فهرست بازی‌ها</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">به‌روزرسانی داده‌های بازی با شکست مواجه شد. وضعیت اولیه بازی در کتابخانه یافت نشد؛ به نظر می‌رسد بازی حذف شده است.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">امکان حذف مورد در کتابخانه وجود ندارد. این مورد در کتابخانه یافت نشد.</sys:String>
 </ResourceDictionary>
