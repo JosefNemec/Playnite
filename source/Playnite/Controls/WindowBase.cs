@@ -230,10 +230,11 @@ namespace Playnite.Controls
                 Style = defaultStyle;
             }
 
-            if (Localization.IsRightToLeft)
-            {
+            if (ThemeManager.ForceLTRLayout)
+                FlowDirection = FlowDirection.LeftToRight;
+
+            else if (Localization.IsRightToLeft)
                 FlowDirection = FlowDirection.RightToLeft;
-            }
 
             TextOptions.SetTextFormattingMode(this, TextFormattingMode);
             TextOptions.SetTextRenderingMode(this, TextRenderingMode);

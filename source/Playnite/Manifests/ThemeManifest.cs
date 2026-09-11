@@ -16,6 +16,8 @@ namespace Playnite
 
         public ApplicationMode Mode { get; set; }
 
+        public bool ForceLTRLayout { get; set; }
+
         [YamlIgnore]
         public bool IsBuiltInTheme { get; }
 
