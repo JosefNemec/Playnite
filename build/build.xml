@@ -17,6 +17,10 @@
             Targets="Build"
             Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
         <MSBuild
+            Projects="../source/Playnite.BrowserProcess/Playnite.BrowserProcess.csproj"
+            Targets="Build"
+            Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none;" />
+        <MSBuild
             Projects="../source/PlayniteSDK/Playnite.SDK.csproj"
             Targets="Build"
             Properties="OutputPath=$(OutputPath); Configuration=$(Configuration); AllowedReferenceRelatedFileExtensions=none; Platform=AnyCPU" />

@@ -32,6 +32,7 @@
     </Project>
     <Project Path="Tools/PlayniteInstaller/PlayniteInstaller.csproj" />
   </Folder>
+  <Project Path="Playnite.BrowserProcess/Playnite.BrowserProcess.csproj" />
   <Project Path="Playnite.Deps/Playnite.Deps.csproj" />
   <Project Path="Playnite.DesktopApp/Playnite.DesktopApp.csproj">
     <Platform Project="x86" />

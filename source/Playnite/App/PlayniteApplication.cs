@@ -575,7 +575,7 @@ namespace Playnite
                     // There are various (mostly UnauthorizedAccessException) exceptions when something prevents WPF writing into its temp dir
                     exception.Message.Contains(@"Local\Temp\WPF") ||
                     // This is different CefSharp load error tied specifically to FileNotFoundException exception
-                    (exception is FileNotFoundException && exception.Message.Contains("CefSharp")))
+                    (exception is FileNotFoundException && exception.Message.Contains("CefSharp") || exception.Message.Contains("BrowserSubprocessPath")))
                 {
                     Dialogs.ShowErrorMessage("System issue or corrupted Playnite install detected.");
                     Process.GetCurrentProcess().Kill();

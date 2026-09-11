@@ -36,6 +36,7 @@ namespace Playnite
 
         public static string DesktopExecutablePath { get; }
         public static string FullscreenExecutablePath { get; }
+        public static string BrowserProcessExecutablePath { get; }
         public static string PlayniteAssemblyPath { get; }
         public static string PlayniteSDKAssemblyPath { get; }
         public static string ExtensionsUserDataPath { get; private set; }
@@ -75,6 +76,7 @@ namespace Playnite
             LocalizationsPath = Path.Combine(ProgramPath, LocalizationsDirName);
             DesktopExecutablePath = Path.Combine(ProgramPath, "Playnite.DesktopApp.exe");
             FullscreenExecutablePath = Path.Combine(ProgramPath, "Playnite.FullscreenApp.exe");
+            BrowserProcessExecutablePath = Path.Combine(ProgramPath, "Playnite.BrowserProcess.exe");
             PlayniteAssemblyPath = Path.Combine(ProgramPath, "Playnite.dll");
             PlayniteSDKAssemblyPath = Path.Combine(ProgramPath, "Playnite.SDK.dll");
             ExtensionsProgramPath = Path.Combine(ProgramPath, ExtensionsDirName);

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Playnite.BrowserProcess</AssemblyName>
+    <TargetFramework>net462</TargetFramework>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <Platforms>x86</Platforms>
+    <BaseOutputPath>bin</BaseOutputPath>
+    <LangVersion>12</LangVersion>
+    <LargeAddressAware>true</LargeAddressAware>
+    <UseWpf>true</UseWpf>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefSharp.Wpf" Version="151.3.240" />
+    <PackageReference Include="LargeAddressAware" version="1.0.6" />
+  </ItemGroup>
+</Project>
