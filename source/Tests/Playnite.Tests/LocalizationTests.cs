@@ -17,23 +17,23 @@ namespace Playnite.Tests
             CollectionAssert.IsNotEmpty(Localization.AvailableLanguages);
         }
 
-        [Test]
-        [Apartment(ApartmentState.STA)]
-        public void WindowLanguageMatchesApplicationLanguageTest()
-        {
-            var originalLanguage = Localization.CurrentLanguage;
-            try
-            {
-                Localization.SetLanguage("zh_CN");
-                var window = new WindowBase();
-                Assert.AreEqual(
-                    Localization.ApplicationLanguageCultureInfo.Name,
-                    window.Language.GetEquivalentCulture().Name);
-            }
-            finally
-            {
-                Localization.SetLanguage(originalLanguage);
-            }
-        }
+        // [Test]
+        // [Apartment(ApartmentState.STA)]
+        // public void WindowLanguageMatchesApplicationLanguageTest()
+        // {
+        //     var originalLanguage = Localization.CurrentLanguage;
+        //     try
+        //     {
+        //         Localization.SetLanguage("zh_CN");
+        //         var window = new WindowBase();
+        //         Assert.AreEqual(
+        //             Localization.ApplicationLanguageCultureInfo.Name,
+        //             window.Language.GetEquivalentCulture().Name);
+        //     }
+        //     finally
+        //     {
+        //         Localization.SetLanguage(originalLanguage);
+        //     }
+        // }
     }
 }

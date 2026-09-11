@@ -220,7 +220,9 @@ namespace Playnite.Controls
 
         public WindowBase() : base()
         {
-            Language = XmlLanguage.GetLanguage(Localization.ApplicationLanguageCultureInfo.Name);
+            // Disabled as this breaks combobox binding on multiple places: https://github.com/JosefNemec/Playnite/issues/4385
+            // It's originally a fix from: https://github.com/JosefNemec/Playnite/pull/4359
+            //Language = XmlLanguage.GetLanguage(Localization.ApplicationLanguageCultureInfo.Name);
             emptyAutomationPeer = new EmptyWindowAutomationPeer(this);
             Style defaultStyle = (Style)Application.Current?.TryFindResource(typeof(WindowBase));
             if (defaultStyle != null)
