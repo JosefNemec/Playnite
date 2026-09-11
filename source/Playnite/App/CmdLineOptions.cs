@@ -13,7 +13,7 @@ namespace Playnite
         public string Start { get; set; }
 
         [Option("actionindex")]
-        public int ActionIndex { get; set; } = -1;
+        public int? ActionIndex { get; set; }
 
         [Option("uridata")]
         public string UriData { get; set; }

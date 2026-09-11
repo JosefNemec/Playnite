@@ -976,7 +976,7 @@ namespace Playnite
                             var client = new PipeClient(PlayniteSettings.GetAppConfigValue("PipeEndpoint"));
                             if (!CmdLine.Start.IsNullOrEmpty())
                             {
-                                client.InvokeCommand(CmdlineCommand.Start, [CmdLine.Start, CmdLine.ActionIndex.ToString()]);
+                                client.InvokeCommand(CmdlineCommand.Start, [CmdLine.Start, CmdLine.ActionIndex?.ToString()]);
                             }
                             else if (!CmdLine.UriData.IsNullOrEmpty())
                             {
@@ -1126,7 +1126,7 @@ namespace Playnite
                 PipeService_CommandExecuted(this, new CommandExecutedEventArgs(CmdlineCommand.Start,
                 [
                     CmdLine.Start,
-                    CmdLine.ActionIndex.ToString()
+                    CmdLine.ActionIndex?.ToString()
                 ]));
             }
             else if (!CmdLine.UriData.IsNullOrEmpty())
