@@ -1,0 +1,21 @@
+<Project>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <!-- This generator is super slow (slows down our compile time by almost 3x)
+       and we don't actually need it for anything because we are not doing WinRT related stuff. -->
+  <Target Name="DisableWinRTSourceGenerator" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <Analyzer Remove="@(Analyzer)"
+                Condition="'%(FileName)%(Extension)' == 'WinRT.SourceGenerator.dll'"/>
+    </ItemGroup>
+  </Target>
+</Project>
