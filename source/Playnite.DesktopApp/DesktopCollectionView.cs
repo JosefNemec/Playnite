@@ -159,6 +159,46 @@ namespace Playnite.DesktopApp
             }
         }
 
+        protected override bool IsEntryVisible(GamesCollectionViewEntry entry)
+        {
+            Guid? entryId = null;
+            switch (viewSettings.GroupingOrder)
+            {
+                case GroupableField.Category:
+                    entryId = entry.Category?.Id;
+                    break;
+                case GroupableField.Genre:
+                    entryId = entry.Genre?.Id;
+                    break;
+                case GroupableField.Developer:
+                    entryId = entry.Developer?.Id;
+                    break;
+                case GroupableField.Publisher:
+                    entryId = entry.Publisher?.Id;
+                    break;
+                case GroupableField.Tag:
+                    entryId = entry.Tag?.Id;
+                    break;
+                case GroupableField.Feature:
+                    entryId = entry.Feature?.Id;
+                    break;
+                case GroupableField.Platform:
+                    entryId = entry.Platform?.Id;
+                    break;
+                case GroupableField.Series:
+                    entryId = entry.Serie?.Id;
+                    break;
+                case GroupableField.AgeRating:
+                    entryId = entry.AgeRating?.Id;
+                    break;
+                case GroupableField.Region:
+                    entryId = entry.Region?.Id;
+                    break;
+            }
+
+            return SelectedGroupFilter.IsEntryVisible(settings.FilterSettings, viewSettings.GroupingOrder, entryId);
+        }
+
         public override void RefreshView()
         {
             if (IgnoreViewConfigChanges)
