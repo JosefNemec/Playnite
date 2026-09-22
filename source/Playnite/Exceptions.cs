@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 using Microsoft.CSharp.RuntimeBinder;
 
 namespace Playnite
@@ -88,7 +89,7 @@ namespace Playnite
                 }
 
                 // These are common suspects for issues with custom themes that often come up in automated crash reports.
-                if (customThemeInUse && exception is InvalidOperationException or InvalidCastException)
+                if (customThemeInUse && exception is InvalidOperationException or InvalidCastException or XamlParseException)
                 {
                     crashInfo.IsExtensionCrash = true;
                     return crashInfo;
