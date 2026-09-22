@@ -3,6 +3,7 @@ using NLog.Targets;
 using Playnite.SDK;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -89,15 +90,15 @@ namespace Playnite.Common
 
             var config = new LoggingConfiguration();
             config.DefaultCultureInfo = new System.Globalization.CultureInfo("en-US");
+
 #if DEBUG
-            var consoleTarget = new ColoredConsoleTarget()
+            var debugTarget = new CustomDebugLogTarget
             {
-                Layout = @"${level:uppercase=true}|${logger}:${message}${exception}"
+                Name = "DebuggerOutput",
+                Layout = @"${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception}}"
             };
 
-            config.AddTarget("console", consoleTarget);
-            var rule1 = new LoggingRule("*", NLog.LogLevel.Trace, consoleTarget);
-            config.LoggingRules.Add(rule1);
+            config.LoggingRules.Add(new LoggingRule("*", NLog.LogLevel.Trace, debugTarget));
 #endif
 
             var loggerDir = Path.GetDirectoryName(Assembly.GetCallingAssembly().Location);
@@ -122,6 +123,20 @@ namespace Playnite.Common
         public ILogger GetLogger(string loggerName)
         {
             return new NLogLogger(loggerName);
+        }
+    }
+
+    // Used because NLog internally uses Debugger.Log which results in additional string including "level" and "category"
+    // being appended at the start of each message in debug output in Rider. Couldn't find any option in Rider to disable
+    // this so therefore custom logger. Visual Studio doesn't add level and category, but there's also no option to show them
+    // if you needed them so this works well with both VS and Rider.
+    [Target("CustomDebugLog")]
+    public class CustomDebugLogTarget : TargetWithLayout
+    {
+        protected override void Write(NLog.LogEventInfo logEvent)
+        {
+            var logMessage = RenderLogEvent(this.Layout, logEvent);
+            Debug.WriteLine(logMessage);
         }
     }
 }

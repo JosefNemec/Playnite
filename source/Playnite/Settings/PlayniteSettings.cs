@@ -2575,15 +2575,13 @@ namespace Playnite
             var config = new LoggingConfiguration();
             config.DefaultCultureInfo = new System.Globalization.CultureInfo("en-US");
 #if DEBUG
-            var consoleTarget = new ColoredConsoleTarget()
+            var debugTarget = new CustomDebugLogTarget
             {
+                Name = "DebuggerOutput",
                 Layout = @"${level:uppercase=true:padding=-5}|${logger}:${message}${onexception:${newline}${exception}}"
             };
 
-            config.AddTarget("console", consoleTarget);
-
-            var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
-            config.LoggingRules.Add(rule1);
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Trace, debugTarget));
 #endif
             var coreFileTarget = new FileTarget()
             {
