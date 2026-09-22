@@ -370,8 +370,15 @@ namespace Playnite.ViewModels
 
         private void RenameFilterPreset(FilterPreset preset)
         {
-            if (preset == null)
+            if (preset is null)
+                return;
+
+            preset = Database.FilterPresets.Get(preset.Id);
+            if (preset is null)
             {
+                // This can happen when AutoFilterPresets plugin is installed.
+                // https://codeberg.org/ashpynov/AutoFilterPresets/issues/1
+                Dialogs.ShowErrorMessage(LOC.LibraryDataRemovalNotFound.GetLocalized());
                 return;
             }
 
