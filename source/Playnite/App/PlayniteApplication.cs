@@ -575,7 +575,7 @@ namespace Playnite
                     // There are various (mostly UnauthorizedAccessException) exceptions when something prevents WPF writing into its temp dir
                     exception.Message.Contains(@"Local\Temp\WPF") ||
                     // This is different CefSharp load error tied specifically to FileNotFoundException exception
-                    (exception is FileNotFoundException &&
+                    (exception is FileNotFoundException or FileLoadException &&
                         (exception.Message.Contains("CefSharp") || exception.Message.Contains("BrowserSubprocessPath") ||
                          // This is to handle missing .NET assemblies
                          exception.Message.Contains("PublicKeyToken"))))
