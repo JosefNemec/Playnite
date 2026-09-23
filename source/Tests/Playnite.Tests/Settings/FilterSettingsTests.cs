@@ -173,5 +173,18 @@ namespace Playnite.Tests.Settings
             Assert.AreEqual(IdItemFilterItemProperties.FromSdkModel(new SdkModels.IdItemFilterItemProperties(new List<Guid> { id })).Ids, new List<Guid> { id });
             Assert.IsNull(IdItemFilterItemProperties.FromSdkModel(new SdkModels.IdItemFilterItemProperties()));
         }
+
+        [Test]
+        public void ShowSelectedGroupsOnlyFilterPresetTest()
+        {
+            var settings = new FilterSettings { ShowSelectedGroupsOnly = true };
+
+            Assert.IsFalse(settings.IsActive);
+            Assert.IsTrue(settings.AsPresetSettings().ShowSelectedGroupsOnly);
+            Assert.IsTrue(FilterSettings.FromSdkFilterSettings(settings.AsPresetSettings()).ShowSelectedGroupsOnly);
+
+            settings.ClearFilters();
+            Assert.IsFalse(settings.ShowSelectedGroupsOnly);
+        }
     }
 }
