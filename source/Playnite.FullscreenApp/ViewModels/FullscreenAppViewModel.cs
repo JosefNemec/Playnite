@@ -1005,6 +1005,16 @@ namespace Playnite.FullscreenApp.ViewModels
 
             GameListFocused = true;
             isInitialized = true;
+
+            try
+            {
+                GamesEditor.UpdateJumpList();
+            }
+            catch (Exception exc)
+            {
+                Logger.Error(exc, "Failed to set update JumpList data: ");
+            }
+
             RunStartupScript();
 
             if (AppSettings.Fullscreen.BackgroundVolume > 0)
