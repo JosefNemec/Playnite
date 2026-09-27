@@ -669,7 +669,23 @@ namespace Playnite.DesktopApp.ViewModels
             input = input.Replace("{Name}", editingGame.Name, StringComparison.OrdinalIgnoreCase);
             var yearToReplace = editingGame.ReleaseDate.HasValue ? editingGame.ReleaseDate.Value.Year.ToString() : string.Empty;
             input = input.Replace("{ReleaseYear}", yearToReplace, StringComparison.OrdinalIgnoreCase);
-            return input.Replace("{Platform}", editingGame.Platforms?.FirstOrDefault()?.Name, StringComparison.OrdinalIgnoreCase);
+            input = input.Replace("{Platform}", editingGame.Platforms?.FirstOrDefault()?.Name, StringComparison.OrdinalIgnoreCase);
+
+            var devs = Developers.
+                Where(a => a.Selected == true).
+                Select(a => a.Item).
+                Cast<Company>().
+                ToHashSet();
+            input = input.Replace("{Developers}", string.Join(", ", devs));
+
+            var pubs = Publishers.
+                Where(a => a.Selected == true).
+                Select(a => a.Item).
+                Cast<Company>().
+                ToHashSet();
+            input = input.Replace("{Publishers}", string.Join(", ", pubs));
+
+            return input;
         }
 
         public void SelectGoogleIcon()
