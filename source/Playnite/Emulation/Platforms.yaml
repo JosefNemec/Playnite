@@ -333,7 +333,7 @@
   Id: pc_dos
   IgdbId: 13
   Databases: [DOS]
-  Emulators: [dosbox, pcem, retroarch, scummvm]
+  Emulators: [dosbox, dosbox_x, dosbox_staging, pcem, retroarch, scummvm]
   
 - Name: PC (Linux)
   Id: pc_linux

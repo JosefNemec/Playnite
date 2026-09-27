@@ -1,0 +1,9 @@
+Id: dosbox_staging
+Name: DOSBox Staging
+Website: 'https://www.dosbox-staging.org'
+Profiles:
+  - Name: Default
+    StartupArguments: '--conf "{ImagePath}"'
+    Platforms: [pc_dos]
+    StartupExecutable: ^dosbox\.exe$
+    ImageExtensions: [conf]
