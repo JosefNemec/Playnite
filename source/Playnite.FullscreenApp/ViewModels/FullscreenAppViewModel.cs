@@ -921,10 +921,13 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (screen == null)
             {
+                Logger.Warn("No screen found based on saved settings, defaulting to screen 0.");
                 screen = screens[0];
             }
 
             var dpi = VisualTreeHelper.GetDpi(Window.Window);
+            Logger.Info($"Render screen: {screen.DeviceName}, {screen.Primary}, {screen.Bounds.Width}x{screen.Bounds.Height}, {dpi.DpiScaleX}x{dpi.DpiScaleY}dpi");
+
             if (App.CmdLine.FullscreenHeight > 0 && App.CmdLine.FullscreenWidth > 0)
             {
                 var width = App.CmdLine.FullscreenWidth;
