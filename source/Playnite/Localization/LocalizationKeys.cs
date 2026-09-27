@@ -3710,6 +3710,10 @@ namespace Playnite
         /// </summary>
         public const string SettingsRefocusOnGuidButton = "LOCSettingsRefocusOnGuidButton";
         /// <summary>
+        /// Only focus if no game is running
+        /// </summary>
+        public const string SettingsRefocusOnGuidButtonOnlyWhenNoGame = "LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame";
+        /// <summary>
         /// Interface volume
         /// </summary>
         public const string SettingsInterfaceVolume = "LOCSettingsInterfaceVolume";

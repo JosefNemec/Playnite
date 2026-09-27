@@ -429,7 +429,9 @@ namespace Playnite.FullscreenApp.ViewModels
                 e.Button == ControllerInput.Guide &&
                 e.State == ControllerInputState.Released)
             {
-                RestoreWindow();
+                if (!AppSettings.Fullscreen.GuideButtonFocusOnlyWhenNoGameRunning ||
+                    (AppSettings.Fullscreen.GuideButtonFocusOnlyWhenNoGameRunning && !GamesEditor.RunningGames.HasItems()))
+                    RestoreWindow();
             }
 
             foreach (var plugin in Extensions.Plugins.Values)
