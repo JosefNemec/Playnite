@@ -56,6 +56,8 @@ namespace Playnite
             Items = null;
         }
 
+        protected virtual bool IsEntryVisible(GamesCollectionViewEntry entry) => true;
+
         private bool Filter(object item)
         {
             if (!(item is GamesCollectionViewEntry entry))
@@ -63,7 +65,8 @@ namespace Playnite
                 return false;
             }
 
-            return Database.GetGameMatchesFilter(entry.Game, filterSettings, settings.FuzzyMatchingInNameFilter);
+            return Database.GetGameMatchesFilter(entry.Game, filterSettings, settings.FuzzyMatchingInNameFilter) &&
+                IsEntryVisible(entry);
         }
 
         private void FilterSettings_FilterChanged(object sender, FilterChangedEventArgs e)
