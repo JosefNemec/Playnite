@@ -1018,6 +1018,7 @@ Keela, kui kasutad vahendeid, mis tõlgivad juhtpuldi sisendeid hiire/klaviatuur
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Ainult esmane juhtpult</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Kui lubatud, lubatakse ainult esmase juhtpuldi sisendid.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Nupp Guide toob Playnite'i esile</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Liidese helitugevus</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Tausta helitugevus</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Vaigista, kui taustal</sys:String>

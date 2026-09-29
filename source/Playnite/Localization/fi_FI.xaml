@@ -1003,6 +1003,7 @@ Tämän asetuksen käytöstä pois ottaminen voi johtaa syötön ongelmiin peli�
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Vain ensisijainen ohjain</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Opaspainike tuo Playniten esiin</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Käyttöliittymän äänenvoimakkuus</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Tausta-äänenvoimakkuus</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Mykistä kun taustalla</sys:String>

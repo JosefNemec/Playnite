@@ -1018,6 +1018,7 @@ Deaktivieren, falls du Tools verwendest, die Eingaben von Spielcontrollern in Ma
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Nur Primärcontroller</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Falls aktiviert, werden nur Eingaben des Primärcontrollers akzeptiert.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide-Taste fokussiert Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Lautstärke Oberfläche</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Lautstärke Hintergrund</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Im Hintergrund stummschalten</sys:String>

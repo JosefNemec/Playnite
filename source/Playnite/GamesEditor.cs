@@ -1244,13 +1244,18 @@ namespace Playnite
                         jumpList.JumpItems.Add(task);
                     }
 
-                    JumpTask fullscreen = new JumpTask
-                    {
-                        Title = resources.GetString(LOC.MenuOpenFullscreen),
-                        ApplicationPath = PlaynitePaths.FullscreenExecutablePath
-                    };
-
-                    jumpList.JumpItems.Add(fullscreen);
+                    if (Application.Mode == ApplicationMode.Desktop)
+                        jumpList.JumpItems.Add(new JumpTask
+                        {
+                            Title = resources.GetString(LOC.MenuOpenFullscreen),
+                            ApplicationPath = PlaynitePaths.FullscreenExecutablePath
+                        });
+                    else
+                        jumpList.JumpItems.Add(new JumpTask
+                        {
+                            Title = resources.GetString(LOC.BackToDesktopMode),
+                            ApplicationPath = PlaynitePaths.DesktopExecutablePath
+                        });
 
                     JumpList.SetJumpList(System.Windows.Application.Current, jumpList);
                 }

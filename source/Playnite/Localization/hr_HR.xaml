@@ -981,6 +981,7 @@ Isključivanje ove postavke može dovesti do poteškoća s igrama koje ne dobiva
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly"></sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>

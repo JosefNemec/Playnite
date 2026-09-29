@@ -991,6 +991,7 @@ Dezactivați dacă folosiți unelte ce traduc înregistrările de controler în 
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Exclusivitate controler primar</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Odată activată, se vor accepta înregistrări doar de la controlerul primar.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>

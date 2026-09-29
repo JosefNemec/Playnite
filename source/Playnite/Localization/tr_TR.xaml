@@ -27,8 +27,12 @@
 Belirsiz - Değişiklik yok (birden fazla oyun düzenlenirken)</sys:String>
     <sys:String x:Key="LOCNoCategory">Kategori Yok</sys:String>
     <sys:String x:Key="LOCNoPlatform">Platform Yok</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Kurtarılamaz bir hata oluştu</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Lütfen çökmeden önce gerçekleştirilen işlemleri kısaca açıklayın ve ardından teşhis bilgilerini gönderin.
+
+Alternatif olarak, yeni bir GitHub sorunu (issue) oluşturmak ve çökmeyi manuel olarak bildirmek için 'Çökmeyi Bildir' düğmesine tıklayabilirsiniz.
+
+Yardımlarınız için teşekkür ederiz.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">&quot;{0}&quot; uzantısı, kurtarılamaz bir hataya neden oldu.
 
 Günlük dosyasını kaydetmenizi ve sorunu uzantının geliştiricisine bildirmenizi öneririz. Sorun tekrarlanmaya devam ederse, uzantıyı devre dışı bırakın.</sys:String>
@@ -38,7 +42,9 @@ Sorunu uzantının geliştiricisine bildirmenizi öneririz. Sorun tekrarlanmaya 
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Bilinmeyen uzantı veya tema, kurtarılamaz bir hataya neden oldu.
 
 3. taraf eklentileri devre dışı bırakmanızı, sorunlu olanı ayırmanızı ve sorunu eklentinin geliştiricisine bildirmenizi öneririz.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Kurtarılamaz bir hata oluştu.
+
+Bu sorunu çözmemize yardımcı olmak istiyorsanız lütfen teşhis bilgilerini gönderin. Teşekkürler.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Uzantıyı devre dışı bırak</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Günlük dosyasını kaydet</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Tanılama bilgilerini gönder</sys:String>
@@ -265,7 +271,7 @@ Sorunu uzantının geliştiricisine bildirmenizi öneririz. Sorun tekrarlanmaya 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Eksik oyun kapak kaynağı</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Eksik oyun arka plan kaynağı</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Oyun ayrıntılarına dikey boşluk</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Özellikler paneli genişliği</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Izgara görünümü ayrıntı konumu</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Ayrıntılı görünüm oyun listesi konumu</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Paneller arası ayraç koy</sys:String>
@@ -1018,6 +1024,7 @@ Oyun kolu girişlerini fare/klavye girişlerine çeviren araçlar kullanıyorsan
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Sadece ana oyun kolu</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Aktif olduğunda, sadece ana oyun kolundan gelen girdiler dikkate alınır.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Rehber düğmesi Playnite'ı öne getirir</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Arayüz ses seviyesi</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Arka plan ses seviyesi</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Arka plandayken sessize al</sys:String>
@@ -1257,8 +1264,8 @@ Playnite GitHub sayfasında yeni bir hata kaydı oluşturarak arızalı dosyalar
     <sys:String x:Key="LOCNoControllersDetected">Hiçbir oyun kolu algılanmadı</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Varsayılan kaynak</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Web görüntüsü araması başarısız oldu. Bu çeşitli nedenlerden dolayı gerçekleşebilir. Daha fazla ayrıntı ve sorun giderme ipuçları için aşağıdaki bağlantıya bakın.</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Kılavuz düğmesi Tam ekran moduna geçer</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Oyun listesinde gezinme hızı</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Oyun verileri güncellenemedi. Orijinal oyun durumu kütüphanede bulunamadı, oyun kaldırılmış gibi görünüyor.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Kütüphane öğesi kaldırılamıyor. Öğe kütüphanede bulunamadı.</sys:String>
 </ResourceDictionary>

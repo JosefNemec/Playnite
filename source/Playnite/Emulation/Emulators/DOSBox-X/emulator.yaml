@@ -1,0 +1,9 @@
+Id: dosbox_x
+Name: DOSBox-X
+Website: 'https://dosbox-x.com/'
+Profiles:
+  - Name: Default
+    StartupArguments: '-conf "{ImagePath}" -noconsole'
+    Platforms: [pc_dos]
+    StartupExecutable: ^dosbox-x.exe\.exe$
+    ImageExtensions: [conf]

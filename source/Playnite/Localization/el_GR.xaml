@@ -1017,6 +1017,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Κύριο χειριστήριο μόνο</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Αποδοχή εισόδων από τον πρωτεύον χειριστήριο μόνο όταν είναι ενεργοποιημένο.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Το κουμπί οδηγού να ανοίγει το Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Ένταση ήχου διεπαφής</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Ένταση ήχου φόντου</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Σίγαση όταν βρίσκεστε στο παρασκήνιο</sys:String>

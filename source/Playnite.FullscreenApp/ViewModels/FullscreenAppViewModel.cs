@@ -429,7 +429,9 @@ namespace Playnite.FullscreenApp.ViewModels
                 e.Button == ControllerInput.Guide &&
                 e.State == ControllerInputState.Released)
             {
-                RestoreWindow();
+                if (!AppSettings.Fullscreen.GuideButtonFocusOnlyWhenNoGameRunning ||
+                    (AppSettings.Fullscreen.GuideButtonFocusOnlyWhenNoGameRunning && !GamesEditor.RunningGames.HasItems()))
+                    RestoreWindow();
             }
 
             foreach (var plugin in Extensions.Plugins.Values)
@@ -921,10 +923,13 @@ namespace Playnite.FullscreenApp.ViewModels
 
             if (screen == null)
             {
+                Logger.Warn("No screen found based on saved settings, defaulting to screen 0.");
                 screen = screens[0];
             }
 
             var dpi = VisualTreeHelper.GetDpi(Window.Window);
+            Logger.Info($"Render screen: {screen.DeviceName}, {screen.Primary}, {screen.Bounds.Width}x{screen.Bounds.Height}, {dpi.DpiScaleX}x{dpi.DpiScaleY}dpi");
+
             if (App.CmdLine.FullscreenHeight > 0 && App.CmdLine.FullscreenWidth > 0)
             {
                 var width = App.CmdLine.FullscreenWidth;
@@ -1000,6 +1005,16 @@ namespace Playnite.FullscreenApp.ViewModels
 
             GameListFocused = true;
             isInitialized = true;
+
+            try
+            {
+                GamesEditor.UpdateJumpList();
+            }
+            catch (Exception exc)
+            {
+                Logger.Error(exc, "Failed to set update JumpList data: ");
+            }
+
             RunStartupScript();
 
             if (AppSettings.Fullscreen.BackgroundVolume > 0)

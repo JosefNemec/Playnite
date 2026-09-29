@@ -977,6 +977,7 @@ Prašome įtraukti nurodytą ID į klaidos pranešimą:</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly"></sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume"></sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground"></sys:String>

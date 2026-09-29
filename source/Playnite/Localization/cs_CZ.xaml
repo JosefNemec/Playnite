@@ -1024,6 +1024,7 @@ Zakažte, pokud používáte ovladače které překládají vstupy herního ovla
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Pouze hlavní ovladač</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Přijmout pouze vstupy z hlavního ovladače.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide tlačítko přepne na Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Přepnout pouze pokud neběží žádná hra</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Hlasitost rozhraní</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Hlasitost na pozadí</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Umlčet v pozadí</sys:String>

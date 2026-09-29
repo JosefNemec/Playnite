@@ -75,6 +75,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
 
+            BindingTools.SetBinding(
+                ToggleGuideFocusOnlyWhenNoGame,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.GuideButtonFocusOnlyWhenNoGameRunning),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
+
             SliderNavigationSpeed.Minimum = 20;
             SliderNavigationSpeed.Maximum = 300;
             SliderNavigationSpeed.TickFrequency = 10;

@@ -1024,6 +1024,7 @@ Disable if you use tools that translates game controller inputs to mouse/keyboar
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Primary controller only</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Only accept inputs from primary controller when enabled.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide button focuses Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Only focus if no game is running</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Interface volume</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Background volume</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Mute when in background</sys:String>

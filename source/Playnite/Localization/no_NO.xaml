@@ -1021,6 +1021,7 @@ Deaktiver hvis du bruker verktøy som oversetter spillkontrollerkommandoer til m
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Kun hovedkontroller</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Når denne er aktivert godtas kun kommandoer fra hovedkontrolleren.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide-knappen fokuserer Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Grensesnittvolum</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Bakgrunnsvolum</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Demp når programmet er i bakgrunnen</sys:String>

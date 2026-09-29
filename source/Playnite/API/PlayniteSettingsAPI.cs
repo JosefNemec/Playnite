@@ -23,6 +23,7 @@ namespace Playnite.API
         public bool SwapConfirmCancelButtons => settings.SwapConfirmCancelButtons;
         public bool SwapStartDetailsAction => settings.SwapStartDetailsAction;
         public bool GuideButtonFocus => settings.GuideButtonFocus;
+        public bool GuideButtonFocusOnlyWhenNoGameRunning => settings.GuideButtonFocusOnlyWhenNoGameRunning;
 
         public FullscreenSettingsAPI(FullscreenSettings settings)
         {

@@ -698,6 +698,21 @@ namespace Playnite
             }
         }
 
+        private bool guideButtonFocusOnlyWhenNoGameRunning = false;
+        public bool GuideButtonFocusOnlyWhenNoGameRunning
+        {
+            get
+            {
+                return guideButtonFocusOnlyWhenNoGameRunning;
+            }
+
+            set
+            {
+                guideButtonFocusOnlyWhenNoGameRunning = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ImageLoadScaling imageScalerMode = ImageLoadScaling.BitmapDotNet;
         public ImageLoadScaling ImageScalerMode
         {

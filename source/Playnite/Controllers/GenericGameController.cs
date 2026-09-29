@@ -180,14 +180,14 @@ namespace Playnite.Controllers
                 else
                 {
                     builtIn = builtIn.GetClone();
-                    startupDir = emulator.InstallDir;
-                    startupPath = Emulation.GetExecutable(emulator.InstallDir, profileDef, true);
+                    startupPath = Emulation.GetExecutable(emulator.InstallDir, profileDef, false);
                     if (startupPath.IsNullOrEmpty())
                     {
                         throw new FileNotFoundException(ResourceProvider.GetString(LOC.ErrorEmulatorExecutableNotFound) +
                             $"\n\nRegular expression lookup: {profileDef.StartupExecutable}");
                     }
 
+                    startupDir = Path.GetDirectoryName(startupPath);
                     if (action.OverrideDefaultArgs)
                     {
                         startupArgs = Game.ExpandVariables(action.Arguments, false, emulator.InstallDir, romPath);

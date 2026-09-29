@@ -27,8 +27,12 @@
 不决定 - 不做更改（编辑多个游戏时）</sys:String>
     <sys:String x:Key="LOCNoCategory">没有分类</sys:String>
     <sys:String x:Key="LOCNoPlatform">没有平台</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">发生不可恢复的错误</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">请简要描述崩溃前进行的操作，然后发送诊断信息。
+
+或者，您也可以点击“Report Crash”（报告崩溃）按钮，创建一个新的 GitHub Issue 并手动报告该崩溃问题。
+
+感谢您的协助。</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">扩展“{0}”导致了一个无法恢复的错误。
 
 我们建议保存日志文件并向扩展开发者报告该问题。若问题仍然发生，请禁用该扩展。</sys:String>
@@ -38,7 +42,9 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">未知的扩展或主题导致了一个无法恢复的错误。
 
 我们建议禁用第三方附加组件，隔离其中导致问题的附加组件并向其开发者报告该问题。</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">发生了不可恢复的错误。
+
+如果您想帮助我们解决此问题，请向我们发送诊断信息。 谢谢！</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">停用扩展</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">保存记录文件</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">发送诊断信息</sys:String>
@@ -265,7 +271,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">缺少游戏封面源</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">缺少游戏背景源</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">到游戏详情的竖直间距</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">属性面板宽度</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">网格视图详情位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">详情视图游戏列表位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">在面板之间绘制分隔线</sys:String>
@@ -1018,6 +1024,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">仅主控制器</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">启用时，仅接受主控制器的输入。</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">向导按钮聚焦 Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">只在没有游戏运行时聚焦</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">界面音量</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">背景音量</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">在后台时静音</sys:String>
@@ -1257,8 +1264,8 @@ Playnite 将自动重启以开始备份过程。</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">未检测到控制器</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">默认来源</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">网页图像搜索失败。这可能有各种原因。请参阅以下链接以了解更多详情和故障排除提示。</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">导星按钮切换到全屏模式</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">游戏列表导航速度</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">更新游戏数据失败。在库中找不到最初的游戏状态，看起来游戏已被移除。</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">无法移除库项。在库中找不到此项。</sys:String>
 </ResourceDictionary>

@@ -1017,6 +1017,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly"></sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription"></sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Гласност интерфејса</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Гласноћа позадине</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Мутирај кад је у позадини</sys:String>

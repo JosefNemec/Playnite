@@ -27,8 +27,13 @@
 Неопределено - Без промени (при редактиране на няколко игри)</sys:String>
     <sys:String x:Key="LOCNoCategory">Няма категория</sys:String>
     <sys:String x:Key="LOCNoPlatform">Няма платформа</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Възникна непоправима грешка</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Моля, опишете накратко действията, извършени преди срива, и след това изпратете диагностичната информация.
+
+Като алтернатива можете да натиснете бутона 'Докладване на срив', за да създадете нов проблем в GitHub и да докладвате срива ръчно.
+
+Благодарим ви за помощта.
+</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Разширение &quot;{0}&quot; предизвика непоправима грешка.
 
 Препоръчваме да запазите регистрационния файл и да докладвате за проблема на разработчика на разширението. Ако проблемът продължава да се появява, деактивирайте разширението.</sys:String>
@@ -38,7 +43,9 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Неизвестно разширение или тема причиниха непоправима грешка.
 
 Препоръчваме да деактивирате добавките на трети страни, да изолирате проблемната и да докладвате за проблема на разработчика на добавката.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Възникна непоправима грешка.
+
+Ако искате да ни помогнете да разрешим този проблем, моля, изпратете диагностична информация. Благодаря ви.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Деактивиране на разширението</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Запазване на регистрационния файл</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Изпращане на диаг. информация</sys:String>
@@ -265,7 +272,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Липсващ източник на обложката на играта</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Липсващ фонов източник на играта</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Вертикално разстояние до подробностите за играта</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Ширина на панела със свойства</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Позиция на детайлите на мрежовия изглед</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Подробности за позицията на списъка с игри</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Изчертаване на разделител между панелите</sys:String>
@@ -1020,6 +1027,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Само основен контролер</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Приема входове само от основния контролер, когато е активиран.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Бутонът за ръководство фокусира Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Сила на звука на интерфейса</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Сила на фона</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Заглушаване във фонов режим</sys:String>
@@ -1257,10 +1265,13 @@ Playnite автоматично ще се рестартира, за да ста
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Искате ли да запазите направените промени?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Портативна инсталация</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Няма открити контролери</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Източник по подразбиране</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Търсенето на изображения в мрежата не бе успешно. Това може да се случи по различни причини. Вижте следния линк за повече информация и съвети за отстраняване на проблема.
+</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Бутонът за ръководство отваря режим на цял екран</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Скорост на навигация в списъка с игри</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Неуспешно актуализиране на данните за играта. Първоначалното състояние на играта не беше намерено в библиотеката. Изглежда, че играта е била премахната.
+</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Не може да се премахне елементът от библиотеката. Елементът не беше намерен в библиотеката.
+</sys:String>
 </ResourceDictionary>

@@ -1031,6 +1031,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Только основной геймпад</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Когда опция включена, принимаются входные сигналы только от основного геймпада.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Кнопка Guide фокусирует Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Фокусировать только если игра не запущена</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Громкость в полноэк. режиме</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Громкость фоновой музыки</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Заглушать звук при сворачивании</sys:String>

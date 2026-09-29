@@ -1016,6 +1016,7 @@ Nonaktifkan jika Anda menggunakan alat yang menerjemahkan input pengontrol game 
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Kontroler utama saja</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Hanya menerima input dari kontroler utama bila diaktifkan.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Tombol Guide memfokuskan Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volume antarmuka</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volume latar belakang</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Bisukan saat di latar belakang</sys:String>
