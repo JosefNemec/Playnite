@@ -1024,6 +1024,7 @@ Inaktivera om du använder verktyg som översätter spelkontrollens ingångar ti
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Endast primär kontroll</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Acceptera endast ingångar från primär kontroll när aktiverad.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide knapp fokuserar Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Fokusera endast om inget spel körs</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Gränssnittsvolym</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Bakgrundsvolym</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Tysta när i bakgrunden</sys:String>

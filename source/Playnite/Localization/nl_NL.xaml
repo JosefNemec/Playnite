@@ -27,7 +27,7 @@ Uitgevinkt - Verwijder categorie
 Er tussenin - Geen wijzigingen (bij bewerken van meerdere spellen)</sys:String>
     <sys:String x:Key="LOCNoCategory">Geen Categorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Geen Platform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Een onherstaalbare fout heeft zich voorgedaan</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Omschrijf kort de stappen hiervoor voordat het programma vastliep en stuur vervolgens gediagnosticeerde informatie.
 
 Optioneel klikt u op de knop 'Meld Fout' om een nieuw GitHub probleem aan te maken en de melding handmatig te melden.
@@ -275,7 +275,7 @@ Als u de optie &quot;toevoegen aan uitsluitingslijst&quot; selecteert, wordt voo
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Bron ontbrekende spelomslag</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Mist game achtergrond bron</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Verticale afstand tot speldetails</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Instellingen paneelbreedte</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Positie details in rasterweergave</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Positie spellijst in detailsweergave</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Teken scheidingslijn tussen panelen</sys:String>
@@ -1030,7 +1030,7 @@ Als je extra integraties wil installeren of verwijderen, gebruik dan de &quot;Ad
 Dit uitschakelen kan leiden tot problemen waarbij spellen geen invoer-focus krijgen bij het opstarten!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Lettertype grootte</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Klein lettertype grootte</sys:String>
-    <sys:String x:Key="LOCSettingsControllerApi"></sys:String>
+    <sys:String x:Key="LOCSettingsControllerApi">Activeer game controller API hulp</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessing">Ondersteuning voor spelcontroller</sys:String>
     <sys:String x:Key="LOCSettingsXInputProcessingDescription" xml:space="preserve">Als dit uitgeschakeld is accepteert Playnite geen spelcontrollerinvoer.
 
@@ -1043,6 +1043,7 @@ Schakel dit uit als je tools gebruikt die spelcontrollerinvoer vertalen naar mui
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Alleen primaire controller</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Accepteer alleen inputs van primaire controller wanneer ingeschakeld.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide knop focust Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Interface volume</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Achtergrondvolume</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Dempen in de achtergrond</sys:String>
@@ -1280,10 +1281,10 @@ Open het nieuwe probleem op Playnite's GitHub-pagina met een verzoek om corrupti
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Wil je de wijzigingen opslaan?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Draagbare installatie</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Geen controllers gedetecteerd</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Standaard bron</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Web foto zoeken is mislukt. Dit kan gebeuren door een verscheidenheid aan redenen. Bekijk de volgende link voor meer tips.</sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Gids knop wisselt naar Fullscreen modus</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Navigeersnelheid van de spellenlijst</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Het bijwerken van de spelgegevens is mislukt. De originele staat van het spel is niet in de bibliotheek gevonden, het duidt erop dat het spel verwijderd is.</sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Kan dit item niet verwijderen. Het item is niet gevonden in de library.</sys:String>
 </ResourceDictionary>

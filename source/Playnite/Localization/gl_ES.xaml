@@ -1021,6 +1021,7 @@ Desactívao se estás a usar ferramentas que traducen XInput a entrada de rato/t
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Só control primario</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Só acepta entradas do control principal cando estea activado.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">O botón Guía enfoca Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volume de interface</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volume de fondo</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Silenciar cando está en segundo plano</sys:String>

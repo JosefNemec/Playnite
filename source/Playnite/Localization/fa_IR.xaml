@@ -1024,6 +1024,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">تنها دستهٔ بازی اصلی</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">تنها زمانی که فعال است از دستهٔ بازی اصلی درونداد بپذیرید.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">دکمهٔ راهنما Playnite را متمرکز می‌کند</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">صدای میانا</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">صدای پس‌زمینه</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">بی‌صداسازی در پس‌زمینه</sys:String>

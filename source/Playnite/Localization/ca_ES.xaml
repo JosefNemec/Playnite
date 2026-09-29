@@ -1026,6 +1026,7 @@ Desactiva-ho si utilitzes eines que tradueixen les entrades de comandament de jo
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Només el comandament primari</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Només acceptar entrades del comandament primari quan aquesta opció està activada.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">El botó Guia porta Playnite a primer pla</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volum de la interfície</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volum en segon pla</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Silenciar quan s'estigui en segon pla</sys:String>

@@ -27,8 +27,10 @@ Non sélectionné - Retire une catégorie
 Indéterminé - Aucun changement</sys:String>
     <sys:String x:Key="LOCNoCategory">Sans catégorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Sans plateforme</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Une erreur critique est survenue.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Veuillez brièvement décrire votre activité dans les instants précédents le crash, puis envoyez le dossier de diagnostic. Vous pouvez également cliquer sur le bouton 'Signaler un plantage' pour ouvrir un ticket à remplir manuellement sur le page Github de Playnite.
+
+Merci pour votre aide !</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">L'extension &quot;{0}&quot; a causé une erreur critique.
 
 Il est recommandé de signaler ce problème au développeur de l'extension (via un fichier log) et de la désactiver si il devait persister.</sys:String>
@@ -38,7 +40,9 @@ Il est recommandé de signaler ce problème au développeur de l'extension et de
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Une extension ou un thème a provoqué une erreur irrécupérable.
 
 Nous vous recommandons de désactiver les modules complémentaires, d'isoler celui qui pose problème et de signaler le problème au développeur du module en question.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Une erreur critique est survenue.
+
+Pour aider à la correction de ce problème, veuillez nous envoyer les informations de diagnostic. Merci pour votre contribution !</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Désactiver l'extension</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Enregistrer le fichier log</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Envoyer les informations de diagnostic</sys:String>
@@ -1015,6 +1019,7 @@ Désactivez-le si vous utilisez des outils qui convertissent les entrées des co
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">N'autoriser que la manette principale</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Si cette option est activée, Playnite n'acceptera que les entrées de la manette principale.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Le bouton guide rétablit le focus du mode plein écran</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volume de l'interface</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volume d'ambiance</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Rendre muet lorsque la fenêtre est en arrière-plan</sys:String>
@@ -1256,8 +1261,8 @@ Si vous voyez ce message, veuillez ouvrir un ticket sur la page Github de Playni
     <sys:String x:Key="LOCNoControllersDetected">Aucune manette détectée</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Source par défaut</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">La recherche d'image Web a échoué. Cela peut se produire pour diverses raisons. Consultez le lien suivant pour plus de détails et des conseils de dépannage.</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Utiliser le bouton Guide pour basculer en mode Plein Écran</sys:String>
     <sys:String x:Key="LOCGameListNavigationSpeed">Vitesse de défilement de la liste de jeux</sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Échec de la mise à jour des données de jeu. Le profil de données n'est pas présent dans la bibliothèque.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">L'élément n'est pas présent dans la bibliothèque et n'a pas pu être supprimé.</sys:String>
 </ResourceDictionary>

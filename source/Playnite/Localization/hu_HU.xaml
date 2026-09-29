@@ -1011,6 +1011,7 @@ Akkor kapcsold ki, ha olyan programokat használsz, ami játékvezérlő gombnyo
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Csak az elsődleges játékvezérlő</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Csak az első játékvezérlővel tudod irányítani a Playnite-ot.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide/PS gombbal előtérbe kerül a Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Csak akkor kerül előtérbe, ha nem fut játék</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Felület hangerő</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Háttérzene hangerő</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Háttérben némít</sys:String>

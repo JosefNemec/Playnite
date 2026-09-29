@@ -1024,6 +1024,7 @@ Desactiva esta opción si utilizas herramientas que traducen las entradas del ma
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Sólo mando de juego principal</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Sólo aceptar entradas del mando de juego principal cuando esté activado.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">El botón de la guía enfoca Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volumen de interfaz</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volumen de fondo</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Silenciar cuando se este de fondo</sys:String>

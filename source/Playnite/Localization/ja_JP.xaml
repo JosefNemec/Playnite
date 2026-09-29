@@ -1030,6 +1030,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">プライマリーコントローラーのみ</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">有効な場合にのみプライマリコントローラからの入力を受け付けます。</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">ガイドボタンで Playnite にフォーカス</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">インターフェイスの音量</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">背景の音量</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">バックグラウンドでミュート</sys:String>

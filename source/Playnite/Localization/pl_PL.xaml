@@ -27,7 +27,7 @@
   • Nieokreślone pozostaną bez zmian (podczas edycji wielu gier)</sys:String>
     <sys:String x:Key="LOCNoCategory">Bez kategorii</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Wystąpił nieodwracalny błąd</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Rozszerzenie „{0}” spowodowało nieodwracalny błąd.
 
@@ -38,7 +38,9 @@ Zalecamy zapisanie pliku dziennika i zgłoszenie problemu twórcy rozszerzenia. 
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Nieznane rozszerzenie lub motyw spowodował nieodwracalny błąd.
 
 Zalecamy wyłączenie rozszerzeń innych firm, aby wyizolować problematyczny dodatek i zgłosić problem do jego twórców.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Wystąpił nieodwracalny błąd.
+ 
+Jeśli chcesz nam pomóc rozwiązać ten problem, wyślij informacje diagnostyczne. Dziękujemy.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Wyłącz rozszerzenie</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Zapisz plik dziennika</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Wyślij dane diagnostyczne</sys:String>
@@ -265,7 +267,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Brak źródła okładki gry</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Brak źródła tła gry</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Odstęp pionowy szczegółów gry</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Szerokość panelu właściwości</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Pozycja szczegółów w widoku siatki</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Pozycja listy gier w widoku szczegółowym</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Separator pomiędzy panelami</sys:String>
@@ -1021,6 +1023,7 @@ Wyłącz, jeśli używasz narzędzi, które tłumaczą wejścia kontrolera gry n
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Tylko główny kontroler</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Akceptuj dane wejściowe z podstawowego kontrolera tylko wtedy, gdy włączone.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Przycisk przewodnika wyzwala Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Głośność interfejsu</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Głośność tła</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Wycisz, kiedy jest w tle</sys:String>
@@ -1263,8 +1266,8 @@ Otwórz nowy problem na stronie GitHub Playnite z prośbą o naprawienie uszkodz
     <sys:String x:Key="LOCNoControllersDetected">Nie wykryto kontrolerów</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Źródło domyślne</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Wyszukiwanie obrazów w Internecie nieudane. Może to wynikać z różnych przyczyn. Więcej informacji oraz wskazówki dotyczące rozwiązywania problemów znajdziesz pod poniższym linkiem.</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Przycisk Guide otwiera tryb pełnoekranowy</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Szybkość nawigacji listy gier</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Nie udało się zaktualizować danych gry. Oryginalny stan gry nie został znaleziony w bibliotece, wygląda na to, że gra została usunięta.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Nie można usunąć elementu biblioteki. Element nie został znaleziony w bibliotece.</sys:String>
 </ResourceDictionary>

@@ -969,6 +969,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">केवळ प्राथमिक कंट्रोलर</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">सक्षम केल्यावर केवळ प्राथमिक कंट्रोलरपासून इनपुट स्वीकारले जाईल.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">इंटरफेस व्हॉल्यूम</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">पार्श्वभूमी व्हॉल्यूम</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">पार्श्वभूमीत असताना म्यूट करा</sys:String>

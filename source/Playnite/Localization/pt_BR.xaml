@@ -1026,6 +1026,7 @@ Desative se você usar ferramentas que traduzem entradas de controle de jogo par
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Apenas o controlador primário</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Apenas aceitar as entradas do controlador primário quando habilitado.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">O botão Guia foca no Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Focar apenas se nenhum jogo estiver em execução</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volume da interface</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volume em segundo plano</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Silenciar quando em segundo plano</sys:String>

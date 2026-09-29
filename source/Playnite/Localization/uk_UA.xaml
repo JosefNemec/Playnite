@@ -27,8 +27,12 @@
 Невизначено - Без змін (коли редагується кілька ігор)</sys:String>
     <sys:String x:Key="LOCNoCategory">Немає категорії</sys:String>
     <sys:String x:Key="LOCNoPlatform">Немає платформи</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">Сталася невідновна помилка</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Будь ласка, коротко опишіть дії, виконані перед збоєм, а потім надішліть діагностичні дані.
+
+Крім того, ви можете натиснути кнопку «Повідомити про збій», щоб створити новий запит на GitHub і повідомити про збій вручну.
+
+Дякуємо за допомогу.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Розширення &quot;{0}&quot; призвело до невиправної помилки.
 
 Ми рекомендуємо зберегти лог-файл і повідомити про проблему розробнику розширення. Якщо проблема повторюється знову і знову, вимкніть розширення.</sys:String>
@@ -37,7 +41,9 @@
 Ми рекомендуємо повідомити про проблему розробнику розширення. Якщо проблема повторюється знову і знову, вимкніть розширення.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Невідоме розширення або тема спричинили непоправну помилку.
 Ми рекомендуємо відключити доповнення сторонніх розробників, виділити проблемне та повідомити про проблему розробнику доповнення.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Сталася невідновна помилка.
+
+Якщо ви хочете допомогти нам виправити цю проблему, надішліть діагностичні дані. Дякуємо.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Вимкнути розширення</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Зберегти лог-файл</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Вислати діаг. інформацію</sys:String>
@@ -1019,6 +1025,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Тільки основний контролер</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Приймати дані лише з основного контролера, коли увімкнено.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Кнопка Guide зміщує фокус на Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Фокусуватися лише якщо не запущено гри</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Гучність інтерфейсу</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Фонова гучність</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Вимкнути звук у фоновому режимі</sys:String>
@@ -1262,6 +1269,6 @@ Playnite автоматично перезапуститься та почне �
     <sys:String x:Key="LOCWebImageDownloadError">Не вдалося знайти зображення в мережі. Причин може бути декілька. Перейдіть за посиланням, щоб дізнатися деталі та поради з усунення проблем.</sys:String>
     <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Кнопка Guide відкриває повноекранний режим</sys:String>
     <sys:String x:Key="LOCGameListNavigationSpeed">Швидкість навігації списку ігор</sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Не вдалося оновити ігрові дані. Початковий стан гри не знайдено в бібліотеці — схоже, гру було видалено.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Неможливо видалити елемент із бібліотеки. Цей елемент не знайдено в бібліотеці.</sys:String>
 </ResourceDictionary>

@@ -1027,6 +1027,7 @@ Tắt đi nếu bạn sử dụng công cụ để chuyển tín hiệu đầu v
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Chỉ tay cầm chính</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Chỉ cho phép nhập liệu từ tay cầm chính khi được bật.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Nút Guide tập trung vào Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Chỉ tập trung vào giao diện nếu không có trò chơi đang chạy</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Giao diện âm thanh</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Âm lượng nền</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Tắt âm thanh khi ở chế độ nền</sys:String>

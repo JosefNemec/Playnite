@@ -1016,6 +1016,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">주 컨트롤러만 사용</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">이 옵션을 설정하면 주 컨트롤러의 입력만 처리합니다.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">가이드 버튼으로 Playnite 열기</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">인터페이스 볼륨</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">배경음악 볼륨</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">프로그램이 활성화 되어있을 때만 재생</sys:String>

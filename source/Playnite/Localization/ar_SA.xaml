@@ -1076,6 +1076,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">وحدة التحكم الرئيسية فقط</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">قبول المدخلات من وحدة التحكم الرئيسية فقط عند التمكين.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">زر الدليل يركز على Playnite</sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">مستوى صوت الواجهة</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">مستوى صوت الخلفية</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">كتم الصوت عندما يكون playnite في الخلفية</sys:String>
