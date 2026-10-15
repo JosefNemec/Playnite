@@ -116,10 +116,13 @@ namespace System.Drawing.Imaging
     public static partial class BitmapExtensions
     {
         private static ILogger logger = LogManager.GetLogger();
-        private static readonly byte[] webpSig = new byte[] { 0x57, 0x45, 0x42, 0x50 };
+        private static readonly byte[] webpSig = "WEBP"u8.ToArray();
         // Apparently both ftypavif and ftypmif1 can appear in avif encoded images
-        private static readonly byte[] avif1 = new byte[] { 0x66, 0x74, 0x79, 0x70, 0x61, 0x76, 0x69, 0x66 };
-        private static readonly byte[] avif2 = new byte[] { 0x66, 0x74, 0x79, 0x70, 0x6d, 0x69, 0x66, 0x31 };
+        private static readonly byte[] avif1 = "ftypavif"u8.ToArray();
+        private static readonly byte[] avif2 = "ftypmif1"u8.ToArray();
+        // https://github.com/ImageMagick/jpeg-xl/blob/main/doc/format_overview.md#file-format
+        private static readonly byte[] jpegxl1 = [0x00, 0x00, 0x00, 0x0C, 0x4A, 0x58, 0x4C, 0x20, 0x0D, 0x0A, 0x87, 0x0A];
+        private static readonly byte[] jpegxl2 = [0xFF, 0x0A];
 
         public static BitmapSource CreateSourceFromURI(Uri imageUri)
         {
@@ -192,19 +195,29 @@ namespace System.Drawing.Imaging
 
             // WEBP
             stream.Seek(8, SeekOrigin.Begin);
-            var buffer = new byte[4];
-            stream.Read(buffer, 0, 4);
+            var buffer = new byte[webpSig.Length];
+            stream.Read(buffer, 0, webpSig.Length);
             if (buffer.SequenceEqual(webpSig))
                 return true;
 
             // AVIF
             stream.Seek(4, SeekOrigin.Begin);
-            buffer = new byte[8];
-            stream.Read(buffer, 0, 8);
+            buffer = new byte[avif1.Length];
+            stream.Read(buffer, 0, avif1.Length);
             if (buffer.SequenceEqual(avif1))
                 return true;
 
             if (buffer.SequenceEqual(avif2))
+                return true;
+
+            // JPEG XL
+            stream.Seek(0, SeekOrigin.Begin);
+            buffer = new byte[jpegxl1.Length];
+            stream.Read(buffer, 0, jpegxl1.Length);
+            if (buffer.SequenceEqual(jpegxl1))
+                return true;
+
+            if (new ArraySegment<byte>(buffer, 0, jpegxl2.Length).SequenceEqual(jpegxl2))
                 return true;
 
             return false;

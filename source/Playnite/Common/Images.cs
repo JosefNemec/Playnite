@@ -10,6 +10,7 @@ using System.IO;
 using Playnite.SDK;
 using Playnite.Common.Media.Icons;
 using System.Drawing.Imaging;
+using ImageMagick;
 
 namespace Playnite.Common
 {
@@ -78,6 +79,19 @@ namespace Playnite.Common
         {
             try
             {
+                imageStream.Seek(0, SeekOrigin.Begin);
+                if (BitmapExtensions.IsFormatForImageMagickDecode(imageStream))
+                {
+                    imageStream.Seek(0, SeekOrigin.Begin);
+                    var info = new MagickImageInfo(imageStream);
+                    return new ImageProperties
+                    {
+                        Height = (int)info.Height,
+                        Width = (int)info.Width,
+                    };
+                }
+
+                imageStream.Seek(0, SeekOrigin.Begin);
                 var decoder = BitmapDecoder.Create(imageStream, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
                 if (decoder.Frames.HasItems())
                 {
