@@ -111,7 +111,7 @@
 
   <ItemGroup>
     <Reference Include="System.Management.Automation">
-      <HintPath>..\..\..\..\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</HintPath>
+      <HintPath>c:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />

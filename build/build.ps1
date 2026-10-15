@@ -81,7 +81,7 @@ function PackExtensionTemplate()
 function FixAppConfig()
 {    
     param(
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [string]$ConfigFile
     )
 
@@ -92,7 +92,7 @@ function FixAppConfig()
         throw "RuntimeInformation node not found in $ConfigFile"
     }
 
-    $confXml.configuration.runtime.RemoveChild($riNode)
+    $confXml.configuration.runtime.RemoveChild($riNode) | Out-Null
     $confXml.Save($ConfigFile)
 }
 
@@ -198,9 +198,9 @@ if (!$SkipBuild)
     Join-Path $OutputDir "CefSharp.Core.Runtime.pdb" | Remove-Item
 
     # This is needed because of .NET compiler generating wrong redirects for System.Runtime.InteropServices.RuntimeInformation,
-    # so we need to just outright remove those. Won't be needed update update to .NET 4.8, so remove then.
-    FixAppConfig (Join-Path $OutputDir "Playnite.DesktopApp.exe.config")
-    FixAppConfig (Join-Path $OutputDir "Playnite.FullscreenApp.exe.config")
+    # so we need to just outright remove those. Won't be needed after update to .NET 4.8, so remove then.
+    Join-Path $OutputDir "Playnite.DesktopApp.exe.config" | FixAppConfig
+    Join-Path $OutputDir "Playnite.FullscreenApp.exe.config" | FixAppConfig
 }
 
 New-Folder $InstallerDir
