@@ -1153,6 +1153,11 @@ namespace Playnite.Emulators
             game.Roms = new ObservableCollection<ScannedRom>();
             game.ScriptSource = scriptGame;
 
+            if (!scriptGame.GameId.IsNullOrEmpty())
+            {
+                game.GameId = scriptGame.GameId;
+            }
+
             if (scriptGame.Serial.IsNullOrEmpty())
             {
                 game.Roms.Add(new ScannedRom(scriptGame.Path));
@@ -1357,6 +1362,7 @@ namespace Playnite.Emulators
         public string Path { get; set; }
         public string Serial { get; set; }
         public string Name { get; set; }
+        public string GameId { get; set; }
     }
 
     public class ScannedGame : ObservableObject
@@ -1371,6 +1377,7 @@ namespace Playnite.Emulators
         private ReleaseDate? releaseDate;
         private ScriptScannedGame scriptSource;
         private Emulator sourceEmulator;
+        private string gameId;
         #endregion backing fields
 
         public bool Import                              { get => import; set => SetValue(ref import, value); }
@@ -1382,6 +1389,7 @@ namespace Playnite.Emulators
         public ReleaseDate? ReleaseDate                 { get => releaseDate; set => SetValue(ref releaseDate, value); }
         public ScriptScannedGame ScriptSource           { get => scriptSource; set => SetValue(ref scriptSource, value); }
         public Emulator SourceEmulator                  { get => sourceEmulator; set => SetValue(ref sourceEmulator, value); }
+        public string GameId                            { get => gameId; set => SetValue(ref gameId, value); }
 
         public Game ToGame()
         {
@@ -1482,6 +1490,11 @@ namespace Playnite.Emulators
 
                     game.Roms.Add(gameRom);
                 }
+            }
+
+            if (!GameId.IsNullOrEmpty())
+            {
+                game.GameId = GameId;
             }
 
             return game;
