@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Playnite
 {
@@ -164,6 +166,31 @@ namespace Playnite
                         var descriptionPath = Path.Combine(diagTemp, "userActions.txt");
                         File.WriteAllText(descriptionPath, userActionsDescription);
                         archive.CreateEntryFromFile(descriptionPath, Path.GetFileName(descriptionPath));
+                    }
+
+                    // Automatic crash dumps, only for manually created packages since caught crashes will already have necessary info included.
+                    if (!packageInfo.IsCrashPackage)
+                    {
+                        try
+                        {
+                            var crashDir = Environment.ExpandEnvironmentVariables(@"%LOCALAPPDATA%\CrashDumps");
+                            if (Directory.Exists(crashDir))
+                            {
+                                var dumps = Directory.GetFiles(crashDir).
+                                    Where(a => a.Contains("Playnite") && (DateTime.Now - new FileInfo(a).LastWriteTime).TotalHours <= 24).
+                                    GroupBy(a => Regex.Replace(a, @"\.\d+\.dmp", "", RegexOptions.IgnoreCase));
+
+                                foreach (var dumpGroup in dumps)
+                                {
+                                    var dump = dumpGroup.First();
+                                    archive.CreateEntryFromFile(dump, Path.Combine("dumps", Path.GetFileName(dump)));
+                                }
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.Error(e, "Failed to collect crash dumps.");
+                        }
                     }
 
                     void addCefLog(string logPath, ZipArchive archiveObj)
