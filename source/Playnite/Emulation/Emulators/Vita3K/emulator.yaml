@@ -7,7 +7,6 @@ Profiles:
     Platforms: [sony_vita]
     ImageExtensions: [vpk]
     StartupExecutable: ^Vita3K.*\.exe$
-    Profiles:
   - Name: Installed Games
     StartupArguments: '--installed-path {GameId} --fullscreen'
     Platforms: [sony_vita]
