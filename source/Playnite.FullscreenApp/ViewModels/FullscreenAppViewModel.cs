@@ -389,6 +389,12 @@ namespace Playnite.FullscreenApp.ViewModels
             GamesEditor = gamesEditor;
             AppSettings = settings;
             IsFullScreen = !PlayniteEnvironment.IsDebuggerAttached;
+            if (AppSettings.Fullscreen.ClearFiltersOnStartup)
+            {
+                AppSettings.Fullscreen.FilterSettings.ClearFilters();
+                AppSettings.Fullscreen.SelectedFilterPreset = Guid.Empty;
+            }
+
             settings.Fullscreen.PropertyChanged += Fullscreen_PropertyChanged;
             settings.Fullscreen.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             ThemeManager.ApplyFullscreenButtonPrompts(PlayniteApplication.CurrentNative, AppSettings.Fullscreen.ButtonPrompts);

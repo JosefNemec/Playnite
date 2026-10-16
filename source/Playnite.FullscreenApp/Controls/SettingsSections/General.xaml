@@ -33,6 +33,8 @@
         <pctrls:CheckBoxEx x:Name="ToggleMinimizeAfterGame"
                            Content="{DynamicResource LOCSettingsMinimizeAfterStartingGame}"
                            Tag="{DynamicResource LOCSettingsMinimizeAfterStartingGameDescription}"/>
+        <pctrls:CheckBoxEx x:Name="ToggleClearFiltersOnStartup"
+                           Content="{DynamicResource LOCFiltersClearOnStartup}"/>
         <pctrls:CheckBoxEx x:Name="ToggleAsyncImageLoad"
                            Content="{DynamicResource LOCSettingsAsyncImageLoading}"
                            ContentStringFormat="{}{0} *"

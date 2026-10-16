@@ -4521,5 +4521,9 @@ namespace Playnite
         /// Can't remove library item. The item was not found in the library.
         /// </summary>
         public const string LibraryDataRemovalNotFound = "LOCLibraryDataRemovalNotFound";
+        /// <summary>
+        /// Clear filters on startup
+        /// </summary>
+        public const string FiltersClearOnStartup = "LOCFiltersClearOnStartup";
     }
 }

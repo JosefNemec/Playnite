@@ -2255,6 +2255,9 @@ namespace Playnite
         private WebImageSearchSource defaultWebImageSource = WebImageSearchSource.Google;
         public WebImageSearchSource DefaultWebImageSource { get => defaultWebImageSource; set => SetValue(ref defaultWebImageSource, value); }
 
+        private bool clearFiltersOnStartup = false;
+        public bool ClearFiltersOnStartup { get => clearFiltersOnStartup; set => SetValue(ref clearFiltersOnStartup, value); }
+
         public Guid LastSelectedGame { get; set; }
 
         [JsonIgnore]

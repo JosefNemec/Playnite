@@ -249,6 +249,12 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings = settings;
             App.Notifications.ActivationRequested += DesktopAppViewModel_ActivationRequested;
             App.Notifications.CloseRequested += Notifications_CloseRequested;
+            if (AppSettings.ClearFiltersOnStartup)
+            {
+                AppSettings.SelectedFilterPreset = Guid.Empty;
+                AppSettings.FilterSettings.ClearFilters();
+            }
+
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
