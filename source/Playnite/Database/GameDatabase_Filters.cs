@@ -3,6 +3,7 @@ using Playnite.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Playnite.Common;
 
 namespace Playnite.Database
 {
@@ -294,7 +295,13 @@ namespace Playnite.Database
 
             if (filter.Ids.HasItems())
             {
-                return filter.Ids.Contains(idData);
+                var match = filter.Ids.Contains(idData);
+                // This is to fix dumb decision to make default "None" completion status as Max Guid value, so it breaks "None" filter,
+                // until you manually adding a game and assign "real" none value. #4406
+                if (!match && idData == Constants.MaxGuidVal)
+                    return filter.Ids.Contains(Guid.Empty);
+
+                return match;
             }
 
             return true;
