@@ -4525,5 +4525,9 @@ namespace Playnite
         /// Clear filters on startup
         /// </summary>
         public const string FiltersClearOnStartup = "LOCFiltersClearOnStartup";
+        /// <summary>
+        /// Fulllscreen mode specific settings can be found in settings menu available from within Fullscreen mode itself.
+        /// </summary>
+        public const string FullscreenSettingsDesktopNotif = "LOCFullscreenSettingsDesktopNotif";
     }
 }

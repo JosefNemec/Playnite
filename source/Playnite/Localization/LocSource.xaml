@@ -1269,4 +1269,5 @@ Open new issue on Playnite's GitHub page with a request to fix corruption in you
     <sys:String x:Key="LOCGameDataUpdateSaveError">Failed to update game data. The original game state was not found in the library, looks like the game has been removed.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Can't remove library item. The item was not found in the library.</sys:String>
     <sys:String x:Key="LOCFiltersClearOnStartup">Clear filters on startup</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Fulllscreen mode specific settings can be found in settings menu available from within Fullscreen mode itself.</sys:String>
 </ResourceDictionary>

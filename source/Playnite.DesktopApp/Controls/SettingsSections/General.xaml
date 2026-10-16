@@ -30,7 +30,12 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <StackPanel Margin="20">
-        <DockPanel Margin="0,0,0,10" LastChildFill="False">
+        <Border BorderThickness="2" CornerRadius="2" BorderBrush="{DynamicResource WarningBrush}">
+            <TextBlock Margin="12" TextWrapping="Wrap"
+                       Text="{DynamicResource LOCFullscreenSettingsDesktopNotif}"/>
+        </Border>
+
+        <DockPanel Margin="0,15,0,10" LastChildFill="False">
             <ContentControl Content="{DynamicResource LOCLanguageSettingsLabel}"
                             ContentStringFormat="{}{0} *"
                             VerticalAlignment="Center" Margin="5,0,10,0" />
