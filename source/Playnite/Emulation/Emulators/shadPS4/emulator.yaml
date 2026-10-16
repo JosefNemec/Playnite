@@ -10,6 +10,6 @@ Profiles:
     ScriptGameImport: true
   - Name: Qt Launcher
     Platforms: [sony_playstation4]
-    StartupExecutable: ^shadPS4QtLauncher.exe$
+    StartupExecutable: ^shadPS4QtLauncher\.exe$
     StartupArguments: '-d -g "{ImagePath}"'
     ScriptGameImport: true
