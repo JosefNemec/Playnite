@@ -128,20 +128,27 @@
                   Content="{DynamicResource LOCFiltersClearOnStartup}"
                   IsChecked="{Binding Settings.ClearFiltersOnStartup}"/>
 
-        <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
-                   ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
-                   VerticalAlignment="Center" />
-
-        <StackPanel Orientation="Horizontal" Margin="5,10,5,0">
-            <ComboBox MinWidth="100" VerticalAlignment="Center"
-                  SelectedValue="{Binding Settings.PlaytimeImportMode}"
-                  pbeh:SelectorBehaviors.EnumSource="{x:Type sdk:PlaytimeImportMode}" />
+        <StackPanel Orientation="Horizontal" Margin="5,15,5,0">
+            <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}"
+                       ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
+                       VerticalAlignment="Center" />
+            <ComboBox MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center"
+                      SelectedValue="{Binding Settings.PlaytimeImportMode}"
+                      pbeh:SelectorBehaviors.EnumSource="{x:Type sdk:PlaytimeImportMode}" />
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                            CommandParameter="{}{DocsRootUrl}/manual/playtimeImport.html">
                     <Run Text="{DynamicResource LOCMenuHelpTitle}" />
                 </Hyperlink>
             </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="5,15,0,0">
+            <TextBlock Text="{DynamicResource LOCSettingsLnkImportMode}"
+                       VerticalAlignment="Center"/>
+            <ComboBox MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center"
+                      SelectedValue="{Binding Settings.LnkImportMode}"
+                      pbeh:SelectorBehaviors.EnumSource="{x:Type p:LnkImportMode}" />
         </StackPanel>
     </StackPanel>
     </ScrollViewer>

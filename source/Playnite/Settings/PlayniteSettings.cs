@@ -27,6 +27,14 @@ using Playnite.SDK.Plugins;
 
 namespace Playnite
 {
+    public enum LnkImportMode
+    {
+        [Description(LOC.SettingsLnkImportModeDirect)]
+        Direct,
+        [Description(LOC.SettingsLnkImportModeTarget)]
+        Target,
+    }
+
     public enum WebImageSearchSource
     {
         Google,
@@ -2257,6 +2265,9 @@ namespace Playnite
 
         private bool clearFiltersOnStartup = false;
         public bool ClearFiltersOnStartup { get => clearFiltersOnStartup; set => SetValue(ref clearFiltersOnStartup, value); }
+
+        private LnkImportMode lnkImportMode = LnkImportMode.Target;
+        public LnkImportMode LnkImportMode { get => lnkImportMode; set => SetValue(ref lnkImportMode, value); }
 
         public Guid LastSelectedGame { get; set; }
 

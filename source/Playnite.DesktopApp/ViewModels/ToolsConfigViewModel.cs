@@ -22,6 +22,7 @@ namespace Playnite.DesktopApp.ViewModels
         private IWindowFactory window;
         private IDialogsFactory dialogs;
         private IResourceProvider resources;
+        private readonly PlayniteSettings settings;
         private IGameDatabaseMain database;
 
         public ObservableCollection<AppSoftware> EditingApps
@@ -100,12 +101,14 @@ namespace Playnite.DesktopApp.ViewModels
             IGameDatabaseMain database,
             IWindowFactory window,
             IDialogsFactory dialogs,
-            IResourceProvider resources)
+            IResourceProvider resources,
+            PlayniteSettings settings)
         {
             this.database = database;
             this.window = window;
             this.dialogs = dialogs;
             this.resources = resources;
+            this.settings = settings;
 
             EditingApps = database.SoftwareApps.GetClone().OrderBy(a => a.Name).ToObservable();
             SelectedApp = EditingApps.FirstOrDefault();
@@ -186,7 +189,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 if (filePath.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || filePath.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
                 {
-                    var program = Programs.GetProgramData(filePath);
+                    var program = Programs.GetProgramData(filePath, settings.LnkImportMode);
                     var app = new AppSoftware(program.Name)
                     {
                         Path = program.Path,

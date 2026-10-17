@@ -871,7 +871,7 @@ namespace Playnite.DesktopApp.ViewModels
                             Game game = null;
                             try
                             {
-                                game = GameExtensions.GetGameFromExecutable(path);
+                                game = GameExtensions.GetGameFromExecutable(path, AppSettings.LnkImportMode);
                             }
                             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                             {
@@ -911,7 +911,8 @@ namespace Playnite.DesktopApp.ViewModels
                         var instModel = new InstalledGamesViewModel(
                            new InstalledGamesWindowFactory(),
                            Dialogs,
-                           Database);
+                           Database,
+                           AppSettings);
                         ImportInstalledGames(instModel, path);
                     }
                 }

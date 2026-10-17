@@ -216,6 +216,7 @@ namespace Playnite.DesktopApp.ViewModels
         private static ILogger logger = LogManager.GetLogger();
         private IWindowFactory window;
         private IDialogsFactory dialogs;
+        private readonly PlayniteSettings settings;
 
         public RelayCommand<object> CloseCommand
         {
@@ -257,10 +258,11 @@ namespace Playnite.DesktopApp.ViewModels
             });
         }
 
-        public InstalledGamesViewModel(IWindowFactory window, IDialogsFactory dialogs, IGameDatabaseMain database)
+        public InstalledGamesViewModel(IWindowFactory window, IDialogsFactory dialogs, IGameDatabaseMain database, PlayniteSettings settings)
         {
             this.window = window;
             this.dialogs = dialogs;
+            this.settings = settings;
             importedExes = database.GetImportedExeFiles();
             CollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(Programs);
             CollectionView.Filter = ListFilter;
@@ -322,18 +324,20 @@ namespace Playnite.DesktopApp.ViewModels
                     path = program.Item.Path.Replace(program.Item.WorkDir.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator());
                 }
 
-                newGame.GameActions = new List<GameAction>
+                var action = new GameAction
                 {
-                     new GameAction()
-                    {
-                        Path = path,
-                        Arguments = program.Item.Arguments,
-                        Type = GameActionType.File,
-                        WorkingDir = program.Type == ProgramType.Win32 ? ExpandableVariables.InstallationDirectory : string.Empty,
-                        Name = newGame.Name,
-                        IsPlayAction = true
-                    }
+                    Path = path,
+                    Arguments = program.Item.Arguments,
+                    Type = GameActionType.File,
+                    WorkingDir = program.Type == ProgramType.Win32 ? ExpandableVariables.InstallationDirectory : string.Empty,
+                    Name = newGame.Name,
+                    IsPlayAction = true
                 };
+
+                if (action.Path.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
+                    action.WorkingDir = null;
+
+                newGame.GameActions = [action];
 
                 if (program.IconSource != null &&  program.IconSource != ImportableProgram.EmptyImage)
                 {
@@ -369,7 +373,7 @@ namespace Playnite.DesktopApp.ViewModels
                 return;
             }
 
-            var program = Common.Programs.GetProgramData(path);
+            var program = Common.Programs.GetProgramData(path, settings.LnkImportMode);
             var import = new ImportableProgram(program, ProgramType.Win32)
             {
                 Selected = true
@@ -396,7 +400,7 @@ namespace Playnite.DesktopApp.ViewModels
                 try
                 {
                     var allApps = new List<ImportableProgram>();
-                    var installed = await Playnite.Common.Programs.GetInstalledPrograms(progArgs.CancelToken);
+                    var installed = await Playnite.Common.Programs.GetInstalledPrograms(settings.LnkImportMode, progArgs.CancelToken);
                     if (installed != null)
                     {
                         allApps.AddRange(installed.Select(a => new ImportableProgram(a, ProgramType.Win32)));
@@ -450,7 +454,7 @@ namespace Playnite.DesktopApp.ViewModels
             {
                 try
                 {
-                    var executables = await Playnite.Common.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories, progArgs.CancelToken);
+                    var executables = await Playnite.Common.Programs.GetExecutablesFromFolder(path, SearchOption.AllDirectories, settings.LnkImportMode, progArgs.CancelToken);
                     if (executables != null)
                     {
                         var apps = executables.Select(a => new ImportableProgram(a, ProgramType.Win32)).OrderBy(a => a.Item.Name);
