@@ -357,6 +357,21 @@ namespace Playnite
             }
         }
 
+        private bool showSelectedGroupsOnly;
+        public bool ShowSelectedGroupsOnly
+        {
+            get => showSelectedGroupsOnly;
+            set
+            {
+                if (showSelectedGroupsOnly != value)
+                {
+                    showSelectedGroupsOnly = value;
+                    OnPropertyChanged();
+                    OnFilterChanged(nameof(ShowSelectedGroupsOnly));
+                }
+            }
+        }
+
         private string name;
         public string Name
         {
@@ -1018,6 +1033,12 @@ namespace Playnite
                 filterChanges.Add(nameof(UseAndFilteringStyle));
             }
 
+            if (ShowSelectedGroupsOnly != false)
+            {
+                ShowSelectedGroupsOnly = false;
+                filterChanges.Add(nameof(ShowSelectedGroupsOnly));
+            }
+
             if (IsInstalled != false)
             {
                 IsInstalled = false;
@@ -1150,6 +1171,7 @@ namespace Playnite
             return new SdkModels.FilterPresetSettings
             {
                 UseAndFilteringStyle = UseAndFilteringStyle,
+                ShowSelectedGroupsOnly = ShowSelectedGroupsOnly,
                 IsInstalled = IsInstalled,
                 IsUnInstalled = IsUnInstalled,
                 Hidden = Hidden,
@@ -1186,6 +1208,7 @@ namespace Playnite
         {
             return new FilterSettings
             {
+                ShowSelectedGroupsOnly = settings.ShowSelectedGroupsOnly,
                 IsInstalled = settings.IsInstalled,
                 IsUnInstalled = settings.IsUnInstalled,
                 Hidden = settings.Hidden,
@@ -1227,6 +1250,12 @@ namespace Playnite
             {
                 UseAndFilteringStyle = settings.UseAndFilteringStyle;
                 filterChanges.Add(nameof(UseAndFilteringStyle));
+            }
+
+            if (ShowSelectedGroupsOnly != settings.ShowSelectedGroupsOnly)
+            {
+                ShowSelectedGroupsOnly = settings.ShowSelectedGroupsOnly;
+                filterChanges.Add(nameof(ShowSelectedGroupsOnly));
             }
 
             if (Name != settings.Name)
