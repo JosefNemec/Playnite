@@ -1,0 +1,10 @@
+Id: kytyps5
+Name: KytyPS5
+Website: 'https://github.com/KytyPS5/KytyPS5'
+Profiles:
+  - Name: Default
+    StartupArguments: '--game "{ImagePath}" --fullscreen'
+    Platforms: [sony_playstation5]
+    ImageExtensions: [bin, zar]
+    StartupExecutable: ^kyty_emulator\.exe$
+    ScriptGameImport: true
