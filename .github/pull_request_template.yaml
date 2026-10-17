@@ -1,0 +1,28 @@
+name: Pull request
+title: Put PR name here
+about: 'Default pull request template.'
+body:
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: PR requirements
+      options:
+        - label: These changes do not violate [Codeberg's Terms of Use](https://codeberg.org/Codeberg/org/src/branch/main/TermsOfUse.md)
+          required: true
+        - label: I have full rights to be able to submit these changes to this project under project's source license as define in license.md file.
+          required: true
+        - label: These changes were not fully "vibe coded". I fully understand what these changes do and their impact on the code base.
+          required: true
+        - label: These changes were properly tested and confirmed working. Where appropriate and technically feasible, they are covered with unit tests as well.
+          required: true
+  - type: textarea
+    attributes:
+      label: PR description
+      description: | 
+        A clear and concise description in English of these changes do and why do you think they should be merged into this project. **DO NOT post output from an LLM describing these changes!** If you won't put any effort into writing about what you did here, we will not put any effort into reading it. Using LLMs for translation is fine.
+
+        Please note that pull requests are generally on pause because majority of code base is being rewritten for Playnite 11.
+
+        Smaller "safe" changes for P10 might get accepted based on what they and if they come with test coverage. If you plan to work on bigger changes, please discuss it first in related issue or on Discord, thank you.
+    validations:
+      required: true
