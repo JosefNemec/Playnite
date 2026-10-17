@@ -123,8 +123,10 @@ foreach ($game in $games)
         try
         {
             $titleId = Get-ParamSfoValue $paramSfoPath "TITLE_ID"
-            $scannedGame.Serial = $titleId
+            # Canonical PS Vita title ID format, e.g. PCSA00152
             $scannedGame.GameId = $titleId
+            # Format used in Playnite's Vita database formats with hyphen, e.g. PCSA-00152
+            $scannedGame.Serial = $titleId -replace '^([A-Z]{4})(\d{5})$', '$1-$2'
             if ($null -ne $scannedGame.Serial)
             {
                 $scannedGame.Name = Get-ParamSfoValue $paramSfoPath "TITLE"
