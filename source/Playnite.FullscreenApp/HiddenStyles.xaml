@@ -25,7 +25,7 @@
     </Style>
 
     <Style x:Key="MainWindowStyle" TargetType="WindowBase">
-        <Setter Property="Background" Value="GhostWhite" />
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
