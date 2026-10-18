@@ -94,6 +94,17 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private FullscreenSettings fullscreenSettings;
+        public FullscreenSettings FullscreenSettings
+        {
+            get => fullscreenSettings;
+            set
+            {
+                fullscreenSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<ImportExclusionItem> ImportExclusionList { get; }
         public ObservableCollection<string> SortingNameRemovedArticles { get; }
         public ObservableCollection<GameControllerManager.LoadedGameController> Controllers { get; }
@@ -106,6 +117,11 @@ namespace Playnite.DesktopApp.ViewModels
         public List<ThemeManifest> AvailableThemes
         {
             get => ThemeManager.GetAvailableThemes(ApplicationMode.Desktop).OrderBy(a => a.Name).ToList();
+        }
+
+        public List<ThemeManifest> AvailableFullscreenThemes
+        {
+            get => ThemeManager.GetAvailableThemes(ApplicationMode.Fullscreen).OrderBy(a => a.Name).ToList();
         }
 
         public List<PlayniteLanguage> AvailableLanguages
@@ -388,6 +404,7 @@ namespace Playnite.DesktopApp.ViewModels
             originalSettings = settings;
 
             Settings = settings.GetClone();
+            FullscreenSettings = settings.Fullscreen.GetClone();
             Settings.PropertyChanged += (s, e) => editedFields.AddMissing(e.PropertyName);
 
             Settings.DateTimeFormatAdded.PropertyChanged += (_, __) =>
@@ -578,6 +595,7 @@ namespace Playnite.DesktopApp.ViewModels
             }
 
             EndEdit();
+            originalSettings.Fullscreen.Theme = FullscreenSettings.Theme;
             originalSettings.SaveSettings();
             if (editedFields?.Any(a => typeof(PlayniteSettings).HasPropertyAttribute<RequiresRestartAttribute>(a)) == true ||
                 develExtListUpdated)

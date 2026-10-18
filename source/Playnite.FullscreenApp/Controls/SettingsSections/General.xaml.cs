@@ -99,6 +99,14 @@ namespace Playnite.FullscreenApp.Controls.SettingsSections
                 BindingMode.TwoWay,
                 UpdateSourceTrigger.PropertyChanged);
             SelectorBehaviors.SetEnumSource(SelectImageScaler, typeof(Playnite.ImageLoadScaling));
+
+            BindingTools.SetBinding(
+                ToggleClearFiltersOnStartup,
+                ToggleButton.IsCheckedProperty,
+                mainModel.AppSettings.Fullscreen,
+                nameof(FullscreenSettings.ClearFiltersOnStartup),
+                BindingMode.TwoWay,
+                UpdateSourceTrigger.PropertyChanged);
         }
     }
 }

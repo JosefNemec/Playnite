@@ -1,10 +1,15 @@
 Id: shadps4
 Name: shadPS4
-Website: 'https://shadps4.net//'
+Website: 'https://shadps4.net/'
 Profiles:
   - Name: Default QT
     Platforms: [sony_playstation4]
     ProfileFiles: ['platforms\qwindows.dll']
     StartupExecutable: ^shadPS4.*\.exe$
+    StartupArguments: '-d -g "{ImagePath}"'
+    ScriptGameImport: true
+  - Name: Qt Launcher
+    Platforms: [sony_playstation4]
+    StartupExecutable: ^shadPS4QtLauncher\.exe$
     StartupArguments: '-d -g "{ImagePath}"'
     ScriptGameImport: true

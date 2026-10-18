@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.General"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:pbeh="clr-namespace:Playnite.Behaviors;assembly=Playnite"
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -10,9 +10,9 @@
              xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
              xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
              xmlns:sdk="clr-namespace:Playnite.SDK;assembly=Playnite.SDK"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="600">
-    
+
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
         <Style TargetType="ContentControl">
@@ -30,8 +30,13 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <StackPanel Margin="20">
-        <DockPanel Margin="0,0,0,10" LastChildFill="False">
-            <ContentControl Content="{DynamicResource LOCLanguageSettingsLabel}" 
+        <Border BorderThickness="2" CornerRadius="2" BorderBrush="{DynamicResource WarningBrush}">
+            <TextBlock Margin="12" TextWrapping="Wrap"
+                       Text="{DynamicResource LOCFullscreenSettingsDesktopNotif}"/>
+        </Border>
+
+        <DockPanel Margin="0,15,0,10" LastChildFill="False">
+            <ContentControl Content="{DynamicResource LOCLanguageSettingsLabel}"
                             ContentStringFormat="{}{0} *"
                             VerticalAlignment="Center" Margin="5,0,10,0" />
             <ComboBox Name="ComboLanguage" VerticalAlignment="Center"
@@ -89,7 +94,7 @@
                 IsEnabled="{Binding IsChecked, ElementName=CheckEnableTray}" />
 
         <CheckBox Name="CheckDownloadMetadataOnImport" Margin="5,15,5,5"
-                Content="{DynamicResource LOCSettingsDownloadMetadataOnImport}" 
+                Content="{DynamicResource LOCSettingsDownloadMetadataOnImport}"
                 IsChecked="{Binding Settings.DownloadMetadataOnImport}"/>
 
         <CheckBox Name="CheckStartFullscreen" Margin="5,15,5,5"
@@ -99,7 +104,7 @@
         <CheckBox Name="CheckStartOnBoot" Margin="5,15,5,5"
                 Content="{DynamicResource LOCSettingsStartOnBoot}"
                 IsChecked="{Binding Settings.StartOnBoot}"/>
-        
+
         <CheckBox Name="CheckStartOnBootClosedToTray" Margin="25,15,5,5"
                   IsEnabled="{Binding IsChecked, ElementName=CheckStartOnBoot}"
                   Content="{DynamicResource LOCSettingsStartOnBootClosedToTray}"
@@ -118,21 +123,32 @@
                 Content="{DynamicResource NameFilterUseFuzzyMatching}"
                 ToolTip="{DynamicResource NameFilterUseFuzzyMatchingTooltip}"
                 IsChecked="{Binding Settings.FuzzyMatchingInNameFilter}"/>
-        
-        <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}" Margin="5,15,5,0"
-                   ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
-                   VerticalAlignment="Center" />
 
-        <StackPanel Orientation="Horizontal" Margin="5,10,5,0">
-            <ComboBox MinWidth="100" VerticalAlignment="Center"
-                  SelectedValue="{Binding Settings.PlaytimeImportMode}"
-                  pbeh:SelectorBehaviors.EnumSource="{x:Type sdk:PlaytimeImportMode}" />
+        <CheckBox Margin="5,15,5,5"
+                  Content="{DynamicResource LOCFiltersClearOnStartup}"
+                  IsChecked="{Binding Settings.ClearFiltersOnStartup}"/>
+
+        <StackPanel Orientation="Horizontal" Margin="5,15,5,0">
+            <TextBlock Text="{DynamicResource LOCSettingsPlaytimeImportMode}"
+                       ToolTip="{DynamicResource LOCSettingsPlaytimeImportModeTooltip}"
+                       VerticalAlignment="Center" />
+            <ComboBox MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center"
+                      SelectedValue="{Binding Settings.PlaytimeImportMode}"
+                      pbeh:SelectorBehaviors.EnumSource="{x:Type sdk:PlaytimeImportMode}" />
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
                            CommandParameter="{}{DocsRootUrl}/manual/playtimeImport.html">
                     <Run Text="{DynamicResource LOCMenuHelpTitle}" />
                 </Hyperlink>
             </TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="5,15,0,0">
+            <TextBlock Text="{DynamicResource LOCSettingsLnkImportMode}"
+                       VerticalAlignment="Center"/>
+            <ComboBox MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center"
+                      SelectedValue="{Binding Settings.LnkImportMode}"
+                      pbeh:SelectorBehaviors.EnumSource="{x:Type p:LnkImportMode}" />
         </StackPanel>
     </StackPanel>
     </ScrollViewer>

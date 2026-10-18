@@ -271,16 +271,13 @@ namespace Playnite
                     if (installedTheme?.InstalledManifest != null)
                     {
                         var theme = installedTheme.InstalledManifest as ThemeManifest;
-                        if (theme.Mode == Mode)
+                        if (theme.Mode == ApplicationMode.Desktop)
                         {
-                            if (theme.Mode == ApplicationMode.Desktop)
-                            {
-                                AppSettings.Theme = theme.Id;
-                            }
-                            else
-                            {
-                                AppSettings.Fullscreen.Theme = theme.Id;
-                            }
+                            AppSettings.Theme = theme.Id;
+                        }
+                        else
+                        {
+                            AppSettings.Fullscreen.Theme = theme.Id;
                         }
                     }
                 }

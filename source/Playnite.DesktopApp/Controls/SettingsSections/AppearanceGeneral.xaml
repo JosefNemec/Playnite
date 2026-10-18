@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="Playnite.DesktopApp.Controls.SettingsSections.AppearanceGeneral"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Playnite.DesktopApp.Controls.SettingsSections"
         xmlns:pcmd="clr-namespace:Playnite.Commands;assembly=Playnite"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="600">
 
     <UserControl.Resources>
@@ -24,29 +24,44 @@
     </UserControl.Resources>
 
     <StackPanel Margin="20">
-        <StackPanel Orientation="Horizontal">
+        <GridEx AutoLayoutColumns="4" RowCount="2" ColumnCount="4">
             <ContentControl VerticalAlignment="Center"
                             Content="{DynamicResource LOCSettingsSkin}"
                             ContentStringFormat="{}{0} *"/>
             <ComboBox Margin="10,0,0,0" MinWidth="150"
-                    ItemsSource="{Binding AvailableThemes}"
-                    SelectedValue="{Binding Settings.Theme}"
-                    SelectedValuePath="Id"
-                    DisplayMemberPath="Name" />
-            <!--TODO update links -->
+                      ItemsSource="{Binding AvailableThemes}"
+                      SelectedValue="{Binding Settings.Theme}"
+                      SelectedValuePath="Id"
+                      DisplayMemberPath="Name" />
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="https://playnite.link/addons.html#themesDesktop">
+                           CommandParameter="https://playnite.link/addons.html#themesDesktop">
                     <Run Text="{DynamicResource LOCSettingsGetThemes}" />
                 </Hyperlink>
             </TextBlock>
             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center">
                 <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
-                            CommandParameter="{}{DocsRootUrl}/tutorials/themes/introduction.html">
+                           CommandParameter="{}{DocsRootUrl}/tutorials/themes/introduction.html">
                     <Run Text="{DynamicResource LOCSettingsCreateThemes}" />
                 </Hyperlink>
             </TextBlock>
-        </StackPanel>
+
+            <ContentControl VerticalAlignment="Center" Margin="0,15,0,0"
+                            Content="{DynamicResource LOCSettingsSkinFullscreen}"
+                            ContentStringFormat="{}{0} *"/>
+            <ComboBox Margin="10,15,0,0" MinWidth="150"
+                      ItemsSource="{Binding AvailableFullscreenThemes}"
+                      SelectedValue="{Binding FullscreenSettings.Theme}"
+                      SelectedValuePath="Id"
+                      DisplayMemberPath="Name" />
+            <TextBlock Margin="20,15,0,0" VerticalAlignment="Center">
+                <Hyperlink Command="{x:Static pcmd:GlobalCommands.NavigateUrlCommand}"
+                           CommandParameter="https://playnite.link/addons.html#themesFullscreen">
+                    <Run Text="{DynamicResource LOCSettingsGetThemes}" />
+                </Hyperlink>
+            </TextBlock>
+            <Canvas/>
+        </GridEx>
 
         <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
             <ContentControl Content="{DynamicResource LOCSettingsInterfaceFont}" VerticalAlignment="Center"
@@ -92,7 +107,7 @@
                   Name="CheckShowBackgroundImage" IsChecked="{Binding Settings.ShowBackgroundImageOnWindow}"/>
         <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
                     IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
-            <CheckBox Content="{DynamicResource LOCSettingsBlurWindowBackgrounImage}" 
+            <CheckBox Content="{DynamicResource LOCSettingsBlurWindowBackgrounImage}"
                       IsChecked="{Binding Settings.BlurWindowBackgroundImage}"/>
             <Slider Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True"
                     Value="{Binding Settings.BackgroundImageBlurAmount}"
@@ -104,7 +119,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="25,15,0,0"
                     IsEnabled="{Binding Settings.ShowBackgroundImageOnWindow}">
-            <CheckBox Content="{DynamicResource LOCSettingsDarkenWindowBackghrounImage}" 
+            <CheckBox Content="{DynamicResource LOCSettingsDarkenWindowBackghrounImage}"
                       IsChecked="{Binding Settings.DarkenWindowBackgroundImage}"/>
             <Slider Minimum="0" Maximum="1"
                     Value="{Binding Settings.BackgroundImageDarkAmount}"

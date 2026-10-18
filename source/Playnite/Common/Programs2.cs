@@ -17,12 +17,12 @@ namespace Playnite.Common
 {
     public partial class Programs
     {
-        public static async Task<List<Program>> GetExecutablesFromFolder(string path, SearchOption searchOption, CancellationToken cancelToken)
+        public static async Task<List<Program>> GetExecutablesFromFolder(string path, SearchOption searchOption, LnkImportMode lnkImportMode, CancellationToken cancelToken)
         {
             return await Task.Run(() =>
             {
                 var execs = new List<Program>();
-                var files = new SafeFileEnumerator(path, "*.*", SearchOption.AllDirectories);
+                var files = new SafeFileEnumerator(path, "*.*", searchOption);
 
                 foreach (var file in files)
                 {
@@ -50,7 +50,7 @@ namespace Playnite.Common
                         file.Extension.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase) == true ||
                         file.Extension.EndsWith(".bat", StringComparison.OrdinalIgnoreCase) == true)
                     {
-                        execs.Add(GetProgramData(file.FullName));
+                        execs.Add(GetProgramData(file.FullName, lnkImportMode));
                     }
                 }
 
@@ -58,7 +58,7 @@ namespace Playnite.Common
             });
         }
 
-        public static Program GetProgramData(string filePath)
+        public static Program GetProgramData(string filePath, LnkImportMode lnkImportMode)
         {
             var file = new FileInfo(filePath);
             if (file.Extension?.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true)
@@ -78,14 +78,22 @@ namespace Playnite.Common
             {
                 var data = GetLnkShortcutData(file.FullName);
                 var name = Path.GetFileNameWithoutExtension(file.Name);
-                var program = new Program
-                {
-                    Path = data.Path,
-                    WorkDir = data.WorkDir,
-                    Arguments = data.Arguments,
-                    Name = name,
-                    AppId = filePath.MD5()
-                };
+                var program = lnkImportMode == LnkImportMode.Direct ?
+                    new Program
+                    {
+                        Path = filePath,
+                        Name = name,
+                        WorkDir = data.WorkDir,
+                        AppId = filePath.MD5()
+                    } :
+                    new Program
+                    {
+                        Path = data.Path,
+                        WorkDir = data.WorkDir,
+                        Arguments = data.Arguments,
+                        Name = name,
+                        AppId = filePath.MD5()
+                    };
 
                 if (!data.Icon.IsNullOrEmpty())
                 {
@@ -146,7 +154,7 @@ namespace Playnite.Common
                 AppId = lnkPath.MD5()
             };
         }
-        public static async Task<List<Program>> GetShortcutProgramsFromFolder(string path, CancellationTokenSource cancelToken = null)
+        public static async Task<List<Program>> GetShortcutProgramsFromFolder(string path, LnkImportMode lnkImportMode, CancellationTokenSource cancelToken = null)
         {
             return await Task.Run(() =>
             {
@@ -183,9 +191,6 @@ namespace Playnite.Common
                         continue;
                     }
 
-                    var fileName = shortcut.Name;
-                    var Directory = Path.GetDirectoryName(shortcut.FullName);
-
                     if (folderExceptions.FirstOrDefault(a => shortcut.FullName.IndexOf(a, StringComparison.OrdinalIgnoreCase) >= 0) != null)
                     {
                         continue;
@@ -219,7 +224,7 @@ namespace Playnite.Common
 
                     var app = new Program()
                     {
-                        Path = target,
+                        Path = lnkImportMode == LnkImportMode.Direct ? shortcut.FullName : target,
                         Icon = link.IconLocation,
                         Name = Path.GetFileNameWithoutExtension(shortcut.Name),
                         WorkDir = link.WorkingDirectory,
@@ -233,13 +238,13 @@ namespace Playnite.Common
             });
         }
 
-        public static async Task<List<Program>> GetInstalledPrograms(CancellationToken cancelToken)
+        public static async Task<List<Program>> GetInstalledPrograms(LnkImportMode lnkImportMode, CancellationToken cancelToken)
         {
             var apps = new List<Program>();
 
             // Get apps from All Users
             var allPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs");
-            var allApps = await GetShortcutProgramsFromFolder(allPath);
+            var allApps = await GetShortcutProgramsFromFolder(allPath, lnkImportMode);
             if (cancelToken.IsCancellationRequested == true)
             {
                 return null;
@@ -251,7 +256,7 @@ namespace Playnite.Common
 
             // Get current user apps
             var userPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs");
-            var userApps = await GetShortcutProgramsFromFolder(userPath);
+            var userApps = await GetShortcutProgramsFromFolder(userPath, lnkImportMode);
             if (cancelToken.IsCancellationRequested == true)
             {
                 return null;

@@ -41,6 +41,23 @@ namespace Playnite.ViewModels
             }
         }
 
+        private int updateAddonCount = 0;
+        public int UpdateAddonCount
+        {
+            get => updateAddonCount;
+            set
+            {
+                updateAddonCount = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsUpdateAvailable));
+            }
+        }
+
+        public bool IsUpdateAvailable
+        {
+            get => UpdateAddonCount > 0;
+        }
+
         public RelayCommand<AddonManifest> UpdateAddonsCommand
         {
             get => new RelayCommand<AddonManifest>((a) =>
@@ -106,6 +123,7 @@ namespace Playnite.ViewModels
                         ExtensionInstaller.QueuePackageInstall(locaPath);
                         update.Status = AddonUpdateStatus.Downloaded;
                         IsRestartRequired = true;
+                        UpdateAddonCount--;
                     }
                     catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                     {

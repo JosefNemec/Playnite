@@ -745,5 +745,8 @@ namespace Playnite
                 OnPropertyChanged();
             }
         }
+
+        private bool clearFiltersOnStartup = false;
+        public bool ClearFiltersOnStartup { get => clearFiltersOnStartup; set => SetValue(ref clearFiltersOnStartup, value); }
     }
 }

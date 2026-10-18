@@ -249,6 +249,12 @@ namespace Playnite.DesktopApp.ViewModels
             AppSettings = settings;
             App.Notifications.ActivationRequested += DesktopAppViewModel_ActivationRequested;
             App.Notifications.CloseRequested += Notifications_CloseRequested;
+            if (AppSettings.ClearFiltersOnStartup)
+            {
+                AppSettings.SelectedFilterPreset = Guid.Empty;
+                AppSettings.FilterSettings.ClearFilters();
+            }
+
             AppSettings.FilterSettings.PropertyChanged += FilterSettings_PropertyChanged;
             AppSettings.FilterSettings.FilterChanged += FilterSettings_FilterChanged;
             AppSettings.ViewSettings.PropertyChanged += ViewSettings_PropertyChanged;
@@ -865,7 +871,7 @@ namespace Playnite.DesktopApp.ViewModels
                             Game game = null;
                             try
                             {
-                                game = GameExtensions.GetGameFromExecutable(path);
+                                game = GameExtensions.GetGameFromExecutable(path, AppSettings.LnkImportMode);
                             }
                             catch (Exception e) when (!PlayniteEnvironment.ThrowAllErrors)
                             {
@@ -905,7 +911,8 @@ namespace Playnite.DesktopApp.ViewModels
                         var instModel = new InstalledGamesViewModel(
                            new InstalledGamesWindowFactory(),
                            Dialogs,
-                           Database);
+                           Database,
+                           AppSettings);
                         ImportInstalledGames(instModel, path);
                     }
                 }

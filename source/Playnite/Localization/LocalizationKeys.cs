@@ -4521,5 +4521,25 @@ namespace Playnite
         /// Can't remove library item. The item was not found in the library.
         /// </summary>
         public const string LibraryDataRemovalNotFound = "LOCLibraryDataRemovalNotFound";
+        /// <summary>
+        /// Clear filters on startup
+        /// </summary>
+        public const string FiltersClearOnStartup = "LOCFiltersClearOnStartup";
+        /// <summary>
+        /// Fulllscreen mode specific settings can be found in settings menu available from within Fullscreen mode itself.
+        /// </summary>
+        public const string FullscreenSettingsDesktopNotif = "LOCFullscreenSettingsDesktopNotif";
+        /// <summary>
+        /// .lnk shortcut file import mode:
+        /// </summary>
+        public const string SettingsLnkImportMode = "LOCSettingsLnkImportMode";
+        /// <summary>
+        /// Import .lnk file itself
+        /// </summary>
+        public const string SettingsLnkImportModeDirect = "LOCSettingsLnkImportModeDirect";
+        /// <summary>
+        /// Import .lnk settings
+        /// </summary>
+        public const string SettingsLnkImportModeTarget = "LOCSettingsLnkImportModeTarget";
     }
 }

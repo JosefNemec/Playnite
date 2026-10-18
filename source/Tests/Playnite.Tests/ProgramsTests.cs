@@ -15,7 +15,7 @@ namespace Playnite.Tests
         [Test]
         public async Task GetInstalledProgramsTest()
         {
-            var apps = await Programs.GetInstalledPrograms(CancellationToken.None);
+            var apps = await Programs.GetInstalledPrograms(LnkImportMode.Target, CancellationToken.None);
             Assert.AreNotEqual(apps.Count, 0);
 
             var firstApp = apps.First();
@@ -27,7 +27,7 @@ namespace Playnite.Tests
         [Test]
         public async Task GetExecutablesFromFolderTest()
         {
-            var apps = await Programs.GetExecutablesFromFolder(@"c:\Program Files\", System.IO.SearchOption.AllDirectories, CancellationToken.None);
+            var apps = await Programs.GetExecutablesFromFolder(@"c:\Program Files\", System.IO.SearchOption.AllDirectories, LnkImportMode.Target, CancellationToken.None);
             Assert.AreNotEqual(apps.Count, 0);
 
             var firstApp = apps.First();

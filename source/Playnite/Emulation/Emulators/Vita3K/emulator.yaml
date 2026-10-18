@@ -2,6 +2,12 @@ Id: vita3k
 Name: Vita3K
 Website: 'https://vita3k.org/'
 Profiles:
+  - Name: Installed Games
+    StartupArguments: '--installed-path {GameId} --fullscreen'
+    Platforms: [sony_vita]
+    ImageExtensions: [bin]
+    StartupExecutable: ^Vita3K\.exe$
+    ScriptGameImport: true
   - Name: Default
     StartupArguments: '"{ImagePath}"'
     Platforms: [sony_vita]

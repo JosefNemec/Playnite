@@ -107,23 +107,6 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
-        private int updateAddonCount = 0;
-        public int UpdateAddonCount
-        {
-            get => updateAddonCount;
-            set
-            {
-                updateAddonCount = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsUpdateAvailable));
-            }
-        }
-
-        public bool IsUpdateAvailable
-        {
-            get => UpdateAddonCount > 0;
-        }
-
         private bool isOnlineListLoading;
         public bool IsOnlineListLoading
         {

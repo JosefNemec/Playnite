@@ -685,10 +685,15 @@ namespace Playnite.Database
                 return false;
             }
 
-            if (!Serialization.TryFromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(settingsPath), out var st, out var error))
+            if (!Serialization.TryFromJson<DatabaseSettings>(FileSystem.ReadFileAsStringSafe(settingsPath), out var st, out var error) ||
+                st is null)
             {
                 // This shouldn't in theory happen, but there are some wierd crash reports available for this.
-                logger.Error(error, "Failed to deserialize database info file.");
+                if (error is not null)
+                    logger.Error(error, "Failed to deserialize database info file.");
+                else
+                    logger.Error("Failed to deserialize database info file.");
+
                 return false;
             }
 

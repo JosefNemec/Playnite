@@ -7,3 +7,9 @@ Profiles:
     Platforms: [nintendo_3ds]
     ImageExtensions: [3ds, 3dsx, cci, zcci, cxi, elf, cia]
     StartupExecutable: ^azahar\.exe$
+  - Name: Installed Games
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [nintendo_3ds]
+    ImageExtensions: [app]
+    StartupExecutable: ^azahar\.exe$
+    ScriptGameImport: true

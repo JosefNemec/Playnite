@@ -1021,7 +1021,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropIcon(DragEventArgs args)
         {
-            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".ico", ".tga", ".exe", ".tif", ".webp", ".avif" };
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".jxl", ".png", ".gif", ".ico", ".tga", ".exe", ".tif", ".webp", ".avif" };
             var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempEditingIconFileName);
             if (!string.IsNullOrEmpty(path))
             {
@@ -1052,7 +1052,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropCover(DragEventArgs args)
         {
-            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif", ".webp", ".avif" };
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".jxl", ".png", ".gif", ".tga", ".tif", ".webp", ".avif" };
             var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempEditingCoverFileName);
             if (!string.IsNullOrEmpty(path))
             {
@@ -1073,7 +1073,7 @@ namespace Playnite.DesktopApp.ViewModels
 
         public void DropBackground(DragEventArgs args)
         {
-            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tga", ".tif", ".webp", ".avif" };
+            var compatibleExtensions = new List<string> { ".bmp", ".jpg", ".jpeg", ".jxl", ".png", ".gif", ".tga", ".tif", ".webp", ".avif" };
             var path = ProcessMetadataFile(GetDroppedImage(args, compatibleExtensions), tempEditingBackgroundFileName);
             if (!string.IsNullOrEmpty(path))
             {

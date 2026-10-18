@@ -199,7 +199,8 @@ namespace Playnite.DesktopApp.ViewModels
                     Database,
                     new ToolsConfigWindowFactory(),
                     Dialogs,
-                    Resources));
+                    Resources,
+                    AppSettings));
             }, (a) => Database?.IsOpen == true);
 
             AddCustomGameCommand = new RelayCommand<object>((a) =>
@@ -214,7 +215,8 @@ namespace Playnite.DesktopApp.ViewModels
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
                     Dialogs,
-                    Database), null);
+                    Database,
+                    AppSettings), null);
             }, (a) => Database?.IsOpen == true);
 
             AddEmulatedGamesCommand = new RelayCommand<object>((a) =>
@@ -234,7 +236,8 @@ namespace Playnite.DesktopApp.ViewModels
                     new InstalledGamesViewModel(
                     new InstalledGamesWindowFactory(),
                     Dialogs,
-                    Database));
+                    Database,
+                    AppSettings));
             }, (a) => Database?.IsOpen == true);
 
             OpenFullScreenCommand = new RelayCommand<object>((a) =>

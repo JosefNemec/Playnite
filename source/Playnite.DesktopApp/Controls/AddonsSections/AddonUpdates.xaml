@@ -21,68 +21,62 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <p:BindingProxy x:Key="RootDataContext" Data="{Binding}" />
     </UserControl.Resources>
 
     <Grid Margin="5">
-        <DockPanel Visibility="{Binding IsUpdateListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
-            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left">
-                <Button Content="{DynamicResource LOCAddonUpdateAddons}" Margin="0,5,0,0"
-                        Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding UpdateAddonsCommand}"/>
-            </StackPanel>
-            <ScrollViewer DockPanel.Dock="Top"
-                          HorizontalScrollBarVisibility="Disabled"
-                          VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding UpdateAddonList}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Margin="2"
-                                    BorderThickness="{DynamicResource ControlBorderThickness}"
-                                    CornerRadius="{DynamicResource ControlCornerRadius}"
-                                    BorderBrush="{DynamicResource NormalBorderBrush}">
-                                <DockPanel>
-                                    <CheckBox DockPanel.Dock="Left" VerticalAlignment="Top" Margin="5,5,0,0"
-                                              IsChecked="{Binding Selected}"/>
-                                    <Expander DockPanel.Dock="Right" Background="Transparent" IsExpanded="True">
-                                        <Expander.Header>
-                                            <DockPanel>
-                                                <TextBlock Text="{Binding Status, Converter={StaticResource ObjectToStringConverter}}" DockPanel.Dock="Right"
-                                                           ToolTip="{Binding StatusMessage}" ToolTipService.InitialShowDelay="0"
-                                                           VerticalAlignment="Center" Margin="5,5,15,5">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Status}" Value="2">
-                                                                    <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
-                                                                </DataTrigger>
-                                                                <DataTrigger Binding="{Binding Status}" Value="3">
-                                                                    <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-                                                <StackPanel DockPanel.Dock="Left">
-                                                    <TextBlock Text="{Binding Item.Name}" Margin="0,5,5,5"
-                                                       Style="{StaticResource BaseTextBlockStyle}"/>
-                                                    <TextBlock Text="{Binding UpdateInfo}" Margin="0,0,5,5"
-                                                       Style="{StaticResource BaseTextBlockStyle}" />
-                                                </StackPanel>
-                                            </DockPanel>
-                                        </Expander.Header>
-                                        <TextBlock Text="{Binding Changelog}" Margin="5,5,5,5" TextWrapping="Wrap"
-                                               Style="{StaticResource BaseTextBlockStyle}"/>
-                                    </Expander>
-                                </DockPanel>
-                            </Border>                            
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </DockPanel>
-        
+        <ScrollViewer DockPanel.Dock="Top"
+                      Visibility="{Binding IsUpdateListLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding UpdateAddonList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="2"
+                                BorderThickness="{DynamicResource ControlBorderThickness}"
+                                CornerRadius="{DynamicResource ControlCornerRadius}"
+                                BorderBrush="{DynamicResource NormalBorderBrush}">
+                            <DockPanel>
+                                <CheckBox DockPanel.Dock="Left" VerticalAlignment="Top" Margin="5,5,0,0"
+                                          IsChecked="{Binding Selected}"/>
+                                <Expander DockPanel.Dock="Right" Background="Transparent" IsExpanded="True">
+                                    <Expander.Header>
+                                        <DockPanel>
+                                            <TextBlock Text="{Binding Status, Converter={StaticResource ObjectToStringConverter}}" DockPanel.Dock="Right"
+                                                       ToolTip="{Binding StatusMessage}" ToolTipService.InitialShowDelay="0"
+                                                       VerticalAlignment="Center" Margin="5,5,15,5">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Status}" Value="2">
+                                                                <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Status}" Value="3">
+                                                                <Setter Property="Foreground" Value="{DynamicResource WarningBrush}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <StackPanel DockPanel.Dock="Left">
+                                                <TextBlock Text="{Binding Item.Name}" Margin="0,5,5,5"
+                                                   Style="{StaticResource BaseTextBlockStyle}"/>
+                                                <TextBlock Text="{Binding UpdateInfo}" Margin="0,0,5,5"
+                                                   Style="{StaticResource BaseTextBlockStyle}" />
+                                            </StackPanel>
+                                        </DockPanel>
+                                    </Expander.Header>
+                                    <TextBlock Text="{Binding Changelog}" Margin="5,5,5,5" TextWrapping="Wrap"
+                                           Style="{StaticResource BaseTextBlockStyle}"/>
+                                </Expander>
+                            </DockPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
         <TextBlock Visibility="{Binding IsUpdateListLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
                    Text="{DynamicResource LOCAddonLookingForUpdates}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -104,5 +98,5 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-    </Grid>    
+    </Grid>
 </UserControl>

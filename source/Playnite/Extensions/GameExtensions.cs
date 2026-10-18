@@ -55,7 +55,7 @@ namespace Playnite
     {
         private static ILogger logger = LogManager.GetLogger();
 
-        public static Game GetGameFromExecutable(string path)
+        public static Game GetGameFromExecutable(string path, LnkImportMode lnkImportMode)
         {
             if (!File.Exists(path))
             {
@@ -75,7 +75,7 @@ namespace Playnite
                         fileInfo = new FileInfo(newPath);
                         if (prog.WorkDir.Contains("Program Files (x86)"))
                         {
-                            prog.WorkDir.Replace("Program Files (x86)", "Program Files");
+                            prog.WorkDir = prog.WorkDir.Replace("Program Files (x86)", "Program Files");
                         }
                     }
                 }
@@ -83,18 +83,29 @@ namespace Playnite
                 game.GameId = path.MD5();
                 game.Name = Path.GetFileNameWithoutExtension(path);
                 game.InstallDirectory = prog.WorkDir.IsNullOrEmpty() ? fileInfo.Directory.FullName : prog.WorkDir;
-                game.GameActions = new System.Collections.ObjectModel.ObservableCollection<GameAction>
-                {
-                    new GameAction()
-                    {
-                        Type = GameActionType.File,
-                        WorkingDir = ExpandableVariables.InstallationDirectory,
-                        Path = fileInfo.FullName.Replace(game.InstallDirectory.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator()),
-                        Arguments = prog.Arguments,
-                        IsPlayAction = true,
-                        Name = game.Name
-                    }
-                };
+
+                game.GameActions = [];
+                if (lnkImportMode == LnkImportMode.Direct)
+                    game.GameActions.Add(
+                        new GameAction
+                        {
+                            Type = GameActionType.File,
+                            Path = path,
+                            IsPlayAction = true,
+                            Name = game.Name,
+                            TrackingMode = TrackingMode.Process,
+                        });
+                else
+                    game.GameActions.Add(
+                        new GameAction
+                        {
+                            Type = GameActionType.File,
+                            WorkingDir = ExpandableVariables.InstallationDirectory,
+                            Path = fileInfo.FullName.Replace(game.InstallDirectory.EndWithDirSeparator(), ExpandableVariables.InstallationDirectory.EndWithDirSeparator()),
+                            Arguments = prog.Arguments,
+                            IsPlayAction = true,
+                            Name = game.Name,
+                        });
 
                 if (!prog.Icon.IsNullOrEmpty())
                 {
