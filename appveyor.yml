@@ -10,9 +10,8 @@ shallow_clone: true
 environment:
   LicensedDependenciesUrl:
     secure: ZTSg1DK6QAtwZoCBUDQ94cIaMCKWgSeJMI0dCpVJBPE40+UqG9MNu+UJjjGWjvVa
-  OnlineInstallerConfig: https://playnite.link/build/installer_mirrors.txt
 build_script:
-- pwsh: .\build\build.ps1 -Package -SdkNuget -LicensedDependenciesUrl $env:LicensedDependenciesUrl -OnlineInstallerConfig $env:OnlineInstallerConfig
+- pwsh: .\build\build.ps1 -Package -SdkNuget -LicensedDependenciesUrl $env:LicensedDependenciesUrl
 test: off
 artifacts:
 - path: 'build\Playnite.zip'
