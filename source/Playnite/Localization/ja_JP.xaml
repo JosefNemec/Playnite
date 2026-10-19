@@ -1030,7 +1030,7 @@ Version {2}</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">プライマリーコントローラーのみ</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">有効な場合にのみプライマリコントローラからの入力を受け付けます。</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">ガイドボタンで Playnite にフォーカス</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">ゲームが実行中でない場合のみフォーカス</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">インターフェイスの音量</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">背景の音量</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">バックグラウンドでミュート</sys:String>
@@ -1273,4 +1273,9 @@ Playnite の Github ページで新しい issue を開き、ファイルの破�
     <sys:String x:Key="LOCGameListNavigationSpeed">ゲームリストのナビゲーション速度</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">ゲームデータの更新に失敗しました。元のゲームの状態がライブラリに見つかりませんでした。ゲームが削除されたようです。</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">ライブラリ項目を削除できません。項目がライブラリに見つかりませんでした。</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">起動時にフィルターをクリア</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">フルスクリーンモード固有の設定は、フルスクリーンモード内から開ける設定メニューにあります。</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">.lnk ショートカットファイルのインポートモード:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">.lnk ファイル自体をインポート</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">.lnk の設定をインポート</sys:String>
 </ResourceDictionary>

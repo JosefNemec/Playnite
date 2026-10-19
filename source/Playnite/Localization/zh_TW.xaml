@@ -27,8 +27,12 @@
 不確定 - 不更改(當編輯多個遊戲時)</sys:String>
     <sys:String x:Key="LOCNoCategory">沒有分類</sys:String>
     <sys:String x:Key="LOCNoPlatform">沒有平台</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">發生無法復原的錯誤</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">請簡要描述當機前執行了哪些操作，然後傳送診斷資訊。
+
+您也可以點選「回報當機」按鈕，自行在 GitHub 上建立新的 issue 回報此當機。
+
+感謝您的協助。</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">擴充功能 &quot;{0}&quot; 導致無法復原的錯誤
 
 建議您保存記錄檔並向該功能的開發者回報。如果本錯誤持續發生，請關閉該功能。</sys:String>
@@ -38,7 +42,9 @@
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">有未知的擴充功能或佈景主題造成了無法回復的錯誤。
 
 我們建議先停用所有第三方附加元件，移除造成問題的元件後向該元件開發者回報此錯誤</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">發生無法復原的錯誤。
+
+如果您願意協助我們修正此問題，請傳送診斷資訊。謝謝。</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">停用擴充功能</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">保存記錄檔</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">傳送診斷報告</sys:String>
@@ -265,7 +271,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">找不到遊戲封面時從此處抓取</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">找不到遊戲背景圖片時從此處抓取</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">到遊戲詳細資訊的垂直間距</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">屬性面板寬度</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">網格檢視詳細資訊位置</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">列表檢視遊戲列表位置</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">在面板間繪製分隔線</sys:String>
@@ -1022,7 +1028,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">只有主控制器</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">啟動時，只接收主控制器的指令。</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">導覽按鈕焦點定位於Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">僅在沒有遊戲執行時才取得焦點</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">介面音量</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">背景音量</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">處於背景時靜音</sys:String>
@@ -1262,8 +1268,13 @@ Playnite將會重新啟動並開始備份資料</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">未偵測到搖桿</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">預設來源</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">網頁圖片搜尋失敗。失敗原因可能有多種。請點選以下連結查看詳細說明和解決方法。</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">導覽按鈕切換至全螢幕模式</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">遊戲清單瀏覽速度</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">無法更新遊戲資料。在遊戲庫中找不到原始遊戲狀態，該遊戲可能已被移除。</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">無法移除遊戲庫項目。在遊戲庫中找不到該項目。</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">啟動時清除篩選條件</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">全螢幕模式的專屬設定，請在全螢幕模式中的設定選單內調整。</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">.lnk 捷徑檔匯入方式：</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">匯入 .lnk 檔本身</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">匯入 .lnk 的設定內容</sys:String>
 </ResourceDictionary>

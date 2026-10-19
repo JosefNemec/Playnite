@@ -1265,4 +1265,9 @@ Si vous voyez ce message, veuillez ouvrir un ticket sur la page Github de Playni
     <sys:String x:Key="LOCGameListNavigationSpeed">Vitesse de défilement de la liste de jeux</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Échec de la mise à jour des données de jeu. Le profil de données n'est pas présent dans la bibliothèque.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">L'élément n'est pas présent dans la bibliothèque et n'a pas pu être supprimé.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

@@ -1206,4 +1206,9 @@ Deschideți o nouă problema pe pagina GitHub a Playnite cu o cerere de reparare
     <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

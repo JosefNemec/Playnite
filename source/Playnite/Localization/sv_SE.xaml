@@ -1268,4 +1268,9 @@ Det angivna datumformatet kommer att användas för alla andra datum.</sys:Strin
     <sys:String x:Key="LOCGameListNavigationSpeed">Navigeringshastighet för spellistan</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Det gick inte att uppdatera speldata. Det ursprungliga spel-tillståndet hittades inte i biblioteket, ser ut som att spelet har tagits bort.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Kan inte ta bort biblioteksobjekt. Objektet hittades inte i biblioteket.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Rensa filter vid uppstart</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Fullskärmsläges specifika inställningar kan hittas i inställningsmenyn som finns inifrån helskärmsläget själv.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">.lnk genvägs fil importläge:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Importera .lnk-fil själv</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Importera .lnk inställningar</sys:String>
 </ResourceDictionary>

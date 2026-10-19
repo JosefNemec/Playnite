@@ -1271,4 +1271,9 @@ Playnite автоматично перезапуститься та почне �
     <sys:String x:Key="LOCGameListNavigationSpeed">Швидкість навігації списку ігор</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Не вдалося оновити ігрові дані. Початковий стан гри не знайдено в бібліотеці — схоже, гру було видалено.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Неможливо видалити елемент із бібліотеки. Цей елемент не знайдено в бібліотеці.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Очистити фільтри при запуску</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Налаштування що стосуються лише повноекранного режиму можна знайти меню налаштування в повноекранному режимі.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Режим імпортування .lnk ярликів:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Імпортувати сам .lnk файл</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Імпортувати налаштування .lnk</sys:String>
 </ResourceDictionary>

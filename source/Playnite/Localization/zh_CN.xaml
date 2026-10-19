@@ -581,7 +581,7 @@
     <sys:String x:Key="LOCAgeRatingLabel">年龄分级</sys:String>
     <sys:String x:Key="LOCAgeRatingsLabel">年龄分级</sys:String>
     <sys:String x:Key="LOCRegionLabel">地区</sys:String>
-    <sys:String x:Key="LOCRegionsLabel">国家</sys:String>
+    <sys:String x:Key="LOCRegionsLabel">国家地区</sys:String>
     <sys:String x:Key="LOCSourceLabel">来源</sys:String>
     <sys:String x:Key="LOCSourcesLabel">来源</sys:String>
     <sys:String x:Key="LOCRecentActivityLabel">最近动态</sys:String>
@@ -1268,4 +1268,9 @@ Playnite 将自动重启以开始备份过程。</sys:String>
     <sys:String x:Key="LOCGameListNavigationSpeed">游戏列表导航速度</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">更新游戏数据失败。在库中找不到最初的游戏状态，看起来游戏已被移除。</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">无法移除库项。在库中找不到此项。</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

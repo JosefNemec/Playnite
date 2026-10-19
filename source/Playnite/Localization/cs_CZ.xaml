@@ -1268,4 +1268,9 @@ Reportujte problém na Playnite stránce GitHubu s požadavkem na opravu soubor�
     <sys:String x:Key="LOCGameListNavigationSpeed">Rychlost navigace v herním seznamu</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Aktualizace dat hry se nezdařila. Původní stav hry nebyl nalezen v knihovně, zdá se, že hra byla odstraněna.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Položku knihovny nelze odstranit. Položka nebyla v knihovně nalezena.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Vymazat filtry při spuštění</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Nastavení specifické pro režim celé obrazovky lze nalézt v nabídce nastavení, která je dostupná přímo v režimu celé obrazovky.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Režim importu .lnk zástupce:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Importovat sám .lnk soubor</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Importovat nastavení .lnk souboru</sys:String>
 </ResourceDictionary>

@@ -1268,4 +1268,9 @@ Playnite GitHub sayfasında yeni bir hata kaydı oluşturarak arızalı dosyalar
     <sys:String x:Key="LOCGameListNavigationSpeed">Oyun listesinde gezinme hızı</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Oyun verileri güncellenemedi. Orijinal oyun durumu kütüphanede bulunamadı, oyun kaldırılmış gibi görünüyor.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Kütüphane öğesi kaldırılamıyor. Öğe kütüphanede bulunamadı.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

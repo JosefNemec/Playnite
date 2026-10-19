@@ -1024,7 +1024,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">تنها دستهٔ بازی اصلی</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">تنها زمانی که فعال است از دستهٔ بازی اصلی درونداد بپذیرید.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">دکمهٔ راهنما Playnite را متمرکز می‌کند</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">تنها درصورتی تمرکزکن که هیچ بازی‌ای در حال اجرا نباشد</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">صدای میانا</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">صدای پس‌زمینه</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">بی‌صداسازی در پس‌زمینه</sys:String>
@@ -1268,4 +1268,9 @@ Playnite به طور خودکار راه‌اندازی مجدد می شود ت�
     <sys:String x:Key="LOCGameListNavigationSpeed">سرعت پیمایش فهرست بازی‌ها</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">به‌روزرسانی داده‌های بازی با شکست مواجه شد. وضعیت اولیه بازی در کتابخانه یافت نشد؛ به نظر می‌رسد بازی حذف شده است.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">امکان حذف مورد در کتابخانه وجود ندارد. این مورد در کتابخانه یافت نشد.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

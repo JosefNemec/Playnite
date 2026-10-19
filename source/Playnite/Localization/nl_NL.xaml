@@ -1287,4 +1287,9 @@ Open het nieuwe probleem op Playnite's GitHub-pagina met een verzoek om corrupti
     <sys:String x:Key="LOCGameListNavigationSpeed">Navigeersnelheid van de spellenlijst</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Het bijwerken van de spelgegevens is mislukt. De originele staat van het spel is niet in de bibliotheek gevonden, het duidt erop dat het spel verwijderd is.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Kan dit item niet verwijderen. Het item is niet gevonden in de library.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

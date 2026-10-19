@@ -1280,4 +1280,9 @@ Apri un nuovo problema sulla pagina GitHub di Playnite con una richiesta di corr
     <sys:String x:Key="LOCGameListNavigationSpeed">Velocità di navigazione elenco giochi</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Impossibile aggiornare i dati di gioco. Lo stato di gioco originale non è stato trovato nella libreria, sembra che il gioco sia stato rimosso.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Impossibile rimuovere l'elemento della libreria. L'elemento non è stato trovato nella libreria.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

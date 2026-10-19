@@ -1270,4 +1270,9 @@ Obre una nova incidència a la pàgina de GitHub de Playnite amb una sol·licitu
     <sys:String x:Key="LOCGameListNavigationSpeed">Velocitat de desplaçament per la llista de jocs</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">No s'han pogut actualitzar les dades del joc. No s'ha trobat l'estat original del joc a la biblioteca; sembla que el joc s'ha eliminat.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">No s'ha pogut eliminar l'element de la biblioteca. L'element no s'ha trobat a la biblioteca.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

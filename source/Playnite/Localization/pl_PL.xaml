@@ -28,7 +28,11 @@
     <sys:String x:Key="LOCNoCategory">Bez kategorii</sys:String>
     <sys:String x:Key="LOCNoPlatform">Brak platformy</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Wystąpił nieodwracalny błąd</sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Proszę krótko opisać czynności wykonane przed awarią, a następnie przesłać informacje diagnostyczne.
+
+Możesz też kliknąć przycisk &quot;Zgłoś awarię&quot;, aby utworzyć nowe zgłoszenie na GitHubie i ręcznie zgłosić awarię.
+
+Dziękujemy za pomoc.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Rozszerzenie „{0}” spowodowało nieodwracalny błąd.
 
 Zalecamy zapisanie pliku dziennika i zgłoszenie problemu twórcy rozszerzenia. Jeśli problem będzie się powtarzał, wyłącz to rozszerzenie.</sys:String>
@@ -90,7 +94,7 @@ Wybranie opcji  &quot;dodaj do listy wykluczeń&quot;, pozwoli pominąć zaimpor
     <sys:String x:Key="LOCErrorApplicationScript">Nieudane uruchomienie aplikacji skryptu.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Uruchomienie globalnego skryptu nie powiodło się.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Uruchomienie skryptu emulatora nie powiodło się.</sys:String>
-    <sys:String x:Key="LOCErrorPlayScriptAction">Uruchomienie skryptu akcji nie powiodło się.</sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">Uruchomienie skryptu gry nie powiodło się.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 lub nowszy nie jest zainstalowany.</sys:String>
     <sys:String x:Key="LOCErrorStartupNoController">Nie można określić jak uruchomić grę.</sys:String>
     <!--General-->
@@ -1007,7 +1011,7 @@ Jeśli chcesz zainstalować lub odinstalować dodatkowe integracje, użyj opcji 
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGame">Minimalizuj po uruchomieniu gry</sys:String>
     <sys:String x:Key="LOCSettingsMinimizeAfterStartingGameDescription" xml:space="preserve">Minimalizuj Playnite po uruchomieniu gry.
 
-Zablokowanie tej opcji może prowadzić do problemów z grami wymagającymi pełnej uwagi podczas uruchamiania!</sys:String>
+Wyłączenie tej opcji może prowadzić do problemów z grami wymagającymi fokusu podczas uruchamiania!</sys:String>
     <sys:String x:Key="LOCSettingsFontSize">Rozmiar czcionki</sys:String>
     <sys:String x:Key="LOCSettingsFontSizeSmall">Mały rozmiar czcionki</sys:String>
     <sys:String x:Key="LOCSettingsControllerApi">Włącz obsługę API kontrolera gier</sys:String>
@@ -1023,7 +1027,7 @@ Wyłącz, jeśli używasz narzędzi, które tłumaczą wejścia kontrolera gry n
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Tylko główny kontroler</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Akceptuj dane wejściowe z podstawowego kontrolera tylko wtedy, gdy włączone.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Przycisk przewodnika wyzwala Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Fokus wtedy, gdy żadna gra nie jest uruchomiona</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Głośność interfejsu</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Głośność tła</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Wycisz, kiedy jest w tle</sys:String>
@@ -1270,4 +1274,9 @@ Otwórz nowy problem na stronie GitHub Playnite z prośbą o naprawienie uszkodz
     <sys:String x:Key="LOCGameListNavigationSpeed">Szybkość nawigacji listy gier</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Nie udało się zaktualizować danych gry. Oryginalny stan gry nie został znaleziony w bibliotece, wygląda na to, że gra została usunięta.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Nie można usunąć elementu biblioteki. Element nie został znaleziony w bibliotece.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>
