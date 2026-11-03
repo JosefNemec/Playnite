@@ -24,27 +24,33 @@
     <sys:String x:Key="LOCCategoryAddCatButton">Kategorie hinzufügen</sys:String>
     <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiviert - Kategorie zuweisen
 Deaktiviert - Kategorie entfernen
-Unentschieden - Keine Änderungen (beim Bearbeiten mehrerer Spiele)</sys:String>
+Unbestimmt – Keine Änderungen (beim Bearbeiten mehrerer Spiele)</sys:String>
     <sys:String x:Key="LOCNoCategory">Keine Kategorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Keine Plattform</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Erweiterung »{0}« hat einen nicht behebbaren Fehler verursacht.
+    <sys:String x:Key="LOCCrashWindowTitle">Ein nicht behebbarer Fehler ist aufgetreten.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Bitte beschreibe kurz die Schritte, die du vor dem Absturz durchgeführt hast und sende dann die diagnostischen Informationen.
+
+Alternativ kannst du auf &quot;Absturz melden&quot; klicken, um einen GitHub-Issue zu öffnen und den Crash manuell zu melden.
+
+Vielen Dank für deine Mithilfe.</sys:String>
+    <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Erweiterung „{0}“ hat einen nicht behebbaren Fehler verursacht.
 
 Wir empfehlen, die Diagnosedatei zu speichern und das Problem dem Entwickler der Erweiterung zu melden. Falls das Problem wiederholt auftritt, deaktiviere die Erweiterung.</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionFS" xml:space="preserve">Erweiterung »{0}« hat einen nicht behebbaren Fehler verursacht.
 
 Wir empfehlen, das Problem dem Entwickler der Erweiterung zu melden. Falls das Problem wiederholt auftritt, deaktiviere die Erweiterung.</sys:String>
-    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Unbekannte Erweiterung oder Design verursachte einen nicht behebbaren Fehler.
+    <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">Eine unbekannte Erweiterung oder Design verursachte einen nicht behebbaren Fehler.
 
-Wir empfehlen alle Drittanbieter-Add-ons zu deaktivieren, um das problematische zu isolieren und das Problem dem Entwickler des Add-ons mitzuteilen.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+Wir empfehlen, Add-ons von Drittanbietern zu deaktivieren, das problematische Add-on zu isolieren und das Problem dem Entwickler des Add-ons zu melden.</sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">Ein nicht behebbarer Fehler ist aufgetreten.
+
+Falls du uns bei diesem Problem helfen möchtest, sende bitte Diagnoseinformationen. Vielen Dank.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">Erweiterung deaktivieren</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">Protokolldatei speichern</sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Diagnoseinformationen senden</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Absturz melden</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Playnite neu starten</sys:String>
-    <sys:String x:Key="LOCCrashRestartSafe">Im Sicheren Modus neu starten</sys:String>
+    <sys:String x:Key="LOCCrashRestartSafe">Im abgesicherten Modus neu starten</sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip">Alle Drittanbieter-Erweiterungen werden deaktiviert und das Standarddesign verwendet.</sys:String>
     <sys:String x:Key="LOCCrashClosePlaynite">Playnite beenden</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">Unternommene Aktionen vor dem Absturz (in Englisch):</sys:String>
@@ -56,10 +62,10 @@ Wir empfehlen alle Drittanbieter-Add-ons zu deaktivieren, um das problematische 
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">Möchtest du {0} Spiele wirklich entfernen?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">Möchtest du {0} wirklich entfernen?
 
-Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen Bibliotheksaktualisierungen das erneute Importieren des Spiels verhindern.</sys:String>
-    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Möchtest du {0} Spiele wirklich entfernen?
+Die Auswahl der Option „Zur Ausschlussliste hinzufügen“ wird bei zukünftigen Bibliotheksaktualisierungen das erneute Importieren des Spiels verhindern.</sys:String>
+    <sys:String x:Key="LOCGamesRemoveAskMessageIgnoreOption" xml:space="preserve">Möchtest du {0}  Spiele wirklich entfernen?
 
-Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen Bibliotheksaktualisierungen das erneute Importieren der Spiele verhindern.</sys:String>
+Die Auswahl der Option „Zur Ausschlussliste hinzufügen“ wird bei zukünftigen Bibliotheksaktualisierungen das erneute Importieren des Spiels verhindern.</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsAskMessage">Möchtest du wirklich {0} derzeit nicht verwendete Einträge entfernen?</sys:String>
     <sys:String x:Key="LOCRemoveUnusedFieldsNoUnusedMessage">Keine unbenutzten Felder gefunden.</sys:String>
     <sys:String x:Key="LOCRemoveAskAddToExlusionListYesResponse">Ja (zur Ausschlussliste hinzufügen)</sys:String>
@@ -81,14 +87,14 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCGameUninstallError">Spiel kann nicht deinstalliert werden: {0}</sys:String>
     <sys:String x:Key="LOCErrorNoPlayAction">Keine gültigen Start-Aktionen gefunden. Achte bei Emulator-Aktionen darauf, dass die Plattformdefinitionen von Spiel- und Emulatorkonfiguration übereinstimmen.</sys:String>
     <sys:String x:Key="LOCErrorNoInstallAction">Installations-Implementierung nicht verfügbar.</sys:String>
-    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliotheks-Plugin für dieses Spiel ist deaktiviert oder nicht installiert.</sys:String>
+    <sys:String x:Key="LOCErrorLibraryPluginNotFound">Das Bibliothek-Plugin für dieses Spiel ist deaktiviert oder nicht installiert.</sys:String>
     <sys:String x:Key="LOCErrorNoMetadataDownloader">Offizielle Metadaten sind nicht zum Herunterladen verfügbar.</sys:String>
     <sys:String x:Key="LOCErrorNoGameSelected">Kein Spiel ausgewählt.</sys:String>
     <sys:String x:Key="LOCErrorGameScriptAction">Skriptaktion des Spiels konnte nicht ausgeführt werden.</sys:String>
     <sys:String x:Key="LOCErrorApplicationScript">Anwendungsskript konnte nicht ausgeführt werden.</sys:String>
     <sys:String x:Key="LOCErrorGlobalScriptAction">Globale Skriptaktion konnte nicht ausgeführt werden.</sys:String>
     <sys:String x:Key="LOCErrorEmulatorScriptAction">Emulator-Skript konnte nicht ausgeführt werden.</sys:String>
-    <sys:String x:Key="LOCErrorPlayScriptAction">»Spielen«-Skriptaktion konnte nicht ausgeführt werden.</sys:String>
+    <sys:String x:Key="LOCErrorPlayScriptAction">Die Ausführung der Skriptaktion ist fehlgeschlagen.</sys:String>
     <sys:String x:Key="LOCErrorPowerShellNotInstalled">PowerShell 3.0 oder neuer ist nicht installiert.</sys:String>
     <sys:String x:Key="LOCErrorStartupNoController">Es konnte nicht herausgefunden werden, wie das Spiel gestartet wird.</sys:String>
     <!--General-->
@@ -265,7 +271,7 @@ Die Auswahl der Option »Zur Ausschlussliste hinzufügen« wird bei zukünftigen
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Quelle für fehlende Spielecover</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Quelle für fehlende Spielhintergründe</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Vertikaler Abstand zu Spieldetails</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Eigenschaften Panelbreite</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Detailleistenposition in Rasteransicht</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Spielelistenposition in Detailansicht</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Trennlinien zwischen Leisten zeichnen</sys:String>
@@ -1018,7 +1024,7 @@ Deaktivieren, falls du Tools verwendest, die Eingaben von Spielcontrollern in Ma
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Nur Primärcontroller</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Falls aktiviert, werden nur Eingaben des Primärcontrollers akzeptiert.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Guide-Taste fokussiert Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Nur fokussieren, falls kein Spiel läuft</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Lautstärke Oberfläche</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Lautstärke Hintergrund</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Im Hintergrund stummschalten</sys:String>
@@ -1104,8 +1110,8 @@ Falls nach dem Installieren von Designs oder Erweiterungen Probleme auftreten, v
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">Erstmalig gespielten Spielen zugeordneter Status</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">Initialisierung der PowerShell-Skript-Laufzeitumgebung ist fehlgeschlagen. Falls du Windows 7 nutzt, versuche PowerShell 5.1 (erneut) zu installieren, um das Problem zu beheben.</sys:String>
     <sys:String x:Key="LOCFilterPresetNameConflict">Filtervoreinstellung mit angegebenem Namen existiert bereits. Voreinstellung mit neuen Einstellungen aktualisieren?</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofill">Fülle automatisch fehlende Sortiernamen für Massen-hinzugefügte oder bearbeitete Spiele</sys:String>
-    <sys:String x:Key="LOCSortingNameAutofillTooltip">Wenn du ein Spiel bearbeitest, füge Spiele über ein Bibliotheksupdate, einen Emulator Ordner oder einen normalen Ordner-Scan hinzu füllen Sie automatisch das Feld &quot;Sortiername&quot; mit einer besser sortierbaren Darstellung des Spielnamens aus. Zum Beispiel &quot;The Witcher 3&quot; bekommt einen Sortiernamen von &quot;Witcher 03&quot;. Dies wird niemals einen Sortiernamen angeben, der sich nicht vom Spielnamen unterscheidet, und es wird nur automatisch die Sortierung leerer Namen aktualisieren.</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofill">Fehlende Sortiernamen für Batch-hinzugefügte oder bearbeitete Spiele automatisch ausfüllen</sys:String>
+    <sys:String x:Key="LOCSortingNameAutofillTooltip">Wenn du ein Spiel bearbeitest oder Spiele über ein Bibliotheksupdate, einen Emulatorordner oder einen normalen Ordnerscan hinzufügst, automatisch das Feld &quot;Sortiername&quot; mit einer besser sortierbaren Darstellung des Spielnamens ausfüllen. Zum Beispiel &quot;The Witcher 3&quot; bekommt den Sortiernamen &quot;Witcher 03&quot;. Dies wird niemals einen Sortiernamen setzen, der sich nicht vom Spielnamen unterscheidet, und es wird nur automatisch die Sortierung leerer Namen aktualisieren.</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticles">Diese Wörter werden vom Anfang des automatisch ausgefüllten Sortiernamens entfernt:</sys:String>
     <sys:String x:Key="LOCSortingNameRemovedArticlesTooltip">Verwende diese Option, um für Sortierzwecke Wörter am Anfang einer Zeichenkette zu ignorieren. Standard ist »The«, »An« und »A«.</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillButton">Sortiernamen ausfüllen für Spiele ohne Sortiernamen</sys:String>
@@ -1256,10 +1262,15 @@ Melde das Problem auf der GitHub-Seite von Playnite mit einer Anfrage, die Besch
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Möchtest du die vorgenommenen Änderungen speichern?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Portable Installation</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Keine Controller erkannt</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
-    <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Standardquelle</sys:String>
+    <sys:String x:Key="LOCWebImageDownloadError">Web-Bildersuche fehlgeschlagen. Dies kann aus verschiedenen Gründen passieren. Schau dir diesen Link an für mehr Details und Tipps zur Fehlerbehebung.</sys:String>
     <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">Navigationsgeschwindigkeit der Spielliste</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">Fehler beim Aktualisieren der Spieldaten. Der ursprüngliche Spielstand wurde in der Bibliothek nicht gefunden, es sieht so aus, als wäre das Spiel entfernt worden.</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">Bibliothekseintrag kann nicht entfernt werden. Das Element wurde in der Bibliothek nicht gefunden.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>

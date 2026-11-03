@@ -1,2 +1,2 @@
-﻿https://raw.githubusercontent.com/JosefNemec/PlayniteWeb/master/manifests/installer_mirrors.txt
+﻿https://api.playnite.link/download/installer_mirrors.txt
 https://playnite.link/download/installer_mirrors.txt

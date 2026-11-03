@@ -1256,4 +1256,9 @@ Kérlek nyiss egy új jegyet a Playnite GitHub oldalán angolul, kérve, hogy ja
     <sys:String x:Key="LOCGameListNavigationSpeed">Játéklista lépegetés sebessége</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Játékadatok frissítése sikertelen. Az eredeti játékállapot nem található a könyvtáradban, úgy tűnik a játékot eltávolították.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Nem lehet eltávolítani a játékot, mert nem található a játékkönyvtárban.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Szűrők törlése induláskor</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">A teljesképernyő mód beállításai a mód aktiválása után érhetőek el a menüjéből.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">.lnk parancsikon importálása:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">A .lnk fájt importálja</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">A fájlra mutató .lnk importálása</sys:String>
 </ResourceDictionary>

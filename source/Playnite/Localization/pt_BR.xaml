@@ -1270,4 +1270,9 @@ Avise do problema na página do Playnite no GitHub com um pedido de correção.<
     <sys:String x:Key="LOCGameListNavigationSpeed">Velocidade de navegação na lista de jogos</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Falha ao atualizar os dados do jogo. O estado original do jogo não foi encontrado na biblioteca; parece que ele foi removido.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Não foi possível remover o item da biblioteca. O item não foi encontrado na biblioteca.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Limpar filtros na inicialização</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">As configurações específicas do modo Tela Cheia podem ser encontradas no menu de configurações disponível dentro do próprio modo Tela Cheia.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Modo de importação de arquivos de atalho .lnk:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Importar o próprio arquivo .lnk</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Importar configurações do .lnk</sys:String>
 </ResourceDictionary>

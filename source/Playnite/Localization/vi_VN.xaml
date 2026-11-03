@@ -163,7 +163,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSearchResolutionAnyLabel">Bất kỳ</sys:String>
     <sys:String x:Key="LOCZoomLabel">Phóng to</sys:String>
     <sys:String x:Key="LOCListViewLabel">Chế độ hiển thị dạng danh sách</sys:String>
-    <sys:String x:Key="LOCCoversLabel">Bìa</sys:String>
+    <sys:String x:Key="LOCCoversLabel">Ảnh bìa</sys:String>
     <sys:String x:Key="LOCGridViewLabel">Chế độ hiển thị dạng lưới</sys:String>
     <sys:String x:Key="LOCDetailsViewLabel">Chế độ hiển thị chi tiết</sys:String>
     <sys:String x:Key="LOCCustomLabel">Tùy chỉnh</sys:String>
@@ -282,7 +282,7 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsFilterPanelPosition">Vị trí bảng điều khiển bộ lọc</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">Vị trí bảng điều khiển Explorer 
 </sys:String>
-    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Kết xuất ảnh bìa</sys:String>
+    <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">Hiển thị ảnh bìa</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">Tỷ lệ khung hình mục tiêu</sys:String>
     <sys:String x:Key="LOCSettingsGridTileLayoutFSNote">Các tùy chọn sau đây cũng ảnh hưởng đến kết xuất ô ở chế độ Toàn màn hình!</sys:String>
     <sys:String x:Key="LOCSettingsStrechModeLabel">Chế độ kéo dãn</sys:String>
@@ -291,9 +291,9 @@ Việc chọn tùy chọn &quot;thêm vào danh sách loại trừ&quot; sẽ ng
     <sys:String x:Key="LOCSettingsCovertAspectGogGalaxy2">GOG Galaxy 2.0
 </sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectIgdb">IGDB</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSquare">Quảng trường</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSquare">Ảnh bìa vuông</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectSteam">Biểu ngữ Steam</sys:String>
-    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Steam nắp dọc hơi</sys:String>
+    <sys:String x:Key="LOCSettingsCovertAspectSteamVertical">Ảnh bìa dọc Steam</sys:String>
     <sys:String x:Key="LOCSettingsCovertAspectTwitch">Twitch</sys:String>
     <sys:String x:Key="LOCSettingsRestartNotification">* Cần khởi động lại để áp dụng cài đặt</sys:String>
     <sys:String x:Key="LOCSettingsLabel">Cài đặt</sys:String>
@@ -492,7 +492,7 @@ Bạn có thể thử tải xuống lại các tích hợp từ menu tiện ích
     <sys:String x:Key="LOCEmulatorTitle">Trình giả lập</sys:String>
     <sys:String x:Key="LOCAddPlatformTitle">Thêm nền tảng</sys:String>
     <sys:String x:Key="LOCSelectIconTitle">Chọn Biểu tượng</sys:String>
-    <sys:String x:Key="LOCSelectCoverTitle">Chọn bìa</sys:String>
+    <sys:String x:Key="LOCSelectCoverTitle">Chọn ảnh bìa</sys:String>
     <sys:String x:Key="LOCSelectImageTitle">Chọn ảnh</sys:String>
     <sys:String x:Key="LOCSelectItemTitle">Chọn vật phẩm</sys:String>
     <sys:String x:Key="LOCSelectBackgroundTitle">Lưa chọn nền</sys:String>
@@ -712,7 +712,7 @@ Thông tin thêm tại https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCBuiltinArguments">đổi số tích hợp</sys:String>
     <sys:String x:Key="LOCCustomArguments">Đối số của trình giả lập</sys:String>
     <sys:String x:Key="LOCAdditionalEmulatorArguments">Đối số giả lập bổ xung</sys:String>
-    <sys:String x:Key="LOCOverrideEmulatorArguments">Ghi đè các đối số của Trình mô phỏng</sys:String>
+    <sys:String x:Key="LOCOverrideEmulatorArguments">Ghi đè các đối số của Trình giả lập</sys:String>
     <sys:String x:Key="LOCIsPlayAction">Chơi hành động</sys:String>
     <sys:String x:Key="LOCMedataDiffWindowTitle">Chọn siêu dữ liệu để nhập</sys:String>
     <sys:String x:Key="LOCGameImportWindowTitle">Chọn trò chơi để nhập</sys:String>
@@ -872,8 +872,8 @@ Phiên bản mới: {2}</sys:String>
 
 Độ phân giải khuyến nghị tối đa:
 Biểu tượng: {0} mega pixel
-Bìa: {1} mega pixel
-Nền: {2} mega pixel</sys:String>
+Ảnh bìa: {1} mega pixel
+Hình nền: {2} mega pixel</sys:String>
     <sys:String x:Key="LOCPerformanceWarningTitle">Cảnh báo Hiệu suất</sys:String>
     <sys:String x:Key="LOCDontShowAgainTitle">Không hiện thị lại</sys:String>
     <sys:String x:Key="LOCIncompatibleDragAndDropExtensionError">Tệp có phần mở rộng {0} không tương thích.</sys:String>
@@ -1243,7 +1243,7 @@ Những bản vá mới sẽ không hiển thị ở thông báo cập nhật.</
 
     <sys:String x:Key="LOCSettingsWebImageSearch">Tìm kiếm hình ảnh trên web</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchIconTerm">Chuỗi tìm kiếm ảnh icon</sys:String>
-    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Chuỗi tìm kiếm ảnh cover</sys:String>
+    <sys:String x:Key="LOCSettingsWebImageSearchCoverTerm">Chuỗi tìm kiếm ảnh bìa</sys:String>
     <sys:String x:Key="LOCSettingsWebImageSearchBackground">Chuỗi tìm kiếm ảnh nền </sys:String>
     <sys:String x:Key="LOCGettingsAddonInformation">Đang tải thông tin add-on…</sys:String>
     <sys:String x:Key="LOCNoMetadataSource">Không có nguồn dữ liệu khả dụng</sys:String>
@@ -1271,4 +1271,9 @@ Mở issue mới trên trang GitHub của Playnite để đề xuất sửa file
     <sys:String x:Key="LOCGameListNavigationSpeed">Tốc độ duyệt danh sách trò chơi</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Không cập nhật được thông tin trò chơi. Trạng thái ban đầu trò chơi không thấy trong thư viện, có vẻ trò chơi đã được bỏ đi.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Không bỏ được mục trong thư viện. Mục đó không thấy trong thư viện.</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Dọn bộ lọc khi khởi động</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Cấu hình riêng cho chế độ toàn màn hình có thể thấy trong trình đơn cấu hình trong bản thần chế độ toàn màn hình</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Chế độ nhập cho tệp lối tắt .lnk</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Nhập bản thân tệp .lnk</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Nhập cấu hình .lnk</sys:String>
 </ResourceDictionary>

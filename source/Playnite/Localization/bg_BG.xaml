@@ -1274,4 +1274,9 @@ Playnite автоматично ще се рестартира, за да ста
 </sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Не може да се премахне елементът от библиотеката. Елементът не беше намерен в библиотеката.
 </sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
 </ResourceDictionary>
