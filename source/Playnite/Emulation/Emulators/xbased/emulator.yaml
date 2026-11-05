@@ -1,0 +1,9 @@
+Id: xbased
+Name: xbased
+Website: 'https://github.com/crazyriddler/xbased'
+Profiles:
+  - Name: Default
+    StartupArguments: '"{ImagePath}"'
+    Platforms: [xbox]
+    ImageExtensions: [iso, xiso]
+    StartupExecutable: ^xbased\.exe$
