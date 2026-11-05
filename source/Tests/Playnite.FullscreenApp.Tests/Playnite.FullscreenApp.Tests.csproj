@@ -10,18 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.Core" version="4.3.1"/>
+    <PackageReference Include="Castle.Core" version="5.2.1" />
     <PackageReference Include="DynamicLanguageRuntime" version="1.2.1"/>
     <PackageReference Include="LiteDB" version="4.1.4"/>
-    <PackageReference Include="Moq" version="4.10.1"/>
+    <PackageReference Include="Moq" version="4.21.0" />
     <PackageReference Include="Newtonsoft.Json" version="10.0.3"/>
     <PackageReference Include="NUnit" version="3.13.2"/>
     <PackageReference Include="NUnit3TestAdapter" version="3.17.0"/>
     <PackageReference Include="System.IO.Abstractions" version="2.1.0.227"/>
     <PackageReference Include="System.IO.Abstractions.TestingHelpers" version="2.1.0.227"/>
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" version="4.5.3"/>
-    <PackageReference Include="System.Threading.Tasks.Extensions" version="4.5.1"/>
-    <PackageReference Include="System.ValueTuple" version="4.5.0"/>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" version="6.1.2" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" version="4.6.3" />
+    <PackageReference Include="System.ValueTuple" version="4.6.2" />
   </ItemGroup>
 
   <ItemGroup>
