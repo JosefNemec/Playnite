@@ -8,11 +8,11 @@
         xmlns:c="clr-namespace:Playnite.Controls;assembly=Playnite"
         xmlns:pin="clr-namespace:Playnite.Input;assembly=Playnite"
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
-        mc:Ignorable="d"                     
+        mc:Ignorable="d"
         x:Name="WindowMessageBox"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
-        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
         Style="{StaticResource ChildWindowStyle}"
         d:DesignWidth="1920" d:DesignHeight="1080">
 
