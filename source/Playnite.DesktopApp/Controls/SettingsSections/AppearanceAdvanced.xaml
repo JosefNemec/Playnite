@@ -29,7 +29,6 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="20">
             <controls:GridEx ColumnCount="2" RowCount="3">
                 <ContentControl Content="{DynamicResource LOCSettingsDefaulIconSource}"
@@ -337,5 +336,4 @@
                     CommandParameter="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings"
                     HorizontalAlignment="Left" Margin="0,10,0,0" />
         </StackPanel>
-    </ScrollViewer>
 </UserControl>

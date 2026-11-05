@@ -28,7 +28,6 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <StackPanel Margin="20">
         <Border BorderThickness="2" CornerRadius="2" BorderBrush="{DynamicResource WarningBrush}">
             <TextBlock Margin="12" TextWrapping="Wrap"
@@ -151,5 +150,4 @@
                       pbeh:SelectorBehaviors.EnumSource="{x:Type p:LnkImportMode}" />
         </StackPanel>
     </StackPanel>
-    </ScrollViewer>
 </UserControl>
