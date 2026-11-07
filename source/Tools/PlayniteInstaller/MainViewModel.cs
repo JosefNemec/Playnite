@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -186,8 +187,10 @@ namespace PlayniteInstaller
 
                 webClient = new CustomWebClient();
                 var installerUrls = await TryDownloadManifest(UrlMirrors);
+                var checksum = installerUrls[0];
+                installerUrls.RemoveAt(0);
                 webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
-                if (await TryDownloadInstaller(installerUrls) == false)
+                if (await TryDownloadInstaller(installerUrls, checksum) == false)
                 {
                     return;
                 }
@@ -258,13 +261,17 @@ namespace PlayniteInstaller
             throw new Exception("Failed to download installer manifest.");
         }
 
-        private async Task<bool> TryDownloadInstaller(List<string> urls)
+        private async Task<bool> TryDownloadInstaller(List<string> urls, string checksum)
         {
             foreach (var url in urls)
             {
                 try
                 {
                     await webClient.DownloadFileTaskAsync(url, App.InstallerDownloadPath);
+                    var downChecksum = GetSHA256(App.InstallerDownloadPath);
+                    if (!checksum.Equals(downChecksum, StringComparison.OrdinalIgnoreCase))
+                        throw new Exception("Checksum check failed for downloaded file.");
+
                     return true;
                 }
                 catch (WebException webExp)
@@ -305,6 +312,13 @@ namespace PlayniteInstaller
             {
                 windowHost.Close();
             }
+        }
+
+        public static string GetSHA256(string filePath)
+        {
+            using var fileStream = File.OpenRead(filePath);
+            using var cryptoProvider = new SHA256CryptoServiceProvider();
+            return BitConverter.ToString(cryptoProvider.ComputeHash(fileStream)).Replace("-", "");
         }
     }
 }
