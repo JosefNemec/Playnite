@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using System.Windows;
 using Flurl;
 using System.Net;
+using System.Threading;
+using NSec.Cryptography;
 using Playnite.Common;
 using Playnite.Common.Web;
 using Playnite.Settings;
@@ -19,26 +21,15 @@ namespace Playnite
 {
     public class Updater
     {
-        private static string updateBranch
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["UpdateBranch"];
-            }
-        }
+        private static readonly ILogger logger = LogManager.GetLogger();
+        private static readonly byte[] signingPubKey = [0x98, 0x68, 0xE8, 0x94, 0xBF, 0x90, 0xE0, 0x38, 0x5B, 0x40, 0xE6, 0x62, 0x6C, 0x4A, 0x8E, 0xBB, 0x90, 0x09, 0x62, 0x67, 0x52, 0x08, 0xFD, 0x88, 0x88, 0x6C, 0x64, 0x60, 0x4D, 0x7C, 0xB2, 0x64];
 
-        private static ILogger logger = LogManager.GetLogger();
-        private UpdateManifest updateManifest;
-        private IPlayniteApplication playniteApp;
-        private IDownloader downloader;
-
-        private string updaterPath
-        {
-            get
-            {
-                return Path.Combine(PlaynitePaths.TempPath, "update.exe");
-            }
-        }
+        private readonly Lazy<UpdateManifest> updateManifest;
+        private readonly IPlayniteApplication playniteApp;
+        private readonly IDownloader downloader = new Downloader();
+        private readonly string updateBranch = ConfigurationManager.AppSettings["UpdateBranch"];
+        private readonly string updateUrl = ConfigurationManager.AppSettings["UpdateUrl"];
+        private readonly string updaterPath = Path.Combine(PlaynitePaths.TempPath, "update.exe");
 
         public bool IsUpdateAvailable
         {
@@ -46,20 +37,7 @@ namespace Playnite
             {
                 var latest = GetLatestVersion();
                 var current = CurrentVersion;
-                if (latest > current)
-                {
-                    // Windows 7 and 8 and 32bit systems should no longer update, except for patches
-                    if (Computer.WindowsVersion == WindowsVersion.Win7 || Computer.WindowsVersion == WindowsVersion.Win8 || !Environment.Is64BitOperatingSystem)
-                    {
-                        return latest.Major == current.Major;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
+                return latest > current;
             }
         }
 
@@ -77,40 +55,21 @@ namespace Playnite
             }
         }
 
-        public Updater(IPlayniteApplication app) : this(app, new Downloader())
-        {
-        }
-
-        public Updater(IPlayniteApplication app, IDownloader webDownloader)
+        public Updater(IPlayniteApplication app)
         {
             playniteApp = app;
-            downloader = webDownloader;
-        }
-
-        private string GetUpdateDataRootUrl(string configKey)
-        {
-            return Url.Combine(ConfigurationManager.AppSettings[configKey], updateBranch, $"{CurrentVersion.Major}.{CurrentVersion.Minor}");
+            updateManifest = new Lazy<UpdateManifest>(DownloadManifest, LazyThreadSafetyMode.ExecutionAndPublication);
         }
 
         public List<ReleaseNoteData> GetReleaseNotes()
         {
             var notes = new List<ReleaseNoteData>();
-            if (updateManifest == null)
-            {
-                DownloadManifest();
-            }
-
-            foreach (var version in updateManifest.VersionHistory)
+            foreach (var version in updateManifest.Value.VersionHistory)
             {
                 if (version.CompareTo(CurrentVersion) > 0)
                 {
-                    var noteUrls = new List<string>
-                    {
-                        Url.Combine(ConfigurationManager.AppSettings["UpdateUrl"], updateBranch, $"{version.Major}.{version.Minor}.html"),
-                        Url.Combine(ConfigurationManager.AppSettings["UpdateUrl2"], updateBranch, $"{version.Major}.{version.Minor}.html")
-                    };
-
-                    var note = downloader.DownloadString(noteUrls);
+                    var notUrl = Url.Combine(updateUrl, updateBranch, $"{version.Major}.{version.Minor}.html");
+                    var note = downloader.DownloadString(notUrl);
                     notes.Add(new ReleaseNoteData()
                     {
                         Version = version,
@@ -124,8 +83,8 @@ namespace Playnite
 
         private bool VerifyUpdateFile(string checksum, string path)
         {
-            var newMD5 = FileSystem.GetMD5(path);
-            if (newMD5 != checksum)
+            var newMD5 = FileSystem.GetSHA256(path);
+            if (!newMD5.Equals(checksum, StringComparison.OrdinalIgnoreCase))
             {
                 logger.Error($"Checksum of downloaded file doesn't match: {newMD5} vs {checksum}");
                 return false;
@@ -136,32 +95,17 @@ namespace Playnite
 
         public async Task DownloadUpdate(Action<DownloadProgressChangedEventArgs> progressHandler)
         {
-            if (updateManifest == null)
+            var manifest = updateManifest.Value;
+            if (File.Exists(updaterPath) && VerifyUpdateFile(manifest.Sha256, updaterPath))
             {
-                DownloadManifest();
+                logger.Info("Update already downloaded skipping download.");
+                return;
             }
 
-            if (File.Exists(updaterPath))
+            await downloader.DownloadFileAsync(manifest.PackageUrls, updaterPath, progressHandler);
+            if (!VerifyUpdateFile(manifest.Sha256, updaterPath))
             {
-                if (VerifyUpdateFile(updateManifest.Checksum, updaterPath))
-                {
-                    logger.Info("Update already downloaded skipping download.");
-                    return;
-                }
-            }
-
-            try
-            {
-                await downloader.DownloadFileAsync(updateManifest.PackageUrls, updaterPath, progressHandler);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e, "Failed to download update file.");
-                throw new Exception("Failed to download update file.");
-            }
-
-            if (!VerifyUpdateFile(updateManifest.Checksum, updaterPath))
-            {
+                FileSystem.DeleteFile(updaterPath);
                 throw new Exception($"Update file integrity check failed.");
             }
         }
@@ -179,51 +123,42 @@ namespace Playnite
 
         public UpdateManifest DownloadManifest()
         {
-            var dataString = string.Empty;
+            UpdateManifest manifest = null;
+            var manUrl = Url.Combine(
+                updateUrl,
+                updateBranch,
+                $"{CurrentVersion.Major}.{CurrentVersion.Minor}",
+                UpdateManifest.ServerManifestFileName);
+            logger.Info($"Downloading update manifest from {manUrl}");
 
             try
             {
-                dataString = GetUpdateManifestData(GetUpdateDataRootUrl("UpdateUrl"));
+                var manData = downloader.DownloadData(manUrl);
+                var sigData = downloader.DownloadData(manUrl + ".sig");
+
+                var algo = SignatureAlgorithm.Ed25519;
+                var pubKey = PublicKey.Import(algo, signingPubKey, KeyBlobFormat.RawPublicKey);
+                if (!algo.Verify(pubKey, manData, sigData))
+                    throw new Exception("Update manifest integrity check failed.");
+
+                using var stream = new MemoryStream(manData);
+                manifest = Serialization.FromJsonStream<UpdateManifest>(stream);
             }
             catch (Exception e)
             {
-                logger.Warn(e, "Failed to download update manifest from main URL");
+                logger.Error(e, "Failed to download or verify update manifest.");
+                throw new Exception("Failed to download or verify update manifest.");
             }
 
-            try
-            {
-                if (string.IsNullOrEmpty(dataString))
-                {
-                    dataString = GetUpdateManifestData(GetUpdateDataRootUrl("UpdateUrl2"));
-                }
-            }
-            catch (Exception e)
-            {
-                logger.Warn(e, "Failed to download update manifest from secondary URL");
-            }
+            if (manifest is null)
+                throw new Exception("Manifest data deserialization failed.");
 
-            if (string.IsNullOrEmpty(dataString))
-            {
-                throw new Exception("Failed to download update manifest.");
-            }
-
-            updateManifest = JsonConvert.DeserializeObject<UpdateManifest>(dataString);
-            return updateManifest;
+            return manifest;
         }
 
         public Version GetLatestVersion()
         {
-            if (updateManifest == null)
-            {
-                DownloadManifest();
-            }
-
-            return updateManifest.Version;
-        }
-
-        private string GetUpdateManifestData(string url)
-        {
-            return downloader.DownloadString(Url.Combine(url, UpdateManifest.ServerManifestFileName));
+            return updateManifest.Value.Version;
         }
     }
 }
