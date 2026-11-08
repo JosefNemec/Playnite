@@ -81,22 +81,9 @@
                    Text="{DynamicResource LOCAddonLookingForUpdates}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <TextBlock Text="{DynamicResource LOCAddonNoAddonsAvailable}"
-                   HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                    <Style.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsUpdateAvailable}" Value="False" />
-                                <Condition Binding="{Binding IsUpdateListLoading}" Value="False" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Visibility" Value="Visible" />
-                        </MultiDataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+        <TextBlock Visibility="{Binding NoUpdateFound, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Text="{DynamicResource LOCAddonNoAddonsAvailable}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+
     </Grid>
 </UserControl>
