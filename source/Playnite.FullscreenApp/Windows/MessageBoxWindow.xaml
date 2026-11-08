@@ -7,13 +7,13 @@
         xmlns:pctrls="clr-namespace:Playnite.FullscreenApp.Controls"
         xmlns:pcon="clr-namespace:Playnite.Converters;assembly=Playnite"
         mc:Ignorable="d"
-        x:Name="WindowMessageBox"                     
+        x:Name="WindowMessageBox"
         Title="{Binding Caption, ElementName=WindowMessageBox}"
         ShowMinimizeButton="False" ShowMaximizeButton="False" ShowCloseButton="False"
         ShowInTaskbar="False" WindowStyle="None"
-        ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
         Style="{StaticResource ChildWindowStyle}"
-        d:DesignWidth="1920" d:DesignHeight="1080">    
+        d:DesignWidth="1920" d:DesignHeight="1080">
     <controls:WindowBase.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </controls:WindowBase.Resources>

@@ -36,7 +36,9 @@
 نوصي بالإبلاغ عن المشكلة لمطوّر الامتداد أو الملحق ، إذا أستمرت المشكلة مرة أخرى فقم بتعطيله</sys:String>
     <sys:String x:Key="LOCExtCrashDescriptionUknown" xml:space="preserve">إضافة غير معروفة أو سمة جمالية &quot;ثيم&quot; قد تسببت بعطل لا يمكن اصلاحه.
 ننصحك بإقاف إضافات الطرف الثالث, وعزل الاضافات التي قد تسبب مشاكل, وإبلاغ مطور الإضافة بالمشكلة.</sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">حدث خطأ قهري.
+
+إذا أردت مساعدتنا في حل هذه المشكلة، فرجاءً أرسل معلومات التّشخيص. شكرا لك.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">تعطيل التمديد
 </sys:String>
     <sys:String x:Key="LOCCrashSaveLog">حفظ ملف السجل</sys:String>
@@ -275,7 +277,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">مصدر غلاف اللعبة المفقود</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">مصدر خلفية اللعبة المفقود</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">التباعد العمودي لتفاصيل الألعاب</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">عرض لوحة الخصائص</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">موضع تفاصيل العرض الشبكي</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">موضع عرض تفاصيل قائمة الألعاب</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">رسم فاصل بين اللوحات</sys:String>

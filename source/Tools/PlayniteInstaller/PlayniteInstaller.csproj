@@ -8,6 +8,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>playnite-logo-default.ico</ApplicationIcon>
     <OutputPath>bin</OutputPath>
+    <LangVersion>12</LangVersion>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWpf>true</UseWpf>
   </PropertyGroup>

@@ -129,6 +129,17 @@ namespace Playnite.DesktopApp.ViewModels
             }
         }
 
+        private bool noUpdateFound = false;
+        public bool NoUpdateFound
+        {
+            get => noUpdateFound;
+            set
+            {
+                noUpdateFound = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string addonSearchText;
         public string AddonSearchText
         {
@@ -268,6 +279,7 @@ namespace Playnite.DesktopApp.ViewModels
                 }
                 finally
                 {
+                    NoUpdateFound = updateList.Count == 0;
                     IsUpdateListLoading = false;
                     UpdateAddonList = updateList;
                     UpdateAddonCount = updateList.Count;

@@ -246,7 +246,7 @@ Ajouter les jeux supprimés à la liste d'exclusion d'importation préviendra le
     <sys:String x:Key="LOCMenuAddWindowsStore">Application Microsoft Store</sys:String>
     <sys:String x:Key="LOCMenuAbout">À propos de Playnite</sys:String>
     <sys:String x:Key="LOCMenuIssues">Envoyer des Commentaires</sys:String>
-    <sys:String x:Key="LOCMenuOpenFullscreen">Basculer en mode plein écran</sys:String>
+    <sys:String x:Key="LOCMenuOpenFullscreen">Basculer en mode Plein Écran</sys:String>
     <sys:String x:Key="LOCMenuLinksTitle">Liens</sys:String>
     <sys:String x:Key="LOCMenuHelpTitle">Aide</sys:String>
     <sys:String x:Key="LOCMenuPatreonSupport">Soutenir Playnite</sys:String>
@@ -388,7 +388,7 @@ Jamais : N'importe jamais le temps de jeu.</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryStatus">Afficher l'état de la batterie</sys:String>
     <sys:String x:Key="LOCSettingsShowBatteryPercentage">Afficher le pourcentage de batterie</sys:String>
     <sys:String x:Key="LOCSettingsShowClock">Afficher l'heure du système</sys:String>
-    <sys:String x:Key="LOCSettingsHideMouseCursor">Cacher le curseur</sys:String>
+    <sys:String x:Key="LOCSettingsHideMouseCursor">Masquer le pointeur de la souris</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenQuickFilterInstalled">Tri rapide : jeux installés uniquement</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenButtonPrompts">Apparence des boutons</sys:String>
     <sys:String x:Key="LOCSettingsFullscreenLayout">Affichage</sys:String>
@@ -1019,7 +1019,7 @@ Désactivez-le si vous utilisez des outils qui convertissent les entrées des co
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">N'autoriser que la manette principale</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Si cette option est activée, Playnite n'acceptera que les entrées de la manette principale.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Le bouton guide rétablit le focus du mode plein écran</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Ne pas rétablir le focus lorsqu'une session de jeu est en cours</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Volume de l'interface</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Volume d'ambiance</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Rendre muet lorsque la fenêtre est en arrière-plan</sys:String>
@@ -1265,9 +1265,9 @@ Si vous voyez ce message, veuillez ouvrir un ticket sur la page Github de Playni
     <sys:String x:Key="LOCGameListNavigationSpeed">Vitesse de défilement de la liste de jeux</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Échec de la mise à jour des données de jeu. Le profil de données n'est pas présent dans la bibliothèque.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">L'élément n'est pas présent dans la bibliothèque et n'a pas pu être supprimé.</sys:String>
-    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
-    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Réinitialiser les filtres au démarrage de l'application</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Certains paramètres ne sont disponibles qu'en basculant vers le mode Plein écran</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Mode d'importation des raccourcis (.Ink) :</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Importer le fichier</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Importer les paramètres</sys:String>
 </ResourceDictionary>

@@ -194,11 +194,14 @@ namespace Playnite.FullscreenApp
 
         public Window CreateWindow(WindowCreationOptions options)
         {
-            return new WindowBase()
+            var window = new WindowBase()
             {
                 WindowStyle = WindowStyle.None,
                 Style = ResourceProvider.GetResource("ChildWindowStyle") as Style
             };
+
+            WindowTools.ConfigureChildWindow(window, false);
+            return window;
         }
 
         public Window GetCurrentAppWindow()

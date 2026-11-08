@@ -23,7 +23,6 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="20">
             <CheckBox Content="{DynamicResource LOCSettingsShowIconList}"
                   Name="CheckShowIcons" IsChecked="{Binding Settings.ShowIconsOnList}"/>
@@ -203,5 +202,4 @@
                                               Margin="0,10,0,0"/>
             </UniformGrid>
         </StackPanel>
-    </ScrollViewer>    
 </UserControl>

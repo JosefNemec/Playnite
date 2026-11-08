@@ -1276,9 +1276,9 @@ Playnite будет автоматически перезапущен для н�
     <sys:String x:Key="LOCGameListNavigationSpeed">Скорость навигации по списку игр</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Не удалось обновить данные игры. Исходное состояние игры не найдено в библиотеке, похоже, что игра была удалена.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Не удалось удалить элемент библиотеки. Элемент не найден в библиотеке.</sys:String>
-    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
-    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Очистить фильтры при запуске</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Настройки полноэкранного режима можно найти в меню настроек, доступном непосредственно из самого полноэкранного режима.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Режим импорта файлов ярлыков .lnk:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Импортировать сам .lnk файл</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Импортировать настройки .lnk</sys:String>
 </ResourceDictionary>

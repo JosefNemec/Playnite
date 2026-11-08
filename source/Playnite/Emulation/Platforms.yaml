@@ -196,7 +196,7 @@
   Id: xbox
   IgdbId: 11
   Databases: [Microsoft - Xbox]
-  Emulators: [cxbx-reloaded, retroarch, xemu]
+  Emulators: [cxbx-reloaded, retroarch, xbased, xemu]
 
 - Name: NEC PC-88
   Id: nec_pc88
