@@ -106,6 +106,13 @@ namespace Playnite.SDK
         void StartGame(Guid gameId);
 
         /// <summary>
+        /// Starts specific game action.
+        /// </summary>
+        /// <param name="gameId">Game</param>
+        /// <param name="action">Action to start</param>
+        void StartGameAction(Guid gameId, GameAction action);
+
+        /// <summary>
         /// Installs game.
         /// </summary>
         /// <param name="gameId">Game's database ID.</param>

@@ -34,6 +34,7 @@ namespace Playnite.API
         void AddConvertersSupport(Plugin source, AddConvertersSupportArgs args);
         List<GamepadController> GetConnectedControllers();
         IReadOnlyList<IGamepad> GetConnectedControllers2();
+        void StartGameAction(Guid gameId, GameAction action);
     }
 
     public class PlayniteApiRoot : IPlayniteAPIRoot
@@ -138,6 +139,15 @@ namespace Playnite.API
         {
             return mainModel.App.GameController.Controllers;
         }
+
+        public void StartGameAction(Guid gameId, GameAction action)
+        {
+            var game = mainModel.Database.Games.Get(gameId);
+            if (game is null)
+                return;
+
+            mainModel.App.GamesEditor.ActivateAction(game, action);
+        }
     }
 
     public class PlayniteAPI : IPlayniteAPI
@@ -178,6 +188,11 @@ namespace Playnite.API
         public void StartGame(Guid gameId)
         {
             RootApi.StartGame(gameId);
+        }
+
+        public void StartGameAction(Guid gameId, GameAction action)
+        {
+            RootApi.StartGameAction(gameId, action);
         }
 
         public void InstallGame(Guid gameId)
