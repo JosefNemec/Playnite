@@ -28,6 +28,7 @@
         </Style>
     </UserControl.Resources>
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <StackPanel Margin="20">
         <StackPanel.Resources>
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}"
@@ -180,4 +181,5 @@
                     IsChecked="{Binding Settings.ShowGridItemBackground}"/>
         </controls:GridEx>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>
