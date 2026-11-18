@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CefSharp.Wpf" Version="152.0.100" />
+    <PackageReference Include="CefSharp.Wpf" Version="156.0.300" />
     <PackageReference Include="LargeAddressAware" version="1.0.6" />
   </ItemGroup>
 </Project>
