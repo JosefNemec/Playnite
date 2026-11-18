@@ -79,9 +79,7 @@
 
         <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
                 BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <ContentControl Content="{Binding SelectedSectionView}"/>
-            </ScrollViewer>
+            <ContentControl Content="{Binding SelectedSectionView}"/>
         </Border>
     </DockPanel>
 </controls:WindowBase>
