@@ -15,22 +15,22 @@
     <sys:String x:Key="LOCSaveChangesAskTitle">Änderungen speichern?</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">Homepage: www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Quellcode auf GitHub</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">Diagnosedaten erzeugen</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">Erstelle Diagnosedaten</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Diagnosedaten senden</sys:String>
     <sys:String x:Key="LOCAboutWindowTitle">Über Playnite</sys:String>
-    <sys:String x:Key="LOCAboutAuthor">von Josef Němec</sys:String>
+    <sys:String x:Key="LOCAboutAuthor">Von Josef Němec</sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle">Kategorie zuweisen</sys:String>
     <sys:String x:Key="LOCCategorySetButton">Kategorien festlegen</sys:String>
     <sys:String x:Key="LOCCategoryAddCatButton">Kategorie hinzufügen</sys:String>
-    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiviert - Kategorie zuweisen
-Deaktiviert - Kategorie entfernen
-Unbestimmt – Keine Änderungen (beim Bearbeiten mehrerer Spiele)</sys:String>
+    <sys:String x:Key="LOCCategoryTooltip" xml:space="preserve">Aktiviert – Kategorie zuweisen
+Deaktiviert – Kategorie entfernen
+Unbestimmt – keine Änderungen (beim Bearbeiten mehrerer Spiele)</sys:String>
     <sys:String x:Key="LOCNoCategory">Keine Kategorie</sys:String>
     <sys:String x:Key="LOCNoPlatform">Keine Plattform</sys:String>
     <sys:String x:Key="LOCCrashWindowTitle">Ein nicht behebbarer Fehler ist aufgetreten.</sys:String>
     <sys:String x:Key="LOCCrashDescription" xml:space="preserve">Bitte beschreibe kurz die Schritte, die du vor dem Absturz durchgeführt hast und sende dann die diagnostischen Informationen.
 
-Alternativ kannst du auf &quot;Absturz melden&quot; klicken, um einen GitHub-Issue zu öffnen und den Crash manuell zu melden.
+Alternativ kannst du auf &quot;Absturz melden&quot; klicken, um ein GitHub-Issue zu öffnen und den Crash manuell zu melden.
 
 Vielen Dank für deine Mithilfe.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">Erweiterung „{0}“ hat einen nicht behebbaren Fehler verursacht.
@@ -1264,13 +1264,13 @@ Melde das Problem auf der GitHub-Seite von Playnite mit einer Anfrage, die Besch
     <sys:String x:Key="LOCNoControllersDetected">Keine Controller erkannt</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">Standardquelle</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">Web-Bildersuche fehlgeschlagen. Dies kann aus verschiedenen Gründen passieren. Schau dir diesen Link an für mehr Details und Tipps zur Fehlerbehebung.</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">Guide-Button öffnet Vollbildmodus</sys:String>
     <sys:String x:Key="LOCGameListNavigationSpeed">Navigationsgeschwindigkeit der Spielliste</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Fehler beim Aktualisieren der Spieldaten. Der ursprüngliche Spielstand wurde in der Bibliothek nicht gefunden, es sieht so aus, als wäre das Spiel entfernt worden.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Bibliothekseintrag kann nicht entfernt werden. Das Element wurde in der Bibliothek nicht gefunden.</sys:String>
-    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
-    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Filter bei jedem Start löschen</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Der Vollbildmodus verfügt über ein eigenes Einstellungsmenü, dass sich nur im Vollbildmodus aufrufen lässt.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">.lnk Import-Datei-Modus:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">.lnk Datei selbst importieren</sys:String>
     <sys:String x:Key="LOCSettingsLnkImportModeTarget">.Ink Einstellungen importieren</sys:String>
 </ResourceDictionary>

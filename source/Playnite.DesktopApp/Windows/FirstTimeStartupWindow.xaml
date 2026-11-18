@@ -11,7 +11,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCFirstWindowTitle}" WindowStartupLocation="CenterScreen"
         ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False"
-        Height="540" Width="650" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
+        Height="600" Width="700" MinHeight="250" MinWidth="390" x:Name="WindowMain" 
         AutomationProperties.AutomationId="WindowWizard">
 
     <controls:WindowBase.Resources>

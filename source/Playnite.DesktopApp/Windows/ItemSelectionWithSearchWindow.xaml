@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{Binding WindowTitle}" Height="600" Width="800"
+        Title="{Binding WindowTitle}" Height="700" Width="800"
         ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
         AutomationProperties.AutomationId="WindowMetaSearch">
 

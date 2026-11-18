@@ -76,10 +76,10 @@
                     Command="{Binding CancelCommand}"/>
             <Button Content="Install" Padding="20,5,20,5" Margin="0,0,10,0"
                     IsDefault="True" DockPanel.Dock="Right"
-                    Command="{Binding InstallCommand}"/>            
+                    Command="{Binding InstallCommand}"/>
             <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">
                 <Hyperlink Command="{Binding NavigateUrlCommand}"
-                           CommandParameter="https://github.com/JosefNemec/Playnite/wiki/Installation-troubleshooting">
+                           CommandParameter="https://api.playnite.link/docs/manual/gettingStarted/helpAndTroubleshooting/installer.html">
                     <Run Text="Having issues?" />
                 </Hyperlink>
             </TextBlock>

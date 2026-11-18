@@ -3,7 +3,7 @@
     <!--
     THIS FILE IS NOT PART OF THE THEME, DO NOT MODIFY!
     -->
-    <sys:String x:Key="LanguageName">Português Europeu</sys:String>
+    <sys:String x:Key="LanguageName">Português (Portugal)</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">Idioma do Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">Sair</sys:String>
     <sys:String x:Key="LOCFilterActiveLabel">Filtro Ativado</sys:String>
@@ -13,7 +13,7 @@
     <sys:String x:Key="LOCFilter">Filtro</sys:String>
     <sys:String x:Key="LOCInvalidDataTitle">Dados Inválidos</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">Guardar alterações?</sys:String>
-    <sys:String x:Key="LOCAboutHomePageLink">Página Web em www.playnite.link</sys:String>
+    <sys:String x:Key="LOCAboutHomePageLink">Página inicial em www.playnite.link</sys:String>
     <sys:String x:Key="LOCAboutSourceLink">Código Fonte no GitHub</sys:String>
     <sys:String x:Key="LOCAboutCreateDiagButton">Criar pacote de diagnóstico</sys:String>
     <sys:String x:Key="LOCAboutSendDiagButton">Enviar informação de diagnóstico</sys:String>
@@ -39,8 +39,8 @@ Nós recomendamos reportar o problema para o desenvolvedor da extensão. Se o pr
 
 Recomendamos desativar complementos de terceiros, isolando o problema e relatando o problema ao desenvolvedor do complemento.</sys:String>
     <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
-    <sys:String x:Key="LOCCrashDisableExtension">Desabilitar extensão</sys:String>
-    <sys:String x:Key="LOCCrashSaveLog">Guardar o arquivo log </sys:String>
+    <sys:String x:Key="LOCCrashDisableExtension">Desativar extensão</sys:String>
+    <sys:String x:Key="LOCCrashSaveLog">Guardar o ficheiro de registo </sys:String>
     <sys:String x:Key="LOCCrashSendDiag">Enviar informação do diagnóstico</sys:String>
     <sys:String x:Key="LOCCrashReportIssue">Reportar Crash</sys:String>
     <sys:String x:Key="LOCCrashRestartPlaynite">Reiniciar o Playnite</sys:String>
@@ -266,7 +266,7 @@ Selecionando a opção &quot;adicionar a lista de exclusão&quot; impedirá que 
     <sys:String x:Key="LOCSettingsDefaulCoverSource">Fonte de capa de jogo em falta</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">Fonte de fundo de jogo em falta</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">Espaçamento vertical para detalhes dos jogos</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">Largura do painel de propriedades</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">Posição dos detalhes na vista de grelha</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">Posição da lista de jogos na vista de detalhes</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">Mostrar separador entre painéis</sys:String>
@@ -1245,7 +1245,7 @@ Abra um novo problema na página do GitHub do Playnite com um pedido para corrig
     <sys:String x:Key="LOCUnsavedChangesAskMessage">Deseja guardar as alterações efetuadas?</sys:String>
     <sys:String x:Key="LOCPortableInstallation">Instalação portátil</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">Nenhum comando detetado</sys:String>
-    <sys:String x:Key="LOCDefaultWebImageSource"></sys:String>
+    <sys:String x:Key="LOCDefaultWebImageSource">Fonte predefinida</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError"></sys:String>
     <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
     <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
@@ -1255,5 +1255,5 @@ Abra um novo problema na página do GitHub do Playnite com um pedido para corrig
     <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
     <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
     <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Definições de importação .Ink</sys:String>
 </ResourceDictionary>

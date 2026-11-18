@@ -224,16 +224,12 @@ namespace Playnite.DesktopApp.ViewModels
             }, (a) => !a.IsNullOrEmpty());
         }
 
-        private readonly List<ImportExclusionItem> removedExclusionItems = new List<ImportExclusionItem>();
         public RelayCommand<IList<object>> RemoveImportExclusionItemCommand
         {
             get => new RelayCommand<IList<object>>((items) =>
             {
                 foreach (ImportExclusionItem item in items.ToList())
-                {
-                    ImportExclusionList.Remove(item);
-                    removedExclusionItems.Add(item);
-                }
+                    ImportExclusionList.Remove(item);                
             }, (items) => items != null && items.Count > 0);
         }
 
@@ -689,7 +685,9 @@ namespace Playnite.DesktopApp.ViewModels
                 nameof(PlayniteSettings.Fullscreen)
             }, true);
 
-            database.ImportExclusions.Remove(removedExclusionItems);
+            var removedExclusions = database.ImportExclusions.Where(a => !ImportExclusionList.Any(b => b.Id == a.Id)).ToList();
+            if (removedExclusions.HasItems())
+                database.ImportExclusions.Remove(removedExclusions);
         }
 
         public void TestScript(string script)

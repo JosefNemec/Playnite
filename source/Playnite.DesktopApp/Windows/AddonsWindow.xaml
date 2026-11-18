@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
-        Title="{DynamicResource LOCMenuAddons}" Height="600" Width="900"
+        Title="{DynamicResource LOCMenuAddons}" Height="700" Width="1000"
         AutomationProperties.AutomationId="WindowExtensions">
 
     <i:Interaction.Triggers>

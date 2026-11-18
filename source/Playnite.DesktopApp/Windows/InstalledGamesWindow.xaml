@@ -12,7 +12,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner"
         Title="{DynamicResource LOCGameImportWindowTitle}"                     
-        Height="500" Width="900"
+        Height="700" Width="900"
         AutomationProperties.AutomationId="WindowInstalledGames">
     <controls:WindowBase.Resources>
         <pcon:IconToImageSourceConverter x:Key="IconToImageSourceConverter" />

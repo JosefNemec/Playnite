@@ -14,7 +14,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="Google Images"
-        Height="600" Width="830"
+        Height="700" Width="830"
         ShowInTaskbar="True" WindowStartupLocation="CenterOwner">
 
     <i:Interaction.Triggers>

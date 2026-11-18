@@ -66,6 +66,11 @@ namespace Playnite.API.DesignData
             throw new NotImplementedException();
         }
 
+        public void StartGameAction(Guid gameId, GameAction action)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InstallGame(Guid gameId)
         {
             throw new NotImplementedException();

@@ -9,7 +9,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         Title="{Binding WindowTitle}"
-        Height="600" Width="830"
+        Height="700" Width="830"
         ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
         AutomationProperties.AutomationId="WindowMetaSearch">
 

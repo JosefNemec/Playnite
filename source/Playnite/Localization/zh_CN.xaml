@@ -1268,9 +1268,9 @@ Playnite 将自动重启以开始备份过程。</sys:String>
     <sys:String x:Key="LOCGameListNavigationSpeed">游戏列表导航速度</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">更新游戏数据失败。在库中找不到最初的游戏状态，看起来游戏已被移除。</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">无法移除库项。在库中找不到此项。</sys:String>
-    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
-    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">启动时清除筛选器</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">全屏模式特定设置可以在全屏模式下的设置菜单中找到。</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">.lnk 快捷方式文件导入模式：</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">导入 .lnk 文件本身。</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">导入 .lnk 设置  </sys:String>
 </ResourceDictionary>

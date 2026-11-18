@@ -12,7 +12,7 @@
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Width="800" Height="620" MinWidth="800" MinHeight="620"   
+        Width="900" Height="720" MinWidth="800" MinHeight="620"   
         AutomationProperties.AutomationId="WindowSettings">
 
     <i:Interaction.Triggers>
@@ -79,9 +79,7 @@
 
         <Border DockPanel.Dock="Left" BorderThickness="1,1,0,0"
                 BorderBrush="{StaticResource WindowPanelSeparatorBrush}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <ContentControl Content="{Binding SelectedSectionView}"/>
-            </ScrollViewer>
+            <ContentControl Content="{Binding SelectedSectionView}"/>
         </Border>
     </DockPanel>
 </controls:WindowBase>

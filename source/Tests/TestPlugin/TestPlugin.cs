@@ -233,6 +233,23 @@ namespace TestPlugin
 
             yield return new MainMenuItem
             {
+                Description = "StartGameAction test",
+                Action = (_) =>
+                {
+                    var game = PlayniteApi.MainView.SelectedGames.FirstOrDefault();
+                    if (game is null)
+                        return;
+
+                    var action = game.GameActions.FirstOrDefault();
+                    if (action is null)
+                        return;
+
+                    PlayniteApi.StartGameAction(game.Id, action);
+                }
+            };
+
+            yield return new MainMenuItem
+            {
                 Description = "serialization test",
                 Action = (_) =>
                 {
