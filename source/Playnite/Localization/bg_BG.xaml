@@ -1027,7 +1027,7 @@
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">Само основен контролер</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">Приема входове само от основния контролер, когато е активиран.</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">Бутонът за ръководство фокусира Playnite</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">Фокусиране само ако не е стартирана игра</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">Сила на звука на интерфейса</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">Сила на фона</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">Заглушаване във фонов режим</sys:String>
@@ -1274,9 +1274,9 @@ Playnite автоматично ще се рестартира, за да ста
 </sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Не може да се премахне елементът от библиотеката. Елементът не беше намерен в библиотеката.
 </sys:String>
-    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
-    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Изчистване на филтрите при стартиране</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Специфичните настройки за режим на цял екран могат да бъдат намерени в менюто с настройки, достъпно директно от самия режим на цял екран.</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Режим за импортиране на .lnk файлове с преки пътища:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Импортиране на самия .lnk файл</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Импортиране на настройки от .lnk</sys:String>
 </ResourceDictionary>

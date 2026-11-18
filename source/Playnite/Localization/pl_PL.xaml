@@ -1274,9 +1274,9 @@ Otwórz nowy problem na stronie GitHub Playnite z prośbą o naprawienie uszkodz
     <sys:String x:Key="LOCGameListNavigationSpeed">Szybkość nawigacji listy gier</sys:String>
     <sys:String x:Key="LOCGameDataUpdateSaveError">Nie udało się zaktualizować danych gry. Oryginalny stan gry nie został znaleziony w bibliotece, wygląda na to, że gra została usunięta.</sys:String>
     <sys:String x:Key="LOCLibraryDataRemovalNotFound">Nie można usunąć elementu biblioteki. Element nie został znaleziony w bibliotece.</sys:String>
-    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
-    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">Wyczyść filtry przy uruchomieniu</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">Konkretne opcje Trybu Pełnoekranowego można znaleźć w opcjach menu, dostępnych z samego Trybu Pełnoekranowego</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">Tryb importowania pliku skrótu .Ink:</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">Importuj bezpośredni plik .Ink </sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">Importuj opcje .Ink</sys:String>
 </ResourceDictionary>

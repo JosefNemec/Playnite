@@ -6,7 +6,7 @@
     <sys:String x:Key="LanguageName">עברית</sys:String>
     <sys:String x:Key="LOCLanguageSettingsLabel">שפת התצוגה של Playnite</sys:String>
     <sys:String x:Key="LOCExitAppLabel">יציאה</sys:String>
-    <sys:String x:Key="LOCFilterActiveLabel">סינון פעיל</sys:String>
+    <sys:String x:Key="LOCFilterActiveLabel">מסנן פעיל</sys:String>
     <sys:String x:Key="LOCFilterInactiveLabel">מסנן כבוי</sys:String>
     <sys:String x:Key="LOCAditionalFilters">מסננים נוספים</sys:String>
     <sys:String x:Key="LOCFilters">מסננים</sys:String>
@@ -14,10 +14,10 @@
     <sys:String x:Key="LOCInvalidDataTitle">מידע שגוי</sys:String>
     <sys:String x:Key="LOCSaveChangesAskTitle">לשמור שינויים?</sys:String>
     <sys:String x:Key="LOCAboutHomePageLink">אתר הבית ב www.playnite.link</sys:String>
-    <sys:String x:Key="LOCAboutSourceLink">קוד המקור ב github</sys:String>
-    <sys:String x:Key="LOCAboutCreateDiagButton">צור חבילה דיאגנוסטית</sys:String>
-    <sys:String x:Key="LOCAboutSendDiagButton">שלח מידע דיאגנוסטי</sys:String>
-    <sys:String x:Key="LOCAboutWindowTitle">אודות פליינייט</sys:String>
+    <sys:String x:Key="LOCAboutSourceLink">קוד המקור ב-Github</sys:String>
+    <sys:String x:Key="LOCAboutCreateDiagButton">צור חבילה מאבחנת</sys:String>
+    <sys:String x:Key="LOCAboutSendDiagButton">שלח מידע מאבחן</sys:String>
+    <sys:String x:Key="LOCAboutWindowTitle">אודות Playnite</sys:String>
     <sys:String x:Key="LOCAboutAuthor">נוצר על ידי Josef Němec</sys:String>
     <sys:String x:Key="LOCCategoryWindowTitle">הצמד קטגוריה</sys:String>
     <sys:String x:Key="LOCCategorySetButton">הגדר קטגוריות</sys:String>
@@ -27,8 +27,12 @@
 ביניים - ללא שינוי (בעריכה של מספר משחקים)</sys:String>
     <sys:String x:Key="LOCNoCategory">אין קטגוריה</sys:String>
     <sys:String x:Key="LOCNoPlatform">אין פלטפורמה</sys:String>
-    <sys:String x:Key="LOCCrashWindowTitle"></sys:String>
-    <sys:String x:Key="LOCCrashDescription" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashWindowTitle">התערה תקלה בלתי ניתנת לתיקון.</sys:String>
+    <sys:String x:Key="LOCCrashDescription" xml:space="preserve">בבקשה תתאר בקצרה את הפעולות שננקטו לפני הקריסה, ולאחר מכן תשלח מידע מאבחן.
+
+לחלופין, אתה יכול ללחוץ על כפתור &quot;דווח על קריסה&quot; על מנת ליצור תקלה חדשה ב-GitHub ולדווח על התקלה ידנית.
+
+תודה לך על עזרתך.</sys:String>
     <sys:String x:Key="LOCExtCrashDescription" xml:space="preserve">ההרחבה &quot;{0}&quot; גרמה לשגיאה שלא ניתנת לתיקון.
 
 אנו ממליצים לשמור את קובץ הלוג ולדווח על הבעיה למפתח ההרחבה. אם הבעיה ממשיכה להופיע שוב, השבת את ההרחבה.
@@ -40,7 +44,9 @@
 
 אנו ממליצים להשבית הרחבות של צד שלישי, לבודד את הבעייתית ולדווח על הבעיה למפתח ההרחבה.
 </sys:String>
-    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve"></sys:String>
+    <sys:String x:Key="LOCCrashDescriptionFullscreen" xml:space="preserve">התערה תקלה בלתי ניתנת לתיקון.
+
+אם אתה רוצה לעזור לנו לתקן את הבעיה הזאת, בבקשה תשלח מידע מאבחן. תודה לך.</sys:String>
     <sys:String x:Key="LOCCrashDisableExtension">השבתת ההרחבה</sys:String>
     <sys:String x:Key="LOCCrashSaveLog">שמור קובץ יומן (log) </sys:String>
     <sys:String x:Key="LOCCrashSendDiag">שלח מידע אבחון</sys:String>
@@ -48,12 +54,12 @@
     <sys:String x:Key="LOCCrashRestartPlaynite">הפעל מחדש את פליינייט</sys:String>
     <sys:String x:Key="LOCCrashRestartSafe">התחל מחדש במצב בטוח</sys:String>
     <sys:String x:Key="LOCCrashRestartSafeTooltip">משבית את כל הרחבות הצד השלישי ומשתמש בערכת נושא ברירת מחדל</sys:String>
-    <sys:String x:Key="LOCCrashClosePlaynite">צא מפליינייט</sys:String>
+    <sys:String x:Key="LOCCrashClosePlaynite">צא מ-Playnite</sys:String>
     <sys:String x:Key="LOCCrashUserActionsDescription">פעולות שקרו לפני הקריסה (באנגלית):</sys:String>
-    <sys:String x:Key="LOCLibraryManager">מנהל ספרייה</sys:String>
+    <sys:String x:Key="LOCLibraryManager">מנהל ספריה</sys:String>
     <sys:String x:Key="LOCGameRemoveAskTitle">הסר משחק(ים)?</sys:String>
-    <sys:String x:Key="LOCGameRemoveRunningError">לא ניתן למחוק משום שהמשחק או תוכנת ההתקנה רצים כרגע</sys:String>
-    <sys:String x:Key="LOCGameUninstallRunningError">לא ניתן להסיר התקנה של משחק שרץ</sys:String>
+    <sys:String x:Key="LOCGameRemoveRunningError">לא ניתן למחוק - המשחק או המתקין עדיין פועל</sys:String>
+    <sys:String x:Key="LOCGameUninstallRunningError">לא ניתן להסיר - המשחק רץ</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר את {0}?</sys:String>
     <sys:String x:Key="LOCGamesRemoveAskMessage" xml:space="preserve">אתה בטוח שברצונך להסיר {0} משחקים?</sys:String>
     <sys:String x:Key="LOCGameRemoveAskMessageIgnoreOption" xml:space="preserve">האם אתה בטוח שאתה רוצה להסיר את {0}?
@@ -268,7 +274,7 @@
     <sys:String x:Key="LOCSettingsDefaulCoverSource">מקור עטיפת משחק חסר</sys:String>
     <sys:String x:Key="LOCSettingsDefaulBackgroundSource">מקור רקע משחק חסר</sys:String>
     <sys:String x:Key="LOCSettingsIndentGameDetails">ריווח אנכי לפרטי משחק</sys:String>
-    <sys:String x:Key="LOCSettingsPropertiesPanelWidth"></sys:String>
+    <sys:String x:Key="LOCSettingsPropertiesPanelWidth">רוחב לוח נכסים</sys:String>
     <sys:String x:Key="LOCSettingsGridViewDetailsPosition">מיקום פרטי פריט רשת</sys:String>
     <sys:String x:Key="LOCSettingsDetailsGameListPosition">מיקום רשימת משחקים בתצוגה מפורטת</sys:String>
     <sys:String x:Key="LOCSettingsDrawPanelSeparators">צייר הפרדה בין פאנלים</sys:String>
@@ -276,7 +282,7 @@
     <sys:String x:Key="LOCSettingsGameDetailsListIconSize">גובה סמל רשימת משחקים</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceFont">גופן יישום</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceMonoFont">פונט בעל רוחב קבוע</sys:String>
-    <sys:String x:Key="LOCSettingsFilterPanelPosition">מיקום פאנל מסנן</sys:String>
+    <sys:String x:Key="LOCSettingsFilterPanelPosition">מיקום לוח מסננים</sys:String>
     <sys:String x:Key="LOCSettingsExplorerPanelPosition">מיקום פאנל סייר</sys:String>
     <sys:String x:Key="LOCSettingsCoverArtRenderingLabel">עיבוד עטיפת משחק</sys:String>
     <sys:String x:Key="LOCSettingsTargetAspectRatioLabel">יחס גובה-רוחב יעד</sys:String>
@@ -1022,7 +1028,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnly">בקר ראשי בלבד</sys:String>
     <sys:String x:Key="LOCSettingsPrimaryControllerOnlyDescription">כאשר מופעל, יתקבלו פקודות מהבקר הראשי בלבד</sys:String>
     <sys:String x:Key="LOCSettingsRefocusOnGuidButton">כפתור Guide ממקד על פליינייט</sys:String>
-    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame"></sys:String>
+    <sys:String x:Key="LOCSettingsRefocusOnGuidButtonOnlyWhenNoGame">התמקד רק אם אין משחק רץ</sys:String>
     <sys:String x:Key="LOCSettingsInterfaceVolume">עוצמת ממשק</sys:String>
     <sys:String x:Key="LOCSettingsMusiVolume">עוצמת רקע</sys:String>
     <sys:String x:Key="LOCSettingsMuteBackground">השתק כאשר ברקע</sys:String>
@@ -1107,7 +1113,7 @@ https://playnite.link/cefstartup</sys:String>
     <sys:String x:Key="LOCCompletionStatusDefaultStatusDesc">סטטוס ברירת מחדל המשוייך למשחקים חדשים שנוספו</sys:String>
     <sys:String x:Key="LOCCompletionStatusPlayedStatusDesc">סטטוס המשוייך למשחקים אשר הופעלו בפעם הראשונה</sys:String>
     <sys:String x:Key="LOCPowerShellCreationError">נכשלה הפעלת סקריפט PowerShell. במידה ומערכת ההפעלה היא Windows 7, יש לנסות להתקין מחדש  PowerShell 5.1.</sys:String>
-    <sys:String x:Key="LOCFilterPresetNameConflict">פילטר עם שם זה כבר קיים, האם לעדכן אותו עם ההגדרות החדשות?</sys:String>
+    <sys:String x:Key="LOCFilterPresetNameConflict">מסנן עם שם זה כבר קיים, האם לעדכן אותו עם ההגדרות החדשות?</sys:String>
     <sys:String x:Key="LOCSortingNameAutofill">מילוי אוטומטי של שמות מיון חסרים עבור משחקים שנוספו  בבת אחת או נערכו</sys:String>
     <sys:String x:Key="LOCSortingNameAutofillTooltip">כאשר מתבצעת עריכת משחק, הוספת משחק באמצעות סריקת תיקיה או סריקת תיקיית אמולטור, יתווסף אוטומטית שם המתאים למיון עבור המשחק, למשל, &quot;The Witcher 3&quot; יקבל את שם המיון &quot;Witcher 03&quot;.
 פעולה זו תמיד תיצור שם שונה מאשר שם המשחק המקורי ותעדכן שמות מיון ריקים בלבד.</sys:String>
@@ -1263,13 +1269,13 @@ SHIFT-ENTER: פתיחת תפריט</sys:String>
     <sys:String x:Key="LOCNoControllersDetected">לא נמצאו בקרים</sys:String>
     <sys:String x:Key="LOCDefaultWebImageSource">מקור ברירת מחדל</sys:String>
     <sys:String x:Key="LOCWebImageDownloadError">חיפוש תמונות באינטרנט נכשל. זה יכול לקרות מסיבות שונות. עיין בקישור הבא לקבלת פרטים נוספים וטיפים לפתרון בעיות.</sys:String>
-    <sys:String x:Key="LOCGuideButtonFullscreenSwitch"></sys:String>
-    <sys:String x:Key="LOCGameListNavigationSpeed"></sys:String>
-    <sys:String x:Key="LOCGameDataUpdateSaveError"></sys:String>
-    <sys:String x:Key="LOCLibraryDataRemovalNotFound"></sys:String>
-    <sys:String x:Key="LOCFiltersClearOnStartup"></sys:String>
-    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportMode"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeDirect"></sys:String>
-    <sys:String x:Key="LOCSettingsLnkImportModeTarget"></sys:String>
+    <sys:String x:Key="LOCGuideButtonFullscreenSwitch">כפתור מנחה מחליף למצב מסך מלא</sys:String>
+    <sys:String x:Key="LOCGameListNavigationSpeed">מהירות ניווט ברשימת משחקים</sys:String>
+    <sys:String x:Key="LOCGameDataUpdateSaveError">היה כשל בעידכון מידע על המשחק. מצב המשחק המקורי לא היה נמצא בספריה, נראה כאילו המשחק נמחק</sys:String>
+    <sys:String x:Key="LOCLibraryDataRemovalNotFound">לא ניתן למחוק פריט זה מהספריה. לא היה ניתן למצוא פריט זה בספריה</sys:String>
+    <sys:String x:Key="LOCFiltersClearOnStartup">נקה מסננים בעת התחלה</sys:String>
+    <sys:String x:Key="LOCFullscreenSettingsDesktopNotif">הגדרות ספציפיות למסך מלא יכולות להימצא בתפריט ההגדרות הניתן לגישה ממצב מסך מלא עצמו </sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportMode">מצב יבוא קובץ קיצור .ink</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeDirect">יבא את קובץ .ink בעצמו</sys:String>
+    <sys:String x:Key="LOCSettingsLnkImportModeTarget">יבא הגדרות .ink</sys:String>
 </ResourceDictionary>
