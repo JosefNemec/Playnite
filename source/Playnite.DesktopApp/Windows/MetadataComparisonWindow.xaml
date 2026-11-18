@@ -11,7 +11,7 @@
         Style="{DynamicResource StandardWindowStyle}"
         Title="{DynamicResource LOCMedataDiffWindowTitle}" 
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
-        Height="600" Width="800">
+        Height="700" Width="850">
     
     <controls:WindowBase.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">

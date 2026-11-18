@@ -9,7 +9,7 @@
         mc:Ignorable="d"                     
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource LOCUpdaterWindowTitle}" Height="500" Width="600" WindowStartupLocation="CenterOwner"
+        Title="{DynamicResource LOCUpdaterWindowTitle}" Height="600" Width="700" WindowStartupLocation="CenterOwner"
         ShowInTaskbar="True" ShowCloseButton="False" ShowMaximizeButton="False" ShowMinimizeButton="False">
     
     <Grid>

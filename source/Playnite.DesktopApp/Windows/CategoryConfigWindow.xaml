@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource LOCCategoryWindowTitle}" Height="320" Width="340"
+        Title="{DynamicResource LOCCategoryWindowTitle}" Height="500" Width="500"
         WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
         AutomationProperties.AutomationId="WindowCategories"
         x:Name="WindowCategories">

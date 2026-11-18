@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         d:DesignStyle="{StaticResource WindowDesignStyle}"
         Style="{DynamicResource StandardWindowStyle}"
-        Title="{DynamicResource LOCCrashWindowTitle}" SizeToContent="Height" Width="600"
+        Title="{DynamicResource LOCCrashWindowTitle}" SizeToContent="Height" Width="700"
         WindowStartupLocation="CenterScreen"
         AutomationProperties.AutomationId="WindowCrash">
 
