@@ -1990,6 +1990,14 @@ namespace Playnite
         /// </summary>
         public const string UseFilterStyleAndTooltip = "LOCUseFilterStyleAndTooltip";
         /// <summary>
+        /// Show selected groups only
+        /// </summary>
+        public const string ShowSelectedGroupsOnlyTitle = "LOCShowSelectedGroupsOnlyTitle";
+        /// <summary>
+        /// When grouping by a filter field, only show groups containing selected values.
+        /// </summary>
+        public const string ShowSelectedGroupsOnlyTooltip = "LOCShowSelectedGroupsOnlyTooltip";
+        /// <summary>
         /// Installed
         /// </summary>
         public const string GameIsInstalledTitle = "LOCGameIsInstalledTitle";

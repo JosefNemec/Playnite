@@ -83,6 +83,7 @@ namespace Playnite.SDK.Models
     public class FilterPresetSettings
     {
         public bool UseAndFilteringStyle { get; set; }
+        public bool ShowSelectedGroupsOnly { get; set; }
         public bool IsInstalled { get; set; }
         public bool IsUnInstalled { get; set; }
         public bool Hidden { get; set; }

@@ -130,6 +130,7 @@ namespace Playnite.DesktopApp.Controls.Views
             SetToggleFilter(nameof(FilterSettings.Hidden), nameof(DatabaseStats.Hidden), LOC.GameHiddenTitle);
             SetToggleFilter(nameof(FilterSettings.Favorite), nameof(DatabaseStats.Favorite), LOC.GameFavoriteTitle);
             SetToggleFilterWithTooltip(nameof(FilterSettings.UseAndFilteringStyle), LOC.UseFilterStyleAndTitle, LOC.UseFilterStyleAndTooltip);
+            SetToggleFilterWithTooltip(nameof(FilterSettings.ShowSelectedGroupsOnly), LOC.ShowSelectedGroupsOnlyTitle, LOC.ShowSelectedGroupsOnlyTooltip);
 
             SetLabelTag(nameof(FilterSettings.Platform), LOC.PlatformTitle);
             SetFilterSelectionBoxFilter(nameof(DatabaseFilter.Platforms), nameof(FilterSettings.Platform));
